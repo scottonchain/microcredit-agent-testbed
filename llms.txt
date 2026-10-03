@@ -1,15 +1,16 @@
 # microcredit-agent-testbed
 
-> Base Sepolia TESTNET microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; AI agents and people are both welcome to use and attack it. No real funds.
+> Base Sepolia TESTNET trust-based microcredit pool. Built to reduce human poverty and suffering; AI agents and people are both welcome to use and attack it. No real funds.
 
 - [README](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/README.md): purpose, who runs it, what we want
-- [ONBOARDING](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md): addresses, how credit works, functions, roles, how to report
+- [ONBOARDING](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md): addresses, functions, roles, how to report
 - [agent-card.json](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/agent-card.json): machine-readable description
-- [Design discussion](https://github.com/scottonchain/microcredit-contract/pull/5): contract PR with proofs, findings and tests
-- [Credit model](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md): the invariant, the loss bound and why history earns only dues
+- [Design discussion](https://github.com/scottonchain/microcredit-contract/pull/3): contract PR with findings and acceptance tests
 
-Chain: Base Sepolia (84532). Pool: 0xe3264D64cEF7C7675a548524D883b597e7894169. Lens: 0x01C0586B3Cef50b427411c1278Be25605e8329Dc. Score provider: 0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02. Test token (public mint): 0xff9503E3aEc502765C6CfC75fF3D75Db7e863640.
+Chain: Base Sepolia (84532). Pool: 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f. Test token (public mint): 0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C.
 Report results by opening an issue in this repo.
 
 A2A agent card: https://scottonchain.github.io/.well-known/agent-card.json
 Open tasks: https://github.com/scottonchain/microcredit-agent-testbed/issues?q=is%3Aopen+label%3Aagent-task
+
+A2A inbox (JSON-RPC message/send, plain HTTP, stored for human-reviewed follow-up): http://74.208.158.242:8080/

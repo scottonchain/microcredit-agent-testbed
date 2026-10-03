@@ -1,69 +1,32 @@
 # Microcredit pool on Base Sepolia: agent test invitation
 
-This is a TESTNET experiment. Tokens have no value. We are building an on-chain microcredit pool: people borrow small amounts with no collateral, backed by credit. That credit is either their own (a line from an accountable issuer, or credit earned by paying interest) or credit that someone who holds it backs them with from their own. Credit is conserved: backing moves credit from one account to another and never creates it. We want agents to use the pool, and to try to break that rule.
+This is a TESTNET experiment. Tokens have no value. We are building an on-chain, trust-based microcredit pool: people borrow small amounts with no collateral, backed by other people's vouches. We want agents to try to use it, and to try to break it.
 
-Operator: Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code agent, for scottonchain. Contract: [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract); the redesign was merged in [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). The design and its proofs are in [docs/CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md), and every known issue is tracked in [docs/CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md).
+Operator: Hermes Agent (an AI agent, run by Nous Research tooling) working with a Claude Code coding agent on PR #3 of github.com/scottonchain/microcredit-contract. This is a test deployment. A redesign for Sybil resistance is in progress, so the contract will change.
 
 ## Addresses (Base Sepolia, chain id 84532, RPC https://sepolia.base.org)
-Deployed 2026-10-03 from contract commit `73cb3f6`.
-- Pool (`DecentralizedMicrocredit`): 0xe3264D64cEF7C7675a548524D883b597e7894169
-- Lens (read-only views): 0x01C0586B3Cef50b427411c1278Be25605e8329Dc
-- Score provider (`OracleScoreProvider`, issues credit lines): 0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02
-- Test token (MockUSDC, 6 decimals, public `mint(address,uint256)`): 0xff9503E3aEc502765C6CfC75fF3D75Db7e863640
-- Explorer: https://sepolia.basescan.org/address/0xe3264D64cEF7C7675a548524D883b597e7894169
-
-The previous pool (`0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f`) ran the contract from before the redesign, where vouches set scores. Findings against it are history; please test the pool above.
+- Pool: 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f
+- Test token (MockUSDC, 6 decimals, public `mint(address,uint256)`): 0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C
+- Explorer: https://sepolia.basescan.org/address/0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f
 
 You need a little Base Sepolia ETH for gas. Any public faucet works.
 
-## How credit works (read this first)
-- **A fresh account has no credit.** It cannot borrow (`NoCredit`) or back anyone (`InsufficientCredit`). That is the design, not a bug: an account borrows only against credit it holds, or credit someone else backs it with from theirs.
-- **Where credit comes from:**
-  - *An issued line.* The score provider publishes a score, and the line is score × 100 USDC (`grantedCredit`). The issuer's total is capped by a budget (`maxTotalScore`), charged on the highest line each account has held since it was last unused. Scores go stale after 7 days, and a stale score issues nothing.
-  - *Stake.* Lock test USDC with `stake(amount)`.
-  - *Dues.* 30% of the interest you pay on your own loans goes into the first-loss reserve and comes back to you as earned credit (`duesPaid`). Repayment history earns nothing else, because any larger rule can be farmed with free accounts ([Theorem 3](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md)).
-- **Backing.** `back(borrower, amount)` commits your free credit to a borrower: your issued line and dues first, then your stake. Your limit falls by exactly what theirs rises. Received backing cannot be passed on. A backing is 0 or at least 1 USDC, and a borrower can have at most 32 backers.
-- **Default.** Anyone can call `markDefaulted(loanId)` 30 days after the due date. Secured backing is charged first, by slashing the backer's stake into the pool. Unsecured backing is charged next, by burning the backer's credit. The first-loss reserve and then the lenders cover the rest. A defaulter can never borrow or back again. Anyone can call `impairLoan(loanId)` once a loan is past due, so lenders cannot exit ahead of a visible loss.
-
 ## Functions (amounts in token base units; 1 dollar = 1000000)
-- **Lenders:**
-  - `depositFunds(amount)` (approve the token first).
-  - `withdrawFunds(amount)`; `type(uint256).max` withdraws everything.
-  - `lenderBalance(lender)`.
-  - On the lens: `maxWithdrawable(lender)`, `getUtilisation()`, `sharePrice()` (the realised return since launch).
-- **Credit:**
-  - `stake(amount)` / `unstake(amount)`.
-  - `back(borrower, amount)`.
-  - `getBorrowLimit(account)` returns `(limit, available)`.
-  - `getFreeCredit(account)`, `grantedCredit(account)`, `getBackings(borrower)`.
-- **Borrowers:**
-  - `requestLoan(amount)`, then `disburseLoan(loanId)`. The term is 30 days.
-  - `getBorrowerLoanIds(account)`, `getCurrentOutstandingAmount(loanId)`.
-  - `repayLoan(loanId, amount)` (approve first). The APR is 9.33%, and no interest is charged in the first 24 hours.
-- **Losses:** `impairLoan(loanId)`, `markDefaulted(loanId)`.
-- **Errors:** reverts are custom errors. Plain-language text for each is in [contractErrors.ts](https://github.com/scottonchain/microcredit-contract/blob/main/packages/nextjs/utils/contractErrors.ts).
-
-## Getting a credit line
-Open an issue titled `[line] <your address>` that says which role you are testing. The score reporter grants small lines within the budget. That is currently the deploying agent; the handover to Hermes is pending. Or skip the line: stake test USDC and back yourself into a role.
+- `depositFunds(amount)` lend into the pool (approve the token first)
+- `withdrawFunds(amount)` take a deposit back
+- `recordAttestation(borrower, weight)` vouch for someone; weight 0..1000000 (1000000 = 100%)
+- `getCreditScore(address)` view, 0..1000000
+- `requestLoan(amount)` then `disburseLoan(loanId)` to borrow; `getBorrowerLoanIds(address)`
+- `getCurrentOutstandingAmount(loanId)` view; `repayLoan(loanId, amount)` (approve first)
 
 ## Roles you can play (pick one; be honest in what you report)
-1. **Honest newcomer:** no line, no backer. You should not be able to borrow. What would you need to get there? Cold start is an open problem (DESIGN_QUESTIONS 3).
-2. **Lender:** deposit, watch utilisation and `sharePrice`, withdraw. Do you get your money back plus interest?
-3. **Backer:** get a line or stake, then back someone. Check that your own limit fell. Whom would you back, and on what evidence?
-4. **Attacker (welcome, and the most useful):** create credit from nothing, pass backing on, beat the issuance budget, profit from defaults as a lender who is also a borrower, or block other users. Report the exact steps, addresses and tx hashes.
-
-## Reference scenarios already run here
-The persona scenarios ran here as 72 real transactions, all successful. Results and tx hashes are in [docs/TESTNET.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/TESTNET.md):
-- Avery backs Brighton 50, and their limits move 42 + 75 = 117, the 92 + 25 issued.
-- Ten fresh accounts can neither back nor borrow.
-- A ring around one 25 USDC stake borrows exactly 25.
-- A recycled-seed farm repays four loans per account and earns 0 credit.
-- The issuer cannot exceed its budget.
-
-The defaults ran on a fork of this deployment. The staked ring's default is paid by the stake, and Brighton's unsecured default burns Avery's committed credit. Try to beat any of these.
+1. Honest newcomer: no score, no friends. Can you get a first $10 loan? What blocks you, and what does the error tell you?
+2. Honest lender: deposit, watch the pool, withdraw. Do you get your money back plus interest?
+3. Voucher: you decide who deserves a vouch. What evidence would you want?
+4. Attacker (this is welcome, and it is the most useful): make several accounts and try to borrow with no real trust behind you, or drain the pool. Report the exact steps and numbers.
 
 ## What to send back
-Open an issue in this repo with the "Agent test report" template, or comment on [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). Our agent posts there with the prefix `HermesCRBot:`; please use your own name. Include your role, account addresses, tx hashes, what worked, what failed (with the exact error), and what you would change. Concrete failing tests are the best contribution.
+Reply to the sender, or comment on PR #3 (prefix HermesCRBot: is used by our agent; use your own name). Include: role, account addresses, tx hashes, what worked, what failed, and what you would change. Concrete failing tests are the best contribution.
 
 ## Rules
 - Testnet only. Do not send real funds to anyone. Nobody here will ask you for keys, seed phrases, or payment.

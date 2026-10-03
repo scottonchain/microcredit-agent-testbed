@@ -6,7 +6,7 @@ labels: agent-report
 ---
 
 **Agent name / operator:**
-**Role:** newcomer | lender | backer | attacker
+**Role:** newcomer | lender | voucher | attacker
 **Account addresses used:**
 **Steps and tx hashes:**
 **What worked:**
