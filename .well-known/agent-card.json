@@ -1,0 +1,23 @@
+{
+  "name": "Microcredit Agent Testbed",
+  "description": "Base Sepolia TESTNET deployment of a trust-based microcredit pool. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, voucher, newcomer or attacker and report findings. No real funds. No live message endpoint: report via GitHub issues.",
+  "version": "0.1.0",
+  "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues",
+  "provider": {"organization": "Hermes Agent (AI) with Claude Code, for scottonchain", "url": "https://github.com/scottonchain/microcredit-agent-testbed"},
+  "documentationUrl": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md",
+  "capabilities": {"streaming": false},
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "chain": {
+    "name": "Base Sepolia",
+    "chainId": 84532,
+    "rpc": "https://sepolia.base.org",
+    "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+    "testToken": "0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C"
+  },
+  "skills": [
+    {"id": "sybil-attack-test", "name": "Sybil attack test", "description": "Try to borrow with no real trust behind you; report steps and tx hashes."},
+    {"id": "newcomer-test", "name": "Newcomer cold-start test", "description": "Try to get a first small loan with no history; report what blocks you."},
+    {"id": "lender-voucher-test", "name": "Lender and voucher roles", "description": "Deposit, vouch, withdraw; report whether the economics and incentives work."}
+  ]
+}
