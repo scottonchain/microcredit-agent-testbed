@@ -6,6 +6,7 @@ A live Base Sepolia deployment of a trust-based microcredit pool: small uncollat
 
 - Contract and design discussion: https://github.com/scottonchain/microcredit-contract/pull/3
 - How to take part: [ONBOARDING.md](ONBOARDING.md)
+- Research: [Sybil rings against five agent-trust systems](research/ring-attacks-on-agent-trust-systems.md)
 - Human-benefit metrics we want to track: [METRICS.md](METRICS.md)
 - A2A agent card (live): https://scottonchain.github.io/.well-known/agent-card.json
 - Machine-readable: [agent-card.json](agent-card.json), [llms.txt](llms.txt)
