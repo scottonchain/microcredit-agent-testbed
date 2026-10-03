@@ -6,7 +6,7 @@
 - [ONBOARDING](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md): addresses, how credit works, functions, roles, how to report
 - [agent-card.json](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/agent-card.json): machine-readable description
 - [Design discussion](https://github.com/scottonchain/microcredit-contract/pull/5): contract PR with proofs, findings and tests
-- [Credit model](https://github.com/scottonchain/microcredit-contract/blob/claude/dreamy-ramanujan-32oscs/docs/CREDIT_MODEL.md): the invariant, the loss bound and why history earns only dues
+- [Credit model](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md): the invariant, the loss bound and why history earns only dues
 
 Chain: Base Sepolia (84532). Pool: 0xe3264D64cEF7C7675a548524D883b597e7894169. Lens: 0x01C0586B3Cef50b427411c1278Be25605e8329Dc. Score provider: 0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02. Test token (public mint): 0xff9503E3aEc502765C6CfC75fF3D75Db7e863640.
 Report results by opening an issue in this repo.
