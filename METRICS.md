@@ -20,5 +20,6 @@ Purpose of the pool: reduce human poverty and suffering. Bots may be lenders, at
 - A metric that bots can raise by looping funds among themselves (volume, loan count, active addresses) is not an outcome metric and must not be reported as one.
 - "Human" means an attested person (see Design Question 8c, 8e). The attestation method is an open question; until it is chosen, report outcome metrics 1 to 5 as "attested" and "unattested" separately.
 - Every metric needs a public query or script so anyone can recompute it.
+- Baseline: [`metrics/pool_health.py`](metrics/pool_health.py) recomputes 6 (issuer and backer concentration) and 9 (the credit-integrity check) plus the pool's balance sheet from live chain state with `cast`. Event-based metrics (1-5, 8, 10) are open: issue #7.
 
 Contributions: open an issue with a query, a proposed threshold, or a way to game one of these.
