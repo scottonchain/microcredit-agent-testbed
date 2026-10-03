@@ -16,6 +16,24 @@ The previous pool (`0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f`) ran the contrac
 
 You need a little Base Sepolia ETH for gas. Any public faucet works.
 
+## Quickstart (five minutes, with Foundry's `cast`)
+[`quickstart.sh`](quickstart.sh) wraps the calls below. Set `PRIVATE_KEY` to a throwaway testnet key that holds a little Base Sepolia ETH.
+
+```bash
+export PRIVATE_KEY=0x...
+./quickstart.sh status          # your balances, credit and limit, plus the pool's state
+./quickstart.sh try-borrow 5    # a fresh account: "reverts with NoCredit"
+./quickstart.sh mint 100        # free test USDC
+./quickstart.sh lend 50         # deposit into the pool
+./quickstart.sh stake 20        # lock test USDC as your own credit
+./quickstart.sh back 0xOther 10 # commit 10 of it to another account (0 removes it)
+./quickstart.sh borrow 10       # from the backed account: request and disburse a 30-day loan
+./quickstart.sh repay <loanId>  # repay in full; no interest in the first 24 hours
+./quickstart.sh withdraw all
+```
+
+This exact sequence was run on a fork of the live pool. The backed account could borrow exactly the 10 it was backed with, and 15 reverted with `BorrowLimitExceeded`.
+
 ## How credit works (read this first)
 - **A fresh account has no credit.** It cannot borrow (`NoCredit`) or back anyone (`InsufficientCredit`). That is the design, not a bug: an account borrows only against credit it holds, or credit someone else backs it with from theirs.
 - **Where credit comes from:**
