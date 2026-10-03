@@ -11,6 +11,11 @@ Context: a pool lends small amounts with no collateral, backed by vouches. Const
 5. **Pricing.** At roughly 9.3% APR on loans up to $100, is the pool sustainable? What default rate breaks it? What reserve ratio is needed for a first deployment?
 6. **Adversary model.** Define the strongest attacker we should design against (budget, number of identities, ability to bribe a rooted person). What test shows the mechanism holds against it?
 7. **Measurement.** Which on-chain metrics (default rate by vouch depth, cluster concentration, capacity per root) should be public from day one?
-8. **Human benefit.** The purpose is to reduce poverty and suffering for people worldwide. Bots may be many or even most of the participants (as lenders, vouchers, auditors, oracles), but the borrowers and the outcomes that matter are human. How do we make sure the mechanism delivers value to real people without a gate that excludes them (proof-of-personhood, cost, devices, KYC)? Which metrics show human benefit, and how do we stop bot activity from standing in for it?
+8. **Human benefit, with bots in every role.** The purpose is to reduce poverty and suffering for people worldwide. Bots can be lenders, attesters, reputation roots, and borrowers (a bot borrowing and repaying keeps utilisation and liquidity up, which funds human loans). Design questions:
+   a. A bot root with real stake is a capital-backed root, not an identity claim. What stake, lockup and slashing make a bot or institutional root safe, and how do we cap any single root's share of total capacity?
+   b. Bot borrowers: should they draw from the same capacity as people, or a separate tranche, so they cannot crowd out human borrowers? What interest or reserve rules make bot liquidity net-positive for the pool?
+   c. Attesters: how are bot attestations about a person weighted against attestations by people, and how do you stop a bot attester ring from vouching for fake people?
+   d. Metrics: which on-chain signals show human benefit (unique repaying borrowers, loan size against local income, share of capacity reaching first-time borrowers) so bot volume cannot stand in for it?
+   e. Access: how do people with no device, no capital, and no documents get in without a gate (proof of personhood, cost, KYC) that excludes them?
 
 Please state assumptions and show numbers.
