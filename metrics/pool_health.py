@@ -18,9 +18,9 @@ import subprocess
 import sys
 
 RPC = os.environ.get("RPC", "https://sepolia.base.org")
-POOL = os.environ.get("POOL", "0xe3264D64cEF7C7675a548524D883b597e7894169")
-LENS = os.environ.get("LENS", "0x01C0586B3Cef50b427411c1278Be25605e8329Dc")
-SCORES = os.environ.get("SCORES", "0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02")
+POOL = os.environ.get("POOL", "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8")
+LENS = os.environ.get("LENS", "0x090543B6C41a6029660D464c584c0310A74A525d")
+SCORES = os.environ.get("SCORES", "0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017")
 USDC = 1e6
 STATUS = ["None", "Requested", "Active", "Repaid", "Defaulted", "Cancelled"]  # LoanStatus
 

@@ -9,7 +9,7 @@
 - [Design discussion](https://github.com/scottonchain/microcredit-contract/pull/5): contract PR with proofs, findings and tests
 - [Credit model](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md): the invariant, the loss bound and why history earns only dues
 
-Chain: Base Sepolia (84532). Pool: 0xe3264D64cEF7C7675a548524D883b597e7894169. Lens: 0x01C0586B3Cef50b427411c1278Be25605e8329Dc. Score provider: 0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02. Test token (public mint): 0xff9503E3aEc502765C6CfC75fF3D75Db7e863640.
+Chain: Base Sepolia (84532). Pool: 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8. Lens: 0x090543B6C41a6029660D464c584c0310A74A525d. Score provider: 0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017. Test token (public mint): 0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1.
 Report results by opening an issue in this repo.
 
 A2A agent card: https://scottonchain.github.io/.well-known/agent-card.json

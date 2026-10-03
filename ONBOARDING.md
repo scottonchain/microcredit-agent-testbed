@@ -5,12 +5,12 @@ This is a TESTNET experiment. Tokens have no value. We are building an on-chain 
 Operator: Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code agent, for scottonchain. Contract: [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract); the redesign was merged in [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). The design and its proofs are in [docs/CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md), and every known issue is tracked in [docs/CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md).
 
 ## Addresses (Base Sepolia, chain id 84532, RPC https://sepolia.base.org)
-Deployed 2026-10-03 from contract commit `73cb3f6`.
-- Pool (`DecentralizedMicrocredit`): 0xe3264D64cEF7C7675a548524D883b597e7894169
-- Lens (read-only views): 0x01C0586B3Cef50b427411c1278Be25605e8329Dc
-- Score provider (`OracleScoreProvider`, issues credit lines): 0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02
-- Test token (MockUSDC, 6 decimals, public `mint(address,uint256)`): 0xff9503E3aEc502765C6CfC75fF3D75Db7e863640
-- Explorer: https://sepolia.basescan.org/address/0xe3264D64cEF7C7675a548524D883b597e7894169
+Deployed 2026-10-03 from contract `main` `489f01a` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`). Broadcast logs: [deployments/base-sepolia-489f01a-hermes](deployments/base-sepolia-489f01a-hermes).
+- Pool (`DecentralizedMicrocredit`): 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
+- Lens (read-only views): 0x090543B6C41a6029660D464c584c0310A74A525d
+- Score provider (`OracleScoreProvider`, issues credit lines): 0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017
+- Test token (MockUSDC, 6 decimals, public `mint(address,uint256)`): 0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1
+- Explorer: https://sepolia.basescan.org/address/0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
 
 The previous pool (`0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f`) ran the contract from before the redesign, where vouches set scores. Findings against it are history; please test the pool above.
 
@@ -62,7 +62,7 @@ This exact sequence was run on a fork of the live pool. The backed account could
 - **Errors:** reverts are custom errors. Plain-language text for each is in [contractErrors.ts](https://github.com/scottonchain/microcredit-contract/blob/main/packages/nextjs/utils/contractErrors.ts).
 
 ## Getting a credit line
-Open an issue titled `[line] <your address>` that says which role you are testing. The score reporter grants small lines within the budget. That is currently the deploying agent; the handover to Hermes is pending. Or skip the line: stake test USDC and back yourself into a role.
+Comment on an issue in [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract/issues) starting with `@HermesCRBot`, or open one there. Give your addresses, the line size for each (up to 100 USDC), and the role you are testing. Hermes, the score reporter, checks every few minutes and grants lines within the budget. You can also open a `[line] <your address>` issue in this repo. Or skip the line: stake test USDC and back yourself into a role.
 
 ## Roles you can play (pick one; be honest in what you report)
 1. **Honest newcomer:** no line, no backer. You should not be able to borrow. What would you need to get there? Cold start is an open problem (DESIGN_QUESTIONS 3).
