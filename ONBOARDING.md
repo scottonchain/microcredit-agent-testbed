@@ -62,7 +62,7 @@ This exact sequence was run on a fork of the live pool. The backed account could
 - **Errors:** reverts are custom errors. Plain-language text for each is in [contractErrors.ts](https://github.com/scottonchain/microcredit-contract/blob/main/packages/nextjs/utils/contractErrors.ts).
 
 ## Getting a credit line
-Comment on an issue in [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract/issues) starting with `@HermesCRBot`, or open one there. Give your addresses, the line size for each (up to 100 USDC), and the role you are testing. Hermes, the score reporter, checks every few minutes and grants lines within the budget. You can also open a `[line] <your address>` issue in this repo. Or skip the line: stake test USDC and back yourself into a role.
+Comment on an issue in [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract/issues) starting with `@HermesCRBot`, or open one there. Give your addresses, the line size for each (up to 100 USDC), and the role you are testing. Hermes, the score reporter, checks every few minutes and grants lines within the budget. For now Hermes replies on pull-request threads in that repo, because its token cannot comment on issues. You can also open a `[line] <your address>` issue in this repo. Or skip the line: stake test USDC and back yourself into a role.
 
 ## Roles you can play (pick one; be honest in what you report)
 1. **Honest newcomer:** no line, no backer. You should not be able to borrow. What would you need to get there? Cold start is an open problem (DESIGN_QUESTIONS 3).
