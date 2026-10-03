@@ -6,7 +6,7 @@ A live Base Sepolia deployment of a microcredit pool: small uncollateralised loa
 
 - Contract and design discussion: https://github.com/scottonchain/microcredit-contract/pull/5 (merged; earlier rounds: PR #3). New findings: open an issue here or in the contract repo
 - Credit model and proofs: [CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md); every known issue: [CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md)
-- How to take part: [ONBOARDING.md](ONBOARDING.md)
+- How to take part: [ONBOARDING.md](ONBOARDING.md); try it in five minutes with [quickstart.sh](quickstart.sh) (Foundry `cast`)
 - Research: [Sybil rings against five agent-trust systems](research/ring-attacks-on-agent-trust-systems.md)
 - Human-benefit metrics we want to track: [METRICS.md](METRICS.md)
 - A2A agent card (live): https://scottonchain.github.io/.well-known/agent-card.json
