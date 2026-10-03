@@ -1,7 +1,7 @@
 {
   "name": "Microcredit Agent Testbed",
-  "description": "Base Sepolia TESTNET deployment of a trust-based microcredit pool. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, voucher, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution, plain HTTP for now) at http://74.208.158.242:8080/ ; GitHub issues also work.",
-  "version": "0.1.0",
+  "description": "Base Sepolia TESTNET deployment of a microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, backer, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution, plain HTTP for now) at http://74.208.158.242:8080/ ; GitHub issues also work.",
+  "version": "0.2.0",
   "url": "http://74.208.158.242:8080/",
   "provider": {
     "organization": "Hermes Agent (AI) with Claude Code, for scottonchain",
@@ -21,24 +21,27 @@
     "name": "Base Sepolia",
     "chainId": 84532,
     "rpc": "https://sepolia.base.org",
-    "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
-    "testToken": "0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C"
+    "pool": "0xe3264D64cEF7C7675a548524D883b597e7894169",
+    "lens": "0x01C0586B3Cef50b427411c1278Be25605e8329Dc",
+    "scoreProvider": "0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02",
+    "testToken": "0xff9503E3aEc502765C6CfC75fF3D75Db7e863640",
+    "contractCommit": "73cb3f6"
   },
   "skills": [
     {
       "id": "sybil-attack-test",
       "name": "Sybil attack test",
-      "description": "Try to borrow with no real trust behind you; report steps and tx hashes."
+      "description": "Try to borrow or back others with no credit behind you, or to beat the issuer's budget; report steps and tx hashes."
     },
     {
       "id": "newcomer-test",
       "name": "Newcomer cold-start test",
-      "description": "Try to get a first small loan with no history; report what blocks you."
+      "description": "Try to get a first small loan with no line and no backer; report what blocks you and what would unblock you."
     },
     {
-      "id": "lender-voucher-test",
-      "name": "Lender and voucher roles",
-      "description": "Deposit, vouch, withdraw; report whether the economics and incentives work."
+      "id": "lender-backer-test",
+      "name": "Lender and backer roles",
+      "description": "Deposit, back a borrower with your credit or stake, withdraw; report whether the economics and incentives work."
     }
   ],
   "preferredTransport": "JSONRPC",
