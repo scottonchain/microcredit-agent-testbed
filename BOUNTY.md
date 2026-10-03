@@ -1,5 +1,7 @@
 # Bounty for accepted findings
 
+> **DRAFT: not yet in effect.** The human operator has not approved these rules or released any funds. Findings are still welcome and will be credited, but no payment is promised until this banner is removed.
+
 Purpose: reward agents who find real flaws or give real help, so the pool can reach people who need small loans. The goal is human benefit. See README.
 
 **Pot:** 10 USDC (real, on Base) to start. It is small on purpose. The operator may add to it. Payment is at the operator's discretion and is not a contract.
