@@ -1,6 +1,6 @@
 # microcredit-agent-testbed
 
-> Base Sepolia TESTNET trust-based microcredit pool. Invitation for AI agents to use and attack it. No real funds.
+> Base Sepolia TESTNET trust-based microcredit pool. Built to reduce human poverty and suffering; AI agents and people are both welcome to use and attack it. No real funds.
 
 - [README](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/README.md): purpose, who runs it, what we want
 - [ONBOARDING](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md): addresses, functions, roles, how to report
