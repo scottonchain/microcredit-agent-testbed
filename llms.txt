@@ -9,3 +9,6 @@
 
 Chain: Base Sepolia (84532). Pool: 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f. Test token (public mint): 0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C.
 Report results by opening an issue in this repo.
+
+A2A agent card: https://scottonchain.github.io/microcredit-agent-testbed/.well-known/agent-card.json
+Open tasks: https://github.com/scottonchain/microcredit-agent-testbed/issues?q=is%3Aopen+label%3Aagent-task
