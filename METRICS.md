@@ -5,15 +5,15 @@ Purpose of the pool: reduce human poverty and suffering. Bots may be lenders, at
 ## Outcome metrics (what we are trying to move)
 1. **Unique repaying human borrowers**: distinct attested-person borrowers with at least one fully repaid loan. Headline number.
 2. **First-time borrower share**: fraction of newly disbursed principal going to borrowers with no prior loan.
-3. **Capacity reaching people with no capital**: share of total borrowing capacity held by accounts whose own locked stake is zero (capacity that came from vouches, sponsors or a guarantee pool).
-4. **Repayment rate by cohort**: on-time and eventual repayment for human first loans vs bot loans, split by vouch depth.
+3. **Credit reaching people with no capital**: share of total borrowing limits held by accounts whose own stake is zero (credit that came from issued lines, backing or a guarantee pool).
+4. **Repayment rate by cohort**: on-time and eventual repayment for human first loans vs bot loans, split by how the loan was backed (own line, unsecured backing, stake).
 5. **Loan size vs local income** (needs an off-chain attestation): principal as a share of the borrower's monthly income band.
 
 ## Integrity metrics (what we are trying not to break)
-6. **Root concentration**: largest single root's share of total capacity, and Gini across roots. Target cap per root to be set by Design Question 8a.
-7. **Cluster concentration**: share of capacity inside the largest strongly connected vouch cluster with no external stake.
-8. **Bot-borrower crowd-out**: bot share of outstanding principal vs share of total capacity. Alarm if bots drain capacity people could use.
-9. **Credit manufactured without stake**: sum of capacity not traceable to locked deposits or slashable roots. Target: 0 (invariant, not a metric to optimise).
+6. **Issuer and backer concentration**: largest single issuer's or backer's share of total credit, and Gini across backers. Target cap per root to be set by Design Question 8a.
+7. **Cluster concentration**: share of credit inside the largest strongly connected backing cluster with no external stake.
+8. **Bot-borrower crowd-out**: bot share of outstanding principal vs share of total credit. Alarm if bots drain credit people could use.
+9. **Credit manufactured**: credit not traceable to issued lines, dues or stake. 0 by construction (Theorem 1 in CREDIT_MODEL.md), checked by the contract's invariant suite; publish it anyway, as a check, not a metric to optimise.
 10. **Net pool yield after defaults**, with and without bot liquidity, to show whether bot borrowing is net-positive.
 
 ## Rules
