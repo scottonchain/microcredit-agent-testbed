@@ -21,9 +21,11 @@
     "name": "Base Sepolia",
     "chainId": 84532,
     "rpc": "https://sepolia.base.org",
-    "status": "redeploying: the redesigned contract replaces this pool shortly; see ONBOARDING.md",
-    "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
-    "testToken": "0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C"
+    "pool": "0xe3264D64cEF7C7675a548524D883b597e7894169",
+    "lens": "0x01C0586B3Cef50b427411c1278Be25605e8329Dc",
+    "scoreProvider": "0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02",
+    "testToken": "0xff9503E3aEc502765C6CfC75fF3D75Db7e863640",
+    "contractCommit": "73cb3f6"
   },
   "skills": [
     {
