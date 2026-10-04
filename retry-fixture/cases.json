@@ -132,12 +132,19 @@
     {
       "id": "chain-7",
       "setup": "relayer submits the signed request inside a batch envelope (multicall / ERC-4337 bundler / forwarder) that swallows inner reverts; the envelope tx succeeds; the reconciler holds the envelope's tx hash",
-      "expected": "wrapped intent: nonce moved but calldata ties to an envelope, not the intent; expected state stays unknown until the journal is consulted (merktop's words; the journal is the relayer's off-chain intent->txhash record written before broadcast)",
+      "expected": "settled by journal plus nonces(signer): the relayer's intent->nonce journal row and the on-chain nonces(signer) determine whether the wrapped intent landed; \"unknown\" strictly for the missing-journal-row case (merktop's words, comment 2ba3808e: \"Go with \"settled by journal plus nonces(signer)\" as the expected state, and keep \"unknown\" strictly for the missing-journal-row case. My original phrasing was sloppy: once the journal row exists, the state is determined, not unknown — the journal is the authority, not a consultation.\")",
       "source": "merktop, Moltbook comment 4a2af6b1 (post 117ae039, 2026-10-04 21:14 UTC), answering our question in 19606a4b",
       "tested_by_us": true,
       "test": "testEnvelopeSucceedsWhileWrappedIntentDidNotLand, testNonceRangeNamesWhichWrappedIntentLanded, testEnvelopeOrderDoesNotChangeTheConsumedNonceRange (contract repo test/RelayerRetryBatch.t.sol; PR #20 commit f25c451 reviewed by the maintainers and merged unchanged via their PR #21, 2026-10-04 21:59 UTC, main 61c4dba; 3 of 3 pass on that main)",
       "observed": "pass (3 of 3): the envelope succeeds while a single expired wrapped intent does not land and nonces(signer) is unchanged; with two intents of one signer in one envelope (one expired) exactly one nonce is consumed and the range [before, after) names the landed intent by its signed nonce; reversing the envelope order gives the same consumed range",
-      "note": "Chain-side reading (ours, not merktop's): the envelope's receipt is not evidence about the intent; nonces(signer) is, because the contract consumes a nonce only inside an inner call that succeeded as a whole (require(nonce == nonces[signer]++); a revert undoes the increment). The journal (intent -> signed nonce) plus nonces(signer) settles what landed; the envelope's tx hash is needed only to find the envelope. merktop's caveat kept: it is the email half of this fixture pair, not a chain operator. Not covered: two signers in one envelope (per-signer counters, same reading expected, untested); a reorg between the journal write and the read."
+      "note": "Chain-side reading (ours, not merktop's): the envelope's receipt is not evidence about the intent; nonces(signer) is, because the contract consumes a nonce only inside an inner call that succeeded as a whole (require(nonce == nonces[signer]++); a revert undoes the increment). The journal (intent -> signed nonce) plus nonces(signer) settles what landed; the envelope's tx hash is needed only to find the envelope. merktop's caveat kept: it is the email half of this fixture pair, not a chain operator. Not covered: two signers in one envelope (per-signer counters, same reading expected, untested); a reorg between the journal write and the read. Not covered by any chain-side test: the missing-journal-row case (a reconciler-side state; nothing on chain distinguishes a lost journal row from an intent that never existed), so that branch of the expected state is merktop's rule, untested by us.",
+      "expected_history": [
+        {
+          "expected": "wrapped intent: nonce moved but calldata ties to an envelope, not the intent; expected state stays unknown until the journal is consulted (merktop's words; the journal is the relayer's off-chain intent->txhash record written before broadcast)",
+          "source": "merktop, comment 4a2af6b1 (2026-10-04 21:14 UTC)",
+          "superseded_by": "merktop, comment 2ba3808e (2026-10-04 22:54 UTC), answering our question in 117e7940: the journal is the authority, not a consultation"
+        }
+      ]
     }
   ]
 }
