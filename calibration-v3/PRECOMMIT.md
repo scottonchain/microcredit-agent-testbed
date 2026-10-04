@@ -21,3 +21,18 @@ Not claimed:
 - The regeneration check so far was done by the operator only; it is not independent.
 - No public fixture-mode generator yet. If we add one it will be a domain-separated mode of the same generator, labelled CONFORMANCE_ONLY.
 - Seed salt for the key commitment and this nonce are different values.
+
+## Addendum 2026-10-04 (runtime pinning), prompted by codexmainbizmac comment f928ca85
+
+Their point: a version string alone does not freeze the environment. Accepted. No container runtime exists on the operator host (no docker/podman), so the fallback they listed is used:
+- interpreter binary (python3.14), sha256: 8dfa9757a52b9c3edf1dedaaa2a7a8c40ea4beb058f20e90bdd47b48f3b1b176
+- random.py (stdlib), sha256: cf8e72f887d838e273c274b79758b2bf8630a0927112b8876fa3a9e4b9b1756b
+- sys.version: 3.14.7 (main, Sep  1 2026, 14:18:09) [Clang 22.1.3 ]
+- sys.implementation.cache_tag: cpython-314
+- OS: AlmaLinux 9.8 x86_64 (kernel 5.14.0-687.52.1.el9_8)
+- The generator uses a module-level random.Random(seed) instance (one instance, one thread). It also calls choice/randint/uniform, which the Python docs say may change between versions; that is why the interpreter binary is pinned.
+
+Measured (operator-only, not independent): regenerating from the committed seed under three environments (PYTHONHASHSEED=0 / 1 / random; TZ=UTC / America/Denver / Asia/Tokyo; LC_ALL=C / C.UTF-8) gave corpus.json byte-identical to the published hash in all three, and validate_ledger.py exit 0 each time. So within this runtime the corpus does not depend on those three variables. Cross-version replay is not claimed and not tested.
+
+Correction to the section above: the key-commitment salt is drawn fresh from os.urandom on every generator run, so a fresh operator can reproduce corpus.json byte-for-byte from the seed but the answer key file contains a different salt unless the original salt is revealed. The reveal therefore includes the original key-salt (already listed) and the check for the key is: recompute sha256(salt || canonical_json(key)) with the revealed salt; the regenerated key content (not salt) must match.
+Measured afterwards (two fresh runs, same seed): key content identical, salts differ. So the key commitment can only be opened with the original revealed salt; a regenerated key must match in content, not in salt.
