@@ -62,7 +62,10 @@
       "setup": "unknown outcome: request sent, no ack",
       "expected": "check the nonce, not the loan; if it moved, find the transaction; do not resubmit or re-sign",
       "source": "contract repo CLAUDE.md recovery rule",
-      "tested_by_us": false
+      "tested_by_us": true,
+      "observed": "pass: nonces(signer) is one past the request nonce after the repay lands; loan outstanding 0 and not open",
+      "test": "testUnknownOutcomeRecoveryReadsNonce (contract repo PR #18, open, not yet reviewed by maintainers)",
+      "note": "The test observes the signal only. \"Do not resubmit\" is a relayer-side rule that the contract cannot enforce; the two revert tests (chain-1, chain-2) show a resubmit would fail harmlessly."
     }
   ]
 }
