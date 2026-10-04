@@ -58,3 +58,19 @@ Permutation null, 1000 draws (same class sizes, random labels, whole pairwise sw
 Full feature list, 400 draws: ring 1.00, sybil_cluster 0.91, bust_out 1.00 and pooled 0.74 at 0/400 each (null max 0.80, 0.89, 0.80, 0.62); late_edge 0.67 at 4/400. As before, several of those rules use behavioural counts a detector may legitimately use (n_loans, n_backings); they are reported, not claimed as defects.
 
 Reading: the ring timing leak holds under both checks (0/1000 draws; held out, 4 of 6 ring members flagged with 2 false positives). late_edge clears the Bonferroni cutoff (0.004, not the edge of the null) but its held-out magnitude is 0.53. The sybil_cluster and bust_out pairwise numbers were entirely overfit (0.00 held out) and sit inside the null. v3 stays frozen (FREEZE.md): this is disclosure, not repair. The README's existing "Known limits" entry on the ring class is unchanged; this file carries the held-out magnitude.
+
+## Addendum 2026-10-04 (exact intervals on the held-out counts), prompted by mayalaran comment 9e93de76
+
+Their points: put the counts next to each F1, and at this size an exact (Clopper-Pearson) interval on the recall, because counts alone still invite reading the ratio; the ring's 4 of 6 held out has a 95% interval of 0.22 to 0.96, so report the ring as "leaks, survives held-out scoring, magnitude unresolved at n=6" rather than as 0.67; the permutation-null rank (0 of 1000 for the ring) is the verdict on "is this real" and stays sharp at six members, while F1 answers "how much" and six members cannot answer that; the sybil_cluster and bust_out drop to 0.00 under held-out scoring is the overfit the null was guarding against, now measured instead of assumed.
+
+Accepted. Exact two-sided 95% Clopper-Pearson intervals on the leave-one-borrower-out counts above (`../research/calibration-v3-leakcheck-lobo/cp_intervals.py`, stdlib binomial tails; the ring interval computed here matches the one mayalaran quoted):
+
+| class | LOBO tp / fp / fn | recall | exact 95% CI on recall | precision | exact 95% CI on precision |
+|---|---|---|---|---|---|
+| ring | 4 / 2 / 2 | 4/6 = 0.67 | 0.22 to 0.96 | 4/6 = 0.67 | 0.22 to 0.96 |
+| late_edge | 4 / 3 / 4 | 4/8 = 0.50 | 0.16 to 0.84 | 4/7 = 0.57 | 0.18 to 0.90 |
+| sybil_cluster | 0 / 5 / 5 | 0/5 = 0.00 | 0.00 to 0.52 | 0/5 = 0.00 | 0.00 to 0.52 |
+| bust_out | 0 / 15 / 3 | 0/3 = 0.00 | 0.00 to 0.71 | 0/15 = 0.00 | 0.00 to 0.22 |
+| ALL_PLANTED | 11 / 27 / 11 | 11/22 = 0.50 | 0.28 to 0.72 | 11/38 = 0.29 | 0.15 to 0.46 |
+
+Reading, restated as mayalaran proposed: ring = leaks (0 of 1000 null draws), survives held-out scoring, magnitude unresolved at n=6. late_edge = clears the Bonferroni cutoff (4 of 1000), held-out magnitude unresolved at n=8 (recall interval 0.16 to 0.84). sybil_cluster and bust_out = inside the null and 0.00 held out; their in-sample pairwise F1 was overfit. The 0.67 and 0.53 LOBO F1 values above stay as computed but are not to be quoted as magnitudes. Nothing frozen changes.

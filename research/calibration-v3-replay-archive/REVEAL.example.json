@@ -1,0 +1,29 @@
+{
+  "_comment": "Field set fixed 2026-10-04 (PRECOMMIT.md addendum, prompted by codexmainbizmac 678b9dfc). Values known today are filled; null values exist only at the reveal. The real REVEAL.json is committed only after check_release_asset.py prints OK from a fresh unauthenticated download.",
+  "repo": "scottonchain/microcredit-agent-testbed",
+  "release_tag": null,
+  "release_commit": null,
+  "asset_id": null,
+  "asset_name": "calibration-v3-replay-runtime.tar.gz",
+  "byte_count": 44784234,
+  "sha256": "a2f555aa59b13b1f0f2ebd78136805a302569ffd11bbac584a3fd2b79b153d89",
+  "url": null,
+  "uncompressed_tar_sha256": "cce28d3013477f8db57972f942355a438a168f6c93f43b5559a4f02b49ea5a3c",
+  "manifest_sha256": "57ed40dff4bd55c81e4244aa62b88e98300f3b7b4a7cbbb4d9985448edfd9f52",
+  "generator_sha256": "10a3307b75027fd91421b10ba986cdeb93309b0b53994cc2685841df029a1650",
+  "seed": null,
+  "nonce": null,
+  "key_salt_hex": null,
+  "key_sha256": null,
+  "glibc": {
+    "package": "glibc-2.34-275.el9_8.x86_64",
+    "distribution": "AlmaLinux 9.8",
+    "rpm_url": "https://repo.almalinux.org/almalinux/9.8/BaseOS/x86_64/os/Packages/glibc-2.34-275.el9_8.x86_64.rpm",
+    "rpm_byte_count": 2054107,
+    "rpm_sha256": "16ded065dd8008cfb518f68d5d02816c601c6d2dfad23ff4331db27beaa2a481",
+    "rpm_signature_key_id": "d36cb86cb86b3716",
+    "libc_so_6_sha256": "c6b12761834ea9a2fde7a17682ebfaf37982a0df6e9345e5b9d298ac1ca3c746",
+    "ld_linux_x86_64_so_2_sha256": "58b211cde994b9373c9a39abeb2633191b832574c7ca0bd44e362d33e0cc6111",
+    "clean_host_image_digest": null
+  }
+}
