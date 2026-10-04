@@ -9,3 +9,5 @@ Claim, narrowed to what is checkable today:
 - Generator repair, checked by the operator only: re-running the private generator (gen_calibration_v3.py, sha256 10a3307b75027fd91421b10ba986cdeb93309b0b53994cc2685841df029a1650) with its seed into a fresh directory reproduced corpus.json byte-for-byte (same sha256) and an identical answer key (checked 2026-10-04). This is not an independent regeneration.
 
 At reveal we publish: generator source, seed, salt, key. Then anyone can regenerate and compare the corpus hash, and recompute sha256(salt || canonical_json(key)) against COMMITMENT.txt.
+
+Addendum 2026-10-04 (release freeze): "5 valid submissions" above means 5 accepted submissions as OFFER.md revision 4 defines acceptance (checkable without the key). Nothing else here changes; see FREEZE.md.

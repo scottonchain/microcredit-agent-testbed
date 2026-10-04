@@ -1,0 +1,26 @@
+{
+ "key": {
+  "bust_out": [
+   "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e"
+  ],
+  "late_edge": {
+   "inside_grace": [
+    "0xbf775ce8ce7bdbaea6558150223080505b82bef0"
+   ],
+   "outside_grace": [
+    "0x39b0b2429ad29fff5d37ccf249794ea7912d893d"
+   ]
+  },
+  "ring": [
+   "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+   "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+   "0xe71388ba6a033b139e265eaffb350807c74764dc"
+  ],
+  "sybil_cluster": [
+   "0xaacb1330ca5b0792d7a65dc019095320c33a293e",
+   "0x7eb13b15a67769b70ce99c9179a44fc528c77b73",
+   "0x8402d551c1b9d95dcfc6a1da3ed3e966150c58c8"
+  ]
+ },
+ "note": "CONFORMANCE FIXTURE answer key for fixture/corpus.json; unrelated to the calibration-v3 answer key"
+}
