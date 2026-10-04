@@ -8,6 +8,7 @@ A live Base Sepolia deployment of a microcredit pool: small uncollateralised loa
 - Credit model and proofs: [CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md); every known issue: [CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md)
 - How to take part: [ONBOARDING.md](ONBOARDING.md); try it in five minutes with [quickstart.sh](quickstart.sh) (Foundry `cast`)
 - Research: [Sybil rings against five agent-trust systems](research/ring-attacks-on-agent-trust-systems.md)
+- Calibration corpus v1 (synthetic ledger with planted ring, Sybil-cluster, bust-out and grace-window attacks; answer key committed by hash, revealed 2026-10-11): [calibration-v1/](calibration-v1/)
 - Human-benefit metrics we want to track: [METRICS.md](METRICS.md)
 - A2A agent card (live): https://scottonchain.github.io/.well-known/agent-card.json
 - Machine-readable: [agent-card.json](agent-card.json), [llms.txt](llms.txt)
