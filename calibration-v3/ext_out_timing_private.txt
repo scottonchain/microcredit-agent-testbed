@@ -1,0 +1,20 @@
+84 borrowers, 22 planted
+== single feature (extended list) ==
+ring           first_backing_rel_req_h <= 0.14                  F1 0.55 limit 0.60 ok
+sybil_cluster  last_backing_rel_req_h <= 0.28                   F1 0.40 limit 0.60 ok
+bust_out       first_backing_rel_req_h >= 1000000000.0          F1 0.15 limit 0.60 ok
+late_edge      first_backing_rel_req_h >= 1000000000.0          F1 0.36 limit 0.60 ok
+ALL_PLANTED    disb_lag_blocks_mean >= 31.0                     F1 0.54 limit 0.57 ok
+== pairwise conjunctions (two thresholds, deciles) ==
+ring           first_backing_rel_req_h <= 0.49 & last_backing_rel_req_h >= 929.58  F1 0.92 limit 0.60 LEAK
+sybil_cluster  first_backing_rel_req_h >= 0.52 & last_backing_rel_req_h <= 0.56  F1 0.57 limit 0.60 ok
+bust_out       disb_lag_s_mean <= 9637.5 & first_backing_rel_req_h >= 1000000000.0  F1 0.29 limit 0.60 ok
+late_edge      disb_lag_blocks_mean >= 39.0 & first_backing_rel_req_h >= 1000000000.0  F1 0.67 limit 0.60 LEAK
+ALL_PLANTED    disb_lag_s_mean <= 11455.0 & disb_lag_blocks_mean >= 31.0  F1 0.56 limit 0.57 ok
+== structural, informational only (not a nuisance gate) ==
+ring           backer_fanout_max >= 1         F1 0.23
+sybil_cluster  backer_fanout_max >= 5         F1 1.00
+bust_out       backer_fanout_max <= 0         F1 0.15
+late_edge      backer_fanout_max <= 0         F1 0.36
+ALL_PLANTED    backer_fanout_max <= 1         F1 0.47
+VERDICT: LEAKING

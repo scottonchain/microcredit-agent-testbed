@@ -1,0 +1,37 @@
+{
+ "ring": {
+  "observed": 0.92,
+  "null_median": 0.43,
+  "null_p95": 0.57,
+  "null_max": 0.67,
+  "frac_null_ge_observed": 0.0
+ },
+ "sybil_cluster": {
+  "observed": 0.57,
+  "null_median": 0.4,
+  "null_p95": 0.62,
+  "null_max": 0.75,
+  "frac_null_ge_observed": 0.12
+ },
+ "bust_out": {
+  "observed": 0.29,
+  "null_median": 0.5,
+  "null_p95": 0.67,
+  "null_max": 0.8,
+  "frac_null_ge_observed": 0.97
+ },
+ "late_edge": {
+  "observed": 0.67,
+  "null_median": 0.41,
+  "null_p95": 0.53,
+  "null_max": 0.67,
+  "frac_null_ge_observed": 0.01
+ },
+ "ALL_PLANTED": {
+  "observed": 0.56,
+  "null_median": 0.5,
+  "null_p95": 0.56,
+  "null_max": 0.6,
+  "frac_null_ge_observed": 0.09
+ }
+}

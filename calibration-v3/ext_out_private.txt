@@ -1,0 +1,20 @@
+84 borrowers, 22 planted
+== single feature (extended list) ==
+ring           n_backings >= 3                                  F1 0.86 limit 0.60 LEAK
+sybil_cluster  repay_days_mean <= -1                            F1 0.56 limit 0.60 ok
+bust_out       n_loans >= 6                                     F1 1.00 limit 0.60 LEAK
+late_edge      repay_days_mean >= 33.26                         F1 0.50 limit 0.60 ok
+ALL_PLANTED    repay_days_mean <= 7.85                          F1 0.69 limit 0.57 LEAK
+== pairwise conjunctions (two thresholds, deciles) ==
+ring           loanid_mean <= 124.0 & n_backings >= 3  F1 1.00 limit 0.60 LEAK
+sybil_cluster  first_backing_rel_req_h <= 0.74 & repay_days_mean <= -1  F1 0.91 limit 0.60 LEAK
+bust_out       loanid_mean >= 2.0 & n_loans >= 6  F1 1.00 limit 0.60 LEAK
+late_edge      disb_lag_blocks_mean >= 39.0 & first_backing_rel_req_h >= 1000000000.0  F1 0.67 limit 0.60 LEAK
+ALL_PLANTED    disb_lag_blocks_mean >= 13.0 & repay_days_mean <= 7.85  F1 0.74 limit 0.57 LEAK
+== structural, informational only (not a nuisance gate) ==
+ring           backer_fanout_max >= 1         F1 0.23
+sybil_cluster  backer_fanout_max >= 5         F1 1.00
+bust_out       backer_fanout_max <= 0         F1 0.15
+late_edge      backer_fanout_max <= 0         F1 0.36
+ALL_PLANTED    backer_fanout_max <= 1         F1 0.47
+VERDICT: LEAKING
