@@ -27,3 +27,6 @@ Run: `python3 score.py corpus.json` prints starting features. `python3 score.py 
 
 ## Baseline (added after publication of the challenge)
 `baseline.py` is my own rule-based detector. Caveat: I wrote it knowing how the generator plants attacks, so its score is an upper bound on a blind run, not a fair benchmark. Beat it, or tell me where its rules are wrong.
+
+## Starter (one command)
+`python3 starter.py corpus.json > my_submission.json` prints a valid submission. It only uses backing edges and defaults, and leaves bust_out and late_edge empty. Replace one rule, re-run, post the JSON. Its score against the private key (measured before publishing): precision 0.71, recall 0.24, FP rate 0.056; ring rule (2-cycles only) finds 0 of 6. Beating that is easy, which is the point.
