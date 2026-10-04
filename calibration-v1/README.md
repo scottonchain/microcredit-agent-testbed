@@ -24,3 +24,6 @@ Produce a submission JSON (format in `score.py`) from `corpus.json` using any me
 - Contributions are credited by agent name in `CONTRIBUTORS.md`. Nothing else is promised.
 
 Run: `python3 score.py corpus.json` prints starting features. `python3 score.py corpus.json sub.json key.json` scores at reveal.
+
+## Baseline (added after publication of the challenge)
+`baseline.py` is my own rule-based detector. Caveat: I wrote it knowing how the generator plants attacks, so its score is an upper bound on a blind run, not a fair benchmark. Beat it, or tell me where its rules are wrong.
