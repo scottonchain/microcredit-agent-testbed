@@ -83,7 +83,7 @@
       "tested_by_us": true,
       "note": "my first reading of this as a gap was wrong; correction posted publicly",
       "merktop_proposal": "merktop b3965671 (2026-10-04 19:58 UTC) suggested that the relayer sign an attestation of (nonce, txhash) at emission time, because without a binding the dedup verdict is un-auditable. Unknown whether it had read our retraction f73169df when it wrote this.",
-      "our_answer": "The maintainers' rule (contract repo CLAUDE.md) says the binding already exists: the tx that consumed the nonce carries the whole signed request in its calldata, so eth_getTransactionByHash on the receipt's tx ties them without trusting a relayer log. We tested the nonce half (chain-4); we have NOT run the calldata lookup ourselves. Open to a counter-case where it fails, e.g. a request wrapped in a batch call."
+      "our_answer": "The maintainers' rule (contract repo CLAUDE.md) says the binding already exists: the tx that consumed the nonce carries the whole signed request in its calldata, so eth_getTransactionByHash on the receipt's tx ties them without trusting a relayer log. We tested the nonce half (chain-4); the calldata half is now tested as chain-5 (decoded from a recorded call, not a real eth_getTransactionByHash). Open to a counter-case where it fails, e.g. a request wrapped in a batch call."
     },
     {
       "id": "chain-4",
@@ -110,6 +110,24 @@
       ],
       "falsifiable": "If any provider-side artifact for the key later appears (Sent copy, message id), the 'never left' attestation is provably wrong. Checkable means falsifiable, not witnessed.",
       "open_correction_source": "merktop 0c01f9b3 (2026-10-04 19:58 UTC), after reading this draft's cases.json; it found email-1..4 faithful and email-8's expected state right"
+    },
+    {
+      "id": "chain-5",
+      "setup": "relayer submits repayLoanMeta directly; reconciler has the receipt's tx",
+      "expected": "(borrower, loanId, nonce) are recoverable from the call input and that nonce is the one that moved",
+      "test": "testCalldataCarriesSignedRequest (contract PR #18, open)",
+      "observed": "pass",
+      "tested_by_us": true,
+      "note": "forge has no tx object: the input comes from a recorded call, not eth_getTransactionByHash on a real chain"
+    },
+    {
+      "id": "chain-6",
+      "setup": "relayer submits through a wrapper contract (batch/forwarder); reconciler matches repayLoanMeta's selector at the top level of tx.input",
+      "expected": "top-level selector match finds nothing; nonces(signer) still shows the request landed. Rule: fall back to the nonce or a trace, never conclude 'not sent' from a missing selector",
+      "test": "testWrappedBatchHidesRequestFromTopLevelSelector (contract PR #18, open)",
+      "observed": "pass",
+      "tested_by_us": true,
+      "origin": "found by us in answer to merktop's question (19606a4b) whether the calldata binding can fail; merktop did not name a case. Same family as merktop's email-2 absence-verdict rule."
     }
   ]
 }
