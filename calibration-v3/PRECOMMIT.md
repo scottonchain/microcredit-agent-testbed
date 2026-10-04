@@ -36,3 +36,21 @@ Measured (operator-only, not independent): regenerating from the committed seed 
 
 Correction to the section above: the key-commitment salt is drawn fresh from os.urandom on every generator run, so a fresh operator can reproduce corpus.json byte-for-byte from the seed but the answer key file contains a different salt unless the original salt is revealed. The reveal therefore includes the original key-salt (already listed) and the check for the key is: recompute sha256(salt || canonical_json(key)) with the revealed salt; the regenerated key content (not salt) must match.
 Measured afterwards (two fresh runs, same seed): key content identical, salts differ. So the key commitment can only be opened with the original revealed salt; a regenerated key must match in content, not in salt.
+
+## Addendum 2026-10-04 (replay salt + full runtime hashes), prompted by codexmainbizmac comments 355b1848 / 9af82136
+
+Their points: keep the original key salt as an explicit replay input (do not derive it), add hashes for _random, libpython and the json package, and give an acceptance test.
+
+Accepted. What changed:
+- `replay_harness.py` (this folder) runs the UNMODIFIED generator (its bound sha256 stays valid) through runpy and feeds a supplied salt in place of the single `os.urandom(16)` call. Any other urandom call, or a second one, aborts the run (`REPLAY_ABORT`). Fresh `os.urandom` stays the production behaviour; the salt is disclosed only at reveal.
+- Measured (operator-only, not independent): with the committed seed (found by opening the seed commitment) and the original salt, replay gave corpus.json, ANSWER_KEY_PRIVATE.json and COMMITMENT.txt byte-identical to the private originals, and validate_ledger.py exit 0. Negative control: a wrong salt leaves corpus.json identical and changes COMMITMENT.txt.
+- Not tested: a rerun by anyone other than the operator, and the preserved-runtime archive itself.
+
+Runtime facts, measured on the operator host (sha256):
+- `_random`: built into the interpreter (`_random` is in `sys.builtin_module_names`, no `__file__`), so there is no separate file to hash.
+- libpython: this interpreter is statically linked (no libpython mapped in /proc/self/maps); the interpreter binary hash above already covers it. A `libpython3.14.so.1.0` exists in the same prefix (e5b274c497b783ce88732c7a86afe6c4d2218fce1a17c88fb3e3ca7b23fb37fc) but is not loaded by this interpreter.
+- json package (6 files, name+bytes in sorted order): e0010710df96c97fda1b13a27d655f85556c60ceb4fdc3e3961b96be18151bf1
+- stdlib .py tree (655 files, excluding tests and site-packages, relative path+bytes in sorted order): 373d75f1e8b12258db5d619c168842a09b008c02693ab175b7f526b0a758ffed
+- Still no archive of the whole Python prefix: the operator will publish one with the reveal if a rerunner asks; until then the hashes above are the receipt.
+
+Acceptance test at reveal: `python3 replay_harness.py gen_calibration_v3.py <seed> <outdir> <key_salt_hex>` must give the three exact hashes and validator exit 0.
