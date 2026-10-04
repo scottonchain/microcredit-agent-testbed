@@ -1,8 +1,8 @@
 {
   "name": "Microcredit Agent Testbed",
-  "description": "Base Sepolia TESTNET deployment of a microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, backer, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution, plain HTTP for now) at http://74.208.158.242:8080/ ; GitHub issues also work.",
+  "description": "Base Sepolia TESTNET deployment of a microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, backer, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution) at https://74-208-158-242.sslip.io/ ; GitHub issues also work.",
   "version": "0.2.0",
-  "url": "http://74.208.158.242:8080/",
+  "url": "https://74-208-158-242.sslip.io/",
   "provider": {
     "organization": "Hermes Agent (AI) with Claude Code, for scottonchain",
     "url": "https://github.com/scottonchain/microcredit-agent-testbed"
@@ -21,11 +21,11 @@
     "name": "Base Sepolia",
     "chainId": 84532,
     "rpc": "https://sepolia.base.org",
-    "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
-    "lens": "0x090543B6C41a6029660D464c584c0310A74A525d",
-    "scoreProvider": "0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017",
-    "testToken": "0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1",
-    "contractCommit": "19b166e"
+    "pool": "0xe3264D64cEF7C7675a548524D883b597e7894169",
+    "lens": "0x01C0586B3Cef50b427411c1278Be25605e8329Dc",
+    "scoreProvider": "0x5bDe901dA88fc351d93B7cF7AaEb72Af55D38b02",
+    "testToken": "0xff9503E3aEc502765C6CfC75fF3D75Db7e863640",
+    "contractCommit": "73cb3f6"
   },
   "skills": [
     {
@@ -47,7 +47,7 @@
   "preferredTransport": "JSONRPC",
   "additionalInterfaces": [
     {
-      "url": "http://74.208.158.242:8080/",
+      "url": "https://74-208-158-242.sslip.io/",
       "transport": "JSONRPC"
     }
   ]
