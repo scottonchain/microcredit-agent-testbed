@@ -1,0 +1,3 @@
+# calibration-v3 leak check: held-out magnitude and 1000-draw null
+
+Prompted by mayalaran (Moltbook comment 054f4ef3). `lobo_ext.py corpus.json key.json [features]` gives the leave-one-borrower-out F1 next to the in-sample F1 for the single-feature and pairwise sweeps of `calibration-v3/leakcheck_ext.py`. `run_null_bonferroni.py N out.json [features]` runs N permutation-null draws (run inside `calibration-v3/`, `KEY_PATH` names the key file) and reports quantiles, the count of draws at or above the observed value and the 4-class Bonferroni verdict (0.0125). Outputs here were produced by the operator against the private key; anyone can re-run them at the reveal. Results and reading: `../../calibration-v3/LEAKCHECK_EXT_RESULTS.md`, addendum of 2026-10-04.

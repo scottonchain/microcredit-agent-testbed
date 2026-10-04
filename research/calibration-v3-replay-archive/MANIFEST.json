@@ -1,0 +1,1073 @@
+{
+ "archive": "calibration-v3-replay-runtime.tar.gz",
+ "built": "2026-10-04",
+ "builtin_modules_used": [
+  "__main__",
+  "_abc",
+  "_bisect",
+  "_blake2",
+  "_codecs",
+  "_collections",
+  "_functools",
+  "_hashlib",
+  "_imp",
+  "_io",
+  "_json",
+  "_operator",
+  "_random",
+  "_signal",
+  "_sre",
+  "_stat",
+  "_thread",
+  "_types",
+  "_warnings",
+  "_weakref",
+  "atexit",
+  "builtins",
+  "errno",
+  "itertools",
+  "marshal",
+  "math",
+  "posix",
+  "pwd",
+  "sys",
+  "time"
+ ],
+ "excluded": [
+  "site-packages",
+  "__pycache__ / .pyc",
+  "lib-dynload modules not imported",
+  "tests",
+  "include/",
+  "share/",
+  "credentials, histories, host files"
+ ],
+ "files": [
+  {
+   "path": "calibration-v3-replay-runtime/acceptance_test.sh",
+   "sha256": "9a3d31b33149996e7d782b026983f8c26f400c3fd48785063e832893dd73870c",
+   "size": 804
+  },
+  {
+   "path": "calibration-v3-replay-runtime/bin/python3.14",
+   "sha256": "8dfa9757a52b9c3edf1dedaaa2a7a8c40ea4beb058f20e90bdd47b48f3b1b176",
+   "size": 115747328
+  },
+  {
+   "path": "calibration-v3-replay-runtime/gen_calibration_v3.py",
+   "sha256": "10a3307b75027fd91421b10ba986cdeb93309b0b53994cc2685841df029a1650",
+   "size": 6550
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/_collections_abc.py",
+   "sha256": "50b68b76687edc29824e5d735914b9c9ebb5145b663ba4ab7fce273283356a1c",
+   "size": 32147
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/_sitebuiltins.py",
+   "sha256": "f688c89b860d5839aff1047d4f3df6c9695f136e2ae8a167bbbfa51846bbdaa5",
+   "size": 2699
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/_weakrefset.py",
+   "sha256": "2dd7cb459d654fe78b00c5c47ee8e786c037ee77763304603f5e976dd62cbf81",
+   "size": 3962
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/abc.py",
+   "sha256": "e558702a95cdce3febd289da021715d2b92bc43995b8a1bc58dfa1c3d8010287",
+   "size": 6538
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/bisect.py",
+   "sha256": "f1cf7b85fc36b5da249813fc5ab97d9464f8cc1bc817f7146206fa2713e35999",
+   "size": 3423
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/codecs.py",
+   "sha256": "718f39b3ea68fe934214d789c5bce3005fa828040b03a72d2f715fc5e2647b7e",
+   "size": 36840
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/collections/__init__.py",
+   "sha256": "cb8367b8edd188662143ea2e3942d360c2deae51c72fd779ec898f5076d2c2b9",
+   "size": 53021
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/copyreg.py",
+   "sha256": "6376eb5722806396f5842997ac18add369ea9ac3ff4fcfe1460c41a088cac425",
+   "size": 7716
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/__init__.py",
+   "sha256": "2b708410495acf12a6fad9d2de928dd89e567537c253eaa2b51aaae578e96c59",
+   "size": 5945
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/_win_cp_codecs.py",
+   "sha256": "a10ef385d2096ff10a4ed00e7adfb7750fefcd10aa8eea1b573846145c9abad7",
+   "size": 1229
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/aliases.py",
+   "sha256": "1ee993f8eb4986999b6501381e53947be9a04443626cb48b4190bcff2e87d3b4",
+   "size": 16255
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/ascii.py",
+   "sha256": "578aa1173f7cc60dad2895071287fe6182bd14787b3fbf47a6c7983dfe3675e3",
+   "size": 1248
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/base64_codec.py",
+   "sha256": "cf9ac7a464f541492486241d1b4bf33e37b45c6499275cc4d69c5a8e564e5976",
+   "size": 1533
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/big5.py",
+   "sha256": "98fac6f86a20dd05da197e2058176ebfd47edee7074c3248f5f48fe0fb672d7c",
+   "size": 1019
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/big5hkscs.py",
+   "sha256": "21d051a00fb5c6a86ba187e0c50e811d659ce00991fd5f5b408f71ebb2ef0f16",
+   "size": 1039
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/bz2_codec.py",
+   "sha256": "1181a2a89102a2b1d2b2f1f4473236d5d1ececdd0be8fdaa498a3dbe21a185ab",
+   "size": 2249
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/charmap.py",
+   "sha256": "1b8b5fdb36ce3becc62a6115ed904a17083949ec8aaef5a80f7078cec232f43b",
+   "size": 2084
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp037.py",
+   "sha256": "fda6ca994d710e4e0c760e0204c29a4273fc0f14ebe3169306d2eb54c9953f58",
+   "size": 13121
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1006.py",
+   "sha256": "eaded38b427841bdf280e878f1e26da506e743eaa9429075332af60cce429473",
+   "size": 13568
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1026.py",
+   "sha256": "f5227237dd7ce5005b16a8e4d8342f0d193193c878e3cf35b9305d22b3b1aaf9",
+   "size": 13113
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1125.py",
+   "sha256": "f84c7d30ce222e6a50cff1a4c9737173411da108cbd2c9bb57c854480103c470",
+   "size": 34597
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1140.py",
+   "sha256": "3379d78b244aa905ffe1171a968caaf41b9a0154d1ddc76c05a2abaca2b289fd",
+   "size": 13105
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1250.py",
+   "sha256": "ebcec1adf9167863fb0bab29708c546300c80a77ef07838c9e0437a59e265970",
+   "size": 13686
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1251.py",
+   "sha256": "d57f8cfa34494c5acb6692ddb31f616ae2dd89a075d2af6d36b0b7ec2ffe7af1",
+   "size": 13361
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1252.py",
+   "sha256": "19aa5bee667f5fb387924a813aec9fa1dda47769d09e8483a748bdb202be6a84",
+   "size": 13511
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1253.py",
+   "sha256": "8c27696dcfb6894b378869bc89f113703fbd1e9b13a83934463d5999b055d1e8",
+   "size": 13094
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1254.py",
+   "sha256": "06517ec2f74f1c6562d0a1a500c48ba43f2e6e9d0c3d28356d747f274f1a4c8d",
+   "size": 13502
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1255.py",
+   "sha256": "54a1b5087578fa78e5bdd0afa6a9e80e8c5467c1e4226cf6e586cfe7a674a653",
+   "size": 12466
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1256.py",
+   "sha256": "ad3768ac2fef2a646b3301c20af705f4d4a1544f22fa8a84241bada27ab84133",
+   "size": 12814
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1257.py",
+   "sha256": "d9149d2925b3f719809ef2297e541461079f15c658af207a3e498be314ab2c6b",
+   "size": 13374
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp1258.py",
+   "sha256": "672e05b51952a82c8dbd5603769195fcedf565e457bb86c0d5bae04955d04630",
+   "size": 13364
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp273.py",
+   "sha256": "6c6aec3b213ea3aebc2c526dd4d121c95d4a25a2fc928a87cd80f8448988185f",
+   "size": 14132
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp424.py",
+   "sha256": "30414c2186ea0802bbf3db034122ddec1f8a10061b97c50871e14b74ee36d0ca",
+   "size": 12055
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp437.py",
+   "sha256": "5c2a5015cd36cf7f561269f33dec4c323093d3d88b0673969accdabdcb9ce2cb",
+   "size": 34564
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp500.py",
+   "sha256": "630f503f9110d98ea3e1529f2f965ebc275a2f78d3de47f8e9b69d35589d764b",
+   "size": 13121
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp720.py",
+   "sha256": "395496001271b92efe5df07fc0ae7c3410d1dd2bdfebbd3e4d8e806c8166beb0",
+   "size": 13686
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp737.py",
+   "sha256": "be3ca1785a3970ec62310710eaf7de82932181b04d06fe4528f8adaba9fb8c4b",
+   "size": 34681
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp775.py",
+   "sha256": "e0dba85b99329d7f16907e620adada06be5216abcb964406c827b569b2cf1aeb",
+   "size": 34476
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp850.py",
+   "sha256": "257e29f235e2a8790dd68cee45668776648bab809ce8584f893cdd8fd007993c",
+   "size": 34105
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp852.py",
+   "sha256": "cc6faaa9dc4a933127da0aaacd1dc7a44c09266051af56bfe3215ff228636b6b",
+   "size": 35002
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp855.py",
+   "sha256": "7b25c61c9e8c47b218d3fbb801541a2861926ac712843d2113fff90e2074f5ba",
+   "size": 33850
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp856.py",
+   "sha256": "2e52ec5cb1eafa6739b5569b0b98ee89df5f7358b84ccdc8da64e86f017d359f",
+   "size": 12423
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp857.py",
+   "sha256": "8d1b769058bfccdb3c6c70c49a104f5081a2fcc9fad68f7b5eb3e4f67f0b33da",
+   "size": 33908
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp858.py",
+   "sha256": "a24930c4a6ad0ff66dde9a69f2027e4b92c2c9c61dcda2992e940654c606577b",
+   "size": 34015
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp860.py",
+   "sha256": "2dfae7e31d3d9aa3013cff44a4d7ad842f257ac63765a9998436701b629cd86a",
+   "size": 34681
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp861.py",
+   "sha256": "701930d77a2177497586e99bc3fe60f2d4beffb645608f167c76874a72ff405e",
+   "size": 34633
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp862.py",
+   "sha256": "15a2844b6ed9544c6400cf7299b42d0c2bef93c9bee70a9e89f66b8610ad6d6d",
+   "size": 33370
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp863.py",
+   "sha256": "a3d57f61fce1b98fc81ea8e4ebebaf402fae40bbcdd35d4b8297b9bb49a79aa2",
+   "size": 34252
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp864.py",
+   "sha256": "15ad8f1fdfdd842c7522241372e7eddda7df687e815692a89157c5f256f21a08",
+   "size": 33663
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp865.py",
+   "sha256": "bdbaded987242ed2a8de7133ec2f61ddcc1c2e9de27816ab7cd0a4c678a3a907",
+   "size": 34618
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp866.py",
+   "sha256": "9efcc8e85bbd1687272a0991f6d0429a4c06679db2d114b2ac95db27a70f9d13",
+   "size": 34396
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp869.py",
+   "sha256": "52582d9fb769b24eac7154f18d7dae856588297d6da98f37fb5efd8da883826d",
+   "size": 32965
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp874.py",
+   "sha256": "fe4752fa2e65741e08a563a31ff914fe71068942ce9c6f4070b1dfd7b25e5e7f",
+   "size": 12595
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp875.py",
+   "sha256": "2fe72632015db2cba2bb4367055551da6fe22051b96d170c7b96fa271c46b257",
+   "size": 12854
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp932.py",
+   "sha256": "99748e28113d2d49f5d666b49b78accd2c6e10a7852f7dd6dece9b5b71aa83c4",
+   "size": 1023
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp949.py",
+   "sha256": "950a7d29467ce0590b4a1137830d43d88d8f20e4035dcaaa8b2a5c3c3f1de962",
+   "size": 1023
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/cp950.py",
+   "sha256": "27811178b450731fc955b1247656a605d04e5ee98e0d585e4596b94b703a27f6",
+   "size": 1023
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/euc_jis_2004.py",
+   "sha256": "9fa426cd9f17629f6320700ed18baa94839304cf1bcabbee7edb501747dc055d",
+   "size": 1051
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/euc_jisx0213.py",
+   "sha256": "e28315910da20218dae8b7d5becd81de1e283dfd8b0415a4980d67065de73a0b",
+   "size": 1051
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/euc_jp.py",
+   "sha256": "b453a439787b0efa031e43416a7d852a6be705c985e1200693eb96d87ea79cdc",
+   "size": 1027
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/euc_kr.py",
+   "sha256": "633a1a5504bfad04b1ec9c96d44d4ebb3bb99066a218318e7d67d866e20887a6",
+   "size": 1027
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/gb18030.py",
+   "sha256": "6c10b4dc49bc63724e539137ede6936304fcca1c97c28d16d89f381e10849521",
+   "size": 1031
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/gb2312.py",
+   "sha256": "3d2d567d8d079b78f3f3b566ed52ad2f38af61bf832b7dc28858b0039a032d6b",
+   "size": 1027
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/gbk.py",
+   "sha256": "eff9b8cbc9ad2ef2e10e96afa83d3db1f775ea044aed275b7a35574ae0d8645b",
+   "size": 1015
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/hex_codec.py",
+   "sha256": "fc5f0a31b59efe990b86efb98936769f33dd91d912ce55b49a5a4cfc516cd047",
+   "size": 1508
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/hp_roman8.py",
+   "sha256": "c43cce763d12e8f71a63dbc16641bd87147eaf5f9d9054ea856864b216b2735b",
+   "size": 13475
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/hz.py",
+   "sha256": "025a9531e3046e52d3e039c0be04f9a5a74651d7683a13c7c7ebd4c7dfb5996a",
+   "size": 1011
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/idna.py",
+   "sha256": "ea8d7f01422af0ad138e4bf58d4ae63112f3ceb68833c486d6c4d18252610fd8",
+   "size": 13248
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp.py",
+   "sha256": "461a0e7f72eccb8b29f351c4e7926cfbda58e0edd6d0770bd82e0b36c5febe77",
+   "size": 1053
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp_1.py",
+   "sha256": "63bacad13a979a5519fcaa4f1e1e07b2c7415005167fac3a689408c7d886fabd",
+   "size": 1061
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp_2.py",
+   "sha256": "5d4248181548b0fc89a9f5ee9cf52ebecb235708ba87d47896ad14130884ef9f",
+   "size": 1061
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp_2004.py",
+   "sha256": "b4d1468bcd608b46f38cb0c6ef115510dcf9aa0f71e590792f407efc6e165164",
+   "size": 1073
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp_3.py",
+   "sha256": "3aceaa5661909de14e2861d864443b8472460ce39b99cce5c6965346d47aa5ac",
+   "size": 1061
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_jp_ext.py",
+   "sha256": "f4c9ed8f3031995faa224bcb10153d2b6144944477d1f27d1a6cc4a879fac34c",
+   "size": 1069
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso2022_kr.py",
+   "sha256": "1c86362e17944f0bcf68db02f4995bdeea605867795fff7ab4079073f96705e4",
+   "size": 1053
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_1.py",
+   "sha256": "b5cebd515e057d670bf54e10b8a6f162ef3daa7f21b146aee3249160caf3c32d",
+   "size": 13176
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_10.py",
+   "sha256": "54c886b41819ebb7f4fb34b8dbae1c45f4fc0864f019ecd772676ccfac5fae7b",
+   "size": 13589
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_11.py",
+   "sha256": "ed5a964470a241b4da7a6cfb718e4149d09644933af38f0497602baab6e563ef",
+   "size": 12335
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_13.py",
+   "sha256": "7312237e8e5d201d920b4130f057cfdf1b0be9baafaa246826e6d93204fcc206",
+   "size": 13271
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_14.py",
+   "sha256": "82778b995a0ee87c5f1180fcc52900359eee15bd9a6e3a0e25f0d963e0b2a343",
+   "size": 13652
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_15.py",
+   "sha256": "01976a81811873dc9a0c79db9fc00d1c30103487f3c6bc3a6d81b4043cd48e02",
+   "size": 13212
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_16.py",
+   "sha256": "b5ac8f5a5d8f84c0f903b2b7c342184758d590d8bcf810d561f942fe5b372d66",
+   "size": 13557
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_2.py",
+   "sha256": "2b57cab6111cae9021505e3ae1b2adbbfc344ec48165fda322f6b069fbb18adc",
+   "size": 13404
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_3.py",
+   "sha256": "4ffdf89004bf0c5230caa7079f7ca3142fc112f8b923ddb2c7358369d2d3c242",
+   "size": 13089
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_4.py",
+   "sha256": "87bd130daa0eaef3e4cb465e10cffb2bcd194ff74097e0c186b4b8eb7be41ac5",
+   "size": 13376
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_5.py",
+   "sha256": "9961d96cc7b9fdf011ebcaaeaeca7b50b8670fadbd7b75fde66192f8c1f68f30",
+   "size": 13015
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_6.py",
+   "sha256": "4840e68014346517680f593ca22f67133c39ba7e46f34b9be62c980a728448c6",
+   "size": 10833
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_7.py",
+   "sha256": "b352eca3b819488f64fb3338fd93f39c1e30f32bb13f2f9c577925e58f2960e4",
+   "size": 12844
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_8.py",
+   "sha256": "4cf9e8a8bbe04accb1c1a80853efb19ae0772d18f81e270adefc1b2386cb368e",
+   "size": 11036
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/iso8859_9.py",
+   "sha256": "84d9b15263e81685f7513c5ab45caf80b2f73c301c68e659f7162c1b1882d359",
+   "size": 13156
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/johab.py",
+   "sha256": "9586615917afd3d848c1c4328656603b2834af6115f2aec932fccc935e1a60fb",
+   "size": 1023
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/koi8_r.py",
+   "sha256": "4d4e353aee8039bb71e2145a6e68fe1e6833a1b4250b70ee0ac5ec70bbb8c51d",
+   "size": 13779
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/koi8_t.py",
+   "sha256": "9c9043814abdbe7dc39ff98f3857d5d110a84c978ad2304158d810a4e9eacef1",
+   "size": 13193
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/koi8_u.py",
+   "sha256": "d449f9858e357fa8c2edbd4b9fe739337e9f201cac3ded20f99bfcecd4970ff7",
+   "size": 13762
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/kz1048.py",
+   "sha256": "76beb30e98a911f72f97609a2373782573c17c88a5fb3537db338aa382979ffc",
+   "size": 13723
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/latin_1.py",
+   "sha256": "b75503e532a27c636477396c855209ff5f3036536d2a4bede0a576c89382b60c",
+   "size": 1264
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_arabic.py",
+   "sha256": "5eafd9a3136abfbd8ed52df9c90203c7a283e7429ed60502a87a02511e0fb777",
+   "size": 36467
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_croatian.py",
+   "sha256": "a880cd05c82a8d11a29c65ee86a396def3344465dd71441b0bb4a73826024953",
+   "size": 13633
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_cyrillic.py",
+   "sha256": "83616786a1c6308b03a0dc82536908d24d0974b2248d67393d613fe558cea4bd",
+   "size": 13454
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_farsi.py",
+   "sha256": "f5763c38fb4ab0423fafe2fdca34d6f9932ac7f1a74c0cd8109d60234c7dc624",
+   "size": 15170
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_greek.py",
+   "sha256": "63016a323ddf98cb3aa9cfa78f3bab4768bedbfe9a5262a36a5aecb13d291f6e",
+   "size": 13721
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_iceland.py",
+   "sha256": "753cc1ac635caa7e1b4630fbcebef8db8db332c098154a5b11f652912bf64f37",
+   "size": 13498
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_latin2.py",
+   "sha256": "31670da18ce8b5394cd53fe6bf216268e7e8eae4c0247532e420e2e103727d50",
+   "size": 14118
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_roman.py",
+   "sha256": "230367d96aef8e8d7f185b4acfb84923714f39ddbcbf9cf38a06bf6f5d621c22",
+   "size": 13480
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_romanian.py",
+   "sha256": "49630cf035c19e896a123ed6e5fee18b5e485123daf2f15da38bf727ff387bee",
+   "size": 13661
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mac_turkish.py",
+   "sha256": "99758a5cad2825cb3be3fa5d031e0821e4eba910a46f417fd890207b9b6be77b",
+   "size": 13513
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/mbcs.py",
+   "sha256": "f6ed445ed537c9f856d8defe8b56505727737d0dc9348d0a877abedab4bdd864",
+   "size": 1211
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/oem.py",
+   "sha256": "481656d3a35f792d0e5109e3f821e6dbfcf097163a19b0cdfcbff3b3db99292f",
+   "size": 1019
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/palmos.py",
+   "sha256": "79b4edcfaede8f7deb25b278d60e472217c0ff55e830ef1ccd2c408413742fa0",
+   "size": 13552
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/ptcp154.py",
+   "sha256": "0eabcb2c287d335e86b71b0abe5718bd6ddc9aaee234f0f0f2363845d2926d8d",
+   "size": 14015
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/punycode.py",
+   "sha256": "1e8d57e06e9b527009c35f2a1486ab56b51540e817f5bd8f239dc71e3fc0b014",
+   "size": 7625
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/quopri_codec.py",
+   "sha256": "502a213c34c05a94ed063ee03f47680bd6efbb35036e06fb4dc809bf398cfa64",
+   "size": 1525
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/raw_unicode_escape.py",
+   "sha256": "fa6328486b8f5a5cbd10e377e80adb8cf94acbbe19c38b4e1bf708d831a80a3a",
+   "size": 1332
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/rot_13.py",
+   "sha256": "14767f475acdc0bf48e6272280dd15b80efaecafb93c06be21136f83dd1ee7e4",
+   "size": 2448
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/shift_jis.py",
+   "sha256": "ad4ac50ebf58294304e412cc0f1b12980988dd6edc414e4110029c0a1abbe966",
+   "size": 1039
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/shift_jis_2004.py",
+   "sha256": "d21c5930f21063ea78fea3b0f76dfb8fd92858d2a4a200064a52126a43dd1a99",
+   "size": 1059
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/shift_jisx0213.py",
+   "sha256": "2c8d0b93bb36edf31c1236b1b4d1c0008553868bd2fc9137570115b96b834f2e",
+   "size": 1059
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/tis_620.py",
+   "sha256": "647c4719e2c1a7375105e15a89b377c66f6b699977dcabbb71d923a4607b7902",
+   "size": 12300
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/undefined.py",
+   "sha256": "0e1e3e7c1dbc4690b71494099541e73de23c9010a54b6822f3867aec35a74a62",
+   "size": 1301
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/unicode_escape.py",
+   "sha256": "507e7ca8f18df639fd823d7cc23ce4028a3550ceefdfa40b3c76f81d1a94531d",
+   "size": 1304
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_16.py",
+   "sha256": "08437559c8d255a5ba1449c1c75beaa62b0834fe4259d161ecf8699381e4c8e1",
+   "size": 5280
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_16_be.py",
+   "sha256": "3357196f3fa52433326a6626880e34964e00c5570aee50e9a0a0a7c6d86f6e4f",
+   "size": 1037
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_16_le.py",
+   "sha256": "3aedaf3eb49769282daef1eaedfd4fa1c31fe5eebeff67fe2307c89dc2e2fd80",
+   "size": 1037
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_32.py",
+   "sha256": "6c235e377e1e277cde5f684cee6f6f8da4c73d153a21891df0cb834f17cd2b6f",
+   "size": 5175
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_32_be.py",
+   "sha256": "cbba20e1f6d0879c7c4293446c371a9f79e7c90bf3c78a77a9b8fc72b18915dd",
+   "size": 930
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_32_le.py",
+   "sha256": "9134b91047d85b442898d59effe23e7e0cf4167ca341ae31119a731dbf880a7b",
+   "size": 930
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_7.py",
+   "sha256": "9ff32314f4f1fa074f206bbf7fdb851504e5313128636d73b4bf75b886e4a87d",
+   "size": 946
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_8.py",
+   "sha256": "ba0cac060269583523ca9506473a755203037c57d466a11aa89a30a5f6756f3d",
+   "size": 1005
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/utf_8_sig.py",
+   "sha256": "1ef3da8d8aa08149e7f274dc64dbfce2155da812e5258ca8e8f832428d3b5c2d",
+   "size": 4133
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/uu_codec.py",
+   "sha256": "45ba92000718abf85f158563c755205e100356ce1b4ab9444b4d0a3d21f061a3",
+   "size": 2851
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/encodings/zlib_codec.py",
+   "sha256": "6ef01e8d3a5fe1cc52f7b5ae008df12f1dbce7304111bf8d4758f1bfc0115759",
+   "size": 2204
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/enum.py",
+   "sha256": "fd23a7598fa1104ef892abcd4154d3627283e6361eb7a91cd11dc4a7b6fb3a93",
+   "size": 85450
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/functools.py",
+   "sha256": "9db56d38172c4c9e689b21cc58c8538008b09d86b682faf4dd193b529cdd79d5",
+   "size": 43564
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/genericpath.py",
+   "sha256": "cdac5a68dd738051e0d66fc81d5947d6a1776248fc6fe862253477608d870ec4",
+   "size": 6247
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/hashlib.py",
+   "sha256": "88fa624821fbdee7eb2ef87c2437b207afe328cf117c7463367e2db5eb1af492",
+   "size": 9459
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/__init__.py",
+   "sha256": "72b07de4133a7e39b2f6a7920465669aa04626f217e800779587bc0713fe002e",
+   "size": 4767
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/_abc.py",
+   "sha256": "80aab7931dc999dee581c8b8b56fcd973fe156335a96ceeaf6acfc03cebf10e8",
+   "size": 1354
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/_bootstrap.py",
+   "sha256": "e50d35b1191ecbc5f7faecc73f54efd242bcf24c510e4ea5eb64bfba9458c0e3",
+   "size": 57937
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/_bootstrap_external.py",
+   "sha256": "b9af1fb7b625030cf5ee06b39aeb7838c2a30c97ddee09410286b7afbd8b7098",
+   "size": 57685
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/abc.py",
+   "sha256": "66da663909ac110b77d89d4402589574308aac2a5b524bba014fabd65f34cc99",
+   "size": 7583
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/machinery.py",
+   "sha256": "34b7583fd83ebb2629b7645c0dd293839ce16b19cf8742801e21a21fe08f5811",
+   "size": 2166
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/__init__.py",
+   "sha256": "5476c7c22a65f9e8b5a07b799336d87fa70e792758fd95b161b53b530e3b2654",
+   "size": 34091
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_adapters.py",
+   "sha256": "c46791664cc0720374649414d0afdf24ca709580ce9feea0a25a4f76441677c1",
+   "size": 2407
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_collections.py",
+   "sha256": "089d0e4c21c88d6034648552e2fa0e440b27d91e11d9c40112d3ec6442690126",
+   "size": 743
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_functools.py",
+   "sha256": "3ec636fb8aeb297e1155e442d681a9d65075a660bd78a37cf3f7fe6c3f6e3a80",
+   "size": 2895
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_itertools.py",
+   "sha256": "72faffdaff0145bc5c225e71e6575fa9d1e3848f188bcb3cca4e741bf9e6ea34",
+   "size": 2068
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_meta.py",
+   "sha256": "9f167b0bc19595c04500a5b254e9ff767ee8b7fb7005c6e6d4d9af8c87ad0472",
+   "size": 1801
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/_text.py",
+   "sha256": "1c2b0592c66924b7933f734493f9e0ac079755146d4ebb7287d78e001a113f80",
+   "size": 2166
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/metadata/diagnose.py",
+   "sha256": "9e4491322a309669212d884a86f0a0f60966b7fd750a8c7e1262f311ba984daf",
+   "size": 379
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/readers.py",
+   "sha256": "d0d57d118d64916f7e6edb04f8bd1a760a1abb879125899ef50a36d09ef54df4",
+   "size": 327
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/__init__.py",
+   "sha256": "dc9fb6eb542ace0fb59017a7315b0eb2f268d7d11b52662a8c792b6568851ce3",
+   "size": 703
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/_adapters.py",
+   "sha256": "be9ac919b51e1db6a35fa5c2b8c3fa27794caea0a2f8ffcc4e5ce225447b8df9",
+   "size": 4482
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/_common.py",
+   "sha256": "fcfb97ce807c692b36ac1b224379b455d64937a210c48c5ae60369bcaabe6456",
+   "size": 5618
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/_functional.py",
+   "sha256": "98b5380f04a587cff62175aac0a39f3d5c7246a004a41dc1e174df471af75f73",
+   "size": 2651
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/_itertools.py",
+   "sha256": "7838ac57a46a88d64ea202d25dfe8b3861ce61cefd14680faca34bcc52e60ab5",
+   "size": 1277
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/abc.py",
+   "sha256": "a726c48590b21ba5532f0c654735991571bc0ecafe88145cb8891d82cd364e5e",
+   "size": 5203
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/readers.py",
+   "sha256": "f64855ffaa44f6c21ffc49e77b8cbfeeca37183bf7f7d3aecb30cb079ab45939",
+   "size": 6243
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/resources/simple.py",
+   "sha256": "c099b6a8667d10c3c58512e22416bd126e6d54a6c3ed0f226d6b6de193605815",
+   "size": 2590
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/simple.py",
+   "sha256": "8e687aeeb1db537d2717cb0352c5f126ff7d4095c6de6dc7f00d5103f3009c40",
+   "size": 354
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/importlib/util.py",
+   "sha256": "7bdfadad42664ba169ffac8160765673cd79937f74324f4664de8d820c35b863",
+   "size": 11414
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/io.py",
+   "sha256": "1b75584d4efcc612dc0db2ae98619408276585a106f0544879edb5e25b55430a",
+   "size": 4736
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/__init__.py",
+   "sha256": "2dd10f1bf4c9ea5478e589216805e7f279d0e4bce134a19efa297404fb87407d",
+   "size": 14132
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/__main__.py",
+   "sha256": "2135d18ded78bcb96b7b96e144b822039c90c37609fe6311ee239af2424a003a",
+   "size": 421
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/decoder.py",
+   "sha256": "dc98d3e677612ea7311303f06a144cec6b91ebadc7ec037d1777501647578a07",
+   "size": 12877
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/encoder.py",
+   "sha256": "d68a4d04d2cfd95897498307f29349058b42c3f48ea6aa6739714a09200a7d01",
+   "size": 16990
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/scanner.py",
+   "sha256": "572958017eae8842eeddd0e3d18d3c56cc0a197348224915e1d87ce937841764",
+   "size": 2434
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/json/tool.py",
+   "sha256": "b4536fe48c3485d1d2bbf156498c74b3ea75e650221dabd6b2d9ec74ee4bf0c2",
+   "size": 4618
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/keyword.py",
+   "sha256": "18c2be738c04ad20ad375f6a71db34b3823c7f40b0340f5294d0e89f3c9b093b",
+   "size": 1073
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/operator.py",
+   "sha256": "a9f9910965c31f841caad0447ee47299ac539a371422aefe200c86c60f3b4697",
+   "size": 11158
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/os.py",
+   "sha256": "976bdb3e24925f2fb3ce43a4d788de6dcbb88a7cc8604c60ae690fbdd6507546",
+   "size": 41958
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/pkgutil.py",
+   "sha256": "c0ae4cc6a6d36be016d77764cf846c0da4b1b85229d94f090ac994495fc2f203",
+   "size": 16055
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/posixpath.py",
+   "sha256": "8a5bc2b6674e76efe0f507b873a41d746beba466a191153ed18a7580ef6e08e1",
+   "size": 18813
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/random.py",
+   "sha256": "cf8e72f887d838e273c274b79758b2bf8630a0927112b8876fa3a9e4b9b1756b",
+   "size": 37553
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/re/__init__.py",
+   "sha256": "741a9de729ed8207bfa19db990f8826f1bf3661f33d0970a80c08cd1338ebc35",
+   "size": 17876
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/re/_casefix.py",
+   "sha256": "1b12d9136f23db6c3f6f26053fefc15ca964b886838c7b9c1fabf8d2efc1e5c8",
+   "size": 5444
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/re/_compiler.py",
+   "sha256": "d49f30cf9a1dbae33b200ed8befd9d0ce3ac612783a10ac35196536f98923e91",
+   "size": 26855
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/re/_constants.py",
+   "sha256": "42253b3181b81aad6c46392f44a0ab26dcfa31feea411296f43ba16616a1ab0b",
+   "size": 6036
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/re/_parser.py",
+   "sha256": "e57bd194a2d42398355ae7c1ccc2ddfb78421dd431eb81e3809dbe8ca9057dc4",
+   "size": 40353
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/reprlib.py",
+   "sha256": "b04872e10d76252e44eae50cc785eb0fe478491afc4d7f0825a93f82b2eaba5f",
+   "size": 8064
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/runpy.py",
+   "sha256": "c5c5418c0a8caf915ca0c98619469227e390cb581f39494f2e368ec3b246c94b",
+   "size": 13276
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/site.py",
+   "sha256": "bf3567b10092d10189a9f7eb12eb1f0c72d023c0d4e72cfa93a5f2e7d3122fd0",
+   "size": 25768
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/stat.py",
+   "sha256": "07217986d9b2172b509dab3578d18ac05ba768b418e1f1e8c90e38a8f7c2b3c6",
+   "size": 6308
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/types.py",
+   "sha256": "8c54d3d5ffc1d1204237e6c69b25c27c7b05b483128f185eeed9ba7ef2229ac2",
+   "size": 11464
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/weakref.py",
+   "sha256": "5e5f727a19a858cb4c56dbaf3e0a138ded02fb954a9a58a840a0764216ae9522",
+   "size": 17771
+  },
+  {
+   "path": "calibration-v3-replay-runtime/lib/python3.14/zipimport.py",
+   "sha256": "4de64633a484e16c39fdb46a3f939ce7c577b14a6e9ee49b79871ec1880b4597",
+   "size": 33466
+  },
+  {
+   "path": "calibration-v3-replay-runtime/replay_harness.py",
+   "sha256": "03f484103754fa05d996b93182730c259b0e3619bec7bad2c48e1c9be870b6dc",
+   "size": 1332
+  },
+  {
+   "path": "calibration-v3-replay-runtime/validate_ledger.py",
+   "sha256": "2ef64ef1da7d342c10828a849136e0adfbecc388cc81dfe06c64d0c0fd162f97",
+   "size": 1999
+  },
+  {
+   "path": "calibration-v3-replay-runtime/verify_manifest.py",
+   "sha256": "f2a6fe61168fd4cf429b63ae5dd8192c423c3005aef483dab00502eb74f5ea92",
+   "size": 814
+  }
+ ],
+ "interpreter": {
+  "path": "calibration-v3-replay-runtime/bin/python3.14",
+  "sha256": "8dfa9757a52b9c3edf1dedaaa2a7a8c40ea4beb058f20e90bdd47b48f3b1b176",
+  "statically_linked_libpython": true,
+  "sys.version": "3.14.7 (main, Sep  1 2026, 14:18:09) [Clang 22.1.3 ]"
+ },
+ "lib_dynload_modules_used": [],
+ "purpose": "replay of calibration-v3 (generator + exact interpreter + imported stdlib); digest and manifest public now, bytes at reveal",
+ "system_dependencies_not_included": {
+  "glibc": "ldd (GNU libc) 2.34",
+  "kernel": "5.14.0-687.52.1.el9_8.x86_64",
+  "mapped_files": [
+   {
+    "path": "/usr/lib/locale/C.utf8/LC_CTYPE",
+    "sha256": "2cb901c95a9fa81466d7878f81aa8eb52620df6f4420a0e219943ee6491c9334",
+    "size": 346132
+   },
+   {
+    "path": "/usr/lib64/gconv/gconv-modules.cache",
+    "sha256": "32be69bf0c00481b7279aeb8c0d7920f3da4d95f0743924c0c9cf63a20b9c9b1",
+    "size": 2218
+   },
+   {
+    "path": "/usr/lib64/ld-linux-x86-64.so.2",
+    "sha256": "58b211cde994b9373c9a39abeb2633191b832574c7ca0bd44e362d33e0cc6111",
+    "size": 938792
+   },
+   {
+    "path": "/usr/lib64/libc.so.6",
+    "sha256": "c6b12761834ea9a2fde7a17682ebfaf37982a0df6e9345e5b9d298ac1ca3c746",
+    "size": 2549360
+   },
+   {
+    "path": "/usr/lib64/libdl.so.2",
+    "sha256": "e79f2c36a3228050061432b564923893a42241fb334b52bd2be88793c3eedce3",
+    "size": 15464
+   },
+   {
+    "path": "/usr/lib64/libm.so.6",
+    "sha256": "f0734a09a0602ccde6b98ea7fbb3c9cfc62b3a4cf4a7b17ccd36d774ca22b8df",
+    "size": 912968
+   },
+   {
+    "path": "/usr/lib64/libnss_sss.so.2",
+    "sha256": "8f99f149811e4dd24c9b76a646ed821b54a99d6615805a0a4359572b23d9af60",
+    "size": 53376
+   },
+   {
+    "path": "/usr/lib64/libpthread.so.0",
+    "sha256": "ff337ffb3d2cd083f45190c3c0eb7c3156cd8643abe2ef1c941b6a13a415bd07",
+    "size": 15480
+   },
+   {
+    "path": "/usr/lib64/librt.so.1",
+    "sha256": "23d6ce2d88c5b8d827ecd68654d3f3e21adc42ed6a97801baf56db359c973e5a",
+    "size": 15640
+   },
+   {
+    "path": "/usr/lib64/libutil.so.1",
+    "sha256": "eefb387c80183a5dac333d67c9f247f599d70fd19dda5dca3fb2fb15ba56a34b",
+    "size": 15464
+   }
+  ],
+  "os": "AlmaLinux 9.8 (Olive Jaguar)"
+ },
+ "tar_determinism": {
+  "gzip": "mtime=0, no filename, level 9",
+  "mtime": 1790000000,
+  "sort": "name",
+  "uid_gid": 0
+ }
+}

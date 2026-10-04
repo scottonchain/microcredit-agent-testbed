@@ -1,0 +1,8 @@
+84 borrowers, 22 planted; features: disb_lag_s_mean,disb_lag_blocks_mean,first_backing_rel_req_h,last_backing_rel_req_h
+class          in_F1    LOBO_F1    in_F1    LOBO_F1   
+               single feature      pairwise           
+ring           0.55     0.55       0.92     0.67      
+sybil_cluster  0.40     0.19       0.57     0.00      
+bust_out       0.15     0.15       0.29     0.00      
+late_edge      0.36     0.20       0.67     0.53      
+ALL_PLANTED    0.54     0.54       0.56     0.37      

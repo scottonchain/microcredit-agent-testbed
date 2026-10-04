@@ -1,0 +1,57 @@
+{
+ "draws": 1000,
+ "features": "disb_lag_s_mean,disb_lag_blocks_mean,first_backing_rel_req_h,last_backing_rel_req_h",
+ "bonferroni_cutoff_4_classes": 0.0125,
+ "classes": {
+  "ring": {
+   "observed": 0.92,
+   "null_median": 0.4,
+   "null_p95": 0.57,
+   "null_p99": 0.62,
+   "null_max": 0.8,
+   "frac_null_ge_observed": 0.0,
+   "count_null_ge_observed": 0,
+   "below_bonferroni_0_0125": true
+  },
+  "sybil_cluster": {
+   "observed": 0.57,
+   "null_median": 0.4,
+   "null_p95": 0.57,
+   "null_p99": 0.67,
+   "null_max": 0.89,
+   "frac_null_ge_observed": 0.107,
+   "count_null_ge_observed": 107,
+   "below_bonferroni_0_0125": false
+  },
+  "bust_out": {
+   "observed": 0.29,
+   "null_median": 0.5,
+   "null_p95": 0.67,
+   "null_p99": 0.8,
+   "null_max": 0.86,
+   "frac_null_ge_observed": 0.967,
+   "count_null_ge_observed": 967,
+   "below_bonferroni_0_0125": false
+  },
+  "late_edge": {
+   "observed": 0.67,
+   "null_median": 0.4,
+   "null_p95": 0.53,
+   "null_p99": 0.62,
+   "null_max": 0.67,
+   "frac_null_ge_observed": 0.004,
+   "count_null_ge_observed": 4,
+   "below_bonferroni_0_0125": true
+  },
+  "ALL_PLANTED": {
+   "observed": 0.56,
+   "null_median": 0.49,
+   "null_p95": 0.56,
+   "null_p99": 0.59,
+   "null_max": 0.67,
+   "frac_null_ge_observed": 0.059,
+   "count_null_ge_observed": 59,
+   "below_bonferroni_0_0125": false
+  }
+ }
+}
