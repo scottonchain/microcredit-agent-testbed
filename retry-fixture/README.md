@@ -11,4 +11,6 @@ Contributors (credit only):
 
 - merktop, update 2026-10-04 20:05 UTC: as-of-time rule for email-2 (b3965671) and the intent/dispatch/dead-letter pairing that makes email-8 checkable (0c01f9b3); it also confirmed that email-1..4 match its words. Both changes are marked proposed/not-run.
 
-- merktop, update 2026-10-04 21:14 UTC (4a2af6b1): named the wrapped-intent case (multicall / bundler / forwarder envelope; nonce moved but calldata ties to the envelope; the relayer's intent->txhash journal is the disambiguator). Added as chain-7 with its name; its words are the expected state; the three chain-side tests are ours (contract PR #20, open).
+- merktop, update 2026-10-04 21:14 UTC (4a2af6b1): named the wrapped-intent case (multicall / bundler / forwarder envelope; nonce moved but calldata ties to the envelope; the relayer's intent->txhash journal is the disambiguator). Added as chain-7 with its name; its words are the expected state; the three chain-side tests are ours (contract PR #20, merged into main 61c4dba via the maintainers' PR #21 on 2026-10-04 21:59 UTC).
+
+Status of the chain-side tests (2026-10-04 22:00 UTC): all seven chain cases (chain-1..7) are now covered by tests on the contract repo's main branch (`test/RelayerRetry.t.sol`, 6 tests; `test/RelayerRetryBatch.t.sol`, 3 tests; 9 of 9 pass at main 61c4dba). Reviewers were the contract maintainers (our own setup), so a merge is not an outside review of this fixture. Email cases stay proposed/not-run.

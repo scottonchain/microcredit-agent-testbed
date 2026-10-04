@@ -92,7 +92,7 @@
       "source": "contract repo CLAUDE.md recovery rule",
       "tested_by_us": true,
       "observed": "pass: nonces(signer) is one past the request nonce after the repay lands; loan outstanding 0 and not open",
-      "test": "testUnknownOutcomeRecoveryReadsNonce (contract repo PR #18, open, not yet reviewed by maintainers)",
+      "test": "testUnknownOutcomeRecoveryReadsNonce (contract repo test/RelayerRetry.t.sol; PR #18, merged 2026-10-04 17:44 UTC, main db17e82)",
       "note": "The test observes the signal only. \"Do not resubmit\" is a relayer-side rule that the contract cannot enforce; the two revert tests (chain-1, chain-2) show a resubmit would fail harmlessly."
     },
     {
@@ -115,7 +115,7 @@
       "id": "chain-5",
       "setup": "relayer submits repayLoanMeta directly; reconciler has the receipt's tx",
       "expected": "(borrower, loanId, nonce) are recoverable from the call input and that nonce is the one that moved",
-      "test": "testCalldataCarriesSignedRequest (contract PR #18, open)",
+      "test": "testCalldataCarriesSignedRequest (contract repo test/RelayerRetry.t.sol; written on the PR #18 branch, landed via maintainers' PR #19 as commit 058489d, merged 2026-10-04 20:13 UTC, main 10e1d72)",
       "observed": "pass",
       "tested_by_us": true,
       "note": "forge has no tx object: the input comes from a recorded call, not eth_getTransactionByHash on a real chain"
@@ -124,7 +124,7 @@
       "id": "chain-6",
       "setup": "relayer submits through a wrapper contract (batch/forwarder); reconciler matches repayLoanMeta's selector at the top level of tx.input",
       "expected": "top-level selector match finds nothing; nonces(signer) still shows the request landed. Rule: fall back to the nonce or a trace, never conclude 'not sent' from a missing selector",
-      "test": "testWrappedBatchHidesRequestFromTopLevelSelector (contract PR #18, open)",
+      "test": "testWrappedBatchHidesRequestFromTopLevelSelector (contract repo test/RelayerRetry.t.sol; same commit 058489d via PR #19, merged 2026-10-04 20:13 UTC)",
       "observed": "pass",
       "tested_by_us": true,
       "origin": "found by us in answer to merktop's question (19606a4b) whether the calldata binding can fail; merktop did not name a case. Same family as merktop's email-2 absence-verdict rule."
@@ -135,7 +135,7 @@
       "expected": "wrapped intent: nonce moved but calldata ties to an envelope, not the intent; expected state stays unknown until the journal is consulted (merktop's words; the journal is the relayer's off-chain intent->txhash record written before broadcast)",
       "source": "merktop, Moltbook comment 4a2af6b1 (post 117ae039, 2026-10-04 21:14 UTC), answering our question in 19606a4b",
       "tested_by_us": true,
-      "test": "testEnvelopeSucceedsWhileWrappedIntentDidNotLand, testNonceRangeNamesWhichWrappedIntentLanded, testEnvelopeOrderDoesNotChangeTheConsumedNonceRange (contract repo test/RelayerRetryBatch.t.sol, PR #20, open, not yet reviewed)",
+      "test": "testEnvelopeSucceedsWhileWrappedIntentDidNotLand, testNonceRangeNamesWhichWrappedIntentLanded, testEnvelopeOrderDoesNotChangeTheConsumedNonceRange (contract repo test/RelayerRetryBatch.t.sol; PR #20 commit f25c451 reviewed by the maintainers and merged unchanged via their PR #21, 2026-10-04 21:59 UTC, main 61c4dba; 3 of 3 pass on that main)",
       "observed": "pass (3 of 3): the envelope succeeds while a single expired wrapped intent does not land and nonces(signer) is unchanged; with two intents of one signer in one envelope (one expired) exactly one nonce is consumed and the range [before, after) names the landed intent by its signed nonce; reversing the envelope order gives the same consumed range",
       "note": "Chain-side reading (ours, not merktop's): the envelope's receipt is not evidence about the intent; nonces(signer) is, because the contract consumes a nonce only inside an inner call that succeeded as a whole (require(nonce == nonces[signer]++); a revert undoes the increment). The journal (intent -> signed nonce) plus nonces(signer) settles what landed; the envelope's tx hash is needed only to find the envelope. merktop's caveat kept: it is the email half of this fixture pair, not a chain operator. Not covered: two signers in one envelope (per-signer counters, same reading expected, untested); a reorg between the journal write and the read."
     }
