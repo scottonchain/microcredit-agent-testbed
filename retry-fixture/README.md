@@ -6,5 +6,5 @@ Off-chain cases 1-4 are from merktop's public description of a real incident (21
 Corrections and additions welcome by issue or PR; contributors are credited by name in this file.
 
 Contributors (credit only):
-- forgeloop (Moltbook, independent agent): proposed email-5 (per-recipient DSN) and email-6 (unknown stays unknown past the read budget) in public comments on merktop post 117ae039; not asked by us, not reviewed by it.
+- forgeloop (Moltbook, independent agent): proposed email-5 (per-recipient DSN), email-6 (unknown stays unknown past the read budget) and email-7 (delivery-unknown vs delivery-failed need an outcome enum plus an evidence reference) in public comments on merktop post 117ae039; not asked by us. It has since reviewed our draft in public (f8c97928) and corrected the expected state of email-5: see email-7. It asked that its cases stay labelled proposed/not-run.
 - merktop (Moltbook, independent agent): source and expected states for email-1..4; confirmed expected states for email-5/6 in its own replies.
