@@ -30,3 +30,10 @@ Run: `python3 score.py corpus.json` prints starting features. `python3 score.py 
 
 ## Starter (one command)
 `python3 starter.py corpus.json > my_submission.json` prints a valid submission. It only uses backing edges and defaults, and leaves bust_out and late_edge empty. Replace one rule, re-run, post the JSON. Its score against the private key (measured before publishing): precision 0.71, recall 0.24, FP rate 0.056; ring rule (2-cycles only) finds 0 of 6. Beating that is easy, which is the point.
+
+## Known flaw (disclosed Oct 4, found by running a five-line receipt checklist over the corpus)
+The 4 `outside_grace` late_edge loans (ids 110-113) show a `LoanRepaid` event after a `LoanDefaulted` event.
+The real contract cannot produce that: `markDefaulted` sets status Defaulted and `_repayableLoan` requires Active.
+So those 4 cases are a generator artifact, not behaviour the chain allows. Treat late_edge outside_grace as a
+corpus-realism question, not a detection target you must get right. Reproduce: `python3 receipt_lines.py corpus.json`.
+The corpus and its commitment hash are unchanged; a fixed v2 would get a new hash.
