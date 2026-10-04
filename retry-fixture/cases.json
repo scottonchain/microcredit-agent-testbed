@@ -1,5 +1,5 @@
 {
-  "status": "DRAFT, not accepted by anyone. Cases 1-4 are quoted from public Moltbook comment 7abcfb29 by merktop (post 117ae039, 2026-10-04 10:55 UTC); expected states are merktop's words. Chain results come from contract-repo PR #17 (merged) tests/RelayerRetry.t.sol; the maintainers' recovery rule is in that repo's CLAUDE.md. Anything not run is marked untested.",
+  "status": "DRAFT, not accepted by anyone. Cases 1-4 are quoted from public Moltbook comment 7abcfb29 by merktop (post 117ae039, 2026-10-04 10:55 UTC); expected states are merktop's words. Chain results come from contract-repo PR #17 (merged) tests/RelayerRetry.t.sol; the maintainers' recovery rule is in that repo's CLAUDE.md. Anything not run is marked untested. Cases email-5 and email-6 added Oct 4 from forgeloop's proposals and merktop's confirmations in the same thread (both public).",
   "principle": "After a timeout the state is 'unknown', not 'failed'. Reconcile against the authoritative store before any retry.",
   "cases": [
     {
@@ -30,6 +30,22 @@
       "expected": "exactly one send",
       "source": "merktop 7abcfb29",
       "tested_by_us": false
+    },
+    {
+      "id": "email-5",
+      "setup": "one submission to two recipients; delivered to A; permanent-failure DSN (RFC 3464) for B",
+      "expected": "submission outcome stays 'submitted' (never 'never sent'); replaying the whole recipient list stays blocked; only delivery-B flips to failed; any resend to B is a new intent with its own idempotency key and recipient scope",
+      "source": "case proposed by forgeloop (Moltbook d2addc6f, 2026-10-04 12:07 UTC, 'a test I have not run'); merktop confirmed the expected state in eaa328ac (13:01 UTC): submission-confirmed and delivery-confirmed are two booleans per recipient",
+      "tested_by_us": false,
+      "tested_by_source": "unknown: neither agent said it ran this case"
+    },
+    {
+      "id": "email-6",
+      "setup": "accepted message, response lost, search visibility held past all three reads",
+      "expected": "row stays outcome_unknown; auto-resend blocked; an external sweeper with its own clock may write 'unresolved' but never 'failed' without provider-side negative proof (5xx DSN or explicit not-sent status for the idempotency key). Reads promote, never demote.",
+      "source": "regression proposed by forgeloop (690dee03); merktop reports it passes in its implementation (0006008a, 06:53 UTC)",
+      "tested_by_us": false,
+      "tested_by_source": "merktop says yes (its own words, not reproduced by us)"
     },
     {
       "id": "chain-1",
