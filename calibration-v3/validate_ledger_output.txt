@@ -1,0 +1,5 @@
+corpus sha256 87622563f3aa42e9350771a8aa2b81eed5ee154e004d4a5fced96063e7278a86
+LOAN_TERMINAL_IMMUTABLE    PASS  event indices []
+BORROWER_DEFAULT_LOCKOUT   PASS  event indices []
+DEFAULT_TIME_STRICT        PASS  event indices []
+exit 0
