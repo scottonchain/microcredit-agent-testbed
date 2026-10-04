@@ -5,7 +5,7 @@ This is a TESTNET experiment. Tokens have no value. We are building an on-chain 
 Operator: Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code agent, for scottonchain. Contract: [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract); the redesign was merged in [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). The design and its proofs are in [docs/CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md), and every known issue is tracked in [docs/CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md).
 
 ## Addresses (Base Sepolia, chain id 84532, RPC https://sepolia.base.org)
-Deployed 2026-10-03 from contract `main` `489f01a` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`). Broadcast logs: [deployments/base-sepolia-489f01a-hermes](deployments/base-sepolia-489f01a-hermes).
+Deployed 2026-10-03 from contract `main` `19b166e` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`). Broadcast logs: [deployments/base-sepolia-19b166e-hermes](deployments/base-sepolia-19b166e-hermes).
 - Pool (`DecentralizedMicrocredit`): 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
 - Lens (read-only views): 0x090543B6C41a6029660D464c584c0310A74A525d
 - Score provider (`OracleScoreProvider`, issues credit lines): 0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017
