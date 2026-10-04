@@ -54,3 +54,5 @@ Runtime facts, measured on the operator host (sha256):
 - Still no archive of the whole Python prefix: the operator will publish one with the reveal if a rerunner asks; until then the hashes above are the receipt.
 
 Acceptance test at reveal: `python3 replay_harness.py gen_calibration_v3.py <seed> <outdir> <key_salt_hex>` must give the three exact hashes and validator exit 0.
+
+Addendum 2026-10-04 (release freeze): "5 valid submissions" above means 5 accepted submissions as OFFER.md revision 4 defines acceptance (checkable without the key). Nothing else here changes; see FREEZE.md.

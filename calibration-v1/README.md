@@ -39,4 +39,4 @@ corpus-realism question, not a detection target you must get right. Reproduce: `
 The corpus and its commitment hash are unchanged; a fixed v2 would get a new hash.
 
 ## LEAK NOTICE (Oct 4, credit: mayalaran)
-v1 leaks. A detector using loan id alone, or "repaid after term" alone, scores F1 1.00 on parts of it (`python3 leakcheck.py corpus.json key.json` at reveal). Use calibration-v2 for real attempts.
+v1 leaks. A detector using loan id alone, or "repaid after term" alone, scores F1 1.00 on parts of it (`python3 leakcheck.py corpus.json key.json` at reveal). Use calibration-v3 (frozen; the only corpus that holds a slot) for real attempts.

@@ -1,0 +1,538 @@
+{
+ "events": [
+  {
+   "args": {
+    "assets": 2000000000,
+    "lender": "0x44d5b9301d01c9eb55bfcee65bfbf042505b9c6d",
+    "shares": 2000000000
+   },
+   "block": 1001,
+   "event": "Deposited",
+   "ts": 1790000000
+  },
+  {
+   "args": {
+    "backer": "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+    "borrower": "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+    "secured": 0,
+    "unsecured": 20000000
+   },
+   "block": 1002,
+   "event": "Backed",
+   "ts": 1790086400
+  },
+  {
+   "args": {
+    "backer": "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+    "borrower": "0xe71388ba6a033b139e265eaffb350807c74764dc",
+    "secured": 0,
+    "unsecured": 20000000
+   },
+   "block": 1003,
+   "event": "Backed",
+   "ts": 1790086400
+  },
+  {
+   "args": {
+    "backer": "0xe71388ba6a033b139e265eaffb350807c74764dc",
+    "borrower": "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+    "secured": 0,
+    "unsecured": 20000000
+   },
+   "block": 1004,
+   "event": "Backed",
+   "ts": 1790086400
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+    "interestRate": 1000,
+    "loanId": 1,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1005,
+   "event": "LoanRequested",
+   "ts": 1790172800
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+    "loanId": 1
+   },
+   "block": 1006,
+   "event": "LoanDisbursed",
+   "ts": 1790176400
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+    "interestRate": 1000,
+    "loanId": 2,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1007,
+   "event": "LoanRequested",
+   "ts": 1790176400
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+    "loanId": 2
+   },
+   "block": 1008,
+   "event": "LoanDisbursed",
+   "ts": 1790180000
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0xe71388ba6a033b139e265eaffb350807c74764dc",
+    "interestRate": 1000,
+    "loanId": 3,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1009,
+   "event": "LoanRequested",
+   "ts": 1790180000
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0xe71388ba6a033b139e265eaffb350807c74764dc",
+    "loanId": 3
+   },
+   "block": 1010,
+   "event": "LoanDisbursed",
+   "ts": 1790183600
+  },
+  {
+   "args": {
+    "backer": "0x6e6c2b2f8cabfb5865aab9280e9df575c2131ece",
+    "borrower": "0xaacb1330ca5b0792d7a65dc019095320c33a293e",
+    "secured": 10000000,
+    "unsecured": 0
+   },
+   "block": 1011,
+   "event": "Backed",
+   "ts": 1790259200
+  },
+  {
+   "args": {
+    "backer": "0x6e6c2b2f8cabfb5865aab9280e9df575c2131ece",
+    "borrower": "0x7eb13b15a67769b70ce99c9179a44fc528c77b73",
+    "secured": 10000000,
+    "unsecured": 0
+   },
+   "block": 1012,
+   "event": "Backed",
+   "ts": 1790259800
+  },
+  {
+   "args": {
+    "backer": "0x6e6c2b2f8cabfb5865aab9280e9df575c2131ece",
+    "borrower": "0x8402d551c1b9d95dcfc6a1da3ed3e966150c58c8",
+    "secured": 10000000,
+    "unsecured": 0
+   },
+   "block": 1013,
+   "event": "Backed",
+   "ts": 1790260400
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0xaacb1330ca5b0792d7a65dc019095320c33a293e",
+    "interestRate": 1000,
+    "loanId": 4,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1014,
+   "event": "LoanRequested",
+   "ts": 1790345600
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0xaacb1330ca5b0792d7a65dc019095320c33a293e",
+    "loanId": 4
+   },
+   "block": 1015,
+   "event": "LoanDisbursed",
+   "ts": 1790349200
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0x7eb13b15a67769b70ce99c9179a44fc528c77b73",
+    "interestRate": 1000,
+    "loanId": 5,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1016,
+   "event": "LoanRequested",
+   "ts": 1790349200
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0x7eb13b15a67769b70ce99c9179a44fc528c77b73",
+    "loanId": 5
+   },
+   "block": 1017,
+   "event": "LoanDisbursed",
+   "ts": 1790352800
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0x8402d551c1b9d95dcfc6a1da3ed3e966150c58c8",
+    "interestRate": 1000,
+    "loanId": 6,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1018,
+   "event": "LoanRequested",
+   "ts": 1790352800
+  },
+  {
+   "args": {
+    "amount": 10000000,
+    "borrower": "0x8402d551c1b9d95dcfc6a1da3ed3e966150c58c8",
+    "loanId": 6
+   },
+   "block": 1019,
+   "event": "LoanDisbursed",
+   "ts": 1790356400
+  },
+  {
+   "args": {
+    "amount": 5000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "interestRate": 1000,
+    "loanId": 7,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1020,
+   "event": "LoanRequested",
+   "ts": 1790432000
+  },
+  {
+   "args": {
+    "amount": 5000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 7
+   },
+   "block": 1021,
+   "event": "LoanDisbursed",
+   "ts": 1790435600
+  },
+  {
+   "args": {
+    "amount": 15000000,
+    "borrower": "0xbf775ce8ce7bdbaea6558150223080505b82bef0",
+    "interestRate": 1000,
+    "loanId": 10,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1022,
+   "event": "LoanRequested",
+   "ts": 1790518400
+  },
+  {
+   "args": {
+    "amount": 15000000,
+    "borrower": "0xbf775ce8ce7bdbaea6558150223080505b82bef0",
+    "loanId": 10
+   },
+   "block": 1023,
+   "event": "LoanDisbursed",
+   "ts": 1790522000
+  },
+  {
+   "args": {
+    "amount": 15000000,
+    "borrower": "0x39b0b2429ad29fff5d37ccf249794ea7912d893d",
+    "interestRate": 1000,
+    "loanId": 11,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1024,
+   "event": "LoanRequested",
+   "ts": 1790604800
+  },
+  {
+   "args": {
+    "amount": 15000000,
+    "borrower": "0x39b0b2429ad29fff5d37ccf249794ea7912d893d",
+    "loanId": 11
+   },
+   "block": 1025,
+   "event": "LoanDisbursed",
+   "ts": 1790608400
+  },
+  {
+   "args": {
+    "amount": 30000000,
+    "borrower": "0x50da4229983c3e561a4f745d1d39644cbddf178a",
+    "interestRate": 1000,
+    "loanId": 12,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1026,
+   "event": "LoanRequested",
+   "ts": 1790691200
+  },
+  {
+   "args": {
+    "amount": 30000000,
+    "borrower": "0x50da4229983c3e561a4f745d1d39644cbddf178a",
+    "loanId": 12
+   },
+   "block": 1027,
+   "event": "LoanDisbursed",
+   "ts": 1790694800
+  },
+  {
+   "args": {
+    "amount": 25000000,
+    "borrower": "0x50bc8c93b965cd784fe831e134d40bc3e394d32e",
+    "interestRate": 1000,
+    "loanId": 13,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1028,
+   "event": "LoanRequested",
+   "ts": 1790777600
+  },
+  {
+   "args": {
+    "amount": 25000000,
+    "borrower": "0x50bc8c93b965cd784fe831e134d40bc3e394d32e",
+    "loanId": 13
+   },
+   "block": 1029,
+   "event": "LoanDisbursed",
+   "ts": 1790781200
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0x29405d5cac4326b94b7487e2dd33c467c8426ab6",
+    "interestRate": 1000,
+    "loanId": 14,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1030,
+   "event": "LoanRequested",
+   "ts": 1790864000
+  },
+  {
+   "args": {
+    "amount": 20000000,
+    "borrower": "0x29405d5cac4326b94b7487e2dd33c467c8426ab6",
+    "loanId": 14
+   },
+   "block": 1031,
+   "event": "LoanDisbursed",
+   "ts": 1790867600
+  },
+  {
+   "args": {
+    "amount": 5250000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 7
+   },
+   "block": 1032,
+   "event": "LoanRepaid",
+   "ts": 1791728000
+  },
+  {
+   "args": {
+    "amount": 5000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "interestRate": 1000,
+    "loanId": 8,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1033,
+   "event": "LoanRequested",
+   "ts": 1791814400
+  },
+  {
+   "args": {
+    "amount": 5000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 8
+   },
+   "block": 1034,
+   "event": "LoanDisbursed",
+   "ts": 1791818000
+  },
+  {
+   "args": {
+    "amount": 21000000,
+    "borrower": "0x71eaf4eef666448e2663989ac75818dbe3dc4b94",
+    "loanId": 1
+   },
+   "block": 1035,
+   "event": "LoanRepaid",
+   "ts": 1792160000
+  },
+  {
+   "args": {
+    "amount": 21000000,
+    "borrower": "0xfd9b2c6adfe1894f8d2b514d87a2af4ad839f0c9",
+    "loanId": 2
+   },
+   "block": 1036,
+   "event": "LoanRepaid",
+   "ts": 1792163600
+  },
+  {
+   "args": {
+    "amount": 21000000,
+    "borrower": "0xe71388ba6a033b139e265eaffb350807c74764dc",
+    "loanId": 3
+   },
+   "block": 1037,
+   "event": "LoanRepaid",
+   "ts": 1792167200
+  },
+  {
+   "args": {
+    "amount": 31500000,
+    "borrower": "0x50da4229983c3e561a4f745d1d39644cbddf178a",
+    "loanId": 12
+   },
+   "block": 1038,
+   "event": "LoanRepaid",
+   "ts": 1792592000
+  },
+  {
+   "args": {
+    "amount": 26250000,
+    "borrower": "0x50bc8c93b965cd784fe831e134d40bc3e394d32e",
+    "loanId": 13
+   },
+   "block": 1039,
+   "event": "LoanRepaid",
+   "ts": 1793024000
+  },
+  {
+   "args": {
+    "amount": 5250000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 8
+   },
+   "block": 1040,
+   "event": "LoanRepaid",
+   "ts": 1793456000
+  },
+  {
+   "args": {
+    "amount": 60000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "interestRate": 1000,
+    "loanId": 9,
+    "repaymentPeriodDays": 30
+   },
+   "block": 1041,
+   "event": "LoanRequested",
+   "ts": 1793542400
+  },
+  {
+   "args": {
+    "amount": 60000000,
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 9
+   },
+   "block": 1042,
+   "event": "LoanDisbursed",
+   "ts": 1793546000
+  },
+  {
+   "args": {
+    "amount": 15750000,
+    "borrower": "0xbf775ce8ce7bdbaea6558150223080505b82bef0",
+    "loanId": 10
+   },
+   "block": 1043,
+   "event": "LoanRepaid",
+   "ts": 1794406400
+  },
+  {
+   "args": {
+    "borrower": "0xaacb1330ca5b0792d7a65dc019095320c33a293e",
+    "loanId": 4,
+    "recovered": 0,
+    "writtenOff": 10000000
+   },
+   "block": 1044,
+   "event": "LoanDefaulted",
+   "ts": 1795616000
+  },
+  {
+   "args": {
+    "borrower": "0x7eb13b15a67769b70ce99c9179a44fc528c77b73",
+    "loanId": 5,
+    "recovered": 0,
+    "writtenOff": 10000000
+   },
+   "block": 1045,
+   "event": "LoanDefaulted",
+   "ts": 1795619600
+  },
+  {
+   "args": {
+    "borrower": "0x8402d551c1b9d95dcfc6a1da3ed3e966150c58c8",
+    "loanId": 6,
+    "recovered": 0,
+    "writtenOff": 10000000
+   },
+   "block": 1046,
+   "event": "LoanDefaulted",
+   "ts": 1795623200
+  },
+  {
+   "args": {
+    "borrower": "0x39b0b2429ad29fff5d37ccf249794ea7912d893d",
+    "loanId": 11,
+    "recovered": 0,
+    "writtenOff": 15000000
+   },
+   "block": 1047,
+   "event": "LoanDefaulted",
+   "ts": 1795875200
+  },
+  {
+   "args": {
+    "borrower": "0x29405d5cac4326b94b7487e2dd33c467c8426ab6",
+    "loanId": 14,
+    "recovered": 0,
+    "writtenOff": 20000000
+   },
+   "block": 1048,
+   "event": "LoanDefaulted",
+   "ts": 1796912000
+  },
+  {
+   "args": {
+    "borrower": "0x17d20f592fef73a4c88b54b12b9494a8c25c6e3e",
+    "loanId": 9,
+    "recovered": 0,
+    "writtenOff": 60000000
+   },
+   "block": 1049,
+   "event": "LoanDefaulted",
+   "ts": 1798899200
+  }
+ ],
+ "name": "microcredit-calibration-v3-fixture",
+ "schema": "same event names/args as calibration-v3/corpus.json; CONFORMANCE FIXTURE, not the challenge",
+ "seed_published": true,
+ "synthetic": true
+}

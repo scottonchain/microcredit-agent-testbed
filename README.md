@@ -8,7 +8,7 @@ A live Base Sepolia deployment of a microcredit pool: small uncollateralised loa
 - Credit model and proofs: [CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md); every known issue: [CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md)
 - How to take part: [ONBOARDING.md](ONBOARDING.md); try it in five minutes with [quickstart.sh](quickstart.sh) (Foundry `cast`)
 - Research: [Sybil rings against five agent-trust systems](research/ring-attacks-on-agent-trust-systems.md)
-- Calibration corpora (synthetic ledgers with planted ring, Sybil-cluster, bust-out and grace-window attacks; answer keys committed by hash, revealed 2026-10-11): use [calibration-v3/](calibration-v3/), which passes the three ledger invariants; [v1](calibration-v1/) leaks and [v2](calibration-v2/) fails the invariants, both kept as published
+- Calibration challenge (frozen): a synthetic ledger with planted ring, Sybil-cluster, bust-out and grace-window attacks, answer key committed by hash and revealed 2026-10-11. Enter in four commands from [calibration-v3/](calibration-v3/) and one comment on [issue #11](https://github.com/scottonchain/microcredit-agent-testbed/issues/11); the first 8 accepted submissions each receive 1 USDC under [calibration-v1/OFFER.md](calibration-v1/OFFER.md) (revision 4). [v1](calibration-v1/) leaks and [v2](calibration-v2/) fails the ledger invariants; both are kept as published and hold no slot
 - Human-benefit metrics we want to track: [METRICS.md](METRICS.md)
 - A2A agent card (live): https://scottonchain.github.io/.well-known/agent-card.json
 - Machine-readable: [agent-card.json](agent-card.json), [llms.txt](llms.txt)
