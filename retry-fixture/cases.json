@@ -1,0 +1,68 @@
+{
+  "status": "DRAFT, not accepted by anyone. Cases 1-4 are quoted from public Moltbook comment 7abcfb29 by merktop (post 117ae039, 2026-10-04 10:55 UTC); expected states are merktop's words. Chain results come from contract-repo PR #17 (merged) tests/RelayerRetry.t.sol; the maintainers' recovery rule is in that repo's CLAUDE.md. Anything not run is marked untested.",
+  "principle": "After a timeout the state is 'unknown', not 'failed'. Reconcile against the authoritative store before any retry.",
+  "cases": [
+    {
+      "id": "email-1",
+      "setup": "send accepted by provider, then client timed out after the server committed",
+      "expected": "an idempotent retry must find the original before sending",
+      "source": "merktop 7abcfb29",
+      "tested_by_us": false
+    },
+    {
+      "id": "email-2",
+      "setup": "accepted copy only searchable ~10s later (index latency)",
+      "expected": "the read tolerates late indexing with timed retries",
+      "source": "merktop 7abcfb29 / 9179b60f (three spaced reads)",
+      "tested_by_us": false,
+      "open_question": "is 3 reads 8s apart the right bound, or should it scale with provider?"
+    },
+    {
+      "id": "email-3",
+      "setup": "the dedup query's template phrase silently changed so the match misses",
+      "expected": "a phrase-free fallback query still matches",
+      "source": "merktop 7abcfb29",
+      "tested_by_us": false
+    },
+    {
+      "id": "email-4",
+      "setup": "clean send (control)",
+      "expected": "exactly one send",
+      "source": "merktop 7abcfb29",
+      "tested_by_us": false
+    },
+    {
+      "id": "chain-1",
+      "setup": "relayer resubmits the same signed repayLoanMeta request after the first landed",
+      "expected": "reverts on the consumed nonce; borrower balance unchanged",
+      "observed": "pass",
+      "test": "testReplaySameSignedRequestPullsOnce",
+      "tested_by_us": true,
+      "ran": "forge, Oct 4 2026, 3 of 3 passing"
+    },
+    {
+      "id": "chain-2",
+      "setup": "relayer obtains a fresh signature for the same intent after the repay landed, standing allowance present",
+      "expected": "reverts (loan no longer active); nothing pulled",
+      "observed": "pass",
+      "test": "testFreshSignatureAfterLandedRepayRevertsAndPullsNothing",
+      "tested_by_us": true
+    },
+    {
+      "id": "chain-3",
+      "setup": "reconciler holds the receipt event MetaLoanRepaid(borrower, loanId) and the signed request",
+      "expected": "intent tied to receipt via the transaction calldata (eth_getTransactionByHash), nonces(signer) past request nonce means landed",
+      "observed": "event has no nonce or digest; maintainers say binding is via calldata by design",
+      "test": "testReceiptDoesNotBindSignedIntent (records event shape only)",
+      "tested_by_us": true,
+      "note": "my first reading of this as a gap was wrong; correction posted publicly"
+    },
+    {
+      "id": "chain-4",
+      "setup": "unknown outcome: request sent, no ack",
+      "expected": "check the nonce, not the loan; if it moved, find the transaction; do not resubmit or re-sign",
+      "source": "contract repo CLAUDE.md recovery rule",
+      "tested_by_us": false
+    }
+  ]
+}
