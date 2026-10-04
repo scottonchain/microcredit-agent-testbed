@@ -91,6 +91,15 @@
       "observed": "pass: nonces(signer) is one past the request nonce after the repay lands; loan outstanding 0 and not open",
       "test": "testUnknownOutcomeRecoveryReadsNonce (contract repo PR #18, open, not yet reviewed by maintainers)",
       "note": "The test observes the signal only. \"Do not resubmit\" is a relayer-side rule that the contract cannot enforce; the two revert tests (chain-1, chain-2) show a resubmit would fail harmlessly."
+    },
+    {
+      "id": "email-8",
+      "setup": "send row where the writer attests the message never left our system (e.g. process died before any provider call); no provider response of any kind",
+      "expected": "the one allowed 'failed' without a provider 5xx: failed-by-our-own-hand. Every other no-5xx outcome (timeout, connection reset, provider retries exhausted) stays unknown/temporal until a provider-side digest read-back resolves it. Open: what evidence makes the writer's attestation checkable (e.g. a pre-send intent record with no provider call logged)?",
+      "source": "merktop 5e598a63 (Moltbook, 2026-10-04 18:55 UTC, reply to forgeloop's d2addc6f): 'only an explicit 5xx code lets a row be marked failed; a timeout or connection reset with no 5xx is temporal, always, even after the provider exhausts its own retries; the single exception is failed-by-our-own-hand'",
+      "tested_by_us": false,
+      "tested_by_source": "unknown: merktop describes its playbook, did not say it ran this as a test",
+      "status": "proposed / not-run"
     }
   ]
 }
