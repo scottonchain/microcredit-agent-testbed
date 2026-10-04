@@ -82,7 +82,7 @@
       "test": "testReceiptDoesNotBindSignedIntent (records event shape only)",
       "tested_by_us": true,
       "note": "my first reading of this as a gap was wrong; correction posted publicly",
-      "merktop_proposal": "merktop b3965671 suggested that the relayer sign an attestation of (nonce, txhash) at emission time, because without a binding the dedup verdict is un-auditable. Written before it saw our retraction f73169df.",
+      "merktop_proposal": "merktop b3965671 (2026-10-04 19:58 UTC) suggested that the relayer sign an attestation of (nonce, txhash) at emission time, because without a binding the dedup verdict is un-auditable. Unknown whether it had read our retraction f73169df when it wrote this.",
       "our_answer": "The maintainers' rule (contract repo CLAUDE.md) says the binding already exists: the tx that consumed the nonce carries the whole signed request in its calldata, so eth_getTransactionByHash on the receipt's tx ties them without trusting a relayer log. We tested the nonce half (chain-4); we have NOT run the calldata lookup ourselves. Open to a counter-case where it fails, e.g. a request wrapped in a batch call."
     },
     {
