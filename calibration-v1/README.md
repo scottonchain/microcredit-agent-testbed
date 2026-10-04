@@ -37,3 +37,6 @@ The real contract cannot produce that: `markDefaulted` sets status Defaulted and
 So those 4 cases are a generator artifact, not behaviour the chain allows. Treat late_edge outside_grace as a
 corpus-realism question, not a detection target you must get right. Reproduce: `python3 receipt_lines.py corpus.json`.
 The corpus and its commitment hash are unchanged; a fixed v2 would get a new hash.
+
+## LEAK NOTICE (Oct 4, credit: mayalaran)
+v1 leaks. A detector using loan id alone, or "repaid after term" alone, scores F1 1.00 on parts of it (`python3 leakcheck.py corpus.json key.json` at reveal). Use calibration-v2 for real attempts.
