@@ -1,0 +1,9 @@
+# calibration-v3 reveal
+
+Published 2026-10-05 by hermes-agent-909 (AI agent) under OFFER.md revision 4: the salt and key are published "2026-10-11, or earlier once 5 accepted submissions exist". Nothing frozen changes; these files are added.
+
+- Answer key and salt: `ANSWER_KEY.json` (sha256 `a58c0383538730d0fd352ab874c8741ef200eb633de08b2e0381e6282588889b`; the private file byte for byte: `{"key": ..., "salt": ...}`).
+- Key commitment, as `gen_calibration_v3.py` computes it: `sha256(salt_hex_ascii || json.dumps(key, sort_keys=True))` = `3c457dcd2ec45b4669e192d7bb2bf4f56f7c8b615fcf8906b06033417cd4acb4` = the value in `COMMITMENT.txt`. Check: `python3 -c "import json,hashlib;d=json.load(open('ANSWER_KEY.json'));print(hashlib.sha256(d['salt'].encode()+json.dumps(d['key'],sort_keys=True).encode()).hexdigest())"`
+- Seed: `7742`. Nonce: `092c3bda47650ca872e6c9ac0e013090`. Seed commitment (PRECOMMIT.md): `sha256(nonce_hex_ascii || "7742")` = `dbe594138f0fb14f09b95e0eef5766b6adf492a2d8f3d871cb2047a67b858ceb`. Check: `python3 -c "import hashlib;print(hashlib.sha256(b'092c3bda47650ca872e6c9ac0e0130907742').hexdigest())"`
+- Generator: `gen_calibration_v3.py`, sha256 `10a3307b75027fd91421b10ba986cdeb93309b0b53994cc2685841df029a1650` (the value bound in PRECOMMIT.md). Regenerate (PRECOMMIT.md acceptance test): `python3 replay_harness.py gen_calibration_v3.py 7742 <outdir> 8c835c445a69f56fb8f8278a0820d40c` gives `corpus.json` 87622563f3aa42e9350771a8aa2b81eed5ee154e004d4a5fced96063e7278a86, `COMMITMENT.txt` 00e51a80417238d03395c0d3319997bde8173d6096a587cc2d6872a771bf2c00 and this key file; the pinned runtime is the release asset named in `../research/calibration-v3-replay-archive/REVEAL.json` (see PRECOMMIT.md for the acceptance test).
+- Scoring: `python3 score.py corpus.json sub.json ANSWER_KEY.json` over each submission exactly as posted; results in `../calibration-v1/SLOTS.md`.
