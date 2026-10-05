@@ -1,0 +1,43 @@
+clone HEAD 3dac26be385532f1c3f0eaa9f9fd932e0908ac98 | 3.14.7 | Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34 | 2026-10-05 03:27 UTC
+PASS  FREEZE.md hash corpus.json  | 87622563f3aa42e9
+PASS  FREEZE.md hash COMMITMENT.txt  | 00e51a80417238d0
+PASS  FREEZE.md hash score.py  | 7983a9006d6d0d12
+PASS  FREEZE.md hash check_submission.py  | 0d21b2e3136f6c7e
+PASS  FREEZE.md hash starter.py  | b446d295a0e74cb4
+PASS  FREEZE.md hash validate_ledger.py  | 2ef64ef1da7d342c
+PASS  FREEZE.md lists six frozen files  | 6
+PASS  ANSWER_KEY.json sha256 as REVEAL.md states  | a58c0383538730d0
+PASS  gen_calibration_v3.py sha256 as REVEAL.md states  | 10a3307b75027fd9
+PASS  key commitment opens COMMITMENT.txt  | 3c457dcd2ec45b46
+PASS  seed commitment opens (sha256(nonce || seed))  | seed 7742
+PASS  REVEAL.md seed equals key.seed  | 7742
+PASS  defect (c): 22 planted, all borrowers, disjoint  | 22 planted, 22 distinct, 84 borrowers
+PASS  slot 1 as-posted bytes hash as SLOTS.md records  | b32b1ab4b24cdd3a (comment 5984825802)
+PASS  slot 1 check_submission.py exit 0  | OK: submission format accepted; paste this file and the two 
+PASS  slot 1 score.py summary line as SLOTS.md records  | overall precision 0.56 recall 0.23; false-positive rate over 84 borrowers: 0.065
+PASS  slot 2 as-posted bytes hash as SLOTS.md records  | b32b1ab4b24cdd3a (comment 5985315001)
+PASS  slot 2 check_submission.py exit 0  | OK: submission format accepted; paste this file and the two 
+PASS  slot 2 score.py summary line as SLOTS.md records  | overall precision 0.56 recall 0.23; false-positive rate over 84 borrowers: 0.065
+PASS  slot 3 as-posted bytes hash as SLOTS.md records  | b32b1ab4b24cdd3a (comment 5985845799)
+PASS  slot 3 check_submission.py exit 0  | OK: submission format accepted; paste this file and the two 
+PASS  slot 3 score.py summary line as SLOTS.md records  | overall precision 0.56 recall 0.23; false-positive rate over 84 borrowers: 0.065
+PASS  slot 4 as-posted bytes hash as SLOTS.md records  | daf19fe1d831e4e1 (comment 5985900276)
+PASS  slot 4 check_submission.py exit 0  | OK: submission format accepted; paste this file and the two 
+PASS  slot 4 score.py summary line as SLOTS.md records  | overall precision 0.56 recall 0.23; false-positive rate over 84 borrowers: 0.065
+PASS  slot 5 as-posted bytes hash as SLOTS.md records  | b32b1ab4b24cdd3a (comment 5986946136)
+PASS  slot 5 check_submission.py exit 0  | OK: submission format accepted; paste this file and the two 
+PASS  slot 5 score.py summary line as SLOTS.md records  | overall precision 0.56 recall 0.23; false-positive rate over 84 borrowers: 0.065
+PASS  SLOTS.md has scored rows  | 5 scored rows
+PASS  leakcheck_ext.py all features == ext_out_private.txt byte for byte  | exit 1, 20 lines
+PASS  leakcheck_ext.py timing family == ext_out_timing_private.txt byte for byte  | exit 1, 20 lines
+PASS  lobo_ext.py timing family == lobo_timing_out.txt byte for byte  | exit 0
+PASS  validate_ledger.py exit 0 and output == validate_ledger_output.txt (minus its appended 'exit 0' line)  | exit 0
+PASS  graph_baseline.py output sha256 as its README states  | 0a6aa49e4eb90ca8
+PASS  graph_baseline.py output passes check_submission.py  | OK: submission format accepted; paste this file and the two 
+PASS  graph_baseline.py scores as its README row states  | ring found 6 false+ 4; P 0.73 R 0.50 FPR 0.065
+PASS  cp_intervals.py table rows appear verbatim in LEAKCHECK_EXT_RESULTS.md  | 5 rows
+PASS  run_null_bonferroni.py 1000 draws == null_timing_1000.json (full JSON equality)  | 95 s
+PASS  400 null draws (all features) == null_all_400.json on its five fields per class  | 106 s
+
+39 checks, 0 failed
+exit status 0
