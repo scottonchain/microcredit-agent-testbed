@@ -20,7 +20,7 @@ PASS  chain-1  replay is a different transaction, mined later | block 47708769
 PASS  chain-1  replay reverted on chain (status 0) and emitted nothing | gas used 33530
 PASS  chain-1  nonce unchanged across the replay block, already one past the replayed request | 2 -> 2
 PASS  chain-1  borrower balance unchanged across the replay block
-PASS  chain-1  replayed call reverts at the nonce check (this deployment's text: 'Bad nonce') | 'Bad nonce'
+PASS  chain-1  replayed call reverts at the nonce check ('Bad nonce' on the pre-redesign build, InvalidNonce() on the live build) | 'Bad nonce'
 PASS  s5_chain2_fresh_signature_after_landed_repay receipt block matches the record | 47708800
 PASS  s5_chain2_fresh_signature_after_landed_repay tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
 PASS  chain-2  fresh request: same borrower and loanId, next nonce, new signature | nonce 2
@@ -28,7 +28,7 @@ PASS  chain-2  a permit with value >= the former outstanding was supplied (a pul
 PASS  chain-2  reverted on chain (status 0), emitted nothing | gas used 42500
 PASS  chain-2  nonce not consumed by the reverted fresh request | 2 -> 2
 PASS  chain-2  borrower balance unchanged: nothing pulled
-PASS  chain-2  reverts because the loan is no longer active (this deployment's text: 'Loan inactive') | 'Loan inactive'
+PASS  chain-2  reverts because the loan is no longer active ('Loan inactive' on the pre-redesign build, LoanNotActive() on the live build) | 'Loan inactive'
 PASS  s8_chain6_repay_through_wrapper receipt block matches the record | 47708854
 PASS  s8_chain6_repay_through_wrapper tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
 PASS  chain-6  tx.to is the wrapper, not the pool | 0xb1190956d669d4493bbc4e8cd11a319636540c93

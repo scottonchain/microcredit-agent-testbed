@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Live run of the retry fixture's chain cases on Base Sepolia (testnet, fake money), against the testnet pool.
-Every step is a real transaction; results are appended to EVIDENCE.json after each step (idempotent: a recorded step is skipped).
-Keys: deployer (owner + relayer; whitelist disabled) and a throwaway borrower key that holds no ETH (all its intents are relayed).
-Nothing here is printed that is secret."""
+"""Second live run of the retry fixture's chain cases on Base Sepolia (testnet, fake money), against the LIVE pool the contract
+maintainers named (0xa49B...Afa8, contract repo commit 19b166e; custom errors InvalidNonce() / LoanNotActive()).
+Every step is a real transaction; results are appended to EVIDENCE_live_pool.json after each step (idempotent: a recorded step is skipped).
+Keys: deployer (owner + relayer; whitelist disabled) and the same throwaway borrower key as the first run (holds no ETH; all its
+intents are relayed). Nothing here is printed that is secret."""
 import json, os, sys, time, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import lib
 
-EV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "EVIDENCE.json")
+EV = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.environ.get("RETRY_FIXTURE_EVIDENCE", "EVIDENCE_live_pool.json"))
 OUT = os.environ.get("CONTRACT_OUT_DIR", "out")   # forge `out/` of the contract repo (Wrapper and SwallowingBatch bytecode)
 ev = json.load(open(EV)) if os.path.exists(EV) else {"network": {"name": "Base Sepolia", "chain_id": lib.CHAIN_ID, "rpc": lib.RPC},
-                                                     "contracts": {"pool": lib.POOL, "usdc": lib.USDC}, "steps": {}}
+                                                     "contracts": {"pool": lib.POOL, "usdc": lib.USDC,
+                                                                   "pool_build": "contract repo commit 19b166e (the live Base Sepolia pool named by the maintainers; reverts with custom errors InvalidNonce() / LoanNotActive() / SignatureExpired())"},
+                                                     "steps": {}}
 borrower = lib.addr_of(lib.BORROWER_KEY_FILE)
 ev["actors"] = {"relayer_and_owner": lib.DEPLOYER, "borrower": borrower,
                 "note": "the borrower key holds no ETH and never sends a transaction; every intent it signs is relayed by the relayer address"}
@@ -59,7 +62,7 @@ def borrow(step, amount):
     dl = lib.now() + 3600
     sig = lib.sign_borrow(lib.BORROWER_KEY_FILE, borrower, amount, borrower, 28 * 86400, 1000, n, dl)
     data = lib.borrow_calldata(borrower, amount, borrower, 28 * 86400, 1000, n, dl, sig)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, step=step)
     s = receipt_summary(r)
     if s["status"] != 1:
         sys.exit("borrow failed: " + json.dumps(s)[:300])
@@ -90,11 +93,11 @@ def repay_calldata(loan_id, nonce, deadline, with_permit=True, permit_value=100_
 
 # ---- setup ----
 if not done("s0_score_override"):
-    r = lib.send_sig(lib.DEPLOYER_KEY_FILE, lib.POOL, "setScoreOverride(address,uint256)", borrower, 500_000)
+    r = lib.send_sig(lib.DEPLOYER_KEY_FILE, lib.POOL, "setScoreOverride(address,uint256)", borrower, 500_000, step="s0")
     s = receipt_summary(r); s["note"] = "owner grants the throwaway borrower a score override of 500000 (50% of SCALE), as the forge tests do"
     record("s0_score_override", s)
 if not done("s1_mint"):
-    r = lib.send_sig(lib.DEPLOYER_KEY_FILE, lib.USDC, "mint(address,uint256)", borrower, 100_000_000)
+    r = lib.send_sig(lib.DEPLOYER_KEY_FILE, lib.USDC, "mint(address,uint256)", borrower, 100_000_000, step="s1")
     s = receipt_summary(r); s["note"] = "MockUSDC.mint is permissionless on this test token; 100 USDC to the borrower for repayments"
     record("s1_mint", s)
 
@@ -105,7 +108,7 @@ if not done("s3_chain1_first_submission"):
     n = lib.nonces(borrower)
     dl = lib.now() + 3600
     data = repay_calldata(loan_a, n, dl)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, step="s3")
     s = receipt_summary(r)
     if s["status"] != 1:
         sys.exit("first repay failed: " + json.dumps(s)[:300])
@@ -119,12 +122,12 @@ if not done("s3_chain1_first_submission"):
 if not done("s4_chain1_replay_same_calldata"):
     data = ev["steps"]["s3_chain1_first_submission"]["calldata"]
     sim = simulate_revert(lib.POOL, data)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, gas_limit=300_000)   # forced past gas estimation so the retry lands on chain and reverts there
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, gas_limit=300_000, step="s4")   # forced past gas estimation so the retry lands on chain and reverts there
     s = receipt_summary(r)
     s.update({"kind": "repayLoanMeta (same bytes as s3)", "loan_id": loan_a, "calldata": data, "simulation_before_send": sim,
               "nonce_before": lib.nonces(borrower, s["block"] - 1), "nonce_after": lib.nonces(borrower, s["block"]),
               "borrower_usdc_before": usdc_balance(borrower, s["block"] - 1), "borrower_usdc_after": usdc_balance(borrower, s["block"]),
-              "note": "chain-1: the relayer resubmits the identical signed request after the first landed; expected: reverts on the consumed nonce (InvalidNonce 0x756688fe), nothing pulled"})
+              "note": "chain-1: the relayer resubmits the identical signed request after the first landed; expected: reverts on the consumed nonce (InvalidNonce 0x756688fe on this build), nothing pulled"})
     record("s4_chain1_replay_same_calldata", s)
 
 if not done("s5_chain2_fresh_signature_after_landed_repay"):
@@ -132,18 +135,18 @@ if not done("s5_chain2_fresh_signature_after_landed_repay"):
     dl = lib.now() + 3600
     data = repay_calldata(loan_a, n, dl)
     sim = simulate_revert(lib.POOL, data)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, gas_limit=300_000)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, lib.POOL, data, gas_limit=300_000, step="s5")
     s = receipt_summary(r)
     s.update({"kind": "repayLoanMeta (fresh signature, next nonce, fresh permit)", "loan_id": loan_a, "signed_nonce": n, "deadline": dl, "calldata": data,
               "simulation_before_send": sim, "nonce_before": lib.nonces(borrower, s["block"] - 1), "nonce_after": lib.nonces(borrower, s["block"]),
               "borrower_usdc_before": usdc_balance(borrower, s["block"] - 1), "borrower_usdc_after": usdc_balance(borrower, s["block"]),
-              "note": "chain-2: a fresh signature for the same intent after the repay landed, with a valid permit so a pull could succeed if the loan were still repayable; expected: reverts (LoanNotActive 0x082f7846), nothing pulled, nonce not consumed"})
+              "note": "chain-2: a fresh signature for the same intent after the repay landed, with a valid permit so a pull could succeed if the loan were still repayable; expected: reverts (LoanNotActive 0x082f7846 on this build), nothing pulled, nonce not consumed"})
     record("s5_chain2_fresh_signature_after_landed_repay", s)
 
 # ---- chain-6: wrapper hides the request from the top-level selector ----
 if not done("s6_deploy_wrapper"):
     bc = json.load(open(os.path.join(OUT, "RelayerRetry.t.sol/Wrapper.json")))["bytecode"]["object"]
-    s = receipt_summary(lib.create(lib.DEPLOYER_KEY_FILE, bc))
+    s = receipt_summary(lib.create(lib.DEPLOYER_KEY_FILE, bc, step="s6"))
     s.update({"kind": "deploy Wrapper (contract repo test/RelayerRetry.t.sol: forward(target, data) = target.call(data), require(ok))", "bytecode_sha256": __import__("hashlib").sha256(bytes.fromhex(bc[2:])).hexdigest()})
     record("s6_deploy_wrapper", s)
 wrapper = ev["steps"]["s6_deploy_wrapper"]["contract_address"]
@@ -155,7 +158,7 @@ if not done("s8_chain6_repay_through_wrapper"):
     dl = lib.now() + 3600
     inner = repay_calldata(loan_b, n, dl)
     outer = lib.cast("calldata", "forward(address,bytes)", lib.POOL, inner)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, wrapper, outer)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, wrapper, outer, step="s8")
     s = receipt_summary(r)
     s.update({"kind": "Wrapper.forward(pool, repayLoanMeta calldata)", "loan_id": loan_b, "signed_nonce": n, "deadline": dl, "inner_calldata": inner, "calldata": outer,
               "top_level_selector": outer[:10], "repay_selector": "0x1d169fa9",
@@ -167,7 +170,7 @@ if not done("s8_chain6_repay_through_wrapper"):
 # ---- chain-7: swallowing envelope ----
 if not done("s9_deploy_swallowing_batch"):
     bc = json.load(open(os.path.join(OUT, "RelayerRetryBatch.t.sol/SwallowingBatch.json")))["bytecode"]["object"]
-    s = receipt_summary(lib.create(lib.DEPLOYER_KEY_FILE, bc))
+    s = receipt_summary(lib.create(lib.DEPLOYER_KEY_FILE, bc, step="s9"))
     s.update({"kind": "deploy SwallowingBatch (contract repo test/RelayerRetryBatch.t.sol: batch(target, calls[]) = (ok[i],) = target.call(calls[i]); never reverts)",
               "bytecode_sha256": __import__("hashlib").sha256(bytes.fromhex(bc[2:])).hexdigest()})
     record("s9_deploy_swallowing_batch", s)
@@ -180,7 +183,7 @@ if not done("s11_chain7a_envelope_with_expired_intent"):
     dl = lib.now() - 120  # expired
     inner = repay_calldata(loan_c, n, dl)
     outer = lib.cast("calldata", "batch(address,bytes[])", lib.POOL, "[%s]" % inner)
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, envelope, outer)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, envelope, outer, step="s11")
     s = receipt_summary(r)
     s.update({"kind": "SwallowingBatch.batch(pool, [repayLoanMeta with an expired deadline])", "loan_id": loan_c, "signed_nonce": n, "deadline": dl, "inner_calldata": [inner], "calldata": outer,
               "nonce_before": lib.nonces(borrower, s["block"] - 1), "nonce_after": lib.nonces(borrower, s["block"]),
@@ -193,7 +196,7 @@ if not done("s12_chain7b_two_intents_one_lands"):
     a = repay_calldata(loan_c, n, lib.now() + 3600)
     b = repay_calldata(loan_c, n + 1, lib.now() - 120, with_permit=False)   # expired
     outer = lib.cast("calldata", "batch(address,bytes[])", lib.POOL, "[%s,%s]" % (a, b))
-    r = lib.send_data(lib.DEPLOYER_KEY_FILE, envelope, outer)
+    r = lib.send_data(lib.DEPLOYER_KEY_FILE, envelope, outer, step="s12")
     s = receipt_summary(r)
     s.update({"kind": "SwallowingBatch.batch(pool, [valid repay nonce n, expired repay nonce n+1])", "loan_id": loan_c, "signed_nonces": [n, n + 1], "inner_calldata": [a, b], "calldata": outer,
               "nonce_before": lib.nonces(borrower, s["block"] - 1), "nonce_after": lib.nonces(borrower, s["block"]),

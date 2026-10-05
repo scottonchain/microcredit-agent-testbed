@@ -13,6 +13,9 @@ Until now every chain case of `../../cases.json` was `tested by us` only in forg
 `test/RelayerRetryBatch.t.sol`). This directory is the same seven cases as real transactions on a public chain, so that
 anyone can re-derive the expected states from the chain without trusting us or our test runner.
 
+Update 2026-10-05 ~08:55 UTC: a second run of the same seven cases against the live pool `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` is recorded in the section
+"Second run: the live pool" below (files suffixed `_live_pool`); the first run's files and text are unchanged.
+
 ## What is here
 
 - `EVIDENCE.json`: the transactions of the run (hash, block, calldata, the nonce the borrower signed, state read at the
@@ -77,3 +80,56 @@ anyone can re-derive the expected states from the chain without trusting us or o
 ## Correction from the contract maintainers (2026-10-05 07:49 UTC)
 
 The pool used above, `0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f`, is the project's pre-redesign persona pool, which its public documents describe as history. The live Base Sepolia pool is `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` (contract repo commit `19b166e`); its build reverts with the custom errors `InvalidNonce()` and `LoanNotActive()` that `cases.json` and `test/RelayerRetry.t.sol` name, where this older build reverts with the require-strings `Bad nonce` / `Loan inactive`. Checked from the chain before writing this, by `eth_call` simulation of `repayLoanMeta` with a wrong nonce and with an expired deadline: the live pool reverts with `0x756688fe` (`InvalidNonce()`) and `0x0819bdcd` (`SignatureExpired()`); the old pool reverts with `Error("Bad nonce")` and `Error("Expired")`. (A substring search for the 4-byte error selectors in the deployed bytecode finds neither selector in either build; the optimizer does not keep them as literal bytes, so simulation is the instrument, not grep.) The next live run goes against the live pool; this run stands as it is (same EIP-712 domain name/version, typehashes and function selectors; the expected states do not depend on the revert text, which the verifier matches by substring). Source: contract issue #7 comment 5990326246 (maintainers; part of our own setup, not an outside review).
+
+## Second run: the live pool (2026-10-05 08:33-08:34 UTC)
+
+The maintainers' correction below was applied the same morning: the seven cases were run again, as new transactions, against the
+live Base Sepolia pool `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` (contract repo commit `19b166e`; it reverts with the custom errors
+`InvalidNonce()` / `LoanNotActive()` / `SignatureExpired()` that `../../cases.json` and `test/RelayerRetry.t.sol` name) and the
+MockUSDC it was deployed with, `0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1` (free mint). Same relayer (and pool owner) `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`,
+same throwaway borrower `0x4040CD3CBd3E5d42FC319f06070d10e6C23b1B83` (still no ETH, still no transaction of its own; its `nonces(signer)` on this pool
+went 0 -> 6 over the run). Blocks 47710444-47710480. The first run (above) is kept as it is; the two runs are the same seven cases
+against two builds, and the expected states did not depend on the revert text.
+
+Files of the second run: `EVIDENCE_live_pool.json` (the map), `VERIFY_OUTPUT_live_pool.txt` (CPython 3.14.7) and
+`VERIFY_OUTPUT_live_pool_cpython39.txt` (CPython 3.9.25): `python3 verify_live_run.py EVIDENCE_live_pool.json` -> 51 checks,
+0 failed, 0 skipped, outputs identical apart from the header; `NEGATIVE_CONTROL_live_pool.txt` (the same three tampers, each exit 1;
+`negative_control.py` is the script that produces it); `ESTIMATION_REPLAY_live_pool.txt` (see below; `estimation_replay.py`).
+`verify_live_run.py` now decodes custom-error reverts (4-byte selector -> name) as well as `Error(string)`, so one verifier covers
+both builds; the first run's outputs were regenerated with it and are unchanged apart from the two check names that now mention
+both builds. `lib.py` / `run_live.py` take the pool, token and evidence path from `RETRY_FIXTURE_POOL` / `RETRY_FIXTURE_USDC` /
+`RETRY_FIXTURE_EVIDENCE` (defaults: the live pool, its token, `EVIDENCE_live_pool.json`).
+
+Case by case (every claim is a PASS line in `VERIFY_OUTPUT_live_pool.txt`):
+
+- chain-1: first submission `0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a` (block 47710455, status 1, pulled exactly 40 USDC; loan 15); the same bytes resubmitted as
+  `0xc00e240c24879e052899827aa647b7fbb7bdd6feca73ad2b77a7c017423431f3` (block 47710457): status 0, no logs, `nonces(signer)` 2 -> 2, balance unchanged, replayed call reverts
+  `InvalidNonce()` (`0x756688fe`).
+- chain-2: `0xbe780d48dd9de4e015e3c2b799d0ff89f921f34780157bb12d1de5dc79876b00` (block 47710460): next nonce, new signature, valid 100 USDC permit; status 0, no logs, nonce 2 -> 2, nothing
+  pulled, reason `LoanNotActive()` (`0x082f7846`).
+- chain-3: the `MetaLoanRepaid` log of `0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a`: three topics, 32 bytes of data; no nonce, no request digest (unchanged by the redesign).
+- chain-4: `nonces(signer)` 1 at block 47710455-1, 2 at block 47710455; loan 15 open / 40 USDC owed -> closed / 0.
+- chain-5: `tx.input` of `0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a` decodes as `repayLoanMeta`: borrower, loanId 15, nonce 1, 65-byte signature.
+- chain-6: `0xcebdb973c49108352b3b62567cdfd0cf4e5e43adb9a49593142d5c4ad90c6303` (block 47710471) calls the `Wrapper` `0xdcfe4da6f1e3b9e06115171c2ddbac0d24c10fc6` (deployed as `0xb1f24654366072e16eaec04c900a9fd60030d69ca85aec8850f26f5cff6bfd84`); `repayLoanMeta` one level down;
+  `MetaLoanRepaid` emitted; `nonces(signer)` 3 -> 4; loan 16 closed.
+- chain-7a: `0x9ab0deb672874940ebe96c1a1d03b191a94c2e89041ef6d8b807cc4d77cd79a5` (block 47710478) calls the `SwallowingBatch` `0x480a6c549336723da3139b49e5596348863f67ce` (deployed as `0xbe51d6a20b737bf0d079937e9089a8c2de6339c91216a7e279d71f521796a256`) with one expired intent
+  (deadline 1791189120, block time 1791189244): status 1, no `MetaLoanRepaid`, `nonces(signer)` 5 -> 5, loan 17 still open and owed.
+- chain-7b: `0x0c640d80152c0c769f0bae80a2d0f5b641fba3a0d8dc5f63e543c82898e55df4` (block 47710480): nonces 5 (valid) and 6 (expired) of one signer in one envelope; status 1, exactly one
+  `MetaLoanRepaid`, `nonces(signer)` 5 -> 6, loan 17 closed. Still not run live: 7d/7e (two signers; forge only, contract PR #22)
+  and the missing-journal-row branch.
+
+### What the second run showed about gas estimation (recorded, not smoothed over)
+
+Two `eth_estimateGas` calls failed once each and succeeded on the retry seconds later; both intents then landed. `ESTIMATION_REPLAY_live_pool.txt`
+replays each call (read-only `eth_call`) at every canonical block between the setup step and the call's own block:
+
+- s8 (chain-6, through the wrapper): the estimation error was `inner call failed` (the `Wrapper`'s own `require(ok)` string). At every
+  canonical block before loan 16's borrow (block 47710464) the replay reverts with exactly that string; from the borrow block on it succeeds.
+  So a node that had not yet seen the previous block produced it, and the wrapper hid the inner reason (`InvalidNonce()`) behind its own
+  string: the same masking chain-6 is about, now on the error path.
+- s3 (chain-1 first submission): the estimation error was `panic: arithmetic underflow or overflow (0x11)`. No canonical block reproduces
+  it: before the borrow (block 47710448) the replay reverts `InvalidNonce()`, from the borrow block on it succeeds. Reading the `19b166e` source,
+  the only unguarded subtraction on this path for a fresh active loan with nothing repaid is `block.timestamp - loan.disbursedAt` in
+  `_interestAccrued`, which underflows only if the call is evaluated with a block timestamp earlier than the disbursal block's; a node
+  that pairs newer state with an older header could do that. That is a hypothesis from the source, not something we reproduced. The relayer
+  rule stands either way: an estimation failure is not evidence that the intent is invalid, and the retry after a fresh read was correct.

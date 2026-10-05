@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Chain helpers for the live run (Base Sepolia only). Keys are read from the files named by RETRY_FIXTURE_RELAYER_KEY_FILE /
-RETRY_FIXTURE_BORROWER_KEY_FILE and passed to `cast`; never printed. Requires foundry's cast on PATH."""
+RETRY_FIXTURE_BORROWER_KEY_FILE and passed to `cast`; never printed. Requires foundry's cast on PATH.
+Pool and token come from RETRY_FIXTURE_POOL / RETRY_FIXTURE_USDC (defaults: the live Base Sepolia pool named by the contract
+maintainers and the MockUSDC it was deployed with). The first run (EVIDENCE.json) used the pre-redesign pool
+0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f with token 0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C."""
 import json, os, subprocess, time, urllib.request
 
-RPC = "https://sepolia.base.org"
+RPC = os.environ.get("RETRY_FIXTURE_RPC", "https://sepolia.base.org")
 CHAIN_ID = 84532
-POOL = "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f"
-USDC = "0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C"
+POOL = os.environ.get("RETRY_FIXTURE_POOL", "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8")
+USDC = os.environ.get("RETRY_FIXTURE_USDC", "0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1")
 DEPLOYER = "0x5e4dC7639D2b94006c51aD5373173f5e01c248F9"
 DEPLOYER_KEY_FILE = os.environ.get("RETRY_FIXTURE_RELAYER_KEY_FILE", "relayer.key")
 BORROWER_KEY_FILE = os.environ.get("RETRY_FIXTURE_BORROWER_KEY_FILE", "borrower.key")
@@ -68,7 +71,7 @@ def call(to, sig, *args, block=None, frm=None):
     raise RuntimeError("block %s not served by the RPC after retries" % block)
 
 
-JOURNAL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "JOURNAL.jsonl")
+JOURNAL = os.environ.get("RETRY_FIXTURE_JOURNAL", os.path.join(os.path.dirname(os.path.abspath(__file__)), "JOURNAL.jsonl"))
 
 
 def journal(entry):
@@ -192,9 +195,9 @@ def create(key_file, bytecode, step=None):
     return wait_receipt(h)
 
 
-def send_sig(key_file, to, sig, *args, gas_limit=None):
+def send_sig(key_file, to, sig, *args, gas_limit=None, step=None):
     data = cast("calldata", sig, *args)
-    return send_data(key_file, to, data, gas_limit=gas_limit)
+    return send_data(key_file, to, data, gas_limit=gas_limit, step=step)
 
 
 def nonces(addr, block=None):

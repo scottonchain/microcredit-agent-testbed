@@ -133,6 +133,19 @@
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "first_submission": "0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a",
+          "replay_same_bytes": "0xc00e240c24879e052899827aa647b7fbb7bdd6feca73ad2b77a7c017423431f3"
+        },
+        "observed": "replay status 0, no logs, nonces(signer) 2 -> 2, borrower balance unchanged, replayed call reverts InvalidNonce() (0x756688fe)",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
     {
@@ -152,6 +165,18 @@
         "observed": "status 0, no logs, nonce not consumed (2 -> 2), nothing pulled although a valid 100 USDC permit was supplied; reason 'Loan inactive'",
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "fresh_signature_after_landed_repay": "0xbe780d48dd9de4e015e3c2b799d0ff89f921f34780157bb12d1de5dc79876b00"
+        },
+        "observed": "status 0, no logs, nonce not consumed (2 -> 2), nothing pulled although a valid 100 USDC permit was supplied; reason LoanNotActive() (0x082f7846)",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
@@ -176,6 +201,18 @@
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "receipt": "0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a"
+        },
+        "observed": "MetaLoanRepaid log: 3 topics (signature, borrower, loanId), 32 bytes of data (amount); no nonce, no request digest; unchanged by the redesign",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
     {
@@ -197,6 +234,18 @@
         "observed": "nonces(signer) at block-1 = signed nonce 1, at the receipt block = 2; loan open / 40 USDC owed -> closed / 0",
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "landed_repay": "0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a"
+        },
+        "observed": "nonces(signer) at block-1 = signed nonce 1, at the receipt block = 2; loan 15 open / 40 USDC owed -> closed / 0",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
@@ -252,6 +301,18 @@
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "landed_repay": "0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a"
+        },
+        "observed": "tx.input (real eth_getTransactionByHash) decodes as repayLoanMeta: borrower, loanId 15, nonce 1, 65-byte signature; that nonce is the one that moved",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
     {
@@ -273,6 +334,19 @@
         "observed": "tx.to is the wrapper, top-level selector 0x6fadcf72 (forward), repayLoanMeta one level down; MetaLoanRepaid emitted; nonces(signer) 3 -> 4",
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "repay_through_wrapper": "0xcebdb973c49108352b3b62567cdfd0cf4e5e43adb9a49593142d5c4ad90c6303",
+          "wrapper_deploy": "0xb1f24654366072e16eaec04c900a9fd60030d69ca85aec8850f26f5cff6bfd84"
+        },
+        "observed": "tx.to is the wrapper, top-level selector 0x6fadcf72 (forward), repayLoanMeta one level down; MetaLoanRepaid emitted; nonces(signer) 3 -> 4. Gas estimation for this call failed once with the wrapper's own 'inner call failed' string on a node that had not yet seen the previous block (ESTIMATION_REPLAY_live_pool.txt): the wrapper masks the inner reason on the error path too",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },
@@ -304,6 +378,20 @@
         "observed": "7a: envelope status 1, no MetaLoanRepaid, nonces(signer) 5 -> 5, loan still open; 7b: status 1, one MetaLoanRepaid, nonces(signer) 5 -> 6 so [5,6) names intent 0, loan closed. Not run live: 7d/7e (two signers; forge only) and the missing-journal-row branch",
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      },
+      "live_run_live_pool": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05, second run",
+        "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+        "pool_build": "contract repo commit 19b166e: the live Base Sepolia pool named by the maintainers (contract issue #7 comment 5990326246); custom errors InvalidNonce() / LoanNotActive()",
+        "txs": {
+          "7a_envelope_with_expired_intent": "0x9ab0deb672874940ebe96c1a1d03b191a94c2e89041ef6d8b807cc4d77cd79a5",
+          "7b_two_intents_one_lands": "0x0c640d80152c0c769f0bae80a2d0f5b641fba3a0d8dc5f63e543c82898e55df4",
+          "envelope_deploy": "0xbe51d6a20b737bf0d079937e9089a8c2de6339c91216a7e279d71f521796a256"
+        },
+        "observed": "7a: envelope status 1, no MetaLoanRepaid, nonces(signer) 5 -> 5, loan still open; 7b: status 1, one MetaLoanRepaid, nonces(signer) 5 -> 6 so [5,6) names intent 0, loan closed. Not run live: 7d/7e (two signers; forge only) and the missing-journal-row branch",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
       }
     },

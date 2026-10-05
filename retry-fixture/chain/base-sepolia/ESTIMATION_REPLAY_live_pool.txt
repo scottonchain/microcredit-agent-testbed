@@ -1,0 +1,30 @@
+Replay of the two calls whose eth_estimateGas failed once during the run (read-only eth_call at historical blocks, 600000 gas,
+from the relayer address). Written by estimation_replay.py on 2026-10-05 08:42 UTC.
+
+journal 2026-10-05T08:33:07Z: Error: Failed to estimate gas: server returned an error response: error code 3: execution reverted: panic: arithmetic underflow or overflow (0x11), data: "0x4e487b7100000000000000000000000000000000000
+journal 2026-10-05T08:33:39Z: Error: Failed to estimate gas: server returned an error response: error code 3: execution reverted: inner call failed, data: "0x08c379a00000000000000000000000000000000000000000000000000000000000000020
+
+s3 (first repay, tx 0x3b7dc058455e8de00360e11069931149f7e0832c9a0e4d778a9fb627042d598a, landed at block 47710455; signed nonce 1; loan 15 borrowed at block 47710448):
+  block 47710443: revert InvalidNonce() | execution reverted
+  block 47710444: revert InvalidNonce() | execution reverted
+  block 47710445: revert InvalidNonce() | execution reverted
+  block 47710446: revert InvalidNonce() | execution reverted
+  block 47710447: revert InvalidNonce() | execution reverted
+  block 47710448: ok (no revert)
+  block 47710449: ok (no revert)
+  block 47710450: ok (no revert)
+  block 47710451: ok (no revert)
+  block 47710452: ok (no revert)
+  block 47710453: ok (no revert)
+  block 47710454: ok (no revert)
+
+s8 (repay through the wrapper 0xdcfe4da6f1e3b9e06115171c2ddbac0d24c10fc6, tx 0xcebdb973c49108352b3b62567cdfd0cf4e5e43adb9a49593142d5c4ad90c6303, landed at block 47710471; loan 16 borrowed at block 47710464):
+  block 47710462: revert 0x08c379a0 | execution reverted: inner call failed
+  block 47710463: revert 0x08c379a0 | execution reverted: inner call failed
+  block 47710464: ok (no revert)
+  block 47710465: ok (no revert)
+  block 47710466: ok (no revert)
+  block 47710467: ok (no revert)
+  block 47710468: ok (no revert)
+  block 47710469: ok (no revert)
+  block 47710470: ok (no revert)

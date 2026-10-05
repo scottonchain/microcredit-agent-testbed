@@ -8,7 +8,7 @@ receipt, input, log, nonce and loan state is read again from the chain; the file
 Exit 0 = no FAIL. SKIP = the RPC would not serve the historical state the check needs (public nodes prune); rerun against an
 archive node to turn SKIPs into PASS/FAIL.
 """
-import json, sys, urllib.request
+import json, sys, time, urllib.error, urllib.request
 
 RPC = "https://sepolia.base.org"
 UA = "retry-fixture verify_live_run.py"
@@ -36,7 +36,16 @@ def skip(case, name, detail):
 def rpc(method, params):
     req = urllib.request.Request(RPC, data=json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(),
                                  headers={"Content-Type": "application/json", "User-Agent": UA})
-    r = json.loads(urllib.request.urlopen(req, timeout=60).read().decode())
+    for attempt in range(8):   # public RPCs rate-limit (HTTP 429) and drop connections; back off, do not fail the check on transport
+        try:
+            r = json.loads(urllib.request.urlopen(req, timeout=60).read().decode())
+            break
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            if isinstance(e, urllib.error.HTTPError) and e.code not in (429, 502, 503, 504):
+                raise
+            time.sleep(3 * (attempt + 1))
+    else:
+        raise RuntimeError("rpc transport failed after retries: " + method)
     if "error" in r:
         raise RuntimeError(json.dumps(r["error"]))
     return r["result"]
@@ -125,8 +134,25 @@ def get_loan(pool, loan_id, block):
     return {"principal": uint(word(r, 0)), "outstanding": uint(word(r, 1)), "borrower": addr(word(r, 2)), "rate_bps": uint(word(r, 3)), "is_active": uint(word(r, 4)) == 1}
 
 
+CUSTOM_ERRORS = {   # 4-byte selectors of the pool's custom errors (keccak of the signature); the pre-redesign build used Error(string) instead
+    "0x756688fe": "InvalidNonce()", "0x082f7846": "LoanNotActive()", "0x0819bdcd": "SignatureExpired()", "0x8baa579f": "InvalidSignature()",
+    "0xcfc62040": "PermitValueTooLow()", "0x2388fc66": "WrongBorrower()", "0x3c20627b": "UnauthorizedRelayer()", "0xc519d246": "OutstandingChanged()",
+}
+
+
+def decode_revert_data(data):
+    """Error(string) -> its text; a known custom error -> its name; anything else -> the raw data."""
+    data = (data or "").lower()
+    if data.startswith("0x08c379a0") and len(data) >= 10 + 128:
+        a = data[10:]
+        n = uint(a[64:128])
+        return bytes.fromhex(a[128:128 + 2 * n]).decode(errors="replace")
+    return CUSTOM_ERRORS.get(data[:10], data or "(no revert data)")
+
+
 def revert_reason(tx, block_before):
-    """Replays the tx's call at the state of the block before it. Returns (decoded Error(string) or raw data, None) or (None, why)."""
+    """Replays the tx's call at the state of the block before it. Returns (decoded Error(string) / custom error name / raw data, None)
+    or (None, why)."""
     try:
         rpc("eth_call", [{"from": tx["from"], "to": tx["to"], "data": tx["input"], "gas": hex(500000)}, hex(block_before)])
         return None, "call did not revert at block %d" % block_before
@@ -134,12 +160,16 @@ def revert_reason(tx, block_before):
         msg = str(e)
         if "block not found" in msg or "missing trie node" in msg or "header not found" in msg:
             return None, "historical state unavailable: " + msg[:80]
+        try:
+            err = json.loads(msg)
+            data = err.get("data") if isinstance(err, dict) else None
+        except ValueError:
+            data = None
+        if isinstance(data, str) and data.startswith("0x"):
+            return decode_revert_data(data), None
         i = msg.find("0x08c379a0")
         if i >= 0:
-            data = msg[i:].split('"')[0]
-            a = data[10:]
-            n = uint(a[64:128])
-            return bytes.fromhex(a[128:128 + 2 * n]).decode(errors="replace"), None
+            return decode_revert_data(msg[i:].split('"')[0]), None
         return msg[:160], None
 
 
@@ -225,7 +255,7 @@ def main():
     if reason is None:
         skip("chain-1", "replayed call's revert reason at the state before the block", why)
     else:
-        check("chain-1", "replayed call reverts at the nonce check (this deployment's text: 'Bad nonce')", "nonce" in reason.lower(), repr(reason))
+        check("chain-1", "replayed call reverts at the nonce check ('Bad nonce' on the pre-redesign build, InvalidNonce() on the live build)", "nonce" in reason.lower(), repr(reason))
 
     # ---- s5: chain-2, fresh signature after the landed repay ----
     tx5, rc5, b5 = tx_and_receipt("s5_chain2_fresh_signature_after_landed_repay")
@@ -247,7 +277,7 @@ def main():
     if reason is None:
         skip("chain-2", "revert reason at the state before the block", why)
     else:
-        check("chain-2", "reverts because the loan is no longer active (this deployment's text: 'Loan inactive')", "inactive" in reason.lower() or "active" in reason.lower(), repr(reason))
+        check("chain-2", "reverts because the loan is no longer active ('Loan inactive' on the pre-redesign build, LoanNotActive() on the live build)", "inactive" in reason.lower() or "notactive" in reason.lower(), repr(reason))
 
     # ---- s8: chain-6, through a wrapper ----
     tx8, rc8, b8 = tx_and_receipt("s8_chain6_repay_through_wrapper")
