@@ -31,7 +31,12 @@ ifaces = [l.split(":")[0].strip() for l in open("/proc/net/dev").read().splitlin
 routes = open("/proc/net/route").read().splitlines()[1:]
 print("network namespace interfaces:", ifaces, "| routes:", len(routes))
 # IPv6 must not provide an unobserved route; loopback-only routes are harmless.
-ipv6_routes = [line for line in open("/proc/net/ipv6_route") if line.split()[-1] != "lo"]
+try:
+    ipv6_routes = [line for line in open("/proc/net/ipv6_route") if line.split()[-1] != "lo"]
+except FileNotFoundError:
+    # Kernels with IPv6 disabled do not expose this file. Other I/O errors
+    # must still fail closed rather than hiding an unobserved route.
+    ipv6_routes = []
 isolated = ifaces in (["lo"], []) and not routes and not ipv6_routes
 print("network: isolated" if isolated else "network: NOT isolated")
 raise SystemExit(0 if isolated and glibc_ok else 1)

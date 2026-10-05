@@ -44,7 +44,7 @@ class Hardening(unittest.TestCase):
             self.assertIn('LAYER_DIGEST_MISMATCH', out.getvalue())
             self.assertNotIn('GLIBC_MATCH', out.getvalue())
 
-    def diag(self, isolated=True, bound=True, ipv6=False):
+    def diag(self, isolated=True, bound=True, ipv6=False, missing_ipv6=False, ipv6_io_error=False):
         data = {
             '/proc/self/maps': '', '/usr/lib64/libc.so.6': b'libc',
             '/usr/lib64/ld-linux-x86-64.so.2': b'loader', '/etc/os-release': '', '/etc/nsswitch.conf': '',
@@ -52,6 +52,9 @@ class Hardening(unittest.TestCase):
             '/proc/net/route': 'header\n', '/proc/net/ipv6_route': 'route eth0\n' if ipv6 else '',
         }
         def fake_open(path, mode='r', *args, **kwargs):
+            if str(path) == '/proc/net/ipv6_route':
+                if missing_ipv6: raise FileNotFoundError(path)
+                if ipv6_io_error: raise PermissionError(path)
             value = data[str(path)]
             return io.BytesIO(value) if 'b' in mode else io.StringIO(value)
         hashes = [hashlib.sha256(data[p]).hexdigest() for p in ('/usr/lib64/libc.so.6', '/usr/lib64/ld-linux-x86-64.so.2')]
@@ -64,6 +67,10 @@ class Hardening(unittest.TestCase):
     def test_diagnostics_reject_network(self): self.assertEqual(self.diag(isolated=False)[0], 1)
     def test_diagnostics_reject_glibc(self): self.assertEqual(self.diag(bound=False)[0], 1)
     def test_diagnostics_reject_ipv6_route(self): self.assertEqual(self.diag(ipv6=True)[0], 1)
+
+    def test_diagnostics_accept_disabled_ipv6(self): self.assertEqual(self.diag(missing_ipv6=True)[0], 0)
+    def test_diagnostics_do_not_hide_ipv6_io_error(self):
+        with self.assertRaises(PermissionError): self.diag(ipv6_io_error=True)
 
     def gate(self, mode):
         with tempfile.TemporaryDirectory() as d:
