@@ -247,7 +247,8 @@
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
-      }
+      },
+      "journal_reconciliation": "the rule as a program: chain/base-sepolia/reconcile/reconcile_journal.py settles every signed intent of a relayer's intent journal by nonces(signer) read from the chain (receipt block for receipted rows, latest + elimination over the journal for rows without a hash), without consulting loan state or the envelope receipt; run over the second live run's own journal (JOURNAL_live_pool.jsonl): 10 signed intents, landed 6, not landed 4, ambiguous 0, mismatch 0, unknown 0, exit 0 (RECONCILE_OUTPUT_live_pool.txt; identical under CPython 3.9); six journals the run could have left behind (lost hash row, lost rows, tampered bytes, never-broadcast intent) each get the stated verdict (NEGATIVE_CONTROL_journal.txt)"
     },
     {
       "id": "email-8",
@@ -398,7 +399,8 @@
         "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE_live_pool.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
         "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE_live_pool.json, VERIFY_OUTPUT_live_pool.txt, NEGATIVE_CONTROL_live_pool.txt, ESTIMATION_REPLAY_live_pool.txt, README.md)",
         "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
-      }
+      },
+      "journal_reconciliation": "the expected state as a program: chain/base-sepolia/reconcile/reconcile_journal.py reads 'settled by journal plus nonces(signer)' literally (journal row + nonces(signer) at the envelope's receipt block; wrapped intents decoded one level down inside forward/batch) and reserves 'unknown' for a consumed nonce that no journal row landed. Second run (JOURNAL_live_pool.jsonl): 7a's wrapped intent not landed (nonce 5 unmoved), 7b's intent 0 landed by [5,6) and intent 1 not landed; exit 0. First run (JOURNAL_first_run.jsonl, our own journal, which starts only at step s5): nonces 0 and 1 are consumed on chain with no journal row, reported UNKNOWN, exit 1 (RECONCILE_OUTPUT_first_run.txt): the missing-journal-row branch, exercised by a real incomplete journal rather than a constructed one. Refinement (ours, not the source's words): an unreceipted row is settled by nonce alone only if no other unreceipted row with different bytes carries that nonce (a re-signed intent after a revert reuses it); otherwise 'ambiguous' until the transaction is found"
     },
     {
       "id": "email-9",

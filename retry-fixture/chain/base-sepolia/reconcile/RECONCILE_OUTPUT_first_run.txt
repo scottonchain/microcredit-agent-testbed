@@ -1,0 +1,17 @@
+$ python3 reconcile_journal.py JOURNAL_first_run.jsonl --pool 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f   (CPython 3.14.7)
+journal JOURNAL_first_run.jsonl: 18 rows = 10 intent, 8 broadcast (0 without a matching intent row), 0 other (none); pool 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f; rpc https://sepolia.base.org
+--        row02                                  no hash: not a signed intent, no nonce to read; receipt or re-send decision is outside this rule
+--        row03                                  0x94bd6f271a settled by receipt: status 1, created 0xb1190956d669d4493bbc4e8cd11a319636540c93
+--        row10                                  0xe8a3301a50 settled by receipt: status 1, created 0x3cce2b8871d60c02b92e49538f61bdad4fc0b6d4
+NOT LANDED row00                    repayLoanMeta                nonce 2  0x8c9956d044  block 47708800: receipt block 47708800: nonces(signer) 2 -> 2, status 0; nonce 2 unmoved (tx reverted)
+LANDED    row05                    borrowAndDisburseMeta        nonce 2  0xaff4914bda  block 47708813: receipt block 47708813: nonces(signer) 2 -> 3, status 1; range [2, 3) names nonce 2
+NOT LANDED row07                    repayLoanMeta via forward    nonce 3  (no hash)     no hash; nonce 3 is consumed but a receipted row (row08) landed it: this row did not
+LANDED    row08                    repayLoanMeta via forward    nonce 3  0xfac3ee51af  block 47708854: receipt block 47708854: nonces(signer) 3 -> 4, status 1; range [3, 4) names nonce 3
+LANDED    row12                    borrowAndDisburseMeta        nonce 4  0xbbdc0dd035  block 47708858: receipt block 47708858: nonces(signer) 4 -> 5, status 1; range [4, 5) names nonce 4
+NOT LANDED row14                    repayLoanMeta via batch[0]   nonce 5  0xffe855ddfd  block 47708861: receipt block 47708861: nonces(signer) 5 -> 5, status 1; nonce 5 unmoved (envelope succeeded, intent did not)
+LANDED    row16                    repayLoanMeta via batch[0]   nonce 5  0xbfe01bfbf1  block 47708864: receipt block 47708864: nonces(signer) 5 -> 6, status 1; range [5, 6) names nonce 5
+NOT LANDED row16                    repayLoanMeta via batch[1]   nonce 6  0xbfe01bfbf1  block 47708864: receipt block 47708864: nonces(signer) 5 -> 6, status 1; nonce 6 unmoved (envelope succeeded, intent did not)
+UNKNOWN   -                        (no journal row)             nonce 0  (no hash)     nonce 0 consumed on chain and no journal row landed it: a lost row and an intent that never existed look the same from here
+UNKNOWN   -                        (no journal row)             nonce 1  (no hash)     nonce 1 consumed on chain and no journal row landed it: a lost row and an intent that never existed look the same from here
+signed intents: 10 | landed 4, not landed 4, ambiguous 0, mismatch 0, unknown 2 | plain rows: 3 | latest nonces(signer): {'0x4040cd3cbd3e5d42fc319f06070d10e6c23b1b83': 6}
+exit 1
