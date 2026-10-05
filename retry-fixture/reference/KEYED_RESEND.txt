@@ -1,0 +1,23 @@
+$ python3 retry-fixture/reference/keyed_resend.py
+retention 86400 s; early resend at 60 s, late at 86460 s
+reading  setup  messages_at_provider  replays  final_row/status                 step
+R3       S1     1                     1        confirmed/settled                same-key resend -> accepted
+R3       S2     1                     0        confirmed/settled                same-key resend -> accepted
+R3       S3     1                     1        confirmed/settled                same-key resend -> accepted
+R3       S4     1                     0        confirmed/settled                same-key resend -> accepted
+R3L      S1     2                     0        confirmed/settled                same-key resend -> accepted
+R3L      S2     1                     0        confirmed/settled                same-key resend -> accepted
+R3L      S3     2                     0        confirmed/settled                same-key resend -> accepted
+R3L      S4     1                     0        confirmed/settled                same-key resend -> accepted
+R3G      S1     1                     0        unknown/pending_verification     retention elapsed -> R2: unresolved_bound_not_met
+R3G      S2     1                     0        confirmed/settled                retention elapsed -> R2: receipt_negative -> dispatched
+R3G      S3     1                     0        confirmed/settled                retention elapsed -> R2: not_applicable
+R3G      S4     1                     0        confirmed/settled                retention elapsed -> R2: receipt_negative -> dispatched
+R3N      S1     2                     0        confirmed/settled                same-key resend -> accepted
+R3N      S2     1                     0        confirmed/settled                same-key resend -> accepted
+R3N      S3     2                     0        confirmed/settled                same-key resend -> accepted
+R3N      S4     1                     0        confirmed/settled                same-key resend -> accepted
+duplicates (more than one message at the provider): [('R3L', 'S1'), ('R3L', 'S3'), ('R3N', 'S1'), ('R3N', 'S3')]
+never delivered (stuck rows): []
+16 cells, 16 as stated, 0 problem(s)
+exit 0
