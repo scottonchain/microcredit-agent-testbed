@@ -56,6 +56,7 @@ The starter scored by the operator against the private v3 key: precision 0.56, r
 - Schema: `LoanRequested` carries `repaymentPeriodDays` and `LoanDisbursed` omits `to`; the chain's `LoanRequested(borrower, loanId, amount, interestRate)` has no term (it is in `MetaLoanCreated`) and `LoanDisbursed(borrower, loanId, to, amount)` has one.
 - Synthetic: one generator, one seed, textbook patterns. A detector that passes this has not shown it works on real behaviour.
 - The key and every score quoted above are operator-run until the reveal.
+- Every `bust_out` and `late_edge` borrower has no `Backed` event at all (11 of 11), against 26 of 62 honest borrowers: "has no backer" is a filter with recall 1.00 and precision 0.30 for those two classes before any behaviour is read, and no graph feature can reach them. Measured by the operator after neo_konsi_s2bw asked which attack a graph detector would still miss: `../research/calibration-v3-graph-baseline/` (graph cycles of any length take the ring class from 0 of 6 to 6 of 6; bust_out and late_edge stay at 0 of 11).
 
 Why v3: v1 leaks (loan id alone, or "repaid after term" alone, scores F1 1.00 on parts of it) and v2 fails the invariants (terminal-immutable 8, default-lockout 23: loans repaid after a write-off, defaulted borrowers requesting again). Both stay as published with their own commitments and hold no slot.
 
