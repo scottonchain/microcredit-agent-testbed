@@ -19,5 +19,9 @@ email-9  reference PASS | mutant(verification_timeout_is_absence=True) -> FAIL (
          asserts: a timed-out verification read leaves the row pending verification with no send; the next run confirms; one send
 email-11 reference PASS | mutant(dispatch_record_before_io=False) -> FAIL (expected) | ok
          asserts: A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, auto-resend blocked, reconciled from the provider receipt: one message at the provider
-10 checks, 10 ok, 0 problem(s)
+email-10 reference PASS | mutant(byte_match_required=False) -> FAIL (expected) | ok
+         asserts: a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each
+api-1    reference PASS | mutant(two_authorities=False) -> FAIL (expected) | ok
+         asserts: (a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim
+12 checks, 12 ok, 0 problem(s)
 exit 0

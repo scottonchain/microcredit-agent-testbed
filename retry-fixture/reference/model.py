@@ -23,6 +23,11 @@ Policy flags (REFERENCE = the fixture's rules; each case's mutant flips exactly 
                                   the response), so 'intent row + no dispatch record' can only mean the call was never permitted;
                                   False = the ordering published at d563e39 (record written after the call returned), under which
                                   a worker that dies between provider accept and the record write looks proven-unsent (email-11)
+  byte_match_required             a listing hit confirms only if its bytes match the intent's payload digest; a mismatched hit is
+                                  absent AND evidence of corruption (quarantine, no blind retry) (email-10)
+  two_authorities                 a create with a single-shot verifier: retry permitted iff the verifier allows a new attempt AND a
+                                  fresh canonical-listing read shows the object absent; neither authority stands in for the other,
+                                  and the create response's own claim is never trusted (api-1; see comment_api.py)
 """
 import hashlib
 
@@ -48,7 +53,7 @@ class Provider:
         self.send_behaviour = "accepted"      # accepted | accept_then_timeout | reject_5xx | reset_before_commit
         self.search_timeouts_pending = 0      # the next N search calls time out on the client side
 
-    def send(self, key, recipients, phrase):
+    def send(self, key, recipients, phrase, payload_hash=None):
         self.send_calls += 1
         b = self.send_behaviour
         if b == "reject_5xx":
@@ -56,7 +61,8 @@ class Provider:
         if b == "reset_before_commit":
             return {"outcome": "connection_reset"}
         mid = "msg-%d" % (len(self.msgs) + 1)
-        self.msgs.append({"id": mid, "key": key, "recipients": list(recipients), "phrase": phrase, "committed_at": self.clock.now})
+        self.msgs.append({"id": mid, "key": key, "recipients": list(recipients), "phrase": phrase, "committed_at": self.clock.now,
+                          "payload_hash": payload_hash})
         if b == "accept_then_timeout":
             return {"outcome": "timeout"}     # the server committed; the client never saw the response
         return {"outcome": "accepted", "message_id": mid}
@@ -72,7 +78,14 @@ class Provider:
 
     def inject_artifact(self, key, message_id):
         """A provider-side artifact for the key appears later (used to falsify a 'never left' attestation)."""
-        self.msgs.append({"id": message_id, "key": key, "recipients": [], "phrase": "", "committed_at": self.clock.now})
+        self.msgs.append({"id": message_id, "key": key, "recipients": [], "phrase": "", "committed_at": self.clock.now, "payload_hash": None})
+
+    def corrupt(self, key, payload_hash):
+        """The copy the listing returns for the key no longer carries the bytes that were sent (corrupted receiver state,
+        or a different message filed under the same key)."""
+        for m in self.msgs:
+            if m["key"] == key:
+                m["payload_hash"] = payload_hash
 
     def expire(self, key):
         """Retention: the provider no longer returns the message (a later read misses)."""
@@ -82,7 +95,7 @@ class Provider:
 class Policy:
     FIELDS = ("timeout_is_failure", "absence_means_never_sent", "use_as_of", "rounds", "wait", "fallback_query",
               "verification_timeout_is_absence", "sweeper_failed_needs_proof", "miss_demotes", "recipient_enum", "replay_check",
-              "dsn_fails_submission", "dispatch_record_before_io")
+              "dsn_fails_submission", "dispatch_record_before_io", "byte_match_required", "two_authorities")
 
     def __init__(self, name, **kw):
         self.name = name
@@ -98,7 +111,7 @@ class Policy:
 REFERENCE = Policy("reference", timeout_is_failure=False, absence_means_never_sent=False, use_as_of=True, rounds=3, wait=8,
                    fallback_query=True, verification_timeout_is_absence=False, sweeper_failed_needs_proof=True,
                    miss_demotes=False, recipient_enum=True, replay_check=True, dsn_fails_submission=False,
-                   dispatch_record_before_io=True)
+                   dispatch_record_before_io=True, byte_match_required=True, two_authorities=True)
 
 
 class Reconciler:
@@ -138,7 +151,7 @@ class Reconciler:
             rec = {"at": self.clock.now, "outcome": "pending", "provider_ref": None, "code": None,
                    "committed": "before the provider call"}
             self.dispatches.setdefault(key, []).append(rec)
-        res = self.p.send(key, intent["recipients"], intent["phrase"])
+        res = self.p.send(key, intent["recipients"], intent["phrase"], intent["payload_hash"])
         if die_after_provider_accept:
             # forgeloop's case B: the provider has committed the message; the worker dies before persisting the dispatch
             # record (if it is written after the call) or the response. Only what was committed before the call survives.
@@ -221,10 +234,36 @@ class Reconciler:
         row["status"] = "pending_verification"
         return True
 
+    def _hit(self, key, r, extra=None):
+        """A listing hit for the key. Reference: it confirms only if its bytes match the intent's payload digest; a hit whose
+        bytes mismatch is absent AND evidence of corruption (quarantine, no blind retry). Mutant byte_match_required=False:
+        the id-only check most send loops run (any hit for the key confirms). Returns True when the row was settled here."""
+        row = self.rows[key]
+        want = self.intents[key]["payload_hash"]
+        match = [m for m in r["hits"] if m.get("payload_hash") == want]
+        if match or not self.policy.byte_match_required:
+            ev = {"kind": "sent_copy", "ref": (match or r["hits"])[0]["id"], "index_as_of": r["as_of"], "at": self.clock.now,
+                  "bytes_match": bool(match)}
+            if extra:
+                ev.update(extra)
+            self._promote(key, ev)
+            return True
+        found = sorted(set(str(m.get("payload_hash")) for m in r["hits"]))
+        row["status"] = "quarantined"                      # submission stays unknown: the hit is not the original
+        row["corruption_evidence"] = {"kind": "listing_hit_mismatched_bytes", "refs": [m["id"] for m in r["hits"]],
+                                      "expected_digest": want, "found_digests": found, "index_as_of": r["as_of"], "at": self.clock.now}
+        v = {"kind": "absence_with_corruption", "at": self.clock.now, "as_of": r["as_of"],
+             "meaning": "listing hit for the key but the bytes are not what was sent: absent AND corrupted receiver state; quarantine, no blind retry"}
+        if extra:
+            v.update(extra)
+        row["verdicts"].append(v)
+        self.alerts.append({"key": key, "at": self.clock.now, "alert": "quarantine: listing copy for the key does not match the sent bytes"})
+        return True
+
     def verify(self, key):
         """One reconcile pass for an unknown-outcome row. Never sends."""
         row = self.rows[key]
-        if row["submission"] != "unknown":
+        if row["submission"] != "unknown" or row["status"] == "quarantined":
             return row["submission"]
         for i in range(self.policy.rounds):
             r = self.p.search(key, phrase=self.template_phrase)
@@ -232,8 +271,8 @@ class Reconciler:
                 self._timeout(key)
                 return row["submission"]
             if r["hits"]:
-                self._promote(key, {"kind": "sent_copy", "ref": r["hits"][0]["id"], "index_as_of": r["as_of"], "at": self.clock.now})
-                return "confirmed"
+                self._hit(key, r)
+                return row["submission"]
             if self._absence(key, r):
                 return row["submission"]
             if i < self.policy.rounds - 1:
@@ -244,8 +283,8 @@ class Reconciler:
                 self._timeout(key, {"fallback": True})
                 return row["submission"]
             if r["hits"]:
-                self._promote(key, {"kind": "sent_copy", "ref": r["hits"][0]["id"], "index_as_of": r["as_of"], "fallback": True, "at": self.clock.now})
-                return "confirmed"
+                self._hit(key, r, {"fallback": True})
+                return row["submission"]
             if self._absence(key, r, {"fallback": True}):
                 return row["submission"]
         row["status"] = "pending_verification"
@@ -274,6 +313,8 @@ class Reconciler:
     # ---- retries -----------------------------------------------------------------------------------------------
     def retry_allowed(self, key):
         row = self.rows[key]
+        if row["status"] == "quarantined":
+            return False, "quarantined: the listing copy for this key does not match the sent bytes; review, no blind retry"
         if row["submission"] == "failed":
             return True, row["submission_evidence"]["kind"]
         return False, "submission is %s; retries fire only on explicit failure signals" % row["submission"]

@@ -3,7 +3,7 @@
 
 Rules (v0.1 draft):
   top level: "status" (str), "principle" (str), "cases" (list)
-  every case: "id" matching ^(email|chain)-[0-9]+$ and unique; "setup" and "expected" non-empty strings;
+  every case: "id" matching ^(email|chain|api)-[0-9]+$ and unique (api-N added 2026-10-05 for a create endpoint with a verifier); "setup" and "expected" non-empty strings;
               "tested_by_us" bool; "status" in STATUS_VOCAB and consistent with tested_by_us
   tested_by_us true : needs "test" (which test, where) and "observed" (what the test showed)
   tested_by_us false: needs "source" (whose words the expected state is) and status "proposed / not-run"
@@ -12,7 +12,7 @@ Usage: python3 validate_cases.py [path/to/cases.json]
 import json, re, sys
 
 STATUS_VOCAB = {"tested by us", "proposed / not-run"}
-ID_RE = re.compile(r"^(email|chain)-[0-9]+$")
+ID_RE = re.compile(r"^(email|chain|api)-[0-9]+$")
 
 def lint(doc):
     problems = []
@@ -30,7 +30,7 @@ def lint(doc):
         cid = c.get("id")
         tag = "%s (%s)" % (tag, cid)
         if not isinstance(cid, str) or not ID_RE.match(cid):
-            problems.append(tag + ": id missing or not email-N / chain-N")
+            problems.append(tag + ": id missing or not email-N / chain-N / api-N")
         elif cid in seen:
             problems.append(tag + ": duplicate id")
         seen.add(cid)

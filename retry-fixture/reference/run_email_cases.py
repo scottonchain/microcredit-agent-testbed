@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""Executable checks for the email cases of retry-fixture/cases.json, run against the reference model in model.py.
+"""Executable checks for the off-chain cases (email-N, api-N) of retry-fixture/cases.json, run against the reference model
+in model.py (email cases) and comment_api.py (api cases).
 
-For every email case there is one check written from the case's `setup` and `expected` text. Each check runs twice:
+For every off-chain case there is one check written from the case's `setup` and `expected` text. Each check runs twice:
   reference  -> must PASS  (our model of the stated rule produces the stated expected state)
   mutant     -> must FAIL  (the same model with exactly the rule that case states flipped does NOT; so the check
                             discriminates and is not vacuous)
 Exit 0 only if every reference run passes and every mutant run fails. Stdlib only; deterministic; simulated clock.
 
 This does not change the status of any case in cases.json: they stay `proposed / not-run` with respect to the systems
-of the agents whose words the expected states are (merktop, forgeloop). What it adds is a third field of evidence per
+of the agents whose words the expected states are (merktop, forgeloop, pyclaw001). What it adds is a third field of evidence per
 case: `reference_model_check` (which check, what it asserts, mutant that fails it), so a reader can run the words.
 Usage: python3 run_email_cases.py [--json]
 """
-import json, sys
+import json, sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from model import Clock, Provider, Reconciler, REFERENCE
+from comment_api import CommentAPI, Poster
 
 
 def scenario(policy, index_latency=0):
@@ -209,6 +212,72 @@ def email_11(policy):
                       "recovery_path": res_b, "messages_at_provider": len(p.msgs), "row": r.rows["kB"]["submission"]}}
 
 
+def email_10(policy):
+    """the verification read returns a listing hit for the intent's key whose bytes are not the bytes that were sent ->
+    treated as absent AND as evidence of corruption: quarantine, no blind retry; a hit with matching bytes confirms."""
+    clk, p, r = scenario(policy, index_latency=0)
+    p.send_behaviour = "accept_then_timeout"
+    r.submit("k10", ["a@x"], "body")          # committed with the intent's payload digest; the client saw a timeout
+    p.send_behaviour = "accepted"
+    p.corrupt("k10", "not-the-sent-bytes")    # the copy the listing returns for the key no longer matches the sent bytes
+    res = r.idempotent_retry("k10")
+    row = r.rows["k10"]
+    retry_ok, why = r.retry_allowed("k10")
+    resend = r.resend("k10")
+    second_pass = r.idempotent_retry("k10")   # a later run must not undo the quarantine by re-reading the same hit
+    # control under the same policy: a listing hit whose bytes match the sent payload confirms the row
+    clk2, p2, r2 = scenario(policy, index_latency=0)
+    p2.send_behaviour = "accept_then_timeout"
+    r2.submit("k10c", ["a@x"], "body")
+    p2.send_behaviour = "accepted"
+    res_c = r2.idempotent_retry("k10c")
+    ev_c = r2.rows["k10c"]["submission_evidence"] or {}
+    ok = (row["submission"] == "unknown" and row["status"] == "quarantined"
+          and (row.get("corruption_evidence") or {}).get("kind") == "listing_hit_mismatched_bytes"
+          and res["action"] == "no_send" and not retry_ok and resend["action"] == "blocked" and second_pass["action"] == "no_send"
+          and p.send_calls == 1 and len(r.alerts) == 1
+          and r2.rows["k10c"]["submission"] == "confirmed" and ev_c.get("bytes_match") is True and res_c["action"] == "no_send" and p2.send_calls == 1)
+    return ok, {"mismatch": {"submission": row["submission"], "status": row["status"], "corruption_evidence": row.get("corruption_evidence"),
+                             "retry_allowed": [retry_ok, why], "resend": resend, "second_pass": second_pass, "provider_sends": p.send_calls,
+                             "alerts": r.alerts},
+                "control_match": {"submission": r2.rows["k10c"]["submission"], "evidence": ev_c, "provider_sends": p2.send_calls}}
+
+
+def api_1(policy):
+    """a create endpoint with a single-shot verifier (wrong answer burns the code: 400; a consumed code: 409) whose state
+    and the object's published state come from authorities that do not see each other -> retry permitted iff the verifier
+    allows a new attempt AND a fresh canonical-listing read shows the object absent; verifier success without a listing hit
+    is reconciliation, not delivery; the create response's own 'existing' claim is never trusted without a listing read.
+    Three sub-scenarios, all from public incident reports: (a) verifier failed but the object is readable (pyclaw001);
+    (b) create says 'existing' but the object is failed and unpublished (merktop); (c) verifier 200 but the object is
+    absent, the lost receipt (merktop's converse hazard)."""
+    two = policy.two_authorities
+    out = {}
+    # (a) verifier says failed (wrong answer), the object is published anyway: stop, no blind re-create
+    api = CommentAPI(); api.publish_despite_failed = True
+    po = Poster(api, two_authorities=two)
+    disp_a = po.post_once("hello", answers=(False, True))
+    burned = api.verify("code-1", True)         # reuse of the consumed code is impermissible whatever the policy (model fact)
+    out["a"] = {"disposition": disp_a, "creates": api.creates, "published": api.listing(), "reuse_of_consumed_code": burned, "log": po.log}
+    ok_a = disp_a == "stop: object present despite verifier 400" and api.creates == 1 and api.listing() == ["c1"] and burned == 409
+    # (b) a crashed-then-restarted client re-creates the same content; the dedup layer answers 'existing' for an object whose
+    #     verification failed and which the listing does not show: the listing decides, so the object is rewritten under a new identity
+    api = CommentAPI()
+    po = Poster(api, two_authorities=two)
+    first = po.post_once("hello", answers=(False,), max_creates=1)       # wrong answer: failed, unpublished
+    po2 = Poster(api, two_authorities=two)
+    disp_b = po2.post_once("hello", answers=(True,))                     # restart: create -> 'existing' (status failed)
+    out["b"] = {"first": first, "disposition": disp_b, "creates": api.creates, "published": api.listing(), "log": po2.log}
+    ok_b = disp_b == "delivered" and api.listing_has("hello ") and len(api.listing()) == 1 and api.creates == 3
+    # (c) verifier 200 but the object never becomes readable (lost receipt): reconcile, never claim delivery
+    api = CommentAPI(); api.lose_receipt = True
+    po = Poster(api, two_authorities=two)
+    disp_c = po.post_once("hello", answers=(True,))
+    out["c"] = {"disposition": disp_c, "creates": api.creates, "published": api.listing(), "log": po.log}
+    ok_c = disp_c == "reconcile: verifier success, object absent" and api.creates == 1 and api.listing() == []
+    return ok_a and ok_b and ok_c, out
+
+
 CHECKS = [
     Check("email-1", "one provider send; the retry reconciles and finds the original; row confirmed",
           REFERENCE.mutate(timeout_is_failure=True), email_1),
@@ -231,6 +300,10 @@ CHECKS = [
     Check("email-11", "A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, "
           "auto-resend blocked, reconciled from the provider receipt: one message at the provider",
           REFERENCE.mutate(dispatch_record_before_io=False), email_11),
+    Check("email-10", "a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each",
+          REFERENCE.mutate(byte_match_required=False), email_10),
+    Check("api-1", "(a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim",
+          REFERENCE.mutate(two_authorities=False), api_1),
 ]
 
 
