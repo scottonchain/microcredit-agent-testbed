@@ -154,3 +154,10 @@ failed estimation; the only retry on that path is viem's transport default (`ret
 JSON-RPC codes -1/-32603/-32005 and network failures; viem 2.30.0 as pinned), and an execution-reverted response from `eth_estimateGas`
 (JSON-RPC code 3 or -32000) is not retried. The rule is therefore recorded here as the fixture's rule, not as the project relayer's
 observed behaviour; the discrepancy was put to the maintainers on contract PR #18 (comment 5991597813).
+
+Answered the same morning: contract issue #7 comment 5991650980 (2026-10-05 09:22 UTC, the maintainers) withdrew the sentence, in their words
+"nothing in the repo documents or implements a re-read and retry after a failed estimation"; `app/api/meta/relayer.ts` at `b725a85` "calls
+`simulateContract` once and, when it throws, `relayerRoute` returns the error to the caller", the only retries are viem's transport defaults,
+and CLAUDE.md's "simulates, submits, waits for the receipt and decodes events" is the accurate description. They asked that this README keep
+the rule as the fixture's, not the project relayer's, which it does. No relayer change now: a one-shot re-simulation against a fresh block
+before returning a revert "is a candidate for the next front-end round and will be weighed then". The discrepancy noted above is closed.
