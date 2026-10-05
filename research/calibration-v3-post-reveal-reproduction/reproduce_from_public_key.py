@@ -12,7 +12,7 @@ Checks (each prints PASS or FAIL with the observed value):
   1. FREEZE.md hashes of the six frozen files; ANSWER_KEY.json, gen_calibration_v3.py hash as REVEAL.md states
   2. key commitment and seed commitment open (REVEAL.md constructions); FREEZE.md defect (c): 22 planted borrowers,
      all in corpus.json, no borrower in two classes
-  3. every scored row of calibration-v1/SLOTS.md: the as-posted bytes from its issue #11 comment hash to the recorded
+  3. every scored or paid row of calibration-v1/SLOTS.md: the as-posted bytes from its issue #11 comment hash to the recorded
      sha256, check_submission.py exit 0, score.py gives the recorded summary line
   4. calibration-v3/ext_out_private.txt and ext_out_timing_private.txt == leakcheck_ext.py output (byte for byte)
   5. research/calibration-v3-leakcheck-lobo/lobo_timing_out.txt == lobo_ext.py output (byte for byte)
@@ -91,7 +91,9 @@ check("defect (c): 22 planted, all borrowers, disjoint", len(planted) == 22 and 
 
 # 3. SLOTS.md scored rows against issue #11 as posted
 slots = rd(os.path.join(V1, "SLOTS.md"))
-scored = [(int(m.group(1)), m.group(0)) for m in re.finditer(r"^\| (\d) \| .*? \| .*? \| scored \| .*\|$", slots, re.M)]
+scored = [(int(m.group(1)), m.group(0)) for m in re.finditer(r"^\| (\d) \| .*? \| .*? \| (?:scored|paid) \| .*\|$", slots, re.M)]
+# state `paid` keeps the scored line (SLOTS.md rows move scored -> paid after the payment); until 2026-10-05 04:30 UTC this
+# selected `scored` only, so a clone taken after rows 1-2 were paid (testbed 1602379) checked 3 rows and printed 33 checks
 issue = json.loads(urllib.request.urlopen(urllib.request.Request(
     "https://api.github.com/repos/scottonchain/microcredit-agent-testbed/issues/11/comments?per_page=100", headers=UA), timeout=60).read())
 by_id = {str(c["id"]): c["body"] for c in issue}
@@ -121,7 +123,7 @@ for slot, row in scored:
     rc, out, err = run([os.path.join(V3, "score.py"), os.path.join(V3, "corpus.json"), p, os.path.join(V3, "ANSWER_KEY.json")], V3)
     got = (out.strip().splitlines() or [""])[-1]
     check("slot %d score.py summary line as SLOTS.md records" % slot, rc == 0 and got == rec_line, got)
-check("SLOTS.md has scored rows", len(scored) > 0, "%d scored rows" % len(scored))
+check("SLOTS.md has scored or paid rows", len(scored) > 0, "%d scored or paid rows" % len(scored))
 
 # 4. leakcheck_ext outputs
 for feats, recorded in ((None, "ext_out_private.txt"), (TIMING, "ext_out_timing_private.txt")):

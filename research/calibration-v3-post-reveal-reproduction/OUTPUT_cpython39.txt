@@ -1,4 +1,4 @@
-clone HEAD 851e2772b690cf63c472503e8649b805e3ccab60 | 3.14.7 | Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34 | 2026-10-05 04:09 UTC
+clone HEAD 851e2772b690cf63c472503e8649b805e3ccab60 | 3.9.25 | Linux-5.14.0-687.52.1.el9_8.x86_64-x86_64-with-glibc2.34 | 2026-10-05 04:09 UTC
 PASS  FREEZE.md hash corpus.json  | 87622563f3aa42e9
 PASS  FREEZE.md hash COMMITMENT.txt  | 00e51a80417238d0
 PASS  FREEZE.md hash score.py  | 7983a9006d6d0d12
@@ -36,8 +36,8 @@ PASS  graph_baseline.py output sha256 as its README states  | 0a6aa49e4eb90ca8
 PASS  graph_baseline.py output passes check_submission.py  | OK: submission format accepted; paste this file and the two 
 PASS  graph_baseline.py scores as its README row states  | ring found 6 false+ 4; P 0.73 R 0.50 FPR 0.065
 PASS  cp_intervals.py table rows appear verbatim in LEAKCHECK_EXT_RESULTS.md  | 5 rows
-PASS  run_null_bonferroni.py 1000 draws == null_timing_1000.json (full JSON equality)  | 179 s
-PASS  400 null draws (all features) == null_all_400.json on its five fields per class  | 192 s
+PASS  run_null_bonferroni.py 1000 draws == null_timing_1000.json (full JSON equality)  | 180 s
+PASS  400 null draws (all features) == null_all_400.json on its five fields per class  | 191 s
 
 39 checks, 0 failed
 exit status 0
