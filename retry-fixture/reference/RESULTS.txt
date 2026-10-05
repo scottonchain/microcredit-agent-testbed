@@ -1,0 +1,21 @@
+$ python3 retry-fixture/reference/run_email_cases.py
+email-1  reference PASS | mutant(timeout_is_failure=True) -> FAIL (expected) | ok
+         asserts: one provider send; the retry reconciles and finds the original; row confirmed
+email-2  reference PASS | mutant(absence_means_never_sent=True) -> FAIL (expected) | ok
+         asserts: two absence verdicts, each naming index-as-of and 'not never sent'; third read hits; one send
+email-3  reference PASS | mutant(fallback_query=False) -> FAIL (expected) | ok
+         asserts: phrase reads miss after template drift; the phrase-free fallback confirms; one send
+email-4  reference PASS | mutant(replay_check=False) -> FAIL (expected) | ok
+         asserts: exactly one send; a replay under the same key is blocked
+email-5  reference PASS | mutant(dsn_fails_submission=True) -> FAIL (expected) | ok
+         asserts: submission stays confirmed; whole-list replay and resend blocked; only B failed; B resend = new intent key
+email-6  reference PASS | mutant(sweeper_failed_needs_proof=False) -> FAIL (expected) | ok
+         asserts: row unknown past all reads; no send; sweeper 'unresolved' ok, 'failed' refused without proof; hit promotes, miss never demotes
+email-7  reference PASS | mutant(recipient_enum=False) -> FAIL (expected) | ok
+         asserts: B unknown-with-no-evidence before the DSN, failed-with-DSN-reference after; A unchanged; the two B states differ
+email-8  reference PASS | mutant(timeout_is_failure=True) -> FAIL (expected) | ok
+         asserts: intent row + no dispatch record -> failed-by-our-own-hand in a dead letter; a later provider artifact raises an alert; reset/timeout stay unknown
+email-9  reference PASS | mutant(verification_timeout_is_absence=True) -> FAIL (expected) | ok
+         asserts: a timed-out verification read leaves the row pending verification with no send; the next run confirms; one send
+9 checks, 9 ok, 0 problem(s)
+exit 0

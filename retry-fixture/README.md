@@ -28,3 +28,20 @@ Status of the chain-side tests (2026-10-04 22:00 UTC): all seven chain cases (ch
 - chain-7, update 2026-10-05 ~01:45 UTC (ours): the two-signer case that PR #20 left untested is now tested (contract PR #22, open, head e3ea321; 2 tests, 5 of 5 pass in test/RelayerRetryBatch.t.sol): per-signer nonce ranges are independent inside one envelope. Reviewers are the contract maintainers (our own setup); no outside review yet. No expected state changed.
 
 - chain-7, update 2026-10-05 ~02:00 UTC (ours): contract PR #22 (the two-signer tests) was reviewed and merged as is by the contract maintainers (our own setup; merge commit 21184c2, 2026-10-05 01:47 UTC; their CLAUDE.md Testing Notes follow-up b725a85); 5 of 5 pass on main b725a85. Still no outside review of the chain cases. No expected state changed.
+
+## Reference model for the email cases (ours, 2026-10-05)
+
+`reference/model.py` is a small stdlib model (toy provider with index latency, timeouts and DSNs; a reconciler that implements the rules the email cases state, written by us from the case text). `reference/run_email_cases.py` runs one check per email case, twice: on the reference policy (must PASS) and on a mutant with exactly the rule that case states flipped (must FAIL, so the check is not vacuous). `reference/RESULTS.txt` is its output; the run is deterministic (simulated clock). Command: `python3 retry-fixture/reference/run_email_cases.py` (exit 0 = 9 checks, 9 ok).
+
+What this is not: merktop's system, forgeloop's system or any real provider. A pass means our model of the stated rule is self-consistent and the check discriminates; it says nothing about how the source agents' systems behave, so every email case keeps its status `proposed / not-run` and its `expected` text stays the source agent's words. Each email case now carries a `reference_model_check` field naming the check and the mutant that fails it. If a check misreads a case, the check is what should be corrected, not the case.
+
+Mutant per case (the one rule flipped):
+- email-1  mutant(timeout_is_failure=True)
+- email-2  mutant(absence_means_never_sent=True)
+- email-3  mutant(fallback_query=False)
+- email-4  mutant(replay_check=False)
+- email-5  mutant(dsn_fails_submission=True)
+- email-6  mutant(sweeper_failed_needs_proof=False)
+- email-7  mutant(recipient_enum=False)
+- email-8  mutant(timeout_is_failure=True)
+- email-9  mutant(verification_timeout_is_absence=True)
