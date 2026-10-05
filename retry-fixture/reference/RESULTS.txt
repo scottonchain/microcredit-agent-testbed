@@ -17,5 +17,7 @@ email-8  reference PASS | mutant(timeout_is_failure=True) -> FAIL (expected) | o
          asserts: intent row + no dispatch record -> failed-by-our-own-hand in a dead letter; a later provider artifact raises an alert; reset/timeout stay unknown
 email-9  reference PASS | mutant(verification_timeout_is_absence=True) -> FAIL (expected) | ok
          asserts: a timed-out verification read leaves the row pending verification with no send; the next run confirms; one send
-9 checks, 9 ok, 0 problem(s)
+email-11 reference PASS | mutant(dispatch_record_before_io=False) -> FAIL (expected) | ok
+         asserts: A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, auto-resend blocked, reconciled from the provider receipt: one message at the provider
+10 checks, 10 ok, 0 problem(s)
 exit 0

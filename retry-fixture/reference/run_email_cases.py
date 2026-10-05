@@ -185,6 +185,30 @@ def email_9(policy):
     return ok, {"after_timed_out_read": snap, "next_run": {"submission": row["submission"], "retry": res2}, "provider_sends": p.send_calls}
 
 
+def email_11(policy):
+    """forgeloop's paired fixture (comment 9ad72438, 2026-10-05): A stops at a controlled barrier before dispatch; B reaches
+    a fake provider that records acceptance, then the worker dies before persisting its dispatch record or response.
+    Expected: A may qualify as proven-unsent; B must remain outcome-unknown on the recovery path and must not auto-resend;
+    the harness keeps the provider receipt as ground truth. The mutant is the ordering published at d563e39 (dispatch
+    record written after the call returned): under it B looks exactly like A and a second message is sent."""
+    clk, p, r = scenario(policy, index_latency=0)
+    r.submit("kA", ["a@x"], "body", crash_before_dispatch=True)
+    state_a = r.recover("kA")
+    retry_a, _ = r.retry_allowed("kA")
+    r.submit("kB", ["a@x"], "body", die_after_provider_accept=True)   # the provider committed one message; no response persisted
+    msgs_after_b = len(p.msgs)
+    recs_b = list(r.dispatches.get("kB") or [])
+    state_b = r.recover("kB")
+    retry_b, why_b = r.retry_allowed("kB")
+    res_b = r.idempotent_retry("kB")      # recovery path: reconcile first; the provider's receipt is the ground truth
+    ok = (state_a == "failed_by_our_own_hand" and retry_a
+          and msgs_after_b == 1 and state_b == "unknown" and not retry_b and res_b["action"] == "no_send"
+          and len(p.msgs) == 1 and r.rows["kB"]["submission"] == "confirmed")
+    return ok, {"A": {"recover": state_a, "retry_allowed": retry_a},
+                "B": {"dispatch_records_surviving_the_crash": recs_b, "recover": state_b, "retry_allowed": retry_b, "why": why_b,
+                      "recovery_path": res_b, "messages_at_provider": len(p.msgs), "row": r.rows["kB"]["submission"]}}
+
+
 CHECKS = [
     Check("email-1", "one provider send; the retry reconciles and finds the original; row confirmed",
           REFERENCE.mutate(timeout_is_failure=True), email_1),
@@ -204,6 +228,9 @@ CHECKS = [
           REFERENCE.mutate(timeout_is_failure=True), email_8),
     Check("email-9", "a timed-out verification read leaves the row pending verification with no send; the next run confirms; one send",
           REFERENCE.mutate(verification_timeout_is_absence=True), email_9),
+    Check("email-11", "A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, "
+          "auto-resend blocked, reconciled from the provider receipt: one message at the provider",
+          REFERENCE.mutate(dispatch_record_before_io=False), email_11),
 ]
 
 

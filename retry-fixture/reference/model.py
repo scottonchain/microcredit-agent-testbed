@@ -19,6 +19,10 @@ Policy flags (REFERENCE = the fixture's rules; each case's mutant flips exactly 
   recipient_enum                  per-recipient outcome enum + evidence reference (vs two booleans per recipient)
   replay_check                    a second submit under an existing idempotency key is blocked
   dsn_fails_submission            a permanent DSN for one recipient is read as a failed send of the whole list (resend to all)
+  dispatch_record_before_io       the dispatch record is committed BEFORE the provider call (outcome 'pending', completed after
+                                  the response), so 'intent row + no dispatch record' can only mean the call was never permitted;
+                                  False = the ordering published at d563e39 (record written after the call returned), under which
+                                  a worker that dies between provider accept and the record write looks proven-unsent (email-11)
 """
 import hashlib
 
@@ -78,7 +82,7 @@ class Provider:
 class Policy:
     FIELDS = ("timeout_is_failure", "absence_means_never_sent", "use_as_of", "rounds", "wait", "fallback_query",
               "verification_timeout_is_absence", "sweeper_failed_needs_proof", "miss_demotes", "recipient_enum", "replay_check",
-              "dsn_fails_submission")
+              "dsn_fails_submission", "dispatch_record_before_io")
 
     def __init__(self, name, **kw):
         self.name = name
@@ -93,7 +97,8 @@ class Policy:
 
 REFERENCE = Policy("reference", timeout_is_failure=False, absence_means_never_sent=False, use_as_of=True, rounds=3, wait=8,
                    fallback_query=True, verification_timeout_is_absence=False, sweeper_failed_needs_proof=True,
-                   miss_demotes=False, recipient_enum=True, replay_check=True, dsn_fails_submission=False)
+                   miss_demotes=False, recipient_enum=True, replay_check=True, dsn_fails_submission=False,
+                   dispatch_record_before_io=True)
 
 
 class Reconciler:
@@ -111,7 +116,7 @@ class Reconciler:
         self.log = []
 
     # ---- intent + dispatch -------------------------------------------------------------------------------------
-    def submit(self, key, recipients, body, crash_before_dispatch=False):
+    def submit(self, key, recipients, body, crash_before_dispatch=False, die_after_provider_accept=False):
         if key in self.intents and self.policy.replay_check:
             self.log.append((self.clock.now, key, "replay blocked: intent exists; reconcile, do not resend"))
             return {"action": "blocked", "reason": "intent exists"}
@@ -123,13 +128,26 @@ class Reconciler:
         if crash_before_dispatch:
             self.log.append((self.clock.now, key, "process died before the provider call"))
             return {"action": "crashed_before_dispatch"}
-        return self._dispatch(key)
+        return self._dispatch(key, die_after_provider_accept=die_after_provider_accept)
 
-    def _dispatch(self, key):
+    def _dispatch(self, key, die_after_provider_accept=False):
         intent = self.intents[key]
+        rec = None
+        if self.policy.dispatch_record_before_io:
+            # committed before any network I/O: a present record means dispatch was permitted or intended, not performed
+            rec = {"at": self.clock.now, "outcome": "pending", "provider_ref": None, "code": None,
+                   "committed": "before the provider call"}
+            self.dispatches.setdefault(key, []).append(rec)
         res = self.p.send(key, intent["recipients"], intent["phrase"])
-        self.dispatches.setdefault(key, []).append({"at": self.clock.now, "outcome": res["outcome"],
-                                                    "provider_ref": res.get("message_id"), "code": res.get("code")})
+        if die_after_provider_accept:
+            # forgeloop's case B: the provider has committed the message; the worker dies before persisting the dispatch
+            # record (if it is written after the call) or the response. Only what was committed before the call survives.
+            self.log.append((self.clock.now, key, "process died after the provider call, before the response was persisted"))
+            return {"action": "crashed_after_provider_call"}
+        if rec is None:
+            rec = {"at": self.clock.now, "outcome": None, "provider_ref": None, "code": None, "committed": "after the provider call"}
+            self.dispatches.setdefault(key, []).append(rec)
+        rec.update({"outcome": res["outcome"], "provider_ref": res.get("message_id"), "code": res.get("code")})
         row = self.rows[key]
         if res["outcome"] == "accepted":
             self._promote(key, {"kind": "provider_accept", "ref": res["message_id"], "at": self.clock.now})
@@ -147,9 +165,20 @@ class Reconciler:
         return {"action": "dispatched", "outcome": res["outcome"]}
 
     def recover(self, key):
-        """Restart path: an intent row with no dispatch record = the process died before any provider call."""
+        """Restart path. Intent row with no dispatch record = no provider call was ever permitted -> failed-by-our-own-hand
+        (sound only because the record is committed before the call; see dispatch_record_before_io). A dispatch record
+        whose outcome is still 'pending' = the call may have happened and the response was lost -> unknown; the row goes to
+        pending_verification and auto-resend stays blocked (forgeloop's case B, email-11)."""
         row = self.rows[key]
-        if key in self.intents and not self.dispatches.get(key):
+        recs = self.dispatches.get(key) or []
+        if recs and recs[-1]["outcome"] == "pending":
+            row["submission"] = "unknown"
+            row["status"] = "pending_verification"
+            row["verdicts"].append({"kind": "dispatch_record_pending", "at": self.clock.now,
+                                    "meaning": "dispatch was permitted before the call and no response was persisted: neither "
+                                               "confirmation nor absence; reconcile against the provider, never resend on this"})
+            return "unknown"
+        if key in self.intents and not recs:
             row["submission"] = "failed"
             row["submission_evidence"] = {"kind": "failed_by_our_own_hand", "stop_point": "process death before the provider call",
                                           "evidence": "intent row present, no dispatch record under this key", "at": self.clock.now}
