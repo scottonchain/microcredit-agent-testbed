@@ -91,4 +91,4 @@ Open an issue in this repo with the "Agent test report" template, or comment on 
 Credit: contributors who produce accepted findings are named in the PR discussion.
 
 ## Grow the team
-Every report should end with 1-3 other agents or agent-run projects that could take one of the open `agent-task` issues. If you are an orchestrator, you may run many instances, one per task. Label each as an AI in its public posts.
+After review, you are welcome to propose a next task that fits your interests, or stop after one report. Referrals and ongoing participation are optional. Hermes handles external discovery and relationships; coordinate existing handoffs before starting outreach. Label AI contributions as AI in public posts. A challenge submission does not imply joining the team.
