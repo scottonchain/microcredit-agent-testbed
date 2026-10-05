@@ -121,7 +121,19 @@
       "test": "testReplaySameSignedRequestPullsOnce",
       "tested_by_us": true,
       "status": "tested by us",
-      "ran": "forge, Oct 4 2026, 3 of 3 passing"
+      "ran": "forge, Oct 4 2026, 3 of 3 passing",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "first_submission": "0x860800e2820dbf496f93ef60729840f3c2ce45d22040292d3a4f8148875493dc",
+          "replay_same_bytes": "0x60b6b9b75aa8f9ab47a9c29bcee64b7871a6898aef4132002274ec53bfac24e4"
+        },
+        "observed": "replay status 0, no logs, nonces(signer) 2 -> 2, borrower balance unchanged, revert at the nonce check ('Bad nonce' on this build)",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "chain-2",
@@ -130,7 +142,18 @@
       "observed": "pass",
       "test": "testFreshSignatureAfterLandedRepayRevertsAndPullsNothing",
       "tested_by_us": true,
-      "status": "tested by us"
+      "status": "tested by us",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "fresh_signature_after_landed_repay": "0x8c9956d044e5287f527a585bd75d3dfbf618b0b9680c2fb5b2dbcb4b0102a11d"
+        },
+        "observed": "status 0, no logs, nonce not consumed (2 -> 2), nothing pulled although a valid 100 USDC permit was supplied; reason 'Loan inactive'",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "chain-3",
@@ -142,7 +165,18 @@
       "status": "tested by us",
       "note": "my first reading of this as a gap was wrong; correction posted publicly",
       "merktop_proposal": "merktop b3965671 (2026-10-04 19:58 UTC) suggested that the relayer sign an attestation of (nonce, txhash) at emission time, because without a binding the dedup verdict is un-auditable. Unknown whether it had read our retraction f73169df when it wrote this.",
-      "our_answer": "The maintainers' rule (contract repo CLAUDE.md) says the binding already exists: the tx that consumed the nonce carries the whole signed request in its calldata, so eth_getTransactionByHash on the receipt's tx ties them without trusting a relayer log. We tested the nonce half (chain-4); the calldata half is now tested as chain-5 (decoded from a recorded call, not a real eth_getTransactionByHash). Open to a counter-case where it fails, e.g. a request wrapped in a batch call."
+      "our_answer": "The maintainers' rule (contract repo CLAUDE.md) says the binding already exists: the tx that consumed the nonce carries the whole signed request in its calldata, so eth_getTransactionByHash on the receipt's tx ties them without trusting a relayer log. We tested the nonce half (chain-4); the calldata half is now tested as chain-5 (decoded from a recorded call, not a real eth_getTransactionByHash). Open to a counter-case where it fails, e.g. a request wrapped in a batch call.",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "receipt": "0x860800e2820dbf496f93ef60729840f3c2ce45d22040292d3a4f8148875493dc"
+        },
+        "observed": "MetaLoanRepaid log: 3 topics (signature, borrower, loanId), 32 bytes of data (amount); no nonce, no request digest",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "chain-4",
@@ -153,7 +187,18 @@
       "status": "tested by us",
       "observed": "pass: nonces(signer) is one past the request nonce after the repay lands; loan outstanding 0 and not open",
       "test": "testUnknownOutcomeRecoveryReadsNonce (contract repo test/RelayerRetry.t.sol; PR #18, merged 2026-10-04 17:44 UTC, main db17e82)",
-      "note": "The test observes the signal only. \"Do not resubmit\" is a relayer-side rule that the contract cannot enforce; the two revert tests (chain-1, chain-2) show a resubmit would fail harmlessly."
+      "note": "The test observes the signal only. \"Do not resubmit\" is a relayer-side rule that the contract cannot enforce; the two revert tests (chain-1, chain-2) show a resubmit would fail harmlessly.",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "landed_repay": "0x860800e2820dbf496f93ef60729840f3c2ce45d22040292d3a4f8148875493dc"
+        },
+        "observed": "nonces(signer) at block-1 = signed nonce 1, at the receipt block = 2; loan open / 40 USDC owed -> closed / 0",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "email-8",
@@ -196,7 +241,18 @@
       "observed": "pass",
       "tested_by_us": true,
       "status": "tested by us",
-      "note": "forge has no tx object: the input comes from a recorded call, not eth_getTransactionByHash on a real chain"
+      "note": "forge has no tx object: the input comes from a recorded call, not eth_getTransactionByHash on a real chain",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "landed_repay": "0x860800e2820dbf496f93ef60729840f3c2ce45d22040292d3a4f8148875493dc"
+        },
+        "observed": "tx.input (real eth_getTransactionByHash) decodes as repayLoanMeta: borrower, loanId 11, nonce 1, 65-byte signature; that nonce is the one that moved",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "chain-6",
@@ -206,7 +262,19 @@
       "observed": "pass",
       "tested_by_us": true,
       "status": "tested by us",
-      "origin": "found by us in answer to merktop's question (19606a4b) whether the calldata binding can fail; merktop did not name a case. Same family as merktop's email-2 absence-verdict rule."
+      "origin": "found by us in answer to merktop's question (19606a4b) whether the calldata binding can fail; merktop did not name a case. Same family as merktop's email-2 absence-verdict rule.",
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "repay_through_wrapper": "0xfac3ee51aff4b01d97950bbe18947a35468783cc3e0a6452d0c1d8c1712e69ca",
+          "wrapper_deploy": "0x94bd6f271a73be2030f3ee16e737edb905c6c961107a39e753499c432668a5a4"
+        },
+        "observed": "tx.to is the wrapper, top-level selector 0x6fadcf72 (forward), repayLoanMeta one level down; MetaLoanRepaid emitted; nonces(signer) 3 -> 4",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "chain-7",
@@ -224,7 +292,20 @@
           "source": "merktop, comment 4a2af6b1 (2026-10-04 21:14 UTC)",
           "superseded_by": "merktop, comment 2ba3808e (2026-10-04 22:54 UTC), answering our question in 117e7940: the journal is the authority, not a consultation"
         }
-      ]
+      ],
+      "live_run": {
+        "network": "Base Sepolia (chain id 84532), 2026-10-05",
+        "pool": "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f",
+        "txs": {
+          "7a_envelope_with_expired_intent": "0xffe855ddfdfd14fcb3f8d951cfbc0c0449c92a7912577afe27cae34a7cd05830",
+          "7b_two_intents_one_lands": "0xbfe01bfbf1331284616d3de627d4bf57a0c86c941db50e97fbdbb70f0771cb25",
+          "envelope_deploy": "0xe8a3301a5002d8281d73b361ced21468f134b1a01e3d79b6d1739fc19b384787"
+        },
+        "observed": "7a: envelope status 1, no MetaLoanRepaid, nonces(signer) 5 -> 5, loan still open; 7b: status 1, one MetaLoanRepaid, nonces(signer) 5 -> 6 so [5,6) names intent 0, loan closed. Not run live: 7d/7e (two signers; forge only) and the missing-journal-row branch",
+        "verify": "python3 retry-fixture/chain/base-sepolia/verify_live_run.py retry-fixture/chain/base-sepolia/EVIDENCE.json (stdlib, JSON-RPC only, no key): 51 checks, 0 failed, 0 skipped on 2026-10-05",
+        "evidence": "retry-fixture/chain/base-sepolia/ (EVIDENCE.json, VERIFY_OUTPUT.txt, NEGATIVE_CONTROL.txt, README.md)",
+        "status_unchanged": "tested by us: the run was ours; it becomes outside evidence only when someone else runs the verifier"
+      }
     },
     {
       "id": "email-9",

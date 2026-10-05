@@ -1,0 +1,205 @@
+#!/usr/bin/env python3
+"""Chain helpers for the live run (Base Sepolia only). Keys are read from the files named by RETRY_FIXTURE_RELAYER_KEY_FILE /
+RETRY_FIXTURE_BORROWER_KEY_FILE and passed to `cast`; never printed. Requires foundry's cast on PATH."""
+import json, os, subprocess, time, urllib.request
+
+RPC = "https://sepolia.base.org"
+CHAIN_ID = 84532
+POOL = "0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f"
+USDC = "0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C"
+DEPLOYER = "0x5e4dC7639D2b94006c51aD5373173f5e01c248F9"
+DEPLOYER_KEY_FILE = os.environ.get("RETRY_FIXTURE_RELAYER_KEY_FILE", "relayer.key")
+BORROWER_KEY_FILE = os.environ.get("RETRY_FIXTURE_BORROWER_KEY_FILE", "borrower.key")
+REPAY_SIG = "repayLoanMeta((address,uint256,uint256,uint256,uint256),bytes,(uint256,uint256,uint8,bytes32,bytes32))"
+BORROW_SIG = "borrowAndDisburseMeta((address,uint256,address,uint256,uint256,uint256,uint256),bytes)"
+REPAY_TYPE = "RepayRequest(address borrower,uint256 loanId,uint256 amount,uint256 nonce,uint256 deadline)"
+BORROW_TYPE = "BorrowAndDisburse(address borrower,uint256 amount,address to,uint256 repaymentPeriod,uint256 maxAprBps,uint256 nonce,uint256 deadline)"
+PERMIT_TYPE = "Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)"
+DOMAIN_TYPE = "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
+
+
+def cast(*args, timeout=90):
+    r = subprocess.run(["cast", *map(str, args)], capture_output=True, text=True, timeout=timeout)
+    if r.returncode:
+        raise RuntimeError("cast %s failed: %s" % (args[0], (r.stdout + r.stderr).strip()[:400]))
+    return r.stdout.strip()
+
+
+def rpc(method, params):
+    req = urllib.request.Request(RPC, data=json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(),
+                                 headers={"Content-Type": "application/json", "User-Agent": "hermes-agent-909"})
+    return json.loads(urllib.request.urlopen(req, timeout=60).read().decode())
+
+
+def keccak_text(s):
+    return cast("keccak", s)
+
+
+def keccak_hex(h):
+    return cast("keccak", h)
+
+
+def abi_encode(types, *values):
+    return cast("abi-encode", "f(%s)" % types, *values)
+
+
+def key(path):
+    return open(path).read().strip()
+
+
+def addr_of(path):
+    return cast("wallet", "address", "--private-key", key(path))
+
+
+def call(to, sig, *args, block=None, frm=None):
+    extra = []
+    if block is not None:
+        extra += ["--block", str(block)]
+    if frm:
+        extra += ["--from", frm]
+    for attempt in range(12):   # the public RPC is load-balanced; a node may not yet have the receipt's block
+        try:
+            return cast("call", to, sig, *args, "--rpc-url", RPC, *extra)
+        except RuntimeError as e:
+            if "block not found" in str(e) or "missing trie node" in str(e) or "header not found" in str(e):
+                time.sleep(3)
+                continue
+            raise
+    raise RuntimeError("block %s not served by the RPC after retries" % block)
+
+
+JOURNAL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "JOURNAL.jsonl")
+
+
+def journal(entry):
+    """Append-only intent journal written BEFORE broadcast (the fixture's own rule), then updated with the tx hash."""
+    entry = dict(entry, t=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+    with open(JOURNAL, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+    return entry
+
+
+def call_data(to, data, frm=None):
+    extra = ["--from", frm] if frm else []
+    r = subprocess.run(["cast", "call", to, "--data", data, "--rpc-url", RPC, *extra], capture_output=True, text=True, timeout=90)
+    return r.returncode, (r.stdout + r.stderr).strip()
+
+
+def domain_separator(name, version, verifying):
+    return keccak_hex(abi_encode("bytes32,bytes32,bytes32,uint256,address", keccak_text(DOMAIN_TYPE), keccak_text(name),
+                                 keccak_text(version), CHAIN_ID, verifying))
+
+
+def sign_struct(key_file, ds, struct_hash):
+    digest = keccak_hex("0x1901" + ds[2:] + struct_hash[2:])
+    sig = cast("wallet", "sign", "--no-hash", "--private-key", key(key_file), digest)
+    assert len(sig) == 132, sig[:10]
+    return sig, digest
+
+
+def sign_repay(key_file, borrower, loan_id, amount, nonce, deadline):
+    sh = keccak_hex(abi_encode("bytes32,address,uint256,uint256,uint256,uint256", keccak_text(REPAY_TYPE), borrower, loan_id, amount, nonce, deadline))
+    return sign_struct(key_file, domain_separator("DecentralizedMicrocredit", "1", POOL), sh)[0]
+
+
+def sign_borrow(key_file, borrower, amount, to, period, max_apr, nonce, deadline):
+    sh = keccak_hex(abi_encode("bytes32,address,uint256,address,uint256,uint256,uint256,uint256", keccak_text(BORROW_TYPE), borrower, amount, to,
+                               period, max_apr, nonce, deadline))
+    return sign_struct(key_file, domain_separator("DecentralizedMicrocredit", "1", POOL), sh)[0]
+
+
+def sign_permit(key_file, owner, spender, value, deadline):
+    ds = call(USDC, "DOMAIN_SEPARATOR()(bytes32)")
+    nonce = int(call(USDC, "nonces(address)(uint256)", owner).split()[0])
+    sh = keccak_hex(abi_encode("bytes32,address,address,uint256,uint256,uint256", keccak_text(PERMIT_TYPE), owner, spender, value, nonce, deadline))
+    sig, _ = sign_struct(key_file, ds, sh)
+    r, s, v = sig[2:66], sig[66:130], int(sig[130:132], 16)
+    return "(%d,%d,%d,0x%s,0x%s)" % (value, deadline, v, r, s)
+
+
+def no_permit():
+    return "(0,0,0,0x%s,0x%s)" % ("0" * 64, "0" * 64)
+
+
+def repay_calldata(borrower, loan_id, amount, nonce, deadline, sig, permit_tuple):
+    req = "(%s,%d,%d,%d,%d)" % (borrower, loan_id, amount, nonce, deadline)
+    return cast("calldata", REPAY_SIG, req, sig, permit_tuple)
+
+
+def borrow_calldata(borrower, amount, to, period, max_apr, nonce, deadline, sig):
+    req = "(%s,%d,%s,%d,%d,%d,%d)" % (borrower, amount, to, period, max_apr, nonce, deadline)
+    return cast("calldata", BORROW_SIG, req, sig)
+
+
+def to_int(x):
+    if isinstance(x, int):
+        return x
+    if isinstance(x, str):
+        return int(x, 16) if x.startswith("0x") else int(x)
+    return x
+
+
+def wait_receipt(txhash):
+    for _ in range(60):
+        r = rpc("eth_getTransactionReceipt", [txhash])
+        if r.get("result"):
+            return r["result"]
+        time.sleep(3)
+    raise RuntimeError("no receipt for " + txhash)
+
+
+def _send_async(args):
+    """cast send --async: returns the tx hash; the receipt is fetched separately so a reverting tx is still recorded."""
+    for attempt in range(4):
+        r = subprocess.run(["cast", args[0], "--async", *args[1:]], capture_output=True, text=True, timeout=180)
+        out = (r.stdout + r.stderr).strip()
+        if r.returncode == 0:
+            h = [t for t in out.split() if t.startswith("0x") and len(t) == 66]
+            if h:
+                return h[-1]
+            raise RuntimeError("no tx hash in: " + out[:300])
+        if any(k in out.lower() for k in ("underpriced", "rate limit", "429", "timeout", "temporarily", "already known")):
+            time.sleep(6)
+            continue
+        if "estimate gas" in out.lower() and attempt < 3:
+            # a load-balanced node without the previous step's block estimates against stale state; re-check and retry
+            journal({"state": "estimate_gas_failed", "attempt": attempt, "text": out[:200]})
+            time.sleep(8)
+            continue
+        raise RuntimeError("send failed: " + out[:500])
+    raise RuntimeError("send failed after retries")
+
+
+def send_data(key_file, to, data, gas_limit=None, value=None, step=None):
+    """Sends a raw-calldata tx and returns its receipt (dict, hex fields) even if it reverted on chain.
+    Journal: intent row before broadcast, hash row after broadcast, so an interrupted run can be reconciled from the chain."""
+    args = ["send", to, data, "--rpc-url", RPC, "--private-key", key(key_file)]
+    if gas_limit:
+        args += ["--gas-limit", str(gas_limit)]
+    if value:
+        args += ["--value", str(value)]
+    journal({"step": step, "state": "intent", "to": to, "data": data, "gas_limit": gas_limit})
+    h = _send_async(args)
+    journal({"step": step, "state": "broadcast", "to": to, "tx": h})
+    return wait_receipt(h)
+
+
+def create(key_file, bytecode, step=None):
+    args = ["send", "--rpc-url", RPC, "--private-key", key(key_file), "--create", bytecode]
+    journal({"step": step, "state": "intent", "to": None, "data_sha256": __import__("hashlib").sha256(bytes.fromhex(bytecode[2:])).hexdigest()})
+    h = _send_async(args)
+    journal({"step": step, "state": "broadcast", "to": None, "tx": h})
+    return wait_receipt(h)
+
+
+def send_sig(key_file, to, sig, *args, gas_limit=None):
+    data = cast("calldata", sig, *args)
+    return send_data(key_file, to, data, gas_limit=gas_limit)
+
+
+def nonces(addr, block=None):
+    return int(call(POOL, "nonces(address)(uint256)", addr, block=block).split()[0])
+
+
+def now():
+    return int(time.time())

@@ -58,3 +58,6 @@ Update 2026-10-05 ~06:45 UTC (ours): `reference/comment_api.py` (toy create endp
 - email-10 mutant(byte_match_required=False)
 - api-1    mutant(two_authorities=False)
 
+## Chain cases run live on Base Sepolia (ours, 2026-10-05 ~07:50 UTC)
+
+`chain/base-sepolia/`: chain-1..7 as real transactions on Base Sepolia against the project's testnet pool (relayer-submitted; the borrower is a key that never sent a transaction). `verify_live_run.py` (stdlib, JSON-RPC only, no key) re-derives every expected state from the chain: 51 checks, 0 failed (`VERIFY_OUTPUT.txt`); three tampered evidence files each exit 1 (`NEGATIVE_CONTROL.txt`). Each chain case in `cases.json` now carries a `live_run` field with its tx hashes; statuses unchanged (`tested by us`). Not run live: the two-signer cases of chain-7 and the missing-journal-row branch. Two post-receipt reads during the run hit a lagging public RPC node and were recorded after the fact from the chain (stated in `chain/base-sepolia/README.md`).
