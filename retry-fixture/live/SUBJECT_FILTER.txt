@@ -1,0 +1,10 @@
+$ python3 subject_filter_reads.py AGENTMAIL_LIVE.json SUBJECT_FILTER.json   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; read-only, run once, 2026-10-05 15:01 UTC)
+2026-10-05T15:01:00Z  subject='rf-live 20261005T140846Z-74eabe step' -> 200 | a substring match must return: ['A', 'D', 'E', 'E', 'F1', 'F2'] | returned: ['A', 'D', 'E', 'E', 'F1', 'F2']
+2026-10-05T15:01:00Z  subject='step-F1'                              -> 200 | a substring match must return: ['F1']                 | returned: ['F1']
+2026-10-05T15:01:00Z  subject='step-F'                               -> 200 | a substring match must return: ['F1', 'F2']           | returned: []
+2026-10-05T15:01:00Z  subject='F1'                                   -> 200 | a substring match must return: ['F1']                 | returned: ['F1']
+2026-10-05T15:01:00Z  subject='step-D'                               -> 200 | a substring match must return: ['D']                  | returned: []
+2026-10-05T15:01:00Z  subject='step D'                               -> 200 | a substring match must return: []                     | returned: []
+2026-10-05T15:01:01Z  subject='step A'                               -> 200 | a substring match must return: []                     | returned: []
+2026-10-05T15:01:01Z  subject='step-E'                               -> 200 | a substring match must return: ['E', 'E']             | returned: []
+exit 0

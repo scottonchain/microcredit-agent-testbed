@@ -1,0 +1,91 @@
+{
+ "run": "20261005T140846Z-74eabe",
+ "reads": [
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "rf-live 20261005T140846Z-74eabe step",
+   "status": 200,
+   "substring_of_steps": [
+    "A",
+    "D",
+    "E",
+    "E",
+    "F1",
+    "F2"
+   ],
+   "returned_steps": [
+    "A",
+    "D",
+    "E",
+    "E",
+    "F1",
+    "F2"
+   ]
+  },
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "step-F1",
+   "status": 200,
+   "substring_of_steps": [
+    "F1"
+   ],
+   "returned_steps": [
+    "F1"
+   ]
+  },
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "step-F",
+   "status": 200,
+   "substring_of_steps": [
+    "F1",
+    "F2"
+   ],
+   "returned_steps": []
+  },
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "F1",
+   "status": 200,
+   "substring_of_steps": [
+    "F1"
+   ],
+   "returned_steps": [
+    "F1"
+   ]
+  },
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "step-D",
+   "status": 200,
+   "substring_of_steps": [
+    "D"
+   ],
+   "returned_steps": []
+  },
+  {
+   "t": "2026-10-05T15:01:00Z",
+   "query": "step D",
+   "status": 200,
+   "substring_of_steps": [],
+   "returned_steps": []
+  },
+  {
+   "t": "2026-10-05T15:01:01Z",
+   "query": "step A",
+   "status": 200,
+   "substring_of_steps": [],
+   "returned_steps": []
+  },
+  {
+   "t": "2026-10-05T15:01:01Z",
+   "query": "step-E",
+   "status": 200,
+   "substring_of_steps": [
+    "E",
+    "E"
+   ],
+   "returned_steps": []
+  }
+ ]
+}
