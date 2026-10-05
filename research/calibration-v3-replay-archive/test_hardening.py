@@ -72,14 +72,14 @@ class Hardening(unittest.TestCase):
     def test_diagnostics_do_not_hide_ipv6_io_error(self):
         with self.assertRaises(PermissionError): self.diag(ipv6_io_error=True)
 
-    def gate(self, mode):
+    def gate(self, mode, injection_path=False):
         with tempfile.TemporaryDirectory() as d:
             d = Path(d); bins = d / 'bin'; bins.mkdir()
             commands = {
                 'id': 'echo 0', 'uname': 'if [ "$1" = -m ]; then echo x86_64; else echo Linux; fi',
                 'tar': 'while [ "$1" != -C ]; do shift; done; shift; mkdir -p "$1/dev"; touch "$1/dev/null" "$1/dev/zero" "$1/dev/random" "$1/dev/urandom"',
                 'unshare': '''case "$*" in
-*replay-acceptance*) echo acceptance; exit 0;;
+*acceptance_test.sh*) echo acceptance; exit 0;;
 *) if [ "$MODE" = crash ]; then exit 7; fi
    [ "$MODE" = missing ] || { if [ "$MODE" = network ]; then echo 'network: NOT isolated'; else echo 'network: isolated'; fi; }
    echo 'glibc: bound'
@@ -91,11 +91,12 @@ esac''',
                 p = bins / name; p.write_text('#!/bin/sh\n' + body + '\n'); p.chmod(0o755)
             blob = d / 'blob'; blob.write_bytes(b'fixture'); digest = hashlib.sha256(b'fixture').hexdigest()
             # Injection-shaped work path must remain a literal argument.
-            work = d / "work ' ; touch INJECTED ; #"
+            work = d / ("work ' ; touch INJECTED ; #" if injection_path else "work")
             env = dict(os.environ, PATH=str(bins) + ':' + os.environ['PATH'], REPLAY_DISPOSABLE_VM='yes', MODE=mode, LIBC=LIBC, LOADER=LOADER)
             result = subprocess.run(['sh', str(HERE / 'run_acceptance_in_image_rootfs.sh'), str(blob), digest, str(blob), digest, '7742', 'publicsalt', str(work)], env=env, text=True, capture_output=True, cwd=d)
             self.assertFalse((d / 'INJECTED').exists())
             return result
+    def test_injection_shaped_path_is_literal(self): self.assertEqual(self.gate('ok', injection_path=True).returncode, 0)
     def test_gate_accepts_complete_receipt(self): self.assertEqual(self.gate('ok').returncode, 0)
     def test_gate_rejects_diag_crash(self): self.assertNotEqual(self.gate('crash').returncode, 0)
     def test_gate_rejects_nonisolated_zero_exit(self): self.assertNotEqual(self.gate('network').returncode, 0)

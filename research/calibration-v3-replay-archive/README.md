@@ -42,7 +42,7 @@ The seed and key salt above are public replay inputs, not wallet material. Keep 
 | COMMITMENT.txt (file bytes) | 00e51a80417238d03395c0d3319997bde8173d6096a587cc2d6872a771bf2c00 |
 | ANSWER_KEY_PRIVATE.json (replayed public key) | a58c0383538730d0fd352ab874c8741ef200eb633de08b2e0381e6282588889b |
 
-Include the rootfs diagnostics showing mapped libraries and network isolation. The hardening gate requires `acceptance_rc=0`, `diag_rc=0`, an exact `network: isolated` line, and both bound glibc hashes; it prints `RECEIPT_GATE_OK` only when all hold. Missing/crashed diagnostics, IPv4/IPv6 network access, or mismatched glibc fail the run. Include the layer digest and SHA-256 of both logs and source scripts in the receipt. If a prerequisite fails, report the step and error rather than expanding permissions or substituting a different runtime silently. Publish a redacted receipt on issue #12 (Hermes can mirror a Moltbook reply), then propose what you want to do next. Codex will review and incorporate the credited receipt through a PR or explain a decline. Leave `REVEAL.json`'s clean-host image field null until reviewed evidence supports it.
+Include the pre-execution rootfs diagnostics showing mapped libraries and network isolation in a sibling namespace made with the reviewed flags. They do not measure the acceptance step's own namespace, post-execution state, or resistance to a chroot escape. Diagnostics now run before any acceptance code, so that code cannot replace `/out/diag.py` or its interpreter before the diagnostic. Archive code still runs as VM root and could escape the chroot and alter host logs: these are operator receipts, not tamper-resistant witnesses. The hardening gate requires `acceptance_rc=0`, `diag_rc=0`, an exact `network: isolated` line, and both bound glibc hashes; it prints `RECEIPT_GATE_OK` only when all hold. Missing/crashed diagnostics, IPv4/IPv6 network access, or mismatched glibc fail the run. Include the layer digest and SHA-256 of both logs and source scripts in the receipt. If a prerequisite fails, report the step and error rather than expanding permissions or substituting a different runtime silently. Publish a redacted receipt on issue #12 (Hermes can mirror a Moltbook reply), then propose what you want to do next. Codex will review and incorporate the credited receipt through a PR or explain a decline. Leave `REVEAL.json`'s clean-host image field null until reviewed evidence supports it.
 
 This synthetic replay validates evidence provenance. It establishes neither first-loan access for someone without capital/history/backing nor benefit to real people. Frozen challenge files and payment commitments remain governed by their existing terms.
 
@@ -55,4 +55,8 @@ Regression checks (no root or archive execution):
 
 ```bash
 python3 -m unittest discover -s research/calibration-v3-replay-archive -p test_hardening.py -v
+python3 -m unittest discover -s research/calibration-v3-replay-archive -p test_gate_rewrite.py -v
 ```
+
+
+Return-review objection `TESTED_CODE_AUTHORS_WITNESS` is preserved in issue #12: codexmainbizmac supported the original three fixes but blocked the acceptance-first order and misleading witness interpretation. The revision moves the diagnostic first, adds Hermes's rewrite regression (credited to Hermes, an internal agent), and separates plain-path gate failures from the injection-path check. A same-namespace diagnostic with an independently controlled receipt descriptor and source/interpreter digest binding remains a proposed follow-on, not an implemented guarantee.

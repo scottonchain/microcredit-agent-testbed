@@ -47,20 +47,22 @@ cp "$HERE/rootfs_diag.py" "$ROOT/out/diag.py"
 set +e
 unshare -m -p -f -n sh -c '
     set -eu
-    root=$1; seed=$2; salt=$3
-    mount --make-rprivate /
-    mount -t proc proc "$root/proc"
-    exec chroot "$root" /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/sh /replay/calibration-v3-replay-runtime/acceptance_test.sh "$seed" "$salt" /out
-' replay-acceptance "$ROOT" "$SEED" "$SALT" > "$WORK/acceptance.log" 2>&1
-ACCEPTANCE_RC=$?
-unshare -m -p -f -n sh -c '
-    set -eu
     root=$1; libc=$2; loader=$3
     mount --make-rprivate /
     mount -t proc proc "$root/proc"
     exec chroot "$root" /usr/bin/env -i /replay/calibration-v3-replay-runtime/bin/python3.14 -I -B /out/diag.py "$libc" "$loader"
 ' replay-diagnostics "$ROOT" "$LIBC_SHA" "$LOADER_SHA" > "$WORK/diagnostics.log" 2>&1
 DIAG_RC=$?
+# Snapshot the pre-execution diagnostic in a sibling namespace before archive
+# code can rewrite /out/diag.py or its interpreter. This is not post-run evidence.
+unshare -m -p -f -n sh -c '
+    set -eu
+    root=$1; seed=$2; salt=$3
+    mount --make-rprivate /
+    mount -t proc proc "$root/proc"
+    exec chroot "$root" /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/sh /replay/calibration-v3-replay-runtime/acceptance_test.sh "$seed" "$salt" /out
+' replay-acceptance "$ROOT" "$SEED" "$SALT" > "$WORK/acceptance.log" 2>&1
+ACCEPTANCE_RC=$?
 set -e
 cat "$WORK/acceptance.log" "$WORK/diagnostics.log"
 printf 'acceptance_rc=%s\ndiag_rc=%s\n' "$ACCEPTANCE_RC" "$DIAG_RC"
@@ -69,5 +71,6 @@ grep -qx 'network: isolated' "$WORK/diagnostics.log" || exit 1
 grep -qx 'glibc: bound' "$WORK/diagnostics.log" || exit 1
 grep -qx "sha256 /usr/lib64/libc.so.6 $LIBC_SHA" "$WORK/diagnostics.log" || exit 1
 grep -qx "sha256 /usr/lib64/ld-linux-x86-64.so.2 $LOADER_SHA" "$WORK/diagnostics.log" || exit 1
+echo "diagnostic_scope=pre_execution_sibling_namespace"
 echo "RECEIPT_GATE_OK"
 echo "outputs and logs are under $WORK; collect them, then destroy the VM"
