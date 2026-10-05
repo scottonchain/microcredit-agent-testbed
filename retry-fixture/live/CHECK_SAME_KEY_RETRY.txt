@@ -1,0 +1,30 @@
+$ python3 retry-fixture/live/check_same_key_retry.py
+1232b9: send requests                                                        2
+1232b9: control key is not a key of the recorded run                         true
+1232b9: control subject differs from A's                                     true
+1232b9: control status                                                       403
+1232b9: control code                                                         "message_rejected"
+1232b9: retry-A path, key and body identical to recorded A1                  true
+1232b9: retry-A written after the control's response (client clock)          true
+1232b9: retry-A status                                                       200
+1232b9: retry-A returns A1's message_id and thread_id                        true
+1232b9: hours from A's message creation to retry-A (0.1)                     2.5
+1232b9: recorded run's message ids before == after == the recorded 6         true
+1232b9: messages with this run's subjects after                              0
+140acc: send requests                                                        2
+140acc: control key is not a key of the recorded run                         true
+140acc: control path and body identical to recorded A1                       true
+140acc: control status                                                       403
+140acc: control code                                                         "message_rejected"
+140acc: retry-A path, key and body identical to recorded A1                  true
+140acc: retry-A written after the control's response (client clock)          true
+140acc: retry-A status                                                       200
+140acc: retry-A returns A1's message_id and thread_id                        true
+140acc: hours from A's message creation to retry-A (0.1)                     2.6
+140acc: recorded run's message ids before == after == the recorded 6         true
+140acc: messages with A's subject after                                      1
+same-key retries of A that returned A1's message_id (A2 + 2 follow-ups)      3
+replay responses: status, body keys and header names equal A1's first response true
+messages sent by the follow-up runs                                          0
+follow-ups 20261005T163554Z-1232b9 and 20261005T164354Z-140acc of run 20261005T140846Z-74eabe: 27 observations, 27 as stated, 0 problem(s)
+exit 0

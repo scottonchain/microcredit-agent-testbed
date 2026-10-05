@@ -1,0 +1,258 @@
+{
+ "what": "exact-body control for a same-key retry; see exact_body_control.py",
+ "run": "20261005T164354Z-140acc",
+ "recorded_run": "20261005T140846Z-74eabe",
+ "stopped": null,
+ "messages_before": [
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-A",
+   "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:08:46.953Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-D",
+   "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:18.898Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:24.266Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.527Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+   "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.862Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+   "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:32.266Z",
+   "labels": [
+    "sent"
+   ]
+  }
+ ],
+ "messages_after": [
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-A",
+   "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:08:46.953Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-D",
+   "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:18.898Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:24.266Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.527Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+   "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.862Z",
+   "labels": [
+    "sent"
+   ]
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+   "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:32.266Z",
+   "labels": [
+    "sent"
+   ]
+  }
+ ],
+ "send_requests": 2,
+ "requests": [
+  {
+   "step": "pre",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>",
+   "idempotency_key": null,
+   "body": null,
+   "note": null,
+   "t_sent": "2026-10-05T16:43:54.281Z",
+   "status": 200,
+   "response": {
+    "organization_id": "<org>",
+    "pod_id": "<org>",
+    "inbox_id": "<inbox>",
+    "email": "<inbox>",
+    "display_name": "Hermes AI agent",
+    "status_until": "2026-11-04T14:08:46.953Z",
+    "updated_at": "2026-10-05T14:08:47.288Z",
+    "created_at": "2026-10-04T14:19:48.726Z"
+   },
+   "t_response": "2026-10-05T16:43:54.507Z",
+   "latency_ms": 215,
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "332",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 16:43:54 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "list",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>/messages?limit=100",
+   "idempotency_key": null,
+   "body": null,
+   "note": null,
+   "t_sent": "2026-10-05T16:43:54.508Z",
+   "status": 200,
+   "response": {
+    "keys": [
+     "count",
+     "limit",
+     "messages"
+    ],
+    "count": 6
+   },
+   "t_response": "2026-10-05T16:43:54.617Z",
+   "latency_ms": 99,
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "4888",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 16:43:54 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "control-exact",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "0ac6aa65-5a52-4a97-8cff-a1d5ffc051c7",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-A",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step A. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "note": "identical body to recorded request A1 of run 20261005T140846Z-74eabe, fresh key",
+   "t_sent": "2026-10-05T16:43:54.618Z",
+   "status": 403,
+   "response": {
+    "name": "MessageRejectedError",
+    "code": "message_rejected",
+    "message": "Message rejected: this message was classified as spam, and this organization has exceeded its budget of 5 spam-flagged messages today. Messages classified as spam are blocked until the daily window resets at 2026-10-06T00:00:00.000Z.",
+    "fix": "Messages that are not classified as spam still send normally. Revise the content to avoid spam patterns, or wait for the reset time in the message. This block applies only to free-tier organizations, and the daily budget is smaller for new accounts and accounts with elevated bounce or sending-limit activity. If you believe this classification is wrong, contact support@agentmail.to.",
+    "docs": "https://docs.agentmail.to/errors#message_rejected"
+   },
+   "t_response": "2026-10-05T16:43:54.760Z",
+   "latency_ms": 135,
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "755",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 16:43:54 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "retry-A",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "b14d931e-cd0e-4bfc-8b33-ffc8dd59c536",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-A",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step A. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "note": "identical to recorded request A1 of run 20261005T140846Z-74eabe (sent 2026-10-05T14:08:46.801Z, status 200)",
+   "t_sent": "2026-10-05T16:43:55.762Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+    "thread_id": "2c5c0cb9-947f-4294-88d4-9c435108f623"
+   },
+   "t_response": "2026-10-05T16:43:55.853Z",
+   "latency_ms": 80,
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 16:43:55 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "list",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>/messages?limit=100",
+   "idempotency_key": null,
+   "body": null,
+   "note": null,
+   "t_sent": "2026-10-05T16:43:58.855Z",
+   "status": 200,
+   "response": {
+    "keys": [
+     "count",
+     "limit",
+     "messages"
+    ],
+    "count": 6
+   },
+   "t_response": "2026-10-05T16:43:58.940Z",
+   "latency_ms": 76,
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "4888",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 16:43:58 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  }
+ ]
+}
