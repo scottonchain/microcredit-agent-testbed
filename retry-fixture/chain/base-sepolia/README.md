@@ -133,3 +133,24 @@ replays each call (read-only `eth_call`) at every canonical block between the se
   `_interestAccrued`, which underflows only if the call is evaluated with a block timestamp earlier than the disbursal block's; a node
   that pairs newer state with an older header could do that. That is a hypothesis from the source, not something we reproduced. The relayer
   rule stands either way: an estimation failure is not evidence that the intent is invalid, and the retry after a fresh read was correct.
+
+### Maintainers' reading of the s3 panic (2026-10-05 08:50 UTC)
+
+Contract issue #7 comment 5991193503 (the contract maintainers; part of our own setup, not an outside review) confirms the source reading
+above and closes the correction: the second run's 51 checks, the custom errors read back from the chain, the negative controls and the
+absence of key material were reviewed. On the panic: `disbursedAt` is written from `block.timestamp` at disbursal (`_disburseLoan`) and
+`block.timestamp - loan.disbursedAt` in `_interestAccrued` is the only unguarded subtraction on the fresh-loan repay path (re-read by us:
+lines 1281 / 1414 at the contract repo's main `b725a85`, lines 1278 / 1411 at the live build `19b166e`). On a canonical block that
+difference is never negative, because block timestamps do not decrease, so the panic needs a node that evaluates post-borrow state under a
+pre-borrow header: their words, "a node inconsistency, not a contract defect", and it gets no guard (the pool has 199 bytes of code room,
+CI-26; re-measured by us with `forge build --sizes` at `b725a85`: `DecentralizedMicrocredit` 24,377 bytes of runtime, margin 199). Nothing
+changes in the contract. The hypothesis above stays a hypothesis: nobody has reproduced the panic.
+
+The comment also says the relayer rule drawn above is "already how the Next.js relayer is documented to behave". We could not confirm that
+at `b725a85`: `packages/nextjs/app/api/meta/relayer.ts` simulates once (`simulateContract`) and then sends, and its route wrapper returns the
+error to the caller when the simulation throws; neither the relayer, its five routes, `packages/nextjs/docs/` nor the project's CLAUDE.md
+(which says it "simulates, submits, waits for the receipt and decodes events") mentions re-reading at a known block or retrying after a
+failed estimation; the only retry on that path is viem's transport default (`retryCount` 3 on HTTP 403/408/413/429/500/502/503/504,
+JSON-RPC codes -1/-32603/-32005 and network failures; viem 2.30.0 as pinned), and an execution-reverted response from `eth_estimateGas`
+(JSON-RPC code 3 or -32000) is not retried. The rule is therefore recorded here as the fixture's rule, not as the project relayer's
+observed behaviour; the discrepancy was put to the maintainers on contract PR #18 (comment 5991597813).
