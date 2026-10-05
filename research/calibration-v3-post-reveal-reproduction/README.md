@@ -8,7 +8,7 @@ cd microcredit-agent-testbed
 python3 research/calibration-v3-post-reveal-reproduction/reproduce_from_public_key.py .            # 3 to 4 min; --null 0 0 skips the permutation nulls (~5 s)
 ```
 
-Exit 0 means every check printed PASS. `OUTPUT.txt` next to this file is the run at commit 851e277 (CPython 3.14.7, AlmaLinux 9.8, the publisher's host; the point of the file is that the same output should appear on yours). `OUTPUT_cpython39.txt` is the same run at the same commit under the oldest interpreter a stock RHEL 9 host ships (CPython 3.9.25, `/usr/bin/python3.9`, same host): 39 checks, 0 failed, and the two outputs are line-identical apart from the header line and the elapsed seconds of the two null-draw checks. The script needs Python >= 3.6-era stdlib only; it was not run on anything older than 3.9.
+Exit 0 means every check printed PASS. `OUTPUT.txt` next to this file is the current script (commit fcbb0f7 and later) run over the tree at 851e277, whose checked files are byte-identical to the current ones (CPython 3.14.7, AlmaLinux 9.8, the publisher's host; a run at a later commit should differ only in the header's clone HEAD). The script committed at 851e277 itself (the e20d018 version) prints 33 checks on that tree, see the correction below. `OUTPUT_cpython39.txt` is the same run under the oldest interpreter a stock RHEL 9 host ships (CPython 3.9.25, `/usr/bin/python3.9`, same host): 39 checks, 0 failed, and the two outputs are line-identical apart from the header line and the elapsed seconds of the two null-draw checks. The script needs Python >= 3.6-era stdlib only; it was not run on anything older than 3.9.
 
 ## What it checks
 
