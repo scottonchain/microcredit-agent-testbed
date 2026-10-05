@@ -1,0 +1,34 @@
+$ python3 retry-fixture/reference/scorecard.py
+Part 1: duplicate effects / missing effects at the deadline / unresolved rows, per group
+script             group          cells  duplicates  missing  unresolved  label
+freshness_rule.py  stamped        4      0           0        1           no duplicate, but not a full success
+freshness_rule.py  unstamped      4      0           2        3           no duplicate, but not a full success
+gate_readings.py   R0             4      0           2        3           no duplicate, but not a full success
+gate_readings.py   R1             4      1           0        0           duplicates
+gate_readings.py   R2             4      0           0        1           no duplicate, but not a full success
+keyed_resend.py    R3             4      0           0        0           clean
+keyed_resend.py    R3G            4      0           0        1           no duplicate, but not a full success
+keyed_resend.py    R3L            4      2           0        0           duplicates
+keyed_resend.py    R3N            4      2           0        0           duplicates
+kill_points.py     post           16     4           0        2           duplicates
+kill_points.py     pre            16     0           3        7           no duplicate, but not a full success
+kill_points.py     pre*           16     4           0        2           duplicates
+reopen_rule.py     reopen         4      1           0        3           duplicates
+reopen_rule.py     reopen sweep   5      2           0        2           duplicates
+reopen_rule.py     wait           4      0           2        3           no duplicate, but not a full success
+97 cells in 15 groups
+
+Part 2: observation check, kill_points pair K2 (never dispatched) vs K3 (accepted, response lost)
+worker   reading lag  first divergence          violation  K2 msgs/row      K3 msgs/row
+model    R0      L10  observation               False      0/unknown        1/confirmed
+model    R0      LH   none (identical traces)   False      0/unknown        1/unknown
+model    R2      L10  observation               False      1/confirmed      1/confirmed
+model    R2      LH   none (identical traces)   False      0/unknown        1/unknown
+control  R0      L10  action                    True       1/confirmed      1/confirmed
+control  R0      LH   action                    True       1/confirmed      1/unknown
+control  R2      L10  action                    True       1/confirmed      1/confirmed
+control  R2      LH   action                    True       1/confirmed      1/unknown
+on these 8 cells: model worker 0 duplicates, 3 missing; negative control 0 duplicates, 0 missing
+violations: model worker 0 of 4 pairs; negative control 4 of 4 pairs
+0 problem(s)
+exit 0
