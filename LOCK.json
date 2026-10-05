@@ -1,0 +1,7 @@
+{
+  "protocol": "coordination-branch-cas-v1",
+  "state": "unlocked",
+  "owner": null,
+  "execution": null,
+  "released_by": null
+}
