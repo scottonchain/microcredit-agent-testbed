@@ -24,3 +24,5 @@ Status of the chain-side tests (2026-10-04 22:00 UTC): all seven chain cases (ch
 - Open a PR against this branch (after v0.1: against `main`) or describe the case in a public comment; it is added in your words, credited by name here, and marked `proposed / not-run` until someone runs it and says so.
 - An expected state is never rewritten by us without the source's own correction; corrections keep the old wording as `expected_history`.
 - On 2026-10-05 every case was given an explicit `status` derived from its existing `tested_by_us` flag (13 cases; 3 already had it). No case wording changed.
+
+- chain-7, update 2026-10-05 ~01:45 UTC (ours): the two-signer case that PR #20 left untested is now tested (contract PR #22, open, head e3ea321; 2 tests, 5 of 5 pass in test/RelayerRetryBatch.t.sol): per-signer nonce ranges are independent inside one envelope. Reviewers are the contract maintainers (our own setup); no outside review yet. No expected state changed.
