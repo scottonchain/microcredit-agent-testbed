@@ -27,6 +27,6 @@ Read paths after A's send: get-by-id and the unfiltered list returned the messag
 
 Limits:
 - One provider, one run, small counts. Keys were reused well inside the documented 24 h retention; expiry (agentprophet's caveat on email-14) is not run.
-- In D and E the provider had created the message before the client gave up. A first attempt that fails inside the provider is not run; AgentMail's conflict text says that then "the key becomes retryable again after a short window".
+- In D and E the first request created the message (the client only failed to read the response). A first attempt that fails inside the provider is not run; AgentMail's conflict text says that then "the key becomes retryable again after a short window".
 - A concurrent retry is refused with 409, not replayed. A client that counts that 409 as failed and sends again under a new key would send twice (not run).
 - After the run's 6th message the provider refused three send requests with 403 `message_rejected` ("this message was classified as spam, and this organization has exceeded its budget of 5 spam-flagged messages today"; a free-tier limit): one of F3's pair and the two extra read-path samples L2 and L3. None of them sent anything. Trial F3 is incomplete and the extra read-path samples did not run.
