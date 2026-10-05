@@ -1,0 +1,18 @@
+$ python3 retry-fixture/reference/gate_readings.py
+reading  setup  messages_at_provider  delivered  final_row/status                 gate verdicts per pass
+R0       S1     1                     True       unknown/pending_verification     ['unresolved', 'unresolved']
+R0       S2     0                     False      unknown/pending_verification     ['unresolved', 'unresolved']
+R0       S3     1                     True       confirmed/settled                ['not_applicable']
+R0       S4     0                     False      unknown/pending_verification     ['unresolved', 'unresolved']
+R1       S1     2                     True       confirmed/settled                ['receipt_negative -> dispatched']
+R1       S2     1                     True       confirmed/settled                ['receipt_negative -> dispatched']
+R1       S3     1                     True       confirmed/settled                ['not_applicable']
+R1       S4     1                     True       confirmed/settled                ['receipt_negative -> dispatched']
+R2       S1     1                     True       unknown/pending_verification     ['unresolved_bound_not_met', 'unresolved_bound_not_met']
+R2       S2     1                     True       confirmed/settled                ['receipt_negative -> dispatched']
+R2       S3     1                     True       confirmed/settled                ['not_applicable']
+R2       S4     1                     True       confirmed/settled                ['receipt_negative -> dispatched']
+duplicates (more than one message at the provider): [('R1', 'S1')]
+never delivered (stuck rows): [('R0', 'S2'), ('R0', 'S4')]
+12 cells, 12 as stated, 0 problem(s)
+exit 0
