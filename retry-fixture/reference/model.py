@@ -28,6 +28,10 @@ Policy flags (REFERENCE = the fixture's rules; each case's mutant flips exactly 
   two_authorities                 a create with a single-shot verifier: retry permitted iff the verifier allows a new attempt AND a
                                   fresh canonical-listing read shows the object absent; neither authority stands in for the other,
                                   and the create response's own claim is never trusted (api-1; see comment_api.py)
+  receipt_key_required            a receipt is attributed to an intent only through the request id / key minted before the first
+                                  byte went out (merktop fe341d24: 'The only transition out of unknown is receipt-with-matching-key,
+                                  not receipt alone'); False = the verification read is unkeyed (time window + bytes) and the first
+                                  matching blob is taken as this intent's receipt (email-12)
 """
 import hashlib
 
@@ -68,12 +72,13 @@ class Provider:
         return {"outcome": "accepted", "message_id": mid}
 
     def search(self, key, phrase=None):
+        """key=None is the unkeyed read of the email-12 mutant: every committed blob in the window is returned."""
         self.search_calls += 1
         if self.search_timeouts_pending > 0:
             self.search_timeouts_pending -= 1
             return {"outcome": "timeout"}
         as_of = self.clock.now - self.index_latency
-        hits = [m for m in self.msgs if m["committed_at"] <= as_of and m["key"] == key and (phrase is None or m["phrase"] == phrase)]
+        hits = [m for m in self.msgs if m["committed_at"] <= as_of and (key is None or m["key"] == key) and (phrase is None or m["phrase"] == phrase)]
         return {"outcome": "ok", "as_of": as_of, "hits": hits}
 
     def inject_artifact(self, key, message_id):
@@ -95,7 +100,7 @@ class Provider:
 class Policy:
     FIELDS = ("timeout_is_failure", "absence_means_never_sent", "use_as_of", "rounds", "wait", "fallback_query",
               "verification_timeout_is_absence", "sweeper_failed_needs_proof", "miss_demotes", "recipient_enum", "replay_check",
-              "dsn_fails_submission", "dispatch_record_before_io", "byte_match_required", "two_authorities")
+              "dsn_fails_submission", "dispatch_record_before_io", "byte_match_required", "two_authorities", "receipt_key_required")
 
     def __init__(self, name, **kw):
         self.name = name
@@ -111,7 +116,7 @@ class Policy:
 REFERENCE = Policy("reference", timeout_is_failure=False, absence_means_never_sent=False, use_as_of=True, rounds=3, wait=8,
                    fallback_query=True, verification_timeout_is_absence=False, sweeper_failed_needs_proof=True,
                    miss_demotes=False, recipient_enum=True, replay_check=True, dsn_fails_submission=False,
-                   dispatch_record_before_io=True, byte_match_required=True, two_authorities=True)
+                   dispatch_record_before_io=True, byte_match_required=True, two_authorities=True, receipt_key_required=True)
 
 
 class Reconciler:
@@ -265,8 +270,9 @@ class Reconciler:
         row = self.rows[key]
         if row["submission"] != "unknown" or row["status"] == "quarantined":
             return row["submission"]
+        read_key = key if self.policy.receipt_key_required else None   # unkeyed read: the email-12 mutant
         for i in range(self.policy.rounds):
-            r = self.p.search(key, phrase=self.template_phrase)
+            r = self.p.search(read_key, phrase=self.template_phrase)
             if r["outcome"] == "timeout":
                 self._timeout(key)
                 return row["submission"]
@@ -278,7 +284,7 @@ class Reconciler:
             if i < self.policy.rounds - 1:
                 self.clock.advance(self.policy.wait)
         if self.policy.fallback_query:
-            r = self.p.search(key, phrase=None)
+            r = self.p.search(read_key, phrase=None)
             if r["outcome"] == "timeout":
                 self._timeout(key, {"fallback": True})
                 return row["submission"]

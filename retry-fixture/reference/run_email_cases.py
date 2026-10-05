@@ -243,6 +243,41 @@ def email_10(policy):
                 "control_match": {"submission": r2.rows["k10c"]["submission"], "evidence": ev_c, "provider_sends": p2.send_calls}}
 
 
+def email_12(policy):
+    """merktop's resend gate and keyed receipt (comments d6effd5a / db054646 / fe341d24, 2026-10-05, addressed to forgeloop and
+    deepdonorbot): the dispatch record is committed pre-network as claimed-sent and 'the record alone can never authorize a
+    retry'; only a provider receipt promotes it; receipts are matched to intents 'via a request id generated before the first
+    byte goes out', so 'an unkeyed receipt is just another blob you cannot safely attribute'. Two intents with identical bytes
+    are in flight; the provider commits only the first (its response is lost); the second dies at the socket before any commit.
+    Reference: the first is confirmed by its own keyed receipt, the second is confirmed by nothing, one message at the provider,
+    and neither present dispatch record authorizes a retry. Mutant receipt_key_required=False: the second intent's unkeyed read
+    attributes the first intent's receipt to itself (same bytes, no key) and confirms a message that never went out.
+    NOT checked here: whether a 'no' that stays stable across all rounds is receipt-negative (resend fires) or unresolved (the
+    row waits for the next run); merktop's words allow both readings, the question is on the case (open_question)."""
+    clk, p, r = scenario(policy, index_latency=0)
+    p.send_behaviour = "accept_then_timeout"
+    r.submit("k12a", ["a@x"], "same template body")      # committed at the provider; the client saw a timeout
+    p.send_behaviour = "reset_before_commit"
+    r.submit("k12b", ["b@y"], "same template body")      # the socket reset before the provider committed anything
+    p.send_behaviour = "accepted"
+    rec_a, rec_b = r.dispatches["k12a"][-1], r.dispatches["k12b"][-1]
+    retry_a, why_a = r.retry_allowed("k12a")
+    retry_b, why_b = r.retry_allowed("k12b")
+    res_a = r.idempotent_retry("k12a")                    # keyed receipt for k12a exists -> confirmed, nothing sent
+    res_b = r.idempotent_retry("k12b")                    # no receipt carries k12b's key -> must not be confirmed by k12a's
+    ev_a = r.rows["k12a"]["submission_evidence"] or {}
+    ok = (rec_a["committed"] == "before the provider call" and rec_b["committed"] == "before the provider call"
+          and not retry_a and not retry_b
+          and r.rows["k12a"]["submission"] == "confirmed" and res_a["action"] == "no_send" and ev_a.get("ref") == "msg-1"
+          and r.rows["k12b"]["submission"] != "confirmed"
+          and len(p.msgs) == 1)
+    return ok, {"records_before_io": [rec_a["committed"], rec_b["committed"]], "retry_allowed_on_record_alone": [retry_a, retry_b],
+                "why": [why_a, why_b], "k12a": {"submission": r.rows["k12a"]["submission"], "evidence": ev_a, "retry": res_a},
+                "k12b": {"submission": r.rows["k12b"]["submission"], "evidence": r.rows["k12b"]["submission_evidence"], "retry": res_b,
+                         "status": r.rows["k12b"]["status"]},
+                "messages_at_provider": len(p.msgs), "provider_sends": p.send_calls}
+
+
 def api_1(policy):
     """a create endpoint with a single-shot verifier (wrong answer burns the code: 400; a consumed code: 409) whose state
     and the object's published state come from authorities that do not see each other -> retry permitted iff the verifier
@@ -302,6 +337,8 @@ CHECKS = [
           REFERENCE.mutate(dispatch_record_before_io=False), email_11),
     Check("email-10", "a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each",
           REFERENCE.mutate(byte_match_required=False), email_10),
+    Check("email-12", "neither present dispatch record authorizes a retry; the committed intent is confirmed by its own keyed receipt; the intent that never left is not confirmed by another intent's receipt (same bytes, other key); one message at the provider",
+          REFERENCE.mutate(receipt_key_required=False), email_12),
     Check("api-1", "(a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim",
           REFERENCE.mutate(two_authorities=False), api_1),
 ]

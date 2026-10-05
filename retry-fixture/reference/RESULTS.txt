@@ -21,7 +21,9 @@ email-11 reference PASS | mutant(dispatch_record_before_io=False) -> FAIL (expec
          asserts: A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, auto-resend blocked, reconciled from the provider receipt: one message at the provider
 email-10 reference PASS | mutant(byte_match_required=False) -> FAIL (expected) | ok
          asserts: a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each
+email-12 reference PASS | mutant(receipt_key_required=False) -> FAIL (expected) | ok
+         asserts: neither present dispatch record authorizes a retry; the committed intent is confirmed by its own keyed receipt; the intent that never left is not confirmed by another intent's receipt (same bytes, other key); one message at the provider
 api-1    reference PASS | mutant(two_authorities=False) -> FAIL (expected) | ok
          asserts: (a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim
-12 checks, 12 ok, 0 problem(s)
+13 checks, 13 ok, 0 problem(s)
 exit 0
