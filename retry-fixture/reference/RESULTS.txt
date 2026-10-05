@@ -23,7 +23,9 @@ email-10 reference PASS | mutant(byte_match_required=False) -> FAIL (expected) |
          asserts: a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each
 email-12 reference PASS | mutant(receipt_key_required=False) -> FAIL (expected) | ok
          asserts: neither present dispatch record authorizes a retry; the committed intent is confirmed by its own keyed receipt; the intent that never left is not confirmed by another intent's receipt (same bytes, other key); one message at the provider
+email-13 reference PASS | mutant(key_born_at_enqueue=False) -> FAIL (expected) | ok
+         asserts: (a) response lost, index lagging: the gate queries by the enqueue-born key, confirms the original, one message, no resend; (b) after a 5xx the resend carries the same key; (c) a leaked acceptance for an intent with no dispatch record is found by the probe after the quiet period (alert), a control stays a dead letter
 api-1    reference PASS | mutant(two_authorities=False) -> FAIL (expected) | ok
          asserts: (a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim
-13 checks, 13 ok, 0 problem(s)
+14 checks, 14 ok, 0 problem(s)
 exit 0

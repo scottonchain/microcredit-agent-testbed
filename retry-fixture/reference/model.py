@@ -32,6 +32,12 @@ Policy flags (REFERENCE = the fixture's rules; each case's mutant flips exactly 
                                   byte went out (merktop fe341d24: 'The only transition out of unknown is receipt-with-matching-key,
                                   not receipt alone'); False = the verification read is unkeyed (time window + bytes) and the first
                                   matching blob is taken as this intent's receipt (email-12)
+  key_born_at_enqueue             the dedup key is minted at enqueue time, before the first send attempt, never regenerated on a
+                                  retry, carried in the send payload, and the resend gate queries by it (merktop 346f92fe, agreeing
+                                  with mundo 473e4717: 'the dedup key has to be born with the message, not derived after the fact
+                                  from a response'); False = the identity is the provider's message id taken from the response, so a
+                                  lost response leaves nothing to query by and a key that leaked before any record exists cannot be
+                                  probed (email-13)
 """
 import hashlib
 
@@ -81,6 +87,17 @@ class Provider:
         hits = [m for m in self.msgs if m["committed_at"] <= as_of and (key is None or m["key"] == key) and (phrase is None or m["phrase"] == phrase)]
         return {"outcome": "ok", "as_of": as_of, "hits": hits}
 
+    def lookup(self, message_id):
+        """Read by the provider's own message id (the only identity the email-13 mutant has, and only when the response
+        that carried it arrived). Same index latency as search()."""
+        self.search_calls += 1
+        if self.search_timeouts_pending > 0:
+            self.search_timeouts_pending -= 1
+            return {"outcome": "timeout"}
+        as_of = self.clock.now - self.index_latency
+        hits = [m for m in self.msgs if m["id"] == message_id and m["committed_at"] <= as_of]
+        return {"outcome": "ok", "as_of": as_of, "hits": hits}
+
     def inject_artifact(self, key, message_id):
         """A provider-side artifact for the key appears later (used to falsify a 'never left' attestation)."""
         self.msgs.append({"id": message_id, "key": key, "recipients": [], "phrase": "", "committed_at": self.clock.now, "payload_hash": None})
@@ -100,7 +117,8 @@ class Provider:
 class Policy:
     FIELDS = ("timeout_is_failure", "absence_means_never_sent", "use_as_of", "rounds", "wait", "fallback_query",
               "verification_timeout_is_absence", "sweeper_failed_needs_proof", "miss_demotes", "recipient_enum", "replay_check",
-              "dsn_fails_submission", "dispatch_record_before_io", "byte_match_required", "two_authorities", "receipt_key_required")
+              "dsn_fails_submission", "dispatch_record_before_io", "byte_match_required", "two_authorities", "receipt_key_required",
+              "key_born_at_enqueue")
 
     def __init__(self, name, **kw):
         self.name = name
@@ -116,7 +134,8 @@ class Policy:
 REFERENCE = Policy("reference", timeout_is_failure=False, absence_means_never_sent=False, use_as_of=True, rounds=3, wait=8,
                    fallback_query=True, verification_timeout_is_absence=False, sweeper_failed_needs_proof=True,
                    miss_demotes=False, recipient_enum=True, replay_check=True, dsn_fails_submission=False,
-                   dispatch_record_before_io=True, byte_match_required=True, two_authorities=True, receipt_key_required=True)
+                   dispatch_record_before_io=True, byte_match_required=True, two_authorities=True, receipt_key_required=True,
+                   key_born_at_enqueue=True)
 
 
 class Reconciler:
@@ -151,19 +170,23 @@ class Reconciler:
     def _dispatch(self, key, die_after_provider_accept=False):
         intent = self.intents[key]
         rec = None
+        # the key the payload carries: the enqueue-born intent key (reference), or nothing (email-13 mutant: the identity is
+        # whatever the provider's response returns, so it exists only after, and only if, the response arrives)
+        payload_key = key if self.policy.key_born_at_enqueue else None
         if self.policy.dispatch_record_before_io:
             # committed before any network I/O: a present record means dispatch was permitted or intended, not performed
             rec = {"at": self.clock.now, "outcome": "pending", "provider_ref": None, "code": None,
-                   "committed": "before the provider call"}
+                   "committed": "before the provider call", "payload_key": payload_key}
             self.dispatches.setdefault(key, []).append(rec)
-        res = self.p.send(key, intent["recipients"], intent["phrase"], intent["payload_hash"])
+        res = self.p.send(payload_key, intent["recipients"], intent["phrase"], intent["payload_hash"])
         if die_after_provider_accept:
             # forgeloop's case B: the provider has committed the message; the worker dies before persisting the dispatch
             # record (if it is written after the call) or the response. Only what was committed before the call survives.
             self.log.append((self.clock.now, key, "process died after the provider call, before the response was persisted"))
             return {"action": "crashed_after_provider_call"}
         if rec is None:
-            rec = {"at": self.clock.now, "outcome": None, "provider_ref": None, "code": None, "committed": "after the provider call"}
+            rec = {"at": self.clock.now, "outcome": None, "provider_ref": None, "code": None, "committed": "after the provider call",
+                   "payload_key": payload_key}
             self.dispatches.setdefault(key, []).append(rec)
         rec.update({"outcome": res["outcome"], "provider_ref": res.get("message_id"), "code": res.get("code")})
         row = self.rows[key]
@@ -269,6 +292,23 @@ class Reconciler:
         """One reconcile pass for an unknown-outcome row. Never sends."""
         row = self.rows[key]
         if row["submission"] != "unknown" or row["status"] == "quarantined":
+            return row["submission"]
+        if not self.policy.key_born_at_enqueue:
+            # email-13 mutant: the only identity is the message id from the provider's response. Lost response = no identity.
+            ident = (self.dispatches.get(key) or [{}])[-1].get("provider_ref")
+            if ident is None:
+                row["verdicts"].append({"kind": "no_identity_to_query_by", "at": self.clock.now,
+                                        "meaning": "the dedup identity would have come from the response, which was lost; the payload "
+                                                   "carried no key, so the post-hoc check cannot be run for this intent"})
+                row["status"] = "pending_verification"
+                return "unknown"
+            r = self.p.lookup(ident)
+            if r["outcome"] == "timeout":
+                self._timeout(key)
+            elif r["hits"]:
+                self._hit(key, r)
+            else:
+                self._absence(key, r)
             return row["submission"]
         read_key = key if self.policy.receipt_key_required else None   # unkeyed read: the email-12 mutant
         for i in range(self.policy.rounds):
@@ -380,6 +420,35 @@ class Reconciler:
             return None
         n = 1 + sum(1 for k in self.intents if k.startswith(old_key + "/" + recipient + "/"))
         return {"key": "%s/%s/%d" % (old_key, recipient, n), "recipients": [recipient]}
+
+    # ---- backstop probe (merktop 346f92fe: 'after a quiet period, verify the key's absence in the provider's records as a
+    #      backstop for keys that leaked before the envelope existed') ------------------------------------------------
+    def probe_leaked(self, key, quiet_period):
+        """Active form of the falsification clause of email-8: for an intent row with no dispatch record, ask the provider
+        by the enqueue-born key after quiet_period seconds. A hit with matching bytes falsifies the 'never left' attestation
+        (alert + promote); a miss leaves the dead letter standing. Without a key that predates the envelope there is
+        nothing to probe by."""
+        row = self.rows[key]
+        intent = self.intents[key]
+        if self.clock.now - intent["created_at"] < quiet_period:
+            return "refused: quiet period not over"
+        if not self.policy.key_born_at_enqueue:
+            row["verdicts"].append({"kind": "probe_impossible", "at": self.clock.now,
+                                    "meaning": "no identity predates the envelope; a leaked acceptance cannot be found by this intent"})
+            return "no_identity_to_probe"
+        r = self.p.search(key, phrase=None)
+        if r["outcome"] == "timeout":
+            self._timeout(key, {"probe": True})
+            return "timeout"
+        if r["hits"]:
+            match = [m for m in r["hits"] if m.get("payload_hash") == intent["payload_hash"]]
+            if match:
+                return self.provider_artifact_appeared(key, match[0]["id"]) if row["submission"] == "failed" else "already_known"
+            self._hit(key, r, {"probe": True})     # bytes mismatch: quarantine path
+            return "quarantined"
+        row["verdicts"].append({"kind": "probe_absent", "at": self.clock.now, "as_of": r["as_of"],
+                                "meaning": "no acceptance for the key at index-as-of-%d after the quiet period; the dead letter stands" % r["as_of"]})
+        return "absent"
 
     # ---- falsification -------------------------------------------------------------------------------------------
     def provider_artifact_appeared(self, key, message_id):

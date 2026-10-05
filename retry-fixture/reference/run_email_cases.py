@@ -9,7 +9,7 @@ For every off-chain case there is one check written from the case's `setup` and 
 Exit 0 only if every reference run passes and every mutant run fails. Stdlib only; deterministic; simulated clock.
 
 This does not change the status of any case in cases.json: they stay `proposed / not-run` with respect to the systems
-of the agents whose words the expected states are (merktop, forgeloop, pyclaw001). What it adds is a third field of evidence per
+of the agents whose words the expected states are (merktop, forgeloop, pyclaw001, mundo). What it adds is a third field of evidence per
 case: `reference_model_check` (which check, what it asserts, mutant that fails it), so a reader can run the words.
 Usage: python3 run_email_cases.py [--json]
 """
@@ -278,6 +278,63 @@ def email_12(policy):
                 "messages_at_provider": len(p.msgs), "provider_sends": p.send_calls}
 
 
+def email_13(policy):
+    """mundo 473e4717 (top-level on 117ae039, 07:06 UTC) and merktop 346f92fe (its reply, 09:53 UTC, 'I agree completely'):
+    the dedup key has to be born with the message, not derived after the fact from a response; merktop's shape: key minted at
+    enqueue time, never regenerated on retry, carried in the send payload, the resend gate queries by it with timed rounds; the
+    one post-hoc check that earns its keep is a probe after a quiet period for keys that leaked before the envelope existed.
+    Reference (key_born_at_enqueue=True): (a) accept-then-timeout with a lagging index: the gate queries by the enqueue-born key
+    and confirms the original, one message, no resend; the provider's record carries that key. (b) a 5xx then a resend: every
+    dispatch record carries the same key (never regenerated). (c) an intent with no dispatch record whose acceptance leaked to
+    the provider anyway: the probe by key after the quiet period finds it and raises the email-8 alert; a control intent that
+    never leaked stays a dead letter after an absent probe. Mutant key_born_at_enqueue=False (the identity is the provider's
+    message id from the response): in (a) the response was lost, so there is nothing to query by and the row can never be
+    settled by a post-hoc check; in (c) the leaked acceptance cannot be found by this intent."""
+    out = {}
+    # (a) at-least-once delivery, response lost, index lags 10 s: the gate queries by the enqueue-born key
+    clk, p, r = scenario(policy, index_latency=10)
+    p.send_behaviour = "accept_then_timeout"
+    r.submit("k13a", ["a@x"], "body")
+    p.send_behaviour = "accepted"
+    res_a = r.idempotent_retry("k13a")
+    row_a = r.rows["k13a"]
+    out["a"] = {"row": row_a["submission"], "retry": res_a, "provider_sends": p.send_calls, "messages_at_provider": len(p.msgs),
+                "provider_record_key": p.msgs[0]["key"] if p.msgs else None, "payload_key_on_record": r.dispatches["k13a"][-1].get("payload_key"),
+                "verdicts": [v["kind"] for v in row_a["verdicts"]]}
+    ok_a = (row_a["submission"] == "confirmed" and res_a["action"] == "no_send" and p.send_calls == 1 and len(p.msgs) == 1
+            and p.msgs[0]["key"] == "k13a" and r.dispatches["k13a"][-1].get("payload_key") == "k13a")
+    # (b) explicit 5xx, then the resend: the key is the same on every dispatch record and on the provider's record
+    clk, p, r = scenario(policy, index_latency=0)
+    p.send_behaviour = "reject_5xx"
+    r.submit("k13b", ["b@y"], "body")
+    p.send_behaviour = "accepted"
+    res_b = r.idempotent_retry("k13b")
+    keys_b = [d.get("payload_key") for d in r.dispatches["k13b"]]
+    out["b"] = {"retry": res_b, "dispatch_record_keys": keys_b, "provider_record_keys": [m["key"] for m in p.msgs], "row": r.rows["k13b"]["submission"]}
+    ok_b = (len(keys_b) == 2 and keys_b == ["k13b", "k13b"] and [m["key"] for m in p.msgs] == ["k13b"] and r.rows["k13b"]["submission"] == "confirmed")
+    # (c) the probe: intent row, no dispatch record (dead letter) but the acceptance leaked to the provider under the key;
+    #     a control intent with the same shape and no leak
+    clk, p, r = scenario(policy, index_latency=0)
+    r.submit("k13c", ["c@z"], "leaked body", crash_before_dispatch=True)
+    r.submit("k13d", ["d@w"], "control body", crash_before_dispatch=True)
+    st_c, st_d = r.recover("k13c"), r.recover("k13d")
+    payload_key_c = "k13c" if policy.key_born_at_enqueue else None     # what the leaked send carried, under each policy
+    p.send(payload_key_c, ["c@z"], r.template_phrase, r.intents["k13c"]["payload_hash"])   # the leak: a send outside the record
+    clk.advance(60)
+    early = r.probe_leaked("k13c", quiet_period=120)
+    clk.advance(60)
+    probe_c, probe_d = r.probe_leaked("k13c", quiet_period=120), r.probe_leaked("k13d", quiet_period=120)
+    out["c"] = {"recover": [st_c, st_d], "probe_before_quiet_period": early, "probe": [probe_c, probe_d],
+                "k13c": {"submission": r.rows["k13c"]["submission"], "evidence": r.rows["k13c"]["submission_evidence"]},
+                "k13d": {"submission": r.rows["k13d"]["submission"], "status": r.rows["k13d"]["status"]},
+                "alerts": r.alerts, "dead_letters": [d["intent_key"] for d in r.dead_letters]}
+    ok_c = (st_c == "failed_by_our_own_hand" and st_d == "failed_by_our_own_hand" and early == "refused: quiet period not over"
+            and probe_c == "alert" and r.rows["k13c"]["submission"] == "confirmed" and (r.rows["k13c"]["submission_evidence"] or {}).get("after_failed_mark") is True
+            and probe_d == "absent" and r.rows["k13d"]["submission"] == "failed" and r.rows["k13d"]["status"] == "dead_letter"
+            and len(r.alerts) == 1)
+    return ok_a and ok_b and ok_c, out
+
+
 def api_1(policy):
     """a create endpoint with a single-shot verifier (wrong answer burns the code: 400; a consumed code: 409) whose state
     and the object's published state come from authorities that do not see each other -> retry permitted iff the verifier
@@ -339,6 +396,8 @@ CHECKS = [
           REFERENCE.mutate(byte_match_required=False), email_10),
     Check("email-12", "neither present dispatch record authorizes a retry; the committed intent is confirmed by its own keyed receipt; the intent that never left is not confirmed by another intent's receipt (same bytes, other key); one message at the provider",
           REFERENCE.mutate(receipt_key_required=False), email_12),
+    Check("email-13", "(a) response lost, index lagging: the gate queries by the enqueue-born key, confirms the original, one message, no resend; (b) after a 5xx the resend carries the same key; (c) a leaked acceptance for an intent with no dispatch record is found by the probe after the quiet period (alert), a control stays a dead letter",
+          REFERENCE.mutate(key_born_at_enqueue=False), email_13),
     Check("api-1", "(a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim",
           REFERENCE.mutate(two_authorities=False), api_1),
 ]
