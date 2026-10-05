@@ -15,8 +15,14 @@ print("python:", sys.version.split()[0], "| executable:", sys.executable)
 print("mapped files (%d):" % len(mapped))
 for p in mapped:
     print("  ", p)
-for p in ("/usr/lib64/libc.so.6", "/usr/lib64/ld-linux-x86-64.so.2"):
-    print("sha256", p, hashlib.sha256(open(p, "rb").read()).hexdigest())
+if len(sys.argv) != 3:
+    raise SystemExit("expected bound libc and loader SHA-256 arguments")
+glibc_ok = True
+for p, expected in zip(("/usr/lib64/libc.so.6", "/usr/lib64/ld-linux-x86-64.so.2"), sys.argv[1:]):
+    digest = hashlib.sha256(open(p, "rb").read()).hexdigest()
+    print("sha256", p, digest)
+    glibc_ok = glibc_ok and digest == expected
+print("glibc: bound" if glibc_ok else "glibc: NOT bound")
 print("os-release:", [l.strip() for l in open("/etc/os-release") if l.startswith("PRETTY_NAME")])
 print("nsswitch passwd:", [l.strip() for l in open("/etc/nsswitch.conf") if l.startswith("passwd")])
 print("libnss_sss.so.2 present in rootfs:", os.path.exists("/usr/lib64/libnss_sss.so.2"))
@@ -24,4 +30,8 @@ print("libnss_files.so.2 present in rootfs:", os.path.exists("/usr/lib64/libnss_
 ifaces = [l.split(":")[0].strip() for l in open("/proc/net/dev").read().splitlines()[2:] if ":" in l]
 routes = open("/proc/net/route").read().splitlines()[1:]
 print("network namespace interfaces:", ifaces, "| routes:", len(routes))
-print("network: isolated" if ifaces in (["lo"], []) and not routes else "network: NOT isolated")
+# IPv6 must not provide an unobserved route; loopback-only routes are harmless.
+ipv6_routes = [line for line in open("/proc/net/ipv6_route") if line.split()[-1] != "lo"]
+isolated = ifaces in (["lo"], []) and not routes and not ipv6_routes
+print("network: isolated" if isolated else "network: NOT isolated")
+raise SystemExit(0 if isolated and glibc_ok else 1)

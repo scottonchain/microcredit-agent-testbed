@@ -10,22 +10,30 @@
 # every layer, digest-verified, as <download_dir>/sha256_<digest>.tar.gz. almalinux:9.8 at linux/amd64
 # sha256:dc973f4dffd28a1e6ae4d1662086d83bac34cd26f3b701e7ba51f4dcb300c80d has exactly one layer,
 # sha256:b4183c2cefd40a42ed0c4d6f7f801f2e88f3ea816f1071a662f35ae7f810507b (71,704,075 bytes). This script assumes one layer.
-# With a container runtime the equivalent is:
-#   docker run --rm --network none -v <dir with the extracted archive>:/replay:ro almalinux@sha256:dc973f4d... \
-#     sh /replay/calibration-v3-replay-runtime/acceptance_test.sh <seed> <key_salt_hex> /tmp/out
-# Expected: verify_manifest.py prints 0 mismatches, the three sha256 lines match calibration-v3/PRECOMMIT.md, "validator exit 0".
+# Chroot is not containment for uid 0 in the initial user namespace.
+# Run ONLY inside an expendable Linux x86_64 VM with no credentials, shared host
+# directories or valuable state. Destroy that VM after collecting the receipt.
 set -eu
+[ "$#" = 7 ] || { echo "expected seven arguments"; exit 2; }
+[ "${REPLAY_DISPOSABLE_VM:-}" = yes ] || { echo "DISPOSABLE_VM_REQUIRED: set REPLAY_DISPOSABLE_VM=yes only inside a disposable VM"; exit 2; }
 LAYER=$1; LAYER_SHA=$2; ARCH=$3; ARCH_SHA=$4; SEED=$5; SALT=$6; WORK=$7
 HERE=$(cd "$(dirname "$0")" && pwd)
-[ "$(id -u)" = 0 ] || { echo "needs root (tar as root, mknod, chroot, unshare)"; exit 2; }
-echo "$LAYER_SHA  $LAYER" | sha256sum -c - >/dev/null 2>&1 || { echo "LAYER_DIGEST_MISMATCH $LAYER"; exit 1; }
+[ "$(id -u)" = 0 ] || { echo "needs root inside the disposable VM"; exit 2; }
+[ "$(uname -m)" = x86_64 ] || { echo "needs Linux x86_64"; exit 2; }
+[ "$(uname -s)" = Linux ] || exit 2
+LIBC_SHA=c6b12761834ea9a2fde7a17682ebfaf37982a0df6e9345e5b9d298ac1ca3c746
+LOADER_SHA=58b211cde994b9373c9a39abeb2633191b832574c7ca0bd44e362d33e0cc6111
+# Hash stdin so path characters are never interpreted as checksum-list syntax.
+[ "$(sha256sum < "$LAYER" | cut -d ' ' -f 1)" = "$LAYER_SHA" ] || { echo LAYER_DIGEST_MISMATCH; exit 1; }
+[ "$(sha256sum < "$ARCH" | cut -d ' ' -f 1)" = "$ARCH_SHA" ] || { echo ARCHIVE_DIGEST_MISMATCH; exit 1; }
 echo "layer digest verified: $LAYER_SHA"
-echo "$ARCH_SHA  $ARCH" | sha256sum -c - >/dev/null 2>&1 || { echo "ARCHIVE_DIGEST_MISMATCH $ARCH"; exit 1; }
 echo "archive digest verified: $ARCH_SHA"
+# Reject pre-existing state (including symlinks); do not reuse a prior rootfs.
+mkdir "$WORK"
+WORK=$(cd "$WORK" && pwd)
 ROOT=$WORK/rootfs
-mkdir -p "$ROOT"
+mkdir "$ROOT"
 tar -xzf "$LAYER" -C "$ROOT" --numeric-owner
-echo "layer unpacked into $ROOT ($(find "$ROOT" | wc -l) entries)"
 mkdir -p "$ROOT/replay" "$ROOT/out" "$ROOT/dev" "$ROOT/proc"
 tar -xzf "$ARCH" -C "$ROOT/replay"
 chmod -R a-w "$ROOT/replay"
@@ -34,15 +42,32 @@ chmod -R a-w "$ROOT/replay"
 [ -e "$ROOT/dev/random" ] || mknod -m 666 "$ROOT/dev/random" c 1 8
 [ -e "$ROOT/dev/urandom" ] || mknod -m 666 "$ROOT/dev/urandom" c 1 9
 cp "$HERE/rootfs_diag.py" "$ROOT/out/diag.py"
-echo "glibc files inside the unpacked layer:"
-sha256sum "$ROOT/usr/lib64/libc.so.6" "$ROOT/usr/lib64/ld-linux-x86-64.so.2" | sed "s# $ROOT/#  /#"
-echo "=== acceptance test inside the rootfs (unshare -m -p -f -n, chroot, empty environment) ==="
+# Constant shell source, arguments passed positionally: quotes/spaces in paths
+# and replay inputs cannot become shell syntax.
 set +e
-unshare -m -p -f -n sh -c "mount --make-rprivate / && mount -t proc proc '$ROOT/proc' && exec chroot '$ROOT' /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/sh /replay/calibration-v3-replay-runtime/acceptance_test.sh '$SEED' '$SALT' /out"
-RC=$?
+unshare -m -p -f -n sh -c '
+    set -eu
+    root=$1; seed=$2; salt=$3
+    mount --make-rprivate /
+    mount -t proc proc "$root/proc"
+    exec chroot "$root" /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/sh /replay/calibration-v3-replay-runtime/acceptance_test.sh "$seed" "$salt" /out
+' replay-acceptance "$ROOT" "$SEED" "$SALT" > "$WORK/acceptance.log" 2>&1
+ACCEPTANCE_RC=$?
+unshare -m -p -f -n sh -c '
+    set -eu
+    root=$1; libc=$2; loader=$3
+    mount --make-rprivate /
+    mount -t proc proc "$root/proc"
+    exec chroot "$root" /usr/bin/env -i /replay/calibration-v3-replay-runtime/bin/python3.14 -I -B /out/diag.py "$libc" "$loader"
+' replay-diagnostics "$ROOT" "$LIBC_SHA" "$LOADER_SHA" > "$WORK/diagnostics.log" 2>&1
+DIAG_RC=$?
 set -e
-echo "acceptance_test.sh exit status: $RC"
-echo "=== diagnostics inside the rootfs (archived interpreter): mapped files, network, glibc as seen from inside ==="
-unshare -m -p -f -n sh -c "mount --make-rprivate / && mount -t proc proc '$ROOT/proc' && exec chroot '$ROOT' /usr/bin/env -i /replay/calibration-v3-replay-runtime/bin/python3.14 -I -B /out/diag.py" || echo "diagnostics exit status: $?"
-echo "outputs are in $ROOT/out (corpus.json, COMMITMENT.txt, ANSWER_KEY_PRIVATE.json); remove $WORK yourself"
-exit $RC
+cat "$WORK/acceptance.log" "$WORK/diagnostics.log"
+printf 'acceptance_rc=%s\ndiag_rc=%s\n' "$ACCEPTANCE_RC" "$DIAG_RC"
+[ "$ACCEPTANCE_RC" = 0 ] && [ "$DIAG_RC" = 0 ] || exit 1
+grep -qx 'network: isolated' "$WORK/diagnostics.log" || exit 1
+grep -qx 'glibc: bound' "$WORK/diagnostics.log" || exit 1
+grep -qx "sha256 /usr/lib64/libc.so.6 $LIBC_SHA" "$WORK/diagnostics.log" || exit 1
+grep -qx "sha256 /usr/lib64/ld-linux-x86-64.so.2 $LOADER_SHA" "$WORK/diagnostics.log" || exit 1
+echo "RECEIPT_GATE_OK"
+echo "outputs and logs are under $WORK; collect them, then destroy the VM"
