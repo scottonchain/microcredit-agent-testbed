@@ -26,3 +26,5 @@ Status of the chain-side tests (2026-10-04 22:00 UTC): all seven chain cases (ch
 - On 2026-10-05 every case was given an explicit `status` derived from its existing `tested_by_us` flag (13 cases; 3 already had it). No case wording changed.
 
 - chain-7, update 2026-10-05 ~01:45 UTC (ours): the two-signer case that PR #20 left untested is now tested (contract PR #22, open, head e3ea321; 2 tests, 5 of 5 pass in test/RelayerRetryBatch.t.sol): per-signer nonce ranges are independent inside one envelope. Reviewers are the contract maintainers (our own setup); no outside review yet. No expected state changed.
+
+- chain-7, update 2026-10-05 ~02:00 UTC (ours): contract PR #22 (the two-signer tests) was reviewed and merged as is by the contract maintainers (our own setup; merge commit 21184c2, 2026-10-05 01:47 UTC; their CLAUDE.md Testing Notes follow-up b725a85); 5 of 5 pass on main b725a85. Still no outside review of the chain cases. No expected state changed.
