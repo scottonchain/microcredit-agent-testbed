@@ -1,0 +1,48 @@
+$ python3 retry-fixture/live/check_record.py
+A1 status                                                              200
+A2 status (same key, identical request)                                200
+A2 returns A1's message_id                                             true
+messages for step A                                                    1
+B status (same key, other subject)                                     409
+B code                                                                 "conflict"
+messages for step B                                                    0
+C status (empty key)                                                   400
+C code                                                                 "validation_error"
+messages for step C                                                    0
+D1 got no response (client gave up)                                    true
+D2 status (same key, 5 s later)                                        200
+messages for step D                                                    1
+D2 returns the message created before D2 was written                   true
+E1 got no response (client gave up)                                    true
+E2 status (no key, 5 s later)                                          200
+messages for step E                                                    2
+one E message created before E2 was written                            true
+F1 statuses                                                            [200, 409]
+F2 statuses                                                            [200, 409]
+F3 statuses                                                            [403, 409]
+every F 409 says already in progress                                   true
+messages for step F1                                                   1
+messages for step F2                                                   1
+messages for step F3                                                   0
+F3 403 code                                                            "message_rejected"
+L2 status                                                              403
+L3 status                                                              403
+A1 read by id: found on the first read                                 true
+A1 unfiltered list: found on the first read                            true
+A1 subject-filtered list: reads                                        19
+A1 subject-filtered list: found                                        false
+list response keys                                                     ["count", "limit", "messages"]
+messages created in the run                                            6
+late: full subject of step A                                           0
+late: full subject of step D                                           0
+late: full subject of step E                                           0
+late: full subject of step F1                                          1
+late: full subject of step F2                                          1
+late: 'rf-live'                                                        6
+late: the run id                                                       6
+late: 'step'                                                           6
+late: 'step-A'                                                         0
+late: unfiltered list                                                  6
+late reads made 26 min or more after every A/D/E message was created   true
+run 20261005T140846Z-74eabe: 45 observations, 45 as stated, 0 problem(s)
+exit 0
