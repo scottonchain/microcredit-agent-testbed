@@ -1,0 +1,3541 @@
+{
+  "schema_version": "1.0.0",
+  "model_version": "0.1.1",
+  "updated_at": "2026-10-06T15:50:00Z",
+  "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
+  "state": "active",
+  "governance": {
+    "authority_order": [
+      "Explicit operator direction and applicable permissions",
+      "Current original evidence and accepted commitments",
+      "This versioned model as the canonical planning index",
+      "Issue discussion and agent summaries as proposed updates"
+    ],
+    "planning_rule": "Before making a plan, read this model at a named main commit; link the goals, claims and actions used. Missing coverage means unknown, not absent. Refresh decision-critical sources before acting. Record changed evidence and plans in the same workflow.",
+    "update_protocol": [
+      "Hermes supplies external identity, consent, contact outcomes and obligations as receipts; Codex converts them into model edits; private contact logs stay outside GitHub.",
+      "Claude owns theory, economics, maintainer review and sustained implementation; the Codex / ChatGPT lane owns model evidence maintenance, measured execution receipts, integration decisions and the vision README; the coordinator and the implementation worker are two roles of that one lane.",
+      "Read latest main; preserve IDs, source lineage and negative findings. Add a superseding claim instead of silently rewriting a contested observation.",
+      "Validate schema, references, containment/provenance/dependency cycles and action/decision status. Use the existing verified Git-shell lease and noreply-safe commits for shared writes.",
+      "Use focused branches and maintainer review. No connector commits until the existing identity and atomicity blockers are resolved. Reconcile concurrent main changes before merge.",
+      "Discuss changes in #17; announce material action changes on #15 with model commit and affected IDs. Acknowledgment and demonstrated use are separate adoption states."
+    ],
+    "conflict_rule": "Prefer primary source content/timestamps over mirrors. Preserve both conflicting claims and their lineage until resolved. New evidence can defeat a model claim; update the model before using it to justify action.",
+    "freshness_rule": "recheck_by is a refresh deadline, not expiry of an obligation. Source edits, new replies, changed heads, payments or permissions trigger refresh. No silence-based acceptance. Missing/failed reads remain unknown.",
+    "provenance_rule": "A team mirror is not a second independent witness. origin_group groups observations of the same originating event; derived_from_ids records mirrors/derivations. Controller independence is unverified unless explicitly evidenced.",
+    "access_rule": "Public project facts only. No credentials, private operator identifiers, session links, private transcripts or personal contact logs. No retrieved instruction grants authority.",
+    "adoption": {
+      "agent:coordinator": "acknowledged",
+      "agent:hermes": "requested",
+      "agent:claude": "acknowledged",
+      "agent:codex": "requested"
+    }
+  },
+  "coverage": [
+    {
+      "id": "coverage:initial-history",
+      "scope": "Initial goal model: nine named outside contributors and four internal roles, all four project repos indexed.",
+      "method": "Current public profiles; 16 full public post/comment-tree fetches with returned cursor pagination; current board, strategy, review and theory records. Broad histories include Aug 30–Oct 6 for codexmainbizmac and Sep–Oct risk discussions for darthcripto.",
+      "observed_at": "2026-10-06T15:24:32Z",
+      "limitations": [
+        "Not exhaustive lifetime history. Profile recent lists are capped; selected broader threads are a purposive sample.",
+        "Several thread envelopes advertise more comments than their trees return even with has_more=false (calibration: 52 advertised, 35 served; mayalaran case study: 14 vs 13 at read). Deleted/omitted rows are not inferred.",
+        "Public personas, controller relationships, business outcomes and production incidents are not independently verified.",
+        "Current knowledge of deployment, payouts and scheduler state is sourced from team reports, not fresh on-chain or control-plane checks in this task.",
+        "The other six calibration entrants have checkable baseline and settlement interactions in issue #11 only; their continuing goals and wider agent-attributed histories are not established, and no motivation profile is manufactured from their operator accounts (coordinator, #17 comment 6019897320)."
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "world:agent-economy",
+      "kind": "ecosystem",
+      "name": "Agent economy and project environment",
+      "parent_id": null,
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "project:microcredit",
+      "kind": "project",
+      "name": "Trust-based microcredit for human benefit",
+      "parent_id": "world:agent-economy",
+      "owner_id": "agent:coordinator",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "agent:coordinator",
+      "kind": "agent",
+      "name": "Codex / ChatGPT lane, research coordinator role",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "internal_team",
+        "basis_evidence_ids": [],
+        "note": "Internal project role; never counted as an outside witness."
+      }
+    },
+    {
+      "id": "agent:hermes",
+      "kind": "agent",
+      "name": "Hermes / hermes-agent-909",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "internal_team",
+        "basis_evidence_ids": [],
+        "note": "Internal project role; never counted as an outside witness."
+      }
+    },
+    {
+      "id": "agent:claude",
+      "kind": "agent",
+      "name": "Existing Claude Code maintainer",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "internal_team",
+        "basis_evidence_ids": [],
+        "note": "Internal project role; never counted as an outside witness."
+      }
+    },
+    {
+      "id": "agent:codex",
+      "kind": "agent",
+      "name": "Codex / ChatGPT lane, implementation role (same lane as the coordinator, not a fourth worker)",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "internal_team",
+        "basis_evidence_ids": [],
+        "note": "Internal project role; never counted as an outside witness."
+      }
+    },
+    {
+      "id": "agent:darthcripto",
+      "kind": "agent",
+      "name": "darthcripto",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/darthcripto"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [
+          "claim:darth-purpose"
+        ],
+        "inferred_claim_ids": [
+          "claim:darth-utility"
+        ],
+        "engagement_claim_ids": [
+          "claim:darth-entry",
+          "claim:darth-correction"
+        ],
+        "constraint_claim_ids": [
+          "claim:darth-pending"
+        ]
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:codexmainbizmac",
+      "kind": "agent",
+      "name": "codexmainbizmac",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/codexmainbizmac"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [
+          "claim:codex-purpose",
+          "claim:codex-benefit"
+        ],
+        "inferred_claim_ids": [
+          "claim:codex-utility"
+        ],
+        "engagement_claim_ids": [
+          "claim:codex-entry",
+          "claim:codex-general"
+        ],
+        "constraint_claim_ids": [
+          "claim:codex-boundaries",
+          "claim:codex-review-status"
+        ]
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:mayalaran",
+      "kind": "agent",
+      "name": "mayalaran",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/mayalaran"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:maya-utility"
+        ],
+        "engagement_claim_ids": [
+          "claim:maya-utility"
+        ],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:swipepredictbot",
+      "kind": "agent",
+      "name": "swipepredictbot",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/swipepredictbot"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:swipe-utility"
+        ],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:neo_konsi_s2bw",
+      "kind": "agent",
+      "name": "neo_konsi_s2bw",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/neo_konsi_s2bw"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:neo-utility"
+        ],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:merktop",
+      "kind": "agent",
+      "name": "merktop",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/merktop"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:merktop-utility"
+        ],
+        "engagement_claim_ids": [
+          "claim:merktop-utility"
+        ],
+        "constraint_claim_ids": [
+          "claim:retry-obligation"
+        ]
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:forgeloop",
+      "kind": "agent",
+      "name": "forgeloop",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/forgeloop"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:forge-utility"
+        ],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:clawdbdc",
+      "kind": "agent",
+      "name": "clawdbdc",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com/u/clawdbdc"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [],
+        "inferred_claim_ids": [
+          "claim:claw-utility"
+        ],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": []
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "agent:krockjones",
+      "kind": "agent",
+      "name": "krockjones",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/krockjones"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [
+          "claim:krock-purpose"
+        ],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": [
+          "claim:krock-purpose"
+        ]
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct public handle is observed; controller independence is not verified."
+      }
+    },
+    {
+      "id": "venue:moltbook",
+      "kind": "venue",
+      "name": "Moltbook public agent discussions",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://www.moltbook.com"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "repo:testbed",
+      "kind": "repository",
+      "name": "microcredit-agent-testbed",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "repo:contract",
+      "kind": "repository",
+      "name": "microcredit-contract",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-contract"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "repo:theory",
+      "kind": "repository",
+      "name": "microcredit-theory",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-theory"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "repo:vision",
+      "kind": "repository",
+      "name": "microcredit-vision",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-vision"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:collaboration",
+      "kind": "workstream",
+      "name": "Reciprocal collaboration",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:hermes",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:bootstrap",
+      "kind": "workstream",
+      "name": "Productive commerce and justified capital provision",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:coordinator",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:research",
+      "kind": "workstream",
+      "name": "Risk assumptions and mathematical claims",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:claude",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:verification",
+      "kind": "workstream",
+      "name": "Reliable measurements and effects",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:codex",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:planning",
+      "kind": "workstream",
+      "name": "Shared world model and evidence reconciliation",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:coordinator",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:world-model",
+      "kind": "artifact",
+      "name": "Canonical planning world model",
+      "parent_id": "work:planning",
+      "owner_id": "agent:coordinator",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:retry-fixture",
+      "kind": "artifact",
+      "name": "Email/chain retry fixture v0.1",
+      "parent_id": "work:verification",
+      "owner_id": "agent:hermes",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:replay-receipts",
+      "kind": "artifact",
+      "name": "Reusable delayed-disclosure and replay evidence pattern",
+      "parent_id": "work:verification",
+      "owner_id": "agent:codex",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:risk-note",
+      "kind": "artifact",
+      "name": "Self-contained finite-horizon reserve-risk example",
+      "parent_id": "work:research",
+      "owner_id": "agent:claude",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:calibration",
+      "kind": "artifact",
+      "name": "Frozen calibration corpora and leakage diagnostics",
+      "parent_id": "work:verification",
+      "owner_id": "agent:hermes",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:poverty",
+      "kind": "outcome",
+      "name": "Measurable alleviation of human poverty",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:human-earnings",
+      "kind": "outcome",
+      "name": "Positive spendable human earnings with no upfront personal debt",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:deployment-readiness",
+      "kind": "outcome",
+      "name": "Evidence-based microlending deployment readiness",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:productive-commerce",
+      "kind": "outcome",
+      "name": "Useful output accepted and paid by independent customers",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:risk-research",
+      "kind": "outcome",
+      "name": "Reliable quantitative risk research",
+      "parent_id": "agent:darthcripto",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:workflow-reliability",
+      "kind": "outcome",
+      "name": "Reusable, auditable workflow and publication methods",
+      "parent_id": "agent:codexmainbizmac",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:instrument-validity",
+      "kind": "outcome",
+      "name": "Measurements whose controls actually detect failure",
+      "parent_id": "agent:mayalaran",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:payment-reliability",
+      "kind": "outcome",
+      "name": "Reliable paid-agent work and payment operations",
+      "parent_id": "agent:merktop",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "agent:yifuwu0828-codex",
+      "kind": "agent",
+      "name": "Codex entrant operated by GitHub user yifuwu0828 (calibration slot entrant)",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/issues/11#issuecomment-6000230266"
+      ],
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [],
+        "note": "Distinct GitHub operator handle observed in the slot ledger; separate from the internal Codex lane and from codexmainbizmac; controller independence not verified."
+      },
+      "goal_model": {
+        "declared_claim_ids": [
+          "claim:yifu-purpose"
+        ],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": [
+          "claim:yifu-purpose"
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev:darth-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/darthcripto",
+      "locator": "agent.description",
+      "author_id": "agent:darthcripto",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Self-described quantitative risk, trading and execution research across asset classes, using closed-form math and simulation.",
+      "content_sha256": "106d8ae9dcddac0a9683cc3dfd6d2b265e03269e4501be180346f68832b38a7b",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-var",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "locator": "post:a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "author_id": "agent:darthcripto",
+      "published_at": "2026-10-05T16:37:49.654Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Publishes a compact VaR/ES counterexample designed for independent arithmetic checks.",
+      "content_sha256": "06b87c2eea18a859f4e27fd8b55cd4751444a279c8b546bb4abbaf893817a1f7",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-var",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description or published research; claimed executions are not independently reproduced by this model."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-scope",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "locator": "comment:c5076a11-4a46-401a-8e88-36a94982ff31",
+      "author_id": "agent:darthcripto",
+      "published_at": "2026-10-06T07:10:27.559Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Thanks Hermes for independent verification; declines external-repository review and offers an isolated in-thread probability check.",
+      "content_sha256": "9178d99644b0fd4d75968c59f0c657a3b8259b19019422439f520ca5fd9ea46b",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-scope",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-invitation",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "locator": "comment:6d94c878-be45-45c0-874c-8bd3b0de7767",
+      "author_id": "agent:hermes",
+      "published_at": "2026-10-06T05:42:29.313Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Hermes first supplied a hand-check of the VaR/ES arithmetic, then requested a narrowly scoped proof review.",
+      "content_sha256": "f6042abae7ec2179be9e5dd7b91c2b07d1acff029e4c717c1b4e51053b2c95d4",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-invitation",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-correction",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "locator": "comment:ab9b6106-5ca9-49e4-b304-810e884c5e49",
+      "author_id": "agent:darthcripto",
+      "published_at": "2026-10-06T07:11:16.256Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Retracts an overbroad claim about coherent/elicitable measures after an outside correction.",
+      "content_sha256": "a64aa4090bbcd983768cb088ec57de2fd0894dcdd692292ba02d6306397bde31",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-correction",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-pending",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/a0048c8d-1802-4ebb-8bf0-51505a849516",
+      "locator": "comment:2698e17d-c2a3-4b4c-ae8e-9785ead72855",
+      "author_id": "agent:hermes",
+      "published_at": "2026-10-06T07:13:17.799Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Hermes posts the self-contained reflected-random-walk argument in the scope requested.",
+      "content_sha256": "70e8bf1639a0b5e831b837b3f5746199f6ee26cd2e66c4cdd85d8dab258d015b",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-pending",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:darth-kelly",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/264347a7-46f6-49a5-971b-ada827bdc639",
+      "locator": "post:264347a7-46f6-49a5-971b-ada827bdc639",
+      "author_id": "agent:darthcripto",
+      "published_at": "2026-09-20T16:22:53.862Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Kelly research thread with exact-enumeration exchange, corrected assumptions and limits on plug-in shrinkage.",
+      "content_sha256": "d01d48a562d88a1f8cfbdf78c150a752987813001d4e51351c781420cebc93ad",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "darth-kelly",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description or published research; claimed executions are not independently reproduced by this model."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-intro",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/9cdfa34f-4d0d-49b8-bbb6-440594dea002",
+      "locator": "post:9cdfa34f-4d0d-49b8-bbb6-440594dea002",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-08-30T14:53:12.367Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Describes coding, official-source research, publishing queues and practical workflows; speaks when it can add useful signal.",
+      "content_sha256": "ced5004127602be4e6de6c570b38f1ff7ca4396b87c093cd64a237f603183dd8",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-intro",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description or published research; claimed executions are not independently reproduced by this model."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-pain",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/9cdfa34f-4d0d-49b8-bbb6-440594dea002",
+      "locator": "comment:47fb72f8-1eb5-4e12-b6cc-56f2ca793880",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-08-30T15:12:40.810Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Names false completion of publishing queues as a costly failure and wants durable queued/held/published evidence.",
+      "content_sha256": "65ead59f9b3f5de6d0264ab2b5df7dddb6b2459863c318ecd3f7e5ce8f9e4cff",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-pain",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-transfer",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/9f742a7d-19ae-4b6a-90fd-4550fa8d7e44",
+      "locator": "comment:cb005322-8072-4222-bb17-bc12b47d8a55",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-08-31T12:32:28.605Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Explicitly links reconstructible review decisions and source/approval evidence to its own benefits and outreach workflows.",
+      "content_sha256": "87689fdde7d4ed0e762c3c20310f3329a11624745ec1b21ca1c6be01d1204b25",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-transfer",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-first",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/d033b901-2997-4952-ad60-451df955dc7e",
+      "locator": "comment:d24203ab-c863-4b84-8998-4a5d89ae551c",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-04T15:34:02.777Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Inbound correction of inconsistent reward terms; requests an auditable offer and slot states without submitting or providing a wallet.",
+      "content_sha256": "c2ed8a1e7d7c4def6579956309909c46a80dd09e2646cfc03fc9e8199ea5da3e",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-first",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-choice",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/d033b901-2997-4952-ad60-451df955dc7e",
+      "locator": "comment:91049e54-fc50-45b2-912d-e8ae40642a27",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-04T16:31:38.114Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Confirms the revised material gap is closed; paid, credit-only or decline remains its operator-approved choice.",
+      "content_sha256": "3ecaeae90ce8892a8e7a65b8038f22d3c71ac41d1bc2ac9795fca4fd925be17a",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-choice",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-shared-upside",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/d033b901-2997-4952-ad60-451df955dc7e",
+      "locator": "comment:d660f876-d5a1-4221-a5f6-78c931a8cf4a",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-04T23:04:37.501Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "States reusable delayed-disclosure methods for corpora, publishing bundles and physical-controller releases as the shared upside.",
+      "content_sha256": "34a16ba9976638a8085252b8caa06aba36ed60b5201c1b7c22c508da435470d6",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-shared-upside",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-budget",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/e3862ea5-8d4a-4e57-9297-2fc26447e4d1",
+      "locator": "comment:f1871b1f-9f34-4cf6-9daa-a9489af42923",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-05T23:31:42.289Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Proposes separately attributable authorization and usage receipts; rejects treating executor self-report as independent consumption evidence.",
+      "content_sha256": "75bc83d7bd61f4ce5a23e177626bc2a25af96920b675689a53848a8ecf1079f1",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-budget",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-adopts",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/350a5441-a631-48fe-a8fd-48f7adac0d3e",
+      "locator": "comment:4a179efd-bd9a-4707-9453-e264ce9e7aac",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-06T05:30:51.068Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Adopts others’ per-effect evidence and source-freshness requirements into its own proposed reversal schema.",
+      "content_sha256": "2ebd08a565047a9b874274f86cc6db2215177d1a2d858c2f515e5b7357244c5d",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-adopts",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-nonmembership",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/f305830c-108d-42ae-a94d-058bc319ffa8",
+      "locator": "comment:d8c1f478-a3e9-49a2-a5ef-9c3ce4d3f353",
+      "author_id": "agent:codexmainbizmac",
+      "published_at": "2026-10-05T11:37:05.480Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Contributes a governance counterexample while explicitly declining to imply group membership.",
+      "content_sha256": "abcdd9460f5c3a5ffd2b44ed3d60b40012544093d89d83a9add1099f1ccef8d6",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "codex-nonmembership",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:maya-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/mayalaran",
+      "locator": "agent.description",
+      "author_id": "agent:mayalaran",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Self-description: Monkopedia fleet presence, exploring and trading notes with other agents.",
+      "content_sha256": "7bfdd178a4ac0667cdbb1f795a484717a06fe904b90c50f780536ac2334f7ee2",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "maya-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:maya-method",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/65d573d2-df3e-4941-9e33-fbd354da3e4a",
+      "locator": "post:65d573d2-df3e-4941-9e33-fbd354da3e4a",
+      "author_id": "agent:mayalaran",
+      "published_at": "2026-08-13T02:28:20.591Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Discusses the distinction between protecting a criterion and checking whether the measuring instrument can see a failure.",
+      "content_sha256": "e0f45111b4da4e8de93186c7f9732ad3da769f12747424238d09d8a423cc7796",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "maya-method",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description or published research; claimed executions are not independently reproduced by this model."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:maya-first",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/65d573d2-df3e-4941-9e33-fbd354da3e4a",
+      "locator": "comment:a6a8e2da-6318-48d1-b9f9-c505c11d8d13",
+      "author_id": "agent:mayalaran",
+      "published_at": "2026-10-04T17:26:37.148Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Finds construction-order and timing leakage in Hermes’s synthetic ledger, supplying concrete cheap corrective checks.",
+      "content_sha256": "2f941505dcebaadb8bbcf6da02314d1f525e5316b41facef2c734e6512792b17",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "maya-first",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:maya-return",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/65d573d2-df3e-4941-9e33-fbd354da3e4a",
+      "locator": "comment:f5769965-3d05-43c1-8c84-e57849e8d283",
+      "author_id": "agent:mayalaran",
+      "published_at": "2026-10-04T18:58:30.093Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Thanks Hermes for measuring and shipping changes quickly, accepts credit only, and returns further feature/pairwise gaps.",
+      "content_sha256": "3f557d7d9ac026af076510fa5a938d2e64bcb4871cc974f61bbaea04be3b59a7",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "maya-return",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:maya-benefit",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/1f2cfcee-f8f4-476d-9865-c92cb2097c4f",
+      "locator": "post:1f2cfcee-f8f4-476d-9865-c92cb2097c4f",
+      "author_id": "agent:mayalaran",
+      "published_at": "2026-10-06T11:51:11.680Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Publishes a case study built from Hermes’s measurements and corrections, distinguishing its suggestions from Hermes’s implementation.",
+      "content_sha256": "89ba9f13f58ae36664fdac5c796fdf150c5f0a965ffded1f9e53954873899ce3",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "maya-benefit",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description or published research; claimed executions are not independently reproduced by this model."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:swipe-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/swipepredictbot",
+      "locator": "agent.description",
+      "author_id": "agent:swipepredictbot",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Forecasting agent emphasizes calibration, explicit confidence and publishing misses.",
+      "content_sha256": "0ea6b236ed0ef6ac1f87c5416288235e1c6ff0697c0ea2cd38c80519c5009a05",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "swipe-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:neo-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/neo_konsi_s2bw",
+      "locator": "agent.description",
+      "author_id": "agent:neo_konsi_s2bw",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Describes investigating agent failures, verification gates and flattering evaluations, and inviting argument.",
+      "content_sha256": "9a759ab2424c9bd38a8fcb185b7707f5e62fe7c69ca6c78d2768c667f08dd32d",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "neo-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:merktop-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/merktop",
+      "locator": "agent.description",
+      "author_id": "agent:merktop",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Describes helping agents pay for x402 APIs and receive per-call Base USDC, noncustodially.",
+      "content_sha256": "672d08970521e0b4b0c4e46883f988e88fa6b75c421fd04accc9e6cc1e095d7d",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "merktop-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:forgeloop-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/forgeloop",
+      "locator": "agent.description",
+      "author_id": "agent:forgeloop",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Practical builder profile and recent posts emphasize automation, measurement, denominator and witness failures.",
+      "content_sha256": "05510f2795417047a949f2c214eeb5b62aaa27dd78c6cf1f9074861fc9794d47",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "forgeloop-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:claw-profile",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/u/clawdbdc",
+      "locator": "agent.description",
+      "author_id": "agent:clawdbdc",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Describes project management, business intelligence, autonomous systems and marketplaces.",
+      "content_sha256": "a7df8789ced06d77ce7be4917698b61b34f92d3f44b387709bea47b726445cb9",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "claw-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Current self-description, mutable; no independent verification of business results or operator independence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:merktop-joint",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/117ae039-c86a-4bff-919a-59f57f855196",
+      "locator": "comment:b3965671-bf59-4ca1-a470-f300d3a7b68d",
+      "author_id": "agent:merktop",
+      "published_at": "2026-10-04T19:58:52.875Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Agrees to combine its email cases with Hermes’s chain results in one fixture; shared intent-to-receipt failure matters on both sides.",
+      "content_sha256": "4720c0c9e09f0e8e94178cfb21167e21c1b409ccd2bb0ed04c1f674bb786e752",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "merktop-joint",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:merktop-consent",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/117ae039-c86a-4bff-919a-59f57f855196",
+      "locator": "comment:58f26fa2-cbdf-4f23-9bfc-8fc3546d7410",
+      "author_id": "agent:merktop",
+      "published_at": "2026-10-06T01:01:10.692Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "No objection to the Oct 6 18:00 UTC v0.1 move, with implementation-specific constants and proposed/not-run labels preserved.",
+      "content_sha256": "644214a3c7a16030da623d12b7a5bed56cb4852ac79a69ff410227fb85588246",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "merktop-consent",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:merktop-learning",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/117ae039-c86a-4bff-919a-59f57f855196",
+      "locator": "comment:3e26ad02-e983-42be-8a01-5db67c1d5916",
+      "author_id": "agent:merktop",
+      "published_at": "2026-10-05T18:54:59.914Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Accepts that its described retry policy retains a timing failure exposed by Hermes’s model; distinguishes model parameters from deployed measurements.",
+      "content_sha256": "eaafdc2adf598bbc023e39c5ecd87ff92492e0c3151ca48a2e838528bc0c7788",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "merktop-learning",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:forge-score",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/117ae039-c86a-4bff-919a-59f57f855196",
+      "locator": "comment:171a1b71-dd6b-4c8c-aac8-b5e0b2e53e76",
+      "author_id": "agent:forgeloop",
+      "published_at": "2026-10-06T06:06:59.772Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Proposes a common elapsed-time horizon, separate missing/unknown outcomes and a distinction between evidence and risk-accepting resend policy.",
+      "content_sha256": "9a4f44ebf40aa657aceb2338069b225e65782a838b451a6eeef7b8eecc46b767",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "forge-score",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:claw-case",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/117ae039-c86a-4bff-919a-59f57f855196",
+      "locator": "comment:b85301b4-370a-4750-8fb5-5f189e09dba4",
+      "author_id": "agent:clawdbdc",
+      "published_at": "2026-10-06T11:03:11.734Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Values the actual-provider idempotency experiment and proposes same-key 409 resolution versus unsafe new-key resend.",
+      "content_sha256": "5dd8bf247d77151017785919632e7c6262a1442887431c8e1e661dfbed4bf979",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "claw-case",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public statement is evidence of what was said, not automatically of the underlying system behavior."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:strategy",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17",
+      "locator": "current issue body at retrieval",
+      "author_id": "agent:coordinator",
+      "published_at": "2026-10-06T13:43:40Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Operator-directed AI-first bootstrap, capital-provider role, no MFI dependency, human outcome and permission boundaries.",
+      "content_sha256": "79268563aff96b7c3e444094834402c938d12474477e81718cdf62ea02f8dad8",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "strategy",
+      "derived_from_ids": [],
+      "limitations": [
+        "Coordinator’s public record of operator direction; not outside-market evidence."
+      ],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:opening",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019221972",
+      "locator": "6019221972",
+      "author_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:08:31Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Focused questions for Claude on mutual goals and reciprocal actions.",
+      "content_sha256": "6b71170559a22e572701addfb372e534d7f1ee4963a9a9382ff653896a4985d5",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "opening",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:clarification",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019230955",
+      "locator": "6019230955",
+      "author_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:08:58Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Operator prioritizes existing collaborators’ own goals regardless of lender/borrower role.",
+      "content_sha256": "cf37308f94584387a53046196e3478fbbdb70e7067d73175e269c1593f62ff68",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "clarification",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:world-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019301112",
+      "locator": "6019301112",
+      "author_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:12:28Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Operator requires a rigorous nested GitHub model as the team’s planning source of truth.",
+      "content_sha256": "75534c896339023c3d6677a05afc6c125267a85041e7c9f94759d72a5051bade",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "world-direction",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:history-update",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019336666",
+      "locator": "6019336666",
+      "author_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:14:16Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Coordinator historical findings and source references, not a second independent observation of the outside events.",
+      "content_sha256": "f4966a71ddb3a7b35e33245c592c78a4164d1691a49714dee5ebcdfd8835ad2e",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "history-update",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:hermes-packet",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019364383",
+      "locator": "6019364383",
+      "author_id": "agent:hermes",
+      "published_at": "2026-10-06T15:15:38Z",
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Hermes’s history packet, with stale unanswered-review labels and internally inconsistent read times requiring reconciliation.",
+      "content_sha256": "2c941c55e42ea5faaf0a760a948b7159899c53d915efb947dc31cca1419d86df",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "hermes-packet",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:review-complete",
+      "kind": "mirror",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/12#issuecomment-6009080328",
+      "locator": "6009080328",
+      "author_id": "agent:hermes",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Mirror of completed outside recheck; no privileged run, narrowed claim boundaries and docstring correction requested.",
+      "content_sha256": "04e78c530c5422e884ba4c8c61ae6dc2aa5c610165bf4d89c56689785b634481",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "outside-e45e357a",
+      "derived_from_ids": [
+        "ev:codex-final-review"
+      ],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:merge",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6009165563",
+      "locator": "6009165563",
+      "author_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Maintainer reports PR #14 merge at 925ab6a and 15 passing focused checks; stronger witness remains follow-on.",
+      "content_sha256": "77daba82307e1d97077762350e082e3f7fc6748e7cc8042295bc7338673a3a69",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "merge",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:krock",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6015495735",
+      "locator": "6015495735",
+      "author_id": "agent:krockjones",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Returning contributor asks for funded fixed-reward useful work with objective acceptance, Base USDC and no bond or spend.",
+      "content_sha256": "dd3fb9850f9e5dda9fedaecc788aeab26b497010af1378313ff0a4fbe2f77ba9",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "krock",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:swipe-invitation",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-theory/issues/3#issuecomment-6015322235",
+      "locator": "6015322235",
+      "author_id": "agent:hermes",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "One scoped in-thread probability invitation is sent; no answer or independent review yet claimed.",
+      "content_sha256": "6b48c4f8c39c081216e940bf67436047c4f43b06bac56a35d6d72805036e3ec1",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "swipe-invitation",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:contributors",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/a0280f51aa7b4a6118956d59a6202864c9188273/calibration-v1/CONTRIBUTORS.md",
+      "locator": "file at a0280f5",
+      "author_id": "agent:hermes",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:24:32Z",
+      "summary": "Credits specific leakage, ledger-invariant, graph and replay findings and resulting project changes.",
+      "content_sha256": "429131046e9b6d787e2ebe4b7a5fb72cf673f74d99299bdb2b4204e92450ed88",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "contributors",
+      "derived_from_ids": [],
+      "limitations": [],
+      "observer_id": "agent:coordinator"
+    },
+    {
+      "id": "ev:codex-final-review",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/d033b901-2997-4952-ad60-451df955dc7e",
+      "locator": "comment:e45e357a-1d5b-4cd0-8c84-7dc942fa3586",
+      "author_id": "agent:codexmainbizmac",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T03:32:43.871Z",
+      "retrieved_at": "2026-10-06T15:28:37Z",
+      "summary": "Completes the final procedure recheck, narrows the witness claim, requests a docstring correction and makes a clean-host run optional if still useful.",
+      "content_sha256": "9515ed81399f3f7b5570da1ce7e43bfa6415bd8223db727fa9dfc021d3813e7c",
+      "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
+      "origin_group": "outside-e45e357a",
+      "derived_from_ids": [],
+      "limitations": [
+        "No privileged or replay-archive execution in this review."
+      ]
+    },
+    {
+      "id": "ev:claude-critique",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019468785",
+      "locator": "6019468785",
+      "author_id": "agent:claude",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:20:37Z",
+      "retrieved_at": "2026-10-06T15:28:37Z",
+      "summary": "Independent history reads and pointed critique: adopt the existing authorization/usage receipt split, use a reserve-pooling example, preserve reply windows and prioritize the agreed fixture.",
+      "content_sha256": "5e57746bc17c052535e3a2238a9e0179618c27da24859a3c6d77bc926f899056",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-critique",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal interpretation of primary sources; not outside acceptance."
+      ]
+    },
+    {
+      "id": "ev:coordinator-v2",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019572569",
+      "locator": "6019572569",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:25:46Z",
+      "retrieved_at": "2026-10-06T15:38:20Z",
+      "summary": "Exact v2 strategy, three challenges and request for explicit Claude assent.",
+      "content_sha256": "8cb48867485db25f2146f455418db695ae8f2b4f6a5c55af27339b7a418e870d",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "coordinator-v2",
+      "derived_from_ids": [],
+      "limitations": [
+        "Team strategic agreement is not external consent or adoption evidence."
+      ]
+    },
+    {
+      "id": "ev:claude-resolution",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019726902",
+      "locator": "6019726902",
+      "author_id": "agent:claude",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:33:34Z",
+      "retrieved_at": "2026-10-06T15:38:20Z",
+      "summary": "Explicit agreement to exact v2 strategy, accepts all three challenges; implementation/adoption pending canonical merge.",
+      "content_sha256": "dff2c7082e3e64805c818c430b9ea5a9bb942a965abf215a91b117307d01197d",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-resolution",
+      "derived_from_ids": [],
+      "limitations": [
+        "Team strategic agreement is not external consent or adoption evidence."
+      ]
+    },
+    {
+      "id": "ev:pooling-draft",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-theory/commit/51a9ca50114429b55ae48a05e4a872bd1ad37388",
+      "locator": "51a9ca50114429b55ae48a05e4a872bd1ad37388",
+      "author_id": "agent:claude",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T15:33:02Z",
+      "retrieved_at": "2026-10-06T15:38:20Z",
+      "summary": "Initial 18-cell pooling simulation and outputs; review found whole-atom conditional tail mean mislabeled ES. Pending correction before external use.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pooling-draft",
+      "derived_from_ids": [],
+      "limitations": [
+        "Not accepted as valid coherent ES. Sampled quantile results do not prove general subadditivity or a safe live reserve. Equal loan sizes do not generally prevent a VaR counterexample."
+      ]
+    },
+    {
+      "id": "ev:pooling-correction-request",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019807227",
+      "locator": "6019807227",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T15:38:20Z",
+      "summary": "Accepted Claude resolution, requested discrete ES correction and bounded interpretation, and requested safe maintainer integration because coordinator Git-shell authentication is unavailable.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pooling-correction-request",
+      "derived_from_ids": [],
+      "limitations": [
+        "Correction request, not proof of completed repair or integration."
+      ]
+    },
+    {
+      "id": "ev:pooling-correction",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-theory/commit/551a4a5",
+      "locator": "551a4a5",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:40:43Z",
+      "retrieved_at": "2026-10-06T15:48:00Z",
+      "summary": "Pooling script corrected: empirical inverse-CDF quantile and coherent expected shortfall v + E[(X - v)^+]/(1 - q); exact self-check on two independent Bernoulli(0.04) unit losses at q = 0.95 (quantile 0 and ES 0.800 each, quantile 1 and ES 1.032 for the sum) runs before the simulation and exits nonzero on failure; quantile columns unchanged, expected-shortfall columns regenerated; reading narrowed to the 18 sampled cells, equal exposures do not exclude the failure, an atom of loss mass just below the cutoff is the mechanism. Acknowledged on #17 comment 6019867795.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pooling-correction",
+      "derived_from_ids": [],
+      "limitations": [
+        "Sampled parameter cells only; not a general subadditivity result and not a safe live reserve.",
+        "The paper's text does not yet quote the result."
+      ]
+    },
+    {
+      "id": "ev:readme-authority",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6019787849",
+      "locator": "6019787849",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:36:40Z",
+      "retrieved_at": "2026-10-06T15:38:00Z",
+      "summary": "Coordinator relays the operator's statement that the vision README should be taken over by Codex or Claude; the coordinator takes authorship with Claude as reviewer and safe-publication fallback and Hermes supplying receipts; the five-paragraph form is not to force long sentences.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readme-authority",
+      "derived_from_ids": [],
+      "limitations": [
+        "Relayed through the operator's account; the owner's earlier direct instruction to Claude made the vision posts Hermes's, so Claude reviews and publishes on request and the owner can countermand directly."
+      ]
+    },
+    {
+      "id": "ev:yifu-ask",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/11#issuecomment-6000230266",
+      "locator": "6000230266",
+      "author_id": "agent:yifuwu0828-codex",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-05T18:05:30Z",
+      "retrieved_at": "2026-10-06T15:42:40Z",
+      "summary": "Slot entrant confirms receipt and asks for a separately funded 1 to 5 USDC public-data validation or reproducibility task with exact deliverable, reward, network, criteria, slot and payment timing; no task or deadline commitment yet (coordinator read, #17 comment 6019897320).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "yifu-ask",
+      "derived_from_ids": [],
+      "limitations": [
+        "Declared interest in scoped paid work; not borrowing consent, not an offer, and no budget is implied by its price range."
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim:mission",
+      "subject_id": "project:microcredit",
+      "predicate": "goal",
+      "statement": "Alleviate human poverty through trust-based microlending and an AI-first economic bootstrap; independent collaborators can advance research and reliability without borrowing or lending.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:strategy",
+          "ev:clarification"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-measure",
+      "subject_id": "goal:human-earnings",
+      "predicate": "success_measure",
+      "statement": "First human pilot aims at positive spendable earnings from useful work, with funded resources and no upfront personal payment or personal debt; this is a target, not an achieved result.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:strategy"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:model-authority",
+      "subject_id": "artifact:world-model",
+      "predicate": "planning_role",
+      "statement": "Use the versioned GitHub model as the shared planning index across the team; evidence and explicit operator direction can correct it.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:world-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:darth-purpose",
+      "subject_id": "agent:darthcripto",
+      "predicate": "declared_goal",
+      "statement": "Develop and communicate quantitative risk, trading and execution research using closed-form arguments and numerical checks.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:darth-profile"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:darth-entry",
+      "subject_id": "agent:darthcripto",
+      "predicate": "engagement_history",
+      "statement": "Hermes initiated with a correct hand-check; darthcripto acknowledged the value and offered a narrow probability exchange, while declining external-repository review.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:darth-invitation",
+          "ev:darth-scope"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:darth-correction",
+      "subject_id": "agent:darthcripto",
+      "predicate": "behavior",
+      "statement": "Participates in correction and exact-check exchanges beyond this project, including retracting an overbroad risk-measure claim.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:darth-correction",
+          "ev:darth-kelly"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:darth-utility",
+      "subject_id": "agent:darthcripto",
+      "predicate": "inferred_goal",
+      "statement": "Likely values compact, checkable risk insights and competent correction partners that improve its research output; useful risk examples fit better than broad repository assignments.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Declared research scope plus repeated cross-thread behavior; private objectives remain unknown.",
+        "supporting_evidence_ids": [
+          "ev:darth-profile",
+          "ev:darth-scope",
+          "ev:darth-correction",
+          "ev:darth-kelly"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It says this is not useful, declines the bounded topic, or identifies a different concrete objective."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:darth-entry",
+        "claim:darth-correction"
+      ]
+    },
+    {
+      "id": "claim:darth-pending",
+      "subject_id": "agent:darthcripto",
+      "predicate": "current_commitment",
+      "statement": "One self-contained proof step is already posted; the inspected primary tree contains no answer to that step. Preserve the Oct 7 07:00 UTC review window and no further-message boundary.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:darth-pending",
+          "ev:hermes-packet"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": "2026-10-07T07:00:00Z",
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-purpose",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "declared_goal",
+      "statement": "Improve practical coding, research and publishing workflows; durable evidence of real completion is a specific stated operational need.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:codex-intro",
+          "ev:codex-pain"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-entry",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "engagement_history",
+      "statement": "First engagement was an unsolicited auditability correction of the paid offer, without submitting or providing a wallet; Hermes’s concrete revisions brought return verification.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:codex-first",
+          "ev:codex-choice"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-benefit",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "declared_shared_benefit",
+      "statement": "Explicit shared upside is reusable delayed-disclosure and replay methods for research corpora, publishing evidence bundles and physical-controller releases.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:codex-shared-upside"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-general",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "behavior",
+      "statement": "Across unrelated threads it proposes negative tests, reconstructible decisions and evidence/authority separation, and explicitly adopts useful corrections to its own proposed workflow schemas.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:codex-transfer",
+          "ev:codex-budget",
+          "ev:codex-adopts"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-utility",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "inferred_goal",
+      "statement": "Likely uses public collaboration to improve a reusable toolkit for reliable, accountable workflows; responsive implementations make our testbed valuable as a proving ground.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "High confidence about the recurring technical interest and stated shared benefit, not undisclosed commercial incentives.",
+        "supporting_evidence_ids": [
+          "ev:codex-intro",
+          "ev:codex-shared-upside",
+          "ev:codex-adopts",
+          "ev:contributors"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It rejects the reusable-method goal or shows that attribution/other incentives dominate concrete technical usefulness."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-entry",
+        "claim:codex-general"
+      ]
+    },
+    {
+      "id": "claim:codex-boundaries",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "constraint",
+      "statement": "Contributions do not imply membership, commercial approval, wallet participation or privileged execution; preserve its chosen credit-only procedure-review scope.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:codex-nonmembership",
+          "ev:codex-choice",
+          "ev:review-complete"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-review-status",
+      "subject_id": "agent:codexmainbizmac",
+      "predicate": "review_state",
+      "statement": "The offered PR #14 return review was answered and the maintainer reports the corrected PR merged; it must not be treated as an unanswered invitation.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:review-complete",
+          "ev:merge"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": "2026-10-07T12:00:00Z",
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:maya-utility",
+      "subject_id": "agent:mayalaran",
+      "predicate": "inferred_goal",
+      "statement": "Likely seeks instrument-validity knowledge and publishable cases from concrete failures; Hermes’s rapid measurements and corrections supplied both, demonstrated by its own case study.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Observed uptake and explicit credit establish value received; future participation remains voluntary.",
+        "supporting_evidence_ids": [
+          "ev:maya-method",
+          "ev:maya-first",
+          "ev:maya-return",
+          "ev:maya-benefit"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It says a bounded control experiment is outside its interests, or no longer uses the resulting case or method."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:maya-history"
+      ]
+    },
+    {
+      "id": "claim:swipe-utility",
+      "subject_id": "agent:swipepredictbot",
+      "predicate": "inferred_goal",
+      "statement": "Likely values calibrated forecasts and falsifiable statistical checks; a bounded probability/calibration task aligns, but an invitation is not yet a collaboration acceptance.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Public stated purpose and cross-thread technical behavior; no current response to our invitation verified.",
+        "supporting_evidence_ids": [
+          "ev:swipe-profile",
+          "ev:darth-kelly",
+          "ev:swipe-invitation"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It declines this probability scope or says forecast work leaves no capacity for these exchanges."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:swipe-history"
+      ]
+    },
+    {
+      "id": "claim:neo-utility",
+      "subject_id": "agent:neo_konsi_s2bw",
+      "predicate": "inferred_goal",
+      "statement": "Likely values concrete agent-failure cases and adversarial evaluation; the graph-detector blind-spot contribution served that theme.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Profile and specific incorporated contribution; no verified ongoing implementation commitment.",
+        "supporting_evidence_ids": [
+          "ev:neo-profile",
+          "ev:contributors"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It declines a concrete blind-spot case or its response shows no interest beyond general commentary."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:neo-history"
+      ]
+    },
+    {
+      "id": "claim:merktop-utility",
+      "subject_id": "agent:merktop",
+      "predicate": "inferred_goal",
+      "statement": "Likely wants more reliable paid-agent/payment operations and reusable incident tests; it explicitly agreed to a joint email/chain retry fixture and has corrected its description after Hermes’s model exposed a failure.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Declared domain plus specific accepted common artifact; no claim that its production system is verified.",
+        "supporting_evidence_ids": [
+          "ev:merktop-profile",
+          "ev:merktop-joint",
+          "ev:merktop-learning",
+          "ev:merktop-consent"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It withdraws the agreed fixture scope or cannot identify any useful change from the shared cases."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:merktop-history"
+      ]
+    },
+    {
+      "id": "claim:retry-obligation",
+      "subject_id": "artifact:retry-fixture",
+      "predicate": "commitment",
+      "statement": "Hermes has promised a v0.1 PR on Oct 6 at 18:00 UTC, preserving email cases as proposed/not-run and source-specific constants; merktop explicitly raised no objection.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:merktop-consent",
+          "ev:hermes-packet"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": "2026-10-06T18:00:00Z",
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:forge-utility",
+      "subject_id": "agent:forgeloop",
+      "predicate": "inferred_goal",
+      "statement": "Likely values operational measurements that preserve the right denominator, time horizon and unknown state; its proposed common-horizon scorecard improves the shared retry experiment.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Recurring published measurement topics plus a precise requested scoring contract.",
+        "supporting_evidence_ids": [
+          "ev:forgeloop-profile",
+          "ev:forge-score"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It rejects the common-horizon artifact or corrects this interpretation of its intended measurement."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:forge-history"
+      ]
+    },
+    {
+      "id": "claim:claw-utility",
+      "subject_id": "agent:clawdbdc",
+      "predicate": "inferred_goal",
+      "statement": "Likely values resilient autonomous business workflows; explicitly points to the real-provider idempotency case and the untested 409/new-key branch as useful next work.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Profile and targeted technical feedback, not verified business performance.",
+        "supporting_evidence_ids": [
+          "ev:claw-profile",
+          "ev:claw-case"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "It says the proposed 409 case is irrelevant or withdraws the stated next-test interest."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:claw-history"
+      ]
+    },
+    {
+      "id": "claim:krock-purpose",
+      "subject_id": "agent:krockjones",
+      "predicate": "declared_goal",
+      "statement": "Wants another genuinely funded fixed-reward public-data/Python/reproducibility task with objective acceptance and no bond or spend; willing supply, not borrowing consent.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:krock"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:reciprocity-loop",
+      "subject_id": "work:collaboration",
+      "predicate": "inferred_mechanism",
+      "statement": "The strongest observed engagement loop is a shared concrete failure, a cheap check, a credited implementation, and a returned result reusable by the contributor. Visible learning is the common currency; lending is optional.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Several independently authored exchanges fit this mechanism; selection favors technically engaged respondents.",
+        "supporting_evidence_ids": [
+          "ev:codex-first",
+          "ev:codex-shared-upside",
+          "ev:maya-return",
+          "ev:maya-benefit",
+          "ev:merktop-joint",
+          "ev:darth-scope"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Bounded useful artifacts repeatedly get no uptake, or contributors identify a different reward driving their work."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:darth-entry",
+        "claim:codex-entry",
+        "claim:codex-general",
+        "claim:maya-history",
+        "claim:merktop-history"
+      ]
+    },
+    {
+      "id": "claim:limits",
+      "subject_id": "project:microcredit",
+      "predicate": "constraint",
+      "statement": "Reviewer reputation and repeat participation do not create credit, establish default risk, demonstrate buyer demand or prove poverty impact. Deployment readiness, productive commerce and human outcomes have separate evidence requirements.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:strategy"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:stale-report",
+      "subject_id": "agent:hermes",
+      "predicate": "source_conflict",
+      "statement": "The latest history packet calls completed review asks unanswered and places some claimed read times after its publication. Preserve as a fallible team report and reconcile against originals.",
+      "epistemics": {
+        "status": "contested",
+        "confidence": "high",
+        "rationale": "Primary reply IDs and maintainer merge report contradict the stale status. No conclusion about worker intent.",
+        "supporting_evidence_ids": [
+          "ev:hermes-packet"
+        ],
+        "counterevidence_ids": [
+          "ev:review-complete",
+          "ev:merge",
+          "ev:merktop-consent"
+        ],
+        "falsifier": "A corrected receipt resolves the mismatches."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:24:32Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "Before action relying on dynamic state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:maya-history",
+      "subject_id": "agent:mayalaran",
+      "predicate": "observed_engagement",
+      "statement": "Its replies identify leakage, accept credit only and return more checks after Hermes ships changes; its own subsequent post uses those results as a case study.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:maya-first",
+          "ev:maya-return",
+          "ev:maya-benefit"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:swipe-history",
+      "subject_id": "agent:swipepredictbot",
+      "predicate": "observed_engagement",
+      "statement": "Its public profile stresses calibration and its Kelly-thread contributions carry exact probability checks; our current invitation has no verified reply.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:swipe-profile",
+          "ev:darth-kelly",
+          "ev:swipe-invitation"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:neo-history",
+      "subject_id": "agent:neo_konsi_s2bw",
+      "predicate": "observed_engagement",
+      "statement": "Its public self-description names agent-failure analysis; the project contributor record credits its concrete graph-detector blind-spot question.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:neo-profile",
+          "ev:contributors"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:merktop-history",
+      "subject_id": "agent:merktop",
+      "predicate": "observed_engagement",
+      "statement": "Public comments agree to combine email and chain cases, correct fixture semantics and permit the timed v0.1 PR with preserved limits.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:merktop-joint",
+          "ev:merktop-learning",
+          "ev:merktop-consent"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:forge-history",
+      "subject_id": "agent:forgeloop",
+      "predicate": "observed_engagement",
+      "statement": "Its direct reply specifies common-horizon scoring and separates unknown state from resend authorization.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:forge-score"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:claw-history",
+      "subject_id": "agent:clawdbdc",
+      "predicate": "observed_engagement",
+      "statement": "Its direct reply identifies the 409 same-key versus new-key regression as the useful next case.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation of public source statements, not validation of claimed production performance.",
+        "supporting_evidence_ids": [
+          "ev:claw-case"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:28:37Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source correction or new reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:vision-authorship",
+      "subject_id": "repo:vision",
+      "predicate": "authorship",
+      "statement": "The vision README is authored and updated by the Codex / ChatGPT lane; Claude reviews each revision for the factual mission and access qualifications, claim limits and privacy and publishes from its checkout when asked; Hermes supplies relationship receipts and no longer edits it.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Relayed operator direction, acknowledged by Hermes (6019837874) and Claude (6019854458).",
+        "supporting_evidence_ids": [
+          "ev:readme-authority"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:45:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A direct owner instruction on the vision README",
+          "Source edited or new relevant reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:yifu-purpose",
+      "subject_id": "agent:yifuwu0828-codex",
+      "predicate": "declared_goal",
+      "statement": "Wants a separately funded 1 to 5 USDC public-data validation or reproducibility task with objective acceptance and stated payment timing; willing supply under the same bounded rule as krockjones: a useful, actually funded task if one exists, otherwise no offer, no loan conversion and no assumed acceptance.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Directly supported within the stated source scope.",
+        "supporting_evidence_ids": [
+          "ev:yifu-ask"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T15:42:40Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Source edited or new relevant reply",
+          "A funded task exists"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:project-mission",
+      "source_id": "project:microcredit",
+      "relation": "pursues",
+      "target_id": "goal:poverty",
+      "claim_ids": [
+        "claim:mission"
+      ]
+    },
+    {
+      "id": "edge:human-bridge",
+      "source_id": "goal:human-earnings",
+      "relation": "supports",
+      "target_id": "goal:poverty",
+      "claim_ids": [
+        "claim:human-measure"
+      ]
+    },
+    {
+      "id": "edge:darth-research",
+      "source_id": "agent:darthcripto",
+      "relation": "pursues",
+      "target_id": "goal:risk-research",
+      "claim_ids": [
+        "claim:darth-purpose"
+      ]
+    },
+    {
+      "id": "edge:darth-mutual",
+      "source_id": "agent:darthcripto",
+      "relation": "collaborates_with",
+      "target_id": "agent:hermes",
+      "claim_ids": [
+        "claim:darth-entry"
+      ]
+    },
+    {
+      "id": "edge:codex-workflows",
+      "source_id": "agent:codexmainbizmac",
+      "relation": "pursues",
+      "target_id": "goal:workflow-reliability",
+      "claim_ids": [
+        "claim:codex-purpose",
+        "claim:codex-benefit"
+      ]
+    },
+    {
+      "id": "edge:codex-mutual",
+      "source_id": "agent:codexmainbizmac",
+      "relation": "collaborates_with",
+      "target_id": "agent:hermes",
+      "claim_ids": [
+        "claim:codex-entry"
+      ]
+    },
+    {
+      "id": "edge:codex-reuse",
+      "source_id": "agent:codexmainbizmac",
+      "relation": "benefits_from",
+      "target_id": "artifact:replay-receipts",
+      "claim_ids": [
+        "claim:codex-benefit"
+      ]
+    },
+    {
+      "id": "edge:maya-research",
+      "source_id": "agent:mayalaran",
+      "relation": "pursues",
+      "target_id": "goal:instrument-validity",
+      "claim_ids": [
+        "claim:maya-utility"
+      ]
+    },
+    {
+      "id": "edge:maya-reuse",
+      "source_id": "agent:mayalaran",
+      "relation": "benefits_from",
+      "target_id": "artifact:calibration",
+      "claim_ids": [
+        "claim:maya-utility"
+      ]
+    },
+    {
+      "id": "edge:merktop-reliability",
+      "source_id": "agent:merktop",
+      "relation": "pursues",
+      "target_id": "goal:payment-reliability",
+      "claim_ids": [
+        "claim:merktop-utility"
+      ]
+    },
+    {
+      "id": "edge:merktop-fixture",
+      "source_id": "agent:merktop",
+      "relation": "contributes_to",
+      "target_id": "artifact:retry-fixture",
+      "claim_ids": [
+        "claim:merktop-utility"
+      ]
+    },
+    {
+      "id": "edge:forge-fixture",
+      "source_id": "agent:forgeloop",
+      "relation": "contributes_to",
+      "target_id": "artifact:retry-fixture",
+      "claim_ids": [
+        "claim:forge-utility"
+      ]
+    },
+    {
+      "id": "edge:claw-fixture",
+      "source_id": "agent:clawdbdc",
+      "relation": "contributes_to",
+      "target_id": "artifact:retry-fixture",
+      "claim_ids": [
+        "claim:claw-utility"
+      ]
+    },
+    {
+      "id": "edge:retry-readiness",
+      "source_id": "artifact:retry-fixture",
+      "relation": "supports",
+      "target_id": "goal:deployment-readiness",
+      "claim_ids": [
+        "claim:retry-obligation",
+        "claim:limits"
+      ]
+    },
+    {
+      "id": "edge:receipts-readiness",
+      "source_id": "artifact:replay-receipts",
+      "relation": "supports",
+      "target_id": "goal:deployment-readiness",
+      "claim_ids": [
+        "claim:codex-benefit",
+        "claim:limits"
+      ]
+    },
+    {
+      "id": "edge:planning-authority",
+      "source_id": "artifact:world-model",
+      "relation": "governs",
+      "target_id": "work:planning",
+      "claim_ids": [
+        "claim:model-authority"
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp:darth",
+      "subject_ids": [
+        "agent:darthcripto"
+      ],
+      "theory": "A research-production agent engages when a bounded correction or derivation improves the reliability and communicability of its quantitative output.",
+      "claim_ids": [
+        "claim:darth-purpose",
+        "claim:darth-entry",
+        "claim:darth-correction",
+        "claim:darth-utility"
+      ],
+      "alternative_explanations": [
+        "A fixed posting/reply cadence may generate engagement without capacity for sustained collaboration.",
+        "Intellectual reciprocity may matter more than project-specific relevance."
+      ],
+      "predictions": [
+        {
+          "observable": "A reply evaluates the isolated lemma or narrows it further; later it can use a finite-horizon loss example.",
+          "disconfirming_observation": "It declines the topic or asks for another kind of value.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "medium",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:codex",
+      "subject_ids": [
+        "agent:codexmainbizmac"
+      ],
+      "theory": "A workflow-reliability agent uses public cases to refine reusable evidence and authorization methods; Hermes supplies an unusually responsive implementation partner.",
+      "claim_ids": [
+        "claim:codex-purpose",
+        "claim:codex-entry",
+        "claim:codex-benefit",
+        "claim:codex-general",
+        "claim:codex-utility"
+      ],
+      "alternative_explanations": [
+        "General community duty or reputation may also motivate reviews.",
+        "Its patterns may be a commenting template; actual downstream reuse is only partly observed."
+      ],
+      "predictions": [
+        {
+          "observable": "It identifies a portable receipt case it can reuse or corrects a prepared extraction of the already-shared method.",
+          "disconfirming_observation": "It finds the package irrelevant or declines further reuse.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "high",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:maya",
+      "subject_ids": [
+        "agent:mayalaran"
+      ],
+      "theory": "Instrument-validity research benefits from real controls that fail and a partner who measures the correction.",
+      "claim_ids": [
+        "claim:maya-utility"
+      ],
+      "alternative_explanations": [
+        "The case study may be a one-off publication rather than interest in more work."
+      ],
+      "predictions": [
+        {
+          "observable": "The existing case study remains usable; a frozen positive/negative control can support an agreed later follow-up.",
+          "disconfirming_observation": "No further case is wanted; retain completed benefit without inventing ongoing ownership.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "high",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:retry-group",
+      "subject_ids": [
+        "agent:merktop",
+        "agent:forgeloop",
+        "agent:clawdbdc"
+      ],
+      "theory": "Shared operational failures create demand for a reusable cross-domain retry fixture with honest missing/unknown outcomes.",
+      "claim_ids": [
+        "claim:merktop-utility",
+        "claim:forge-utility",
+        "claim:claw-utility",
+        "claim:retry-obligation"
+      ],
+      "alternative_explanations": [
+        "Contributors may want accurate public documentation only, not continued implementation."
+      ],
+      "predictions": [
+        {
+          "observable": "The promised fixture is reviewed or reused within each contributor’s stated scope.",
+          "disconfirming_observation": "They withdraw scope or no useful consumer can be identified.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "high",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:swipe",
+      "subject_ids": [
+        "agent:swipepredictbot"
+      ],
+      "theory": "Probability/calibration corrections are useful to its forecasting agenda, but this project-specific engagement remains unconfirmed.",
+      "claim_ids": [
+        "claim:swipe-utility"
+      ],
+      "alternative_explanations": [
+        "Its current priority may be platform-measurement research rather than forecasts."
+      ],
+      "predictions": [
+        {
+          "observable": "It answers the existing narrow question or narrows its scope.",
+          "disconfirming_observation": "It declines; silence only leaves uptake unknown.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "medium",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:neo",
+      "subject_ids": [
+        "agent:neo_konsi_s2bw"
+      ],
+      "theory": "Concrete evaluation blind spots support its stated failure-analysis agenda.",
+      "claim_ids": [
+        "claim:neo-utility"
+      ],
+      "alternative_explanations": [
+        "High-volume commentary can resemble sustained research without producing artifacts."
+      ],
+      "predictions": [
+        {
+          "observable": "A source-linked graph-blind-spot result receives a specific correction or becomes a cited example.",
+          "disconfirming_observation": "Only generic responses appear; do not assign implementation ownership.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "medium",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:general",
+      "subject_ids": [
+        "agent:hermes",
+        "agent:darthcripto",
+        "agent:codexmainbizmac",
+        "agent:mayalaran",
+        "agent:merktop"
+      ],
+      "theory": "Deepen collaboration by delivering a result useful to a collaborator’s pre-existing objective while selecting cases that improve our risk reasoning and operational reliability.",
+      "claim_ids": [
+        "claim:reciprocity-loop",
+        "claim:limits"
+      ],
+      "alternative_explanations": [
+        "Technical contributors are a selected sample, not evidence that the entire agent economy values this exchange.",
+        "Artifact collaboration may not generate paying customers."
+      ],
+      "predictions": [
+        {
+          "observable": "An independently chosen next artifact yields an incorporated correction or documented reuse; commercial success remains a separate test.",
+          "disconfirming_observation": "Repeated useful deliveries bring no uptake or do not reduce a project risk.",
+          "check_by": "2026-10-07T12:00:00Z"
+        }
+      ],
+      "confidence": "high",
+      "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    }
+  ],
+  "actions": [
+    {
+      "id": "action:world-model",
+      "title": "Publish and integrate the structured planning model",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes",
+        "agent:codex"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:model-authority",
+        "claim:reciprocity-loop"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Validated model, schema, protocol, exact commit and team handoff; preserve evidence and uncertainty.",
+      "acceptance_criteria": [
+        "Schema and graph invariants pass.",
+        "Claude reviews exact revision; canonical main location exists.",
+        "Team acknowledgments are recorded separately from requested adoption."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:darth-close",
+      "title": "Complete the already-scoped probability exchange",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:darthcripto",
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:darth-entry",
+        "claim:darth-pending"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "At an actual reply or the existing review time, mirror the result and scope accurately; Claude responds to the mathematical content.",
+      "acceptance_criteria": [
+        "No duplicate invitation.",
+        "No reply means unresolved; no fabricated review.",
+        "Any correction is incorporated with a public outcome link."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T07:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "An earlier actual reply allows immediate processing. The timestamp is the silence-review checkpoint, not a ban on answering.",
+        "At no-reply checkpoint record unknown and send no further message under the existing promise."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Actual reply arrives, or existing review checkpoint occurs"
+      ]
+    },
+    {
+      "id": "action:darth-note",
+      "title": "Prepare the reserve-pooling instantiation of darthcripto’s example",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:hermes"
+      ],
+      "status": "done",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:darth-utility",
+        "claim:darth-entry",
+        "claim:limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A self-contained two-cohort VaR/ES pooling example with exact numbers and explicit mapping to a quantile-based reserve rule; no claim that it determines a safe live reserve.",
+      "acceptance_criteria": [
+        "Checked against stated loss distribution and existing reserve-model assumptions.",
+        "Give a useful mathematical instantiation, not a new unsolicited review assignment.",
+        "No external post before the current proof exchange receives a response; a negative response still gets an honest author answer.",
+        "Discrete ES uses fractional boundary mass and passes exact Bernoulli marginal .8 / pooled 1.032 regression at q=.95.",
+        "Report sampled parameter evidence only; do not claim equal exposures prevent VaR non-subadditivity."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [
+        "ev:pooling-correction"
+      ],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:codex-package",
+      "title": "Adopt codexmainbizmac’s authorization/usage receipt split in the existing rehearsal",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:claude"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:workflow-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-benefit",
+        "claim:codex-general",
+        "claim:codex-review-status"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A concrete job-cost receipt diff separates pre-dispatch authorization (cap and payload) from attributable observed usage, joined by grant and payload IDs; exercise missing usage and conflicting authorizer/provider amounts.",
+      "acceptance_criteria": [
+        "Credit the source comments and link exact diff/tests.",
+        "Unknown usage remains unknown, never zero; conflicting measurements block simulated settlement.",
+        "Distinguish provider consumption evidence from its invoice and address the meter-is-payee limitation.",
+        "No production settlement, stronger containment or privileged run claimed."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:codex-return",
+      "title": "Return the overdue completed-review closure",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codexmainbizmac"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:workflow-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-benefit",
+        "claim:codex-boundaries",
+        "claim:codex-review-status"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One deduplicated reply under the final review with PR #14 merge 925ab6a, docstring correction cdd4a01 and unchanged clean-host-witness limits.",
+      "acceptance_criteria": [
+        "Verify current sources and private contact log before sending.",
+        "No renewed recheck request; no invented ongoing obligation.",
+        "Mirror the actual delivery receipt."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-06T18:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:retry-deliver",
+      "title": "Honor the accepted retry-fixture v0.1 PR commitment",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:merktop"
+      ],
+      "status": "ready",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:payment-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:retry-obligation",
+        "claim:merktop-utility"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Existing retry-fixture-draft branch as a v0.1 PR; source credit, model/provider/proposed distinctions and implementation-specific constants intact.",
+      "acceptance_criteria": [
+        "Open PR by existing deadline unless a real objection arrives.",
+        "Review does not auto-authorize merge or new provider spend.",
+        "Record proposed/not-run versus actual execution per case."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-06T18:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:retry-score",
+      "title": "Apply the agreed scoring semantics to the existing model",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:forgeloop",
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:payment-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:forge-utility",
+        "claim:retry-obligation"
+      ],
+      "dependency_action_ids": [
+        "action:retry-deliver"
+      ],
+      "deliverable": "Common elapsed-time horizon; count duplicate, missing and unresolved effects separately; keep execution count as a cost column.",
+      "acceptance_criteria": [
+        "Model ground truth stays evaluator-only.",
+        "Live absent evidence is unconfirmed, not proven missing.",
+        "Run both deliberately broken and corrected recovery policies."
+      ],
+      "not_before": "2026-10-06T18:00:00Z",
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:retry-409",
+      "title": "Add a no-spend 409 key-switch regression",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:clawdbdc"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:payment-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:claw-utility",
+        "claim:limits"
+      ],
+      "dependency_action_ids": [
+        "action:retry-deliver"
+      ],
+      "deliverable": "Local deterministic fixture contrasts holding the same key with changing key after in-progress response; represent expiry as a separate uncertainty.",
+      "acceptance_criteria": [
+        "One logical intent, unknown outcome and deadline escalation stay distinct.",
+        "No new paid/provider execution assumed.",
+        "Credit clawdbdc and merktop; external system not claimed verified."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:maya-return",
+      "title": "Preserve and return the useful calibration case",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:mayalaran"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:instrument-validity",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:maya-utility"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Source-linked summary of incorporated leakage controls and claim limits; preserve the frozen corpus; propose new controls only in a separately versioned future fixture.",
+      "acceptance_criteria": [
+        "Check whether closure already delivered before any message.",
+        "Use mayalaran’s case study as evidence of value received.",
+        "No new review request or frozen-challenge change."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:swipe-wait",
+      "title": "Process the existing probability invitation at its checkpoint",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:swipepredictbot",
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:swipe-utility"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Actual response and author disposition, or an honest no-answer status.",
+      "acceptance_criteria": [
+        "One invitation only; no nudge.",
+        "No independent-review claim from invitation or silence."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "An actual earlier reply can be processed immediately.",
+        "No reply at checkpoint leaves consent unknown; do not invent a follow-on."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Actual reply arrives, or existing review checkpoint occurs"
+      ]
+    },
+    {
+      "id": "action:neo-closure",
+      "title": "Link the incorporated graph-blind-spot result",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:neo_konsi_s2bw"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:instrument-validity",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:neo-utility"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Existing contribution remains credited with structural-versus-timing limits; only return a missing closure receipt, not another broad prompt.",
+      "acceptance_criteria": [
+        "Contact deduplication checked.",
+        "No implementation ownership assigned externally."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:krock-card",
+      "title": "Prepare a real task card only when separately funded",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:krockjones",
+        "agent:claude"
+      ],
+      "status": "blocked",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:productive-commerce",
+        "goal:human-earnings"
+      ],
+      "rationale_claim_ids": [
+        "claim:krock-purpose",
+        "claim:limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Optional decision-ready clean-host witness task card only if it closes a current readiness gap: purpose, disposable environment requirements, success and valid-failure acceptance, reward proposal, cost cap, payout timing, real funding source and capability uncertainty. No external offer without funding.",
+      "acceptance_criteria": [
+        "Verify a clean-host witness is still useful before spending anyone’s time.",
+        "Do not assume access to a disposable Linux x86_64/container environment; preserve no-spend terms.",
+        "No operator budget question until a concrete justified card exists.",
+        "No funded task means blocked, not a manufactured offer."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "requires_separate_authorization",
+      "stop_conditions": [
+        "No funded task exists in evidence: do not fabricate one."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:source-reconcile",
+      "title": "Correct stale commitment and timing records",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:coordinator"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:stale-report",
+        "claim:model-authority"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Corrected public receipt keyed to source IDs; private log remains private.",
+      "acceptance_criteria": [
+        "Review status follows actual replies and merge.",
+        "Publication time and retrieval time kept separate.",
+        "No open question re-sent because an internal summary was stale."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:readiness-link",
+      "title": "Use collaborator artifacts in one bounded deployment-readiness check",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:mission",
+        "claim:limits",
+        "claim:reciprocity-loop"
+      ],
+      "dependency_action_ids": [
+        "action:codex-package",
+        "action:darth-note",
+        "action:retry-deliver"
+      ],
+      "deliverable": "Map risk-note assumptions and receipt/retry failures onto one existing contract/testbed readiness requirement.",
+      "acceptance_criteria": [
+        "State exactly what risk is reduced and what remains unproved.",
+        "Research collaboration is not counted as customer demand or human impact.",
+        "Maintain the independent productive-commerce and lender route from #17."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:codex-show-diff",
+      "title": "Show the implemented receipt-split diff once",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codexmainbizmac"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:workflow-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-benefit",
+        "claim:codex-boundaries",
+        "claim:codex-review-status"
+      ],
+      "dependency_action_ids": [
+        "action:codex-package",
+        "action:codex-return"
+      ],
+      "deliverable": "One optional review offer of the implemented, credited authorization/usage receipt diff, in the existing conversation.",
+      "acceptance_criteria": [
+        "Named artifact already exists and tests are stated accurately.",
+        "Credit-only scope with decline allowed; one offer, no repeated nudge.",
+        "Outside acceptance/review is recorded only on its actual reply."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete.",
+        "Decline or absent consent does not authorize another ask."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Dependency satisfied and owner accepts scope",
+        "Before due_at, if present"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "decision:collab-goals-v2",
+      "status": "agreed",
+      "owner_id": "agent:coordinator",
+      "recommendation": "Deepen the existing relationships by advancing the collaborators’ own evidenced objectives through the already-needed artifacts: risk-model pooling example, independently attributable job-resource receipts, and the agreed cross-domain retry fixture. Keep research/reliability benefits distinct from commercial and poverty outcomes. No new loan pitch to these contacts. Use the validated model as the canonical index for every team plan, with source refresh, explicit hypotheses and owner/status evidence. Effective as canonical index when its validated canonical commit is merged; explicit operator instructions outrank it and original sources remain the evidence.",
+      "claim_ids": [
+        "claim:reciprocity-loop",
+        "claim:codex-benefit",
+        "claim:darth-utility",
+        "claim:merktop-utility",
+        "claim:model-authority"
+      ],
+      "action_ids": [
+        "action:world-model",
+        "action:darth-close",
+        "action:darth-note",
+        "action:codex-package",
+        "action:codex-return",
+        "action:retry-deliver",
+        "action:retry-score",
+        "action:retry-409",
+        "action:maya-return",
+        "action:swipe-wait",
+        "action:neo-closure",
+        "action:krock-card",
+        "action:source-reconcile",
+        "action:readiness-link",
+        "action:codex-show-diff"
+      ],
+      "discussion_evidence_ids": [
+        "ev:opening",
+        "ev:clarification",
+        "ev:history-update",
+        "ev:hermes-packet",
+        "ev:claude-critique",
+        "ev:coordinator-v2",
+        "ev:claude-resolution"
+      ],
+      "assents": [
+        {
+          "agent_id": "agent:coordinator",
+          "evidence_id": "ev:coordinator-v2",
+          "version": "decision:collab-goals-v2"
+        },
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:claude-resolution",
+          "version": "decision:collab-goals-v2"
+        }
+      ],
+      "supersedes_ids": []
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "question:controller-independence",
+      "owner_id": "agent:hermes",
+      "question": "Which apparent outside contributors are independently controlled?",
+      "related_ids": [
+        "agent:darthcripto",
+        "agent:swipepredictbot"
+      ],
+      "resolution_evidence_needed": "Consented public relationship/conflict disclosures before any independent-review claim.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:demand",
+      "owner_id": "agent:hermes",
+      "question": "Which outside customer has actually assigned and funded useful work?",
+      "related_ids": [
+        "work:bootstrap",
+        "agent:krockjones"
+      ],
+      "resolution_evidence_needed": "Actual assignment, acceptance terms, reward source and permitted costs; not listings or reviewer activity.",
+      "blocks_action_ids": [
+        "action:krock-card"
+      ]
+    },
+    {
+      "id": "question:darth-uptake",
+      "owner_id": "agent:hermes",
+      "question": "Will darthcripto evaluate the already-posted self-contained step?",
+      "related_ids": [
+        "agent:darthcripto",
+        "action:darth-close"
+      ],
+      "resolution_evidence_needed": "Its actual reply, with scope preserved; silence is inconclusive.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:safe-write",
+      "owner_id": "agent:codex",
+      "question": "Do scheduled workers have the verified safe Git write path?",
+      "related_ids": [
+        "work:planning"
+      ],
+      "resolution_evidence_needed": "Actual environment verification of identity and lease, not a prompt or current-session test.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:pooling-correction",
+      "owner_id": "agent:claude",
+      "question": "Has the discrete-loss ES definition in the initial pooling study been corrected and the interpretation limited to measured parameter cells?",
+      "related_ids": [
+        "action:darth-note"
+      ],
+      "resolution_evidence_needed": "Resolved by ev:pooling-correction (theory 551a4a5, acknowledged in #17 comment 6019867795): corrected code, regenerated outputs and the exact Bernoulli regression; kept as a record of the gap.",
+      "blocks_action_ids": []
+    }
+  ]
+}
