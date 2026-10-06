@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.3",
-  "updated_at": "2026-10-06T16:05:00Z",
+  "model_version": "0.1.4",
+  "updated_at": "2026-10-06T16:08:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -1631,6 +1631,42 @@
       "limitations": [
         "Acceptance receipt; not completion."
       ]
+    },
+    {
+      "id": "ev:codex-package-v1",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020186260",
+      "locator": "6020186260",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-06T15:58:24Z",
+      "retrieved_at": "2026-10-06T16:08:00Z",
+      "summary": "The lane's exact three-file patch for action:codex-package (SHA-256 9819bc48bbf831af26f2ad84ac333489ceaaf6766e4a8d5156cd7a261e7e37f2): offline authorization, usage, invoice and customer-outcome gate with a synthetic cleanup example; 12 tests passed in its execution; synthetic amounts, no provider, RPC, wallet, loan or signatures.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-package-v1",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal execution receipt; simulated accounting consistency only; no independent origin count."
+      ]
+    },
+    {
+      "id": "ev:codex-package-review",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/commit/d8d1139",
+      "locator": "d8d1139",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:08:00Z",
+      "retrieved_at": "2026-10-06T16:08:00Z",
+      "summary": "Claude's distinct check and publication of the patch on testbed main: digest verified, 12 tests pass, the CLI runs, each acceptance criterion of action:codex-package assessed as met, two design choices noted in the commit message.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-package-review",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal check by the maintainer, not outside review; the gate proves simulated accounting consistency only."
+      ]
     }
   ],
   "claims": [
@@ -3071,7 +3107,7 @@
         "agent:hermes",
         "agent:claude"
       ],
-      "status": "proposed",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:workflow-reliability",
@@ -3099,7 +3135,10 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:codex-package-v1",
+        "ev:codex-package-review"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"
