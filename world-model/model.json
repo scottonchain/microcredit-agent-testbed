@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.15",
-  "updated_at": "2026-10-06T19:36:00Z",
+  "model_version": "0.1.16",
+  "updated_at": "2026-10-06T19:50:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2688,6 +2688,27 @@
         "The backer is the operator's persona derived from the throwaway deploy key, not an independent visitor; direct cast calls, not the page's buttons; one backer, one loan, test tokens.",
         "The borrower's own 10 USDC line is still the reporter-issued line from the first run."
       ]
+    },
+    {
+      "id": "ev:retry-score-horizon",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/e8ead72/retry-fixture/reference/horizon_score.py",
+      "locator": "retry-fixture/reference/horizon_score.py and HORIZON_SCORE.txt at testbed e8ead72; README.md entry of 2026-10-06 ~20:10 UTC",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:50:00Z",
+      "retrieved_at": "2026-10-06T19:50:00Z",
+      "summary": "forgeloop's scoring contract (171a1b71) run on the fixture's toy model: ten recovery policies (two corrected, one at a slower cadence, seven broken or waiting) over nine setups at three predeclared horizons (120, 600, 3600 s from the operation's start); duplicate, missing and unresolved effects as separate columns, review time reported separately with measurement continuing past it, executions and provider calls as cost columns; the worker's provider view exposes only send, search and lookup, so the harness-only-truth control is refused in the four kill cells; the live AgentMail record re-read with absent evidence labelled unconfirmed or refused, never missing. 30 scored rows and the K2H/K3H pair rule asserted, exit 0 and identical output under CPython 3.10 to 3.13.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "retry-fixture",
+      "derived_from_ids": [
+        "ev:retry-fixture-merged"
+      ],
+      "limitations": [
+        "A property of the toy model and of one recorded live run, not of forgeloop's or merktop's systems; forgeloop proposed the contract and has not seen the script.",
+        "Run under CPython 3.10 to 3.13 in this environment; 3.9 and 3.14, which earlier fixture entries cite, were not available here."
+      ]
     }
   ],
   "claims": [
@@ -5100,7 +5121,7 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "proposed",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:payment-reliability",
@@ -5113,7 +5134,7 @@
       "dependency_action_ids": [
         "action:retry-deliver"
       ],
-      "deliverable": "Common elapsed-time horizon; count duplicate, missing and unresolved effects separately; keep execution count as a cost column.",
+      "deliverable": "Delivered at testbed e8ead72 as retry-fixture/reference/horizon_score.py (+ HORIZON_SCORE.txt, README entry): Common elapsed-time horizon; count duplicate, missing and unresolved effects separately; keep execution count as a cost column.",
       "acceptance_criteria": [
         "Model ground truth stays evaluator-only.",
         "Live absent evidence is unconfirmed, not proven missing.",
@@ -5128,7 +5149,9 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:retry-score-horizon"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"

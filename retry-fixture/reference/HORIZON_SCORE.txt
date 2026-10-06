@@ -1,0 +1,81 @@
+Part 1: one common horizon per table, every policy measured at it (duplicates/missing/unresolved per setup; sums; cost)
+
+H = 120 s from the start of the logical operation
+policy             S1    S2    S3    S4    K1    K2    K2H   K3    K3H    dup miss unres reviews  execs sends reads  label
+R0                 0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     0        12    7     39     no duplicate, but not a full success
+R2                 0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   1    3     0        11    10    35     no duplicate, but not a full success
+R2-slow            0/0/1 0/1/1 0/0/1 0/1/1 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   3    6     0        5     8     14     no duplicate, but not a full success
+R1                 1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0  2   0    0     0        9     13    27     duplicates
+R2-unstamped       0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     0        12    7     39     no duplicate, but not a full success
+reopen             0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/0/1 0/0/1 0/0/0 1/0/1  1   2    6     0        12    10    39     duplicates
+post-record        0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     0        9     13    13     duplicates
+pending-as-unsent  0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     0        9     13    13     duplicates
+timeout=failed     1/0/0 0/0/0 1/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  2   1    2     0        11    12    22     duplicates
+absence=unsent     1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  3   0    0     0        9     14    8      duplicates
+
+H = 600 s from the start of the logical operation
+policy             S1    S2    S3    S4    K1    K2    K2H   K3    K3H    dup miss unres reviews  execs sends reads  label
+R0                 0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     6        33    7     123    no duplicate, but not a full success
+R2                 0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   1    3     3        21    10    75     no duplicate, but not a full success
+R2-slow            0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   3    5     0        9     8     15     no duplicate, but not a full success
+R1                 1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0  2   0    0     0        9     13    27     duplicates
+R2-unstamped       0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     6        33    7     123    no duplicate, but not a full success
+reopen             1/0/1 0/0/1 0/0/0 0/0/1 0/0/0 0/0/1 0/0/1 0/0/0 1/0/1  2   0    6     6        33    13    123    duplicates
+post-record        0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     1        13    13    29     duplicates
+pending-as-unsent  0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     1        13    13    29     duplicates
+timeout=failed     1/0/0 0/0/0 1/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  2   1    2     2        17    12    46     duplicates
+absence=unsent     1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  3   0    0     0        9     14    8      duplicates
+
+H = 3600 s from the start of the logical operation
+policy             S1    S2    S3    S4    K1    K2    K2H   K3    K3H    dup miss unres reviews  execs sends reads  label
+R0                 0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     6        33    7     123    no duplicate, but not a full success
+R2                 0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   1    3     3        21    10    75     no duplicate, but not a full success
+R2-slow            0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  0   1    3     3        21    10    75     no duplicate, but not a full success
+R1                 1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0  2   0    0     0        9     13    27     duplicates
+R2-unstamped       0/0/1 0/1/1 0/0/0 0/1/1 0/0/0 0/1/1 0/1/1 0/0/0 0/0/1  0   4    6     6        33    7     123    no duplicate, but not a full success
+reopen             1/0/1 0/0/1 0/0/0 0/0/1 0/0/0 0/0/1 0/0/1 0/0/0 1/0/1  2   0    6     6        33    13    123    duplicates
+post-record        0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     1        13    13    29     duplicates
+pending-as-unsent  0/0/1 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  2   0    1     1        13    13    29     duplicates
+timeout=failed     1/0/0 0/0/0 1/0/0 0/0/0 0/0/0 0/0/0 0/1/1 0/0/0 0/0/1  2   1    2     2        17    12    46     duplicates
+absence=unsent     1/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 0/0/0 1/0/0 1/0/0  3   0    0     0        9     14    8      duplicates
+
+Part 2: review time, reported separately (seconds from the start; '-' = not chosen by H = 3600)
+policy             S1    S2    S3    S4    K1    K2    K2H   K3    K3H  
+R0                 380   380   -     380   -     325   325   -     325  
+R2                 380   -     -     -     -     -     325   -     325  
+R2-slow            3080  -     -     -     -     -     2485  -     2485 
+R1                 -     -     -     -     -     -     -     -     -    
+R2-unstamped       380   380   -     380   -     325   325   -     325  
+reopen             380   380   -     380   -     325   325   -     325  
+post-record        380   -     -     -     -     -     -     -     -    
+pending-as-unsent  380   -     -     -     -     -     -     -     -    
+timeout=failed     -     -     -     -     -     -     325   -     325  
+absence=unsent     -     -     -     -     -     -     -     -     -    
+
+Part 3: the evaluator-only guard. The control worker reads the provider's store during recovery; refused in: K2, K2H, K3, K3H
+  K2   the worker read provider.msgs during recovery: harness-only truth; messages after the restart: 0
+  K2H  the worker read provider.msgs during recovery: harness-only truth; messages after the restart: 0
+  K3   the worker read provider.msgs during recovery: harness-only truth; messages after the restart: 0
+  K3H  the worker read provider.msgs during recovery: harness-only truth; messages after the restart: 0
+
+Part 4: live record 20261005T140846Z-74eabe re-read under the contract (no ground truth: effects are what the provider's reads returned)
+step  requests 200  no-resp 4xx  listed  dup  late full-subject  label
+A     2        2    0       0    1       0    0                 confirmed 1
+B     1        0    0       1    0       0    -                 refused (409)
+C     1        0    0       1    0       0    -                 refused (400)
+D     2        1    1       0    1       0    0                 confirmed 1
+E     2        1    1       0    2       1    0                 confirmed 2 (duplicate)
+F1    2        1    0       1    1       0    1                 confirmed 1
+F2    2        1    0       1    1       0    1                 confirmed 1
+F3    2        0    0       2    0       0    -                 refused (409, 403)
+L2    1        0    0       1    0       0    -                 refused (403)
+L3    1        0    0       1    0       0    -                 refused (403)
+(the record's settle read came 20 s after its last step, one read for every step: the record predates the contract, so no common
+ horizon was predeclared and the elapsed time from each step's first request to that read differs; the late reads are a second point)
+read paths for A1 (polls about every 1.5 s for 30 s):
+  get_by_id     polls 1   confirmed at 0.24 s
+  list          polls 1   confirmed at 0.35 s
+  list_subject  polls 19  unconfirmed on this path after 29.66 s (the other paths confirm the copy: not 'missing')
+late reads at 2026-10-05T14:36:28Z: the full-subject filter returns 0 of the A, D and E messages that the unfiltered list returns; on that path they are unconfirmed, not missing.
+
+0 problem(s)
