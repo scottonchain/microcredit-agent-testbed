@@ -1,0 +1,182 @@
+{
+  "app": "https://scottonchain.github.io/pool",
+  "rpc": "https://sepolia.base.org",
+  "chainId": 84532,
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  "buildCommit": "f116695",
+  "flags": [
+    "--reject-disburse",
+    "--resume-pending",
+    "--skip-lend",
+    "--skip-withdraw"
+  ],
+  "borrower": "0x108450c748EEF7AeF23e64739bC508f56E596247",
+  "backer": null,
+  "startedAt": "2026-10-06T22:04:44.261Z",
+  "steps": [
+    {
+      "name": "open and connect",
+      "startedAt": "2026-10-06T22:04:46.598Z",
+      "before": {
+        "eth": "0.002995860520890785",
+        "usdc": "5",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "build commit f116695; banner present; wallet connected",
+      "txs": [],
+      "after": {
+        "eth": "0.002995860520890785",
+        "usdc": "5",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-06T22:04:48.694Z"
+    },
+    {
+      "name": "test USDC already held (no public mint on this token)",
+      "startedAt": "2026-10-06T22:04:48.982Z",
+      "before": {
+        "eth": "0.002995860520890785",
+        "usdc": "5",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "wallet holds 5 USDC",
+      "txs": [],
+      "after": {
+        "eth": "0.002995860520890785",
+        "usdc": "5",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-06T22:04:49.160Z"
+    },
+    {
+      "name": "borrow 5 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload",
+      "startedAt": "2026-10-06T22:04:49.268Z",
+      "before": {
+        "eth": "0.002995860520890785",
+        "usdc": "5",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "request (request made by the previous run of this script) created loan #2; Disburse clicked with the wallet rejecting it; new transactions sent: 0; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0xb662212ad6848e96fa6736ae2c705d379affb43b891f85f8767e02ed0bfbeb19 for loan #2; exactly one new loan",
+      "txs": [
+        {
+          "t": "2026-10-06T22:05:02.766Z",
+          "who": "borrower",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0xb73e4da0",
+          "hash": "0xb662212ad6848e96fa6736ae2c705d379affb43b891f85f8767e02ed0bfbeb19"
+        }
+      ],
+      "after": {
+        "eth": "0.002995135610876526",
+        "usdc": "10",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Active",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-06T22:05:05.854Z"
+    },
+    {
+      "name": "repay the loan in full (approve, repayLoan)",
+      "startedAt": "2026-10-06T22:05:05.944Z",
+      "before": {
+        "eth": "0.002995135610876526",
+        "usdc": "10",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Active",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "ok": false,
+      "note": "failed: no repay button found",
+      "txs": [],
+      "after": {
+        "eth": "0.002995135610876526",
+        "usdc": "10",
+        "lenderBalance": "20",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Active",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-06T22:05:08.045Z"
+    }
+  ],
+  "finishedAt": "2026-10-06T22:05:08.045Z",
+  "transactions": [
+    {
+      "t": "2026-10-06T22:05:02.766Z",
+      "who": "borrower",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0xb73e4da0",
+      "hash": "0xb662212ad6848e96fa6736ae2c705d379affb43b891f85f8767e02ed0bfbeb19"
+    }
+  ],
+  "walletCalls": 37
+}

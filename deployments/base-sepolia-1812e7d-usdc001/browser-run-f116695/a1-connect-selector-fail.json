@@ -1,0 +1,245 @@
+{
+  "app": "https://scottonchain.github.io/pool",
+  "rpc": "https://sepolia.base.org",
+  "chainId": 84532,
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  "buildCommit": null,
+  "flags": [
+    "--reject-disburse"
+  ],
+  "borrower": "0x4e23411897B1c2BC31e3db03e074c370596Cd4E6",
+  "backer": "0xc5E42B0fB0c109E55f4A40CccfCF3fed1Fc39009",
+  "startedAt": "2026-10-06T21:45:01.008Z",
+  "steps": [
+    {
+      "name": "open and connect",
+      "startedAt": "2026-10-06T21:45:03.411Z",
+      "before": {
+        "eth": "0.004",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "ok": false,
+      "note": "failed: locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for getByText(/browser wallet|injected/i).first()\n",
+      "txs": [],
+      "after": {
+        "eth": "0.004",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:45:11.092Z"
+    },
+    {
+      "name": "test USDC already held (no public mint on this token)",
+      "startedAt": "2026-10-06T21:45:11.181Z",
+      "before": {
+        "eth": "0.004",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "ok": true,
+      "note": "wallet holds 25 USDC",
+      "txs": [],
+      "after": {
+        "eth": "0.004",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:45:11.292Z"
+    },
+    {
+      "name": "lend 20 USDC (approve, depositFunds)",
+      "startedAt": "2026-10-06T21:45:11.345Z",
+      "before": {
+        "eth": "0.004",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "ok": false,
+      "note": "failed: lender balance did not rise",
+      "txs": [
+        {
+          "t": "2026-10-06T21:45:13.677Z",
+          "who": "borrower",
+          "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "selector": "0x095ea7b3",
+          "hash": "0xb66776267261127a0d28bfa80b3075d03c005be81dc0099534761cf550e32e81"
+        }
+      ],
+      "after": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:50:14.513Z"
+    },
+    {
+      "name": "backer backs the borrower with 10 USDC of credit",
+      "startedAt": "2026-10-06T21:50:14.557Z",
+      "before": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "0",
+        "available": "0",
+        "loans": []
+      },
+      "ok": true,
+      "note": "page said recorded: true; borrower available credit rose",
+      "txs": [
+        {
+          "t": "2026-10-06T21:50:16.767Z",
+          "who": "backer",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0xb870f613",
+          "hash": "0x7f860d4e881f07c440b3a47fba08363c5fe92b7a317bc69bf349b95832be9b97"
+        }
+      ],
+      "after": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:50:20.162Z"
+    },
+    {
+      "name": "borrow 5 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload",
+      "startedAt": "2026-10-06T21:50:22.424Z",
+      "before": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": []
+      },
+      "ok": false,
+      "note": "failed: expected one LoanRequested event of ours, found 0",
+      "txs": [],
+      "after": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:50:24.992Z"
+    },
+    {
+      "name": "repay the loan in full (approve, repayLoan)",
+      "startedAt": "2026-10-06T21:50:25.054Z",
+      "before": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": []
+      },
+      "ok": false,
+      "note": "failed: no active loan to repay",
+      "txs": [
+        {
+          "t": "2026-10-06T21:50:25.608Z",
+          "who": "borrower",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0x8d5d3429",
+          "hash": "0x39eda28940007f249fb4ce69afbf9f64eef5576f83bad6d3d3416fb042f9f904"
+        }
+      ],
+      "after": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": []
+      },
+      "finishedAt": "2026-10-06T21:50:27.019Z"
+    },
+    {
+      "name": "withdraw 20 USDC (withdrawFunds)",
+      "startedAt": "2026-10-06T21:50:28.310Z",
+      "before": {
+        "eth": "0.003999662931728403",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": [
+          {
+            "id": "1",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "ok": false,
+      "note": "failed: locator.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByPlaceholder('Enter amount to withdraw')\n",
+      "txs": [],
+      "after": {
+        "eth": "0.003996803929096147",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "5",
+        "loans": [
+          {
+            "id": "1",
+            "status": "Requested",
+            "outstanding": "5"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-06T21:51:00.212Z"
+    }
+  ],
+  "finishedAt": "2026-10-06T21:51:00.212Z",
+  "transactions": [
+    {
+      "t": "2026-10-06T21:45:13.677Z",
+      "who": "borrower",
+      "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "selector": "0x095ea7b3",
+      "hash": "0xb66776267261127a0d28bfa80b3075d03c005be81dc0099534761cf550e32e81"
+    },
+    {
+      "t": "2026-10-06T21:50:16.767Z",
+      "who": "backer",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0xb870f613",
+      "hash": "0x7f860d4e881f07c440b3a47fba08363c5fe92b7a317bc69bf349b95832be9b97"
+    },
+    {
+      "t": "2026-10-06T21:50:25.608Z",
+      "who": "borrower",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0x8d5d3429",
+      "hash": "0x39eda28940007f249fb4ce69afbf9f64eef5576f83bad6d3d3416fb042f9f904"
+    }
+  ],
+  "walletCalls": 54
+}
