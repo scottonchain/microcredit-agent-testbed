@@ -6,8 +6,12 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
-from run_lock import IDENTITY, Lock, LockError, REF
+if __package__:
+    from .run_lock import IDENTITY, Lock, LockError, REF
+else:
+    from run_lock import IDENTITY, Lock, LockError, REF
 
 
 class GitLockTests(unittest.TestCase):
@@ -77,6 +81,60 @@ class GitLockTests(unittest.TestCase):
         with self.assertRaises(LockError):
             b.release('test-owner-new', head)
         self.assertEqual(a.read()[0], head)
+
+    def test_release_succeeds_when_next_owner_acquires_before_readback(self):
+        a, b = self.clients
+        head = a.acquire('test-owner-first', 'test-execution-first')
+        original_git = a.git
+        successors = []
+
+        def acquire_after_push(*args, **kwargs):
+            result = original_git(*args, **kwargs)
+            if args[0] == 'push':
+                successors.append(b.acquire('test-owner-next', 'test-execution-next'))
+            return result
+
+        # Force a real competing acquisition after release reaches receive-pack,
+        # before release's caller can inspect the ref. No timing/sleep assumption.
+        with patch.object(a, 'git', side_effect=acquire_after_push):
+            released = a.release('test-owner-first', head)
+        self.assertEqual(len(successors), 1)
+        successor, state = b.read()
+        self.assertEqual(successor, successors[0])
+        self.assertEqual(state['owner'], 'test-owner-next')
+        self.assertEqual(b.git('show', '-s', '--format=%P', successor), released)
+        self.assertEqual(json.loads(b.git('show', released + ':LOCK.json'))['state'], 'unlocked')
+        # The former owner cannot release the successor or rewrite its head.
+        with self.assertRaises(LockError):
+            a.release('test-owner-first', head)
+        self.assertEqual(b.read()[0], successor)
+
+    def test_failed_release_push_does_not_report_success(self):
+        a = self.clients[0]
+        head = a.acquire('test-owner-failure', 'test-execution-failure')
+        original_git = a.git
+
+        def fail_push(*args, **kwargs):
+            if args[0] == 'push':
+                raise LockError('Simulated transport failure before push')
+            return original_git(*args, **kwargs)
+
+        with patch.object(a, 'git', side_effect=fail_push):
+            with self.assertRaises(LockError):
+                a.release('test-owner-failure', head)
+        self.assertEqual(a.read()[0], head)
+        self.assertEqual(a.read()[1]['state'], 'locked')
+
+    def test_acquisition_still_requires_exact_readback(self):
+        a = self.clients[0]
+        before = a.read()
+        candidate = a.prepare_acquire('test-owner-readback', 'test-execution-readback')
+        with patch.object(a, 'read', return_value=before):
+            with self.assertRaisesRegex(LockError, 'Unexpected readback'):
+                a.publish(*candidate)
+        # An uncertain acquisition remains held; callers may not do protected work.
+        self.assertEqual(a.read()[0], candidate[1])
+        self.assertEqual(a.read()[1]['state'], 'locked')
 
     def test_identity_overrides_inherited_configuration(self):
         a = self.clients[0]

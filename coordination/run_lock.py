@@ -76,12 +76,16 @@ class Lock:
             raise LockError('Noreply author and committer check failed')
         return sha
 
-    def publish(self, expected, candidate):
+    def _push_candidate(self, expected, candidate):
         # Explicit expected OID; never an implicit tracking-ref lease or --force.
         if self.git('show', '-s', '--format=%P', candidate) != expected:
             raise LockError('Candidate must be a direct child of the observed head')
         self.git('push', '--porcelain', '--force-with-lease=' + self.ref + ':' + expected,
                  self.remote, candidate + ':' + self.ref)
+        return candidate
+
+    def publish(self, expected, candidate):
+        self._push_candidate(expected, candidate)
         actual, _ = self.read()
         if actual != candidate:
             raise LockError('Unexpected readback; stop all protected work')
@@ -113,7 +117,10 @@ class Lock:
         state = dict(protocol=PROTOCOL, state='unlocked', owner=None, execution=None,
                      released_by=owner,
                      released_at_utc=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S'))
-        return self.publish(head, self.candidate(head, state))
+        # A successor may acquire as soon as this push succeeds. Its later head
+        # does not invalidate our acknowledged release; never try to undo it.
+        # Acquisition still requires exact readback through publish().
+        return self._push_candidate(head, self.candidate(head, state))
 
 
 def main():

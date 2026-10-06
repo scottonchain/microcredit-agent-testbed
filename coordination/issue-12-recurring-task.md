@@ -61,7 +61,11 @@ bootstrap and records `git-explicit-lease-v2` on acquisition.
    after acquiring. Recheck exact ownership before every group of shared writes.
 5. In `finally`, after all owned mutating work has stopped, release only if both
    owner and acquisition OID still match. Push a new unlocked child using the
-   exact lease. Never reset to the bootstrap, delete the production lock, or
+   exact lease. A successful Git push acknowledgment completes the release:
+   another run may acquire immediately afterward, so a later head is not a
+   release failure. The returned release OID is a receipt, not a promise that
+   the ref remains unlocked. Acquisition still requires exact-head readback.
+   Never reset to the bootstrap, delete the production lock, or
    release another run's lock. On errors/uncertain outcomes stop protected work,
    read back for diagnosis, and do not repeat actions blindly.
 
@@ -79,7 +83,8 @@ an exact-head conditional transition. If execution liveness cannot be resolved,
 continue read-only and report the dependency once. Never steal from a possibly
 live run. A failed release is not permission to remove the lock.
 
-Usage from an isolated checkout (retain these values privately for cleanup):
+Usage from the root of an isolated checkout (retain these values privately for
+cleanup):
 
 ```python
 import uuid
@@ -101,6 +106,18 @@ CLI equivalents: `status`, `acquire --owner TOKEN --execution TOKEN`,
 `release --owner TOKEN --acquired-head SHA`. There is intentionally no `recover`
 or implicit bootstrap command. Do not publish actual session IDs or private
 scheduler identifiers as the tokens.
+
+Run the focused suite from the repository root:
+
+```bash
+python3 -m unittest -v coordination.test_run_lock
+```
+
+Or from inside `coordination/`:
+
+```bash
+python3 -m unittest -v test_run_lock
+```
 
 Evidence: `validation-20261006.json` records a real remote race from independent
 clones: one acquisition, competitor rejected, non-owner release rejected, held-lock
