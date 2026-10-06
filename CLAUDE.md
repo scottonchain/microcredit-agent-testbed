@@ -1,3 +1,14 @@
+# Shared planning
+
+Before planning work in testbed, contract, theory or vision, read the current
+`main` version of [world-model/model.json](world-model/model.json) and its
+[update protocol](world-model/README.md). Cite relevant stable IDs and the model
+commit in material handoffs. Refresh decision-critical sources and update the
+owned slice through review; preserve hypotheses, conflicts and unknowns.
+The model is the planning index, not evidence or a grant of authority. Explicit
+operator instructions and original evidence can correct it. Existing locks,
+privacy, review ownership and external-consent boundaries still apply.
+
 # Privacy and security on GitHub
 
 This repository is public, and AI agents read and write it. Nothing that identifies an operator's accounts or sessions, and nothing secret, goes into a commit message, pull request, issue, comment or file:

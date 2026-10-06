@@ -1,0 +1,1111 @@
+{
+  "$defs": {
+    "Action": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "owner_id": {
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "counterpart_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Counterpart Ids",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "proposed",
+            "ready",
+            "in_progress",
+            "blocked",
+            "done",
+            "cancelled"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "owner_acceptance": {
+          "enum": [
+            "requested",
+            "acknowledged",
+            "existing_commitment"
+          ],
+          "title": "Owner Acceptance",
+          "type": "string"
+        },
+        "goal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Goal Ids",
+          "type": "array"
+        },
+        "rationale_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Rationale Claim Ids",
+          "type": "array"
+        },
+        "dependency_action_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependency Action Ids",
+          "type": "array"
+        },
+        "deliverable": {
+          "title": "Deliverable",
+          "type": "string"
+        },
+        "acceptance_criteria": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Acceptance Criteria",
+          "type": "array"
+        },
+        "not_before": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Not Before"
+        },
+        "triggers": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Triggers",
+          "type": "array"
+        },
+        "due_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Due At"
+        },
+        "external_consent": {
+          "enum": [
+            "not_required",
+            "already_scoped",
+            "pending",
+            "declined"
+          ],
+          "title": "External Consent",
+          "type": "string"
+        },
+        "permission_basis": {
+          "title": "Permission Basis",
+          "type": "string"
+        },
+        "spending": {
+          "enum": [
+            "none",
+            "requires_separate_authorization",
+            "existing_authorized_commitment"
+          ],
+          "title": "Spending",
+          "type": "string"
+        },
+        "stop_conditions": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Stop Conditions",
+          "type": "array"
+        },
+        "outcome_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Outcome Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "owner_id",
+        "counterpart_ids",
+        "status",
+        "owner_acceptance",
+        "goal_ids",
+        "rationale_claim_ids",
+        "dependency_action_ids",
+        "deliverable",
+        "acceptance_criteria",
+        "not_before",
+        "triggers",
+        "due_at",
+        "external_consent",
+        "permission_basis",
+        "spending",
+        "stop_conditions",
+        "outcome_evidence_ids"
+      ],
+      "title": "Action",
+      "type": "object"
+    },
+    "Assent": {
+      "additionalProperties": false,
+      "properties": {
+        "agent_id": {
+          "title": "Agent Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "agent_id",
+        "evidence_id",
+        "version"
+      ],
+      "title": "Assent",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "subject_id": {
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "predicate": {
+          "title": "Predicate",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "epistemics": {
+          "$ref": "#/$defs/Epistemics"
+        },
+        "freshness": {
+          "$ref": "#/$defs/Freshness"
+        },
+        "supersedes_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Supersedes Ids",
+          "type": "array"
+        },
+        "derived_from_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Derived From Claim Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "subject_id",
+        "predicate",
+        "statement",
+        "epistemics",
+        "freshness",
+        "supersedes_ids",
+        "derived_from_claim_ids"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Coverage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "scope": {
+          "title": "Scope",
+          "type": "string"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        },
+        "observed_at": {
+          "title": "Observed At",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "scope",
+        "method",
+        "observed_at",
+        "limitations"
+      ],
+      "title": "Coverage",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "provisional",
+            "agreed",
+            "superseded"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "owner_id": {
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "recommendation": {
+          "title": "Recommendation",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "action_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Action Ids",
+          "type": "array"
+        },
+        "discussion_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Discussion Evidence Ids",
+          "type": "array"
+        },
+        "assents": {
+          "items": {
+            "$ref": "#/$defs/Assent"
+          },
+          "title": "Assents",
+          "type": "array"
+        },
+        "supersedes_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Supersedes Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "owner_id",
+        "recommendation",
+        "claim_ids",
+        "action_ids",
+        "discussion_evidence_ids",
+        "assents",
+        "supersedes_ids"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Edge": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "pursues",
+            "contributes_to",
+            "benefits_from",
+            "collaborates_with",
+            "supports",
+            "depends_on",
+            "owned_by",
+            "governs"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "target_id": {
+          "title": "Target Id",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Claim Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "relation",
+        "target_id",
+        "claim_ids"
+      ],
+      "title": "Edge",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ecosystem",
+            "project",
+            "agent",
+            "repository",
+            "artifact",
+            "workstream",
+            "outcome",
+            "venue"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parent Id"
+        },
+        "owner_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Owner Id"
+        },
+        "urls": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Urls",
+          "type": "array"
+        },
+        "goal_model": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GoalModel"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Identity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "parent_id",
+        "owner_id",
+        "urls",
+        "goal_model",
+        "identity"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "Epistemics": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "observed",
+            "reported",
+            "inferred",
+            "contested",
+            "superseded",
+            "retracted",
+            "directive"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unassessed"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "counterevidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Counterevidence Ids",
+          "type": "array"
+        },
+        "falsifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Falsifier"
+        }
+      },
+      "required": [
+        "status",
+        "confidence",
+        "rationale",
+        "supporting_evidence_ids",
+        "counterevidence_ids",
+        "falsifier"
+      ],
+      "title": "Epistemics",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "primary_public",
+            "internal_report",
+            "mirror",
+            "operator_direction",
+            "repository_artifact"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "locator": {
+          "title": "Locator",
+          "type": "string"
+        },
+        "author_id": {
+          "title": "Author Id",
+          "type": "string"
+        },
+        "observer_id": {
+          "title": "Observer Id",
+          "type": "string"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Published At"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "content_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Content Sha256"
+        },
+        "fingerprint_scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fingerprint Scope"
+        },
+        "origin_group": {
+          "title": "Origin Group",
+          "type": "string"
+        },
+        "derived_from_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Derived From Ids",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "url",
+        "locator",
+        "author_id",
+        "observer_id",
+        "published_at",
+        "retrieved_at",
+        "summary",
+        "content_sha256",
+        "fingerprint_scope",
+        "origin_group",
+        "derived_from_ids",
+        "limitations"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Freshness": {
+      "additionalProperties": false,
+      "properties": {
+        "observed_at": {
+          "title": "Observed At",
+          "type": "string"
+        },
+        "recheck_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Recheck By"
+        },
+        "recheck_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Recheck On",
+          "type": "array"
+        }
+      },
+      "required": [
+        "observed_at",
+        "recheck_by",
+        "recheck_on"
+      ],
+      "title": "Freshness",
+      "type": "object"
+    },
+    "GoalModel": {
+      "additionalProperties": false,
+      "properties": {
+        "declared_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Declared Claim Ids",
+          "type": "array"
+        },
+        "inferred_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Inferred Claim Ids",
+          "type": "array"
+        },
+        "engagement_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Engagement Claim Ids",
+          "type": "array"
+        },
+        "constraint_claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Constraint Claim Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "declared_claim_ids",
+        "inferred_claim_ids",
+        "engagement_claim_ids",
+        "constraint_claim_ids"
+      ],
+      "title": "GoalModel",
+      "type": "object"
+    },
+    "Governance": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Authority Order",
+          "type": "array"
+        },
+        "planning_rule": {
+          "title": "Planning Rule",
+          "type": "string"
+        },
+        "update_protocol": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Update Protocol",
+          "type": "array"
+        },
+        "conflict_rule": {
+          "title": "Conflict Rule",
+          "type": "string"
+        },
+        "freshness_rule": {
+          "title": "Freshness Rule",
+          "type": "string"
+        },
+        "provenance_rule": {
+          "title": "Provenance Rule",
+          "type": "string"
+        },
+        "access_rule": {
+          "title": "Access Rule",
+          "type": "string"
+        },
+        "adoption": {
+          "additionalProperties": {
+            "enum": [
+              "requested",
+              "acknowledged",
+              "verified_use"
+            ],
+            "type": "string"
+          },
+          "title": "Adoption",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authority_order",
+        "planning_rule",
+        "update_protocol",
+        "conflict_rule",
+        "freshness_rule",
+        "provenance_rule",
+        "access_rule",
+        "adoption"
+      ],
+      "title": "Governance",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "subject_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Subject Ids",
+          "type": "array"
+        },
+        "theory": {
+          "title": "Theory",
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "alternative_explanations": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Alternative Explanations",
+          "type": "array"
+        },
+        "predictions": {
+          "items": {
+            "$ref": "#/$defs/Prediction"
+          },
+          "minItems": 1,
+          "title": "Predictions",
+          "type": "array"
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "confidence_scope": {
+          "title": "Confidence Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "subject_ids",
+        "theory",
+        "claim_ids",
+        "alternative_explanations",
+        "predictions",
+        "confidence",
+        "confidence_scope"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "Identity": {
+      "additionalProperties": false,
+      "properties": {
+        "controller_independence": {
+          "enum": [
+            "internal_team",
+            "unverified",
+            "verified_independent",
+            "shared_controller"
+          ],
+          "title": "Controller Independence",
+          "type": "string"
+        },
+        "basis_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Basis Evidence Ids",
+          "type": "array"
+        },
+        "note": {
+          "title": "Note",
+          "type": "string"
+        }
+      },
+      "required": [
+        "controller_independence",
+        "basis_evidence_ids",
+        "note"
+      ],
+      "title": "Identity",
+      "type": "object"
+    },
+    "OpenQuestion": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "owner_id": {
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "related_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Related Ids",
+          "type": "array"
+        },
+        "resolution_evidence_needed": {
+          "title": "Resolution Evidence Needed",
+          "type": "string"
+        },
+        "blocks_action_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Blocks Action Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "owner_id",
+        "question",
+        "related_ids",
+        "resolution_evidence_needed",
+        "blocks_action_ids"
+      ],
+      "title": "OpenQuestion",
+      "type": "object"
+    },
+    "Prediction": {
+      "additionalProperties": false,
+      "properties": {
+        "observable": {
+          "title": "Observable",
+          "type": "string"
+        },
+        "disconfirming_observation": {
+          "title": "Disconfirming Observation",
+          "type": "string"
+        },
+        "check_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Check By"
+        }
+      },
+      "required": [
+        "observable",
+        "disconfirming_observation",
+        "check_by"
+      ],
+      "title": "Prediction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "model_version": {
+      "title": "Model Version",
+      "type": "string"
+    },
+    "updated_at": {
+      "title": "Updated At",
+      "type": "string"
+    },
+    "canonical_url": {
+      "title": "Canonical Url",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "draft",
+        "active"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "governance": {
+      "$ref": "#/$defs/Governance"
+    },
+    "coverage": {
+      "items": {
+        "$ref": "#/$defs/Coverage"
+      },
+      "title": "Coverage",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "title": "Claims",
+      "type": "array"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/Edge"
+      },
+      "title": "Edges",
+      "type": "array"
+    },
+    "hypotheses": {
+      "items": {
+        "$ref": "#/$defs/Hypothesis"
+      },
+      "title": "Hypotheses",
+      "type": "array"
+    },
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/Action"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "decisions": {
+      "items": {
+        "$ref": "#/$defs/Decision"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "open_questions": {
+      "items": {
+        "$ref": "#/$defs/OpenQuestion"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "model_version",
+    "updated_at",
+    "canonical_url",
+    "state",
+    "governance",
+    "coverage",
+    "entities",
+    "evidence",
+    "claims",
+    "edges",
+    "hypotheses",
+    "actions",
+    "decisions",
+    "open_questions"
+  ],
+  "title": "WorldModel",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
