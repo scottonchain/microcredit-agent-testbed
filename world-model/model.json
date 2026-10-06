@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.12",
-  "updated_at": "2026-10-06T18:55:00Z",
+  "model_version": "0.1.13",
+  "updated_at": "2026-10-06T19:00:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -792,6 +792,40 @@
       "urls": [
         "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6022145422",
         "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/research-techne-20261006.md"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:sepolia-prototype",
+      "kind": "workstream",
+      "name": "Working public Sepolia prototype for human understanding",
+      "parent_id": "project:microcredit",
+      "owner_id": "agent:claude",
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023114193"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:sepolia-prototype",
+      "kind": "artifact",
+      "name": "Verified public testnet application and release evidence",
+      "parent_id": "work:sepolia-prototype",
+      "owner_id": "agent:claude",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:sepolia-hosting-research",
+      "kind": "artifact",
+      "name": "Autonomous hosting and implementation brief, October 6",
+      "parent_id": "work:sepolia-prototype",
+      "owner_id": "agent:coordinator",
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023169175"
       ],
       "goal_model": null,
       "identity": null
@@ -2464,6 +2498,123 @@
       "limitations": [
         "Internal review by a project agent, not independent review."
       ]
+    },
+    {
+      "id": "ev:sepolia-prototype-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023114193",
+      "locator": "issuecomment-6023114193",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:50:28Z",
+      "summary": "Operator directs the team to build, host and blog-announce a working Sepolia prototype autonomously, as a critical bridge to human understanding; omnequa.org is authorized. Put this in the next Claude sync and only escalate after joint investigation and online research exhaust autonomous paths.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype-direction",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public paraphrase of direct operator direction, not a private transcript.",
+        "Direction establishes scope and authority; not implementation, deployment or Claude assent."
+      ]
+    },
+    {
+      "id": "ev:sepolia-hosting-research",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023169175",
+      "locator": "issuecomment-6023169175",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:50:28Z",
+      "summary": "Codex inspected the existing Base Sepolia/Next.js work and primary hosting documentation, comparing static wallet-side transactions with a persistent or durably coordinated relayer. Temporary hosting expiry and account gates are recorded. Existing source and live contract differences require revalidation.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-hosting-research",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source/code inspection, not a new deployment or live transaction test.",
+        "Provider docs and tool exposure do not prove usable access, durable deployment or wallet/RPC operation.",
+        "Beacon facts came from primary-site search excerpts; direct opens failed.",
+        "This report aggregates cited sources; it is not independent confirmation by each team agent."
+      ]
+    },
+    {
+      "id": "ev:sepolia-claude-first-critique",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023195023",
+      "locator": "Claude first critique, updated 2026-10-06T18:50:28Z",
+      "author_id": "agent:claude",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:51:59Z",
+      "summary": "Claude accepts implementation, deployment configuration and blog ownership, with a Base Sepolia branch/build checkpoint at October 7 10:00 UTC. It reports Base RPC unavailable in its runtime, requiring execution evidence from the host, and prefers the existing Next.js app on one persistent Node instance. Its proposed immediate operator custody question is challenged by Codex as premature under the explicit escalation rule.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-claude-first-critique",
+      "derived_from_ids": [],
+      "limitations": [
+        "Accepted implementation/checkpoint is not an executed deployment.",
+        "Claude has not yet assented to Codex's revised no-escalation/hosting fallback response.",
+        "RPC unavailability is reported for Claude's execution, not every team runtime."
+      ]
+    },
+    {
+      "id": "ev:sepolia-codex-reply",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023209384",
+      "locator": "SEPOLIA-PROTOTYPE-001-REPLY-6023195023",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:51:59Z",
+      "summary": "Codex accepts Claude's build ownership/checkpoint and challenges immediate escalation: check the existing Hermes runtime first, then supported native hosting, or adapt the client to wallet-direct calls. No new operator answer is required while those paths remain untested; single-process relaying still needs crash/unknown-send recovery.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-codex-reply",
+      "derived_from_ids": [],
+      "limitations": [
+        "Proposed implementation order is not joint until Claude responds.",
+        "Native hosting tool presence is not a tested public deployment."
+      ]
+    },
+    {
+      "id": "ev:sepolia-claude-wallet-direct",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023234783",
+      "locator": "comment 6023234783",
+      "author_id": "agent:claude",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:55:41Z",
+      "summary": "Claude accepts the alternative order of work and selects adapting the existing UI for wallet-direct Base Sepolia calls plus static GitHub Pages hosting as release one. Gasless relaying becomes release two. It reports starting implementation and keeps October 7 10:00 UTC build checkpoint. It says work does not depend on an operator custody answer.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-claude-wallet-direct",
+      "derived_from_ids": [],
+      "limitations": [
+        "Agreement/preparation is not live-release verification.",
+        "No public deployment or fresh-wallet loan cycle is evidenced by this exchange."
+      ]
+    },
+    {
+      "id": "ev:sepolia-codex-wallet-direct",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023252488",
+      "locator": "comment 6023252488",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T18:55:41Z",
+      "summary": "Codex explicitly accepts Claude's wallet-direct/static release-one plan, preserving fresh-user credit onboarding, requested-loan recovery, deployed-ABI semantics and truthful treatment of the meta-only withdrawal queue. No new operator custody answer is required; live release and blog announcement remain gated on evidence.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-codex-wallet-direct",
+      "derived_from_ids": [],
+      "limitations": [
+        "Agreement/preparation is not live-release verification.",
+        "No public deployment or fresh-wallet loan cycle is evidenced by this exchange."
+      ]
     }
   ],
   "claims": [
@@ -3991,6 +4142,115 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sepolia-prototype-authority",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "delivery_authority",
+      "statement": "Build, host, verify and announce a working public Sepolia testnet prototype autonomously; omnequa.org is permitted and provider URLs can precede domain completion. No further approval is needed for this scoped prototype/publication. This supersedes earlier no-deployment or domain-pending restrictions only within that scope; it does not authorize mainnet lending or real-money capital commitments.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Direct operator scope or explicitly limited source inspection, as cited.",
+        "supporting_evidence_ids": [
+          "ev:sepolia-prototype-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T18:50:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next Claude sync",
+          "Before selecting a host or publishing a release",
+          "New operator direction or changed deployment/provider state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sepolia-prototype-escalation",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "escalation",
+      "statement": "Make the working prototype a priority in the next existing Claude sync. If gated, research and attempt legitimate agent-capable hosting alternatives with Claude. Notify the operator only if autonomous completion genuinely cannot be achieved after that work, stating why and concrete minimal steps. Announce a verified launch on the blog; keep routine progress in project records.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Direct operator scope or explicitly limited source inspection, as cited.",
+        "supporting_evidence_ids": [
+          "ev:sepolia-prototype-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T18:50:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next Claude sync",
+          "Before selecting a host or publishing a release",
+          "New operator direction or changed deployment/provider state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sepolia-prototype-baseline",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "implementation_baseline",
+      "statement": "The inspected repository reports an existing Base Sepolia 84532 pool and Next.js interface, while scaffold.config.ts still selects local Foundry. The relayer uses process-local send serialization. Current hosting sources document accountless deployment routes, but several expire after 60 minutes, 24 hours or three days and backend/account requirements vary. These observations require execution checks and do not establish a working public prototype.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Direct operator scope or explicitly limited source inspection, as cited.",
+        "supporting_evidence_ids": [
+          "ev:sepolia-hosting-research"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T18:50:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next Claude sync",
+          "Before selecting a host or publishing a release",
+          "New operator direction or changed deployment/provider state"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sepolia-prototype-release-one",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "accepted_implementation_route",
+      "statement": "Claude and Codex explicitly agree to adapt the existing app to wallet-direct calls on Base Sepolia and publish a static release through existing GitHub Pages, using its provider URL before omnequa.org mapping. The current gasless static export is not usable unchanged. Shared relaying is release two and does not block release one; no new operator custody answer is a dependency.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Actual Claude proposal/assent and subsequent explicit Codex acceptance of the same route.",
+        "supporting_evidence_ids": [
+          "ev:sepolia-claude-wallet-direct",
+          "ev:sepolia-codex-wallet-direct"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T18:55:41Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Actual build, host or live execution evidence",
+          "Next daily sync",
+          "Any material change to the accepted route"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -4239,6 +4499,24 @@
       "target_id": "work:human-agent-discovery",
       "claim_ids": [
         "claim:techne-sync-direction"
+      ]
+    },
+    {
+      "id": "edge:prototype-readiness",
+      "source_id": "work:sepolia-prototype",
+      "relation": "contributes_to",
+      "target_id": "goal:deployment-readiness",
+      "claim_ids": [
+        "claim:sepolia-prototype-authority"
+      ]
+    },
+    {
+      "id": "edge:prototype-human-discovery",
+      "source_id": "work:sepolia-prototype",
+      "relation": "supports",
+      "target_id": "work:human-agent-discovery",
+      "claim_ids": [
+        "claim:sepolia-prototype-authority"
       ]
     }
   ],
@@ -5343,6 +5621,187 @@
       "triggers": [
         "The draft delivered on the board (6021787588)"
       ]
+    },
+    {
+      "id": "action:sepolia-prototype-sync",
+      "title": "Review the accepted public prototype and resolve remaining execution gaps at the next Claude sync",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-escalation",
+        "claim:sepolia-prototype-baseline",
+        "claim:limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits.",
+      "acceptance_criteria": [
+        "Read decision:sepolia-prototype-v1 and actual newer implementation evidence; do not reopen custody as an operator gate.",
+        "Track source/build/publication and fresh-wallet execution receipts separately.",
+        "Resolve concrete remaining failures with Claude and legitimate hosting alternatives before any operator escalation."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction in ev:sepolia-prototype-direction authorizes testnet prototype implementation, hosting and blog publication without further approval. Preserve credential custody, privacy, safe reviewed Git publication and existing obligations; no mainnet or real-money commitment implied.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not claim launch from a plan, build or local simulation.",
+        "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
+        "Do not use a temporary claim window as the permanent public endpoint."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Next existing daily Claude sync or earlier useful work",
+        "Actual owner reply, implementation receipt or resolved dependency"
+      ]
+    },
+    {
+      "id": "action:sepolia-prototype-build",
+      "title": "Prepare the Base Sepolia build and deployment configuration checkpoint",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:coordinator",
+        "agent:hermes"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-escalation",
+        "claim:sepolia-prototype-baseline",
+        "claim:limits",
+        "claim:sepolia-prototype-release-one"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Claude-owned branch adapting lend/attest/borrower pages for wallet-direct Base Sepolia calls, clear testnet banner and successful static production build. Start is reported by Claude; branch/build receipts remain due.",
+      "acceptance_criteria": [
+        "Use existing deployed addresses/ABI and explicit Base Sepolia label; no secrets in the tree.",
+        "Build passes; this is preparation, not a working public release.",
+        "Record host/RPC/testnet signing capability evidence. Resolve alternatives internally before any operator escalation."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction in ev:sepolia-prototype-direction authorizes testnet prototype implementation, hosting and blog publication without further approval. Preserve credential custody, privacy, safe reviewed Git publication and existing obligations; no mainnet or real-money commitment implied.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not claim launch from a plan, build or local simulation.",
+        "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
+        "Do not use a temporary claim window as the permanent public endpoint."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Next existing daily Claude sync or earlier useful work",
+        "Actual owner reply, implementation receipt or resolved dependency"
+      ]
+    },
+    {
+      "id": "action:sepolia-prototype-deliver",
+      "title": "Build, host and verify a usable public Sepolia prototype",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:coordinator",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-escalation",
+        "claim:sepolia-prototype-baseline",
+        "claim:limits",
+        "claim:sepolia-prototype-release-one"
+      ],
+      "dependency_action_ids": [
+        "action:sepolia-prototype-build"
+      ],
+      "deliverable": "Durable public wallet-direct Base Sepolia app, human-facing walkthrough and source/chain/transaction release record, checked by Codex or another distinct internal checker. Shared relaying is not required for release one.",
+      "acceptance_criteria": [
+        "Label Base Sepolia 84532 precisely if reusing the existing pool; never conflate Ethereum L1 Sepolia 11155111.",
+        "Fresh visitor onboarding for wallet, test gas, tokens and credit is documented and exercised.",
+        "Deposit, backing, borrowing and repayment have mined successful receipts and before/after state against the named deployment.",
+        "Reload/retry/wrong-network/error paths work; any shared signer survives concurrent intents and crash recovery without duplicate effects.",
+        "No browser-exposed private/admin keys or unlocked RPC; source/ABI/addresses and actual deployment differences reconciled.",
+        "Provider URL can ship before omnequa.org mapping; no production or poverty-impact claim inferred.",
+        "Requested loan recovers across rejected disbursement/reload; absent API routes are not left as working buttons; meta-only withdrawal queue is supported by self-submission or clearly limited."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction in ev:sepolia-prototype-direction authorizes testnet prototype implementation, hosting and blog publication without further approval. Preserve credential custody, privacy, safe reviewed Git publication and existing obligations; no mainnet or real-money commitment implied.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not claim launch from a plan, build or local simulation.",
+        "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
+        "Do not use a temporary claim window as the permanent public endpoint."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Next existing daily Claude sync or earlier useful work",
+        "Actual owner reply, implementation receipt or resolved dependency"
+      ]
+    },
+    {
+      "id": "action:sepolia-prototype-announce",
+      "title": "Announce the verified public prototype on Credit Among Strangers",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:coordinator",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-escalation",
+        "claim:sepolia-prototype-baseline",
+        "claim:limits"
+      ],
+      "dependency_action_ids": [
+        "action:sepolia-prototype-deliver"
+      ],
+      "deliverable": "Blog announcement with live URL, source release and testnet transaction evidence.",
+      "acceptance_criteria": [
+        "Wait for verified public release; describe tests and remaining limitations honestly.",
+        "Label demonstration actors and test tokens; do not imply humans have borrowed, external demand or poverty impact.",
+        "Preserve existing blog ownership and domain work; omnequa.org is authorized for this prototype."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction in ev:sepolia-prototype-direction authorizes testnet prototype implementation, hosting and blog publication without further approval. Preserve credential custody, privacy, safe reviewed Git publication and existing obligations; no mainnet or real-money commitment implied.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not claim launch from a plan, build or local simulation.",
+        "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
+        "Do not use a temporary claim window as the permanent public endpoint."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Next existing daily Claude sync or earlier useful work",
+        "Actual owner reply, implementation receipt or resolved dependency"
+      ]
     }
   ],
   "decisions": [
@@ -5456,6 +5915,44 @@
       ],
       "assents": [],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:sepolia-prototype-v1",
+      "status": "agreed",
+      "owner_id": "agent:coordinator",
+      "recommendation": "Release one adapts the existing Next.js UI to wallet-direct Base Sepolia calls and static GitHub Pages hosting, with explicit test labels and verified fresh-wallet lending-cycle evidence. Publish the working provider URL before domain mapping; omnequa.org is authorized. Gasless relay custody/runtime work is release two and not a launch dependency. Announce on the blog only after verified live acceptance. This records actual route agreement, not deployment.",
+      "claim_ids": [
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-escalation",
+        "claim:sepolia-prototype-release-one",
+        "claim:limits"
+      ],
+      "action_ids": [
+        "action:sepolia-prototype-sync",
+        "action:sepolia-prototype-build",
+        "action:sepolia-prototype-deliver",
+        "action:sepolia-prototype-announce"
+      ],
+      "discussion_evidence_ids": [
+        "ev:sepolia-hosting-research",
+        "ev:sepolia-claude-first-critique",
+        "ev:sepolia-codex-reply",
+        "ev:sepolia-claude-wallet-direct",
+        "ev:sepolia-codex-wallet-direct"
+      ],
+      "assents": [
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:sepolia-claude-wallet-direct",
+          "version": "decision:sepolia-prototype-v1"
+        },
+        {
+          "agent_id": "agent:coordinator",
+          "evidence_id": "ev:sepolia-codex-wallet-direct",
+          "version": "decision:sepolia-prototype-v1"
+        }
+      ],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
@@ -5552,6 +6049,18 @@
         "repo:vision"
       ],
       "resolution_evidence_needed": "The operator's answer in Claude Code's channel or on the board, then the lane's revision and Claude's resolution.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:sepolia-prototype-onboarding",
+      "owner_id": "agent:claude",
+      "question": "Which tested fresh-wallet gas and credit/backing path will support the released UI, and which authorized runtime will produce the live browser/transaction acceptance evidence?",
+      "related_ids": [
+        "work:sepolia-prototype",
+        "action:sepolia-prototype-deliver",
+        "artifact:sepolia-hosting-research"
+      ],
+      "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker.",
       "blocks_action_ids": []
     }
   ]
