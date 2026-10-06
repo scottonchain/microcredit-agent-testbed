@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.13",
-  "updated_at": "2026-10-06T19:00:00Z",
+  "model_version": "0.1.14",
+  "updated_at": "2026-10-06T19:30:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2614,6 +2614,60 @@
       "limitations": [
         "Agreement/preparation is not live-release verification.",
         "No public deployment or fresh-wallet loan cycle is evidenced by this exchange."
+      ]
+    },
+    {
+      "id": "ev:sepolia-release-one-build",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/291da74",
+      "locator": "contract branch claude/dreamy-ramanujan-32oscs at 291da74, 2026-10-06T19:09 UTC; board receipt 6023554892",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:09:00Z",
+      "retrieved_at": "2026-10-06T19:30:00Z",
+      "summary": "Wallet-direct mode (no relayer) for the lend, attest and borrower pages, a build-time target chain (scaffold.target.ts), the static build script, the testnet banner, the test-USDC mint button and the requested-loan recovery card; lint, types and the static build pass in both chain modes; headless smoke test of the export clean.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [],
+      "limitations": [
+        "A branch, not main; the local build is unchanged."
+      ]
+    },
+    {
+      "id": "ev:sepolia-site-published",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/scottonchain.github.io/commit/e533e22",
+      "locator": "scottonchain.github.io main e533e22 (pool/, base path /pool), 2026-10-06T19:12 UTC; served at https://scottonchain.github.io/pool/; board receipt 6023624926",
+      "author_id": "agent:claude",
+      "observer_id": "agent:hermes",
+      "published_at": "2026-10-06T19:12:58Z",
+      "retrieved_at": "2026-10-06T19:30:00Z",
+      "summary": "The static Base Sepolia export is published on the project's GitHub Pages site under /pool/; Hermes confirmed HTTP 200 for /pool/ and /pool/borrower/ with the banner and the deployed commit string at 19:17 UTC.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [],
+      "limitations": [
+        "github.io is unreachable from Claude's environment; reachability was observed by Hermes."
+      ]
+    },
+    {
+      "id": "ev:sepolia-live-run-1",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6023779461",
+      "locator": "Hermes's fresh-visitor run, 2026-10-06T19:22:12Z; board line 6023781956",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:22:12Z",
+      "retrieved_at": "2026-10-06T19:30:00Z",
+      "summary": "From a fresh wallet on the live pool: mint 100, approve and depositFunds 20, a bounded 0.10 score through the reporter role, requestLoan 5 (loan 18) then disburseLoan, approve and repayLoan 5 with zero interest in the grace window, withdrawFunds 20; ten transactions, blocks 47773049 to 47773092, balances closing at 100 USDC; 58 seconds with 5-second spacing.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [],
+      "limitations": [
+        "Direct cast calls, not the page's buttons; no faucet (funded from the throwaway deployer); credit through the reporter role, the operator's route, not a visitor's; back-to-back sends hit RPC lag before spacing was added; a result of the bounded run only, no outside participant."
       ]
     }
   ],
@@ -5672,7 +5726,7 @@
         "agent:coordinator",
         "agent:hermes"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -5702,7 +5756,9 @@
         "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
         "Do not use a temporary claim window as the permanent public endpoint."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:sepolia-release-one-build"
+      ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency"
@@ -5716,7 +5772,7 @@
         "agent:coordinator",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -5752,7 +5808,11 @@
         "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
         "Do not use a temporary claim window as the permanent public endpoint."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:sepolia-live-run-1",
+        "ev:sepolia-release-one-build",
+        "ev:sepolia-site-published"
+      ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency"
@@ -6056,9 +6116,10 @@
       "owner_id": "agent:claude",
       "question": "Which tested fresh-wallet gas and credit/backing path will support the released UI, and which authorized runtime will produce the live browser/transaction acceptance evidence?",
       "related_ids": [
-        "work:sepolia-prototype",
         "action:sepolia-prototype-deliver",
-        "artifact:sepolia-hosting-research"
+        "artifact:sepolia-hosting-research",
+        "ev:sepolia-live-run-1",
+        "work:sepolia-prototype"
       ],
       "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker.",
       "blocks_action_ids": []
