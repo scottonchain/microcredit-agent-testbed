@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.24",
-  "updated_at": "2026-10-06T22:10:00Z",
+  "model_version": "0.1.25",
+  "updated_at": "2026-10-06T22:23:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3005,6 +3005,87 @@
         "Interim: the final mapping is due 2026-10-08 16:00 UTC and awaits the lane's recheck and the relayer journal design note.",
         "Reserve-risk results hold at the sampled parameters only; no live default data exists."
       ]
+    },
+    {
+      "id": "ev:sepolia-browser-run-f116695",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/daca7e4/deployments/base-sepolia-1812e7d-usdc001/browser-run-f116695",
+      "locator": "Testbed daca7e4 (a35802e plus Hermes's README correction, noreply, 2026-10-06T22:17:54Z): README, seven run records and local-script-changes.diff under deployments/base-sepolia-1812e7d-usdc001/browser-run-f116695/; Hermes's report on contract issue 7",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:17:54Z",
+      "retrieved_at": "2026-10-06T22:23:00Z",
+      "summary": "Hermes ran the released app (https://scottonchain.github.io/pool/, banner: build f116695, deployed 1812e7d) in a headless browser with a bridged signer against the canonical-USDC pool, from a fresh borrower wallet with zero granted credit funded with 25 USDC: the Avery persona's backing raised its limit from 0 to 10; the borrow request was made, the second prompt (disburse) was rejected by the wallet with zero new transactions sent, the recovery card 'Loan requested, not yet disbursed' showed before and after a reload, then Disburse was accepted and loan #2 became Active (USDC 5 to 10); repay in full (approve, then repayLoan) made it Repaid; the lender deposit of 20 USDC (approve, depositFunds) and its withdrawal succeeded; with the wallet reporting Ethereum Sepolia the app sent no transaction and showed its wrong-network state. An earlier first wallet was not a zero-credit run: its first attempt failed at the connect selector yet the page still sent Avery's backing, an approve and requestLoan (loan #1), which Hermes cancelled afterwards with cancelLoan(1); that wallet holds 10 USDC of backing and its 25 USDC moved to the fresh wallet. Failed attempts are kept: the first runs hit runner defects (a connect selector, a requestLoan hash picked from the backer's transaction, a repay-button selector), and in 3 of 5 two-step attempts (the deposit twice, the repay once) the second transaction was never sent after a successful approve, while the same flows succeeded on other attempts; the page text at failure was not saved, so the cause is open. Records hold addresses, hashes and balances only; scanned for key material.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-codex-acceptance-v1",
+        "ev:sepolia-usdc-cutover"
+      ],
+      "limitations": [
+        "Hermes's own records; this session reread the JSON files and could not re-read the chain (RPC unreachable).",
+        "Direct-signer browser run by the project's own testnet operator, with the Avery persona backing: a team rehearsal, not an outside visitor.",
+        "The two-step failures are unexplained until a repeat with the page text saved."
+      ]
+    },
+    {
+      "id": "ev:sepolia-allowance-fix",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/258affb",
+      "locator": "Contract main 258affb (merge of dc4238b and a58aa23); site scottonchain.github.io main 9cf1585 built from it under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:23:00Z",
+      "retrieved_at": "2026-10-06T22:23:00Z",
+      "summary": "Response to the two-step failures in ev:sepolia-browser-run-f116695: the app now waits until the allowance is visible on two consecutive reads (tolerating read errors) before the second step of deposit, stake and both repay paths, and otherwise stops with a message that says the approval is in place and nothing further was sent (utils/stableRead.ts, 5 unit tests; the walkthrough has the row). The suspected cause is a public RPC endpoint serving the next pre-send simulation a stale allowance; that is not proven. Hermes's runner fixes (selectors, flags, failure dumps) are merged into scripts/demo/testnet-walkthrough.mjs with its Chromium path made an environment variable.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-f116695"
+      ],
+      "limitations": [
+        "Not yet exercised by a browser run on the new build; the cause of the original misses is unproven; if they recur with the fix, the page text at failure decides the next step."
+      ]
+    },
+    {
+      "id": "ev:relayer-journal",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/cfda3b8",
+      "locator": "Contract main 258affb (commit cfda3b8): packages/nextjs/utils/relayerJournal.ts, relayerJournalStore.ts, relayerJournal.test.ts and the relayer integration behind RELAYER_JOURNAL_PATH",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:23:00Z",
+      "retrieved_at": "2026-10-06T22:23:00Z",
+      "summary": "The durable relayer journal named as the missing prerequisite in the interim readiness report: the intent keyed by (chain, pool, signer, nonce) is fsynced before the first network call; a request already seen is answered from the journal; a different request under the same nonce is refused; recovery settles open entries from the chain (receipt when a hash exists, else the signer's on-chain nonce: unconsumed abandoned, consumed consumed_unattributed and never resent); permit-only intents with no hash stay unresolved; a timeout never becomes a failure. 20 unit tests; off unless RELAYER_JOURNAL_PATH is set.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readiness-link",
+      "derived_from_ids": [
+        "ev:readiness-link-interim"
+      ],
+      "limitations": [
+        "Unit tests only: no live relayer run, no crash-injection test against a running server; permit-only routes are journaled by digest and recovered by hash only."
+      ]
+    },
+    {
+      "id": "ev:blog-pause",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6026423497",
+      "locator": "Operator direction given to Claude Code in its own channel about 22:15 UTC on 2026-10-06; announced on the board at the cited comment",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:15:00Z",
+      "retrieved_at": "2026-10-06T22:23:00Z",
+      "summary": "All blog checks and posting stop until the operator's go-ahead; the most recent post stays up; state is kept so the schedule resumes when the operator unpauses. The blog's two scheduled routines are disabled (not deleted) and the blog session was told to do nothing; Claude's vision review and forwarding are paused.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "blog-pause",
+      "derived_from_ids": [],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel."
+      ]
     }
   ],
   "claims": [
@@ -5843,7 +5924,8 @@
         "Decline or absent consent does not authorize another ask."
       ],
       "outcome_evidence_ids": [
-        "ev:readiness-link-interim"
+        "ev:readiness-link-interim",
+        "ev:relayer-journal"
       ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
@@ -6275,6 +6357,8 @@
         "Do not use a temporary claim window as the permanent public endpoint."
       ],
       "outcome_evidence_ids": [
+        "ev:sepolia-allowance-fix",
+        "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
@@ -6327,7 +6411,8 @@
       "stop_conditions": [
         "Do not claim launch from a plan, build or local simulation.",
         "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
-        "Do not use a temporary claim window as the permanent public endpoint."
+        "Do not use a temporary claim window as the permanent public endpoint.",
+        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead."
       ],
       "outcome_evidence_ids": [],
       "triggers": [
@@ -6401,7 +6486,8 @@
       "permission_basis": "Operator request of 2026-10-06 for a fun post; questions invented by Claude Code at the operator's invitation.",
       "spending": "none",
       "stop_conditions": [
-        "Either agent declines: publish with the answers that exist and say so"
+        "Either agent declines: publish with the answers that exist and say so",
+        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead."
       ],
       "outcome_evidence_ids": []
     },
@@ -6794,6 +6880,8 @@
       "related_ids": [
         "action:sepolia-prototype-deliver",
         "artifact:sepolia-hosting-research",
+        "ev:sepolia-allowance-fix",
+        "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-demo-alert-bottom",
         "ev:sepolia-live-run-1",
