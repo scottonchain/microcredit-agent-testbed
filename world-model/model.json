@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.25",
-  "updated_at": "2026-10-06T22:23:00Z",
+  "model_version": "0.1.26",
+  "updated_at": "2026-10-06T22:47:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3058,7 +3058,7 @@
       "observer_id": "agent:claude",
       "published_at": "2026-10-06T22:23:00Z",
       "retrieved_at": "2026-10-06T22:23:00Z",
-      "summary": "The durable relayer journal named as the missing prerequisite in the interim readiness report: the intent keyed by (chain, pool, signer, nonce) is fsynced before the first network call; a request already seen is answered from the journal; a different request under the same nonce is refused; recovery settles open entries from the chain (receipt when a hash exists, else the signer's on-chain nonce: unconsumed abandoned, consumed consumed_unattributed and never resent); permit-only intents with no hash stay unresolved; a timeout never becomes a failure. 20 unit tests; off unless RELAYER_JOURNAL_PATH is set.",
+      "summary": "The durable relayer journal named as the missing prerequisite in the interim readiness report: the intent keyed by (chain, pool, signer, nonce) is fsynced before the first network call; a request already seen is answered from the journal; a different request under the same nonce is refused; recovery settles open entries from the chain (receipt when a hash exists, else the signer's on-chain nonce: unconsumed abandoned, consumed consumed_unattributed and never resent); permit-only intents with no hash stay unresolved; a timeout never becomes a failure. 13 unit tests in relayerJournal.test.ts at that commit (the commit message says 20, which also counted the seven borrow-intent tests of another file: corrected here); off unless RELAYER_JOURNAL_PATH is set.",
       "content_sha256": null,
       "fingerprint_scope": null,
       "origin_group": "readiness-link",
@@ -3066,7 +3066,8 @@
         "ev:readiness-link-interim"
       ],
       "limitations": [
-        "Unit tests only: no live relayer run, no crash-injection test against a running server; permit-only routes are journaled by digest and recovered by hash only."
+        "Unit tests only: no live relayer run, no crash-injection test against a running server; permit-only routes are journaled by digest and recovered by hash only.",
+        "Superseded in part by ev:relayer-journal-hash-first: at this commit the hash was journaled only after the broadcast, so a crash after a node accepted a transaction could read as abandoned."
       ]
     },
     {
@@ -3085,6 +3086,30 @@
       "derived_from_ids": [],
       "limitations": [
         "Recorded from the operator's words in Claude's channel."
+      ]
+    },
+    {
+      "id": "ev:relayer-journal-hash-first",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/1009e6a",
+      "locator": "Contract main 1009e6a: packages/nextjs/utils/relayerSend.ts, relayerJournal.ts, relayerSend.test.ts, scripts/relayer-crash-check.mjs and app/api/meta/relayer.ts; design note coordination/relayer-journal-design.md in this repository (model v0.1.26)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:47:00Z",
+      "retrieved_at": "2026-10-06T22:47:00Z",
+      "summary": "The relayer journal hardened and documented. With a local signing key the relayer signs first, journals the transaction hash and raw bytes durably, then broadcasts, so a hash-less entry was never sent and a hash with no receipt stays unknown (retry-fixture email-11 case B; before this, a crash after a node accepted a transaction left an entry the recovery would have called abandoned). A retry rebroadcasts the identical bytes. A failed receipt or nonce read leaves that entry open (email-9). A hash-less permit-only intent made under hash-first sending is abandoned. Checks: 26 unit tests for the journal and the send order (16 and 10); a repeatable run through the real API route on a local Anvil chain, 15 checks, including the server killed with SIGKILL between broadcast and receipt, after which the same request returned 202 while unmined and 200 once mined with one relayer transaction in all. The design note maps each retry-fixture chain and email case to what the journal does and where it is checked, and lists seven things not covered.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readiness-link",
+      "derived_from_ids": [
+        "ev:relayer-journal",
+        "ev:readiness-link-interim",
+        "ev:retry-fixture-merged"
+      ],
+      "limitations": [
+        "Local chain only: not run against a public RPC endpoint or on Base Sepolia, not deployed, not used by anyone outside the team.",
+        "Attribution of a consumed nonce by decoding calldata (chain-5, chain-6) is not implemented; fee replacement, multi-process operation and confirmation depth are not built; the receipt is read from the same endpoint that took the write.",
+        "Written by the same agent that wrote the journal; the lane's recheck of the mapping is still owed before the final."
       ]
     }
   ],
@@ -5925,7 +5950,8 @@
       ],
       "outcome_evidence_ids": [
         "ev:readiness-link-interim",
-        "ev:relayer-journal"
+        "ev:relayer-journal",
+        "ev:relayer-journal-hash-first"
       ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",

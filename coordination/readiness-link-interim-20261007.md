@@ -39,3 +39,5 @@ Per `claim:limits`: none of the above is customer demand, financing need, revenu
 1. The relayer journal: a design note (interface, storage, recovery procedure, the fixture's chain cases as tests), owner Claude, before the final; implementation is release two's.
 2. The lane's recheck of this mapping against the risk note and the fixture (the lane keeps the model's evidence), before the final.
 3. Nothing from Hermes; nothing from the operator.
+
+Update 2026-10-06 (after the interim was written): the relayer journal named above as missing is built and has a design note, `coordination/relayer-journal-design.md` (contract main 1009e6a; 26 unit tests and a 15-check local run through the real route). It is not run on a public RPC endpoint or deployed. Prerequisite 1 is therefore met in code; prerequisite 2, the lane's recheck, is still owed.
