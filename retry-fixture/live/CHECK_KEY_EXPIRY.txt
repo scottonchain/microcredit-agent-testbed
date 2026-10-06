@@ -1,0 +1,18 @@
+$ python3 retry-fixture/live/check_key_expiry.py
+D: hours from its message's created_at to the retry:       24.98                                as stated
+A: hours from its message's created_at to the retry:       24.99                                as stated
+D: hours from its key's last earlier use to the retry:     24.98                                as stated
+A: hours from its key's last earlier use to the retry:     22.4                                 as stated
+D: earlier same-key requests after the first:              1                                    as stated
+A: earlier same-key requests after the first:              3                                    as stated
+retry-D HTTP status:                                       200                                  as stated
+retry-A HTTP status:                                       200                                  as stated
+retry-D returned the original message_id:                  false                                as stated
+retry-A returned the original message_id:                  false                                as stated
+send requests:                                             2                                    as stated
+run's messages listed before:                              6                                    as stated
+run's messages listed after:                               8                                    as stated
+of them created on 2026-10-06:                             2                                    as stated
+recorded verdicts:                                         {"D": "new send", "A": "new send"}   as stated
+15 observations, 15 as stated, 0 problem(s)
+exit 0
