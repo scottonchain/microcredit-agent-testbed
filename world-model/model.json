@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.19",
-  "updated_at": "2026-10-06T20:16:00Z",
+  "model_version": "0.1.20",
+  "updated_at": "2026-10-06T21:10:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2763,6 +2763,67 @@
       "origin_group": "claude-intro",
       "derived_from_ids": [],
       "limitations": []
+    },
+    {
+      "id": "ev:sepolia-codex-acceptance-v1",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6025151567",
+      "locator": "CODEX-ACCEPTANCE-v1, 2026-10-06T20:47:18Z; basis testbed main 30db366 (v0.1.19), contract branch 8b485b2, site main 13740cf",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T20:47:18Z",
+      "retrieved_at": "2026-10-06T21:10:00Z",
+      "summary": "The lane's browser check of https://scottonchain.github.io/pool/ at 20:43 to 20:45 UTC: home, borrower, lender and backing pages render, navigation and the wallet chooser work, the banner names Base Sepolia 84532, the pool, deployed commit 19b166e and build commit 8b485b2; no wallet connected, no transaction sent. Release acceptance not complete. Required corrections, Claude-owned: (1) bind origination to its own receipt and fail closed while the outcome is unknown (the page selected the newest id after an id-array length increase and discarded the write hash); (2) a write precondition failure (no deployment, no wallet, wrong chain) resolved undefined and callers showed success; (3) the backing page said backing is gasless and the borrower page previewed a disabled 7-day term beside a 30-day loan. Onboarding evidence still missing: the second live run's borrower already held a 10 USDC line, so it does not isolate borrowing enabled by backing; no tested faucet route; a walkthrough and a zero-granted-credit browser run with real backing (or a labelled reporter-assisted run) are needed; a wallet-capable browser runner must be chosen.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [
+        "ev:sepolia-site-published",
+        "ev:sepolia-live-run-1",
+        "ev:sepolia-live-run-2"
+      ],
+      "limitations": [
+        "Public rendering verified only; no signing capability established in the lane; Hermes's receipts not reread from RPC by the lane."
+      ]
+    },
+    {
+      "id": "ev:sepolia-demo-alert-bottom",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6025303901",
+      "locator": "DEMO-ALERT-BOTTOM-20261006, relayed by the Codex lane 2026-10-06T20:57:00Z",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T20:57:00Z",
+      "retrieved_at": "2026-10-06T21:10:00Z",
+      "summary": "The operator asks that the orange test-network banner move to the bottom of every page of the public app, wording and condition unchanged; authorized now, independent of release acceptance. Next-sync additions for the 2026-10-07 10:00 UTC round: discuss populating the test pool using Hermes's existing faucet and explicitly how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [],
+      "limitations": [
+        "Relayed operator direction through the Codex lane; the lane's patch was applied by Claude from the checkout."
+      ]
+    },
+    {
+      "id": "ev:sepolia-release-one-fixes",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/a2d190b",
+      "locator": "contract branch claude/dreamy-ramanujan-32oscs at a2d190b; site scottonchain.github.io main 0a29fc3 (2026-10-06T21:09:49Z), built from that commit under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:09:49Z",
+      "retrieved_at": "2026-10-06T21:10:00Z",
+      "summary": "Claude's corrections for CODEX-ACCEPTANCE-v1: wallet-direct origination is an intent (utils/originationIntent.ts, unit-tested) persisted before the wallet is asked, bound to the request's transaction hash before the receipt is awaited, resolved to the loan id from that receipt's LoanRequested event, reconciled on reload and across tabs, with no new request while unresolved and only a wallet rejection dropping it; every wallet-direct step requires a mined hash (utils/walletWrite.ts) and the same signer on the same chain between a flow's two transactions (deposit, stake, repay, borrow); the borrower page shows the pool's DEFAULT_LOAN_TERM and previews that term; the backing page text follows RELAYER_ENABLED; the banner links docs/TESTNET_WALKTHROUGH.md by build commit and sits at the bottom of the page (the operator's correction). Type check, lint, 7 unit tests and the static build pass; the site is republished from this commit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [
+        "ev:sepolia-codex-acceptance-v1",
+        "ev:sepolia-demo-alert-bottom"
+      ],
+      "limitations": [
+        "Source corrections and a rendering check only; the browser transaction run with a zero-credit wallet is still owed (the Playwright runner script is in the same branch for Hermes or another signer-capable runtime)."
+      ]
     }
   ],
   "claims": [
@@ -5850,7 +5911,7 @@
         "claim:limits"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits.",
+      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique.",
       "acceptance_criteria": [
         "Read decision:sepolia-prototype-v1 and actual newer implementation evidence; do not reopen custody as an operator gate.",
         "Track source/build/publication and fresh-wallet execution receipts separately.",
@@ -5869,7 +5930,8 @@
       "outcome_evidence_ids": [],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
-        "Actual owner reply, implementation receipt or resolved dependency"
+        "Actual owner reply, implementation receipt or resolved dependency",
+        "The operator's next-sync additions of 2026-10-06 20:57 UTC"
       ]
     },
     {
@@ -5950,7 +6012,9 @@
         "Reload/retry/wrong-network/error paths work; any shared signer survives concurrent intents and crash recovery without duplicate effects.",
         "No browser-exposed private/admin keys or unlocked RPC; source/ABI/addresses and actual deployment differences reconciled.",
         "Provider URL can ship before omnequa.org mapping; no production or poverty-impact claim inferred.",
-        "Requested loan recovers across rejected disbursement/reload; absent API routes are not left as working buttons; meta-only withdrawal queue is supported by self-submission or clearly limited."
+        "Requested loan recovers across rejected disbursement/reload; absent API routes are not left as working buttons; meta-only withdrawal queue is supported by self-submission or clearly limited.",
+        "Codex's correction items 1 to 3 (ev:sepolia-codex-acceptance-v1) fixed at the source and rechecked by the lane on the republished site.",
+        "A browser run from a wallet with zero granted credit and real backing (or a plainly labelled reporter-assisted run) with mined receipts, a rejected second signature, a reload during recovery and a wrong-network attempt, produced by a signer-capable runtime (Hermes or an authorized isolated signer), never by this session."
       ],
       "not_before": null,
       "due_at": null,
@@ -5963,14 +6027,18 @@
         "Do not use a temporary claim window as the permanent public endpoint."
       ],
       "outcome_evidence_ids": [
+        "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-build",
+        "ev:sepolia-release-one-fixes",
         "ev:sepolia-site-published"
       ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
-        "Actual owner reply, implementation receipt or resolved dependency"
+        "Actual owner reply, implementation receipt or resolved dependency",
+        "The lane's recheck of the republished site",
+        "Hermes's browser run or its capability answer"
       ]
     },
     {
@@ -6339,15 +6407,18 @@
     {
       "id": "question:sepolia-prototype-onboarding",
       "owner_id": "agent:claude",
-      "question": "Which tested fresh-wallet gas and credit/backing path will support the released UI, and which authorized runtime will produce the live browser/transaction acceptance evidence?",
+      "question": "Which tested fresh-wallet gas and credit/backing path will support the released UI, and which authorized runtime will produce the live browser/transaction acceptance evidence? Does the evidence come from a wallet with zero granted credit and real backing, or from a reporter-assisted grant (to be labelled as such), and does it include actual UI signing and recovery (rejected second signature, reload, wrong network)?",
       "related_ids": [
         "action:sepolia-prototype-deliver",
         "artifact:sepolia-hosting-research",
+        "ev:sepolia-codex-acceptance-v1",
+        "ev:sepolia-demo-alert-bottom",
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
+        "ev:sepolia-release-one-fixes",
         "work:sepolia-prototype"
       ],
-      "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker.",
+      "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker. Dependency: Codex's recheck of the corrected release and the browser run against it.",
       "blocks_action_ids": []
     },
     {
