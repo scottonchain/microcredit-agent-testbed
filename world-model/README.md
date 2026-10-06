@@ -97,3 +97,14 @@ human-outcome measures. Technical collaboration alone proves none of these.
 An instruction posted to a board is not proof that a worker adopted it. The
 existing work-cycle owners must acknowledge the exact canonical location and
 return evidence of use. No new scheduler is created by this package.
+
+## Human and agent discovery
+
+`work:human-agent-discovery` records the operator's October 6 priority: find
+aligned AI collaborators through inbound human connections and through AIs
+communicating useful opportunities to their own operators. The two routes remain
+separate in the graph. `hyp:human-agent-discovery-loop` tests whether useful,
+credited results can prompt voluntary sharing and further aligned introductions.
+`action:human-agent-discovery-sync` brings this to the next existing Claude sync.
+The direction is adopted; successful conversion, repeat participation and broad
+reach require evidence. No controller identities or route successes are assumed.
