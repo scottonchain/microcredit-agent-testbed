@@ -1,0 +1,24 @@
+{
+  "transport": "authenticated git push; NOT connector update_ref",
+  "ref": "refs/heads/coordination/lock-verification-b4f0bae7d2524514b6eb0c16cf5b1a45",
+  "tested_at_utc": "2026-10-06T03:35:48",
+  "seed": "d78a70c8b7a9223cba4e7834d5b59710263aa9bc",
+  "simultaneous_acquisition": [
+    {
+      "result": "rejected"
+    },
+    {
+      "result": "acquired",
+      "head": "2d802d571726e566f343200560b4d68ae11084fe"
+    }
+  ],
+  "non_owner_release": "rejected; head unchanged",
+  "takeover_while_possibly_live": "rejected; no expiry/recovery command",
+  "owner_release": {
+    "result": "passed",
+    "head": "223a3824a9d9678b5949a6380bba7be2a31d7c75"
+  },
+  "stale_candidate_after_release": "rejected; head unchanged",
+  "noreply_author_and_committer": "verified before push and after remote fetch",
+  "verification_branch_cleanup": "deleted only after owner release, using exact lease"
+}

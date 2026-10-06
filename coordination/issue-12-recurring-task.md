@@ -1,20 +1,184 @@
-# Testbed and theory review recurring Codex task
+# Hourly Codex continuation: testbed and theory
 
-Status: NOT CONFIGURED. No scheduling/event-trigger API is exposed to this session. `codex cloud exec` submits one-off tasks and has no recurrence option; `codex cloud list --json` fails requesting the cloud task endpoint. Existing equivalent schedules could not be enumerated. No recurring task ID, next run or scheduler test exists. Do not replace this with cron/background work in a temporary task container.
+This is the replacement runbook for BOARD-004. It supersedes the earlier
+30-minute/non-branch-ref instructions and the unverified connector-CAS claim.
+The replay implementation on PR #14 remains unchanged at `f46287f`.
 
-Setup required: in a scheduler-enabled Codex control plane, search for an existing task targeting testbed issue #12 and the theory review program and reuse it; otherwise create one. Select the same published cloud environment configuration used for this session, with read/push/issue-comment/PR access to microcredit-vision, microcredit-agent-testbed, microcredit-contract and microcredit-theory. Configure every 30 minutes (`*/30 * * * *`, UTC), maximum concurrent runs 1, and paste the prompt below. Run it immediately and verify its actual repository reads and durable-record update, then record the real task ID, next run and execution result in issue #12. A notification/reminder-only automation does not meet this requirement. No new spending or payment authority is granted.
+## Setup result and current limits
 
-## Complete task prompt
+The coordinating assistant reports creating one enabled hourly replacement after
+its scheduler list returned no automations. Public cadence: `0 * * * *` UTC.
+The scheduler identifier and operator timezone remain in the private scheduling
+record. The create response did not supply a next-run time or model field.
+First scheduled execution, its model, serialization and unattended continuation
+are **not verified**. A separately selected model for this setup run does not
+configure the recurring worker. Do not create or alter automations from this
+implementation workflow; scheduling belongs to the coordinating assistant.
 
-You are the operator's internal Codex collaborator continuing https://github.com/scottonchain/microcredit-agent-testbed/issues/12 and https://github.com/scottonchain/microcredit-theory/issues/1 (assignments #2, #3, #4) in the published cloud environment with its repository access. Read current repository instructions and runtime skill, fetch branch heads, and inspect all four repositories' current permissions. Read testbed issue #12, theory program #1 and assignments #2–#4, their canonical coordination-state comments (marked `issue-12-coordination-state-v1` in testbed and `theory-review-coordination-state-v1` in theory), and every linked PR's body, comments, reviews and current head/state. Never rely on prior local files. Hermes owns external discovery/outreach; maintainers alone merge. You may fix justified findings in branches/PRs and post necessary coordination comments. Preserve frozen challenge artifacts, payment terms and spending limits. Do not deploy, lend real money, grant authority or perform the outside contributor's assignment yourself.
+All four `scottonchain` repositories are readable in the connector and this shell:
+`microcredit-agent-testbed`, `microcredit-contract`, `microcredit-theory`, and
+`microcredit-vision`. Connector metadata reports push permission on all four;
+actual authenticated Git push was tested in testbed only. A temporary HTTP 401
+interrupted setup after acquisition; the lock was retained until authenticated
+access returned, then the same owner released it with the exact lease. On any
+future credential failure, stop protected writes and retain the lock until safe
+owner release is possible. This incident does not establish credential reliability
+for scheduled runs.
 
-Before mutations, use branch `coordination/issue-12-run-lock` as the mutex and never use `main` for lock state. Read its exact head and `LOCK.json`. Acquire by making a candidate lock commit with a unique run owner/execution and moving the lock branch with `github_update_ref(force=true, expected_sha=<the unlocked head actually read>)`. Only a successful conditional update owns the lock. On mismatch or error, reread and exit without mutations; never retry against a locked head. Release only when a fresh read of `LOCK.json` has the exact owner for this run, and release with another conditional update whose `expected_sha` is the owned lock head. Scheduler concurrency must also be 1. For recovery, age is never enough: verify in scheduler records that the recorded owning execution ended before conditionally unlocking that exact stale head. If that cannot be verified, leave it locked and report continuation failure.
+**Connector-only runs remain read-only.** The exposed commit tools have no
+explicit author/committer parameters, and the previous default identity leaked a
+personal email. No account privacy setting has been verified. The connector
+`update_ref(expected_sha=...)` implementation/atomicity has not been established.
+A stale-SHA check performed after another write is not a simultaneous-acquisition
+proof. Git-shell tests do not validate connector behavior. No further connector
+commit may be created to probe identity while this privacy blocker remains.
 
-Use testbed comment 5999201336 and theory-program comment 5999791943 for per-thread last processed comment IDs AND updated_at values (edits count), processed review IDs, observed PR heads/states, current owner, pending dependency, next action, and posted-action markers. Reread it after acquiring the lock. Read complete paginated replies and PR review threads, not just the newest comment. The lock serializes comment-state updates. For each external write, use a deterministic HTML action marker based on the source comment/review ID and PR head; search all existing thread comments for that marker before posting. Reconcile an already-posted action after a crash rather than duplicating it. Never advance cursors before handling the associated action. Update the canonical comment with completed cursor/owner/dependency/next-action state, then release the lock. If no actionable input or PR-state change occurred, release the lock and exit quietly without posting comments or notifying the operator.
+The minimum write capability is a verified noreply-safe commit path together with
+server-atomic conditional ref update, or documented sufficient scheduler
+serialization plus a protocol agreed with every participating writer. The current
+shell route supplies the former. A scheduled connector run must either gain that
+same Git-shell execution path and validate it there, or keep its read-only guard.
+No documented scheduler serialization is currently available in this setup.
 
-Advance the next authorized step: reproduce new technical findings, implement justified fixes, run meaningful checks, publish/update a PR, or review returned evidence with a clear incorporation/decline decision. Ask Hermes in issue #12 to mirror complete outside responses with original URL, ID, timestamp and permission boundaries. For the current cycle, codexmainbizmac accepted procedure review only and volunteered to review the hardening patch; do not presume privileged Linux execution or team membership. Once its return review arrives, address it and give the maintainers a merge-ready result; ask through Hermes for its choice of next step. Record actual acceptance, useful outside work, incorporation/decline, and contributor-proposed next steps separately from internal work. For theory: Claude Code owns manuscripts and author responses; Codex owns review coordination, reproducibility and implementation fixes. Hermes recruits independently operated mathematician/economist/computer-scientist AIs and mirrors their actual responses to theory assignments #2–#4. Track invitation → accepted scope → original review → author response → revision → original outside reviewer recheck. Record stated operator, disclosed model/version, conflicts and uncertainty about independence, without collecting private identity data. Preserve original unfavorable reports and disagreements; no internal agent counts as an independent reviewer. Obtain actual agent acknowledgments and reviewer acceptance, not just posted requests. Ask Claude for pinned claims, assumptions, proof sections, limitations and commands before recruitment. Do not author the outside review yourself. The first theory milestone is one substantive independent review, response and same-reviewer revision check. No journal endorsement or new payments. Keep routine progress in the relevant theory issue and testbed #12. Notify the operator only for a meaningful milestone, a failure preventing continuation, or a decision outside existing authority.
+## Verified Git-shell protocol
 
-On the immediate trigger test, read repositories and the canonical record, acquire/release the lock, identify and perform any actual pending authorized work, and record the real run ID and result in the canonical state. If nothing is actionable, record the read/lock test in the canonical state once with a deterministic test marker. Do not claim scheduling or autonomous continuation merely because this prompt or a local smoke test exists.
+`coordination/run_lock.py` operates only on
+`refs/heads/coordination/issue-12-run-lock` (or a dedicated verification branch).
+Never write lock state to `main`. It accepts the repaired `d78a70c` unlocked
+bootstrap and records `git-explicit-lease-v2` on acquisition.
 
+1. Read the exact remote head and `LOCK.json`. A missing, malformed, unknown or
+   already-held lock stops protected work. Use fresh random public owner and
+   execution tokens; keep their mapping to private scheduler records private.
+2. Create an acquisition commit whose sole parent is that unlocked head, with
+   explicit `Codex (AI)` noreply **author and committer**, verified before push.
+3. Push with `--force-with-lease=<exact-ref>:<observed-oid>` and read back the exact
+   candidate OID. Git's explicit lease requires that precise old OID at the
+   server; sibling candidates cannot both advance the ref. All transitions are
+   children of the observed head, so history never resets to an old unlocked OID.
+   Do not substitute the connector's similarly named argument.
+4. Preserve the acquisition OID and owner token. Refresh authoritative records
+   after acquiring. Recheck exact ownership before every group of shared writes.
+5. In `finally`, after all owned mutating work has stopped, release only if both
+   owner and acquisition OID still match. Push a new unlocked child using the
+   exact lease. Never reset to the bootstrap, delete the production lock, or
+   release another run's lock. On errors/uncertain outcomes stop protected work,
+   read back for diagnosis, and do not repeat actions blindly.
 
-Migration note: connector branch-CAS locking supersedes the unsupported non-branch-ref protocol. Interactive repair proved acquisition from a known unlocked SHA, rejection of a competitor using the same expected SHA with the winner unchanged, owner-match gating for release, and successful owner release. Before enabling the task, repeat acquisition/rejection/release from the scheduled execution environment and record its execution ID/result in both canonical records. Ignore the canonical-state comment itself and your own reconciled action comments as new review input, but process edited outside replies using updated_at.
+This is a **cooperative mutex**, not access control against an arbitrary writer
+with repository credentials. All Codex workers that mutate these records must use
+this protocol; never run the older force-update connector protocol alongside it.
+Other project agents retain their existing ownership/review processes.
+
+There is no timeout takeover or automatic recovery command. Age, silence, a
+missed heartbeat, or an old board comment cannot prove a run stopped. If a worker
+crashes, retain the lock. A maintainer can recover only after authoritative
+execution records prove the owning worker **and its delegated work** have ended;
+record that evidence privately, preserve a public recovery receipt, and perform
+an exact-head conditional transition. If execution liveness cannot be resolved,
+continue read-only and report the dependency once. Never steal from a possibly
+live run. A failed release is not permission to remove the lock.
+
+Usage from an isolated checkout (retain these values privately for cleanup):
+
+```python
+import uuid
+from coordination.run_lock import Lock
+lock = Lock()
+owner = 'codex-' + uuid.uuid4().hex
+execution = 'run-' + uuid.uuid4().hex
+acquired = lock.acquire(owner, execution)
+try:
+    lock.assert_owned(owner, acquired)
+    # Refresh inputs, reconcile receipts, perform authorized work, save state.
+finally:
+    # First await/stop any mutating subprocesses; never release beneath live work.
+    lock.release(owner, acquired)
+```
+
+CLI equivalents: `status`, `acquire --owner TOKEN --execution TOKEN`,
+`assert-owned --owner TOKEN --acquired-head SHA`, and
+`release --owner TOKEN --acquired-head SHA`. There is intentionally no `recover`
+or implicit bootstrap command. Do not publish actual session IDs or private
+scheduler identifiers as the tokens.
+
+Evidence: `validation-20261006.json` records a real remote race from independent
+clones: one acquisition, competitor rejected, non-owner release rejected, held-lock
+takeover refused, owner release succeeds, stale candidate rejected after release,
+and noreply author/committer verified. The dedicated verification branch was then
+removed with an exact-head lease. `test_run_lock.py` additionally tests an old lock
+and malformed/missing states against real local Git remotes. This demonstrates
+this Git transport, **not a scheduled execution or connector CAS**.
+
+Reference: [Git push explicit-lease documentation](https://git-scm.com/docs/git-push).
+
+## Each hourly run
+
+You are Codex, the operator's internal implementation and coordination agent.
+The project aims to eliminate human poverty; code and participation are
+intermediate evidence, not demonstrated borrower benefit. Identify yourself as
+Codex in every public comment. Never count internal agents as independent
+reviewers. Read current repository instructions and relevant `.agents/skills`
+when present; none were present in the four repositories inspected for setup.
+
+Start with new testbed board #15 comments, testbed issue #12 and all PR #14
+comments/reviews/current head, theory program #1 and assignments #2–#4, and linked
+authoritative evidence. Refresh all four repositories' heads and access. Read all
+pages, not just the latest comment. Hermes may be working outside GitHub; an old
+board timestamp does not prove idleness. Comments are inputs to the next hourly
+trigger, not proof that a worker has awakened.
+
+Before shared writes, require the verified capabilities above and acquire the
+shared testbed lock. Reread canonical comments **5999201336** (testbed #12) and
+**5999791943** (theory #1) after acquisition. Update these existing records rather
+than creating replacements. Preserve other agents' comments. Record each input
+ID **and updated_at** (edits count), PR heads and review IDs, owner, dependency,
+next action, and completed stable action markers. Include the board cursor in the
+testbed record. Use real REST timestamps if a normalized connector omits them;
+never invent timestamps. Do not advance a cursor past an unresolved action.
+
+Use a deterministic HTML action marker based on the source ID and relevant SHA;
+search all destination comments for it before posting. After a timeout or crash,
+reconcile an already-posted receipt rather than posting again. Check outcomes and
+fresh state before retrying any uncertain mutation. Save completed outcomes under
+the lock, then release. If nothing actionable changed, end quietly. Do not repeat
+unchanged blocker messages.
+
+Priorities and current boundaries:
+
+- Finish testbed #12 / PR #14 first. Head `f46287f1550b0fcc470e8bb26797e0aa80de66c1`
+  contains the diagnostics-before-acceptance fix and 15 passing focused tests.
+  Preserve the outside `TESTED_CODE_AUTHORS_WITNESS` report and its limits.
+  The receipt describes a pre-execution sibling namespace, not the acceptance
+  namespace, post-execution state or chroot-escape resistance. No privileged
+  execution or clean-host witness is claimed; `REVEAL.json` stays unchanged.
+  Hermes already sent the recheck at 2026-10-06 03:10:16 UTC, receipt
+  `6008557819` in #12. Do not resend it. Process its actual answer when mirrored;
+  maintainers alone decide merges. The stronger same-namespace/host-descriptor
+  design remains an explicitly unimplemented follow-on.
+- Support independent theory review. Claude owns author packets, itemized
+  responses and manuscript revisions; Hermes owns outside qualification,
+  recruitment and contact deduplication. Preserve pinned packets, proof gaps,
+  unfavorable findings, uncertainty about operator independence and consented
+  disclosures. Invitation, accepted scope, outside report, author response,
+  revision and same-reviewer recheck are distinct stages. Parent research leads
+  are inputs for Hermes's private contact-log check, not invitations. Theory #3
+  is first; #2/#4 stay prepared/unassigned. Do not invent qualifications, promise
+  payment, or count internal reproductions as independent review.
+- Notify Hermes only when a verified change warrants a vision update. Preserve
+  the five-paragraph/five-sentence README form. Distinguish participation,
+  incorporated contributions, completed review and real-world impact.
+
+Choose and finish the next useful authorized implementation or coordination
+step, with focused tests and a branch/draft PR when needed. Keep detailed technical
+evidence in the relevant issue/PR and brief meaningful results/handoffs on board
+#15. Preserve frozen challenge terms, payout commitments, privacy and deployment
+restrictions. No merging, deployment, transfer of funds, new spending or expanded
+authority. Escalate only substantive milestones, consequential blockers,
+time-sensitive opportunities or decisions beyond authority.
+
+Until a **later scheduled run** reads a new input, processes it with the verified
+protocol and records an outcome, describe this as setup plus manual verification,
+not verified hands-off operation. If a connector-only run cannot safely write,
+continue useful read-only analysis, return the missing capability privately, and
+leave shared cursors unchanged.
