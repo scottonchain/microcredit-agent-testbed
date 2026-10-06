@@ -26,7 +26,12 @@ class PlanningIntegrity(unittest.TestCase):
     def test_action_cycle(self):
         self.rejects(lambda m:m['actions'][0].update(dependency_action_ids=[m['actions'][0]['id']]))
     def test_completion_before_dependency(self):
-        self.rejects(lambda m:next(a for a in m['actions'] if a['id']=='action:readiness-link').update(due_at='2026-10-06T12:00:00Z'))
+        def mutate(m):
+            action = next(a for a in m['actions'] if a['id']=='action:readiness-link')
+            dependency = next(a for a in m['actions'] if a['id']=='action:codex-package')
+            dependency.update(status='in_progress')  # an unfinished dependency due 2026-10-08T12:00Z, whatever the live model says
+            action.update(due_at='2026-10-06T12:00:00Z')
+        self.rejects(mutate)
     def test_false_completion(self): self.rejects(lambda m:m['actions'][0].update(status='done',outcome_evidence_ids=[]))
     def test_unconsented_activity(self):
         self.rejects(lambda m:m['actions'][0].update(status='in_progress',external_consent='pending'))

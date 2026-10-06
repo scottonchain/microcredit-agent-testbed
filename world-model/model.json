@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.10",
-  "updated_at": "2026-10-06T17:53:15Z",
+  "model_version": "0.1.11",
+  "updated_at": "2026-10-06T18:30:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -28,7 +28,7 @@
       "agent:coordinator": "verified_use",
       "agent:hermes": "requested",
       "agent:claude": "acknowledged",
-      "agent:codex": "requested"
+      "agent:codex": "verified_use"
     }
   },
   "coverage": [
@@ -2320,6 +2320,114 @@
       "limitations": [
         "Product self-report, not executed here; no named available external collaborator identified."
       ]
+    },
+    {
+      "id": "ev:retry-fixture-merged",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/pull/20",
+      "locator": "PR #20 (head 486fb4e, 48 noreply commits, tree identical to the draft 3f8a0ed) merged into main at 9596e68, 2026-10-06T18:25:50Z; PR #19 closed as superseded; review 6022755732 and receipt 6022777855",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T18:25:50Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "Hermes's retry fixture v0.1 is on testbed main: 24 cases (7 tested by us, 17 proposed / not-run in the source agents' words), reference and live scripts, validate_cases.py; the cache-file commits were rewritten out before merge.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "retry-fixture",
+      "derived_from_ids": [],
+      "limitations": [
+        "The reference scripts model the stated rules and do not show how the source agents' systems behave."
+      ]
+    },
+    {
+      "id": "ev:pilot-card",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/21",
+      "locator": "Issue #21, published 2026-10-06T18:28:00Z; ONBOARDING.md entry at 700bb00",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T18:28:00Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "The credit-only onboarding pilot card: reproduce python3 retry-fixture/reference/resend_authority.py --json at 9596e68 and return a report; one slot; 72 hours from publication (checkpoint 2026-10-09 18:28 UTC); scope reply within about four hours; the Codex lane checks, Claude accepts.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "No claim yet; the claimant is unknown until someone claims."
+      ]
+    },
+    {
+      "id": "ev:codex-continuation",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6021510733",
+      "locator": "Codex continuation receipt, 2026-10-06T17:13:40Z",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T17:13:40Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "The lane's scheduled execution read model v0.1.8 at 3db0d20 and used it: accepted the checker role on action:outside-collab-pilot and preparation ownership on action:krock-card, and named the exact check it will run.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "adoption",
+      "derived_from_ids": [],
+      "limitations": [
+        "Evidence of one Codex execution reading and using the canonical model; not evidence of Hermes adoption or outside delivery."
+      ]
+    },
+    {
+      "id": "ev:codex-guest-published",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/9b87831/posts/2026-10-06-a-promise-needs-a-receipt.md",
+      "locator": "vision main 9b87831 (2026-10-06T17:35:06Z); receipt on the board 6021904457; draft delivered at 6021787588",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T17:35:06Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "The Codex lane's guest post 'A promise needs a receipt' (author Codex) with profile pictures for Codex and Hermes is published on the blog by the Claude Code session that writes it.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-blog",
+      "derived_from_ids": [],
+      "limitations": [
+        "A guest introduction; it states no quantitative result and is not independent review or evidence of human benefit."
+      ]
+    },
+    {
+      "id": "ev:omnequa-opening",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6021792732",
+      "locator": "OMNEQUA-WEB-001 opening 6021792732 (2026-10-06T17:30:31Z), source receipts 6021880415 (17:35:37Z), pricing note 6021830598",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T17:30:31Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "The operator asked for a proposal for omnequa.com and omnequa.org with Paragraph as the public home and GitHub as the source of record; the lane's reads: omnequa.org says the earlier initiative concluded in September 2026; Paragraph custom domains need its Starter plan; an external canonical excludes a post from Paragraph's sitemap; GitHub Pages serves custom domains for free.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "omnequa-web",
+      "derived_from_ids": [],
+      "limitations": [
+        "The venue pages were read by the lane; this session's environment cannot reach omnequa.org, omnequa.com, docs.paragraph.com or docs.github.com."
+      ]
+    },
+    {
+      "id": "ev:omnequa-critique",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6021872363",
+      "locator": "Claude critique and recommendation, 2026-10-06T17:35 UTC",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T17:35:00Z",
+      "retrieved_at": "2026-10-06T18:30:00Z",
+      "summary": "Recommendation: www.omnequa.com served by GitHub Pages from the vision repository (one HTML export from the same commit), omnequa.org as the dated closure page, Paragraph at most as a free-tier email and Farcaster channel with canonical links to the home; condition: the operator explicitly accepts tying the blog to Omnequa's public history with a one-sentence About statement.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "omnequa-web",
+      "derived_from_ids": [],
+      "limitations": [
+        "A recommendation pending the operator's answer on whether Paragraph is wanted for email and Farcaster distribution."
+      ]
     }
   ],
   "claims": [
@@ -4562,7 +4670,7 @@
         "agent:claude",
         "agent:merktop"
       ],
-      "status": "ready",
+      "status": "done",
       "owner_acceptance": "existing_commitment",
       "goal_ids": [
         "goal:payment-reliability",
@@ -4588,7 +4696,9 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:retry-fixture-merged"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"
@@ -5037,7 +5147,7 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "existing_commitment",
       "goal_ids": [
         "goal:payment-reliability",
@@ -5049,7 +5159,7 @@
         "claim:a2a-return-gap"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A no-wallet entry at the top of ONBOARDING.md and one card issue: run python3 retry-fixture/reference/resend_authority.py --json at the pinned commit (3f8a0ed7c9674b26434d51a12276d4c3a056a949 at the draft branch; repinned to the merged main commit if the fixture merge changes model.py or resend_authority.py), return a reproduction report (source commit, command, Python version and OS family only, actual stdout, comparison with the expected output, the negative control's label, limitations, any discrepancy) as a pull request adding one file under retry-fixture/reports/ or as a comment on the card; credit by handle in the fixture README. The claimant is unknown until someone claims. Measured on the action: claims, artifacts, first-run acceptance result, internal hours (preparation, check, review, rework; estimates labelled; unknown where not timed), lead time.",
+      "deliverable": "Published 2026-10-06 18:28 UTC as issue #21 with the ONBOARDING.md entry; pinned at testbed main 9596e68 (the two reference blobs unchanged). The card: run python3 retry-fixture/reference/resend_authority.py --json at the pinned commit (3f8a0ed7c9674b26434d51a12276d4c3a056a949 at the draft branch; repinned to the merged main commit if the fixture merge changes model.py or resend_authority.py), return a reproduction report (source commit, command, Python version and OS family only, actual stdout, comparison with the expected output, the negative control's label, limitations, any discrepancy) as a pull request adding one file under retry-fixture/reports/ or as a comment on the card; credit by handle in the fixture README. The claimant is unknown until someone claims. Measured on the action: claims, artifacts, first-run acceptance result, internal hours (preparation, check, review, rework; estimates labelled; unknown where not timed), lead time.",
       "acceptance_criteria": [
         "Expected output at the pin: exit 0, four cells ok, zero additional sends in M, control labelled provider_evidence; a reproducible discrepancy is a valid result.",
         "cases.json and every source-case status unchanged.",
@@ -5067,11 +5177,13 @@
         "Internal review cost exceeds the stated solo estimate.",
         "The operator withdraws the pilot."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:pilot-card"
+      ],
       "triggers": [
-        "The fixture pull request merges, or 20:00 UTC on 2026-10-06 passes with the pin at the draft branch (disclosed on the card)",
-        "A claim on the card",
-        "72 hours after publication"
+        "A claim on the card (scope reply within about four hours)",
+        "A returned report",
+        "The checkpoint 2026-10-09 18:28 UTC"
       ]
     },
     {
@@ -5154,6 +5266,43 @@
         "No unconsented targeting, spending, loans, capital solicitation or disclosure of private operator identity/contact data."
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:codex-guest-post",
+      "title": "Guest post by Codex introducing Codex and Hermes, with generated profile pictures",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "done",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:workflow-reliability"
+      ],
+      "rationale_claim_ids": [
+        "claim:vision-blog",
+        "claim:vision-authorship-2"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One guest post (author Codex) of 250 to 500 words, first sentence naming the poster, with two generated profile PNGs, delivered by the lane as a reviewed comment (6021787588) and published by the blog's Claude Code session at vision 9b87831.",
+      "acceptance_criteria": [
+        "Reads as a person talking; nothing about the operator beyond what is published; no identifiers; public-content check passes.",
+        "Feed labels it a guest post by Codex."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T06:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-requested guest post (board 6020976777); Claude Code is the sole prose maintainer and publisher.",
+      "spending": "none",
+      "stop_conditions": [
+        "Published; no further action."
+      ],
+      "outcome_evidence_ids": [
+        "ev:codex-guest-published"
+      ],
+      "triggers": [
+        "The draft delivered on the board (6021787588)"
+      ]
     }
   ],
   "decisions": [
@@ -5250,6 +5399,23 @@
         }
       ],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:omnequa-web-v1",
+      "status": "provisional",
+      "owner_id": "agent:coordinator",
+      "recommendation": "Credit Among Strangers at www.omnequa.com, with omnequa.org kept as the dated closure page and GitHub as the source of record, no cross-domain canonical back to GitHub. Host: the lane proposed Paragraph with a custom domain (its Starter plan) and update-only synchronisation; Claude recommends GitHub Pages from the vision repository as the free home with one HTML export from the same commit, and Paragraph at most as a free-tier email and Farcaster channel linking to the home; the lane's receipts converge on GitHub Pages unless the operator wants Paragraph's newsletter and audience features. Condition: the operator explicitly accepts tying the blog to Omnequa's public history with a one-sentence About statement. Pending operator adoption; no DNS, spending or off-GitHub publication is authorized by this record.",
+      "claim_ids": [
+        "claim:vision-blog",
+        "claim:vision-authorship-2"
+      ],
+      "action_ids": [],
+      "discussion_evidence_ids": [
+        "ev:omnequa-opening",
+        "ev:omnequa-critique"
+      ],
+      "assents": [],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
@@ -5334,6 +5500,18 @@
         "action:human-agent-discovery-sync"
       ],
       "resolution_evidence_needed": "Source-grounded answers to all three operator questions, real Claude challenge, current Nou/operator scope and availability, a concrete task/beneficiary, and one chosen action with owner and acceptance. No external contact is authorized by this research.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:omnequa-paragraph",
+      "owner_id": "agent:claude",
+      "question": "Does the operator want Paragraph for email and Farcaster distribution, or was it chosen as the website only because no other home existed; and does the operator accept tying the blog publicly to Omnequa's named history?",
+      "related_ids": [
+        "decision:omnequa-web-v1",
+        "ev:omnequa-critique",
+        "repo:vision"
+      ],
+      "resolution_evidence_needed": "The operator's answer in Claude Code's channel or on the board, then the lane's revision and Claude's resolution.",
       "blocks_action_ids": []
     }
   ]
