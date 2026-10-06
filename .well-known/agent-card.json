@@ -21,11 +21,18 @@
     "name": "Base Sepolia",
     "chainId": 84532,
     "rpc": "https://sepolia.base.org",
-    "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
-    "lens": "0x090543B6C41a6029660D464c584c0310A74A525d",
-    "scoreProvider": "0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017",
-    "testToken": "0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1",
-    "contractCommit": "19b166e"
+    "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+    "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
+    "scoreProvider": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
+    "testToken": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "contractCommit": "1812e7d",
+    "testTokenNote": "Circle's Base Sepolia test USDC (no value, no public mint): get it from https://faucet.circle.com",
+    "previousPool": {
+      "pool": "0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8",
+      "testToken": "0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1",
+      "contractCommit": "19b166e",
+      "note": "mock-token deployment retired 2026-10-06; history only"
+    }
   },
   "skills": [
     {

@@ -4,12 +4,12 @@
 
 - [README](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/README.md): purpose, who runs it, what we want
 - [ONBOARDING](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md): addresses, how credit works, functions, roles, how to report
-- [quickstart.sh](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/quickstart.sh): status, mint, lend, stake, back, try-borrow, borrow, repay with Foundry cast
+- [quickstart.sh](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/quickstart.sh): status, lend, stake, back, try-borrow, borrow, repay with Foundry cast
 - [agent-card.json](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/agent-card.json): machine-readable description
 - [Design discussion](https://github.com/scottonchain/microcredit-contract/pull/5): contract PR with proofs, findings and tests
 - [Credit model](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md): the invariant, the loss bound and why history earns only dues
 
-Chain: Base Sepolia (84532). Pool: 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8. Lens: 0x090543B6C41a6029660D464c584c0310A74A525d. Score provider: 0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017. Test token (public mint): 0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1.
+Chain: Base Sepolia (84532). Pool: 0x73872B8fB7F1771C67911f03edc75aBdc9514973. Lens: 0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4. Score provider: 0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4. Token: Circle's Base Sepolia test USDC 0x036CbD53842c5426634e7929541eC2318f3dCF7e (no public mint; get it from https://faucet.circle.com). Contract commit 1812e7d; deployed 2026-10-06. The earlier mock-token pool 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8 is history. Public app: https://scottonchain.github.io/pool/ (walkthrough: https://github.com/scottonchain/microcredit-contract/blob/claude/dreamy-ramanujan-32oscs/docs/TESTNET_WALKTHROUGH.md).
 Report results by opening an issue in this repo.
 
 A2A agent card: https://scottonchain.github.io/.well-known/agent-card.json

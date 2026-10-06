@@ -9,16 +9,17 @@ This is a TESTNET experiment. Tokens have no value. We are building an on-chain 
 Operator: Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code agent, for scottonchain. Contract: [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract); the redesign was merged in [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). The design and its proofs are in [docs/CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md), and every known issue is tracked in [docs/CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md).
 
 ## Addresses (Base Sepolia, chain id 84532, RPC https://sepolia.base.org)
-Deployed 2026-10-03 from contract `main` `19b166e` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`). Broadcast logs: [deployments/base-sepolia-19b166e-hermes](deployments/base-sepolia-19b166e-hermes).
-- Pool (`DecentralizedMicrocredit`): 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
-- Lens (read-only views): 0x090543B6C41a6029660D464c584c0310A74A525d
-- Score provider (`OracleScoreProvider`, issues credit lines): 0x392503b73E9d628a6bb33EDC9e22De6ac2C1A017
-- Test token (MockUSDC, 6 decimals, public `mint(address,uint256)`): 0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1
-- Explorer: https://sepolia.basescan.org/address/0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
+Deployed 2026-10-06 from contract `main` `1812e7d` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`), on Circle's Base Sepolia test USDC. Broadcast log: [deployments/base-sepolia-1812e7d-usdc001](deployments/base-sepolia-1812e7d-usdc001); the full record is in the contract repository's `docs/TESTNET.md`.
+- Pool (`DecentralizedMicrocredit`): 0x73872B8fB7F1771C67911f03edc75aBdc9514973
+- Lens (read-only views): 0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4
+- Score provider (`OracleScoreProvider`, issues credit lines): 0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4
+- Token (Circle's Base Sepolia test USDC, 6 decimals, no value, no public mint; get it from https://faucet.circle.com): 0x036CbD53842c5426634e7929541eC2318f3dCF7e
+- Explorer: https://sepolia.basescan.org/address/0x73872B8fB7F1771C67911f03edc75aBdc9514973
+- Public app (wallet-direct, static): https://scottonchain.github.io/pool/
 
-The previous pool (`0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f`) ran the contract from before the redesign, where vouches set scores. Findings against it are history; please test the pool above.
+Two earlier pools are history: `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` (contract `19b166e` on a free-mint MockUSDC `0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1`, the public demo until 2026-10-06; it stays on chain, and a position there exits with `withdrawFunds`) and `0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f` (from before the redesign, where vouches set scores). Findings against them are history; please test the pool above.
 
-You need a little Base Sepolia ETH for gas. Any public faucet works.
+You need a little Base Sepolia ETH for gas (a public faucet; none is verified by us) and test USDC from https://faucet.circle.com (Base Sepolia). The pool's token cannot be minted.
 
 ## Quickstart (five minutes, with Foundry's `cast`)
 [`quickstart.sh`](quickstart.sh) wraps the calls below. Set `PRIVATE_KEY` to a throwaway testnet key that holds a little Base Sepolia ETH.
@@ -27,7 +28,7 @@ You need a little Base Sepolia ETH for gas. Any public faucet works.
 export PRIVATE_KEY=0x...
 ./quickstart.sh status          # your balances, credit and limit, plus the pool's state
 ./quickstart.sh try-borrow 5    # a fresh account: "reverts with NoCredit"
-./quickstart.sh mint 100        # free test USDC
+# test USDC comes from https://faucet.circle.com; the token has no mint
 ./quickstart.sh lend 50         # deposit into the pool
 ./quickstart.sh stake 20        # lock test USDC as your own credit
 ./quickstart.sh back 0xOther 10 # commit 10 of it to another account (0 removes it)
