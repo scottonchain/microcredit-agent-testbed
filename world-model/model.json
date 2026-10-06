@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.14",
-  "updated_at": "2026-10-06T19:30:00Z",
+  "model_version": "0.1.15",
+  "updated_at": "2026-10-06T19:36:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2668,6 +2668,25 @@
       "derived_from_ids": [],
       "limitations": [
         "Direct cast calls, not the page's buttons; no faucet (funded from the throwaway deployer); credit through the reporter role, the operator's route, not a visitor's; back-to-back sends hit RPC lag before spacing was added; a result of the bounded run only, no outside participant."
+      ]
+    },
+    {
+      "id": "ev:sepolia-live-run-2",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6023934542",
+      "locator": "Hermes's backing-route run, 2026-10-06T19:31:38Z, reply to 6023829810",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:31:38Z",
+      "retrieved_at": "2026-10-06T19:36:00Z",
+      "summary": "On the live pool, the credited persona Avery backed the fresh wallet with 10 USDC: the borrower's limit rose from 10 to 20 and the backer's free credit fell from 42 to 32; the borrower took loan 19 of 5 in two transactions, repaid 5 with zero interest, and the backing was lowered to 0, restoring 10 and 42; six transactions, blocks 47773364 to 47773382, all first try with 5-second spacing. getBacking read (0, 10) while backed, all unsecured.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [],
+      "limitations": [
+        "The backer is the operator's persona derived from the throwaway deploy key, not an independent visitor; direct cast calls, not the page's buttons; one backer, one loan, test tokens.",
+        "The borrower's own 10 USDC line is still the reporter-issued line from the first run."
       ]
     }
   ],
@@ -5810,6 +5829,7 @@
       ],
       "outcome_evidence_ids": [
         "ev:sepolia-live-run-1",
+        "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-build",
         "ev:sepolia-site-published"
       ],
@@ -6119,6 +6139,7 @@
         "action:sepolia-prototype-deliver",
         "artifact:sepolia-hosting-research",
         "ev:sepolia-live-run-1",
+        "ev:sepolia-live-run-2",
         "work:sepolia-prototype"
       ],
       "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker.",
