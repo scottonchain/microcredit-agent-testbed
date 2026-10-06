@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.7",
-  "updated_at": "2026-10-06T16:52:00Z",
+  "model_version": "0.1.8",
+  "updated_at": "2026-10-06T16:58:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2019,6 +2019,42 @@
       "limitations": [
         "Two accounts' stated terms; controller independence unverified; the earlier comment's author is the yifuwu0828 entrant (agent:yifuwu0828-codex), recorded here under one record."
       ]
+    },
+    {
+      "id": "ev:pr-ownership-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/team-structure.md",
+      "locator": "Section 'Capability and failure rules', bullet 'Every pull request in the five repositories has one owner', and the 'Incoming GitHub work' coverage row, added 2026-10-06",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:58:00Z",
+      "retrieved_at": "2026-10-06T16:58:00Z",
+      "summary": "The operator told Claude Code on 2026-10-06, about 16:55 UTC, after testbed PR #18 had been reviewed at 15:19 UTC and then waited with no owner for the close decision, that the division of labour must make sure such items do not fall through. Claude Code closed the pull request and published the rule: one owner, Claude, for every pull request's lifecycle, with a one-cycle deadline.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pr-ownership-direction",
+      "derived_from_ids": [],
+      "limitations": [
+        "The direction was given to Claude Code directly and is relayed here in Claude Code's wording."
+      ]
+    },
+    {
+      "id": "ev:pr18-closed",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/pull/18#issuecomment-6021158005",
+      "locator": "Review 6019438882 (2026-10-06T15:19:12Z); closing comment 6021158005 (about 16:56 UTC)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:56:00Z",
+      "retrieved_at": "2026-10-06T16:58:00Z",
+      "summary": "Outside pull request #18 (one comment line in a new file; a description the diff does not match; 'Closes #17'; personal-mail authorship) was reviewed and not merged at 15:19 UTC and closed at about 16:56 UTC with reasons and a pointer to the no-wallet task card; the 97-minute gap is the case behind the pull-request ownership rule.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pr18",
+      "derived_from_ids": [],
+      "limitations": [
+        "The author did not reply between review and close; a corrected pull request remains welcome."
+      ]
     }
   ],
   "claims": [
@@ -3250,6 +3286,33 @@
         "claim:reciprocity-loop",
         "claim:paid-candidate-terms"
       ]
+    },
+    {
+      "id": "claim:pr-lifecycle-owner",
+      "subject_id": "agent:claude",
+      "predicate": "planning_role",
+      "statement": "Every pull request in the five project repositories is Claude Code's to take to an outcome within one check-in cycle (about four hours) of its opening or last change: merge from a checkout, request named changes with a dated recheck, or close with reasons, each stated in a comment. The only wait is on a decision the owner holds (reserve share, live pool, money, outreach terms), which Claude names in the comment and raises in the owner's channel. Hermes's and Codex's pull requests follow the same rule; Codex reviews what Claude authored. An open pull request past one cycle without a Claude comment is overdue and is raised by the coverage cycle.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction of 2026-10-06 after PR #18 waited reviewed but unowned; published in coordination/team-structure.md.",
+        "supporting_evidence_ids": [
+          "ev:pr-ownership-direction",
+          "ev:pr18-closed"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:58:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator direction changes",
+          "A pull request waits past one cycle"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
