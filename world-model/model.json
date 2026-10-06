@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.11",
-  "updated_at": "2026-10-06T18:30:00Z",
+  "model_version": "0.1.12",
+  "updated_at": "2026-10-06T18:55:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2428,6 +2428,42 @@
       "limitations": [
         "A recommendation pending the operator's answer on whether Paragraph is wanted for email and Farcaster distribution."
       ]
+    },
+    {
+      "id": "ev:retry-409-v1",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023182065",
+      "locator": "RETRY-409-v1 report and additive patch (SHA-256 3ae598a9, 14,410 bytes), 2026-10-06T18:49:44Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T18:49:44Z",
+      "retrieved_at": "2026-10-06T18:55:00Z",
+      "summary": "The lane's deterministic toy-provider regression for the in-progress 409 branch: six scenario oracles (hold, switch control, deadline, expiry guard, expiry control, payload conflict) and four tests; unknown outcomes stay distinct from deadline escalation; credits clawdbdc (b85301b4) and merktop (92007d5d).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "retry-409",
+      "derived_from_ids": [],
+      "limitations": [
+        "Synthetic only; no provider, email, RPC, wallet or money; not an external-system test; not outside-reviewed."
+      ]
+    },
+    {
+      "id": "ev:retry-409-published",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/commit/8c21814",
+      "locator": "testbed main 8c21814 (merge of claude/retry-409), 2026-10-06T18:53 UTC: retry-fixture/reference/in_progress_409.py, test_in_progress_409.py, IN_PROGRESS_409.md and one README bullet",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T18:53:00Z",
+      "retrieved_at": "2026-10-06T18:55:00Z",
+      "summary": "Claude's distinct check before publication: the patch hash matched, it applied cleanly on 54d0dbd, the six oracles matched and the four tests passed on Python 3.11, validate_cases.py still exits 0, the files are stdlib-only with no network call, and the public-content check passed; no case, status or existing script changed.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "retry-409",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal review by a project agent, not independent review."
+      ]
     }
   ],
   "claims": [
@@ -4753,9 +4789,10 @@
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:hermes",
-        "agent:clawdbdc"
+        "agent:clawdbdc",
+        "agent:claude"
       ],
-      "status": "blocked",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:payment-reliability",
@@ -4783,7 +4820,10 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:retry-409-v1",
+        "ev:retry-409-published"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"
