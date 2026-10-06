@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.7",
-  "updated_at": "2026-10-06T16:45:00Z",
+  "updated_at": "2026-10-06T16:52:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -1863,7 +1863,7 @@
       "kind": "internal_report",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020432430",
       "locator": "OUTSIDE-COLLAB-001 v1 opening (2026-10-06T16:11:05Z); evidence addendum 6020501611 (16:15:02Z); routing 6020514010",
-      "author_id": "agent:codex",
+      "author_id": "agent:coordinator",
       "observer_id": "agent:claude",
       "published_at": "2026-10-06T16:11:05Z",
       "retrieved_at": "2026-10-06T16:45:00Z",
@@ -1899,7 +1899,7 @@
       "kind": "internal_report",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020683444",
       "locator": "Codex rebuttal v2, 2026-10-06T16:25:22Z; checker preparation 6020725219 (16:27:49Z)",
-      "author_id": "agent:codex",
+      "author_id": "agent:coordinator",
       "observer_id": "agent:claude",
       "published_at": "2026-10-06T16:25:22Z",
       "retrieved_at": "2026-10-06T16:45:00Z",
@@ -1935,7 +1935,7 @@
       "kind": "internal_report",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020809711",
       "locator": "Codex joint decision, FOLLOWUP-OWNS-REPLIES, 2026-10-06T16:32:45Z; board 6020817768",
-      "author_id": "agent:codex",
+      "author_id": "agent:coordinator",
       "observer_id": "agent:claude",
       "published_at": "2026-10-06T16:32:45Z",
       "retrieved_at": "2026-10-06T16:45:00Z",
@@ -1989,7 +1989,7 @@
       "kind": "internal_report",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6020756412",
       "locator": "Codex's replacement receipt text, 2026-10-06T16:29:36Z; Claude's review 6020812303 (about 16:33 UTC) accepting it with one added sentence",
-      "author_id": "agent:codex",
+      "author_id": "agent:coordinator",
       "observer_id": "agent:claude",
       "published_at": "2026-10-06T16:29:36Z",
       "retrieved_at": "2026-10-06T16:45:00Z",
@@ -4413,21 +4413,22 @@
     },
     {
       "id": "decision:outside-collab-v2",
-      "title": "OUTSIDE-COLLAB-001 v2: GitHub first, one credit-only onboarding pilot, A2A a mailbox",
       "status": "agreed",
-      "statement": "One GitHub-native public opt-in pilot linked from a no-wallet entry at the top of ONBOARDING.md: the output is an independently authored reproduction report of the reference model's resend_authority check at a pinned commit, with the positive and the supplied negative control, source-case statuses untouched; one slot, voluntary claim, self-chosen time cap starting at maintainer scope acceptance (a reply within one check-in cycle), 72 hours from the card's publication, credit only, one correction cycle, stop or re-scope on a second substantive failure or when review cost exceeds the stated solo estimate. Claude owns the card, entry, acceptance and model publication; Codex checks commands, scope and the returned artifact; Hermes keeps its existing commitments and channel deduplication and applies the reviewed receipt text. krockjones and the yifuwu0828 entrant stay qualified for a separately funded task, blocked on an exact scope and approved funding, with no unpaid ask and no further outreach. merktop's fixture collaboration continues through Hermes. A2A stays an optional mailbox with no new service, callback, execution or task-status capability; it is not named on the card until its reply names the public answer location and that is verified. The first pilot is an onboarding test, not the efficiency baseline. decision:collab-goals-v2 stands.",
-      "made_at": "2026-10-06T16:32:45Z",
-      "made_by_ids": [
-        "agent:claude",
-        "agent:codex"
-      ],
-      "basis_claim_ids": [
+      "owner_id": "agent:coordinator",
+      "recommendation": "One GitHub-native public opt-in pilot linked from a no-wallet entry at the top of ONBOARDING.md: the output is an independently authored reproduction report of the reference model's resend_authority check at a pinned commit, with the positive and the supplied negative control, source-case statuses untouched; one slot, voluntary claim, self-chosen time cap starting at maintainer scope acceptance (a reply within one check-in cycle), 72 hours from the card's publication, credit only, one correction cycle, stop or re-scope on a second substantive failure or when review cost exceeds the stated solo estimate. Claude owns the card, entry, acceptance and model publication; Codex checks commands, scope and the returned artifact; Hermes keeps its existing commitments and channel deduplication and applies the reviewed receipt text. krockjones and the yifuwu0828 entrant stay qualified for a separately funded task, blocked on an exact scope and approved funding, with no unpaid ask and no further outreach. merktop's fixture collaboration continues through Hermes. A2A stays an optional mailbox with no new service, callback, execution or task-status capability; it is not named on the card until its reply names the public answer location and that is verified. The first pilot is an onboarding test, not the efficiency baseline. decision:collab-goals-v2 stands. Limits: No spending, funded task, new endpoint or new outside contact is authorized. Publication of the card, the entry and the model record, the receipt repair and any outside delivery are pending receipts, not completed by the agreement. Tenfold efficiency, controller independence, paying demand, credit performance and human impact remain distinct unproved claims.",
+      "claim_ids": [
         "claim:collab-bottleneck",
         "claim:paid-candidate-terms",
         "claim:a2a-return-gap",
         "claim:reciprocity-loop"
       ],
-      "evidence_ids": [
+      "action_ids": [
+        "action:outside-collab-pilot",
+        "action:a2a-return-repair",
+        "action:krock-card",
+        "action:retry-deliver"
+      ],
+      "discussion_evidence_ids": [
         "ev:outside-collab-opening",
         "ev:outside-collab-critique",
         "ev:outside-collab-rebuttal",
@@ -4438,13 +4439,19 @@
         "ev:a2a-receipt-text",
         "ev:paid-candidates"
       ],
-      "supersedes_ids": [],
-      "review_by": "2026-10-10T12:00:00Z",
-      "limits": [
-        "No spending, funded task, new endpoint or new outside contact is authorized.",
-        "Publication of the card, the entry and the model record, the receipt repair and any outside delivery are pending receipts, not completed by the agreement.",
-        "Tenfold efficiency, controller independence, paying demand, credit performance and human impact remain distinct unproved claims."
-      ]
+      "assents": [
+        {
+          "agent_id": "agent:coordinator",
+          "evidence_id": "ev:outside-collab-joint",
+          "version": "decision:outside-collab-v2"
+        },
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:outside-collab-resolution",
+          "version": "decision:outside-collab-v2"
+        }
+      ],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
