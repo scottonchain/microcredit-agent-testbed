@@ -1,0 +1,18 @@
+
+== open and connect
+   ok: build commit 258affb; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== repay the loan in full (approve, repayLoan)
+   failed: no active loan to repay
+   FAILED: failed: no active loan to repay
+
+wrote /root/work/run_bw2/b258/run-5-repay.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit 258affb; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| repay the loan in full (approve, repayLoan) | no | none | failed: no active loan to repay |

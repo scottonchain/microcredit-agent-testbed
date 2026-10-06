@@ -1,0 +1,24 @@
+
+== open and connect
+   ok: build commit 258affb; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload
+    tx 0xb73e4da0 -> 0x959f7c65b784304c43fa338c989d92dbae9fc9f24c5adf9cf29353e0e444d6d0
+   ok: request (request made by the previous run of this script) created loan #4; Disburse clicked with the wallet rejecting it; new transactions sent: 0; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x959f7c65b784304c43fa338c989d92dbae9fc9f24c5adf9cf29353e0e444d6d0 for loan #4; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    tx 0x095ea7b3 -> 0xf2d5d37af5e3aba14b83be25e76f3ea5c7c338628290cebc229bc02f1b4aaf53
+    tx 0x8a700b53 -> 0x3e9b979f17413851a24c0ae51719e5f60e3bd4d5ace591045c31aaf4615d1da7
+   ok: loan #4 repaid
+
+wrote /root/work/run_bw2/b258/run-9-finish-borrow.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit 258affb; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload | yes | 0x959f7c65b784304c43fa338c989d92dbae9fc9f24c5adf9cf29353e0e444d6d0 | request (request made by the previous run of this script) created loan #4; Disburse clicked with the wallet rejecting it; new transactions sent: 0; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x959f7c65b784304c43fa338c989d92dbae9fc9f24c5adf9cf29353e0e444d6d0 for loan #4; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | yes | 0xf2d5d37af5e3aba14b83be25e76f3ea5c7c338628290cebc229bc02f1b4aaf53<br>0x3e9b979f17413851a24c0ae51719e5f60e3bd4d5ace591045c31aaf4615d1da7 | loan #4 repaid |

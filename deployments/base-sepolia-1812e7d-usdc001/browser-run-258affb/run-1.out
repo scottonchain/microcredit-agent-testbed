@@ -1,0 +1,35 @@
+
+== open and connect
+   ok: build commit 258affb; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    tx 0x095ea7b3 -> 0x99ca7bb8a5513392435d6575377c4ea59d9201969af936a2821a354e9ea23764
+    tx 0x3b76594d -> 0x85f9ac48405502eb5b0c935dc0ac80237de4e5880365e0103e4a31cdbe409922
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+    tx 0x8d5d3429 -> 0x956c311eb7a3581e386e7bccf84864bc4d3969e2aae189eddd6db39845c08fcf
+   failed: loan #3 did not become Active
+   FAILED: failed: loan #3 did not become Active
+
+== repay the loan in full (approve, repayLoan)
+   failed: no active loan to repay
+   FAILED: failed: no active loan to repay
+
+== withdraw 2 USDC (withdrawFunds)
+    tx 0x155dd5ee -> 0xadf56b8b7cca5418625ef1ff83828aa67bc34177927cb6c00cb2bd9c267ef099
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/b258/run-1.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit 258affb; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0x99ca7bb8a5513392435d6575377c4ea59d9201969af936a2821a354e9ea23764<br>0x85f9ac48405502eb5b0c935dc0ac80237de4e5880365e0103e4a31cdbe409922 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | no | 0x956c311eb7a3581e386e7bccf84864bc4d3969e2aae189eddd6db39845c08fcf | failed: loan #3 did not become Active |
+| repay the loan in full (approve, repayLoan) | no | none | failed: no active loan to repay |
+| withdraw 2 USDC (withdrawFunds) | yes | 0xadf56b8b7cca5418625ef1ff83828aa67bc34177927cb6c00cb2bd9c267ef099 | page said confirmed: true; balance rose |

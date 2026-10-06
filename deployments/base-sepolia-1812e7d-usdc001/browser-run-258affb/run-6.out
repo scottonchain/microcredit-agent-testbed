@@ -1,0 +1,63 @@
+
+== open and connect
+   ok: build commit 258affb; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    tx 0x095ea7b3 -> 0xbbc2958d13d3dad611952562b78a78419cd0b7d989504bb12a1c2b8e3ca99909
+    tx 0x3b76594d -> 0x893db2c37c7d2695bc838498933a5352da8d2cc83934726df8a4019d7df67745
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+    tx 0x8d5d3429 -> 0xfb0dcfad7587c259c148ac25adaca84638ac285c8084654ff74d2834abd69aaa
+PAGE TEXT AT FAILURE: LoanLink
+Social lending platform
+Borrower
+Lender
+$23.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Loan requested, not yet disbursed
+
+$1.00 is reserved for you as loan #4 but has not been paid out. Disburse it to receive the funds, or cancel it to release the reservation. Nothing else can be requested until one of the two is done.
+
+Disburse
+Cancel request
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit 258affb. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+WALLET CALLS (last 12): [{"t":"2026-10-06T22:46:16.634Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:16.636Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:16.648Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-06T22:46:26.614Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T22:46:26.667Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T22:46:26.672Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:26.848Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T22:46:26.848Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:26.868Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:28.339Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:28.373Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T22:46:28.375Z","who":"borrower","method":"eth_sendTransaction"}]
+   failed: loan #4 did not become Active
+   FAILED: failed: loan #4 did not become Active
+
+== repay the loan in full (approve, repayLoan)
+   failed: no active loan to repay
+   FAILED: failed: no active loan to repay
+
+== withdraw 2 USDC (withdrawFunds)
+    tx 0x155dd5ee -> 0x9aee76adfe9045d8b88bdd1c4c00ebc0bc1acf550f4546d6216102f0e0ee5e6c
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/b258/run-6.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit 258affb; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0xbbc2958d13d3dad611952562b78a78419cd0b7d989504bb12a1c2b8e3ca99909<br>0x893db2c37c7d2695bc838498933a5352da8d2cc83934726df8a4019d7df67745 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | no | 0xfb0dcfad7587c259c148ac25adaca84638ac285c8084654ff74d2834abd69aaa | failed: loan #4 did not become Active |
+| repay the loan in full (approve, repayLoan) | no | none | failed: no active loan to repay |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x9aee76adfe9045d8b88bdd1c4c00ebc0bc1acf550f4546d6216102f0e0ee5e6c | page said confirmed: true; balance rose |

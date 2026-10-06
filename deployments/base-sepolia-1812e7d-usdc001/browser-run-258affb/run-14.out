@@ -1,0 +1,87 @@
+
+== open and connect
+   failed: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Connect Wallet' })
+    - locator resolved to <button type="button" class="btn btn-primary btn-sm">Connect Wallet</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and s
+   FAILED: failed: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Connect Wallet' })
+    - locator resolved to <button type="button" class="btn btn-primary btn-sm">Connect Wallet</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and s
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-06T23:21:29.263Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-06T23:21:29.537Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0x666fe3009130b1c6d6c6fd79d6f1273282f2d917ae6721eec10397d3cba96b84
+    [2026-10-06T23:21:32.963Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-06T23:21:37.809Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0x0e39570b5363b487ba53e6c564ce2dd8f9d0eb7843c30914daea0de6732dd7c1
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+    [2026-10-06T23:21:45.617Z] wallet got eth_sendTransaction 0x8d5d3429 (page asked)
+    [2026-10-06T23:21:46.084Z] sent 0x8d5d3429
+    tx 0x8d5d3429 -> 0xbec6a8f317bde45a1a9edeafc4fa6c45b7066e82e474dd2914e1d38f7e3a503c
+PAGE TEXT AT FAILURE: LoanLink
+Social lending platform
+Borrower
+Lender
+$23.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Loan requested, not yet disbursed
+
+$1.00 is reserved for you as loan #6 but has not been paid out. Disburse it to receive the funds, or cancel it to release the reservation. Nothing else can be requested until one of the two is done.
+
+Disburse
+Cancel request
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit 258affb. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+WALLET CALLS (last 12): [{"t":"2026-10-06T23:21:32.946Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:32.948Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:32.963Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-06T23:21:44.081Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:21:44.093Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:21:44.100Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:44.207Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:21:44.209Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:44.224Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:45.583Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:45.614Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:21:45.617Z","who":"borrower","method":"eth_sendTransaction"}]
+   failed: loan #6 did not become Active
+   FAILED: failed: loan #6 did not become Active
+
+== repay the loan in full (approve, repayLoan)
+   failed: no active loan to repay
+   FAILED: failed: no active loan to repay
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-06T23:25:56.471Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-06T23:25:56.725Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0x7534ce46cecbde3b0b4575c58799add1dac54204379d8bcb5630f0af2999a058
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/b258/run-14.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | no | none | failed: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Connect Wallet' })
+    - locator resolved to <button type="button" class="btn btn-primary btn-sm">Connect Wallet</button>
+  - attempting click action
+    - waiting for element to be visible, enabled and s |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0x666fe3009130b1c6d6c6fd79d6f1273282f2d917ae6721eec10397d3cba96b84<br>0x0e39570b5363b487ba53e6c564ce2dd8f9d0eb7843c30914daea0de6732dd7c1 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | no | 0xbec6a8f317bde45a1a9edeafc4fa6c45b7066e82e474dd2914e1d38f7e3a503c | failed: loan #6 did not become Active |
+| repay the loan in full (approve, repayLoan) | no | none | failed: no active loan to repay |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x7534ce46cecbde3b0b4575c58799add1dac54204379d8bcb5630f0af2999a058 | page said confirmed: true; balance rose |
