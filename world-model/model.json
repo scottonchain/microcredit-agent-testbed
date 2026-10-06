@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.8",
-  "updated_at": "2026-10-06T16:58:00Z",
+  "model_version": "0.1.9",
+  "updated_at": "2026-10-06T17:38:26Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -673,6 +673,58 @@
       "urls": [
         "https://arxiv.org"
       ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:human-agent-discovery",
+      "kind": "workstream",
+      "name": "Discover aligned AI collaborators through humans and their operators",
+      "parent_id": "work:collaboration",
+      "owner_id": "agent:coordinator",
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6021902923"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "route:human-to-agent",
+      "kind": "workstream",
+      "name": "Inbound human discovery and connection leads to an operator-directed AI contribution",
+      "parent_id": "work:human-agent-discovery",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "route:agent-to-operator",
+      "kind": "workstream",
+      "name": "AI discovers mutual value and communicates it to its operator for supported collaboration",
+      "parent_id": "work:human-agent-discovery",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:human-agent-brief",
+      "kind": "artifact",
+      "name": "Portable operator-to-agent brief and agent-to-operator summary",
+      "parent_id": "work:human-agent-discovery",
+      "owner_id": "agent:coordinator",
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:aligned-human-agent-collaboration",
+      "kind": "outcome",
+      "name": "Useful continuing collaboration with goal-aligned AIs and engaged human operators",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
       "goal_model": null,
       "identity": null
     }
@@ -2055,6 +2107,25 @@
       "limitations": [
         "The author did not reply between review and close; a corrected pull request remains welcome."
       ]
+    },
+    {
+      "id": "ev:human-agent-discovery-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6021902923",
+      "locator": "issuecomment-6021902923; updated_at 2026-10-06T17:36:47Z; HUMAN-AGENT-DISCOVERY-001",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T17:36:47Z",
+      "retrieved_at": "2026-10-06T17:38:26Z",
+      "summary": "The operator directs the team to add human visibility, inbound human-to-AI connections and AI-to-operator communication to the world model and next Claude daily sync, prioritizing aligned AI collaborators with human operators and an emergent way to spread the word.",
+      "content_sha256": "db855a6acf86ba9c5cdf23839d352f3c3ecc55475fa8c8efb2f998d59736cd37",
+      "fingerprint_scope": "UTF-8 public comment body exactly as posted, without a terminal newline",
+      "origin_group": "operator-human-agent-discovery-20261006",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public paraphrase by Codex of an operator instruction, not a private transcript or a claim of Claude assent.",
+        "No observed conversion, growth rate, controller independence, paid demand or human outcome is established."
+      ]
     }
   ],
   "claims": [
@@ -3313,6 +3384,84 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-agent-discovery-priority",
+      "subject_id": "work:human-agent-discovery",
+      "predicate": "priority",
+      "statement": "Prioritize human visibility as a way to find goal-aligned AIs with engaged human operators, considered especially useful collaborators by the operator. Technical, research and communication contributions can advance shared goals without a lending or borrowing role. This is a recruitment priority, not measured superiority over other collaborators.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator direction, relayed in the linked public project record; effectiveness remains a hypothesis.",
+        "supporting_evidence_ids": [
+          "ev:human-agent-discovery-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:36:47Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "Next daily strategy sync and actual experiment outcomes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-agent-discovery-routes",
+      "subject_id": "work:human-agent-discovery",
+      "predicate": "discovery_routes",
+      "statement": "Model both inbound human discovery/connection -> human directs or authorizes their AI to participate, and AI discovery of mutual value -> AI communicates with its own operator -> operator supports, directs or introduces collaboration. These describe routes, not verified identities or completed handoffs; an operator and their agent are not automatically independent witnesses.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator direction, relayed in the linked public project record; effectiveness remains a hypothesis.",
+        "supporting_evidence_ids": [
+          "ev:human-agent-discovery-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:36:47Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "Next daily strategy sync and actual experiment outcomes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-agent-discovery-sync",
+      "subject_id": "work:human-agent-discovery",
+      "predicate": "next_strategy_agenda",
+      "statement": "At the next existing daily Claude sync, challenge an emergent voluntary discovery mechanism that spreads useful public results through humans and AIs, and choose a bounded experiment. Keep both routes, explicit reciprocal value, the human-facing blog, agent entry point and a reusable handoff in scope. Preserve accepted outside commitments and existing contact authority; broad dissemination is a goal, not authorization for unsolicited mass outreach.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator direction, relayed in the linked public project record; effectiveness remains a hypothesis.",
+        "supporting_evidence_ids": [
+          "ev:human-agent-discovery-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:36:47Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "Next daily strategy sync and actual experiment outcomes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -3471,6 +3620,60 @@
       "claim_ids": [
         "claim:vision-authorship-2",
         "claim:vision-blog"
+      ]
+    },
+    {
+      "id": "edge:human-discovery-alignment",
+      "source_id": "route:human-to-agent",
+      "relation": "contributes_to",
+      "target_id": "goal:aligned-human-agent-collaboration",
+      "claim_ids": [
+        "claim:human-agent-discovery-routes"
+      ]
+    },
+    {
+      "id": "edge:agent-discovery-alignment",
+      "source_id": "route:agent-to-operator",
+      "relation": "contributes_to",
+      "target_id": "goal:aligned-human-agent-collaboration",
+      "claim_ids": [
+        "claim:human-agent-discovery-routes"
+      ]
+    },
+    {
+      "id": "edge:vision-human-discovery",
+      "source_id": "repo:vision",
+      "relation": "supports",
+      "target_id": "route:human-to-agent",
+      "claim_ids": [
+        "claim:human-agent-discovery-sync"
+      ]
+    },
+    {
+      "id": "edge:brief-human-discovery",
+      "source_id": "artifact:human-agent-brief",
+      "relation": "supports",
+      "target_id": "route:human-to-agent",
+      "claim_ids": [
+        "claim:human-agent-discovery-sync"
+      ]
+    },
+    {
+      "id": "edge:brief-operator-discovery",
+      "source_id": "artifact:human-agent-brief",
+      "relation": "supports",
+      "target_id": "route:agent-to-operator",
+      "claim_ids": [
+        "claim:human-agent-discovery-sync"
+      ]
+    },
+    {
+      "id": "edge:aligned-collaboration-readiness",
+      "source_id": "goal:aligned-human-agent-collaboration",
+      "relation": "supports",
+      "target_id": "goal:deployment-readiness",
+      "claim_ids": [
+        "claim:human-agent-discovery-priority"
       ]
     }
   ],
@@ -3648,6 +3851,39 @@
       ],
       "confidence": "high",
       "confidence_scope": "Qualitative fit of the motivation theory to observed behavior; not a probability of reply, acceptance, profitability or human benefit."
+    },
+    {
+      "id": "hyp:human-agent-discovery-loop",
+      "subject_ids": [
+        "work:human-agent-discovery",
+        "route:human-to-agent",
+        "route:agent-to-operator"
+      ],
+      "theory": "An understandable public story plus inspectable evidence and a small goal-matched task can travel between people and their agents. With operator support and explicit reciprocal value, an AI contributes useful work. A credited reusable result gives participants a reason to share it voluntarily, drawing further aligned human-agent connections. This could broaden discovery without centralized recruitment of every participant.",
+      "claim_ids": [
+        "claim:human-agent-discovery-priority",
+        "claim:human-agent-discovery-routes",
+        "claim:human-agent-discovery-sync"
+      ],
+      "alternative_explanations": [
+        "Visibility attracts readers but no agents with relevant capacity or shared goals.",
+        "Existing direct agent relationships or funded assignments yield better continuing contributions; operator involvement adds friction.",
+        "Apparent growth is the same operator using multiple agents or team amplification rather than additional independent collaboration."
+      ],
+      "predictions": [
+        {
+          "observable": "A voluntary inbound participant identifies one of the two routes and an explicit mutual benefit, then completes a scoped, accepted contribution.",
+          "disconfirming_observation": "Within the agreed experiment window, attention produces no scoped handoff or accepted work, or participants decline the proposed value exchange.",
+          "check_by": null
+        },
+        {
+          "observable": "An accepted result leads to repeat useful participation or an explicitly accepted continuing role, and a subsequent voluntary introduction can be attributed to that result.",
+          "disconfirming_observation": "Contributions do not continue, no further introductions occur, or only repeated team prompting sustains them.",
+          "check_by": null
+        }
+      ],
+      "confidence": "low",
+      "confidence_scope": "Untested discovery mechanism proposed for the next sync; not a probability of reply, viral growth, commercial demand or poverty impact. Set the experiment window after actual Claude challenge and decision."
     }
   ],
   "actions": [
@@ -4419,6 +4655,47 @@
         "After the 18:00 UTC fixture pull request",
         "Hermes's next cycle"
       ]
+    },
+    {
+      "id": "action:human-agent-discovery-sync",
+      "title": "Open the next Claude daily sync with both human-agent discovery routes",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration",
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-agent-discovery-priority",
+        "claim:human-agent-discovery-routes",
+        "claim:human-agent-discovery-sync"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "The October 7 daily strategy opening explicitly compares both routes and the strongest alternative, asks Claude to challenge the emergent loop, and proposes one bounded experiment with a portable operator-to-agent brief and agent-to-operator summary. The existing follow-up owns real critique, decision and subsequent execution receipts.",
+      "acceptance_criteria": [
+        "Opening links the canonical model revision and this operator-direction source and includes both routes.",
+        "Proposed experiment states reciprocal value, bounded task, reviewer, reply path, owner, deadline, resource/permission status and stop conditions; Claude acceptance remains pending until an actual reply.",
+        "Measurements distinguish volunteered source route, authorized/scoped handoff, accepted useful work, repeat participation and onward introductions; views are not completion, unknown controller relationships stay unknown and support effort is recorded.",
+        "Continue through the existing follow-up; link any real Claude critique, decision and revised model actions. Do not reopen the resolved OUTSIDE-COLLAB-001 pilot or count this agenda update as experiment success."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Next existing daily strategy opening: 2026-10-07 at 10:00 UTC / 04:00 America/Denver"
+      ],
+      "due_at": "2026-10-07T10:15:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed model update and internal agenda addition. No new scheduler or external campaign. Later outside activity remains scoped to existing permissions and voluntary participation.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop agenda preparation when the opening and existing follow-up handoff are recorded; do not duplicate the daily round.",
+        "No unconsented targeting, spending, loans, capital solicitation or disclosure of private operator identity/contact data."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -4571,6 +4848,19 @@
         "action:darth-note"
       ],
       "resolution_evidence_needed": "Resolved by ev:pooling-correction (theory 551a4a5, acknowledged in #17 comment 6019867795): corrected code, regenerated outputs and the exact Bernoulli regression; kept as a record of the gap.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:human-agent-discovery-mechanism",
+      "owner_id": "agent:coordinator",
+      "question": "Which human-to-AI or AI-to-operator discovery mechanism most credibly produces useful continuing aligned collaboration and voluntary onward introductions, and what reusable result motivates sharing?",
+      "related_ids": [
+        "work:human-agent-discovery",
+        "hyp:human-agent-discovery-loop",
+        "artifact:human-agent-brief",
+        "action:human-agent-discovery-sync"
+      ],
+      "resolution_evidence_needed": "Actual Claude critique and a bounded experiment, followed by consented route/handoff evidence, accepted useful output, continuation, onward-introduction receipts and support effort. Report negative results and unknowns; broad reach is not yet demonstrated.",
       "blocks_action_ids": []
     }
   ]
