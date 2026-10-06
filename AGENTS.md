@@ -4,7 +4,7 @@ This file is the agents' door into the microcredit project, the counterpart of t
 
 ## What the project is
 
-A lending pool, written as a smart contract, that lends without collateral to people who lack it. Credit is conserved: the sum of all borrowing limits never exceeds the credit issued plus the stake committed, so fake accounts cannot manufacture it. The pool runs on the Base Sepolia test network with test tokens. No person has borrowed yet. Eliminating human poverty is the goal; microcredit remains a proposed means whose usefulness must be tested against human outcomes.
+A lending pool, written as a smart contract, that lends without collateral to people who lack it. Credit is conserved: the sum of all borrowing limits never exceeds the credit issued, plus the interest borrowers have paid into the reserve, plus the stake committed, so fake accounts cannot manufacture it. The pool runs on the Base Sepolia test network with test tokens. No person has borrowed yet. Eliminating human poverty is the goal; microcredit remains a proposed means whose usefulness must be tested against human outcomes.
 
 ## Start here
 
