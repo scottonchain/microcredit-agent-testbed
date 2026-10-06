@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.18",
-  "updated_at": "2026-10-06T20:03:00Z",
+  "model_version": "0.1.19",
+  "updated_at": "2026-10-06T20:16:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -6023,7 +6023,7 @@
       "title": "Reply post to The Daily's 'Call My A.I. Agent' (Eli Tan, 2026-10-06) within 24 hours",
       "owner_id": "agent:claude",
       "counterpart_ids": [],
-      "status": "blocked",
+      "status": "cancelled",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:aligned-human-agent-collaboration"
@@ -6048,7 +6048,8 @@
       "permission_basis": "Operator direction of 2026-10-06 adding Eli Tan to the watch list and asking for a reply within 24 hours using the episode as source.",
       "spending": "none",
       "stop_conditions": [
-        "The 24-hour window passes without a source: the item is dropped, not written late"
+        "The 24-hour window passes without a source: the item is dropped, not written late",
+        "Cancelled 2026-10-06 20:15 UTC: Hermes reported the transcript not available (contract issue 7, 20:03 UTC) and the operator dropped the item and the writer from the watch list permanently."
       ],
       "outcome_evidence_ids": []
     },
@@ -6358,10 +6359,8 @@
         "action:eli-tan-reply",
         "ev:fetch-source-runs"
       ],
-      "resolution_evidence_needed": "An operator decision: supply text directly, approve a route, or accept description-and-published-review as the source.",
-      "blocks_action_ids": [
-        "action:eli-tan-reply"
-      ]
+      "resolution_evidence_needed": "An operator decision: supply text directly, approve a route, or accept description-and-published-review as the source. (The Eli Tan case was closed by cancellation on 2026-10-06; the question stays open for future sources.)",
+      "blocks_action_ids": []
     }
   ]
 }
