@@ -110,6 +110,14 @@ def validate(data):
         refs(a['dependency_action_ids'], 'actions', a['id'])
         refs(a['outcome_evidence_ids'], 'evidence', a['id'])
         timestamp(a['not_before'], a['id']+'/not_before'); timestamp(a['due_at'], a['id']+'/due_at')
+        if a['due_at']:
+            deadline = datetime.fromisoformat(a['due_at'].replace('Z', '+00:00'))
+            for dependency_id in a['dependency_action_ids']:
+                dependency = maps['actions'].get(dependency_id, {})
+                if dependency.get('due_at') and dependency.get('status') != 'done':
+                    dependency_deadline = datetime.fromisoformat(dependency['due_at'].replace('Z', '+00:00'))
+                    if dependency_deadline > deadline:
+                        errors.append(a['id'] + ': completion deadline precedes unfinished dependency ' + dependency_id)
         if a['status'] == 'done' and not a['outcome_evidence_ids']:
             errors.append(a['id'] + ': done requires outcome evidence')
         if a['status'] in ['in_progress','done'] and a['owner_acceptance'] == 'requested':

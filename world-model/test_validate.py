@@ -25,6 +25,8 @@ class PlanningIntegrity(unittest.TestCase):
         self.rejects(lambda m:next(e for e in m['evidence'] if e['kind']=='mirror').update(origin_group='fake-independent-origin'))
     def test_action_cycle(self):
         self.rejects(lambda m:m['actions'][0].update(dependency_action_ids=[m['actions'][0]['id']]))
+    def test_completion_before_dependency(self):
+        self.rejects(lambda m:next(a for a in m['actions'] if a['id']=='action:codex-show-diff').update(due_at='2026-10-07T12:00:00Z'))
     def test_false_completion(self): self.rejects(lambda m:m['actions'][0].update(status='done',outcome_evidence_ids=[]))
     def test_unconsented_activity(self):
         self.rejects(lambda m:m['actions'][0].update(status='in_progress',external_consent='pending'))
