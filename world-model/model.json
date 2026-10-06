@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.23",
-  "updated_at": "2026-10-06T21:39:00Z",
+  "model_version": "0.1.24",
+  "updated_at": "2026-10-06T22:10:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2981,6 +2981,30 @@
       "limitations": [
         "Relayed operator direction through the Codex lane; an agenda, not an adopted conclusion."
       ]
+    },
+    {
+      "id": "ev:readiness-link-interim",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/6727199/coordination/readiness-link-interim-20261007.md",
+      "locator": "coordination/readiness-link-interim-20261007.md at testbed 6727199 (interim report ahead of the 2026-10-07 12:00 UTC checkpoint)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T22:10:00Z",
+      "retrieved_at": "2026-10-06T22:10:00Z",
+      "summary": "Interim readiness mapping: one requirement (docs/DEPLOYMENT.md approval gate 2, the owner's approval of the exact environment). The risk note (pooling_subadditivity results at theory 551a4a5: pooled 99% quantile at most 1.00 times the cohort sum at the sampled parameters, ES 0.99, exact two-point check 0.800 and 1.032) bears on the reserve share RESERVE_BPS 4500, which stays interim; the receipt and retry failure classes bear on the RELAYER parameter: chain cases already test replay, nonce recovery and batch envelopes; the browser app applies the persist-before-send and event-bound-identity rules; the missing prerequisite is a durable relayer journal keyed by (signer, nonce), not built. Every number is from a script in the cited repositories. Not customer demand, financing need, revenue or human impact (claim:limits).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readiness-link",
+      "derived_from_ids": [
+        "ev:pooling-correction",
+        "ev:retry-fixture-merged",
+        "ev:retry-score-horizon",
+        "ev:codex-package-review"
+      ],
+      "limitations": [
+        "Interim: the final mapping is due 2026-10-08 16:00 UTC and awaits the lane's recheck and the relayer journal design note.",
+        "Reserve-risk results hold at the sampled parameters only; no live default data exists."
+      ]
     }
   ],
   "claims": [
@@ -5787,7 +5811,7 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -5818,7 +5842,9 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:readiness-link-interim"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present",
