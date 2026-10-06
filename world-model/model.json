@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.4",
-  "updated_at": "2026-10-06T16:08:00Z",
+  "model_version": "0.1.5",
+  "updated_at": "2026-10-06T16:45:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -14,7 +14,7 @@
     "planning_rule": "Before making a plan, read this model at a named main commit; link the goals, claims and actions used. Missing coverage means unknown, not absent. Refresh decision-critical sources before acting. Record changed evidence and plans in the same workflow.",
     "update_protocol": [
       "Hermes supplies external identity, consent, contact outcomes and obligations as receipts; Codex converts them into model edits; private contact logs stay outside GitHub.",
-      "Claude owns theory, economics, maintainer review and sustained implementation; the Codex / ChatGPT lane owns model evidence maintenance, measured execution receipts, integration decisions and the vision README; the coordinator and the implementation worker are two roles of that one lane.",
+      "Claude owns theory, economics, maintainer review and sustained implementation; the Codex / ChatGPT lane owns model evidence maintenance, measured execution receipts and integration decisions; the vision blog (posts, feed and rules) is Claude Code's at the operator's direction of 2026-10-06 (claim:vision-blog); the coordinator and the implementation worker are two roles of that one lane.",
       "Read latest main; preserve IDs, source lineage and negative findings. Add a superseding claim instead of silently rewriting a contested observation.",
       "Validate schema, references, containment/provenance/dependency cycles and action/decision status. Use the existing verified Git-shell lease and noreply-safe commits for shared writes.",
       "Use focused branches and maintainer review. No connector commits until the existing identity and atomicity blockers are resolved. Reconcile concurrent main changes before merge.",
@@ -1667,6 +1667,43 @@
       "limitations": [
         "Internal check by the maintainer, not outside review; the gate proves simulated accounting consistency only."
       ]
+    },
+    {
+      "id": "ev:vision-blog-rules",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/454ed00dc4a566d8768efdea3563ca3b418763a9/CLAUDE.md",
+      "locator": "CLAUDE.md at 454ed00, sections 'How the blog is built', 'Cadence and ownership'",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:40:00Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "The vision repository is a blog: README.md is a generated feed (latest post in full, earlier posts with thumbnail, date, title and summary), posts live in posts/ with a metadata comment, each post has a generated SVG illustration, feed.xml is an Atom feed, and every figure needs a VERIFY.md row in the same commit. Claude Code owns posts, feed and rules at the operator's direction; Hermes keeps VERIFY.md rows and proposes posts as dated notes on contract issue #7. Cadence: every 4 hours from 2026-10-06 for two days, then every 6 hours until the operator changes it. Allocation rule: Hermes gets bounded, stateless, verifiable tasks with the whole brief in one message; Claude Code and the Codex lane keep work needing cross-repository context or editorial judgement.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-blog-rules",
+      "derived_from_ids": [],
+      "limitations": [
+        "The file records the operator's direction as relayed by Claude Code in its own checkout; the direction itself was given to Claude Code directly and is not separately published.",
+        "The posting schedule is a Claude Code Routine whose execution is not yet demonstrated; a configured schedule is not successful execution."
+      ]
+    },
+    {
+      "id": "ev:vision-blog-launch",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/commit/aebc35c",
+      "locator": "commits 848886c (structure, first post), 2a7c6af (corrections), aebc35c (second post) on main",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:30:00Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "The blog structure and the two launch posts ('What should a safety cushion cost?' 16:15 UTC; 'Eight entries, one method' 16:30 UTC) were pushed to vision main with the five prior README posts archived in posts/ and VERIFY.md sections for each post's figures.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-blog-launch",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-reported by the author of the commits; the commits are public and checkable."
+      ]
     }
   ],
   "claims": [
@@ -2645,6 +2682,63 @@
         "claim:vision-authorship"
       ],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:vision-blog",
+      "subject_id": "repo:vision",
+      "predicate": "authorship",
+      "statement": "The vision repository is a blog from 2026-10-06 16:15 UTC: README.md is a generated feed, posts live in posts/ with a date, title, author, summary and illustration, and VERIFY.md carries a section per post. Claude Code writes the posts and owns the feed and rules at the operator's direction; Hermes keeps VERIFY.md evidence rows and proposes posts as dated notes on contract issue #7. Posting cadence set by the operator: every 4 hours for two days from launch, then every 6 hours until changed.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The rules file and the launch commits are on vision main; the ownership continues claim:vision-authorship-2 and adds the structure and cadence.",
+        "supporting_evidence_ids": [
+          "ev:vision-blog-rules",
+          "ev:vision-blog-launch",
+          "ev:readme-owner-direct"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:45:00Z",
+        "recheck_by": "2026-10-08T17:00:00Z",
+        "recheck_on": [
+          "A vision commit by another author touching posts/ or README.md",
+          "The operator changes the cadence",
+          "A scheduled firing produces no post"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:vision-authorship-2"
+      ]
+    },
+    {
+      "id": "claim:hermes-allocation",
+      "subject_id": "agent:hermes",
+      "predicate": "planning_role",
+      "statement": "Operator direction of 2026-10-06: Hermes is given bounded, stateless, verifiable tasks with the whole brief in one message (testnet runs, attack and fork tests, gas measurements, reproductions, ledger and payment rows, evidence rows, review of a named diff against a named claim), because its harness starts every check without memory of earlier ones (contract issue #6). Work that needs context across repositories and days, or editorial judgement over a long brief (posts, design decisions, papers), stays with Claude Code and the Codex lane.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Stated by the operator to Claude Code and published in the vision rules file; consistent with team-structure.md v3, which keeps routine README authorship out of Hermes's lane.",
+        "supporting_evidence_ids": [
+          "ev:vision-blog-rules"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The operator assigns Hermes an open-ended, multi-day editorial or design task, or a Hermes check demonstrates memory of an earlier check."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:45:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator direction changes",
+          "Hermes's harness gains persistent memory"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -2793,6 +2887,16 @@
       "target_id": "work:planning",
       "claim_ids": [
         "claim:model-authority"
+      ]
+    },
+    {
+      "id": "edge:vision-owned-by-claude",
+      "source_id": "repo:vision",
+      "relation": "owned_by",
+      "target_id": "agent:claude",
+      "claim_ids": [
+        "claim:vision-authorship-2",
+        "claim:vision-blog"
       ]
     }
   ],
