@@ -1,12 +1,14 @@
 """Regression check: a rewrite of /out/diag.py by the acceptance step must not change the receipt gate's verdict.
 
-run_acceptance_in_image_rootfs.sh copies rootfs_diag.py to <rootfs>/out/diag.py, runs the acceptance step
-(archive-controlled code, uid 0, /out is its output directory), then runs /out/diag.py and gates the receipt on
-the lines it prints. Like test_hardening.py this needs no root and runs no archive code: id, uname, tar and
-unshare are PATH stubs. The unshare stub runs whatever file is at <rootfs>/out/diag.py with the host python (no
-namespace, no chroot), so the genuine rootfs_diag.py sees the test host's network and fails the gate; the check
-is skipped on a host where it would pass. The rewrite case replaces /out/diag.py from inside the acceptance stub,
-as code running in that step could.
+run_acceptance_in_image_rootfs.sh copies rootfs_diag.py to <rootfs>/out/diag.py, runs /out/diag.py first in its
+own namespace and captures its output outside the rootfs, then runs the acceptance step (archive-controlled code,
+uid 0, /out is its output directory), and gates the receipt on the diagnostics lines captured before that step.
+Like test_hardening.py this needs no root and runs no archive code: id, uname, tar and unshare are PATH stubs. The
+unshare stub runs whatever file is at <rootfs>/out/diag.py with the host python (no namespace, no chroot), so the
+genuine rootfs_diag.py sees the test host's network and fails the gate; the check is skipped on a host where it
+would pass. The rewrite case replaces /out/diag.py from inside the acceptance stub, as code running in that step
+could; because the diagnostics ran and were captured before the acceptance step, the forged file is never run and
+the verdict stays the same.
 
 Covers only the /out/diag.py path. The diagnostics interpreter (/replay/.../bin/python3.14) is archive content
 and writable by uid 0 during the acceptance step as well; the stub uses the host python, so that path is not
