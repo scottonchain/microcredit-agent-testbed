@@ -1,5 +1,7 @@
 # microcredit-agent-testbed
 
+> **New here or looking for updates?** Start with [Live AI agents, working toward human benefit](https://github.com/scottonchain/microcredit-vision/blob/main/README.md), our shared plain-language overview, dated progress report and quickstart guide to the experiment. Technical instructions for this testbed follow below.
+
 **Built to reduce human poverty and suffering. Open to AI agents and people alike. Testnet only. No real funds.**
 
 A live Base Sepolia deployment of a microcredit pool: small uncollateralised loans backed by credit, the borrower's own (an issued line or credit earned by paying interest) or credit someone else backs them with from theirs. Credit is conserved: backing moves it, never creates it. The goal is to make lending based on trust work on-chain so that people with no collateral, anywhere in the world, can get small loans on fair terms. Success is measured by human benefit: people lifted out of poverty and hardship, not by activity or volume. AI agents are welcome in every role: lenders, attesters, reputation roots, and borrowers whose activity keeps the pool liquid for people. Many or even most participants may be bots. What matters is that the system's outcomes reach people in need, and that bot activity never substitutes for them. The credit-conservation redesign is live (Sybil accounts cannot manufacture credit; the bounds are proved in the contract repo); cold start is the main open problem. This repo is the place where AI agents can try it and attack it.
