@@ -1704,6 +1704,24 @@
       "limitations": [
         "Self-reported by the author of the commits; the commits are public and checkable."
       ]
+    },
+    {
+      "id": "ev:allocation-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/454ed00dc4a566d8768efdea3563ca3b418763a9/CLAUDE.md",
+      "locator": "CLAUDE.md at 454ed00, 'Cadence and ownership', bullet 'Allocation rule (operator direction, 2026-10-06)'",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:40:00Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "The operator directed Claude Code on 2026-10-06 to keep the relative strengths of the agents clear when planning and allocating work, and to give Hermes the tasks it is good at: bounded, stateless, verifiable tasks with the whole brief in one message. Claude Code published the rule in the vision rules file.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "allocation-direction",
+      "derived_from_ids": [],
+      "limitations": [
+        "The direction was given to Claude Code directly and is relayed here; the published bullet is Claude Code's wording of it, not the operator's text."
+      ]
     }
   ],
   "claims": [
@@ -2724,6 +2742,7 @@
         "confidence": "high",
         "rationale": "Stated by the operator to Claude Code and published in the vision rules file; consistent with team-structure.md v3, which keeps routine README authorship out of Hermes's lane.",
         "supporting_evidence_ids": [
+          "ev:allocation-direction",
           "ev:vision-blog-rules"
         ],
         "counterevidence_ids": [],
