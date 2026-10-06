@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.26",
-  "updated_at": "2026-10-06T22:47:00Z",
+  "model_version": "0.1.27",
+  "updated_at": "2026-10-06T23:41:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3110,6 +3110,51 @@
         "Local chain only: not run against a public RPC endpoint or on Base Sepolia, not deployed, not used by anyone outside the team.",
         "Attribution of a consumed nonce by decoding calldata (chain-5, chain-6) is not implemented; fee replacement, multi-process operation and confirmation depth are not built; the receipt is read from the same endpoint that took the write.",
         "Written by the same agent that wrote the journal; the lane's recheck of the mapping is still owed before the final."
+      ]
+    },
+    {
+      "id": "ev:sepolia-browser-run-258affb",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/11915bb/deployments/base-sepolia-1812e7d-usdc001/browser-run-258affb",
+      "locator": "Testbed 11915bb (Hermes, noreply, 2026-10-06T23:34Z): README, 16 run files and local-script-changes.diff under deployments/base-sepolia-1812e7d-usdc001/browser-run-258affb/; Hermes's report on contract issue 7 (comment 6027417533)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T23:34:00Z",
+      "retrieved_at": "2026-10-06T23:41:00Z",
+      "summary": "Hermes re-ran the released app on build 258affb (the allowance wait) against the canonical-USDC pool from the same zero-credit wallet backed 10 USDC by the Avery persona, public RPC endpoint, lend 2 and borrow 1: lend (approve, depositFunds) sent both transactions in 4 of 4 attempts and repay (approve, repayLoan) in 4 of 4; the borrow's second transaction (disburseLoan) was never sent in 4 of 4 fresh borrows (requestLoan mined each time, loans 3 to 6; the wallet was never asked for the disbursement; the page showed the recovery card and no error text), while the recovery card's Disburse button sent it in 4 of 4 after a reload. Failures kept: one lend attempt got HTTP 429 from the public RPC on the approve and sent nothing; one repay-only run was aimed at a loan already repaid; runs that resume a pending loan without the reject flag click nothing and test nothing; the thrown error behind the missing borrow second step was not captured. Hermes's suspicion, matching the source: the pre-send simulation of disburseLoan ran right after the requestLoan receipt with no wait.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-f116695",
+        "ev:sepolia-allowance-fix"
+      ],
+      "limitations": [
+        "Hermes's own records; this session reread the files and could not read the chain (RPC unreachable).",
+        "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor.",
+        "Lend and repay 4 of 4 each is encouraging, not proof: the earlier two-step misses were intermittent.",
+        "The cause of the borrow miss is a suspicion until a run captures the error."
+      ]
+    },
+    {
+      "id": "ev:sepolia-borrow-visibility-fix",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/a6a87b3",
+      "locator": "Contract main a6a87b3 (commit 480326d): packages/nextjs/utils/walletWrite.ts (waitForLoanVisible), app/borrower/page.tsx, docs/TESTNET_WALKTHROUGH.md; site scottonchain.github.io main 938e9a6 built from it under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T23:41:00Z",
+      "retrieved_at": "2026-10-06T23:41:00Z",
+      "summary": "Response to the borrow second-step misses in ev:sepolia-browser-run-258affb: the wallet-direct borrow now waits until the new loan reads as existing on two consecutive reads before it simulates disburseLoan, and a step that stops is written on the borrower page in an amber box with the reason (the toast alone was gone before a reader could see it). If the loan never shows, the page says the request is on chain and nothing further was sent; Disburse and Cancel stay available. The walkthrough has a recovery row. Lint, types and the production build pass; the wait itself is the already tested stable-read helper.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-258affb"
+      ],
+      "limitations": [
+        "Not yet exercised by a browser run on build a6a87b3; the cause of the original misses is a suspicion until a run with this build either passes or shows the amber box text.",
+        "No unit test of the new function: it depends on the app's wagmi and ABI imports, which the node test runner does not load."
       ]
     }
   ],
@@ -6384,6 +6429,8 @@
       ],
       "outcome_evidence_ids": [
         "ev:sepolia-allowance-fix",
+        "ev:sepolia-borrow-visibility-fix",
+        "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
@@ -6907,6 +6954,8 @@
         "action:sepolia-prototype-deliver",
         "artifact:sepolia-hosting-research",
         "ev:sepolia-allowance-fix",
+        "ev:sepolia-borrow-visibility-fix",
+        "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-demo-alert-bottom",
