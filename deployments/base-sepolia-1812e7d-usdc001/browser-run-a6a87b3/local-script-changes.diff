@@ -1,0 +1,42 @@
+diff --git a/scripts/demo/testnet-walkthrough.mjs b/scripts/demo/testnet-walkthrough.mjs
+index 531f26a..7c602f0 100644
+--- a/scripts/demo/testnet-walkthrough.mjs
++++ b/scripts/demo/testnet-walkthrough.mjs
+@@ -142,14 +142,23 @@ async function walletRequest(method, params) {
+         bridge.calls.push({ t: now(), who: bridge.active, method: "eth_sendTransaction", rejected: "disburseLoan" });
+         throw new Error("WALLET_ERROR:4001:User rejected the request.");
+       }
++      console.log(`    [${now()}] wallet got eth_sendTransaction ${selector} (page asked)`);
+       const wait = bridge.lastSendAt + SEND_SPACING_MS - Date.now();
+       if (wait > 0) await sleep(wait);
+-      const hash = await wallets[bridge.active].sendTransaction({
+-        to: tx.to,
+-        data: tx.data,
+-        value: tx.value ? BigInt(tx.value) : 0n,
+-      });
++      let hash;
++      try {
++        hash = await wallets[bridge.active].sendTransaction({
++          to: tx.to,
++          data: tx.data,
++          value: tx.value ? BigInt(tx.value) : 0n,
++        });
++      } catch (e) {
++        console.log(`    SEND FAILED (${selector}): ${String(e && e.message || e).split("\n").slice(0, 6).join(" | ").slice(0, 600)}`);
++        bridge.calls.push({ t: now(), who: bridge.active, method: "eth_sendTransaction", sendError: String(e && e.shortMessage || e && e.message || e).slice(0, 300) });
++        throw e;
++      }
+       bridge.lastSendAt = Date.now();
++      console.log(`    [${now()}] sent ${selector}`);
+       bridge.sendCount += 1;
+       bridge.txs.push({ t: now(), who: bridge.active, to: tx.to, selector, hash });
+       console.log(`    tx ${selector} -> ${hash}`);
+@@ -440,7 +449,7 @@ async function main() {
+           await page.getByRole("button", { name: /^Disburse$/ }).click({ timeout: 15000 });
+         }
+         const active = await waitFor(async () => (await state(accounts.borrower.address)).loans.some(l => l.id === loanId.toString() && l.status === "Active"), 240000);
+-        if (!active) throw new Error(`loan #${loanId} did not become Active`);
++        if (!active) { console.log("PAGE TEXT AT FAILURE:", (await page.evaluate(() => document.body.innerText)).slice(0, 2500)); console.log("WALLET CALLS (last 12):", JSON.stringify(bridge.calls.slice(-12))); throw new Error(`loan #${loanId} did not become Active`); }
+         const disb = bridge.txs.filter(t => t.selector === DISBURSE_SELECTOR).slice(-1)[0];
+         const disbTx = disb ? await publicClient.getTransaction({ hash: disb.hash }) : null;
+         const disbLoanId = disbTx ? BigInt("0x" + disbTx.input.slice(10)) : null;

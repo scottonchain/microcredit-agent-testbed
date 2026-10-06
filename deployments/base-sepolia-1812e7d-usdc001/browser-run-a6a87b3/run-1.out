@@ -1,0 +1,50 @@
+
+== open and connect
+   ok: build commit a6a87b3; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-06T23:42:45.373Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-06T23:42:45.633Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xc4944da19ca91b074a2d7d218aff845b0afba8e91a90df8d7e5f2ebc28ac2bbc
+    [2026-10-06T23:42:49.727Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-06T23:42:53.937Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0xf98c4c75e57667f8af83a4e0bb2b382ed1ffb8c92a551efe0c6868b760ae3a7c
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+    [2026-10-06T23:43:01.564Z] wallet got eth_sendTransaction 0x8d5d3429 (page asked)
+    [2026-10-06T23:43:02.206Z] sent 0x8d5d3429
+    tx 0x8d5d3429 -> 0xb85c251f624a8e4167d0cb0789af3f5579779417568402d6d06dc315b5af9918
+    [2026-10-06T23:43:05.960Z] wallet got eth_sendTransaction 0xb73e4da0 (page asked)
+    [2026-10-06T23:43:10.474Z] sent 0xb73e4da0
+    tx 0xb73e4da0 -> 0x0c218d8c901e0b770dbe1a798ace0ba5225e23cf81421435aa4cb88fe3da95dc
+   ok: request 0xb85c251f624a8e4167d0cb0789af3f5579779417568402d6d06dc315b5af9918 created loan #7; disbursed by 0x0c218d8c901e0b770dbe1a798ace0ba5225e23cf81421435aa4cb88fe3da95dc for loan #7; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-06T23:43:20.070Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-06T23:43:20.414Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xea74526b943132484cf65cd3fe6ddbe3eaeac1cb50842c1dedecc52ac028bab2
+    [2026-10-06T23:43:24.043Z] wallet got eth_sendTransaction 0x8a700b53 (page asked)
+    [2026-10-06T23:43:28.673Z] sent 0x8a700b53
+    tx 0x8a700b53 -> 0xcb777303856af394848798239f6337661ff930a21a4eeeb55dffc0e9a1143ed0
+   ok: loan #7 repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-06T23:43:34.413Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-06T23:43:36.939Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0xd02f7f63d606086b2aebaec5bae2936a32db3878acda92e34527bbedab1d2aa0
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba6/run-1.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a6a87b3; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0xc4944da19ca91b074a2d7d218aff845b0afba8e91a90df8d7e5f2ebc28ac2bbc<br>0xf98c4c75e57667f8af83a4e0bb2b382ed1ffb8c92a551efe0c6868b760ae3a7c | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | yes | 0xb85c251f624a8e4167d0cb0789af3f5579779417568402d6d06dc315b5af9918<br>0x0c218d8c901e0b770dbe1a798ace0ba5225e23cf81421435aa4cb88fe3da95dc | request 0xb85c251f624a8e4167d0cb0789af3f5579779417568402d6d06dc315b5af9918 created loan #7; disbursed by 0x0c218d8c901e0b770dbe1a798ace0ba5225e23cf81421435aa4cb88fe3da95dc for loan #7; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | yes | 0xea74526b943132484cf65cd3fe6ddbe3eaeac1cb50842c1dedecc52ac028bab2<br>0xcb777303856af394848798239f6337661ff930a21a4eeeb55dffc0e9a1143ed0 | loan #7 repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0xd02f7f63d606086b2aebaec5bae2936a32db3878acda92e34527bbedab1d2aa0 | page said confirmed: true; balance rose |

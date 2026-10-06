@@ -1,0 +1,98 @@
+
+== open and connect
+   ok: build commit a6a87b3; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-06T23:51:33.680Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-06T23:51:33.958Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xc4ac888a8ef3b79f673a7edb9d5d390aacf970dc067eb6c92d84756459113ecd
+    [2026-10-06T23:51:39.153Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-06T23:51:42.258Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0x9a575d6ebc1520fea97646ae52ed765388bbf3918df98504adbce7da147afce2
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+    [2026-10-06T23:51:51.477Z] wallet got eth_sendTransaction 0x8d5d3429 (page asked)
+    [2026-10-06T23:51:52.271Z] sent 0x8d5d3429
+    tx 0x8d5d3429 -> 0x8986151bbe5c477092fb854c10ebd66a0e02adba72136a531e88330469f4280e
+    [2026-10-06T23:51:55.950Z] wallet got eth_sendTransaction 0xb73e4da0 (page asked)
+    [2026-10-06T23:52:00.537Z] sent 0xb73e4da0
+    tx 0xb73e4da0 -> 0x33e7bf54ceca58a33f6da0a85a7680bb0be5d75d5f267f172498b725df522ec5
+   ok: request 0x8986151bbe5c477092fb854c10ebd66a0e02adba72136a531e88330469f4280e created loan #11; disbursed by 0x33e7bf54ceca58a33f6da0a85a7680bb0be5d75d5f267f172498b725df522ec5 for loan #11; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-06T23:52:09.047Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    SEND FAILED (0x095ea7b3): HTTP request failed. |  | Status: 429 | URL: https://sepolia.base.org/ | Request body: {"method":"eth_sendRawTransaction","params":["0x02f8b083014a3448830f4240836acfc082dbb094036cbd53842c5426634e7929541ec2318f3dcf7e80b844095ea7b300000000000000000000000073872b8fb7f1771c67911f03edc75abdc951497300000000000000000000000000000000000000000000000000000000000f4240c001a06505c56857f4817c284bc3fac5e8d9a9c8f0ff48220cd106dd892dc8d331a07aa067aa226fe664c4357d49d06e2848588576d3f89a611999f90034b5de49f18021"]} |  
+REPAY PAGE TEXT AT FAILURE: LoanLink
+Social lending platform
+Borrower
+Lender
+$24.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Active Loan & Repayment
+Loan Summary
+Principal:
+$1.00
+Outstanding:
+$1.00
+Status:
+Current
+Repayment Schedule
+Term:
+30 days
+Due Date:
+11/5/2026
+Status:
+Current
+Make a Payment
+
+One approval, no gas. You’ll sign a permit; our relayer submits the repayment.
+
+Full Repayment
+
+Pay off your entire outstanding balance
+
+Pay $1.00
+Partial Repayment
+
+Make a partial payment to reduce your balance
+
+Repay
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit a6a87b3. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+WALLET CALLS (last 12): [{"t":"2026-10-06T23:51:55.950Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-06T23:52:06.376Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:52:06.387Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:52:06.395Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:06.513Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-06T23:52:06.514Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:06.554Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:09.027Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:09.041Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:09.045Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-06T23:52:09.047Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-06T23:52:09.318Z","who":"borrower","method":"eth_sendTransaction","sendError":"HTTP request failed."}]
+   failed: loan #11 did not become Repaid
+   FAILED: failed: loan #11 did not become Repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-06T23:53:47.090Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-06T23:53:47.360Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0xad1718b3128a7ee992435e40c3be960317c960a909e52386d87459fb4510c92f
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba6/run-6.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a6a87b3; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0xc4ac888a8ef3b79f673a7edb9d5d390aacf970dc067eb6c92d84756459113ecd<br>0x9a575d6ebc1520fea97646ae52ed765388bbf3918df98504adbce7da147afce2 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | yes | 0x8986151bbe5c477092fb854c10ebd66a0e02adba72136a531e88330469f4280e<br>0x33e7bf54ceca58a33f6da0a85a7680bb0be5d75d5f267f172498b725df522ec5 | request 0x8986151bbe5c477092fb854c10ebd66a0e02adba72136a531e88330469f4280e created loan #11; disbursed by 0x33e7bf54ceca58a33f6da0a85a7680bb0be5d75d5f267f172498b725df522ec5 for loan #11; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | no | none | failed: loan #11 did not become Repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0xad1718b3128a7ee992435e40c3be960317c960a909e52386d87459fb4510c92f | page said confirmed: true; balance rose |
