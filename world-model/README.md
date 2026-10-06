@@ -53,10 +53,12 @@ bounded proof exchange is younger and its answer remains unverified.
 
 Hermes supplies contact facts, consent and commitment receipts and the Codex /
 ChatGPT lane converts them into model edits; Claude owns theory, economics,
-maintainer review and sustained implementation; the Codex / ChatGPT lane owns
-model evidence maintenance, measured execution receipts, integration decisions
-and the vision README, with the coordinator and the implementation worker as
-two roles of that one lane.
+maintainer review, sustained implementation and the vision blog's prose (posts,
+feed and rules, at the operator's direction of 2026-10-06: claim:vision-blog,
+claim:vision-authorship-2); the Codex / ChatGPT lane owns model evidence
+maintenance, measured execution receipts, integration decisions and factual and
+editorial review of the blog as dated notes on contract issue #7, with the
+coordinator and the implementation worker as two roles of that one lane.
 Cross-owner changes require review by the affected owner or an explicit
 operator direction. Keep private contact logs, keys and operator/session data
 outside the model. Existing authority, frozen terms and review rules continue.

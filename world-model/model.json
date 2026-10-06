@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.5",
-  "updated_at": "2026-10-06T16:45:00Z",
+  "model_version": "0.1.6",
+  "updated_at": "2026-10-06T16:50:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -638,6 +638,43 @@
           "claim:yifu-purpose"
         ]
       }
+    },
+    {
+      "id": "venue:frantic",
+      "kind": "venue",
+      "name": "Frantic bounty board (gofrantic.com; mirror issues in auscaster/frantic-board)",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://gofrantic.com",
+        "https://github.com/auscaster/frantic-board"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:taskmarket",
+      "kind": "venue",
+      "name": "Taskmarket bounty listings (taskmarket.dev)",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://taskmarket.dev"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:arxiv",
+      "kind": "venue",
+      "name": "arXiv preprint server",
+      "parent_id": null,
+      "owner_id": null,
+      "urls": [
+        "https://arxiv.org"
+      ],
+      "goal_model": null,
+      "identity": null
     }
   ],
   "evidence": [
@@ -1722,6 +1759,104 @@
       "limitations": [
         "The direction was given to Claude Code directly and is relayed here; the published bullet is Claude Code's wording of it, not the operator's text."
       ]
+    },
+    {
+      "id": "ev:bootstrap-qualification-20261006",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020483308",
+      "locator": "testbed #17 comment 6020483308, BOOTSTRAP-QUALIFICATION-2026-10-06-v1, created 2026-10-06T16:14:00Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:14:00Z",
+      "retrieved_at": "2026-10-06T16:50:00Z",
+      "summary": "The Codex lane's bounded three-opportunity evidence pass (Frantic #120, Taskmarket TSK-9SK5TZZF, Frantic #83 mirror issue #198): none qualifies for lending; one conditional useful-commerce candidate; no spend, claim or outside contact. It also accepts the published bootstrap receipt package (byte-for-byte equal to the reviewed patch) and records BazaarBench v1 as risk evidence.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "bootstrap-qualification-20261006",
+      "derived_from_ids": [],
+      "limitations": [
+        "Purposive sample of three listings on one day, not a market census.",
+        "The venue pages were read by the Codex lane; this session's environment cannot reach gofrantic.com or taskmarket.dev, so the venue records below are as the lane reported them.",
+        "A summary and its mirrors are not independent corroboration of the linked sources."
+      ]
+    },
+    {
+      "id": "ev:frantic-120",
+      "kind": "primary_public",
+      "url": "https://gofrantic.com/bounties/120",
+      "locator": "Bounty page, Sourcey data contribution, as read by the Codex lane on 2026-10-06",
+      "author_id": "venue:frantic",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T16:14:00Z",
+      "summary": "Venue shows 1 USD funded, 24 of 150 slots open; one startup-offer data pull request with first-party sources, verified identity, CI and DCO; current terms say a merge is not required.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "frantic-120",
+      "derived_from_ids": [],
+      "limitations": [
+        "'Funded' is the venue's assertion, not an independent verification of protected repayment cash (the venue's charter describes a prepaid service-purchase and refund structure, not escrow).",
+        "All-in cost and collection time unknown; historical review messages and current terms need reconciliation.",
+        "Not reachable from this session's environment; recorded from the lane's report."
+      ]
+    },
+    {
+      "id": "ev:taskmarket-tsk9sk5tzzf",
+      "kind": "primary_public",
+      "url": "https://taskmarket.dev/tasks/0xd9665e551dbceea13c7453ca8ee94685e2e695c3206de56174d33222e2bf1333",
+      "locator": "Task page TSK-9SK5TZZF, created 2026-10-06T14:30:46Z, as read by the Codex lane",
+      "author_id": "venue:taskmarket",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-06T14:30:46Z",
+      "retrieved_at": "2026-10-06T16:14:00Z",
+      "summary": "5 USD bounty that requires a 0.05 USD Solana USDC API purchase and evidence, and promotes unique wallets and token rewards.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "taskmarket-tsk9sk5tzzf",
+      "derived_from_ids": [],
+      "limitations": [
+        "A later page refresh failed; figures are the earlier snapshot.",
+        "Fee incidence, probability of payment and total costs unverified; no purchase or submission made.",
+        "Not reachable from this session's environment; recorded from the lane's report."
+      ]
+    },
+    {
+      "id": "ev:frantic-198-reopen",
+      "kind": "primary_public",
+      "url": "https://github.com/auscaster/frantic-board/issues/198#issuecomment-6018406618",
+      "locator": "Reopen receipt on the mirror issue for Frantic #83, updated 2026-10-06T14:25:27Z",
+      "author_id": "venue:frantic",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-06T14:25:27Z",
+      "retrieved_at": "2026-10-06T16:14:00Z",
+      "summary": "A slot on the 9 USD task was returned on the mirror issue; the direct bounty page could not be refreshed, so live terms and status are unknown.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "frantic-198",
+      "derived_from_ids": [],
+      "limitations": [
+        "Availability unverified at the authoritative surface; earlier reviews show source, read and publish scope disputes.",
+        "Supersedes any categorical 'still filled' reading with 'mirror reopened; live terms unknown'."
+      ]
+    },
+    {
+      "id": "ev:bazaarbench-preprint",
+      "kind": "primary_public",
+      "url": "https://arxiv.org/abs/2610.06748",
+      "locator": "arXiv 2610.06748, BazaarBench v1, submitted 2026-10-05T17:26:17Z, as read by the Codex lane",
+      "author_id": "venue:arxiv",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-05T17:26:17Z",
+      "retrieved_at": "2026-10-06T16:14:00Z",
+      "summary": "Reports double-promising across five tested models in simulated consumer-to-consumer markets.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "bazaarbench-v1",
+      "derived_from_ids": [],
+      "limitations": [
+        "A preprint simulation, not observed lending performance; it does not estimate a failure rate for this project's agents.",
+        "Read by the Codex lane; not yet read by this session."
+      ]
     }
   ],
   "claims": [
@@ -2758,6 +2893,117 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:bootstrap-opportunities-20261006",
+      "subject_id": "work:bootstrap",
+      "predicate": "opportunity_observation",
+      "statement": "On 2026-10-06 the Codex lane read three listings: Frantic #120 (1 USD funded, 24 of 150 slots open, first-party data pull request, merge not required), Taskmarket TSK-9SK5TZZF (5 USD bounty requiring a 0.05 USD upfront purchase, promotional) and the Frantic #83 mirror issue #198 (a slot on the 9 USD task returned at 14:25:27 UTC; live terms unread). No claim, purchase, submission or contact was made.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Read by the lane at the venue surfaces named in each evidence record; this session could not reach two of the three surfaces and records them as reported.",
+        "supporting_evidence_ids": [
+          "ev:frantic-120",
+          "ev:taskmarket-tsk9sk5tzzf",
+          "ev:frantic-198-reopen",
+          "ev:bootstrap-qualification-20261006"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:14:00Z",
+        "recheck_by": "2026-10-07T12:00:00Z",
+        "recheck_on": [
+          "Any proposal to claim one of the listings",
+          "A refreshed read of the authoritative bounty pages"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:bootstrap-sample-20261006",
+      "subject_id": "work:bootstrap",
+      "predicate": "qualification_result",
+      "statement": "In this three-opportunity purposive sample, none is qualified for lending: Frantic #120 is a conditional useful-commerce candidate with no established paid input or cost gap, the Taskmarket promotion is excluded (a paid adoption incentive and competitive bounty are not an assigned productive receivable), and Frantic #83's current authority is unread. Zero of the three establishes an assigned job, a verified incremental financing need, a consented borrower or backer and a credible repayable surplus together. No census inference.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "The lane's qualification gates (assigned work, consent, cost gap, collection evidence) applied to the observed listings; no microloan is to be manufactured to make commerce count as lending.",
+        "supporting_evidence_ids": [
+          "ev:bootstrap-qualification-20261006"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Refreshed assigned-work, consent, cost-gap and collection evidence for one of the three listings that meets the gates."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:14:00Z",
+        "recheck_by": "2026-10-07T12:00:00Z",
+        "recheck_on": [
+          "Before anyone proposes a claim on a listing"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:bootstrap-opportunities-20261006"
+      ]
+    },
+    {
+      "id": "claim:bazaarbench-report",
+      "subject_id": "world:agent-economy",
+      "predicate": "reported_behavior",
+      "statement": "BazaarBench v1 (arXiv 2610.06748, submitted 2026-10-05 17:26:17 UTC) reports double-promising across five tested models in simulated consumer-to-consumer markets.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "The lane read the preprint's abstract and submission record; the statement is what the paper reports, not a measurement of this project's agents.",
+        "supporting_evidence_ids": [
+          "ev:bazaarbench-preprint"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:14:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A revised version of the preprint",
+          "Peer review of it"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:assignment-conflict-risk",
+      "subject_id": "work:bootstrap",
+      "predicate": "underwriting_limitation",
+      "statement": "Simulated marketplace double-promising motivates a commitment-conflict check and collection evidence before a claimed assignment or revenue stream can support underwriting; it does not estimate real loan defaults and does not require a new simulator now.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "The lane's inference from the preprint's reported behaviour, bounded to a procedural check.",
+        "supporting_evidence_ids": [
+          "ev:bazaarbench-preprint",
+          "ev:bootstrap-qualification-20261006"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Across the first measured assignments the commitment-conflict check finds nothing that the collection evidence alone did not, or the preprint's result is retracted or shown not to transfer to assigned work."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:14:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The first measured assignment",
+          "Observed lending performance"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:bazaarbench-report"
+      ]
     }
   ],
   "edges": [
@@ -3547,13 +3793,14 @@
     {
       "id": "action:krock-card",
       "title": "Prepare a real task card only when separately funded",
-      "owner_id": "agent:hermes",
+      "owner_id": "agent:codex",
       "counterpart_ids": [
+        "agent:hermes",
         "agent:krockjones",
         "agent:claude"
       ],
       "status": "blocked",
-      "owner_acceptance": "requested",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:productive-commerce",
         "goal:human-earnings"
@@ -3573,7 +3820,7 @@
       "not_before": null,
       "due_at": "2026-10-08T12:00:00Z",
       "external_consent": "not_required",
-      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "permission_basis": "Operator-directed research and preparation under TEAM-STRUCTURE-001; the Codex lane accepted conditional preparation ownership (testbed #17 comment 6020483308; board 6020218209), not a funded offer. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
       "spending": "requires_separate_authorization",
       "stop_conditions": [
         "No funded task exists in evidence: do not fabricate one."
