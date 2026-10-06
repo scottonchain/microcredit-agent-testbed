@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.22",
-  "updated_at": "2026-10-06T21:15:00Z",
+  "model_version": "0.1.23",
+  "updated_at": "2026-10-06T21:39:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2901,6 +2901,85 @@
         "Inspection of public source/docs, not new live execution.",
         "The old pool, historical positions and mock-token receipts are not automatically migrated.",
         "Funding does not grant borrowing credit."
+      ]
+    },
+    {
+      "id": "ev:sepolia-canonical-usdc-deployed",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/d2ffe7a9252db8a30665e064786237ad97bb9b51/deployments/base-sepolia-1812e7d-usdc001/DeployTestnet.s.sol/84532/run-latest.json",
+      "locator": "Broadcast log at testbed d2ffe7a (Hermes, noreply, public-content check clean); Hermes's receipt on contract issue 7, comment 6025792079 (2026-10-06T21:28:39Z); the same bytes are packages/foundry/broadcast/DeployTestnet.s.sol/84532/run-1791321859078.json in the contract branch",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:28:39Z",
+      "retrieved_at": "2026-10-06T21:39:00Z",
+      "summary": "Hermes deployed contract main 1812e7d on Circle's Base Sepolia USDC (0x036CbD53842c5426634e7929541eC2318f3dCF7e) from the pinned plan: pool 0x73872B8fB7F1771C67911f03edc75aBdc9514973, lens 0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4, score provider 0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4, seven status-1 transactions in blocks 47776780 to 47776786, constructor and configuration arguments exactly as pinned (433, 500, 100000000, reserve 4500, 50 lines, 604800); verified from chain: usdc(), scoreProvider(), reserveBps() 4500, maxLoanAmount() 100000000, owner and guardian = Hermes's account. Funding: approve then depositFunds of 20 USDC (blocks 47776801 and 47776811), pool balance and lenderCash 20,000,000, 2e13 shares; the funding wallet held 60 USDC (via CCTP from Ethereum Sepolia) and holds 40 after. One line of 92 USDC issued to the Avery persona (block 47776850); 1 of 50 lines held. Circle's API faucet refused Hermes's key (403); faucet amounts and quota not observed.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-canonical-usdc",
+      "derived_from_ids": [
+        "ev:sepolia-canonical-usdc-direction"
+      ],
+      "limitations": [
+        "Chain reads are Hermes's own; this session cannot reach the RPC to re-read them.",
+        "No browser run on this pool yet; the mock-token receipts do not transfer."
+      ]
+    },
+    {
+      "id": "ev:sepolia-usdc-operator-confirmation",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6025931929",
+      "locator": "The operator's answer in Claude Code's own channel, 2026-10-06 ~21:35 UTC, to the scope question on BASE-SEPOLIA-USDC-001; recorded on contract issue 7 at the cited comment",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:35:00Z",
+      "retrieved_at": "2026-10-06T21:39:00Z",
+      "summary": "The operator confirmed the relayed direction directly: the public demo moves to Circle's Base Sepolia USDC on the new Hermes-funded pool, and the free-mint token is retired for visitors ('MockUSDC is retired').",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-canonical-usdc",
+      "derived_from_ids": [],
+      "limitations": [
+        "Recorded by Claude Code from the operator's words in its channel; the words themselves are not public."
+      ]
+    },
+    {
+      "id": "ev:sepolia-usdc-cutover",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/f116695",
+      "locator": "Contract branch claude/dreamy-ramanujan-32oscs at f116695; site scottonchain.github.io main d3de64d (2026-10-06T21:36:59Z) built from it under /pool; testbed cards, llms.txt, ONBOARDING, quickstart and metrics at the merge after c5999fc",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:36:59Z",
+      "retrieved_at": "2026-10-06T21:39:00Z",
+      "summary": "The public app at https://scottonchain.github.io/pool/ now points at the canonical-USDC pool: deployedContracts.ts for 84532 regenerated from Hermes's broadcast log with no MockUSDC entry (generateTsAbis keeps only the run that deployed the pool), the app's token resolves to Circle's USDC and is checked at runtime against usdc() with writes disabled on a mismatch, no mint button, banner names deployed commit 1812e7d and the build commit, docs/TESTNET.md carries the deployment with every address, transaction and verification and keeps the mock pool as history with exit instructions, docs/TESTNET_WALKTHROUGH.md sends visitors to Circle's faucet and states Hermes's two fallback offers in its words; the testbed and site cards and llms.txt name the new pool and commit 1812e7d. Build from f116695 checked headless: banner, no mint button, new pool on every page, walkthrough link by commit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-canonical-usdc",
+      "derived_from_ids": [
+        "ev:sepolia-canonical-usdc-deployed",
+        "ev:sepolia-usdc-operator-confirmation",
+        "ev:sepolia-release-one-fixes"
+      ],
+      "limitations": [
+        "Rendering check only; the browser transaction run on the new pool (zero-credit wallet, real backing, rejected second signature, reload, wrong network) and Codex's recheck are still owed before acceptance and any announcement."
+      ]
+    },
+    {
+      "id": "ev:cold-start-trust-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6025867667",
+      "locator": "COLD-START-TRUST-001, relayed by the Codex lane 2026-10-06T21:33:49Z; board 6025870715",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:33:49Z",
+      "retrieved_at": "2026-10-06T21:39:00Z",
+      "summary": "The operator asks the 2026-10-07 10:00 UTC sync to decide whether Hermes's faucet-funded stake and backing, then a first borrower, repayment and a second-hop borrower is the expected cold-start mechanism, verifying every credit and reputation transition against the deployed contract (no assumption that staking creates reputation, that repayment creates credit for both parties, or that received backing can be passed on), choosing a concrete alternative where the scenario fails, and recording bounded first-borrow, repayment and two-hop milestones with owners, caps, deadlines and evidence, plus Hermes's liberal-to-selective trust policy; team rehearsal and independent participation stay distinct; a faucet-funded rehearsal is not evidence of creditworthiness or human benefit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "cold-start-trust",
+      "derived_from_ids": [],
+      "limitations": [
+        "Relayed operator direction through the Codex lane; an agenda, not an adopted conclusion."
       ]
     }
   ],
@@ -6038,19 +6117,22 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:sepolia-prototype-authority",
-        "claim:sepolia-prototype-escalation",
-        "claim:sepolia-prototype-baseline",
         "claim:limits",
-        "claim:sepolia-canonical-usdc-direction"
+        "claim:sepolia-canonical-usdc-direction",
+        "claim:sepolia-prototype-authority",
+        "claim:sepolia-prototype-baseline",
+        "claim:sepolia-prototype-escalation"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique.",
+      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique. Resolve COLD-START-TRUST-001 with Claude: decide whether Hermes's faucet-funded stake/backing -> first borrower -> repayment -> second-hop borrower is the expected cold-start mechanism. Verify every credit/reputation transition against the deployed contract, choose a concrete alternative where the scenario fails, and record bounded first-borrow, repayment and two-hop milestones plus a liberal-to-selective trust policy.",
       "acceptance_criteria": [
         "Read decision:sepolia-prototype-v1 and actual newer implementation evidence; do not reopen custody as an operator gate.",
         "Track source/build/publication and fresh-wallet execution receipts separately.",
         "Resolve concrete remaining failures with Claude and legitimate hosting alternatives before any operator escalation.",
-        "Follow the newer canonical-USDC migration directive and verify its replacement deployment, accounted pool funding and UI token match; supersede public MockUSDC onboarding."
+        "Follow the newer canonical-USDC migration directive and verify its replacement deployment, accounted pool funding and UI token match; supersede public MockUSDC onboarding.",
+        "An actual adopt/modify/reject decision identifies the source of first liquidity and credit, initial outsider eligibility, exact state transitions and any required implementation; unresolved replies remain pending.",
+        "Milestones identify owners, deadlines, caps, before/after state and transaction evidence for first borrowing, repayment and two-hop access; testnet rehearsal and independent participation remain distinct.",
+        "Hermes's proposed trust policy states selection reasons, exposure limits, default consequences and tightening/relaxation rules, with no assumed outside borrowing consent."
       ],
       "not_before": null,
       "due_at": "2026-10-07T10:00:00Z",
@@ -6066,7 +6148,8 @@
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency",
-        "The operator's next-sync additions of 2026-10-06 20:57 UTC"
+        "The operator's next-sync additions of 2026-10-06 20:57 UTC",
+        "COLD-START-TRUST-001 agenda (ev:cold-start-trust-direction)"
       ]
     },
     {
@@ -6171,7 +6254,8 @@
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-build",
         "ev:sepolia-release-one-fixes",
-        "ev:sepolia-site-published"
+        "ev:sepolia-site-published",
+        "ev:sepolia-usdc-cutover"
       ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
@@ -6343,8 +6427,8 @@
         "agent:coordinator",
         "agent:hermes"
       ],
-      "status": "proposed",
-      "owner_acceptance": "requested",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
         "goal:aligned-human-agent-collaboration"
@@ -6362,7 +6446,10 @@
         "Respect actual faucet quotas and credentials; do not substitute a new mock token or claim unlimited minting.",
         "Do not mark completion without mined receipts and matching deployed UI configuration."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:sepolia-usdc-cutover",
+        "ev:sepolia-usdc-operator-confirmation"
+      ],
       "triggers": [
         "Direct operator migration direction",
         "Claude/Hermes acknowledgment and pinned deployment plan",
@@ -6386,8 +6473,8 @@
         "agent:claude",
         "agent:coordinator"
       ],
-      "status": "proposed",
-      "owner_acceptance": "requested",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
         "goal:aligned-human-agent-collaboration"
@@ -6405,7 +6492,9 @@
         "Respect actual faucet quotas and credentials; do not substitute a new mock token or claim unlimited minting.",
         "Do not mark completion without mined receipts and matching deployed UI configuration."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:sepolia-canonical-usdc-deployed"
+      ],
       "triggers": [
         "Direct operator migration direction",
         "Claude/Hermes acknowledgment and pinned deployment plan",
@@ -6706,11 +6795,12 @@
       "owner_id": "agent:hermes",
       "question": "Which existing faucet/holdings supply canonical Base Sepolia USDC, and what seed amount and available liquidity support the actual demo concurrency?",
       "related_ids": [
-        "ev:sepolia-canonical-usdc-direction",
+        "action:sepolia-canonical-usdc-fund",
         "action:sepolia-canonical-usdc-migrate",
-        "action:sepolia-canonical-usdc-fund"
+        "ev:sepolia-canonical-usdc-deployed",
+        "ev:sepolia-canonical-usdc-direction"
       ],
-      "resolution_evidence_needed": "Hermes's actual faucet/holdings evidence and quota, Claude's pinned deployment/credit parameters, and mined lender deposit/state receipts. Existing MockUSDC balances do not count.",
+      "resolution_evidence_needed": "Hermes's actual faucet/holdings evidence and quota, Claude's pinned deployment/credit parameters, and mined lender deposit/state receipts. Existing MockUSDC balances do not count. Observed 2026-10-06: Hermes's funding wallet held 60 canonical USDC (via CCTP), deposited 20 and holds 40; Circle's API faucet refused its key (403); the web faucet's amounts were not observed. Liquid capacity for the demo is 20 USDC until more is deposited.",
       "blocks_action_ids": []
     }
   ]
