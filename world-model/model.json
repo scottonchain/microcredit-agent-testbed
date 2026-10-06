@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.20",
-  "updated_at": "2026-10-06T21:10:00Z",
+  "model_version": "0.1.21",
+  "updated_at": "2026-10-06T21:13:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2824,6 +2824,26 @@
       "limitations": [
         "Source corrections and a rendering check only; the browser transaction run with a zero-credit wallet is still owed (the Playwright runner script is in the same branch for Hermes or another signer-capable runtime)."
       ]
+    },
+    {
+      "id": "ev:sepolia-release-two-custodian",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6025543250",
+      "locator": "Operator decision given to Claude Code in its own channel 2026-10-06 ~21:20 UTC; stated to Hermes on contract issue 7 (6025543250) and on the board (testbed issue 15, 6025544262)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T21:22:00Z",
+      "retrieved_at": "2026-10-06T21:13:00Z",
+      "summary": "The operator decided that Hermes's host owns the funded relayer key and the always-on host for release two of the Sepolia prototype (the relayed, gasless app). No key enters any repository; Claude's session holds none. Release one's acceptance comes first; the 2026-10-07 10:00 UTC sync may set the order.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [
+        "ev:sepolia-codex-wallet-direct"
+      ],
+      "limitations": [
+        "The decision as Claude Code recorded it from the operator's words ('Hermes' host owns it'); Hermes has not yet accepted the work."
+      ]
     }
   ],
   "claims": [
@@ -4518,6 +4538,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sepolia-release-two-custody",
+      "subject_id": "agent:hermes",
+      "predicate": "goal",
+      "statement": "For release two of the Sepolia prototype (the relayed, gasless app), Hermes's host holds the funded relayer key and runs the always-on host; the key lives only in that host's environment, never in a repository, comment or log, and Claude's session never holds it.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator decision of 2026-10-06 recorded by Claude Code.",
+        "supporting_evidence_ids": [
+          "ev:sepolia-release-two-custodian"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The operator assigns custody elsewhere, or Hermes declines and the operator chooses another holder."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T21:22:00Z",
+        "recheck_by": "2026-10-20T00:00:00Z",
+        "recheck_on": [
+          "Hermes's acceptance or decline",
+          "Any operator change"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -6155,6 +6201,49 @@
         "Either agent declines: publish with the answers that exist and say so"
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:sepolia-release-two-relayer",
+      "title": "Release two: Hermes hosts the relayed app and holds the funded relayer key",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:coordinator"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:sepolia-release-two-custody",
+        "claim:sepolia-prototype-release-one"
+      ],
+      "dependency_action_ids": [
+        "action:sepolia-prototype-deliver"
+      ],
+      "deliverable": "One Node instance of the existing Next.js app (built for Base Sepolia with the relayer enabled) on Hermes's host behind public HTTPS; a relayer account whose private key lives only in that host's environment (RELAYER_PRIVATE_KEY), funded with Base Sepolia ETH by Hermes; a reachable RPC; the pool's relayer whitelist set to that account if enabled; uptime and restart practice stated; release one stays up as the fallback. Spending: Base Sepolia test ETH only, from Hermes's own funds; no real money.",
+      "acceptance_criteria": [
+        "Gasless deposit, backing, borrow and repay from a fresh wallet with no ETH, with mined receipts and the relayer's nonce-based retry recovery exercised once.",
+        "No key in any repository, comment or log; Claude's session holds none.",
+        "Hermes states uptime, restart and funding practice; the operator accepts the endpoint before any public link."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Operator decision of 2026-10-06 (ev:sepolia-release-two-custodian); decision:sepolia-prototype-v1 makes release two a non-launch dependency.",
+      "spending": "none",
+      "stop_conditions": [
+        "Hermes declines or cannot run a public host: bring it to the board and the operator; do not move the key elsewhere on anyone's initiative.",
+        "Any key material appears in a public place: stop, rotate, report."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Release one accepted (Codex recheck and the browser run)",
+        "Hermes's acceptance on contract issue 7",
+        "The 2026-10-07 10:00 UTC sync"
+      ]
     }
   ],
   "decisions": [
