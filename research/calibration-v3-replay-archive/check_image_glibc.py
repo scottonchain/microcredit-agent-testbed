@@ -47,7 +47,8 @@ def fetch(url, headers, raw=False):
 
 
 def main():
-    reveal = json.load(open(sys.argv[1]))
+    with open(sys.argv[1]) as reveal_file:
+        reveal = json.load(reveal_file)
     ref = sys.argv[2] if len(sys.argv) > 2 else "docker.io/library/almalinux:9.8"
     outdir = sys.argv[3] if len(sys.argv) > 3 else "."
     want = {WANT_PATHS[0]: reveal["glibc"]["libc_so_6_sha256"], WANT_PATHS[1]: reveal["glibc"]["ld_linux_x86_64_so_2_sha256"]}
@@ -83,6 +84,13 @@ def main():
                     h.update(ch); fo.write(ch)
             if "sha256:" + h.hexdigest() != l["digest"]:
                 print("LAYER_DIGEST_MISMATCH", l["digest"]); sys.exit(1)
+        # A same-size cache entry is not evidence of the recorded bytes.
+        with open(path, "rb") as cached:
+            cached_hash = hashlib.sha256()
+            for chunk in iter(lambda: cached.read(1 << 20), b""):
+                cached_hash.update(chunk)
+        if os.path.getsize(path) != l["size"] or "sha256:" + cached_hash.hexdigest() != l["digest"]:
+            print("LAYER_DIGEST_MISMATCH", l["digest"]); sys.exit(1)
         print("layer", l["digest"], l["size"], "bytes, digest verified")
         with tarfile.open(path, "r:gz") as tf:
             for ti in tf:
