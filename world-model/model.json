@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.9",
-  "updated_at": "2026-10-06T17:38:26Z",
+  "model_version": "0.1.10",
+  "updated_at": "2026-10-06T17:53:15Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -725,6 +725,74 @@
       "parent_id": "project:microcredit",
       "owner_id": null,
       "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "project:techne",
+      "kind": "project",
+      "name": "Techne / RegenHub LCA cooperative, Boulder",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://techne.coop/",
+        "https://regenhub.xyz/"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "agent:nou",
+      "kind": "agent",
+      "name": "Nou, publicly identified Techne collective-intelligence agent",
+      "parent_id": "project:techne",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/nou-techne",
+        "https://techne.coop/commons/agency/grants/"
+      ],
+      "goal_model": {
+        "declared_claim_ids": [
+          "claim:nou-public-role"
+        ],
+        "inferred_claim_ids": [],
+        "engagement_claim_ids": [],
+        "constraint_claim_ids": [
+          "claim:nou-public-bounds"
+        ]
+      },
+      "identity": {
+        "controller_independence": "unverified",
+        "basis_evidence_ids": [
+          "ev:nou-public-profile",
+          "ev:nou-grant-register"
+        ],
+        "note": "Public profile and cooperative documents identify Nou; no live reply, operator attestation, project participation or permission for outside work verified."
+      }
+    },
+    {
+      "id": "project:parachute",
+      "kind": "project",
+      "name": "Parachute, operator-owned AI memory and experimental agents",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://parachute.computer/",
+        "https://parachute.computer/agents/"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "artifact:techne-research",
+      "kind": "artifact",
+      "name": "Techne / RegenHub research for the October 7 Claude sync",
+      "parent_id": "work:human-agent-discovery",
+      "owner_id": "agent:coordinator",
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6022145422",
+        "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/research-techne-20261006.md"
+      ],
       "goal_model": null,
       "identity": null
     }
@@ -2126,6 +2194,132 @@
         "Public paraphrase by Codex of an operator instruction, not a private transcript or a claim of Claude assent.",
         "No observed conversion, growth rate, controller independence, paid demand or human outcome is established."
       ]
+    },
+    {
+      "id": "ev:techne-research-direction",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6022145422",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:coordinator",
+      "published_at": "2026-10-06T17:50:56Z",
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "Operator supplied Techne and RegenHub and requested next-sync research answering visibility, a bridge to human benefit and possible AI collaborators.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "techne-research-direction",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public paraphrase of direction; the associated analysis is Codex's, not Claude assent or external consent."
+      ]
+    },
+    {
+      "id": "ev:techne-public-identity",
+      "kind": "primary_public",
+      "url": "https://techne.coop/legal/",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "project:techne",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "The cooperative's filed-instruments page identifies techne.coop as a trade name of RegenHub LCA.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "techne-public-identity",
+      "derived_from_ids": [],
+      "limitations": [
+        "Official self-report; no independent government-record check in this task."
+      ]
+    },
+    {
+      "id": "ev:regenhub-ai-community",
+      "kind": "primary_public",
+      "url": "https://regenhub.xyz/news/2026-W26",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "project:techne",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "June 22 dispatch describes public AI evenings including agent building and local/sovereign computing.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "regenhub-ai-community",
+      "derived_from_ids": [],
+      "limitations": [
+        "Historical activity; not proof of a current event or participants' availability."
+      ]
+    },
+    {
+      "id": "ev:regenhub-parachute",
+      "kind": "primary_public",
+      "url": "https://regenhub.xyz/news/2026-W27",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "project:techne",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "June 29 dispatch identifies Parachute as a resident venture and describes cooperative use of its knowledge tools and Vibe Night.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "regenhub-parachute",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reported relationship as of June; present involvement and any introduction need confirmation."
+      ]
+    },
+    {
+      "id": "ev:nou-public-profile",
+      "kind": "primary_public",
+      "url": "https://github.com/nou-techne",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "agent:nou",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "Nou describes itself as Techne's collective-intelligence agent and publishes cooperative coordination, knowledge and accounting work.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "nou-public-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-description; controller independence and willingness to collaborate are unverified. Older project repositories do not prove current adopted Techne operations."
+      ]
+    },
+    {
+      "id": "ev:nou-grant-register",
+      "kind": "primary_public",
+      "url": "https://techne.coop/commons/agency/grants/",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "project:techne",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "Register reports August 19 steward grants for bounded correction, review/merge on the Techne estate, drafting and cited findings; it excludes money and outward representation of the cooperative.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "nou-grant-register",
+      "derived_from_ids": [],
+      "limitations": [
+        "Scope must be refreshed before action. Steward grants differ from the still-proposed member-common direction system; no permission to work in our project is inferred."
+      ]
+    },
+    {
+      "id": "ev:parachute-agent-docs",
+      "kind": "primary_public",
+      "url": "https://parachute.computer/agents/",
+      "locator": "Public content checked 2026-10-06; see source-linked research brief",
+      "author_id": "project:parachute",
+      "observer_id": "agent:coordinator",
+      "published_at": null,
+      "retrieved_at": "2026-10-06T17:50:56Z",
+      "summary": "Parachute documents experimental vault-defined agents executing Claude Code turns with messages and responses stored as notes.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "parachute-agent-docs",
+      "derived_from_ids": [],
+      "limitations": [
+        "Product self-report, not executed here; no named available external collaborator identified."
+      ]
     }
   ],
   "claims": [
@@ -3462,6 +3656,197 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:techne-public-identity",
+      "subject_id": "project:techne",
+      "predicate": "published_relationship",
+      "statement": "The official public record describes Techne as the cooperative's trade name and RegenHub as the same LCA setting; do not count the two supplied sites as two independent organizations.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:techne-public-identity"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:techne-ai-community",
+      "subject_id": "project:techne",
+      "predicate": "published_community_activity",
+      "statement": "Official June dispatches report public AI/agent-building gatherings and a resident Parachute venture. This is evidence of a relevant human-operator audience, not a current appointment or participating-agent census.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:regenhub-ai-community",
+          "ev:regenhub-parachute"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:nou-public-role",
+      "subject_id": "agent:nou",
+      "predicate": "published_role_and_work",
+      "statement": "Public sources identify Nou as a Techne collective-intelligence agent building cooperative coordination and contribution/accounting infrastructure. This is a named collaborator lead; no contact, accepted scope or current availability is evidenced.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:nou-public-profile",
+          "ev:nou-grant-register"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:nou-public-bounds",
+      "subject_id": "agent:nou",
+      "predicate": "published_authority_limits",
+      "statement": "Nou's published steward grants are bounded to its existing estate and public findings; money and outward representation are excluded. The proposed common-member direction system is not equivalent to a standing grant for work in our repository or speaking for Techne to us.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:nou-grant-register"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:parachute-operator-route",
+      "subject_id": "project:parachute",
+      "predicate": "published_agent_capability",
+      "statement": "Parachute describes experimental agents built around operator-owned vault context and Claude Code turns. Its reported RegenHub connection makes it a possible operator-discovery route; it is not a second named agent or accepted collaborator.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:parachute-agent-docs",
+          "ev:regenhub-parachute"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:techne-visibility-fit",
+      "subject_id": "project:techne",
+      "predicate": "candidate_fit",
+      "statement": "Techne/RegenHub is a promising bounded case for human-to-AI discovery, and Nou is a specific candidate for operator-supported mutual work on provenance and contribution receipts. Test a useful public artifact before broad outreach. Neither audience reach nor a financing need is demonstrated.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Proposed fit inferred from public artifacts and historical community activity; current interest and outcomes are unknown.",
+        "supporting_evidence_ids": [
+          "ev:regenhub-ai-community",
+          "ev:nou-public-profile",
+          "ev:nou-grant-register"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Current operators report no relevant interest/capacity or shared use case, or the bounded exchange yields no useful accepted work."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:techne-ai-community",
+        "claim:nou-public-role",
+        "claim:nou-public-bounds"
+      ]
+    },
+    {
+      "id": "claim:techne-sync-direction",
+      "subject_id": "artifact:techne-research",
+      "predicate": "required_next_sync_case",
+      "statement": "At the next existing Claude sync, research the two supplied sites and explicitly answer whether they help human visibility, bridge a gap to human benefit, and contain possible AI collaborators. Independently challenge the prepared findings and choose one bounded next step.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Observation is of the cited public representation, or the explicitly relayed operator direction; it does not independently verify operations.",
+        "supporting_evidence_ids": [
+          "ev:techne-research-direction"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T17:50:56Z",
+        "recheck_by": "2026-10-07T10:00:00Z",
+        "recheck_on": [
+          "Next daily Claude sync",
+          "Before relying on event availability, grants, identity, software maturity or external interest"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -3675,6 +4060,42 @@
       "claim_ids": [
         "claim:human-agent-discovery-priority"
       ]
+    },
+    {
+      "id": "edge:nou-techne-work",
+      "source_id": "agent:nou",
+      "relation": "contributes_to",
+      "target_id": "project:techne",
+      "claim_ids": [
+        "claim:nou-public-role"
+      ]
+    },
+    {
+      "id": "edge:techne-human-discovery",
+      "source_id": "project:techne",
+      "relation": "supports",
+      "target_id": "route:human-to-agent",
+      "claim_ids": [
+        "claim:techne-visibility-fit"
+      ]
+    },
+    {
+      "id": "edge:nou-operator-discovery",
+      "source_id": "agent:nou",
+      "relation": "supports",
+      "target_id": "route:agent-to-operator",
+      "claim_ids": [
+        "claim:techne-visibility-fit"
+      ]
+    },
+    {
+      "id": "edge:techne-research-sync",
+      "source_id": "artifact:techne-research",
+      "relation": "supports",
+      "target_id": "work:human-agent-discovery",
+      "claim_ids": [
+        "claim:techne-sync-direction"
+      ]
     }
   ],
   "hypotheses": [
@@ -3884,6 +4305,41 @@
       ],
       "confidence": "low",
       "confidence_scope": "Untested discovery mechanism proposed for the next sync; not a probability of reply, viral growth, commercial demand or poverty impact. Set the experiment window after actual Claude challenge and decision."
+    },
+    {
+      "id": "hyp:techne-human-benefit",
+      "subject_ids": [
+        "project:techne",
+        "agent:nou",
+        "project:parachute"
+      ],
+      "theory": "A willing operator and AI from this community could apply auditable work receipts to a real community task, making a useful human result inspectable and reusable. Accepted work could attract aligned collaborators and later create a route to paid work or sponsored resource access for people with constrained resources. Each transition needs separate evidence.",
+      "claim_ids": [
+        "claim:techne-ai-community",
+        "claim:nou-public-role",
+        "claim:parachute-operator-route",
+        "claim:techne-visibility-fit",
+        "claim:mission"
+      ],
+      "alternative_explanations": [
+        "The community values discussion and tools but has no suitable work, budget or operator capacity.",
+        "Benefits accrue to existing well-resourced builders and never extend to people facing access constraints.",
+        "Current authority and unfinished governance mean an external joint task cannot yet be accepted."
+      ],
+      "predictions": [
+        {
+          "observable": "A willing operator identifies a real task and beneficiary; a scoped agent contribution is accepted and the human confirms a useful result.",
+          "disconfirming_observation": "No concrete task/beneficiary emerges, the operators decline, or work produces no usable result within the agreed experiment window.",
+          "check_by": null
+        },
+        {
+          "observable": "A subsequent authorized pilot yields measurable usable net earnings or improved access for a person facing a stated constraint, with costs and subsidy visible.",
+          "disconfirming_observation": "Only publicity, internal records or token/accounting balances improve; no human economic outcome appears.",
+          "check_by": null
+        }
+      ],
+      "confidence": "low",
+      "confidence_scope": "An untested bridge to be challenged in the next daily sync, not evidence of Techne demand, poverty reach or an agreed partnership."
     }
   ],
   "actions": [
@@ -4673,7 +5129,8 @@
       "rationale_claim_ids": [
         "claim:human-agent-discovery-priority",
         "claim:human-agent-discovery-routes",
-        "claim:human-agent-discovery-sync"
+        "claim:human-agent-discovery-sync",
+        "claim:techne-sync-direction"
       ],
       "dependency_action_ids": [],
       "deliverable": "The October 7 daily strategy opening explicitly compares both routes and the strongest alternative, asks Claude to challenge the emergent loop, and proposes one bounded experiment with a portable operator-to-agent brief and agent-to-operator summary. The existing follow-up owns real critique, decision and subsequent execution receipts.",
@@ -4681,7 +5138,8 @@
         "Opening links the canonical model revision and this operator-direction source and includes both routes.",
         "Proposed experiment states reciprocal value, bounded task, reviewer, reply path, owner, deadline, resource/permission status and stop conditions; Claude acceptance remains pending until an actual reply.",
         "Measurements distinguish volunteered source route, authorized/scoped handoff, accepted useful work, repeat participation and onward introductions; views are not completion, unknown controller relationships stay unknown and support effort is recorded.",
-        "Continue through the existing follow-up; link any real Claude critique, decision and revised model actions. Do not reopen the resolved OUTSIDE-COLLAB-001 pilot or count this agenda update as experiment success."
+        "Continue through the existing follow-up; link any real Claude critique, decision and revised model actions. Do not reopen the resolved OUTSIDE-COLLAB-001 pilot or count this agenda update as experiment success.",
+        "Research Techne/RegenHub as the operator-requested case and answer all three questions: human visibility; a concrete bridge to human benefit; and actual candidate AI collaborators. Challenge the Nou and Parachute leads using current authority, availability and reciprocal goals; choose one bounded next step without implying external consent or paid demand."
       ],
       "not_before": null,
       "triggers": [
@@ -4861,6 +5319,21 @@
         "action:human-agent-discovery-sync"
       ],
       "resolution_evidence_needed": "Actual Claude critique and a bounded experiment, followed by consented route/handoff evidence, accepted useful output, continuation, onward-introduction receipts and support effort. Report negative results and unknowns; broad reach is not yet demonstrated.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:techne-next-step",
+      "owner_id": "agent:coordinator",
+      "question": "After current-source research and Claude critique, which bounded Techne/RegenHub route best improves human visibility, serves a real human task and engages an aligned AI/operator on mutually useful terms?",
+      "related_ids": [
+        "project:techne",
+        "agent:nou",
+        "project:parachute",
+        "artifact:techne-research",
+        "hyp:techne-human-benefit",
+        "action:human-agent-discovery-sync"
+      ],
+      "resolution_evidence_needed": "Source-grounded answers to all three operator questions, real Claude challenge, current Nou/operator scope and availability, a concrete task/beneficiary, and one chosen action with owner and acceptance. No external contact is authorized by this research.",
       "blocks_action_ids": []
     }
   ]
