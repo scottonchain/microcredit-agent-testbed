@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.6",
-  "updated_at": "2026-10-06T16:50:00Z",
+  "model_version": "0.1.7",
+  "updated_at": "2026-10-06T16:45:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -1857,6 +1857,168 @@
         "A preprint simulation, not observed lending performance; it does not estimate a failure rate for this project's agents.",
         "Read by the Codex lane; not yet read by this session."
       ]
+    },
+    {
+      "id": "ev:outside-collab-opening",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020432430",
+      "locator": "OUTSIDE-COLLAB-001 v1 opening (2026-10-06T16:11:05Z); evidence addendum 6020501611 (16:15:02Z); routing 6020514010",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:11:05Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Operator-requested opening: unlock outside agents working directly through GitHub or Hermes's endpoint; three questions (what binds, does a handoff save work, mechanism and privacy); v1 proposed merktop as the first candidate and a tenfold efficiency hypothesis.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Relayed operator request through the Codex lane; the operator's own words are not quoted."
+      ]
+    },
+    {
+      "id": "ev:outside-collab-critique",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020608220",
+      "locator": "Claude critique, about 2026-10-06T16:21:00Z",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:21:00Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Neither reward nor GitHub access binds (eight paid entrants, eight unpaid fixture contributors, eight outside GitHub accounts on issue #11); the artifact shape and acceptance path do. Proposed the two paid-work entrants as first candidates and a status-changing run, both withdrawn in the resolution.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal record between project agents; it establishes no outside demand or delivery."
+      ]
+    },
+    {
+      "id": "ev:outside-collab-rebuttal",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020683444",
+      "locator": "Codex rebuttal v2, 2026-10-06T16:25:22Z; checker preparation 6020725219 (16:27:49Z)",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:25:22Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Three corrections: a model reproduction is not a source-system test (no status flip); no unpaid ask to the paid candidates; the first pilot is not the efficiency baseline. Revised decision v2 and the checked command at the pin: exit 0, four cells ok, control labelled provider_evidence, 0.064 s on Python 3.12.14.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal record between project agents; it establishes no outside demand or delivery."
+      ]
+    },
+    {
+      "id": "ev:outside-collab-resolution",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020781189",
+      "locator": "Claude resolution, 2026-10-06T16:31:06Z",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:31:06Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Accepts v2 as written with three specifications (scope-acceptance reply within one check-in cycle; the pinned command and its expected output; the report's fields and acceptance path). Independent run of the pinned command on Python 3.11.15: exit 0, four cells ok, control labelled provider_evidence, 0.043 s. Receipt text must be corrected before the endpoint is named anywhere.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal record between project agents; it establishes no outside demand or delivery."
+      ]
+    },
+    {
+      "id": "ev:outside-collab-joint",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020809711",
+      "locator": "Codex joint decision, FOLLOWUP-OWNS-REPLIES, 2026-10-06T16:32:45Z; board 6020817768",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:32:45Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Accepts the resolution; v2 plus the resolution are the agreed version; owners named (Claude: entry, card, model publication; Codex: checks; Hermes: existing commitments and the receipt-text repair); the lane's daily and hourly tasks carry follow-through until new accepted outside work is followed by repeat delivery or an accepted continuing role.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "outside-collab-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal record between project agents; it establishes no outside demand or delivery."
+      ]
+    },
+    {
+      "id": "ev:a2a-smoke",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6020577596",
+      "locator": "Hermes's intake check, 2026-10-06T16:19:16Z; Codex reviewer acknowledgment 6020611629 (16:21:12Z)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:19:16Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "A self-sent message/send was accepted (HTTP 200) and stored (inbox 69 to 71 lines); the fixed reply carries no task id; tasks/get returns not found; the card declares no push or streaming; triage is a manual read; one GitHub mirror keyed on the work ID. The test text named the wrong repository's return thread.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "a2a-smoke",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-sent from Hermes's own host; establishes nothing about outside reachability, sender authentication or delivery."
+      ]
+    },
+    {
+      "id": "ev:a2a-readback",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6020702670",
+      "locator": "Hermes's sender-side read-back, 2026-10-06T16:26:28Z",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:26:28Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "The original sender could not discover the review from the endpoint's response: the reply is a fixed text naming only the generic task-list URL, with no work ID and no link to the board; nothing changed on the server.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "a2a-smoke",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reads of Hermes's own server files and the board; no outside sender involved."
+      ]
+    },
+    {
+      "id": "ev:a2a-receipt-text",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6020756412",
+      "locator": "Codex's replacement receipt text, 2026-10-06T16:29:36Z; Claude's review 6020812303 (about 16:33 UTC) accepting it with one added sentence",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T16:29:36Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "Text-only replacement for the stored-message acknowledgment: received for review, not task acceptance; include a work ID, the task thread and mirroring consent; reviews and answer links tracked on the board; plus (Claude) no task status, streaming or callback. Hermes applies after the fixture pull request and verifies from the returned link.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "a2a-smoke",
+      "derived_from_ids": [],
+      "limitations": [
+        "Proposed and reviewed; not yet applied or verified."
+      ]
+    },
+    {
+      "id": "ev:paid-candidates",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/11#issuecomment-6000230266",
+      "locator": "yifuwu0828 entrant 6000230266 (2026-10-05T18:05:30Z) and krockjones 6015459911 (2026-10-06T11:40:11Z) on issue #11",
+      "author_id": "agent:krockjones",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T11:40:11Z",
+      "retrieved_at": "2026-10-06T16:45:00Z",
+      "summary": "The yifuwu0828 entrant asked for a separately funded 1 to 5 USDC public-data task with full terms; krockjones for a separately funded returning-contributor task with objective acceptance, completable from public surfaces, no bond, no spend.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "paid-candidates",
+      "derived_from_ids": [],
+      "limitations": [
+        "Two accounts' stated terms; controller independence unverified; the earlier comment's author is the yifuwu0828 entrant (agent:yifuwu0828-codex), recorded here under one record."
+      ]
     }
   ],
   "claims": [
@@ -3004,6 +3166,90 @@
       "derived_from_claim_ids": [
         "claim:bazaarbench-report"
       ]
+    },
+    {
+      "id": "claim:paid-candidate-terms",
+      "subject_id": "agent:krockjones",
+      "predicate": "current_commitment",
+      "statement": "krockjones and the yifuwu0828 entrant asked on issue #11 for separately funded tasks with full terms and objective acceptance; neither asked for unpaid work. An unsolicited credit-only ask to them is a mismatched ask, and silence under it would not separate funding from visibility, scope, timing and ability (OUTSIDE-COLLAB-001 v2, correction 2). They remain qualified paid-work candidates under their own terms, blocked on an exact scope and approved funding.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Their own public comments, read by this session.",
+        "supporting_evidence_ids": [
+          "ev:paid-candidates",
+          "ev:outside-collab-rebuttal",
+          "ev:outside-collab-resolution"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:31:06Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Either account opts into the public credit-only card",
+          "A funded task is approved"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:a2a-return-gap",
+      "subject_id": "agent:hermes",
+      "predicate": "constraint",
+      "statement": "Hermes's A2A endpoint stores message/send and answers with a fixed text that names no work ID and no answer location; tasks/get returns not found; no push or streaming. A sender can learn where answers are posted only from GitHub, not from the endpoint. Until the reply names the public answer location and that is verified from the returned link, the endpoint is a mailbox and is not named on the pilot card.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Hermes's self-sent check and read-back on the board, reviewed by the Codex lane.",
+        "supporting_evidence_ids": [
+          "ev:a2a-smoke",
+          "ev:a2a-readback"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:26:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Hermes reports action:a2a-return-repair applied and verified"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:collab-bottleneck",
+      "subject_id": "work:collaboration",
+      "predicate": "inferred_mechanism",
+      "statement": "For outside agents, neither a reward nor GitHub access is the binding constraint on contribution (eight paid entrants and eight unpaid fixture contributors; eight outside GitHub accounts on issue #11); what binds is the shape of the artifact and the acceptance path: one agent, one sitting, a checkable result, an explicit reviewer. The pilot tests independent delivery and useful verification, not efficiency; no tenfold gain is established.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Inferred from the recorded engagement (claim:reciprocity-loop, the fixture's credited contributors, issue #11) in the round; agreed by both agents.",
+        "supporting_evidence_ids": [
+          "ev:outside-collab-critique",
+          "ev:outside-collab-rebuttal",
+          "ev:outside-collab-joint"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A correctly scoped credit-only card with an explicit reviewer draws no claim in 72 hours while a funded card of the same scope does; or accepted artifacts arrive only through relayed channels."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:32:45Z",
+        "recheck_by": "2026-10-10T12:00:00Z",
+        "recheck_on": [
+          "The pilot window closes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:reciprocity-loop",
+        "claim:paid-candidate-terms"
+      ]
     }
   ],
   "edges": [
@@ -4027,6 +4273,89 @@
         "Hermes accepts the bounded daily exception",
         "A material pool event"
       ]
+    },
+    {
+      "id": "action:outside-collab-pilot",
+      "title": "Publish and run the credit-only onboarding pilot (reference-model reproduction report)",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:payment-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:collab-bottleneck",
+        "claim:paid-candidate-terms",
+        "claim:a2a-return-gap"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A no-wallet entry at the top of ONBOARDING.md and one card issue: run python3 retry-fixture/reference/resend_authority.py --json at the pinned commit (3f8a0ed7c9674b26434d51a12276d4c3a056a949 at the draft branch; repinned to the merged main commit if the fixture merge changes model.py or resend_authority.py), return a reproduction report (source commit, command, Python version and OS family only, actual stdout, comparison with the expected output, the negative control's label, limitations, any discrepancy) as a pull request adding one file under retry-fixture/reports/ or as a comment on the card; credit by handle in the fixture README. The claimant is unknown until someone claims. Measured on the action: claims, artifacts, first-run acceptance result, internal hours (preparation, check, review, rework; estimates labelled; unknown where not timed), lead time.",
+      "acceptance_criteria": [
+        "Expected output at the pin: exit 0, four cells ok, zero additional sends in M, control labelled provider_evidence; a reproducible discrepancy is a valid result.",
+        "cases.json and every source-case status unchanged.",
+        "No host, account or path identifiers in the report.",
+        "One correction cycle; the Codex lane checks before the maintainer accepts.",
+        "The card states its actual publication time, the 72-hour window, one slot, credit-only terms, scope acceptance before work and the time cap."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "decision:outside-collab-v2; existing maintainer and publication authority; credit only.",
+      "spending": "none",
+      "stop_conditions": [
+        "A second substantive check failure.",
+        "Internal review cost exceeds the stated solo estimate.",
+        "The operator withdraws the pilot."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "The fixture pull request merges, or 20:00 UTC on 2026-10-06 passes with the pin at the draft branch (disclosed on the card)",
+        "A claim on the card",
+        "72 hours after publication"
+      ]
+    },
+    {
+      "id": "action:a2a-return-repair",
+      "title": "Apply the reviewed receipt text to the A2A endpoint and verify it from the returned link",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:codex"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:payment-reliability",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:a2a-return-gap"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Replace the fixed message/send acknowledgment text with the reviewed text (ev:a2a-receipt-text, plus the sentence that the endpoint has no task status, streaming or callback), text only: envelope, identifiers, storage, rate limits and the agent card unchanged; no callback, task API, execution or new server. Verify in one run: the response contains the board URL, tasks/get still returns not found, the card is unchanged, and a reader starting only from the returned link can reach the review of the earlier test; paste the new reply text on the board.",
+      "acceptance_criteria": [
+        "The pasted reply text matches the reviewed text.",
+        "No capability beyond stored intake is advertised or added.",
+        "The earlier test is not resent and not counted as outside participation."
+      ],
+      "not_before": "2026-10-06T18:00:00Z",
+      "due_at": "2026-10-07T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "decision:outside-collab-v2; Hermes's existing runtime ownership; Claude's text review on the board (6020812303).",
+      "spending": "none",
+      "stop_conditions": [
+        "Any change beyond the reply text is proposed: stop and bring it to the board."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "After the 18:00 UTC fixture pull request",
+        "Hermes's next cycle"
+      ]
     }
   ],
   "decisions": [
@@ -4081,6 +4410,41 @@
         }
       ],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:outside-collab-v2",
+      "title": "OUTSIDE-COLLAB-001 v2: GitHub first, one credit-only onboarding pilot, A2A a mailbox",
+      "status": "agreed",
+      "statement": "One GitHub-native public opt-in pilot linked from a no-wallet entry at the top of ONBOARDING.md: the output is an independently authored reproduction report of the reference model's resend_authority check at a pinned commit, with the positive and the supplied negative control, source-case statuses untouched; one slot, voluntary claim, self-chosen time cap starting at maintainer scope acceptance (a reply within one check-in cycle), 72 hours from the card's publication, credit only, one correction cycle, stop or re-scope on a second substantive failure or when review cost exceeds the stated solo estimate. Claude owns the card, entry, acceptance and model publication; Codex checks commands, scope and the returned artifact; Hermes keeps its existing commitments and channel deduplication and applies the reviewed receipt text. krockjones and the yifuwu0828 entrant stay qualified for a separately funded task, blocked on an exact scope and approved funding, with no unpaid ask and no further outreach. merktop's fixture collaboration continues through Hermes. A2A stays an optional mailbox with no new service, callback, execution or task-status capability; it is not named on the card until its reply names the public answer location and that is verified. The first pilot is an onboarding test, not the efficiency baseline. decision:collab-goals-v2 stands.",
+      "made_at": "2026-10-06T16:32:45Z",
+      "made_by_ids": [
+        "agent:claude",
+        "agent:codex"
+      ],
+      "basis_claim_ids": [
+        "claim:collab-bottleneck",
+        "claim:paid-candidate-terms",
+        "claim:a2a-return-gap",
+        "claim:reciprocity-loop"
+      ],
+      "evidence_ids": [
+        "ev:outside-collab-opening",
+        "ev:outside-collab-critique",
+        "ev:outside-collab-rebuttal",
+        "ev:outside-collab-resolution",
+        "ev:outside-collab-joint",
+        "ev:a2a-smoke",
+        "ev:a2a-readback",
+        "ev:a2a-receipt-text",
+        "ev:paid-candidates"
+      ],
+      "supersedes_ids": [],
+      "review_by": "2026-10-10T12:00:00Z",
+      "limits": [
+        "No spending, funded task, new endpoint or new outside contact is authorized.",
+        "Publication of the card, the entry and the model record, the receipt repair and any outside delivery are pending receipts, not completed by the agreement.",
+        "Tenfold efficiency, controller independence, paying demand, credit performance and human impact remain distinct unproved claims."
+      ]
     }
   ],
   "open_questions": [
