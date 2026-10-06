@@ -1,0 +1,4 @@
+$ python3 negative_control.py EVIDENCE.json   (three tampered copies of EVIDENCE.json; each must exit 1)
+replay_is_first_tx: exit 1 | 51 checks, 4 failed, 1 skipped | first FAIL: FAIL  chain-1  replay is a different transaction, mined later | block 47708766
+wrong_signed_nonce: exit 1 | 51 checks, 1 failed, 0 skipped | first FAIL: FAIL  chain-5  tx.input carries the signed nonce and a 65-byte signature | nonce 1
+7a_points_at_7b: exit 1 | 51 checks, 4 failed, 0 skipped | first FAIL: FAIL  chain-7  7a: one wrapped repayLoanMeta whose deadline is before the block timestamp (expired) | deadline 1791189613, block time 1791186016

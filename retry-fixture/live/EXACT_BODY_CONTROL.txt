@@ -1,0 +1,7 @@
+$ python3 exact_body_control.py AGENTMAIL_LIVE.json EXACT_BODY_CONTROL.json   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; run once, 2026-10-05 16:43 UTC)
+control-exact  POST key=0ac6aa65 -> 403 MessageRejectedError
+retry-A        POST key=b14d931e -> 200 <010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>
+send requests: 2 | stopped: None
+messages_before 6
+messages_after 6
+exit 0

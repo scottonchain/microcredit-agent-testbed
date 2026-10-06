@@ -1,0 +1,7 @@
+$ python3 same_key_retry.py AGENTMAIL_LIVE.json SAME_KEY_RETRY.json --steps A   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; run once, 2026-10-05 16:35 UTC)
+control  POST key=198fc77a -> 403 MessageRejectedError
+retry-A  POST key=b14d931e -> 200 <010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>
+send requests: 2 | stopped: None
+messages_before {'recorded_run': 6, 'this_run': 0}
+messages_after {'recorded_run': 6, 'this_run': 0}
+exit 0

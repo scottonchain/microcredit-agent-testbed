@@ -1,0 +1,82 @@
+{
+ "run": "20261005T140846Z-74eabe",
+ "reads": [
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "full subject of step A",
+   "status": 200,
+   "count": 0,
+   "run_messages_returned": 0
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "full subject of step D",
+   "status": 200,
+   "count": 0,
+   "run_messages_returned": 0
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "full subject of step E",
+   "status": 200,
+   "count": 0,
+   "run_messages_returned": 0
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "full subject of step F1",
+   "status": 200,
+   "count": 1,
+   "run_messages_returned": 1
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "full subject of step F2",
+   "status": 200,
+   "count": 1,
+   "run_messages_returned": 1
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "'rf-live'",
+   "status": 200,
+   "count": 6,
+   "run_messages_returned": 6
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "the run id",
+   "status": 200,
+   "count": 6,
+   "run_messages_returned": 6
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "'step'",
+   "status": 200,
+   "count": 6,
+   "run_messages_returned": 6
+  },
+  {
+   "t": "2026-10-05T14:36:28Z",
+   "filter": "'step-A'",
+   "status": 200,
+   "count": 0,
+   "run_messages_returned": 0
+  },
+  {
+   "t": "2026-10-05T14:36:29Z",
+   "filter": "'live ' + run id",
+   "status": 200,
+   "count": 6,
+   "run_messages_returned": 6
+  },
+  {
+   "t": "2026-10-05T14:36:29Z",
+   "filter": "none (unfiltered list)",
+   "status": 200,
+   "count": 6,
+   "run_messages_returned": 6
+  }
+ ]
+}

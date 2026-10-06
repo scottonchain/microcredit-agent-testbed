@@ -1,0 +1,53 @@
+verify_live_run.py | rpc https://sepolia.base.org | chain id 84532 | pool 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8
+PASS  setup    rpc chain id is Base Sepolia (84532)
+PASS  s3_chain1_first_submission receipt block matches the record | 47710455
+PASS  s3_chain1_first_submission tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-5  tx.input decodes as repayLoanMeta: borrower recoverable | 0x4040cd3cbd3e5d42fc319f06070d10e6c23b1b83
+PASS  chain-5  tx.input decodes as repayLoanMeta: loanId recoverable | 15
+PASS  chain-5  tx.input carries the signed nonce and a 65-byte signature | nonce 1
+PASS  chain-1  first submission: status 1
+PASS  chain-3  exactly one MetaLoanRepaid in the receipt | 1
+PASS  chain-3  receipt event names borrower and loanId (indexed) and carries 32 bytes of data (amount only): no nonce, no request digest | topics 3, data 32 bytes
+PASS  chain-4  nonces(signer) at block-1 equals the signed nonce | 1
+PASS  chain-4  nonces(signer) at the receipt block is one past it: the request landed | 2
+PASS  chain-5  the nonce in the calldata is the one that moved
+PASS  chain-4  loan open with outstanding > 0 before, outstanding 0 and closed after | before 40000000 after 0
+PASS  chain-1  the one landed request pulled exactly the balance delta from the borrower | 40000000
+PASS  s4_chain1_replay_same_calldata receipt block matches the record | 47710457
+PASS  s4_chain1_replay_same_calldata tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-1  replay tx input is byte-identical to the first submission's input
+PASS  chain-1  replay is a different transaction, mined later | block 47710457
+PASS  chain-1  replay reverted on chain (status 0) and emitted nothing | gas used 33650
+PASS  chain-1  nonce unchanged across the replay block, already one past the replayed request | 2 -> 2
+PASS  chain-1  borrower balance unchanged across the replay block
+PASS  chain-1  replayed call reverts at the nonce check ('Bad nonce' on the pre-redesign build, InvalidNonce() on the live build) | 'InvalidNonce()'
+PASS  s5_chain2_fresh_signature_after_landed_repay receipt block matches the record | 47710460
+PASS  s5_chain2_fresh_signature_after_landed_repay tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-2  fresh request: same borrower and loanId, next nonce, new signature | nonce 2
+PASS  chain-2  a permit with value >= the former outstanding was supplied (a pull could have succeeded) | 100000000
+PASS  chain-2  reverted on chain (status 0), emitted nothing | gas used 42627
+PASS  chain-2  nonce not consumed by the reverted fresh request | 2 -> 2
+PASS  chain-2  borrower balance unchanged: nothing pulled
+PASS  chain-2  reverts because the loan is no longer active ('Loan inactive' on the pre-redesign build, LoanNotActive() on the live build) | 'LoanNotActive()'
+PASS  s8_chain6_repay_through_wrapper receipt block matches the record | 47710471
+PASS  s8_chain6_repay_through_wrapper tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-6  tx.to is the wrapper, not the pool | 0xdcfe4da6f1e3b9e06115171c2ddbac0d24c10fc6
+PASS  chain-6  top-level selector is the wrapper's, not repayLoanMeta's | 0x6fadcf72
+PASS  chain-6  one level down the inner call is repayLoanMeta to the pool for this borrower | loanId 16 nonce 3
+PASS  chain-6  status 1 and MetaLoanRepaid emitted by the pool
+PASS  chain-6  nonces(signer) still shows the request landed: [n, n+1) with n the inner call's nonce | 3 -> 4
+PASS  s11_chain7a_envelope_with_expired_intent receipt block matches the record | 47710478
+PASS  s11_chain7a_envelope_with_expired_intent tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-7  7a: tx.to is the envelope
+PASS  chain-7  7a: one wrapped repayLoanMeta whose deadline is before the block timestamp (expired) | deadline 1791189120, block time 1791189244
+PASS  chain-7  7a: the envelope tx succeeded (status 1) and the pool emitted no MetaLoanRepaid | logs 0
+PASS  chain-7  7a: nonces(signer) unchanged: the wrapped intent did not land, only the nonce says so | 5 -> 5
+PASS  chain-7  7a: loan still open and owed after the successful envelope tx | 40000000
+PASS  s12_chain7b_two_intents_one_lands receipt block matches the record | 47710480
+PASS  s12_chain7b_two_intents_one_lands tx sent by the relayer address | 0x5e4dc7639d2b94006c51ad5373173f5e01c248f9
+PASS  chain-7  7b: two wrapped intents of one signer with consecutive nonces, the second expired | nonces 5,6
+PASS  chain-7  7b: envelope status 1 with exactly one MetaLoanRepaid
+PASS  chain-7  7b: exactly one nonce consumed; the range [n, n+1) names intent 0 (nonce n) as the one that landed | 5 -> 6
+PASS  chain-7  7b: the landed intent closed the loan
+PASS  setup    borrower address has sent no transaction of its own
+51 checks, 0 failed, 0 skipped

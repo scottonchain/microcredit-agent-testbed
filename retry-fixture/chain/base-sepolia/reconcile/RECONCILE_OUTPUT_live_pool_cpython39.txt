@@ -1,0 +1,18 @@
+$ python3.9 reconcile_journal.py JOURNAL_live_pool.jsonl   (CPython 3.9.25)
+journal JOURNAL_live_pool.jsonl: 28 rows = 13 intent, 13 broadcast (0 without a matching intent row), 2 other (estimate_gas_failed); pool 0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8; rpc https://sepolia.base.org
+--        s0                                     0x2d9ce24b87 settled by receipt: status 1
+--        s1                                     0xd813e1fe3e settled by receipt: status 1
+--        s6                                     0xb1f2465436 settled by receipt: status 1, created 0xdcfe4da6f1e3b9e06115171c2ddbac0d24c10fc6
+--        s9                                     0xbe51d6a20b settled by receipt: status 1, created 0x480a6c549336723da3139b49e5596348863f67ce
+LANDED    s10_borrow_loan_c        borrowAndDisburseMeta        nonce 4  0x87c064e5fc  block 47710475: receipt block 47710475: nonces(signer) 4 -> 5, status 1; range [4, 5) names nonce 4
+NOT LANDED s11                      repayLoanMeta via batch[0]   nonce 5  0x9ab0deb672  block 47710478: receipt block 47710478: nonces(signer) 5 -> 5, status 1; nonce 5 unmoved (envelope succeeded, intent did not)
+LANDED    s12                      repayLoanMeta via batch[0]   nonce 5  0x0c640d8015  block 47710480: receipt block 47710480: nonces(signer) 5 -> 6, status 1; range [5, 6) names nonce 5
+NOT LANDED s12                      repayLoanMeta via batch[1]   nonce 6  0x0c640d8015  block 47710480: receipt block 47710480: nonces(signer) 5 -> 6, status 1; nonce 6 unmoved (envelope succeeded, intent did not)
+LANDED    s2_borrow_loan_a         borrowAndDisburseMeta        nonce 0  0x84274fe73f  block 47710448: receipt block 47710448: nonces(signer) 0 -> 1, status 1; range [0, 1) names nonce 0
+LANDED    s3                       repayLoanMeta                nonce 1  0x3b7dc05845  block 47710455: receipt block 47710455: nonces(signer) 1 -> 2, status 1; range [1, 2) names nonce 1
+NOT LANDED s4                       repayLoanMeta                nonce 1  0xc00e240c24  block 47710457: receipt block 47710457: nonces(signer) 2 -> 2, status 0; nonce 1 unmoved (tx reverted)
+NOT LANDED s5                       repayLoanMeta                nonce 2  0xbe780d48dd  block 47710460: receipt block 47710460: nonces(signer) 2 -> 2, status 0; nonce 2 unmoved (tx reverted)
+LANDED    s7_borrow_loan_b         borrowAndDisburseMeta        nonce 2  0x068eb123b8  block 47710464: receipt block 47710464: nonces(signer) 2 -> 3, status 1; range [2, 3) names nonce 2
+LANDED    s8                       repayLoanMeta via forward    nonce 3  0xcebdb973c4  block 47710471: receipt block 47710471: nonces(signer) 3 -> 4, status 1; range [3, 4) names nonce 3
+signed intents: 10 | landed 6, not landed 4, ambiguous 0, mismatch 0, unknown 0 | plain rows: 4 | latest nonces(signer): {'0x4040cd3cbd3e5d42fc319f06070d10e6c23b1b83': 6}
+exit 0

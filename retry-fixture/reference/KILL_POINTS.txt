@@ -1,0 +1,55 @@
+$ python3 retry-fixture/reference/kill_points.py
+design kill reading lag  messages  records surviving the kill            final_row  steps
+pre    K1   R0      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre    K1   R0      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre    K1   R2      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre    K1   R2      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre    K2   R0      L10  0         [('pending', 'before the provider call')] unknown    recover -> unknown | unresolved | unresolved
+pre    K2   R0      LH   0         [('pending', 'before the provider call')] unknown    recover -> unknown | unresolved | unresolved
+pre    K2   R2      L10  1         [('pending', 'before the provider call')] confirmed  recover -> unknown | receipt_negative -> dispatched
+pre    K2   R2      LH   0         [('pending', 'before the provider call')] unknown    recover -> unknown | unresolved_bound_not_met | unresolved_bound_not_met
+pre    K3   R0      L10  1         [('pending', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre    K3   R0      LH   1         [('pending', 'before the provider call')] unknown    recover -> unknown | unresolved | unresolved
+pre    K3   R2      L10  1         [('pending', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre    K3   R2      LH   1         [('pending', 'before the provider call')] unknown    recover -> unknown | unresolved_bound_not_met | unresolved_bound_not_met
+pre    T    R0      L10  1         [('timeout', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre    T    R0      LH   1         [('timeout', 'before the provider call')] unknown    recover -> unknown | unresolved | unresolved
+pre    T    R2      L10  1         [('timeout', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre    T    R2      LH   1         [('timeout', 'before the provider call')] unknown    recover -> unknown | unresolved_bound_not_met | unresolved_bound_not_met
+post   K1   R0      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K1   R0      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K1   R2      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K1   R2      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K2   R0      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K2   R0      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K2   R2      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K2   R2      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K3   R0      L10  2         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K3   R0      LH   2         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K3   R2      L10  2         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   K3   R2      LH   2         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+post   T    R0      L10  1         [('timeout', 'after the provider call')] confirmed  recover -> unknown | verify -> confirmed
+post   T    R0      LH   1         [('timeout', 'after the provider call')] unknown    recover -> unknown | unresolved | unresolved
+post   T    R2      L10  1         [('timeout', 'after the provider call')] confirmed  recover -> unknown | verify -> confirmed
+post   T    R2      LH   1         [('timeout', 'after the provider call')] unknown    recover -> unknown | unresolved_bound_not_met | unresolved_bound_not_met
+pre*   K1   R0      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K1   R0      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K1   R2      L10  1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K1   R2      LH   1         []                                     confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K2   R0      L10  1         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K2   R0      LH   1         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K2   R2      L10  1         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K2   R2      LH   1         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K3   R0      L10  2         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K3   R0      LH   2         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K3   R2      L10  2         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   K3   R2      LH   2         [('pending', 'before the provider call')] confirmed  recover -> failed_by_our_own_hand | resend -> accepted
+pre*   T    R0      L10  1         [('timeout', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre*   T    R0      LH   1         [('timeout', 'before the provider call')] unknown    recover -> unknown | unresolved | unresolved
+pre*   T    R2      L10  1         [('timeout', 'before the provider call')] confirmed  recover -> unknown | verify -> confirmed
+pre*   T    R2      LH   1         [('timeout', 'before the provider call')] unknown    recover -> unknown | unresolved_bound_not_met | unresolved_bound_not_met
+duplicates (more than one message at the provider): [('post', 'K3', 'R0', 'L10'), ('post', 'K3', 'R0', 'LH'), ('post', 'K3', 'R2', 'L10'), ('post', 'K3', 'R2', 'LH'), ('pre*', 'K3', 'R0', 'L10'), ('pre*', 'K3', 'R0', 'LH'), ('pre*', 'K3', 'R2', 'L10'), ('pre*', 'K3', 'R2', 'LH')]
+never delivered (stuck rows): [('pre', 'K2', 'R0', 'L10'), ('pre', 'K2', 'R0', 'LH'), ('pre', 'K2', 'R2', 'LH')]
+pre-call design, duplicates at any kill point: []
+48 cells, 48 as stated, 0 problem(s)
+exit 0

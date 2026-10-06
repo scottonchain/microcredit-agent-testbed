@@ -1,0 +1,1429 @@
+{
+ "what": "retry-fixture email-14 live check on AgentMail; see agentmail_live_check.py",
+ "run": "20261005T140846Z-74eabe",
+ "stopped": null,
+ "send_requests": 16,
+ "summary": {
+  "run": "20261005T140846Z-74eabe",
+  "A_retry_same_key": {
+   "first": 200,
+   "retry": 200,
+   "same_message_id": true,
+   "sent_messages": 1
+  },
+  "B_same_key_other_subject": {
+   "status": 409,
+   "code": "conflict",
+   "sent_messages": 0
+  },
+  "C_empty_key": {
+   "status": 400,
+   "code": "validation_error",
+   "sent_messages": 0
+  },
+  "client_timeout_ms": 240,
+  "D_client_timeout_then_same_key": {
+   "first": "gave up after 240 ms without a response and closed the connection",
+   "retry": 200,
+   "retry_message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+   "sent_messages": 1,
+   "sent": [
+    {
+     "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+     "timestamp": "2026-10-05T14:09:18.898Z",
+     "created_at": "2026-10-05T14:09:18.898Z"
+    }
+   ],
+   "first_written_at": "2026-10-05T14:09:18.858Z",
+   "retry_written_at": "2026-10-05T14:09:24.120Z"
+  },
+  "E_client_timeout_then_no_key": {
+   "first": "gave up after 240 ms without a response and closed the connection",
+   "retry": 200,
+   "retry_message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+   "sent_messages": 2,
+   "sent": [
+    {
+     "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+     "timestamp": "2026-10-05T14:09:29.527Z",
+     "created_at": "2026-10-05T14:09:29.527Z"
+    },
+    {
+     "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+     "timestamp": "2026-10-05T14:09:24.266Z",
+     "created_at": "2026-10-05T14:09:24.266Z"
+    }
+   ],
+   "first_written_at": "2026-10-05T14:09:24.226Z",
+   "retry_written_at": "2026-10-05T14:09:29.489Z"
+  },
+  "F_concurrent_same_key": [
+   {
+    "trial": 1,
+    "status": [
+     200,
+     409
+    ],
+    "code": [
+     null,
+     "conflict"
+    ],
+    "message_id": [
+     "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+     null
+    ],
+    "t_sent": [
+     "2026-10-05T14:09:29.815Z",
+     "2026-10-05T14:09:29.815Z"
+    ],
+    "latency_ms": [
+     375,
+     141
+    ],
+    "error": [
+     null,
+     null
+    ],
+    "sent_messages": 1
+   },
+   {
+    "trial": 2,
+    "status": [
+     200,
+     409
+    ],
+    "code": [
+     null,
+     "conflict"
+    ],
+    "message_id": [
+     "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+     null
+    ],
+    "t_sent": [
+     "2026-10-05T14:09:32.224Z",
+     "2026-10-05T14:09:32.224Z"
+    ],
+    "latency_ms": [
+     353,
+     151
+    ],
+    "error": [
+     null,
+     null
+    ],
+    "sent_messages": 1
+   },
+   {
+    "trial": 3,
+    "status": [
+     403,
+     409
+    ],
+    "code": [
+     "message_rejected",
+     "conflict"
+    ],
+    "message_id": [
+     null,
+     null
+    ],
+    "t_sent": [
+     "2026-10-05T14:09:34.611Z",
+     "2026-10-05T14:09:34.610Z"
+    ],
+    "latency_ms": [
+     125,
+     87
+    ],
+    "error": [
+     null,
+     null
+    ],
+    "sent_messages": 0
+   }
+  ],
+  "L_read_paths": [
+   {
+    "sample": "A1",
+    "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+    "first_seen_s": {
+     "get_by_id": 0.24,
+     "list": 0.35,
+     "list_subject": null
+    },
+    "misses_before_first_seen": {
+     "get_by_id": 0,
+     "list": 0,
+     "list_subject": 19
+    },
+    "polls": 19
+   },
+   {
+    "sample": "L2",
+    "message_id": null,
+    "first_seen_s": {
+     "get_by_id": null,
+     "list": null,
+     "list_subject": null
+    },
+    "misses_before_first_seen": {
+     "get_by_id": 0,
+     "list": 0,
+     "list_subject": 0
+    },
+    "polls": 0
+   },
+   {
+    "sample": "L3",
+    "message_id": null,
+    "first_seen_s": {
+     "get_by_id": null,
+     "list": null,
+     "list_subject": null
+    },
+    "misses_before_first_seen": {
+     "get_by_id": 0,
+     "list": 0,
+     "list_subject": 0
+    },
+    "polls": 0
+   }
+  ],
+  "Z_counts_by_step": {
+   "A": {
+    "items": 1,
+    "labelled_sent": 1,
+    "labelled_received": 0
+   },
+   "D": {
+    "items": 1,
+    "labelled_sent": 1,
+    "labelled_received": 0
+   },
+   "E": {
+    "items": 2,
+    "labelled_sent": 2,
+    "labelled_received": 0
+   },
+   "F1": {
+    "items": 1,
+    "labelled_sent": 1,
+    "labelled_received": 0
+   },
+   "F2": {
+    "items": 1,
+    "labelled_sent": 1,
+    "labelled_received": 0
+   }
+  },
+  "list_response_keys_seen": [
+   "count",
+   "limit",
+   "messages"
+  ],
+  "list_response_header_names_seen": [
+   "apigw-requestid",
+   "connection",
+   "content-length",
+   "content-type",
+   "date",
+   "strict-transport-security",
+   "via",
+   "x-amz-cf-id",
+   "x-amz-cf-pop",
+   "x-cache"
+  ],
+  "send_requests": 16
+ },
+ "requests": [
+  {
+   "step": "pre",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>",
+   "idempotency_key": null,
+   "body": null,
+   "t_sent": "2026-10-05T14:08:46.554Z",
+   "t_written": "2026-10-05T14:08:46.605Z",
+   "status": 200,
+   "response": {
+    "organization_id": "<org>",
+    "pod_id": "<org>",
+    "inbox_id": "<inbox>",
+    "email": "<inbox>",
+    "display_name": "Hermes AI agent",
+    "updated_at": "2026-10-04T14:19:48.726Z",
+    "created_at": "2026-10-04T14:19:48.726Z"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "290",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:08:46 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:08:46.778Z",
+   "latency_ms": 224,
+   "server_ms": 173
+  },
+  {
+   "step": "A1",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "b14d931e-cd0e-4bfc-8b33-ffc8dd59c536",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-A",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step A. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:08:46.801Z",
+   "t_written": "2026-10-05T14:08:46.851Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+    "thread_id": "2c5c0cb9-947f-4294-88d4-9c435108f623"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:08:47 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:08:47.329Z",
+   "latency_ms": 528,
+   "server_ms": 479
+  },
+  {
+   "step": "A2",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "b14d931e-cd0e-4bfc-8b33-ffc8dd59c536",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-A",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step A. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:18.502Z",
+   "t_written": "2026-10-05T14:09:18.508Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+    "thread_id": "2c5c0cb9-947f-4294-88d4-9c435108f623"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:18 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:18.650Z",
+   "latency_ms": 148,
+   "server_ms": 142
+  },
+  {
+   "step": "B",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "b14d931e-cd0e-4bfc-8b33-ffc8dd59c536",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-B",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step B. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:18.665Z",
+   "t_written": "2026-10-05T14:09:18.671Z",
+   "status": 409,
+   "response": {
+    "name": "IdempotencyKeyConflictError",
+    "code": "conflict",
+    "message": "Idempotency-Key was already used for a different message",
+    "fix": "Reuse an Idempotency-Key only to retry the identical request. To send a different message, generate a new Idempotency-Key.",
+    "docs": "https://docs.agentmail.to/errors#conflict"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "307",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:18 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:18.748Z",
+   "latency_ms": 83,
+   "server_ms": 77
+  },
+  {
+   "step": "C",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-C",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step C. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:18.764Z",
+   "t_written": "2026-10-05T14:09:18.770Z",
+   "status": 400,
+   "response": {
+    "name": "ValidationError",
+    "code": "validation_error",
+    "message": "Request validation failed",
+    "errors": [
+     {
+      "code": "invalid_format",
+      "format": "custom",
+      "path": [
+       "headers",
+       "Idempotency-Key"
+      ],
+      "message": "Idempotency-Key must contain only the following characters: A-Z a-z 0-9 - . _ ~"
+     }
+    ],
+    "fix": "One or more request fields are invalid. Inspect the 'errors' array — each entry has a 'path' and 'message' — correct the offending fields and resend.",
+    "docs": "https://docs.agentmail.to/errors#validation_error"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "495",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:18 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:18.836Z",
+   "latency_ms": 72,
+   "server_ms": 66
+  },
+  {
+   "step": "D1",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "82ab3cf9-86c7-4c40-8df7-7f927462f90b",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-D",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step D. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:18.850Z",
+   "t_written": "2026-10-05T14:09:18.858Z",
+   "client": "gave up after 240 ms without a response and closed the connection",
+   "t_closed": "2026-10-05T14:09:19.098Z"
+  },
+  {
+   "step": "D2",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "82ab3cf9-86c7-4c40-8df7-7f927462f90b",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-D",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step D. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:24.114Z",
+   "t_written": "2026-10-05T14:09:24.120Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+    "thread_id": "ea5dccd2-7d4c-426c-9ec9-73768d3e09da"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:24 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:24.206Z",
+   "latency_ms": 92,
+   "server_ms": 86
+  },
+  {
+   "step": "E1",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": null,
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-E",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step E. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:24.216Z",
+   "t_written": "2026-10-05T14:09:24.226Z",
+   "client": "gave up after 240 ms without a response and closed the connection",
+   "t_closed": "2026-10-05T14:09:24.466Z"
+  },
+  {
+   "step": "E2",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": null,
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-E",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step E. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:29.481Z",
+   "t_written": "2026-10-05T14:09:29.489Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+    "thread_id": "8429c92b-a223-48fb-a563-0d320560c33b"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:29 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:29.788Z",
+   "latency_ms": 306,
+   "server_ms": 299
+  },
+  {
+   "step": "F1b",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "e4590485-ecf2-4286-a21f-76215fc6971f",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F1. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:29.815Z",
+   "t_written": "2026-10-05T14:09:29.815Z",
+   "status": 409,
+   "response": {
+    "name": "ConflictError",
+    "code": "conflict",
+    "message": "A send with this Idempotency-Key is already in progress",
+    "fix": "The original request is still processing. Wait briefly and retry the identical request: once the first attempt completes, the retry returns its send; if the first attempt failed without completing, the key becomes retryable again after a short window.",
+    "docs": "https://docs.agentmail.to/errors#conflict"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "421",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:29 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:29.956Z",
+   "latency_ms": 141,
+   "server_ms": 140
+  },
+  {
+   "step": "F1a",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "e4590485-ecf2-4286-a21f-76215fc6971f",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F1. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:29.815Z",
+   "t_written": "2026-10-05T14:09:29.815Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+    "thread_id": "134d72fb-25fa-4f40-b37e-3165fbee2bbf"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:30 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:30.190Z",
+   "latency_ms": 375,
+   "server_ms": 375
+  },
+  {
+   "step": "F2b",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "e0bc6377-a595-44e4-b58b-a403b348af88",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F2. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:32.224Z",
+   "t_written": "2026-10-05T14:09:32.224Z",
+   "status": 409,
+   "response": {
+    "name": "ConflictError",
+    "code": "conflict",
+    "message": "A send with this Idempotency-Key is already in progress",
+    "fix": "The original request is still processing. Wait briefly and retry the identical request: once the first attempt completes, the retry returns its send; if the first attempt failed without completing, the key becomes retryable again after a short window.",
+    "docs": "https://docs.agentmail.to/errors#conflict"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "421",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:32 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:32.375Z",
+   "latency_ms": 151,
+   "server_ms": 151
+  },
+  {
+   "step": "F2a",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "e0bc6377-a595-44e4-b58b-a403b348af88",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F2. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:32.224Z",
+   "t_written": "2026-10-05T14:09:32.224Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+    "thread_id": "1aaa36e5-dfa2-4e08-9c69-da6cdf221e39"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:32 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:32.576Z",
+   "latency_ms": 353,
+   "server_ms": 353
+  },
+  {
+   "step": "F3b",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "edf5b968-01ee-438a-8836-030aef5d96b2",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F3",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F3. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:34.610Z",
+   "t_written": "2026-10-05T14:09:34.611Z",
+   "status": 409,
+   "response": {
+    "name": "ConflictError",
+    "code": "conflict",
+    "message": "A send with this Idempotency-Key is already in progress",
+    "fix": "The original request is still processing. Wait briefly and retry the identical request: once the first attempt completes, the retry returns its send; if the first attempt failed without completing, the key becomes retryable again after a short window.",
+    "docs": "https://docs.agentmail.to/errors#conflict"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "421",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:34 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:34.697Z",
+   "latency_ms": 87,
+   "server_ms": 86
+  },
+  {
+   "step": "F3a",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "edf5b968-01ee-438a-8836-030aef5d96b2",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-F3",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step F3. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:34.611Z",
+   "t_written": "2026-10-05T14:09:34.611Z",
+   "status": 403,
+   "response": {
+    "name": "MessageRejectedError",
+    "code": "message_rejected",
+    "message": "Message rejected: this message was classified as spam, and this organization has exceeded its budget of 5 spam-flagged messages today. Messages classified as spam are blocked until the daily window resets at 2026-10-06T00:00:00.000Z.",
+    "fix": "Messages that are not classified as spam still send normally. Revise the content to avoid spam patterns, or wait for the reset time in the message. This block applies only to free-tier organizations, and the daily budget is smaller for new accounts and accounts with elevated bounce or sending-limit activity. If you believe this classification is wrong, contact support@agentmail.to.",
+    "docs": "https://docs.agentmail.to/errors#message_rejected"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "755",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:34 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:34.735Z",
+   "latency_ms": 125,
+   "server_ms": 125
+  },
+  {
+   "step": "L2",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "237d8eaf-ece2-4df0-adf1-6bfc8d06302a",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-L2",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step L2. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:36.751Z",
+   "t_written": "2026-10-05T14:09:36.757Z",
+   "status": 403,
+   "response": {
+    "name": "MessageRejectedError",
+    "code": "message_rejected",
+    "message": "Message rejected: this message was classified as spam, and this organization has exceeded its budget of 5 spam-flagged messages today. Messages classified as spam are blocked until the daily window resets at 2026-10-06T00:00:00.000Z.",
+    "fix": "Messages that are not classified as spam still send normally. Revise the content to avoid spam patterns, or wait for the reset time in the message. This block applies only to free-tier organizations, and the daily budget is smaller for new accounts and accounts with elevated bounce or sending-limit activity. If you believe this classification is wrong, contact support@agentmail.to.",
+    "docs": "https://docs.agentmail.to/errors#message_rejected"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "755",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:36 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:36.879Z",
+   "latency_ms": 128,
+   "server_ms": 122
+  },
+  {
+   "step": "L3",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "c5fc5aa3-bd7d-4751-8242-bd87bdffc084",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-L3",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step L3. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-05T14:09:36.893Z",
+   "t_written": "2026-10-05T14:09:36.900Z",
+   "status": 403,
+   "response": {
+    "name": "MessageRejectedError",
+    "code": "message_rejected",
+    "message": "Message rejected: this message was classified as spam, and this organization has exceeded its budget of 5 spam-flagged messages today. Messages classified as spam are blocked until the daily window resets at 2026-10-06T00:00:00.000Z.",
+    "fix": "Messages that are not classified as spam still send normally. Revise the content to avoid spam patterns, or wait for the reset time in the message. This block applies only to free-tier organizations, and the daily budget is smaller for new accounts and accounts with elevated bounce or sending-limit activity. If you believe this classification is wrong, contact support@agentmail.to.",
+    "docs": "https://docs.agentmail.to/errors#message_rejected"
+   },
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "755",
+    "connection": "keep-alive",
+    "date": "Mon, 05 Oct 2026 14:09:37 GMT",
+    "x-cache": "Error from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   },
+   "t_response": "2026-10-05T14:09:37.086Z",
+   "latency_ms": 192,
+   "server_ms": 185
+  }
+ ],
+ "probes": [
+  {
+   "sample": "A1",
+   "path": "get_by_id",
+   "poll": 1,
+   "elapsed_s": 0.24,
+   "status": 200,
+   "found": true,
+   "labels": [
+    "sent"
+   ],
+   "response_keys": [
+    "created_at",
+    "extracted_html",
+    "extracted_text",
+    "from",
+    "html",
+    "inbox_id",
+    "labels",
+    "message_id",
+    "organization_id",
+    "pod_id",
+    "preview",
+    "size",
+    "smtp_id",
+    "subject",
+    "text",
+    "thread_id",
+    "timestamp",
+    "to",
+    "updated_at"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list",
+   "poll": 1,
+   "elapsed_s": 0.35,
+   "status": 200,
+   "found": true,
+   "labels": [
+    "sent"
+   ],
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 1,
+   "elapsed_s": 0.46,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 2,
+   "elapsed_s": 2.11,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 3,
+   "elapsed_s": 3.8,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 4,
+   "elapsed_s": 5.42,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 5,
+   "elapsed_s": 7.1,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 6,
+   "elapsed_s": 8.74,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 7,
+   "elapsed_s": 10.34,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 8,
+   "elapsed_s": 11.93,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 9,
+   "elapsed_s": 13.53,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 10,
+   "elapsed_s": 15.15,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 11,
+   "elapsed_s": 16.74,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 12,
+   "elapsed_s": 18.33,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 13,
+   "elapsed_s": 19.92,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 14,
+   "elapsed_s": 21.57,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 15,
+   "elapsed_s": 23.17,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 16,
+   "elapsed_s": 24.81,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 17,
+   "elapsed_s": 26.4,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 18,
+   "elapsed_s": 28.07,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  },
+  {
+   "sample": "A1",
+   "path": "list_subject",
+   "poll": 19,
+   "elapsed_s": 29.66,
+   "status": 200,
+   "found": false,
+   "labels": null,
+   "response_keys": [
+    "count",
+    "limit",
+    "messages"
+   ],
+   "response_headers": [
+    "apigw-requestid",
+    "connection",
+    "content-length",
+    "content-type",
+    "date",
+    "strict-transport-security",
+    "via",
+    "x-amz-cf-id",
+    "x-amz-cf-pop",
+    "x-cache"
+   ],
+   "error": null
+  }
+ ],
+ "messages_by_step": {
+  "F2": [
+   {
+    "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+    "thread_id": "1aaa36e5-dfa2-4e08-9c69-da6cdf221e39",
+    "timestamp": "2026-10-05T14:09:32.266Z",
+    "created_at": "2026-10-05T14:09:32.266Z",
+    "labels": [
+     "sent"
+    ]
+   }
+  ],
+  "F1": [
+   {
+    "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+    "thread_id": "134d72fb-25fa-4f40-b37e-3165fbee2bbf",
+    "timestamp": "2026-10-05T14:09:29.862Z",
+    "created_at": "2026-10-05T14:09:29.862Z",
+    "labels": [
+     "sent"
+    ]
+   }
+  ],
+  "E": [
+   {
+    "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+    "thread_id": "8429c92b-a223-48fb-a563-0d320560c33b",
+    "timestamp": "2026-10-05T14:09:29.527Z",
+    "created_at": "2026-10-05T14:09:29.527Z",
+    "labels": [
+     "sent"
+    ]
+   },
+   {
+    "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+    "thread_id": "ea3ce522-75e5-413f-9876-9b02a00fe2a0",
+    "timestamp": "2026-10-05T14:09:24.266Z",
+    "created_at": "2026-10-05T14:09:24.266Z",
+    "labels": [
+     "sent"
+    ]
+   }
+  ],
+  "D": [
+   {
+    "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+    "thread_id": "ea5dccd2-7d4c-426c-9ec9-73768d3e09da",
+    "timestamp": "2026-10-05T14:09:18.898Z",
+    "created_at": "2026-10-05T14:09:18.898Z",
+    "labels": [
+     "sent"
+    ]
+   }
+  ],
+  "A": [
+   {
+    "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+    "thread_id": "2c5c0cb9-947f-4294-88d4-9c435108f623",
+    "timestamp": "2026-10-05T14:08:46.953Z",
+    "created_at": "2026-10-05T14:08:46.953Z",
+    "labels": [
+     "sent"
+    ]
+   }
+  ]
+ }
+}

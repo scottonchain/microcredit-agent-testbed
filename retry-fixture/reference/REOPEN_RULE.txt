@@ -1,0 +1,19 @@
+$ python3 retry-fixture/reference/reopen_rule.py
+path    setup  index_lag_s  messages_at_provider  old_row    fresh_row  re-opened_at_s  executions
+wait    S1     1000000      1                     unknown    -          -               5
+wait    S2     0            0                     unknown    -          -               5
+wait    S3     10           1                     confirmed  -          -               1
+wait    S4     10           0                     unknown    -          -               5
+reopen  S1     1000000      2                     unknown    confirmed  92              2
+reopen  S2     0            1                     unknown    confirmed  92              2
+reopen  S3     10           1                     confirmed  -          -               1
+reopen  S4     10           1                     unknown    confirmed  92              2
+reopen  sweep  10           1                     confirmed  -          -               1
+reopen  sweep  60           1                     confirmed  -          -               2
+reopen  sweep  92           1                     confirmed  -          -               2
+reopen  sweep  93           2                     unknown    confirmed  92              2
+reopen  sweep  1000000      2                     unknown    confirmed  92              2
+duplicates (more than one message at the provider): [('reopen', 'S1', 1000000), ('reopen', 'sweep', 93), ('reopen', 'sweep', 1000000)]
+never delivered: [('wait', 'S2', 0), ('wait', 'S4', 10)]
+13 cells, 13 as stated, 0 problem(s)
+exit 0

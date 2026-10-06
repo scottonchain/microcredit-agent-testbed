@@ -1,0 +1,31 @@
+$ python3 retry-fixture/reference/run_email_cases.py
+email-1  reference PASS | mutant(timeout_is_failure=True) -> FAIL (expected) | ok
+         asserts: one provider send; the retry reconciles and finds the original; row confirmed
+email-2  reference PASS | mutant(absence_means_never_sent=True) -> FAIL (expected) | ok
+         asserts: two absence verdicts, each naming index-as-of and 'not never sent'; third read hits; one send
+email-3  reference PASS | mutant(fallback_query=False) -> FAIL (expected) | ok
+         asserts: phrase reads miss after template drift; the phrase-free fallback confirms; one send
+email-4  reference PASS | mutant(replay_check=False) -> FAIL (expected) | ok
+         asserts: exactly one send; a replay under the same key is blocked
+email-5  reference PASS | mutant(dsn_fails_submission=True) -> FAIL (expected) | ok
+         asserts: submission stays confirmed; whole-list replay and resend blocked; only B failed; B resend = new intent key
+email-6  reference PASS | mutant(sweeper_failed_needs_proof=False) -> FAIL (expected) | ok
+         asserts: row unknown past all reads; no send; sweeper 'unresolved' ok, 'failed' refused without proof; hit promotes, miss never demotes
+email-7  reference PASS | mutant(recipient_enum=False) -> FAIL (expected) | ok
+         asserts: B unknown-with-no-evidence before the DSN, failed-with-DSN-reference after; A unchanged; the two B states differ
+email-8  reference PASS | mutant(timeout_is_failure=True) -> FAIL (expected) | ok
+         asserts: intent row + no dispatch record -> failed-by-our-own-hand in a dead letter; a later provider artifact raises an alert; reset/timeout stay unknown
+email-9  reference PASS | mutant(verification_timeout_is_absence=True) -> FAIL (expected) | ok
+         asserts: a timed-out verification read leaves the row pending verification with no send; the next run confirms; one send
+email-11 reference PASS | mutant(dispatch_record_before_io=False) -> FAIL (expected) | ok
+         asserts: A (barrier before dispatch) -> proven-unsent; B (provider accepted, response never persisted) -> unknown, auto-resend blocked, reconciled from the provider receipt: one message at the provider
+email-10 reference PASS | mutant(byte_match_required=False) -> FAIL (expected) | ok
+         asserts: a listing hit with mismatched bytes leaves the row unknown + quarantined with corruption evidence; retry and resend blocked; a matching hit confirms; one send each
+email-12 reference PASS | mutant(receipt_key_required=False) -> FAIL (expected) | ok
+         asserts: neither present dispatch record authorizes a retry; the committed intent is confirmed by its own keyed receipt; the intent that never left is not confirmed by another intent's receipt (same bytes, other key); one message at the provider
+email-13 reference PASS | mutant(key_born_at_enqueue=False) -> FAIL (expected) | ok
+         asserts: (a) response lost, index lagging: the gate queries by the enqueue-born key, confirms the original, one message, no resend; (b) after a 5xx the resend carries the same key; (c) a leaked acceptance for an intent with no dispatch record is found by the probe after the quiet period (alert), a control stays a dead letter
+api-1    reference PASS | mutant(two_authorities=False) -> FAIL (expected) | ok
+         asserts: (a) verifier 400 + object readable: stop, one create; (b) create says existing + object unpublished: rewrite, delivered once; (c) verifier 200 + object absent: reconcile, no delivery claim
+14 checks, 14 ok, 0 problem(s)
+exit 0

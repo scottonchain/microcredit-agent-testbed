@@ -1,0 +1,36 @@
+$ python3 retry-fixture/reference/shipped_gate.py
+Sweep A: email-6's send, index lag around D+16 (messages at the provider)
+deadline_s  boundary_s  lag_s     messages  re-fired_at_s  scorecard
+0           16          10        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+0           16          15        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+0           16          16        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+0           16          17        2         16             {'duplicate_effects': 1, 'missing_effects': 0}
+0           16          1000000   2         16             {'duplicate_effects': 1, 'missing_effects': 0}
+30          46          10        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+30          46          45        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+30          46          46        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+30          46          47        2         46             {'duplicate_effects': 1, 'missing_effects': 0}
+30          46          1000000   2         46             {'duplicate_effects': 1, 'missing_effects': 0}
+60          76          10        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+60          76          75        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+60          76          76        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+60          76          77        2         76             {'duplicate_effects': 1, 'missing_effects': 0}
+60          76          1000000   2         76             {'duplicate_effects': 1, 'missing_effects': 0}
+76          92          10        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+76          92          91        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+76          92          92        1         None           {'duplicate_effects': 0, 'missing_effects': 0}
+76          92          93        2         92             {'duplicate_effects': 1, 'missing_effects': 0}
+76          92          1000000   2         92             {'duplicate_effects': 1, 'missing_effects': 0}
+
+Sweep B: gate_readings.py's four setups at D = 76
+S1 lag 1000000  messages 2  re-fired_at 92    log line 'no copy found -> retried'     scorecard {'duplicate_effects': 1, 'missing_effects': 0}
+S2 lag 0        messages 1  re-fired_at 92    log line 'no copy found -> retried'     scorecard {'duplicate_effects': 0, 'missing_effects': 0}
+S3 lag 10       messages 1  re-fired_at None  log line 'duplicate/copy found -> skipped' scorecard {'duplicate_effects': 0, 'missing_effects': 0}
+S4 lag 10       messages 1  re-fired_at 92    log line 'no copy found -> retried'     scorecard {'duplicate_effects': 0, 'missing_effects': 0}
+
+Check C: S1 (accepted, invisible) vs S2 (never sent), events up to the re-fire (clock, reads, gate):
+  S1 [(92, ['absence', 'absence', 'absence', 'absence(fallback)'], 'receipt_negative -> dispatched')]
+  S2 [(92, ['absence', 'absence', 'absence', 'absence(fallback)'], 'receipt_negative -> dispatched')]
+  events equal: True | log line for both: 'no copy found -> retried' | scorecard differs (S1 1 duplicate, S2 0): True
+25 cells/checks, 25 as stated, 0 problem(s)
+exit 0

@@ -1,0 +1,13 @@
+$ python3 late_reads.py AGENTMAIL_LIVE.json LATE_READS.json   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; read-only, run once, 2026-10-05 14:36 UTC)
+2026-10-05T14:36:28Z  full subject of step A     -> 200, run messages returned: 0
+2026-10-05T14:36:28Z  full subject of step D     -> 200, run messages returned: 0
+2026-10-05T14:36:28Z  full subject of step E     -> 200, run messages returned: 0
+2026-10-05T14:36:28Z  full subject of step F1    -> 200, run messages returned: 1
+2026-10-05T14:36:28Z  full subject of step F2    -> 200, run messages returned: 1
+2026-10-05T14:36:28Z  'rf-live'                  -> 200, run messages returned: 6
+2026-10-05T14:36:28Z  the run id                 -> 200, run messages returned: 6
+2026-10-05T14:36:28Z  'step'                     -> 200, run messages returned: 6
+2026-10-05T14:36:28Z  'step-A'                   -> 200, run messages returned: 0
+2026-10-05T14:36:29Z  'live ' + run id           -> 200, run messages returned: 6
+2026-10-05T14:36:29Z  none (unfiltered list)     -> 200, run messages returned: 6
+exit 0

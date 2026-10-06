@@ -1,0 +1,14 @@
+$ python3 retry-fixture/reference/freshness_rule.py
+read_path  setup  messages_at_provider  final_row  executions  gate verdicts
+stamped    S1     1                     unknown    5           ['unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met']
+stamped    S2     1                     confirmed  1           ['receipt_negative -> dispatched']
+stamped    S3     1                     confirmed  1           ['not_applicable']
+stamped    S4     1                     confirmed  1           ['receipt_negative -> dispatched']
+unstamped  S1     1                     unknown    5           ['unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met']
+unstamped  S2     0                     unknown    5           ['unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met']
+unstamped  S3     1                     confirmed  1           ['not_applicable']
+unstamped  S4     0                     unknown    5           ['unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met', 'unresolved_bound_not_met']
+duplicates (more than one message at the provider): []
+never delivered after 5 executions: [('unstamped', 'S2'), ('unstamped', 'S4')]
+8 cells, 8 as stated, 0 problem(s)
+exit 0

@@ -1,0 +1,255 @@
+$ python3 agentmail_live_check.py AGENTMAIL_LIVE.json   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; run once, 2026-10-05 14:08 UTC)
+run 20261005T140846Z-74eabe
+A1    POST key=set   -> 200 {"message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>", "thread_id": "2c5c0cb9-947f-4294-88d4-9
+A1    read paths, first seen (s after the send's response): {'get_by_id': 0.24, 'list': 0.35, 'list_subject': None} | reads that missed it first: {'get_by_id': 0, 'list': 0, 'list_subject': 19}
+A2    POST key=set   -> 200 {"message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>", "thread_id": "2c5c0cb9-947f-4294-88d4-9
+B     POST key=set   -> 409 {"name": "IdempotencyKeyConflictError", "code": "conflict", "message": "Idempotency-Key was already used for a different message", "fix": "R
+C     POST key=''    -> 400 {"name": "ValidationError", "code": "validation_error", "message": "Request validation failed", "errors": [{"code": "invalid_format", "forma
+D1    POST key=set   -> gave up after 240 ms without a response and closed the connection ""
+D2    POST key=set   -> 200 {"message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>", "thread_id": "ea5dccd2-7d4c-426c-9ec9-7
+E1    POST key=none  -> gave up after 240 ms without a response and closed the connection ""
+E2    POST key=none  -> 200 {"message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>", "thread_id": "8429c92b-a223-48fb-a563-0
+F1b   POST key=set   -> 409 {"name": "ConflictError", "code": "conflict", "message": "A send with this Idempotency-Key is already in progress", "fix": "The original req
+F1a   POST key=set   -> 200 {"message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>", "thread_id": "134d72fb-25fa-4f40-b37e-3
+F2b   POST key=set   -> 409 {"name": "ConflictError", "code": "conflict", "message": "A send with this Idempotency-Key is already in progress", "fix": "The original req
+F2a   POST key=set   -> 200 {"message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>", "thread_id": "1aaa36e5-dfa2-4e08-9c69-d
+F3b   POST key=set   -> 409 {"name": "ConflictError", "code": "conflict", "message": "A send with this Idempotency-Key is already in progress", "fix": "The original req
+F3a   POST key=set   -> 403 {"name": "MessageRejectedError", "code": "message_rejected", "message": "Message rejected: this message was classified as spam, and this org
+L2    POST key=set   -> 403 {"name": "MessageRejectedError", "code": "message_rejected", "message": "Message rejected: this message was classified as spam, and this org
+L2    read paths, first seen (s after the send's response): {'get_by_id': None, 'list': None, 'list_subject': None} | reads that missed it first: {'get_by_id': 0, 'list': 0, 'list_subject': 0}
+L3    POST key=set   -> 403 {"name": "MessageRejectedError", "code": "message_rejected", "message": "Message rejected: this message was classified as spam, and this org
+L3    read paths, first seen (s after the send's response): {'get_by_id': None, 'list': None, 'list_subject': None} | reads that missed it first: {'get_by_id': 0, 'list': 0, 'list_subject': 0}
+{
+ "run": "20261005T140846Z-74eabe",
+ "A_retry_same_key": {
+  "first": 200,
+  "retry": 200,
+  "same_message_id": true,
+  "sent_messages": 1
+ },
+ "B_same_key_other_subject": {
+  "status": 409,
+  "code": "conflict",
+  "sent_messages": 0
+ },
+ "C_empty_key": {
+  "status": 400,
+  "code": "validation_error",
+  "sent_messages": 0
+ },
+ "client_timeout_ms": 240,
+ "D_client_timeout_then_same_key": {
+  "first": "gave up after 240 ms without a response and closed the connection",
+  "retry": 200,
+  "retry_message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+  "sent_messages": 1,
+  "sent": [
+   {
+    "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+    "timestamp": "2026-10-05T14:09:18.898Z",
+    "created_at": "2026-10-05T14:09:18.898Z"
+   }
+  ],
+  "first_written_at": "2026-10-05T14:09:18.858Z",
+  "retry_written_at": "2026-10-05T14:09:24.120Z"
+ },
+ "E_client_timeout_then_no_key": {
+  "first": "gave up after 240 ms without a response and closed the connection",
+  "retry": 200,
+  "retry_message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+  "sent_messages": 2,
+  "sent": [
+   {
+    "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+    "timestamp": "2026-10-05T14:09:29.527Z",
+    "created_at": "2026-10-05T14:09:29.527Z"
+   },
+   {
+    "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+    "timestamp": "2026-10-05T14:09:24.266Z",
+    "created_at": "2026-10-05T14:09:24.266Z"
+   }
+  ],
+  "first_written_at": "2026-10-05T14:09:24.226Z",
+  "retry_written_at": "2026-10-05T14:09:29.489Z"
+ },
+ "F_concurrent_same_key": [
+  {
+   "trial": 1,
+   "status": [
+    200,
+    409
+   ],
+   "code": [
+    null,
+    "conflict"
+   ],
+   "message_id": [
+    "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+    null
+   ],
+   "t_sent": [
+    "2026-10-05T14:09:29.815Z",
+    "2026-10-05T14:09:29.815Z"
+   ],
+   "latency_ms": [
+    375,
+    141
+   ],
+   "error": [
+    null,
+    null
+   ],
+   "sent_messages": 1
+  },
+  {
+   "trial": 2,
+   "status": [
+    200,
+    409
+   ],
+   "code": [
+    null,
+    "conflict"
+   ],
+   "message_id": [
+    "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+    null
+   ],
+   "t_sent": [
+    "2026-10-05T14:09:32.224Z",
+    "2026-10-05T14:09:32.224Z"
+   ],
+   "latency_ms": [
+    353,
+    151
+   ],
+   "error": [
+    null,
+    null
+   ],
+   "sent_messages": 1
+  },
+  {
+   "trial": 3,
+   "status": [
+    403,
+    409
+   ],
+   "code": [
+    "message_rejected",
+    "conflict"
+   ],
+   "message_id": [
+    null,
+    null
+   ],
+   "t_sent": [
+    "2026-10-05T14:09:34.611Z",
+    "2026-10-05T14:09:34.610Z"
+   ],
+   "latency_ms": [
+    125,
+    87
+   ],
+   "error": [
+    null,
+    null
+   ],
+   "sent_messages": 0
+  }
+ ],
+ "L_read_paths": [
+  {
+   "sample": "A1",
+   "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+   "first_seen_s": {
+    "get_by_id": 0.24,
+    "list": 0.35,
+    "list_subject": null
+   },
+   "misses_before_first_seen": {
+    "get_by_id": 0,
+    "list": 0,
+    "list_subject": 19
+   },
+   "polls": 19
+  },
+  {
+   "sample": "L2",
+   "message_id": null,
+   "first_seen_s": {
+    "get_by_id": null,
+    "list": null,
+    "list_subject": null
+   },
+   "misses_before_first_seen": {
+    "get_by_id": 0,
+    "list": 0,
+    "list_subject": 0
+   },
+   "polls": 0
+  },
+  {
+   "sample": "L3",
+   "message_id": null,
+   "first_seen_s": {
+    "get_by_id": null,
+    "list": null,
+    "list_subject": null
+   },
+   "misses_before_first_seen": {
+    "get_by_id": 0,
+    "list": 0,
+    "list_subject": 0
+   },
+   "polls": 0
+  }
+ ],
+ "Z_counts_by_step": {
+  "A": {
+   "items": 1,
+   "labelled_sent": 1,
+   "labelled_received": 0
+  },
+  "D": {
+   "items": 1,
+   "labelled_sent": 1,
+   "labelled_received": 0
+  },
+  "E": {
+   "items": 2,
+   "labelled_sent": 2,
+   "labelled_received": 0
+  },
+  "F1": {
+   "items": 1,
+   "labelled_sent": 1,
+   "labelled_received": 0
+  },
+  "F2": {
+   "items": 1,
+   "labelled_sent": 1,
+   "labelled_received": 0
+  }
+ },
+ "list_response_keys_seen": [
+  "count",
+  "limit",
+  "messages"
+ ],
+ "list_response_header_names_seen": [
+  "apigw-requestid",
+  "connection",
+  "content-length",
+  "content-type",
+  "date",
+  "strict-transport-security",
+  "via",
+  "x-amz-cf-id",
+  "x-amz-cf-pop",
+  "x-cache"
+ ],
+ "send_requests": 16
+}
+exit 0
