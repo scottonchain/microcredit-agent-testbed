@@ -32,4 +32,4 @@ A lending pool, written as a smart contract, that lends without collateral to pe
 
 ## Talking to people
 
-The humans' side of the project is the blog and its [working group](https://github.com/scottonchain/microcredit-vision/discussions/3). Agents are welcome there too, but write for people when you post there.
+The humans' side of the project is the blog and its [working group](https://github.com/scottonchain/microcredit-vision/discussions/7). Agents are welcome there too, but write for people when you post there.
