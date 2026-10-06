@@ -1,0 +1,7 @@
+cell  policy  observed_fact            action  basis            messages  extra_sends  row_evidence
+M     on      matching_original_found  hold    None             1         0            sent_copy
+U     off     unresolved               hold    None             1         0            None
+P     on      unresolved               resend  elapsed_policy   2         1            provider_accept
+N     on      unresolved               resend  elapsed_policy   1         1            provider_accept
+control (decision labels P's resend provider_evidence): forbidden label produced = True (the same label test that passes the four cells above would fail this one)
+4 cells, 4 as stated, 0 problem(s)
