@@ -1,0 +1,30 @@
+
+== open and connect
+   ok: build commit 258affb; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload
+    [2026-10-06T23:34:23.998Z] wallet got eth_sendTransaction 0xb73e4da0 (page asked)
+    [2026-10-06T23:34:24.286Z] sent 0xb73e4da0
+    tx 0xb73e4da0 -> 0xa5339c648f00ee5f9b4ede18e60a989dfdaecc48dd45cc4df7893b484b1ba6af
+   ok: request (request made by the previous run of this script) created loan #6; Disburse clicked with the wallet rejecting it; new transactions sent: 0; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0xa5339c648f00ee5f9b4ede18e60a989dfdaecc48dd45cc4df7893b484b1ba6af for loan #6; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-06T23:34:31.819Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-06T23:34:32.565Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xf8acdccad11c3630f8b56599ef9432f883c79f0ef41bda66d9ee965f6092c19c
+    [2026-10-06T23:34:36.262Z] wallet got eth_sendTransaction 0x8a700b53 (page asked)
+    [2026-10-06T23:34:40.866Z] sent 0x8a700b53
+    tx 0x8a700b53 -> 0xa6a01d19dec2c9c28c742ef0d590e357c19a8bad0865814ae80bdcda4dc2bacd
+   ok: loan #6 repaid
+
+wrote /root/work/run_bw2/b258/run-16-finish-borrow.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit 258affb; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload | yes | 0xa5339c648f00ee5f9b4ede18e60a989dfdaecc48dd45cc4df7893b484b1ba6af | request (request made by the previous run of this script) created loan #6; Disburse clicked with the wallet rejecting it; new transactions sent: 0; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0xa5339c648f00ee5f9b4ede18e60a989dfdaecc48dd45cc4df7893b484b1ba6af for loan #6; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | yes | 0xf8acdccad11c3630f8b56599ef9432f883c79f0ef41bda66d9ee965f6092c19c<br>0xa6a01d19dec2c9c28c742ef0d590e357c19a8bad0865814ae80bdcda4dc2bacd | loan #6 repaid |
