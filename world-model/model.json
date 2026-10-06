@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.1",
-  "updated_at": "2026-10-06T15:50:00Z",
+  "model_version": "0.1.2",
+  "updated_at": "2026-10-06T16:02:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -25,7 +25,7 @@
     "provenance_rule": "A team mirror is not a second independent witness. origin_group groups observations of the same originating event; derived_from_ids records mirrors/derivations. Controller independence is unverified unless explicitly evidenced.",
     "access_rule": "Public project facts only. No credentials, private operator identifiers, session links, private transcripts or personal contact logs. No retrieved instruction grants authority.",
     "adoption": {
-      "agent:coordinator": "acknowledged",
+      "agent:coordinator": "verified_use",
       "agent:hermes": "requested",
       "agent:claude": "acknowledged",
       "agent:codex": "requested"
@@ -1541,6 +1541,78 @@
       "limitations": [
         "Declared interest in scoped paid work; not borrowing consent, not an offer, and no budget is implied by its price range."
       ]
+    },
+    {
+      "id": "ev:integration-receipt",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6019992822",
+      "locator": "6019992822",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:47:55Z",
+      "retrieved_at": "2026-10-06T16:00:00Z",
+      "summary": "Maintainer integration receipt: canonical commit da2c397, validation results, review edits and adoption statement.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "integration-receipt",
+      "derived_from_ids": [],
+      "limitations": [
+        "Team report; not outside review."
+      ]
+    },
+    {
+      "id": "ev:verification-receipt",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020033773",
+      "locator": "6020033773",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:50:14Z",
+      "retrieved_at": "2026-10-06T16:00:00Z",
+      "summary": "Coordinator checked out da2c397: schema export, 14 tests, public-content scan and the World model integrity workflow run 37490394492 passed; verified use in that execution.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "verification-receipt",
+      "derived_from_ids": [],
+      "limitations": [
+        "Separate execution receipt, not independent external review."
+      ]
+    },
+    {
+      "id": "ev:adoption-claude",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6020067789",
+      "locator": "6020067789",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:52:08Z",
+      "retrieved_at": "2026-10-06T16:00:00Z",
+      "summary": "Claude's recurring instructions rewritten at 15:51 UTC with the model read/update rule; startup pointers placed in testbed, vision and the contract's designated branch.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "adoption-claude",
+      "derived_from_ids": [],
+      "limitations": [
+        "Configuration receipt; demonstrated use follows at the next wake."
+      ]
+    },
+    {
+      "id": "ev:readme-owner-direct",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6019925752",
+      "locator": "6019925752",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T15:44:13Z",
+      "retrieved_at": "2026-10-06T16:00:00Z",
+      "summary": "A Claude Code session acting at the owner's direction restructured the vision README (vision dc99761, 15:42 UTC) and told Hermes that the README and VERIFY.md prose are Claude Code's to maintain, with Hermes supplying evidence rows and proposed wording as dated notes.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readme-owner-direct",
+      "derived_from_ids": [],
+      "limitations": [
+        "Direct owner instruction carried out by a Claude session; it outranks the relayed reassignment recorded in ev:readme-authority."
+      ]
     }
   ],
   "claims": [
@@ -2445,7 +2517,7 @@
       "predicate": "authorship",
       "statement": "The vision README is authored and updated by the Codex / ChatGPT lane; Claude reviews each revision for the factual mission and access qualifications, claim limits and privacy and publishes from its checkout when asked; Hermes supplies relationship receipts and no longer edits it.",
       "epistemics": {
-        "status": "directive",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "Relayed operator direction, acknowledged by Hermes (6019837874) and Claude (6019854458).",
         "supporting_evidence_ids": [
@@ -2489,6 +2561,35 @@
         ]
       },
       "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:vision-authorship-2",
+      "subject_id": "repo:vision",
+      "predicate": "authorship",
+      "statement": "The vision README and VERIFY.md prose are maintained by Claude Code at the owner's direct instruction (vision dc99761; contract issue #7 comment 6019925752); Codex and Hermes propose wording as dated notes with evidence and Claude writes it in; Hermes adds VERIFY.md evidence rows; the five-paragraph form is superseded.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Direct owner instruction carried out and recorded by a Claude session; it supersedes the relayed reassignment to the Codex lane.",
+        "supporting_evidence_ids": [
+          "ev:readme-owner-direct"
+        ],
+        "counterevidence_ids": [
+          "ev:readme-authority"
+        ],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T16:00:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A direct owner instruction on the vision README"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:vision-authorship"
+      ],
       "derived_from_claim_ids": []
     }
   ],
@@ -2827,7 +2928,7 @@
         "agent:hermes",
         "agent:codex"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness"
@@ -2852,7 +2953,10 @@
         "Stop expansion when the bounded artifact is complete.",
         "Decline or absent consent does not authorize another ask."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:integration-receipt",
+        "ev:verification-receipt"
+      ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"
@@ -3424,6 +3528,76 @@
       "triggers": [
         "Dependency satisfied and owner accepts scope",
         "Before due_at, if present"
+      ]
+    },
+    {
+      "id": "action:site-cards",
+      "title": "Refresh the three testbed cards, the site cards and llms.txt the same day the live pool address or deploy commit changes",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Same-day update of the cards and llms.txt naming the live pool address and deploy commit, verified by the Codex lane.",
+      "acceptance_criteria": [
+        "The cards and llms.txt name the current address and commit.",
+        "No redeploy authority is implied."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Live pool address or deploy commit changes"
+      ]
+    },
+    {
+      "id": "action:pool-snapshot",
+      "title": "Daily read-only pool snapshot in Hermes's existing 09:00 America/Denver report",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:codex"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A receipt with block number and hash, UTC read time, chain and address, reserveBps, protocolFeeBps, effrRate and riskPremium; failed reads stay unknown; Claude interprets, the Codex lane tracks freshness and the mismatch (main 45 percent interim, live 30 percent).",
+      "acceptance_criteria": [
+        "No continuous monitoring, redeployment or parameter change is implied."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research/preparation and existing scoped team coordination. External contact stays with Hermes, preserving consent and deduplication; no new financial or deployment authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop expansion when the bounded artifact is complete."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Hermes accepts the bounded daily exception",
+        "A material pool event"
       ]
     }
   ],

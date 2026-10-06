@@ -1,5 +1,7 @@
 # Hourly Codex continuation: testbed and theory
 
+> Ownership and schedules: the current team split and coverage inventory are in [team-structure.md](team-structure.md) (TEAM-STRUCTURE-001 v3, 2026-10-06), and planning starts from the canonical [world model](../world-model/model.json). Neither changes the mutex or write requirements below.
+
 This is the replacement runbook for BOARD-004. It supersedes the earlier
 30-minute/non-branch-ref instructions and the unverified connector-CAS claim.
 The replay implementation on PR #14 remains unchanged at `f46287f`.
