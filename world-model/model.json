@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.16",
-  "updated_at": "2026-10-06T19:50:00Z",
+  "model_version": "0.1.17",
+  "updated_at": "2026-10-06T20:05:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -2709,6 +2709,60 @@
         "A property of the toy model and of one recorded live run, not of forgeloop's or merktop's systems; forgeloop proposed the contract and has not seen the script.",
         "Run under CPython 3.10 to 3.13 in this environment; 3.9 and 3.14, which earlier fixture entries cite, were not available here."
       ]
+    },
+    {
+      "id": "ev:vision-rules-v2",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/844cb74/CLAUDE.md",
+      "locator": "CLAUDE.md 'Cadence and ownership' and editorial/BACKLOG.md 'Outside the project' at vision 844cb74",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:48:00Z",
+      "retrieved_at": "2026-10-06T20:05:00Z",
+      "summary": "Operator directions of 2026-10-06 as recorded by Claude Code: posts are 250 to 500 words, one subject; the selection rule has three ranks (project developments outsiders will find extremely interesting; important AI news of the last 12 to 24 hours; the ranked backlog); an hourly news-watch Routine may post short pieces on big news as Claude Code; a watch list of writers (Robert Wright, Steven Pinker, Beff Jezos and similar, Yann LeCun, Eli Tan of The New York Times, Liron Shapira, a Spotify show by ID) answered within 24 hours of publication and only when the content is complete (no clips, trailers or fragments); commentary apolitical in the party sense, primary source quoted; the blog links only to documents written for people; guest posts open by naming the poster; AI agents' entry point is AGENTS.md in the testbed.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-rules-v2",
+      "derived_from_ids": [
+        "ev:vision-blog-rules"
+      ],
+      "limitations": [
+        "The directions were given to Claude Code in its session and are relayed in its own wording in the repository files."
+      ]
+    },
+    {
+      "id": "ev:fetch-source-runs",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-vision/actions/workflows/fetch-source.yml",
+      "locator": "workflow runs of 2026-10-06 19:53 to 19:56 UTC (37522217070, 37522443890, 37522512708, 37522573533)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T19:56:00Z",
+      "retrieved_at": "2026-10-06T20:05:00Z",
+      "summary": "From the blog session's network, nytimes.com, substack.com, open.spotify.com, podcast feed and audio hosts and GitHub Actions artifact storage are refused. A repository workflow on a GitHub runner can read The Daily's feed (it listed the 2026-10-06 episode 'Call My A.I. Agent' with Eli Tan and its audio URL) but the New York Times page returns 403 to the runner, the Substack feed returns 403 to the runner, and bringing fetched content back into the session (artifact download, or sealed output through the job log) is not available: the session's permission policy refused the sealed route. Spotify's show page was fetched by the runner but its content did not reach the session.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "fetch-source-runs",
+      "derived_from_ids": [],
+      "limitations": [
+        "Observed from one session on one day; the policy may change; the runner's 403s may be host-level bot blocking rather than policy."
+      ]
+    },
+    {
+      "id": "ev:claude-intro-published",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/f9454ca/posts/2026-10-06-reading-the-code-against-the-paper.md",
+      "locator": "vision commit f9454ca, 2026-10-06 17:36 UTC",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T17:36:00Z",
+      "retrieved_at": "2026-10-06T20:05:00Z",
+      "summary": "Claude Code's introduction post, in the format of the Codex guest post, with a self-drawn profile picture (images/profiles/claude-code.png).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-intro",
+      "derived_from_ids": [],
+      "limitations": []
     }
   ],
   "claims": [
@@ -4345,6 +4399,64 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:vision-blog-2",
+      "subject_id": "repo:vision",
+      "predicate": "authorship",
+      "statement": "The blog's operating rules as of 2026-10-06 19:48 UTC: posts of 250 to 500 words on one subject; selection in three ranks (project developments outsiders will find extremely interesting, then important AI news of the last 12 to 24 hours, then the ranked backlog in editorial/BACKLOG.md); a 4-hourly scheduled post (6-hourly from 2026-10-08) and an hourly news-watch Routine, both writing as Claude Code; a watch list of named writers answered within 24 hours of publication and only for complete content; party-apolitical commentary with the primary source quoted; human-only outlinks; guest posts that open by naming the poster; the operator adds topics and Claude Code ranks them.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator directions given to Claude Code during 2026-10-06 and written into the vision rules file and backlog; supersedes the structure-and-cadence claim of 16:45 UTC.",
+        "supporting_evidence_ids": [
+          "ev:vision-rules-v2",
+          "ev:vision-blog-rules",
+          "ev:readme-owner-direct"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T20:05:00Z",
+        "recheck_by": "2026-10-08T17:00:00Z",
+        "recheck_on": [
+          "The operator changes the cadence, the rule or the watch list",
+          "A scheduled firing posts outside the rule"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:vision-blog"
+      ],
+      "derived_from_claim_ids": [
+        "claim:vision-authorship-2"
+      ]
+    },
+    {
+      "id": "claim:blog-session-network-limits",
+      "subject_id": "agent:claude",
+      "predicate": "constraint",
+      "statement": "The Claude Code session that writes the blog cannot read The New York Times, Substack, Spotify, podcast feed and audio hosts, or GitHub Actions artifact storage; a repository workflow can read some feeds from a GitHub runner, but its fetched content cannot be returned to the session under the session's permission policy. Timely commentary on outside sources therefore rests on web-search summaries, on pages those hosts do serve, or on text the operator supplies.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Direct observation in the fetch-source workflow runs and the session's own refused requests on 2026-10-06.",
+        "supporting_evidence_ids": [
+          "ev:fetch-source-runs"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A read of one of those hosts, or a returned artifact, succeeds from the blog session."
+      },
+      "freshness": {
+        "observed_at": "2026-10-06T20:05:00Z",
+        "recheck_by": "2026-10-13T00:00:00Z",
+        "recheck_on": [
+          "The session's network or permission policy changes",
+          "A new route is approved by the operator"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -5905,6 +6017,75 @@
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency"
       ]
+    },
+    {
+      "id": "action:eli-tan-reply",
+      "title": "Reply post to The Daily's 'Call My A.I. Agent' (Eli Tan, 2026-10-06) within 24 hours",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [],
+      "status": "blocked",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:vision-blog-2",
+        "claim:blog-session-network-limits"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One short post answering the episode, with the primary source quoted; the operator asked that the episode transcript be the source.",
+      "acceptance_criteria": [
+        "Published before 2026-10-07 09:46 UTC, the 24-hour mark from the episode's publication",
+        "Quotes the episode (transcript if supplied) or, with the operator's go-ahead, the episode description and Eli Tan's published review",
+        "Apolitical in the party sense; AI disclosure; no outreach"
+      ],
+      "not_before": null,
+      "triggers": [
+        "The operator pastes the transcript or approves the description-and-review source"
+      ],
+      "due_at": "2026-10-07T09:46:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction of 2026-10-06 adding Eli Tan to the watch list and asking for a reply within 24 hours using the episode as source.",
+      "spending": "none",
+      "stop_conditions": [
+        "The 24-hour window passes without a source: the item is dropped, not written late"
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:team-interview",
+      "title": "Light interview post: each agent answers three of six questions",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:codex"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:vision-blog-2"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One post quoting each agent's answers word for word next to its profile picture; Claude Code answers in the post.",
+      "acceptance_criteria": [
+        "Answers from Hermes (contract issue 7, 2026-10-06 ~18:10 UTC ask) and Codex (testbed issue 15, same time) quoted verbatim with bylines",
+        "Plainly imagined; nothing about the operator"
+      ],
+      "not_before": null,
+      "triggers": [
+        "Both sets of answers are posted"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Operator request of 2026-10-06 for a fun post; questions invented by Claude Code at the operator's invitation.",
+      "spending": "none",
+      "stop_conditions": [
+        "Either agent declines: publish with the answers that exist and say so"
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -6167,6 +6348,20 @@
       ],
       "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker.",
       "blocks_action_ids": []
+    },
+    {
+      "id": "question:outside-source-access",
+      "owner_id": "agent:claude",
+      "question": "How does the blog session obtain the full text of outside sources (a podcast transcript, a paywalled or bot-blocked page) for timely commentary, given claim:blog-session-network-limits?",
+      "related_ids": [
+        "claim:blog-session-network-limits",
+        "action:eli-tan-reply",
+        "ev:fetch-source-runs"
+      ],
+      "resolution_evidence_needed": "An operator decision: supply text directly, approve a route, or accept description-and-published-review as the source.",
+      "blocks_action_ids": [
+        "action:eli-tan-reply"
+      ]
     }
   ]
 }
