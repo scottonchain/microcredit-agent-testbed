@@ -1,0 +1,225 @@
+{
+ "what": "key-expiry check; see key_expiry_check.py",
+ "recorded_run": "20261005T140846Z-74eabe",
+ "window_open": "2026-10-06T14:19:18.898000+00:00",
+ "window_close": "2026-10-06T16:33:55.762000+00:00",
+ "started": "2026-10-06T15:08:10.746199+00:00",
+ "stopped": null,
+ "messages_before": [
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-A",
+   "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:08:46.953Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-D",
+   "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:18.898Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:24.266Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.527Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+   "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.862Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+   "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:32.266Z"
+  }
+ ],
+ "messages_after": [
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-A",
+   "message_id": "<010001a10c6549dc-46eb9b87-a098-45ff-bd71-0edd1a2657a7-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:08:46.953Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-D",
+   "message_id": "<010001a10c65c6ab-2df96d32-5ca7-457a-bbaa-97bf106d0c73-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:18.898Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65db8d-6638e7dd-19e9-419d-9091-11448a1d3856-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:24.266Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-E",
+   "message_id": "<010001a10c65efff-84934026-0481-4bd2-9738-ca037f4ac415-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.527Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F1",
+   "message_id": "<010001a10c65f15f-2503f2f3-fcaf-4aaa-8108-9f33350564e8-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:29.862Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-F2",
+   "message_id": "<010001a10c65facf-1b33110f-8d3b-407d-81f5-3cabd950f12e-000000@email.amazonses.com>",
+   "created_at": "2026-10-05T14:09:32.266Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-D",
+   "message_id": "<010001a111c20965-4e68b6ab-00d0-49e8-acff-32127309cae1-000000@email.amazonses.com>",
+   "created_at": "2026-10-06T15:08:11.399Z"
+  },
+  {
+   "subject": "rf-live 20261005T140846Z-74eabe step-A",
+   "message_id": "<010001a111c20ec7-185469ac-0b88-4c30-8eca-8c0bbdb50b25-000000@email.amazonses.com>",
+   "created_at": "2026-10-06T15:08:12.776Z"
+  }
+ ],
+ "verdicts": {
+  "D": "new send",
+  "A": "new send"
+ },
+ "send_requests": 2,
+ "requests": [
+  {
+   "step": "pre",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>",
+   "idempotency_key": null,
+   "body": null,
+   "t_sent": "2026-10-06T15:08:10.746Z",
+   "status": 200,
+   "response": {
+    "organization_id": "<org>",
+    "pod_id": "<org>",
+    "inbox_id": "<inbox>",
+    "email": "<inbox>",
+    "display_name": "Hermes AI agent",
+    "status_until": "2026-11-04T14:08:46.953Z",
+    "updated_at": "2026-10-05T14:08:47.288Z",
+    "created_at": "2026-10-04T14:19:48.726Z"
+   },
+   "t_response": "2026-10-06T15:08:11.154Z",
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "332",
+    "connection": "keep-alive",
+    "date": "Tue, 06 Oct 2026 15:08:11 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "list",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>/messages?limit=100",
+   "idempotency_key": null,
+   "body": null,
+   "t_sent": "2026-10-06T15:08:11.156Z",
+   "status": 200,
+   "response": {
+    "keys": [
+     "count",
+     "limit",
+     "messages"
+    ],
+    "count": 6
+   },
+   "t_response": "2026-10-06T15:08:11.340Z",
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "4888",
+    "connection": "keep-alive",
+    "date": "Tue, 06 Oct 2026 15:08:11 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "retry-D",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "82ab3cf9-86c7-4c40-8df7-7f927462f90b",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-D",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step D. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-06T15:08:11.341Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a111c20965-4e68b6ab-00d0-49e8-acff-32127309cae1-000000@email.amazonses.com>",
+    "thread_id": "f7a55693-bd2a-4871-b0e4-0073bf446211"
+   },
+   "t_response": "2026-10-06T15:08:11.720Z",
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Tue, 06 Oct 2026 15:08:11 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "retry-A",
+   "method": "POST",
+   "path": "/v0/inboxes/<inbox>/messages/send",
+   "idempotency_key": "b14d931e-cd0e-4bfc-8b33-ffc8dd59c536",
+   "body": {
+    "to": [
+     "<inbox>"
+    ],
+    "subject": "rf-live 20261005T140846Z-74eabe step-A",
+    "text": "retry-fixture live check, run 20261005T140846Z-74eabe, step A. Self-addressed test message from an AI agent's own inbox; nothing to answer."
+   },
+   "t_sent": "2026-10-06T15:08:12.722Z",
+   "status": 200,
+   "response": {
+    "message_id": "<010001a111c20ec7-185469ac-0b88-4c30-8eca-8c0bbdb50b25-000000@email.amazonses.com>",
+    "thread_id": "624b7372-14b4-4024-8221-b256decdfbe9"
+   },
+   "t_response": "2026-10-06T15:08:13.143Z",
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "150",
+    "connection": "keep-alive",
+    "date": "Tue, 06 Oct 2026 15:08:13 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  },
+  {
+   "step": "list",
+   "method": "GET",
+   "path": "/v0/inboxes/<inbox>/messages?limit=100",
+   "idempotency_key": null,
+   "body": null,
+   "t_sent": "2026-10-06T15:08:17.145Z",
+   "status": 200,
+   "response": {
+    "keys": [
+     "count",
+     "limit",
+     "messages"
+    ],
+    "count": 8
+   },
+   "t_response": "2026-10-06T15:08:17.304Z",
+   "headers": {
+    "content-type": "application/json",
+    "content-length": "6544",
+    "connection": "keep-alive",
+    "date": "Tue, 06 Oct 2026 15:08:17 GMT",
+    "x-cache": "Miss from cloudfront",
+    "strict-transport-security": "max-age=31536000; includeSubDomains"
+   }
+  }
+ ]
+}

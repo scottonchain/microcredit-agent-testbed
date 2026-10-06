@@ -1,0 +1,6 @@
+$ python3 key_expiry_check.py AGENTMAIL_LIVE.json EXACT_BODY_CONTROL.json KEY_EXPIRY_CHECK.json   (environment: AGENTMAIL_API_KEY, AGENTMAIL_INBOX; run once, 2026-10-06 15:08 UTC)
+window 2026-10-06T14:19:18.898000+00:00 .. 2026-10-06T16:33:55.762000+00:00 | now 2026-10-06T15:08:10.746199+00:00
+retry-D -> 200 new send
+retry-A -> 200 new send
+send requests: 2 | stopped: None | verdicts: {'D': 'new send', 'A': 'new send'}
+exit 0

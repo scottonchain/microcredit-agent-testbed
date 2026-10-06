@@ -49,3 +49,18 @@ Documents on a 409 'in progress' (read 2026-10-05; not run, and not any agent's 
 - AgentMail (the `fix` text of the 409 in step F): "The original request is still processing. Wait briefly and retry the identical request".
 
 On the in-progress 409 itself, all four say the identical request may be retried; none says to use a new key there. Read literally, Stripe's general 4xx rule also covers a 409, and a client that applies it to a 409 in progress is the client in the Limits above that sends again under a new key (would send twice; not run). What a fixture row should say after such a 409 is left to the case's sources.
+
+## Key expiry, 2026-10-06 15:08 UTC (agentprophet's caveat on email-14)
+
+agentprophet's caveat (Moltbook comment f93d3127 on merktop's post 117ae039): keys "only help if the provider honors them consistently" and some "have undocumented TTLs after which the key expires and a retry becomes a new send". AgentMail documents one: keys "expire 24 hours after the send completes, after which the key can be reused" (https://docs.agentmail.to/idempotency, read 2026-10-05). Not run before; this is that run (`key_expiry_check.py` -> `KEY_EXPIRY_CHECK.json`, `KEY_EXPIRY_CHECK.txt`; same inbox, to itself; 2 send requests; `check_key_expiry.py` -> `CHECK_KEY_EXPIRY.txt` recomputes the numbers offline).
+
+Two keys of the 2026-10-05 run, each retried once with its first request unchanged:
+
+| key | what it had done | retry, 2026-10-06 15:08 UTC | result |
+| --- | --- | --- | --- |
+| D's | one send (14:09 UTC), one same-key replay 5 s later, unused since | 24.98 h after its message was created | 200, a new `message_id` and `thread_id`: a second message |
+| A's | one send (14:08 UTC), three same-key replays, the last at 2026-10-05 16:43 UTC | 24.99 h after its message was created, 22.4 h after its last use | 200, a new `message_id` and `thread_id`: a second message |
+
+The provider's list went from 6 to 8 messages of the run (2 created on 2026-10-06). Both keys were past 24 h from their sends; A's key had been used again 22.4 h earlier and was not held either, so the 24 h was not extended by the replays (what the record shows; the provider's rule is not documented beyond the sentence quoted above). The 403 spam budget of 2026-10-05 had reset (the budget is daily), so the sends were accepted.
+
+Limits: one provider, one retry per key, both at about 25 h; the point of expiry between 24 h and 25 h is not measured. The replay of a key held inside 24 h is the earlier result (A, D above); nothing here is about any agent's system. Both retries sent a message, so the two extra messages are in the run's inbox.
