@@ -4,7 +4,7 @@
 #
 #   export PRIVATE_KEY=0x...        # a throwaway testnet key with a little Base Sepolia ETH
 #   ./quickstart.sh status          # your balances, credit and the pool's state
-#   ./quickstart.sh mint 1000       # mint test USDC (amounts are whole USDC)
+#   (test USDC: https://faucet.circle.com for Base Sepolia; `mint` works only on a mock token; amounts are whole USDC)
 #   ./quickstart.sh lend 500        # deposit into the pool
 #   ./quickstart.sh withdraw all    # withdraw (an amount, or "all")
 #   ./quickstart.sh stake 25        # lock test USDC as your own credit
@@ -17,9 +17,9 @@
 set -euo pipefail
 
 RPC=${RPC:-https://sepolia.base.org}
-POOL=${POOL:-0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8}
-LENS=${LENS:-0x090543B6C41a6029660D464c584c0310A74A525d}
-USDC=${USDC:-0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1}
+POOL=${POOL:-0x73872B8fB7F1771C67911f03edc75aBdc9514973}
+LENS=${LENS:-0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4}
+USDC=${USDC:-0x036CbD53842c5426634e7929541eC2318f3dCF7e}
 
 : "${PRIVATE_KEY:?set PRIVATE_KEY to a throwaway testnet key}"
 ME=$(cast wallet address --private-key "$PRIVATE_KEY")
@@ -56,6 +56,7 @@ case "${1:-status}" in
     echo "pool             assets $(fmt "$(call "$POOL" "totalAssets()(uint256)")"), utilisation $(call "$LENS" "getUtilisation()(uint256)") bps, share price $(fmt "$(call "$LENS" "sharePrice()(uint256)")"), APR $(call "$POOL" "getLoanRate()(uint256)") bps"
     ;;
   mint)
+    if [ "${ALLOW_MINT:-0}" != "1" ]; then echo "this pool's token is Circle's test USDC and has no mint: get it from https://faucet.circle.com (ALLOW_MINT=1 for a mock token)" >&2; exit 1; fi
     send "$USDC" "mint(address,uint256)" "$ME" "$(usdc "$2")" ;;
   lend)
     send "$USDC" "approve(address,uint256)" "$POOL" "$(usdc "$2")"
