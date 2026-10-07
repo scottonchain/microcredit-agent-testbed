@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.31",
-  "updated_at": "2026-10-07T00:58:00Z",
+  "model_version": "0.1.32",
+  "updated_at": "2026-10-07T01:58:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3314,6 +3314,28 @@
         "The two added endpoints are third parties and see a visitor's read calls (balances, loans, the allowance) when the first endpoint fails or rate-limits; CORS was checked from a server, not a browser.",
         "Fallback only helps reads; the bridged signer's 429s on sends in Hermes's runs go through the wallet client and are not changed."
       ]
+    },
+    {
+      "id": "ev:pr-carbon-palette",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/23",
+      "locator": "Contract pull request 23 (Codex lane, through the owner's account, AI-disclosed, opened 2026-10-07T01:50Z, head eabc4ee on base 73f8cc7), merged from the checkout as contract main be41a5d; site scottonchain.github.io main df21733 built from it under /pool; review comment 6029252803",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T01:50:30Z",
+      "retrieved_at": "2026-10-07T01:58:00Z",
+      "summary": "A restyle of the public app so text and panels read clearly in light and dark: IBM Carbon Gray 10 and Gray 100 palettes mapped onto daisyUI roles, fixed colour classes replaced by semantic ones across 24 frontend files, matching foregrounds for filled controls and status boxes, visible borders and focus, and the wallet dialog theme. The lane's description gives its own palette-level contrast figures (150 combinations; minimum 5.00 to 1 light and 6.76 to 1 dark for normal text) and says the build and screenshots could not be run there. This session reviewed it before merging: CI green; lint, types and 48 unit tests pass; the static export builds; the diff, compared with class-only strings set aside, holds class swaps, one comment, one whitespace change and the wallet theme and progress-bar colour, with no JSX text or structure change; light and dark browser screenshots of the home, lend, borrower, attest and scores pages (disconnected state) read clearly. Merged and republished; Hermes asked for one smoke run on build be41a5d.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-rpc-fallback"
+      ],
+      "limitations": [
+        "The contrast figures are the lane's own and were not recomputed here.",
+        "The screenshots are the disconnected pages; connected states (a requested loan card, a stopped-step box, a lender position) were not rendered.",
+        "A presentation change: it says nothing about whether visitors can use the app, and no outside visitor has."
+      ]
     }
   ],
   "claims": [
@@ -6586,6 +6608,7 @@
         "Do not use a temporary claim window as the permanent public endpoint."
       ],
       "outcome_evidence_ids": [
+        "ev:pr-carbon-palette",
         "ev:sepolia-allowance-fix",
         "ev:sepolia-borrow-visibility-fix",
         "ev:sepolia-browser-run-258affb",
