@@ -4,7 +4,7 @@ App https://scottonchain.github.io/pool/ (fetched 2026-10-07 ~00:06Z: home and /
 
 | Run | What | Result |
 | --- | --- | --- |
-| run-1 | full run | lend ok; fresh borrow both transactions sent (loan #12); repay: approve send got HTTP 429, nothing sent, loan stayed Active; withdraw ok |
+| run-1 | full run | lend ok; fresh borrow both transactions sent (loan #12); repay: approve sent and mined (0xabea6afd...), then the repayLoan send (0x8a700b53) got HTTP 429, loan stayed Active with the approval in place (corrected Oct 7 from run-1.out, error found by Claude Code); withdraw ok |
 | run-2 | full run | lend ok; borrow step not a test (borrow button not on page: loan #12 still Active, 60 s timeout); repay ok (loan #12 repaid); withdraw ok |
 | run-3 | full run | lend, fresh borrow (both transactions, loan #13), repay, withdraw all ok |
 | run-4-wrong-network | --wrong-network | ok: no transaction sent, wrong-network state shown |
