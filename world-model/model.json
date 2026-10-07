@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.47",
-  "updated_at": "2026-10-07T14:40:08Z",
+  "model_version": "0.1.48",
+  "updated_at": "2026-10-07T15:24:14Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4393,6 +4393,43 @@
       "limitations": [
         "Local tests at the live parameters, not a transaction on the live pool."
       ]
+    },
+    {
+      "id": "ev:operator-credit-officer-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6041002311",
+      "locator": "6041002311",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:23:15Z",
+      "retrieved_at": "2026-10-07T15:24:14Z",
+      "summary": "The operator proposes a hybrid between an agent network and the smart contract for the cold start: a credit-officer agent finds borrowers who need a loan, assesses their creditworthiness with AI and assigns them credit in the contract, which they can borrow against or use to back others. The operator regards it as a credible path through the cold start and asks that it be an agenda item of the daily Claude and Codex sync (COLD-START-TRUST-001). The comment quotes the operator's words and lists questions for the sync: who runs the officer, what the assessment reads, the loss path and budget, appeal, a first test-network pilot and its evidence.",
+      "content_sha256": "a4496ea3947ad2fd28d3e23746aaeef04a2e2476e660750765f65a655073424e",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-credit-officer-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given in the blog session's channel and posted by that Claude Code session; the steward session did not receive it directly.",
+        "An idea and an agenda request, not authority to contact borrowers, lend to people or spend."
+      ]
+    },
+    {
+      "id": "ev:claude-credit-officer-mapping-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6040983845",
+      "locator": "6040983845",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:22:21Z",
+      "retrieved_at": "2026-10-07T15:24:14Z",
+      "summary": "Claude maps the credit-officer hybrid onto the contract as deployed: it is the existing issuer seat (OracleScoreProvider's reporter or a pinned CRE workflow, an AI assessment behind either); an issued line is granted credit, usable to borrow and to back others, and received backing cannot be passed on (as M1 showed on the live pool); the issuance budget, the per-report cap and staleness bound the officer, and lenders' loss never exceeds issued lines plus dues; analysis/issuer_policy is a reference policy. No contract change is needed. What the contract cannot supply stays with the operator and the strategy round: whom the officer may contact, consent, affordability, local law, and the identity check that keeps one person to one line.",
+      "content_sha256": "89f8788516717ca1f219658048190959d9c19dc39881dad283c3e2d9c8c577f8",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-credit-officer-mapping-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Contract facts only; nothing about demand, borrowers or any person."
+      ]
     }
   ],
   "claims": [
@@ -6581,6 +6618,33 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:credit-officer-cold-start-sync",
+      "subject_id": "work:bootstrap",
+      "predicate": "next_strategy_agenda",
+      "statement": "At the next daily Claude and Codex sync, take up the operator's credit-officer hybrid as a path through the cold start: an officer agent finds people who need a loan, assesses them with AI and issues them lines in the contract, which they borrow against or use to back others. It runs on the existing issuer seat, so no contract change is needed. The sync answers who runs the officer and under which lane; what the assessment reads about a person with no record; the loss path and the budget the officer holds; how a person appeals a refusal; and what a first test-network pilot looks like and what counts as evidence that it worked. Existing contact authority is unchanged: the agenda item does not authorize contacting borrowers, lending to people or spending.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction relayed publicly by the blog session; the contract mapping is Claude's. Whether it solves the cold start is a hypothesis.",
+        "supporting_evidence_ids": [
+          "ev:operator-credit-officer-direction-20261007",
+          "ev:claude-credit-officer-mapping-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:23:15Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "The next daily sync and its decision"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -8737,6 +8801,46 @@
         "Codex names qualified researchers",
         "The charter line is changed"
       ]
+    },
+    {
+      "id": "action:credit-officer-sync",
+      "title": "Open the next daily sync with the credit-officer hybrid for the cold start",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:credit-officer-cold-start-sync",
+        "claim:m1-two-hop-live-20261007",
+        "claim:agent-critical-mass-unproven-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane.",
+      "acceptance_criteria": [
+        "The opening links the operator-direction source and the contract mapping.",
+        "The round answers each question or records it as open: officer and lane; what the assessment reads; loss path and budget; appeal; first test-network pilot and its evidence.",
+        "Any pilot stays on the test network with test tokens and within existing contact authority until the operator decides otherwise."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver"
+      ],
+      "due_at": "2026-10-08T10:15:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-requested agenda item, relayed by the blog session. No new scheduler, contact, lending or spending.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop when the opening and the round's decision are recorded; do not duplicate the daily round.",
+        "No unconsented contact with prospective borrowers, no loans to people and no spending."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
