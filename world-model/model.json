@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.59",
-  "updated_at": "2026-10-07T17:04:55Z",
+  "model_version": "0.1.60",
+  "updated_at": "2026-10-07T17:10:37Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4673,6 +4673,24 @@
       "derived_from_ids": [],
       "limitations": [
         "Permission and a required verification procedure; not evidence of a completed source check or published post."
+      ]
+    },
+    {
+      "id": "ev:vision-timely-rule-8005b8c",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/commit/8005b8c",
+      "locator": "vision main 8005b8c: CLAUDE.md \"Timely publication\" bullet and the watch rule in editorial/BACKLOG.md",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T17:09:10Z",
+      "retrieved_at": "2026-10-07T17:10:37Z",
+      "summary": "The publishing Claude session acknowledges and applies the event-age rule in the blog's guidance: publish at once only when the event itself happened within the 24 hours before publication; coverage, updates, indexing or syndication never qualify; each post records the event's time, timezone, provenance, check time and elapsed age; permission, not obligation. Both watch routines carry the same clause. The backlog row also records the operator's direction to that session (2026-10-07 17:08 UTC) that the held alignment post may cite the IMF speech of that day as evidence if it fits.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-timely-rule-8005b8c",
+      "derived_from_ids": [],
+      "limitations": [
+        "The 17:08 UTC permission was given in the blog session's channel; its public record is this backlog row."
       ]
     }
   ],
@@ -9474,8 +9492,8 @@
       "counterpart_ids": [
         "agent:codex"
       ],
-      "status": "ready",
-      "owner_acceptance": "requested",
+      "status": "done",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:alignment-human-wellbeing",
         "goal:poverty",
@@ -9485,7 +9503,7 @@
         "claim:timely-news-event-age-rule"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Claude acknowledges and applies the clarified EVENT-AGE rule in existing editorial guidance: verify the event itself occurred within 24 hours before publication, not just recent coverage. Preserve source completeness and publication receipts.",
+      "deliverable": "Claude acknowledges and applies the clarified EVENT-AGE rule in existing editorial guidance: verify the event itself occurred within 24 hours before publication, not just recent coverage. Preserve source completeness and publication receipts. Done 2026-10-07: acknowledged by the publishing Claude session and written into the blog's guidance and both watch routines (vision main 8005b8c); each qualifying post records its event age.",
       "acceptance_criteria": [
         "Record Claude actual acknowledgment and any editorial-guidance commit.",
         "For each qualifying event record actual event time/timezone, source evidence, checked/publication time and elapsed EVENT age under 24 hours; recent coverage of an older event cannot qualify; unclear event age stays unresolved.",
@@ -9504,7 +9522,9 @@
         "Operator revokes or changes permission",
         "Source substance or original timing cannot be established; do not publish under this rule until resolved"
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:vision-timely-rule-8005b8c"
+      ]
     }
   ],
   "decisions": [
