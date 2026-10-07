@@ -1,0 +1,11 @@
+{
+  "after_block_hash": "0x89ec4e4d031543193af4910f886d577fcf79246d84b27da3f77947a7770c3d3d",
+  "after_block_number": 47820194,
+  "borrower_role": "s1-borrower-a",
+  "loan_id_from_mined_receipt": 18,
+  "meaning": "Accepted simulated worker invoice; treasury payment is internal subsidy, not outside income. Completion count is not independent trust.",
+  "mode": "fork",
+  "negative_checks": [],
+  "scenario": 1,
+  "status": "passed"
+}

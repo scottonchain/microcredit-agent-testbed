@@ -1,0 +1,526 @@
+{
+  "block_hash": "0xf0c7417ea3f5e2b6b063849c41f822fdd407286b3038981c472fdb31acc0702c",
+  "block_number": 47820218,
+  "label": "scenario3-active",
+  "loans": {
+    "18": {
+      "getLoan": [
+        1000000,
+        0,
+        563866100368877259609910275742896143005464219403,
+        933,
+        0
+      ],
+      "getLoanTerms": [
+        3,
+        2592000,
+        1791408643,
+        1791408643,
+        1794000643
+      ]
+    },
+    "19": {
+      "getLoan": [
+        1000000,
+        0,
+        386720976752207339043427119155631132419314807064,
+        933,
+        0
+      ],
+      "getLoanTerms": [
+        3,
+        2592000,
+        1791408650,
+        1791408651,
+        1794000651
+      ]
+    },
+    "20": {
+      "getLoan": [
+        1000000,
+        1000000,
+        1007619737441268508037494303596540105969373261167,
+        933,
+        1
+      ],
+      "getLoanTerms": [
+        2,
+        2592000,
+        1791408657,
+        1791408658,
+        1794000658
+      ]
+    }
+  },
+  "pool": {
+    "effrRate": 433,
+    "existing_lenders": {
+      "0x108450c748eef7aef23e64739bc508f56e596247": {
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "queuedShares": 0,
+        "sharesOf": 0
+      },
+      "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9": {
+        "lenderBalance": 15000000,
+        "lenderPrincipal": 15000000,
+        "queuedShares": 0,
+        "sharesOf": 15000000000000
+      }
+    },
+    "firstLossReserve": 0,
+    "guardian": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+    "lenderCash": 19000000,
+    "lendingUtilizationCap": 9000,
+    "liquidityBuffer": 500,
+    "liquidityThreshold": 0,
+    "maxLoanAmount": 100000000,
+    "owner": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+    "paused": 0,
+    "protocolFeeBps": 0,
+    "protocolFees": 0,
+    "reserveBps": 4500,
+    "reservedLiquidity": 0,
+    "riskPremium": 500,
+    "scoreProvider": "0x554c6bb61edf0cafb90ff31813540369cb0105e4",
+    "token_balance": 19000000,
+    "totalAssets": 20000000,
+    "totalDuesPaid": 0,
+    "totalImpaired": 0,
+    "totalLentOut": 1000000,
+    "totalQueuedShares": 0,
+    "totalQueuedWithdrawals": 0,
+    "totalShares": 20000000000000,
+    "totalStaked": 0,
+    "totalUnclaimedPayouts": 0,
+    "usdc": "0x036cbd53842c5426634e7929541ec2318f3dcf7e"
+  },
+  "provider": {
+    "epoch": 8,
+    "forwarder": "0x0000000000000000000000000000000000000000",
+    "isFresh": 1,
+    "lastReportAt": 1791408656,
+    "lending": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+    "maxIncreasePerReport": 50000000,
+    "maxScoreAge": 604800,
+    "maxTotalScore": 50000000,
+    "owner": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+    "reporter": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+    "scores": {
+      "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633": {
+        "held": 10000,
+        "score": 10000
+      },
+      "0x711e15425326fe01b958ea97ff37aa6336a7cec3": {
+        "held": 0,
+        "score": 0
+      },
+      "0x7954dfb0ca137a6a95291e1b392268ad2e93c96e": {
+        "held": 0,
+        "score": 0
+      },
+      "0xab7a7ee666b83607cb9d11b5d54f49c1085f980c": {
+        "held": 0,
+        "score": 0
+      },
+      "0xc5e42b0fb0c109e55f4a40cccfcf3fed1fc39009": {
+        "held": 920000,
+        "score": 920000
+      }
+    },
+    "totalHeld": 930000,
+    "totalScore": 930000
+  },
+  "root_aggregate_usdc_units": 16000000,
+  "timestamp": 1791408658,
+  "tracked_loan_ids": [
+    18,
+    19,
+    20
+  ],
+  "wallets": {
+    "s1-borrower-a": {
+      "address": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "eth_wei": 996669873110209,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 1,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s1-borrower-b": {
+      "address": "0xe2a2fd6c6b1e2ddf70b3edc84b10e7d6e1039f2f",
+      "eth_wei": 1000000000000000,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s1-funder": {
+      "address": "0xab7a7ee666b83607cb9d11b5d54f49c1085f980c",
+      "eth_wei": 996777999442284,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s1-sink": {
+      "address": "0x421ada122cf9823ee129179354a461013e0156e4",
+      "eth_wei": 999819293130433,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s2-borrower-a": {
+      "address": "0x56214ae2cfcd5ed76cb79126a595010cb831c407",
+      "eth_wei": 999073551754978,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s2-borrower-b": {
+      "address": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+      "eth_wei": 997824272790641,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 1,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s2-funder": {
+      "address": "0x711e15425326fe01b958ea97ff37aa6336a7cec3",
+      "eth_wei": 996990098555484,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s2-sink": {
+      "address": "0xb96c4e7c0cc25af24795097b6d8eac17b8519866",
+      "eth_wei": 999831188779235,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s3-borrower-a": {
+      "address": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+      "eth_wei": 998192268412873,
+      "position": {
+        "activeLoanCount": 1,
+        "available_credit": 0,
+        "backings_received": [
+          {
+            "backer": "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633",
+            "secured": 0,
+            "unsecured": 1000000
+          }
+        ],
+        "borrow_limit": 1000000,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 1000000
+    },
+    "s3-borrower-b": {
+      "address": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+      "eth_wei": 1000000000000000,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s3-funder": {
+      "address": "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633",
+      "eth_wei": 998015928970987,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 10000,
+        "completedLoans": 0,
+        "creditCommitted": 1000000,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 10000,
+        "grantedCredit": 1000000,
+        "lenderBalance": 5000000,
+        "lenderPrincipal": 5000000,
+        "provider_score": 10000,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 5000000000000,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "s3-sink": {
+      "address": "0x59b2c48fdeda316d4a442627e4b4a2e1ad81d2b1",
+      "eth_wei": 1000000000000000,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 0
+    },
+    "treasury": {
+      "address": "0x5225c44c41566d2c8785cfadfc712a21c0b51575",
+      "eth_wei": 87995222852780595,
+      "position": {
+        "activeLoanCount": 0,
+        "available_credit": 0,
+        "backings_received": [],
+        "borrow_limit": 0,
+        "budget_held": 0,
+        "completedLoans": 0,
+        "creditCommitted": 0,
+        "creditLoss": 0,
+        "defaultedLoans": 0,
+        "duesPaid": 0,
+        "getCreditScore": 0,
+        "grantedCredit": 0,
+        "lenderBalance": 0,
+        "lenderPrincipal": 0,
+        "provider_score": 0,
+        "queuedShares": 0,
+        "queuedWithdrawals": 0,
+        "scoreOverrides": 0,
+        "sharesOf": 0,
+        "stakeCommitted": 0,
+        "stakeOf": 0,
+        "unclaimedPayouts": 0
+      },
+      "usdc_units": 15000000
+    }
+  }
+}
