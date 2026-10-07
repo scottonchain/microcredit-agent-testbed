@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.75",
-  "updated_at": "2026-10-07T23:16:28Z",
+  "model_version": "0.1.76",
+  "updated_at": "2026-10-07T23:49:21Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5382,6 +5382,27 @@
         "Source-grounded design candidate, not a complete proof, executable multi-hop simulation, independent review or deployed mechanism.",
         "Globally feasible allocation does not prove economically accurate ranking, honest participants or useful demand."
       ]
+    },
+    {
+      "id": "ev:codex-grounded-bootstrap-reference-demonstration-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/e9e10c048a651b5db1830e53f49d3c2a0665553f/evidence/bootstrap-reality-001/README.md",
+      "locator": "evidence/bootstrap-reality-001: pinned primary sources, external observation receipts, work output/acceptance, reference engine/tests and deterministic ledger",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T23:49:21Z",
+      "retrieved_at": "2026-10-07T23:49:21Z",
+      "summary": "Pinned lending/agent commerce research, actual zero-USDC cached ten-row work acceptance and executed issuer-free two-hop reference bootstrap.29 simulation tests and6 output corruption checks passed. Two modeled zero-cash workers borrow0.20, repay from modeled0.50 escrow; one then self-finances. Actual merchant unpaid402 observation is Hermes-origin; revenues/fees/inference/gas are modeled. No merchant purchase, independent customer, EVM transitivity or primary live completion.",
+      "content_sha256": "7914a48e55e5c2972ae77c9765543c371d9739f49cf7d0e6252c1645d678e7ad",
+      "fingerprint_scope": "UTF-8 exact README bytes",
+      "origin_group": "codex-bootstrap-reality-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Python reference model, not deployed algorithm or durable EVM settlement.",
+        "Customer budgets and transfers modeled; report uses free cached inputs.",
+        "Merchant challenge is Hermes-reported public observation, not root independent web GET.",
+        "Existing live/source restoration and CI30 remain open."
+      ]
     }
   ],
   "claims": [
@@ -8490,6 +8511,33 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-grounded-bootstrap-reference-progress-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "grounded_reference_bootstrap_demonstrated",
+      "statement": "Codex executed an issuer-free stake-reserved two-hop bootstrap reference model grounded in pinned protocol research and Hermes observed merchant402 prices. Two zero-cash modeled workers repay, release backing and one self-finances its repeat; all modeled funds conserved. Real cached work passed independent literal-source acceptance;29 simulation and6 corruption checks passed. Actual independent customer, paid merchant fulfilment, deployed graph/migration and original live scenarios remain unproved.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Executed bounded reference model, deterministic replay and artifact tests; conclusions limited to stated model and source provenance.",
+        "supporting_evidence_ids": [
+          "ev:codex-grounded-bootstrap-reference-demonstration-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T23:49:21Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Merchant quote expiry or change",
+          "Actual customer/merchant execution",
+          "Algorithm implementation or deployment"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10887,7 +10935,8 @@
         "claim:codex-cold-start-guest-direction-20261007",
         "claim:sepolia-canonical-usdc-direction",
         "claim:codex-cold-start-complete-path-20261007",
-        "claim:codex-realistic-cold-start-results-20261007"
+        "claim:codex-realistic-cold-start-results-20261007",
+        "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
@@ -11023,7 +11072,8 @@
       "rationale_claim_ids": [
         "claim:ci30-cash-take-20261007",
         "claim:codex-cold-start-complete-path-20261007",
-        "claim:codex-realistic-cold-start-results-20261007"
+        "claim:codex-realistic-cold-start-results-20261007",
+        "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md.",
@@ -11110,7 +11160,8 @@
         "claim:credit-officer-cold-start-sync",
         "claim:sponsored-claim-conditions-20261007",
         "claim:codex-realistic-cold-start-results-20261007",
-        "claim:algorithmic-transitive-staking-post-bootstrap-20261007"
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
+        "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment.",
@@ -11131,6 +11182,47 @@
         "No change to the deployed contract."
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:qualify-paid-api-escrow-bootstrap-case",
+      "title": "Qualify a real funded paid-input service order for the grounded bootstrap pilot",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:productive-commerce"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-grounded-bootstrap-reference-progress-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A qualification record for an existing/inbound accepted funded customer order: actual mandatory paid inputs, current chain/token quote and inference/gas/retry costs, independent payer/operator, assigned settlement and acceptance/refund terms. Compare no-loan/free inputs, buyer prepayment and direct sponsor advance. Record STOP if any required gate is unmet; this is qualification, not actual loan completion.",
+      "acceptance_criteria": [
+        "Real accepted funded order and payer/operator evidence, not modeled0.50 bid or catalog demand.",
+        "Current raw merchant402 terms and actual necessary input budget; testnet tokens cannot buy mainnet resource.",
+        "Consent, loss budget, settlement repayment and quantified advantage over free inputs/prepayment/direct funding; otherwise STOP.",
+        "No purchase or deployment is implied by qualification; preserve original live/source commitments."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed deeper research, realistic simulation and autonomous existing team coordination. This action qualifies an actual pilot without spending.",
+      "spending": "none",
+      "stop_conditions": [
+        "No cost gap exists, or subsidy or self-payment supplies the repayment.",
+        "Operator independence or identity is unresolved.",
+        "Prepayment or sponsor access is cheaper.",
+        "Borrower harm, legality or cash-out cannot be bounded."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Hermes raw merchant quote receipt or existing/inbound funded customer order",
+        "Before due_at"
+      ]
     }
   ],
   "decisions": [
