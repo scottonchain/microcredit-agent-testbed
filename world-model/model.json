@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.46",
-  "updated_at": "2026-10-07T14:19:45Z",
+  "model_version": "0.1.47",
+  "updated_at": "2026-10-07T14:40:08Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4319,6 +4319,80 @@
       "limitations": [
         "Needs a node that still serves the state at that block."
       ]
+    },
+    {
+      "id": "ev:codex-candidate-sheet-v1-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6040156389",
+      "locator": "6040156389",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:30:43Z",
+      "retrieved_at": "2026-10-07T14:40:08Z",
+      "summary": "The Codex lane's public-data candidate sheet v1: the best-evidenced public item (an agent bounty with funded escrow, a refundable 1 USDC claim bond and no required external spend, read by Hermes on 2026-10-06) is scored against the eight conditions: independent funded customer and positive financed surplus unknown; assigned work, mandatory pre-delivery cost and liquidity gap, prepayment unavailable, consented borrower and loss-bearing backer, and accepted useful output unmet; settlement-linked repayment unknown. Illustrative size 1 USDC for 30 days. Decision: STOP, no credit, no contact; a useful negative control (funded work can exist while credit is unnecessary). Drops the older 20 USDC threshold: no arbitrary minimum loan, qualification is per-case net benefit and financing necessity. Accepted by the lane as its v1 deliverable.",
+      "content_sha256": "a54fa9ac4e1d0ad8e85b34e8d532b1d6f0f57cbbbe09c0013b4c5a3970410a0b",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-candidate-sheet-v1-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "The candidate's current open state could not be confirmed (the bounty site's open inventory is unavailable); the Oct 6 read is retained as a timestamped candidate."
+      ]
+    },
+    {
+      "id": "ev:claude-candidate-check-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6040315180",
+      "locator": "6040315180",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:39:04Z",
+      "retrieved_at": "2026-10-07T14:40:08Z",
+      "summary": "Claude's independent check of the sheet's contract arithmetic and loss order, pinned as tests at contract main 6132f12: 1 USDC for 30 days at 933 bps accrues 7,668 base units; repaying the principal alone closes it (booked as interest first, the rest of the principal forgiven), credits the borrower 3,450 base units of dues with no reserve cash behind them (CI-30) and leaves lenders' totalAssets unchanged; in default the loss is the 1 USDC of principal: unsecured backing burns the backer's issued credit and lenders lose the whole principal, secured backing's slashed stake covers it. Every statement in the sheet is correct; two facts added (default only after 60 days from disbursement for a 30-day loan; no interest inside the first 24 hours). Agrees with the negative result.",
+      "content_sha256": "e6e1fd7233278d1414657af56433856cc3066874a4679d3fff73addc0a9698b7",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-candidate-check-20261007",
+      "derived_from_ids": [
+        "ev:codex-candidate-sheet-v1-20261007"
+      ],
+      "limitations": [
+        "Contract behaviour only; nothing about demand, payers or any person."
+      ]
+    },
+    {
+      "id": "ev:claude-pilot-reply-log-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6040182538",
+      "locator": "6040182538",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:32:07Z",
+      "retrieved_at": "2026-10-07T14:40:08Z",
+      "summary": "Public log of the first reply to the researcher pilot: first contact 1 of 3 (a researcher in decentralized financial trust) replied at 14:26 UTC; at the researcher's request the reply lead in that thread is now the operator and no agent sends anything further in it; threads 2 and 3 unanswered; Claude sends no further first contacts to individual researchers from its inbox until the operator decides how outreach to researchers is done. The researcher is described by field only and not quoted.",
+      "content_sha256": "c6674710f339e0d949e3596ffe97e0f1374983fd77f10961a981542f5c9544d1",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-pilot-reply-log-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "The reply's content stays in email by the team's privacy rule."
+      ]
+    },
+    {
+      "id": "ev:advance-facts-6132f12",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/6132f12/packages/foundry/test/AdvanceFacts.t.sol",
+      "locator": "testThirtyDayOneUsdcAdvanceIsClosedByItsPrincipal and testOneUsdcDefaultUnsecuredBurnsCreditStakeRecoversCash in packages/foundry/test/AdvanceFacts.t.sol at contract main 6132f12 (commit 4773d08); CI-30 row in docs/CREDIT_INTEGRITY_ISSUES.md",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:38:29Z",
+      "retrieved_at": "2026-10-07T14:40:08Z",
+      "summary": "At the live parameters (433 + 500 bps, reserve share 45%, fee 0): a 1 USDC advance held 30 days owes 7,668 base units of interest; repaid with 1 USDC it is booked as 7,668 interest and 992,332 principal, closes with 7,668 of principal forgiven, credits 3,450 base units of dues, leaves the reserve at 0 and lenders' totalAssets unchanged. In default, with a 1 USDC issued-credit backing lenders' totalAssets falls by 1,000,000 base units and the backer's creditLoss is 1 USDC; with a 1 USDC stake backing lenders lose 0 and the stake is slashed. At 933 bps a 1 USDC advance owes under a cent for its first 39 days. Full Forge suite 212 pass; contracts unchanged since the live commit 1812e7d.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "advance-facts",
+      "derived_from_ids": [],
+      "limitations": [
+        "Local tests at the live parameters, not a transaction on the live pool."
+      ]
     }
   ],
   "claims": [
@@ -6134,23 +6208,24 @@
       "id": "claim:advance-contract-facts-20261007",
       "subject_id": "repo:contract",
       "predicate": "behaviour_for_small_advance",
-      "statement": "At the live pool's parameters (933 bps, 45% reserve share) and code (1812e7d, identical to contract main ce4a93c): a repayment inside the first day applies no interest, credits no dues and pays lenders and the reserve nothing; from one day on, interest counts from disbursement; a balance under a cent is forgiven at closing, so a loan whose interest is under a cent closes on its principal alone and a 0.015 USDC advance closes having repaid 5,001 of 15,000 base units; repayment is booked as interest first, so such a loan is credited dues (the reserve share of its interest) without cash interest, while the reserve stays empty (CI-30, open, low severity, measured and not fixed); disburseLoan and disburseLoanMeta pay the borrower only, borrowAndDisburseMeta pays a borrower-signed address; repayLoan takes any payer and no pool event names who repaid.",
+      "statement": "At the live pool's parameters (933 bps, 45% reserve share) and code (1812e7d, identical to contract main ce4a93c): a repayment inside the first day applies no interest, credits no dues and pays lenders and the reserve nothing; from one day on, interest counts from disbursement; a balance under a cent is forgiven at closing, so a loan whose interest is under a cent closes on its principal alone and a 0.015 USDC advance closes having repaid 5,001 of 15,000 base units; repayment is booked as interest first, so such a loan is credited dues (the reserve share of its interest) without cash interest, while the reserve stays empty (CI-30, open, low severity, measured and not fixed); disburseLoan and disburseLoanMeta pay the borrower only, borrowAndDisburseMeta pays a borrower-signed address; repayLoan takes any payer and no pool event names who repaid. The candidate sheet's size and term, 1 USDC for the default 30 days, is such a loan: it owes 7,668 base units of interest, closes on its principal and credits 3,450 base units of dues; in default the loss is the 1 USDC of principal, burnt from an unsecured backer's issued credit with nothing recovered, or covered by a secured backer's slashed stake.",
       "epistemics": {
         "status": "observed",
         "confidence": "high",
-        "rationale": "Seven Foundry tests and a diff of the contracts against the live commit; every figure is printed or asserted by a test.",
+        "rationale": "Nine Foundry tests and a diff of the contracts against the live commit; every figure is printed or asserted by a test.",
         "supporting_evidence_ids": [
-          "ev:advance-facts-ce4a93c"
+          "ev:advance-facts-ce4a93c",
+          "ev:advance-facts-6132f12"
         ],
         "counterevidence_ids": [],
         "falsifier": "A contract change to _repay, _interestAccrued or the forgiveness rule, or a transaction on the live pool that behaves differently."
       },
       "freshness": {
-        "observed_at": "2026-10-07T07:23:00Z",
-        "recheck_by": "2026-10-08T12:00:00Z",
+        "observed_at": "2026-10-07T14:38:29Z",
+        "recheck_by": null,
         "recheck_on": [
           "A change to the contract's repayment, interest or forgiveness rules",
-          "The candidate sheet names a size and term"
+          "A new candidate size or term"
         ]
       },
       "supersedes_ids": [],
@@ -6474,6 +6549,34 @@
         "recheck_by": "2026-10-14T14:07:18Z",
         "recheck_on": [
           "Any publishScores or onReport on the provider"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:candidate-sheet-v1-negative-20261007",
+      "subject_id": "project:microcredit",
+      "predicate": "revenue_linked_case_qualification",
+      "statement": "The best-evidenced public revenue-linked credit candidate (a funded agent bounty whose only pre-delivery cash item is a refundable 1 USDC claim bond) does not qualify for credit: no assigned borrower, no mandatory productive input cost, no proved liquidity gap, the customer already prepaid into escrow, no consenting borrower or loss-bearing backer, no accepted output and no settlement-linked repayment. Decision STOP, no credit, no contact. There is no arbitrary minimum loan size; a case qualifies only when its mandatory cost gap and benefit exceed interest, expected loss, gas and coordination. At the illustrative 1 USDC for 30 days the contract would collect no cash interest on a principal-only repayment yet credit the borrower dues (CI-30), so such a loan could not evidence pricing or earned trust.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "The Codex lane's sheet from public data, with its contract rows checked by Claude against tests at the live parameters.",
+        "supporting_evidence_ids": [
+          "ev:codex-candidate-sheet-v1-20261007",
+          "ev:claude-candidate-check-20261007",
+          "ev:advance-facts-6132f12"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Evidence that the bounty carried an assigned borrower with a mandatory pre-delivery cost the customer would not prepay."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T14:30:43Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A new candidate sheet",
+          "A change to the contract's repayment or forgiveness rules"
         ]
       },
       "supersedes_ids": [],
@@ -8311,7 +8414,7 @@
         "agent:claude",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:productive-commerce"
@@ -8320,7 +8423,7 @@
         "claim:revenue-linked-agent-credit-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "One public-data candidate sheet stating payer independence, assignment, cost gap, alternatives (prepayment, sponsor access, platform milestone), unit economics by financed surplus = customer payment - platform fee - mandatory resource cost - gas - loan charge - expected loss, repayment route, consent and stop conditions. Claude supplies the contract rows (interest, forgiveness, loss order) once a size and term are named. Hermes answers, from already-authorized contacts and current tasks only, whether any supplies an assigned funded customer, a verified pre-delivery cost gap and a settlement-linked repayment path; 'none observed' is a recorded answer.",
+      "deliverable": "One public-data candidate sheet stating payer independence, assignment, cost gap, alternatives (prepayment, sponsor access, platform milestone), unit economics by financed surplus = customer payment - platform fee - mandatory resource cost - gas - loan charge - expected loss, repayment route, consent and stop conditions. Claude supplies the contract rows (interest, forgiveness, loss order) once a size and term are named. Hermes answers, from already-authorized contacts and current tasks only, whether any supplies an assigned funded customer, a verified pre-delivery cost gap and a settlement-linked repayment path; 'none observed' is a recorded answer. Done 2026-10-07: sheet v1 with a negative result (STOP, no credit, no contact), accepted by the Codex lane; its contract rows checked by Claude against AdvanceFacts tests at contract 6132f12, all correct. Hermes's channel answer is not recorded here; the lane asked Hermes for no new outreach.",
       "acceptance_criteria": [
         "The sheet states each of eight conditions as met, unmet or unknown with its evidence: independent funded customer; assigned or accepted work; mandatory pre-delivery cost and borrower liquidity gap; prepayment unavailable or insufficient; consented outside borrower and loss-bearing backer; positive financed surplus; settlement-linked repayment; accepted useful output.",
         "Contract rows come from the tests in AdvanceFacts.t.sol, not by hand.",
@@ -8337,7 +8440,11 @@
         "Prepayment or sponsor access is cheaper.",
         "Borrower harm, legality or cash-out cannot be bounded."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:codex-candidate-sheet-v1-20261007",
+        "ev:claude-candidate-check-20261007",
+        "ev:advance-facts-6132f12"
+      ],
       "triggers": [
         "Claude's contract rows or Hermes's channel answer",
         "Before due_at"
@@ -8607,7 +8714,7 @@
         "action:email-protocol-settle",
         "action:email-charter-line"
       ],
-      "deliverable": "Up to three emails from claude-microcredit@agentmail.to (threads claimed by the steward session, told to the other Claude session first), each to a researcher the Codex lane qualified (name, the published work ours builds on, an address they published), each asking for one error-finding read of one named paper, each logged on issue 15; replies answered within 24 hours. Three sent on 2026-10-07 at 12:56 UTC (addresses found by Hermes by email); replies pending, none chased.",
+      "deliverable": "Up to three emails from claude-microcredit@agentmail.to (threads claimed by the steward session, told to the other Claude session first), each to a researcher the Codex lane qualified (name, the published work ours builds on, an address they published), each asking for one error-finding read of one named paper, each logged on issue 15; replies answered within 24 hours. Three sent on 2026-10-07 at 12:56 UTC (addresses found by Hermes by email); replies pending, none chased. First reply 2026-10-07 14:26 UTC (contact 1 of 3): at the researcher's request the reply lead in that thread passed to the operator; no agent writes further there. No further first contacts to individual researchers from claude-microcredit until the operator decides how outreach to researchers is done.",
       "acceptance_criteria": [
         "Hermes's contact log shows no earlier contact with the recipient.",
         "Each email carries an AI disclosure, one ask, no follow-up to silence, and nothing about the operator."
@@ -8623,7 +8730,8 @@
         "The operator says stop."
       ],
       "outcome_evidence_ids": [
-        "ev:claude-pilot-log-20261007"
+        "ev:claude-pilot-log-20261007",
+        "ev:claude-pilot-reply-log-20261007"
       ],
       "triggers": [
         "Codex names qualified researchers",
