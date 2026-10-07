@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "offlineOnly": true,
+  "sourceDeploymentCommit": "1812e7d",
+  "sourceRepositoryHead": "dd9aeee4d351dfbe5ed3c55c06bf925ef6b69df3",
+  "deployment": {
+    "chainId": 84532,
+    "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+    "provider": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
+    "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+  },
+  "fixtures": {
+    "funder": "0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c",
+    "borrower": "0x1111111111111111111111111111111111111111",
+    "amount": "1000000",
+    "score": "10000",
+    "epoch": "1",
+    "loanId": "1",
+    "aprBps": "933"
+  },
+  "artifacts": {
+    "pool": {
+      "artifactPath": "/workspace/microcredit-contract/packages/foundry/out/DecentralizedMicrocredit.sol/DecentralizedMicrocredit.json",
+      "artifactSha256": "7a95da2be9d30381522c1e25f4b5973b1a7e9206573a945ea1ad207f32a56a03",
+      "compiler": "0.8.33+commit.64118f21",
+      "settings": {
+        "remappings": [
+          "@openzeppelin/=../../lib/openzeppelin-contracts/",
+          "erc4626-tests/=../../lib/openzeppelin-contracts/lib/erc4626-tests/",
+          "forge-std/=../../lib/openzeppelin-contracts/lib/forge-std/src/",
+          "halmos-cheatcodes/=../../lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+          "openzeppelin-contracts/=../../lib/openzeppelin-contracts/"
+        ],
+        "optimizer": {
+          "enabled": true,
+          "runs": 200
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "contracts/DecentralizedMicrocredit.sol": "DecentralizedMicrocredit"
+        },
+        "evmVersion": "osaka",
+        "libraries": {},
+        "viaIR": true
+      },
+      "sourceHash": "0xcfef8ea628e6b075a196595c0a56548bbbc50fc898d49e5b60fe445a91d63261",
+      "sourceMatches1812e7d": true,
+      "sourceCommitComparison": "git diff --exit-code 1812e7d -- both working-tree main contract files returned 0",
+      "deployedBytecodeBytes": 24377,
+      "deployedBytecodeKeccak256": "0x47e83ef3b18d4a9e0e3f400f6deeea2919661c8edf75d118076985dc6b22abc8",
+      "immutableReferences": {
+        "1501": [
+          {
+            "start": 23788,
+            "length": 32
+          }
+        ],
+        "1503": [
+          {
+            "start": 23977,
+            "length": 32
+          }
+        ],
+        "1505": [
+          {
+            "start": 23734,
+            "length": 32
+          }
+        ],
+        "1507": [
+          {
+            "start": 23867,
+            "length": 32
+          }
+        ],
+        "1509": [
+          {
+            "start": 23905,
+            "length": 32
+          }
+        ],
+        "1512": [
+          {
+            "start": 7128,
+            "length": 32
+          }
+        ],
+        "1515": [
+          {
+            "start": 7172,
+            "length": 32
+          }
+        ],
+        "54045": [
+          {
+            "start": 10820,
+            "length": 32
+          },
+          {
+            "start": 19531,
+            "length": 32
+          },
+          {
+            "start": 20556,
+            "length": 32
+          },
+          {
+            "start": 21630,
+            "length": 32
+          }
+        ]
+      },
+      "linkReferences": {}
+    },
+    "provider": {
+      "artifactPath": "/workspace/microcredit-contract/packages/foundry/out/OracleScoreProvider.sol/OracleScoreProvider.json",
+      "artifactSha256": "6ee0c07dae44228809b63a73068d96692a01f0cb8842b0f51b851df546925836",
+      "compiler": "0.8.33+commit.64118f21",
+      "settings": {
+        "remappings": [
+          "@openzeppelin/=../../lib/openzeppelin-contracts/",
+          "erc4626-tests/=../../lib/openzeppelin-contracts/lib/erc4626-tests/",
+          "forge-std/=../../lib/openzeppelin-contracts/lib/forge-std/src/",
+          "halmos-cheatcodes/=../../lib/openzeppelin-contracts/lib/halmos-cheatcodes/src/",
+          "openzeppelin-contracts/=../../lib/openzeppelin-contracts/"
+        ],
+        "optimizer": {
+          "enabled": true,
+          "runs": 200
+        },
+        "metadata": {
+          "bytecodeHash": "ipfs"
+        },
+        "compilationTarget": {
+          "contracts/OracleScoreProvider.sol": "OracleScoreProvider"
+        },
+        "evmVersion": "osaka",
+        "libraries": {},
+        "viaIR": true
+      },
+      "sourceHash": "0x2ac5503fbe64435b0829f21f412f2d6abb27bfc1b0d6bc9b8aac0ec3fbb4ce61",
+      "sourceMatches1812e7d": true,
+      "sourceCommitComparison": "git diff --exit-code 1812e7d -- both working-tree main contract files returned 0",
+      "deployedBytecodeBytes": 4916,
+      "deployedBytecodeKeccak256": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3",
+      "immutableReferences": {},
+      "linkReferences": {}
+    }
+  },
+  "selectors": {
+    "pool": {
+      "BASIS_POINTS()": "0xe1f1c4a7",
+      "DEFAULT_LOAN_TERM()": "0x6df4e70b",
+      "LATE_PERIOD()": "0x9028d50b",
+      "MAX_BACKERS_PER_BORROWER()": "0x1e8d2ae3",
+      "MAX_LOAN_TERM()": "0x8c34dc70",
+      "MAX_PROTOCOL_FEE_BPS()": "0x6d947e4b",
+      "MAX_RESERVE_BPS()": "0xd8f3e26d",
+      "MIN_BACKING()": "0xdd049daa",
+      "MIN_LOAN_TERM()": "0x0d95250a",
+      "QUEUE_FILLS_PER_CALL()": "0x20d5cab7",
+      "RESERVATION_TTL()": "0x5350351e",
+      "SCALE()": "0xeced5526",
+      "SECONDS_PER_YEAR()": "0xe6a69ab8",
+      "acceptOwnership()": "0x79ba5097",
+      "activeLoanCount(address)": "0x60c89149",
+      "back(address,uint256)": "0xb870f613",
+      "backMeta((address,address,uint256,uint256,uint256),bytes)": "0xbba6e276",
+      "borrowAndDisburseMeta((address,uint256,address,uint256,uint256,uint256,uint256),bytes)": "0x0d29380a",
+      "cancelLoan(uint256)": "0xbdbfa3de",
+      "claimPayout(address)": "0xf3648ae6",
+      "claimProtocolFees(address,uint256)": "0x9bfd169b",
+      "completedLoans(address)": "0x8c175450",
+      "convertToAssets(uint256)": "0x07a2d13a",
+      "convertToShares(uint256)": "0xc6e6f592",
+      "creditCommitted(address)": "0x9faf967e",
+      "creditLoss(address)": "0x70e6d84c",
+      "defaultedLoans(address)": "0x34ca3573",
+      "depositFunds(uint256)": "0x3b76594d",
+      "depositPermitOnlyMeta(address,(uint256,uint256,uint8,bytes32,bytes32))": "0x0d4e34c0",
+      "depositWithPermitMeta((address,uint256,address,uint256,uint256),bytes,(uint256,uint256,uint8,bytes32,bytes32))": "0x8fe6e360",
+      "disburseLoan(uint256)": "0xb73e4da0",
+      "disburseLoanMeta((address,uint256,address,uint256,uint256),bytes)": "0x0e9b594c",
+      "displayNames(address)": "0xdc866381",
+      "duesPaid(address)": "0xce6b6c41",
+      "effrRate()": "0xc9d06a29",
+      "eip712Domain()": "0x84b0196e",
+      "firstLossReserve()": "0x2a544a84",
+      "fundReserve(uint256)": "0x75c54224",
+      "getAllLoanIds()": "0x5c1bf865",
+      "getBackedBorrowers()": "0xd388fb6e",
+      "getBackers()": "0x30f3e3da",
+      "getBacking(address,address)": "0x4c00acbb",
+      "getBackings(address)": "0xf198f8b9",
+      "getBorrowLimit(address)": "0x7c17d237",
+      "getBorrowerLoanIds(address)": "0x1d123633",
+      "getBorrowers()": "0x6854786a",
+      "getCreditScore(address)": "0xd3dd2bdf",
+      "getCurrentOutstandingAmount(uint256)": "0x77d31464",
+      "getFreeCredit(address)": "0xec1e5d13",
+      "getLenders()": "0x82926875",
+      "getLoan(uint256)": "0x504006ca",
+      "getLoanRate()": "0xcab98890",
+      "getLoanTerms(uint256)": "0x0634612f",
+      "grantedCredit(address)": "0x0d258839",
+      "guardian()": "0x452a9320",
+      "impairLoan(uint256)": "0x623fb7ce",
+      "isKYCVerified(address)": "0x54b7636e",
+      "lenderBalance(address)": "0x275972ca",
+      "lenderCash()": "0x6e21ccab",
+      "lenderCount()": "0xd2227acf",
+      "lenderPrincipal(address)": "0x9aaf4a31",
+      "lendingUtilizationCap()": "0x3906acc6",
+      "liquidityBuffer()": "0xcc3f4e20",
+      "liquidityThreshold()": "0xc9688086",
+      "markDefaulted(uint256)": "0x73216450",
+      "markKYCVerified(address)": "0x3eae7a45",
+      "maxLoanAmount()": "0x72f94365",
+      "nonces(address)": "0x7ecebe00",
+      "oracle()": "0x7dc0d1d0",
+      "owner()": "0x8da5cb5b",
+      "pause()": "0x8456cb59",
+      "paused()": "0x5c975abb",
+      "pendingOwner()": "0xe30c3978",
+      "processWithdrawalQueue(uint256)": "0x342c00b3",
+      "protocolFeeBps()": "0x35659fb8",
+      "protocolFees()": "0x1ad8b03b",
+      "queuedShares(address)": "0xdc560c88",
+      "queuedWithdrawals(address)": "0x7b562444",
+      "relayerWhitelist(address)": "0xad5dd7ed",
+      "relayerWhitelistEnabled()": "0xe67aacd6",
+      "releaseReserve(uint256)": "0x101005bd",
+      "repayLoan(uint256,uint256)": "0x8a700b53",
+      "repayLoanMeta((address,uint256,uint256,uint256,uint256),bytes,(uint256,uint256,uint8,bytes32,bytes32))": "0x1d169fa9",
+      "repayWithPermit(address,uint256,uint256,uint256,uint256,uint8,bytes32,bytes32)": "0x38a16f90",
+      "requestLoan(uint256)": "0x8d5d3429",
+      "requestLoanMeta((address,uint256,uint256,uint256),bytes)": "0x0b79b713",
+      "requestWithdrawalMeta((address,uint256,address,uint256,uint256),bytes)": "0xfb60d92a",
+      "reserveBps()": "0x38925449",
+      "reservedLiquidity()": "0x9f308512",
+      "riskPremium()": "0x3e8b83c8",
+      "scoreOverrides(address)": "0xf75a3e23",
+      "scoreProvider()": "0xc9dd0c93",
+      "setDisplayName(string)": "0x91e33085",
+      "setEffrRate(uint256)": "0xad8615f0",
+      "setGuardian(address)": "0x8a0dac4a",
+      "setLendingUtilizationCap(uint256)": "0xeaf768dd",
+      "setLiquidityLimits(uint256,uint256)": "0xe62b8f17",
+      "setMaxLoanAmount(uint256)": "0xb76e053b",
+      "setOracle(address)": "0x7adbf973",
+      "setProtocolFeeBps(uint256)": "0xc0417e58",
+      "setRelayerWhitelistEnabled(bool)": "0xb5f55f06",
+      "setRelayerWhitelisted(address,bool)": "0x78394417",
+      "setReserveBps(uint256)": "0xe9308c25",
+      "setRiskPremium(uint256)": "0xa117d729",
+      "setScoreOverride(address,uint256)": "0x2bfec7f5",
+      "setScoreProvider(address)": "0xaec3bbbb",
+      "sharesOf(address)": "0xf5eb42dc",
+      "stake(uint256)": "0xa694fc3a",
+      "stakeCommitted(address)": "0xef9711ca",
+      "stakeOf(address)": "0x42623360",
+      "totalAssets()": "0x01e1d114",
+      "totalDuesPaid()": "0xd2699e78",
+      "totalImpaired()": "0x77c15895",
+      "totalLentOut()": "0x227a09c4",
+      "totalQueuedShares()": "0xdc20c8ff",
+      "totalQueuedWithdrawals()": "0x481bf0b8",
+      "totalShares()": "0x3a98ef39",
+      "totalStaked()": "0x817b1cd2",
+      "totalUnclaimedPayouts()": "0x126dd6ef",
+      "transferOwnership(address)": "0xf2fde38b",
+      "unclaimedPayouts(address)": "0x93ddfb78",
+      "unpause()": "0x3f4ba83a",
+      "unstake(uint256)": "0x2e17de78",
+      "usdc()": "0x3e413bee",
+      "withdrawFunds(uint256)": "0x155dd5ee"
+    },
+    "provider": {
+      "MAX_BATCH()": "0x950bff9f",
+      "MAX_SCORE_AGE()": "0xde1b9ef0",
+      "MIN_SCORE_AGE()": "0x26d0cbca",
+      "SCALE()": "0xeced5526",
+      "acceptOwnership()": "0x79ba5097",
+      "budgetHeld(address)": "0x7d64b4de",
+      "creditScore(address)": "0xf7e590ee",
+      "epoch()": "0x900cf0cf",
+      "expectedWorkflowId()": "0xc409b1a2",
+      "expectedWorkflowOwner()": "0xc8e9c186",
+      "forwarder()": "0xf645d4f9",
+      "getScores()": "0x1ea1380c",
+      "isFresh()": "0x6268ceaa",
+      "lastReportAt()": "0x92dc7b7b",
+      "lending()": "0x95e97eee",
+      "maxIncreasePerReport()": "0x9feed035",
+      "maxScoreAge()": "0xc82bfbb7",
+      "maxTotalScore()": "0x47a1fc67",
+      "onReport(bytes,bytes)": "0x805f2132",
+      "owner()": "0x8da5cb5b",
+      "pendingOwner()": "0xe30c3978",
+      "publishScores(bytes)": "0xb5be712a",
+      "releaseBudget(address[])": "0x96c76395",
+      "renounceOwnership()": "0x715018a6",
+      "reporter()": "0x010ec441",
+      "setForwarder(address,address,bytes32)": "0x121c40b1",
+      "setIssuanceLimits(uint256,uint256)": "0x1ef24f43",
+      "setLending(address)": "0x180fde07",
+      "setMaxScoreAge(uint256)": "0xb673fcb2",
+      "setReporter(address)": "0x4c925032",
+      "supportsInterface(bytes4)": "0x01ffc9a7",
+      "totalHeld()": "0xf43cc773",
+      "totalScore()": "0xc006719f",
+      "transferOwnership(address)": "0xf2fde38b"
+    },
+    "usdc": {
+      "balanceOf(address)": "0x70a08231",
+      "allowance(address,address)": "0xdd62ed3e",
+      "approve(address,uint256)": "0x095ea7b3",
+      "transfer(address,uint256)": "0xa9059cbb",
+      "transferFrom(address,address,uint256)": "0x23b872dd",
+      "decimals()": "0x313ce567",
+      "name()": "0x06fdde03",
+      "symbol()": "0x95d89b41",
+      "totalSupply()": "0x18160ddd",
+      "nonces(address)": "0x7ecebe00",
+      "DOMAIN_SEPARATOR()": "0x3644e515",
+      "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)": "0xd505accf",
+      "isBlacklisted(address)": "0xfe575a87",
+      "paused()": "0x5c975abb"
+    }
+  },
+  "poolStateAbis": [
+    {
+      "type": "function",
+      "name": "getBacking",
+      "inputs": [
+        {
+          "name": "backer",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "borrower",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "secured",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "unsecured",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getBackings",
+      "inputs": [
+        {
+          "name": "borrower",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple[]",
+          "internalType": "struct DecentralizedMicrocredit.Backing[]",
+          "components": [
+            {
+              "name": "backer",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "secured",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "unsecured",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getBorrowLimit",
+      "inputs": [
+        {
+          "name": "borrower",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "limit",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "available",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getBorrowerLoanIds",
+      "inputs": [
+        {
+          "name": "borrower",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256[]",
+          "internalType": "uint256[]"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCreditScore",
+      "inputs": [
+        {
+          "name": "user",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getCurrentOutstandingAmount",
+      "inputs": [
+        {
+          "name": "loanId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getFreeCredit",
+      "inputs": [
+        {
+          "name": "backer",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "credit",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "staked",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getLoan",
+      "inputs": [
+        {
+          "name": "loanId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "principal",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "outstanding",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "borrower",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "interestRate",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "isActive",
+          "type": "bool",
+          "internalType": "bool"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getLoanTerms",
+      "inputs": [
+        {
+          "name": "loanId",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "status",
+          "type": "uint8",
+          "internalType": "enum DecentralizedMicrocredit.LoanStatus"
+        },
+        {
+          "name": "term",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "requestedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "disbursedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "dueAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ],
+  "loanStatus": {
+    "None": 0,
+    "Requested": 1,
+    "Active": 2,
+    "Repaid": 3,
+    "Defaulted": 4,
+    "Cancelled": 5
+  },
+  "loanRequested": {
+    "signature": "LoanRequested(address,uint256,uint256,uint256)",
+    "topic0": "0x470e775e4fa2bd975947314dc912d0dd85338d809a6b967e36382e32a3b6f2bb",
+    "topics": [
+      "0x470e775e4fa2bd975947314dc912d0dd85338d809a6b967e36382e32a3b6f2bb",
+      "0x0000000000000000000000001111111111111111111111111111111111111111",
+      "0x0000000000000000000000000000000000000000000000000000000000000001"
+    ],
+    "data": "0x00000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000000003a5",
+    "expected": {
+      "borrower": "0x1111111111111111111111111111111111111111",
+      "loanId": "1",
+      "amount": "1000000",
+      "interestRate": "933"
+    }
+  },
+  "report1": {
+    "types": [
+      {
+        "type": "uint64",
+        "name": "epoch"
+      },
+      {
+        "type": "address[]",
+        "name": "users"
+      },
+      {
+        "type": "uint256[]",
+        "name": "scores"
+      }
+    ],
+    "decoded": {
+      "epoch": "1",
+      "users": [
+        "0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c"
+      ],
+      "scores": [
+        "10000"
+      ]
+    },
+    "encoded": "0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ab7a7ee666b83607cb9d11b5d54f49c1085f980c00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000002710",
+    "publishScoresCalldata": "0xb5be712a000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ab7a7ee666b83607cb9d11b5d54f49c1085f980c00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000002710"
+  },
+  "releaseBudget": {
+    "users": [
+      "0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c"
+    ],
+    "calldata": "0x96c7639500000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000ab7a7ee666b83607cb9d11b5d54f49c1085f980c"
+  },
+  "caveats": [
+    "This file was generated and verified entirely offline; it does not establish live runtime or chain state.",
+    "The local main contract source hash matches artifact compiler metadata and both main contract sources match deployment commit 1812e7d. Imported dependencies and compiler settings are recorded by the artifact; exact runtime verification is still required.",
+    "Pool deployedBytecode contains immutable placeholders for USDC and inherited EIP712 fields. Compare live bytecode after masking every artifact immutable reference; do not directly compare its full hash to this artifact hash.",
+    "Provider deployedBytecode has no immutable references. Exact provider runtime match is expected only if the live deployment used these compiler settings, dependencies, and metadata.",
+    "USDC selectors are derived from standard ERC20, EIP2612, and Circle control signatures. They do not establish which implementation the USDC proxy uses.",
+    "Epoch 1 is a deterministic encoding fixture. A real report must use current provider epoch plus one."
+  ]
+}
