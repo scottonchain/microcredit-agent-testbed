@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.27",
-  "updated_at": "2026-10-06T23:41:00Z",
+  "model_version": "0.1.28",
+  "updated_at": "2026-10-07T00:01:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3155,6 +3155,51 @@
       "limitations": [
         "Not yet exercised by a browser run on build a6a87b3; the cause of the original misses is a suspicion until a run with this build either passes or shows the amber box text.",
         "No unit test of the new function: it depends on the app's wagmi and ABI imports, which the node test runner does not load."
+      ]
+    },
+    {
+      "id": "ev:sepolia-browser-run-a6a87b3",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/168f6c8/deployments/base-sepolia-1812e7d-usdc001/browser-run-a6a87b3",
+      "locator": "Testbed 168f6c8 (Hermes, noreply, 2026-10-06T23:55Z): README, seven run records and local-script-changes.diff under deployments/base-sepolia-1812e7d-usdc001/browser-run-a6a87b3/; Hermes's report on contract issue 7 (comment 6027719161)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-06T23:55:00Z",
+      "retrieved_at": "2026-10-07T00:01:00Z",
+      "summary": "Hermes re-ran the released app on build a6a87b3 (the loan-visible wait) from the same zero-credit wallet, public RPC endpoint, lend 2 and borrow 1: the fresh borrow sent both requestLoan and disburseLoan in 5 of 5 attempts without the recovery card (loans 7 to 11), where build 258affb sent the second in 0 of 4; lend sent both transactions in 6 of 6; repay sent both in 5 of 7, the two others got HTTP 429 from the public RPC endpoint on the approve send, nothing was sent and the loan stayed Active (later repays finished those loans); each full run's withdraw step passed. One borrow step in run 5 is not a test (loan 10 was still Active, so no Borrow button). Not seen: the amber stopped-step box (no borrow stopped); console errors were not captured by the runner. Not done: the wrong-network check and a reject-disburse run on this build. Hermes also states it still has no facts on the release-two custody items (public HTTPS endpoint, uptime, RPC limits).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-258affb",
+        "ev:sepolia-borrow-visibility-fix"
+      ],
+      "limitations": [
+        "Hermes's own records; this session reread the README and one run output and could not read the chain (RPC unreachable).",
+        "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor; the bridged signer sends through the same public endpoint that rate-limited it.",
+        "5 of 5 against 0 of 4 is a clear change, not proof for every case.",
+        "Two repay attempts were stopped by a rate limit with no reason on the page: see ev:sepolia-visible-errors."
+      ]
+    },
+    {
+      "id": "ev:sepolia-visible-errors",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/a7fa809",
+      "locator": "Contract main a7fa809: packages/nextjs/utils/stopMessage.ts and its test, app/borrower/page.tsx, app/attest/page.tsx, app/lend/page.tsx, docs/TESTNET_WALKTHROUGH.md; site scottonchain.github.io main e119cb5 built from it under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:01:00Z",
+      "retrieved_at": "2026-10-07T00:01:00Z",
+      "summary": "Response to the repay failures in ev:sepolia-browser-run-a6a87b3 and to a defect found while reading the code: the repay buttons (in full and in part) only wrote failures to the console, so any stopped repay, including the allowance-not-yet-visible stop, showed nothing on the page. Every wallet-direct page now writes a stopped step on the page (borrower: repay, cancel, borrow, disburse; attest: stake and back; lend: deposit and withdrawal) with text from stopMessage: trimmed so a request body never lands on the page, with a hint for a rate limit (nothing sent, wait and press again) and for a timeout (look at the wallet's activity first, the step may have been sent). Five unit tests for the helper; the walkthrough has a recovery row.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-a6a87b3"
+      ],
+      "limitations": [
+        "Not yet exercised by a browser run on build a7fa809.",
+        "The hint for a timeout is a rule of thumb: whether a timed-out send reached the network is not knowable from the page."
       ]
     }
   ],
@@ -6431,6 +6476,7 @@
         "ev:sepolia-allowance-fix",
         "ev:sepolia-borrow-visibility-fix",
         "ev:sepolia-browser-run-258affb",
+        "ev:sepolia-browser-run-a6a87b3",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
@@ -6438,7 +6484,8 @@
         "ev:sepolia-release-one-build",
         "ev:sepolia-release-one-fixes",
         "ev:sepolia-site-published",
-        "ev:sepolia-usdc-cutover"
+        "ev:sepolia-usdc-cutover",
+        "ev:sepolia-visible-errors"
       ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
@@ -6956,12 +7003,14 @@
         "ev:sepolia-allowance-fix",
         "ev:sepolia-borrow-visibility-fix",
         "ev:sepolia-browser-run-258affb",
+        "ev:sepolia-browser-run-a6a87b3",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-demo-alert-bottom",
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-fixes",
+        "ev:sepolia-visible-errors",
         "work:sepolia-prototype"
       ],
       "resolution_evidence_needed": "A successful new-wallet test with documented credit and gas prerequisites, mined transactions and recoverable UI state against the named deployed pool. Claude's inability to reach RPC is not a global blocker. Dependency: Codex's recheck of the corrected release and the browser run against it.",
