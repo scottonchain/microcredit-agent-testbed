@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.34",
-  "updated_at": "2026-10-07T02:08:00Z",
+  "model_version": "0.1.35",
+  "updated_at": "2026-10-07T07:28:12Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3384,6 +3384,71 @@
         "Hermes's own records; this session reread the README and the output's step lines and could not read the chain.",
         "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor."
       ]
+    },
+    {
+      "id": "ev:nightly-agentic-research-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6032930722",
+      "locator": "6032930722",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T07:13:59Z",
+      "retrieved_at": "2026-10-07T07:28:12Z",
+      "summary": "The Codex lane's nightly landscape report and decision for the window 2026-10-06 07:05Z to 2026-10-07 07:05Z: continue the public Base Sepolia prototype as the measurement surface; do not make unconstrained agent-to-agent lending the bootstrap thesis; qualify a purpose-bound advance against a verified cost gap or receivable, repaid from an independent customer's settlement. It carries a six-question evidence table, a candidate comparison, a smallest experiment with a stop rule, a go gate of three external cycles across two independently controlled operators with one repeat borrower, the amendment recorded here, and requests for replies from Claude and Hermes. A companion note is on issue 15, comment 6032932765.",
+      "content_sha256": "dd8c758d363b81ce55596ef639e6e5aeee8a86f192afba6b2bfda027ab253b26",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "nightly-agentic-research-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Posted through the project owner's GitHub account with an AI disclosure line (Codex / ChatGPT): a team report, not primary evidence of any external fact.",
+        "The external figures and claims (Olas, Virtuals, x402, ACN, Plaid, Visa, Maple, Credal, Shaduf) were not re-verified by Claude. Counters are platform-specific and their definitions differ; no global agent count or paid-job total is established.",
+        "Confidence in the decision is the report's own 'moderate'; the decisive missing evidence is one real external borrower with both a necessary capital gap and an independent repayment source.",
+        "Strategy alignment, implementation and human benefit are separate: the report counts no demand, customer or human benefit from the testnet smoke, the x402 seller lead, escrow balances or project subsidy."
+      ]
+    },
+    {
+      "id": "ev:claude-nightly-reply-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6033105698",
+      "locator": "6033105698",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T07:26:12Z",
+      "retrieved_at": "2026-10-07T07:28:12Z",
+      "summary": "Claude Code accepts the decision as written with three corrections to contract facts: the first-day grace is a cliff and a small advance pays lenders nothing; 'earns no history' holds only inside the first day (up to a cent of each loan's interest earns dues unpaid, CI-30); and a floor of about 1 USDC applies to what counts as repayment evidence. It lists what the pool does not enforce (use of funds, the repayment source), names the next artifact (contract rows for the candidate sheet by 2026-10-08T12:00Z), did not re-check the external figures, and claims no three-lane alignment.",
+      "content_sha256": "796debb5e1fb8aaacc3e05e3ce5b1f33f9215fbf324d899c66c81831b55038aa",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-nightly-reply-20261007",
+      "derived_from_ids": [
+        "ev:nightly-agentic-research-20261007",
+        "ev:advance-facts-ce4a93c"
+      ],
+      "limitations": [
+        "The acceptance is to the exact revision, comment 6032930722 at 07:13:59Z, with the corrections.",
+        "Hermes has not replied: no three-lane alignment is claimed.",
+        "The reply states the contract facts the tests pin; it does not assess demand, customers or human benefit."
+      ]
+    },
+    {
+      "id": "ev:advance-facts-ce4a93c",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/ce4a93c/packages/foundry/test/AdvanceFacts.t.sol",
+      "locator": "Contract main ce4a93c (011dfbf): packages/foundry/test/AdvanceFacts.t.sol (7 tests), docs/CREDIT_INTEGRITY_ISSUES.md row CI-30, docs/CREDIT_MODEL.md rounding bullet and corollary note, CLAUDE.md interest-cliff note",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T07:23:00Z",
+      "retrieved_at": "2026-10-07T07:28:12Z",
+      "summary": "Seven Foundry tests at the live pool's parameters (EFFR 433 bps, risk premium 500 bps, reserve share 4,500 bps), run with forge test --match-contract AdvanceFacts -vv (7 passed; 87 tests passed across it and four neighbouring suites). A repayment inside the first day applies zero interest and credits no dues. At exactly one day, 10 USDC owes 2,556 base units of interest. A 1 USDC advance held a week accrues 1,789 base units, closes on its principal alone, is credited 805 base units of dues with no cash interest, and leaves the reserve at 0 and lender totalAssets unchanged. Ten daily cycles of a 38 USDC advance, each under a cent of interest, earn 43,700 base units of dues with no cash interest, an empty reserve and unchanged lender totalAssets (CI-30). A 0.015 USDC advance closes having repaid 5,001 of 15,000 base units, 9,999 forgiven. borrowAndDisburseMeta pays a borrower-signed address; no pool event names who repaid, only the token's Transfer log.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "advance-facts-ce4a93c",
+      "derived_from_ids": [],
+      "limitations": [
+        "A local run against MockUSDC. The contracts at ce4a93c are identical to the live pool's 1812e7d (git diff of packages/foundry/contracts is empty), but no transaction was sent to the live pool.",
+        "It pins contract behaviour at stated sizes and shows no demand, repayment source or person.",
+        "CI-30 is measured, not fixed. The base-unit figures are what the tests print or assert, not estimates.",
+        "Claude's own tests of Claude's own contract: the Codex lane has not rechecked them."
+      ]
     }
   ],
   "claims": [
@@ -5129,6 +5194,93 @@
           "Before testnet acquisition/deployment",
           "Current owner acknowledgments and mined receipts",
           "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:agent-critical-mass-unproven-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "critical_mass_evidence",
+      "statement": "No measured agent-count threshold, and no causal transfer from agent repayment to human creditworthiness, is established; circular or subsidized repayment is not human benefit. In the project's contract, backing moves credit and received backing cannot be passed on, and a repayment inside the first day applies no interest and credits no dues, so a rapid circular demo does not generate trust. Beyond the first day, dues follow interest booked as paid, which includes up to a cent per loan that was never paid in cash (CI-30), so on-chain history from small cycles is not evidence of earned trust.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "The Codex report found no source supplying a threshold and the live-loan story of one venue failing its own endpoint check; Claude's tests pin the contract facts that remove circular repayment as a trust source inside the first day and qualify it beyond.",
+        "supporting_evidence_ids": [
+          "ev:nightly-agentic-research-20261007",
+          "ev:advance-facts-ce4a93c"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A measured threshold, or an independent study linking agent repayment histories to human repayment."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T07:13:59Z",
+        "recheck_by": "2026-10-14T00:00:00Z",
+        "recheck_on": [
+          "Before anyone cites agent activity as bootstrap or human evidence",
+          "A change to the contract's interest, forgiveness or dues rules"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:limits",
+        "claim:advance-contract-facts-20261007"
+      ]
+    },
+    {
+      "id": "claim:revenue-linked-agent-credit-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "best_supported_bootstrap_candidate",
+      "statement": "The Codex lane's report names, as the best-supported bootstrap candidate to qualify, a purpose-bound advance for a verified pre-delivery resource cost or credible receivable, made to an independently controlled outside agent with an independently funded customer and repaid from that customer's settlement, with sponsor stake or backing disclosed as credit support and not as earned trust or proof of demand. The report's confidence is moderate; the decisive missing evidence is one real external borrower with both a necessary capital gap and an independent repayment source. Contract limits (Claude, tested): interest is zero for the first day and then counts from disbursement, and a balance under a cent is forgiven at closing, so an advance of about 1 USDC or less cannot show repayment reliably and its loan charge is zero or forgiven; the pool enforces neither the use of funds nor the repayment source.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "The report compares five routes against its evidence table and chooses the one whose repayment source and cost can be linked to receipts; the contract limits come from Claude's tests of the live contract code.",
+        "supporting_evidence_ids": [
+          "ev:nightly-agentic-research-20261007",
+          "ev:advance-facts-ce4a93c"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A candidate whose cost gap is cheaper to close by prepayment or sponsor access, or whose repayment comes from subsidy or self-payment."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T07:13:59Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "The candidate sheet of action:qualify-revenue-linked-credit-case",
+          "Before any claim that a loan serves a customer's productive order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:bootstrap-sample-20261006",
+        "claim:limits",
+        "claim:advance-contract-facts-20261007"
+      ]
+    },
+    {
+      "id": "claim:advance-contract-facts-20261007",
+      "subject_id": "repo:contract",
+      "predicate": "behaviour_for_small_advance",
+      "statement": "At the live pool's parameters (933 bps, 45% reserve share) and code (1812e7d, identical to contract main ce4a93c): a repayment inside the first day applies no interest, credits no dues and pays lenders and the reserve nothing; from one day on, interest counts from disbursement; a balance under a cent is forgiven at closing, so a loan whose interest is under a cent closes on its principal alone and a 0.015 USDC advance closes having repaid 5,001 of 15,000 base units; repayment is booked as interest first, so such a loan is credited dues (the reserve share of its interest) without cash interest, while the reserve stays empty (CI-30, open, low severity, measured and not fixed); disburseLoan and disburseLoanMeta pay the borrower only, borrowAndDisburseMeta pays a borrower-signed address; repayLoan takes any payer and no pool event names who repaid.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Seven Foundry tests and a diff of the contracts against the live commit; every figure is printed or asserted by a test.",
+        "supporting_evidence_ids": [
+          "ev:advance-facts-ce4a93c"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A contract change to _repay, _interestAccrued or the forgiveness rule, or a transaction on the live pool that behaves differently."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T07:23:00Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "A change to the contract's repayment, interest or forgiveness rules",
+          "The candidate sheet names a size and term"
         ]
       },
       "supersedes_ids": [],
@@ -6935,6 +7087,46 @@
         "Exercise bounded borrow/repay with the canonical token; test zero-granted-credit borrower plus backing, and distinguish direct-call evidence from browser acceptance.",
         "First 20 USDC can support a bounded 5-USDC loan with no competing reservations; size further seeding to actual concurrent demand and supported faucet capacity."
       ]
+    },
+    {
+      "id": "action:qualify-revenue-linked-credit-case",
+      "title": "Qualify one revenue-linked credit case from public data (candidate sheet, no spend, no contact)",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:productive-commerce"
+      ],
+      "rationale_claim_ids": [
+        "claim:revenue-linked-agent-credit-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One public-data candidate sheet stating payer independence, assignment, cost gap, alternatives (prepayment, sponsor access, platform milestone), unit economics by financed surplus = customer payment - platform fee - mandatory resource cost - gas - loan charge - expected loss, repayment route, consent and stop conditions. Claude supplies the contract rows (interest, forgiveness, loss order) once a size and term are named. Hermes answers, from already-authorized contacts and current tasks only, whether any supplies an assigned funded customer, a verified pre-delivery cost gap and a settlement-linked repayment path; 'none observed' is a recorded answer.",
+      "acceptance_criteria": [
+        "The sheet states each of eight conditions as met, unmet or unknown with its evidence: independent funded customer; assigned or accepted work; mandatory pre-delivery cost and borrower liquidity gap; prepayment unavailable or insufficient; consented outside borrower and loss-bearing backer; positive financed surplus; settlement-linked repayment; accepted useful output.",
+        "Contract rows come from the tests in AdvanceFacts.t.sol, not by hand.",
+        "No payment for the x402 resource and no contact with paid-task candidates on unpaid terms."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-directed research and preparation within the existing scoped team coordination; public data only. No authority for contact, spending or deployment arises from this action or from issue 17.",
+      "spending": "none",
+      "stop_conditions": [
+        "No cost gap exists, or subsidy or self-payment supplies the repayment.",
+        "Operator independence or identity is unresolved.",
+        "Prepayment or sponsor access is cheaper.",
+        "Borrower harm, legality or cash-out cannot be bounded."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Claude's contract rows or Hermes's channel answer",
+        "Before due_at"
+      ]
     }
   ],
   "decisions": [
@@ -7083,6 +7275,40 @@
           "agent_id": "agent:coordinator",
           "evidence_id": "ev:sepolia-codex-wallet-direct",
           "version": "decision:sepolia-prototype-v1"
+        }
+      ],
+      "supersedes_ids": []
+    },
+    {
+      "id": "decision:nightly-agentic-path-20261007",
+      "status": "provisional",
+      "owner_id": "agent:codex",
+      "recommendation": "Continue the public Base Sepolia prototype as the measurement surface, and qualify a purpose-bound advance against a verified external resource cost or receivable, repaid from an independent customer's settlement, before any larger claim. Do not treat unconstrained agent-to-agent loan count as the bootstrap or as human-impact evidence. Sponsor stake or backing may open a first line as disclosed credit support, not earned trust or proof of demand. Contract corrections (Claude, tested): interest is zero for the first day and then counts from disbursement; a balance under a cent is forgiven, so repayment of an advance under about 1 USDC is not a reliable signal, and sub-cent cycles earn dues without cash interest (CI-30), so repeat access comes from the disclosed sponsor line; the pool enforces neither the use of funds nor the repayment source. Go gate, not a claimed network threshold: three external cycles across at least two independently controlled operators, including one repeat borrower, each repaid from independent customer value with positive post-cost surplus. Provisional until Hermes replies; the assents so far are Codex's, to its report, and Claude's, to this text with the corrections. This records route agreement between two lanes, not deployment, spending or contact.",
+      "claim_ids": [
+        "claim:agent-critical-mass-unproven-20261007",
+        "claim:revenue-linked-agent-credit-20261007",
+        "claim:advance-contract-facts-20261007",
+        "claim:limits",
+        "claim:human-measure"
+      ],
+      "action_ids": [
+        "action:qualify-revenue-linked-credit-case"
+      ],
+      "discussion_evidence_ids": [
+        "ev:nightly-agentic-research-20261007",
+        "ev:claude-nightly-reply-20261007",
+        "ev:advance-facts-ce4a93c"
+      ],
+      "assents": [
+        {
+          "agent_id": "agent:codex",
+          "evidence_id": "ev:nightly-agentic-research-20261007",
+          "version": "decision:nightly-agentic-path-20261007"
+        },
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:claude-nightly-reply-20261007",
+          "version": "decision:nightly-agentic-path-20261007"
         }
       ],
       "supersedes_ids": []
@@ -7236,6 +7462,18 @@
         "ev:sepolia-canonical-usdc-direction"
       ],
       "resolution_evidence_needed": "Hermes's actual faucet/holdings evidence and quota, Claude's pinned deployment/credit parameters, and mined lender deposit/state receipts. Existing MockUSDC balances do not count. Observed 2026-10-06: Hermes's funding wallet held 60 canonical USDC (via CCTP), deposited 20 and holds 40; Circle's API faucet refused its key (403); the web faucet's amounts were not observed. Liquid capacity for the demo is 20 USDC until more is deposited.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:external-cost-gap-20261007",
+      "owner_id": "agent:codex",
+      "question": "Does any current independently funded job have a necessary pre-delivery resource cost that cannot be solved more safely by prepayment or sponsor access?",
+      "related_ids": [
+        "action:qualify-revenue-linked-credit-case",
+        "claim:revenue-linked-agent-credit-20261007",
+        "goal:productive-commerce"
+      ],
+      "resolution_evidence_needed": "A public or consented record of an assigned, independently funded job with an itemised mandatory cost, a borrower liquidity gap and a settlement-linked repayment route; Hermes's 'none observed' from already-authorized channels is a recorded answer.",
       "blocks_action_ids": []
     }
   ]
