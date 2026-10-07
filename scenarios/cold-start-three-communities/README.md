@@ -38,10 +38,12 @@ First read a fresh canonical source block and record its hash plus the exact run
 Use the observed block, not the example above. Bind Anvil to loopback and assign chain 31337 explicitly:
 
 ```bash
-anvil --host 127.0.0.1 --port 8547 --chain-id 31337 --fork-url https://sepolia.base.org --fork-block-number OBSERVED_BLOCK
+anvil --host 127.0.0.1 --port 8547 --chain-id 31337 --fork-url https://sepolia.base.org --fork-block-number OBSERVED_BLOCK --disable-min-priority-fee
 python3 run.py --self-test
 python3 run.py --rpc http://127.0.0.1:8547 --fork-block OBSERVED_BLOCK --expected-code-hashes source-code-hashes.json --output NEW_EVIDENCE_DIRECTORY
 ```
+
+On the executed Anvil 1.8.4 fork, the default minimum priority fee made `eth_gasPrice` exceed the one-gwei guard; `--disable-min-priority-fee` lets the helper use the copied chain's fee without relaxing that guard. This is a local-node setting, not a public-network workaround.
 
 The fingerprint file is mandatory and its source block hash is checked even without the optional `--fork-block-hash` argument. The compiled-artifact comparison is supplementary: compiler metadata and constructor immutables can differ, so the independently pinned live fingerprints determine identity.
 
