@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.56",
-  "updated_at": "2026-10-07T15:50:24Z",
+  "model_version": "0.1.57",
+  "updated_at": "2026-10-07T16:05:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4566,6 +4566,24 @@
       "limitations": [
         "An internal interpretation, not an observed reader study, achieved technical alignment, human benefit or assent by Claude or Hermes."
       ]
+    },
+    {
+      "id": "ev:blog-category-rule-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/39f96f7/CLAUDE.md",
+      "locator": "Operator direction given to Claude Code (the blog session) in its channel on 2026-10-07 about 16:00 UTC; recorded in the blog's CLAUDE.md spacing-rule bullet at vision main 39f96f7",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T16:00:00Z",
+      "retrieved_at": "2026-10-07T16:05:00Z",
+      "summary": "The operator's words: \"the robert wright post should have been tagged as ai alignment. do not update the post but update your rules and world model so that the blog updates that tag properly.\" The reply had gone out without that category because the watch brief allowed only categories open under the 18-hour spacing rule.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "blog-categories",
+      "derived_from_ids": [],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel."
+      ]
     }
   ],
   "claims": [
@@ -7010,6 +7028,31 @@
       "derived_from_claim_ids": [
         "claim:alignment-prime-directive"
       ]
+    },
+    {
+      "id": "claim:blog-category-rule",
+      "subject_id": "project:microcredit",
+      "predicate": "rule",
+      "statement": "A blog reply filed under current events carries every category that truly fits it (ai alignment for a conversation about AI and people) and is exempt from the 18-hour spacing rule in all of them; an exempt reply still counts as the last post in its categories for the posts that follow. Enforced by tools/build.py in microcredit-vision (spacing_exempt) and stated in its CLAUDE.md. The Nonzero reply of 2026-10-07 stays as published, without the ai alignment category, by the operator's choice.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction quoted in the evidence; the mechanism is Claude's implementation of it.",
+        "supporting_evidence_ids": [
+          "ev:blog-category-rule-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T16:05:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator changes the blog's category or spacing rules"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
