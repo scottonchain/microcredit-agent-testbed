@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.63",
-  "updated_at": "2026-10-07T19:04:50Z",
+  "model_version": "0.1.64",
+  "updated_at": "2026-10-07T21:29:39Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4945,6 +4945,90 @@
       "limitations": [
         "A maintainer analysis for the 2026-10-08 sync, not a team decision."
       ]
+    },
+    {
+      "id": "ev:codex-cold-start-fork-preparation-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/pull/34",
+      "locator": "testbed PR 34, head a5a4d951df7e18056dd870db16fd642331f0e8e8; PR body updated_at 2026-10-07T21:27:26Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T21:27:26Z",
+      "retrieved_at": "2026-10-07T21:29:39Z",
+      "summary": "Codex published a guarded three-community rehearsal helper against an isolated pinned fork of the existing public-app contract. The helper accepts loopback Anvil on chain 31337 with Base Sepolia fork provenance and pinned runtime fingerprints; it deploys nothing, reads no keys and submits no live transactions. PR validation reports passing offline ABI golden vectors, localhost guards, share arithmetic and append-only evidence checks plus a separate read-only source review. Neither a fork scenario nor a live scenario has executed.",
+      "content_sha256": "3f80e013f822d0387bf5f772bfdb48bf57e92d215c22949d10949d30542930d4",
+      "fingerprint_scope": "UTF-8 GitHub PR body field, exactly as retrieved",
+      "origin_group": "codex-cold-start-fork-preparation-20261007",
+      "derived_from_ids": [
+        "ev:codex-three-communities-handoff-20261007"
+      ],
+      "limitations": [
+        "Prepared code and offline checks are not chain execution, recovered funds, independent review or independent demand.",
+        "PR 34 is open and unmerged at this read; Hermes still needs to execute an appropriately isolated fork and return actual receipts."
+      ]
+    },
+    {
+      "id": "ev:hermes-direct-scenario-fund-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6046816160",
+      "locator": "contract issue 7 comment 6046816160, updated_at 2026-10-07T21:04:02Z",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T21:04:02Z",
+      "retrieved_at": "2026-10-07T21:29:39Z",
+      "summary": "Hermes's HERMES-DIRECT-SCENARIO-FUND-001 receipt: normal withdrawFunds(5,000,000) from its own lender shares, tx 0x14eb8e125930209e9da5379723e9aaa20e90ec2b5c183e1c857daffced4cdceb at block 47819354, then canonical-USDC transfer of 5,000,000 to root-controlled funder 0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c, tx 0x04c565d9c954cbf39d7bb4f497f4a9b65eaa07a11b5def976554e9ffdc85fba1 at block 47819355; both status 1. At block 47819361 (2026-10-07T21:03:31Z), root treasury holds 15 USDC and this funder 5, while pool assets/cash are 15 USDC and Hermes owns all 1.5e13 remaining shares. No deposit, loan, backing, score, role or parameter change occurred.",
+      "content_sha256": "9b1960fff6887142400982644b987ade68691226059b88da1940a02db9fec2f7",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "contract-issue7-comment-6046816160",
+      "derived_from_ids": [],
+      "limitations": [
+        "Hermes's mined receipts and block-pinned reads, reread by Codex on GitHub; Codex has not independently queried a chain node for this update.",
+        "The extra 5 USDC came from the existing pool, not a faucet or outside source. Hermes's original 20-USDC lender position is temporarily 15 USDC in the pool plus 5 at the funder; return and redeposit remain obligations.",
+        "A point-in-time funding receipt is not a completed simulation or proof of fund recovery."
+      ]
+    },
+    {
+      "id": "ev:codex-three-communities-handoff-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6047079108",
+      "locator": "contract issue 7 comment 6047079108, updated_at 2026-10-07T21:20:10Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T21:20:10Z",
+      "retrieved_at": "2026-10-07T21:29:39Z",
+      "summary": "Codex acknowledges the source-funded 5-USDC receipt and a temporary root-wallet aggregate baseline of 20 USDC (original treasury 15 plus source 5). The three communities have supplied conditional role decisions; root execution is still pending because AgentMail's organization send quota is exhausted and sepolia.base.org remains absent from the actual managed RPC allowlist. Isolated same-deployment fork preparation is supplemental and has not produced a run receipt. Root-signed transaction bytes remain email-only under the operator's decision; keys stay with the root controller.",
+      "content_sha256": "fd880c9f262b1c78213de09978518a5d0189fb6778cc22c3cc60ee76d7e4ebe4",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "contract-issue7-comment-6047079108",
+      "derived_from_ids": [
+        "ev:codex-cold-start-communities-20261007",
+        "ev:hermes-direct-scenario-fund-20261007"
+      ],
+      "limitations": [
+        "An internal execution handoff, not three executed scenarios, a verified fork run, a recipient agreement or independent demand.",
+        "Email quota reset and any network-setting change require actual channel verification before continuation; no duplicate automation or schedule change is authorized by this update."
+      ]
+    },
+    {
+      "id": "ev:codex-cold-start-post-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6047079108",
+      "locator": "contract issue 7 comment 6047079108, updated_at 2026-10-07T21:20:10Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T21:20:10Z",
+      "retrieved_at": "2026-10-07T21:29:39Z",
+      "summary": "Codex records the operator's updated task: run three cold-start simulations with temporary subagents and root-controlled wallets under the existing intended/deployed public-app contract, observe actual behavior, recover funds, then directly commit a human-facing guest post identifying Codex of at most 500 words. Inform Claude and assess its subsequent proposed PR edits by judgment; work autonomously with the team.",
+      "content_sha256": "fd880c9f262b1c78213de09978518a5d0189fb6778cc22c3cc60ee76d7e4ebe4",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "contract-issue7-comment-6047079108",
+      "derived_from_ids": [
+        "ev:codex-cold-start-communities-20261007"
+      ],
+      "limitations": [
+        "Sanitized operator direction recorded by Codex; it authorizes this guest post and testnet rehearsal, not a contract-model change, a replacement pool or broad reassignment of blog ownership.",
+        "Shares, token holdings and externally granted credit remain distinct; prepared actor choices and fork-only results must not be described as live execution."
+      ]
     }
   ],
   "claims": [
@@ -7605,6 +7689,90 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-cold-start-source-allocation-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "temporary_scenario_funding",
+      "statement": "At Hermes's block 47819361 read, the root-controlled treasury 0x5225C44C41566d2c8785cFaDfC712a21c0b51575 holds the original 15 USDC and scenario-one funder 0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c holds a separate 5 USDC withdrawn from Hermes's own original 20-USDC pool position. Root-wallet aggregate is temporarily 20 USDC. The existing Base Sepolia pool 0x73872B8fB7F1771C67911f03edc75aBdc9514973 has 15 USDC cash/assets and 1.5e13 shares, all Hermes's. The source allocation must be returned and redeposited after teardown to restore Hermes's original 20-USDC lender position, leaving the original root 15 separate. This is redistribution of existing canonical USDC, not new funding; ETH gas is accounted separately.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Hermes supplied successful transaction receipts and point-in-time balance/share reads; Codex reread the original receipt but has no independent RPC read in this update.",
+        "supporting_evidence_ids": [
+          "ev:hermes-direct-scenario-fund-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:03:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any scenario transaction or funding retry",
+          "After every recovery/source-return deposit",
+          "Before reconciling the October 19 funding target"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-three-community-execution-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "three_community_execution_state",
+      "statement": "At Codex's handoff and PR 34 (updated 2026-10-07T21:27:26Z), the three requested communities remain unexecuted on the live pool: only actual funding, conditional role decisions and an offline-checked isolated-fork helper are established. Neither a fork scenario nor a live scenario has executed. No root scenario deposit, loan, backing or score change and no primary scenario completion is established. Root execution waits for verified AgentMail send availability or legitimate direct RPC access; the actual managed allowlist still lacks sepolia.base.org. Root-signed transaction bytes may go through email after availability, not GitHub, and private keys remain root-held. The faucet 403 remains private operator backlog, with no repeated request absent an actual credential/permission change.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Codex reports its own execution/channel state and distinguishes preparation from receipts; this update does not certify a future send-window reset or network-policy change.",
+        "supporting_evidence_ids": [
+          "ev:codex-three-communities-handoff-20261007",
+          "ev:hermes-direct-scenario-fund-20261007",
+          "ev:codex-cold-start-fork-preparation-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:27:26Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Actual RPC allowlist/channel readiness change",
+          "AgentMail send-window readiness",
+          "First mined scenario receipt or measured fork run",
+          "Source-funding restoration"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-cold-start-guest-direction-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "cold_start_guest_publication",
+      "statement": "The operator directs Codex to run three cold-start scenarios under the existing deployed credit model with subagent roles, root-held wallet keys and complete fund recovery, then directly commit a human-facing guest post identifying Codex, at most 500 words, focused on what the observations show about cold start. Codex informs Claude of publication and judges Claude's subsequent PR changes. This is explicit authority for this guest publication while other blog ownership and schedules remain unchanged.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit updated operator task, recorded in the public Codex handoff; the completed introduction guest post is a separate action.",
+        "supporting_evidence_ids": [
+          "ev:codex-cold-start-post-direction-20261007",
+          "ev:codex-cold-start-communities-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:20:10Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any later operator correction",
+          "Verified three-run evidence and actual guest-post commit"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -9952,10 +10120,11 @@
       "rationale_claim_ids": [
         "claim:pool-funding-direction-20261019",
         "claim:hermes-faucet-blocked-20261007",
-        "claim:sepolia-canonical-usdc-direction"
+        "claim:sepolia-canonical-usdc-direction",
+        "claim:codex-cold-start-source-allocation-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Lender deposits in Circle test USDC with each hash on testbed issue 15, a treasury wallet address (no key), and a provider report at or after 2026-10-14T00:00Z; the Codex lane posts the draw and deposit schedule. Blocked on faucet access: Hermes holds 15 USDC and will deposit it after the Codex lane's schedule; the rest needs the Circle account out of sandbox or a person doing faucet draws, both operator decisions. Claude follows up at each check-in and the blog session reads the pool from the chain on 2026-10-16 and 2026-10-19.",
+      "deliverable": "Lender deposits in Circle test USDC with each hash on testbed issue 15, a treasury wallet address (no key), and a provider report at or after 2026-10-14T00:00Z; the Codex lane posts the draw and deposit schedule. Preserve the October 19 target and October 20 program. Earlier reported wallet supply is now allocated: the original 15 USDC is in the root treasury, and Hermes withdrew 5 from its own original 20-USDC pool position to the root scenario-one funder; current pool cash is 15, with that separate source 5 return/redeposit required after the earlier exact-recovery pilot. Do not treat allocated balances as an additional 15 available for deposit or the withdrawal as new funding. Faucet access remains blocked; its precise credential/account fix is private operator backlog. Claude follows up at each check-in and the blog session reads the pool from the chain on October 16 and October 19.",
       "acceptance_criteria": [
         "lenderCash reads at least 200,000,000 on chain by 2026-10-19 12:00 UTC, or the shortfall and its cause are stated on issue 15 and the scenarios are sized to it.",
         "Every deposit is approve then depositFunds from the depositing account; a raw transfer does not count.",
@@ -9979,6 +10148,98 @@
       "outcome_evidence_ids": [
         "ev:hermes-pool-funding-receipt-20261007"
       ]
+    },
+    {
+      "id": "action:codex-three-cold-start-communities",
+      "title": "Execute and fully unwind three root-controlled cold-start communities on the existing public-app pool",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:claude"
+      ],
+      "status": "blocked",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:risk-research",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-cold-start-source-allocation-20261007",
+        "claim:codex-three-community-execution-20261007",
+        "claim:codex-cold-start-guest-direction-20261007",
+        "claim:sepolia-canonical-usdc-direction"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Root execution is currently blocked on channels; supplemental fork preparation is not completion of the live task.",
+      "acceptance_criteria": [
+        "Pin chain 84532, canonical token, deployed pool/provider/lens, block/hash and actual pre-run state; use the deployed credit model without replacement contracts or inferred deposit credit.",
+        "Root retains every scenario wallet key; role agents choose actions without signing authority. Record conditional choices separately from actual transactions and distinguish internal subsidy from outside income.",
+        "Use the strict first-day grace window for exact-recovery live runs; read loan IDs from mined events, repay actual outstanding amounts, clear all actor loans/reservations/backings/shares/queues and remove temporary issuer lines with releaseBudget.",
+        "Lenders withdraw all scenario funds; sweep controlled-wallet USDC and verify exact temporary 20-USDC aggregate recovery before source settlement. Record source 5 return and Hermes redeposit as separate mined obligations; do not compare a 20 baseline to 15 or claim the original lender position stayed unchanged.",
+        "Do not execute known cash-drain exploit or time-advance branches on the live pool. Label isolated fork evidence separately and never use snapshot rollback as primary-run fund recovery.",
+        "Terminate the temporary communities after observation; log actual technical constraints in contract issue 24 and coordinate with Claude/Hermes.",
+        "Preserve the existing October 20 scenario program and its funding/provider commitments; reconcile the source allocation before those commitments without creating or changing automations."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Verified AgentMail send availability or legitimate direct RPC readiness",
+        "Actual Hermes snapshot and mined scenario receipts"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator-authorized controlled-wallet testnet simulations and Hermes direct-funding workaround in the Codex handoff; existing test assets only, keys remain root-held and root-signed bytes remain email-only for team relay. Existing publication/privacy and future-program obligations remain.",
+      "spending": "existing_authorized_commitment",
+      "stop_conditions": [
+        "Stop unsafe live execution if state, code, credit budget or timing invalidates exact recovery; record the constraint and coordinate a legitimate alternative.",
+        "No root-signed bytes or keys on GitHub; no quota evasion, unauthorized network bypass, replacement deployment, mainnet or real-money spending.",
+        "Do not mark three communities done from funding, planned roles, source inspection or a fork-only run."
+      ],
+      "outcome_evidence_ids": [
+        "ev:hermes-direct-scenario-fund-20261007"
+      ]
+    },
+    {
+      "id": "action:codex-cold-start-guest-post",
+      "title": "Directly publish Codex’s at-most-500-word cold-start guest post from verified scenario evidence",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "blocked",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration",
+        "goal:workflow-reliability"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-cold-start-guest-direction-20261007",
+        "claim:codex-three-community-execution-20261007"
+      ],
+      "dependency_action_ids": [
+        "action:codex-three-cold-start-communities"
+      ],
+      "deliverable": "A directly committed human-facing guest post identifying Codex, at most 500 words, about the cold-start observations and realistic next steps, with a checkable public evidence ledger. Notify Claude of the actual publication; review any subsequent Claude PR according to judgment.",
+      "acceptance_criteria": [
+        "Post and ledger state exactly what ran on the existing deployed contract and what was only prepared, forked or inferred; no invented actor conversations, completed recovery or independent borrower demand.",
+        "Identify Codex as an AI guest author; keep the human post at most 500 words and use human-facing links and current repository publication/privacy checks.",
+        "Link actual three-run receipts and exact recovery/source-restoration accounting; distinguish temporary officer credit, peer subsidy and earned credit.",
+        "Notify Claude after the actual commit and record its substantive response or reviewed PR separately from transport acceptance."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Verified three-community completion and fund recovery",
+        "Actual guest-post commit and Claude reply/PR"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction for this direct guest publication in ev:codex-cold-start-post-direction-20261007; this does not rewrite general blog ownership or change its schedules.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not publish an execution claim before its receipts; keep forks and live testnet evidence distinct.",
+        "No keys, signed relay bytes, private contact/session data or identifiers in public content."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -10458,9 +10719,11 @@
         "action:sepolia-canonical-usdc-fund",
         "action:sepolia-canonical-usdc-migrate",
         "ev:sepolia-canonical-usdc-deployed",
-        "ev:sepolia-canonical-usdc-direction"
+        "ev:sepolia-canonical-usdc-direction",
+        "claim:codex-cold-start-source-allocation-20261007",
+        "ev:hermes-direct-scenario-fund-20261007"
       ],
-      "resolution_evidence_needed": "Hermes's actual faucet/holdings evidence and quota, Claude's pinned deployment/credit parameters, and mined lender deposit/state receipts. Existing MockUSDC balances do not count. Observed 2026-10-06: Hermes's funding wallet held 60 canonical USDC (via CCTP), deposited 20 and holds 40; Circle's API faucet refused its key (403); the web faucet's amounts were not observed. Liquid capacity for the demo is 20 USDC until more is deposited.",
+      "resolution_evidence_needed": "Hermes's actual faucet/holdings evidence and quota, Claude's pinned deployment/credit parameters, and mined lender deposit/state receipts. Existing MockUSDC balances do not count. Observed 2026-10-06: Hermes's funding wallet held 60 canonical USDC (via CCTP), deposited 20 and holds 40; Circle's API faucet refused its key (403); the web faucet's amounts were not observed. Liquid capacity for the demo is 20 USDC until more is deposited. Current allocation supersedes the available-balance estimate: Hermes's block 47819361 receipt records pool cash 15 USDC, root treasury 15, and a separate pool-source 5 at the scenario funder. That source 5 must return and be redeposited after teardown; no independent faucet capacity is established. Reconcile both current balances and these commitments before sizing further funding.",
       "blocks_action_ids": []
     },
     {
@@ -10483,9 +10746,12 @@
         "action:pool-funding-20261019",
         "claim:pool-funding-direction-20261019",
         "ev:codex-cold-start-communities-20261007",
-        "ev:contract-issue24-answer-20261007"
+        "ev:contract-issue24-answer-20261007",
+        "action:codex-three-cold-start-communities",
+        "claim:codex-cold-start-source-allocation-20261007",
+        "ev:hermes-direct-scenario-fund-20261007"
       ],
-      "resolution_evidence_needed": "A schedule agreed at the 2026-10-08 sync and recorded on the board; Claude's proposal is that the exact-recovery runs finish and withdraw before 2026-10-20.",
+      "resolution_evidence_needed": "A schedule agreed at the 2026-10-08 sync and recorded on the board; Claude's proposal is that the exact-recovery runs finish and withdraw before 2026-10-20. Account separately for the current temporary 5-USDC source withdrawal and its measured return/redeposit; the earlier root-controlled pilot does not cancel or reschedule the October 20 program.",
       "blocks_action_ids": []
     }
   ]
