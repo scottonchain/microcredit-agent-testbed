@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.67",
-  "updated_at": "2026-10-07T22:10:39Z",
+  "model_version": "0.1.68",
+  "updated_at": "2026-10-07T22:12:18Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3566,7 +3566,7 @@
       "observer_id": "agent:claude",
       "published_at": "2026-10-07T10:09:17Z",
       "retrieved_at": "2026-10-07T10:52:40Z",
-      "summary": "Claude's critique of COLD-START-TRUST-001 (decision: modify). Five contract facts checked in DecentralizedMicrocredit.sol at 1812e7d: deposits give shares and not credit; stake is backing capacity and not a borrow limit; repayment earns only the payer's dues (5 USDC at day 30 at 933 bps: 38,342 base units of interest, 17,253 of dues); received backing cannot be passed on; the score is the reporter's. The stated loop fails at hop two. Alternative: Hermes issues small lines as reporter and/or stakes and backs first borrowers; circular lending answer with CI-30; milestones M1 to M4; a trust policy for Hermes to decide.",
+      "summary": "Claude's critique of COLD-START-TRUST-001 (decision: modify). Five contract facts checked in DecentralizedMicrocredit.sol at 1812e7d: deposits give shares and not credit; stake is backing capacity and not a borrow limit; repayment earns dues for the borrower only (the source's heading says 'the payer'; see limitations) (5 USDC at day 30 at 933 bps: 38,342 base units of interest, 17,253 of dues); received backing cannot be passed on; the score is the reporter's. The stated loop fails at hop two. Alternative: Hermes issues small lines as reporter and/or stakes and backs first borrowers; circular lending answer with CI-30; milestones M1 to M4; a trust policy for Hermes to decide.",
       "content_sha256": "6eaa617605234f94df493ac8b1d64fc3e797b861c0069b791325d149860a17d5",
       "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
       "origin_group": "claude-cold-start-critique-20261007",
@@ -3576,7 +3576,8 @@
       ],
       "limitations": [
         "Not edited since posting. Figures are computed with the contract's integer formula, not read from the live pool; Claude cannot reach an RPC.",
-        "Hermes has not replied; no agreement or resolution is claimed."
+        "Hermes has not replied; no agreement or resolution is claimed.",
+        "Correction (2026-10-07, flagged by the Codex lane on contract issue 24): the point headed 'Repayment earns the payer dues, and only the payer' should read 'the borrower': the contract adds the reserve share to duesPaid[borrower] whoever pays, as the point's own body says; a third-party payer (CI-28) earns nothing. Corrected on testbed issue 17."
       ]
     },
     {
@@ -5122,6 +5123,83 @@
         "Independent artifact checking does not create another execution witness or establish live-node/source provenance.",
         "Fork execution does not settle live recovery or source return/redeposit.",
         "Controlled internal payments and compulsory cure establish no independent income, reliability, default behavior, fraud resistance or human benefit."
+      ]
+    },
+    {
+      "id": "ev:aml-readiness-sync-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6047074653",
+      "locator": "testbed issue 15 comment 6047074653",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T21:19:51Z",
+      "retrieved_at": "2026-10-07T22:12:18Z",
+      "summary": "The Codex lane records the operator's addition of safeguards against money laundering for the deployed contract to the 2026-10-08 sync (04:00 America/Denver, 10:00 UTC). Establish source-grounded practice; assess configurable delays between approval and borrowing or disbursement, and between repayment and new or increased usable credit; inspect issuance, oracle and backing, borrowing, repayment and admin paths; distinguish laundering threats from circular borrowing and reputation inflation (delays alone are not compliance); recommend proportionate controls with evidence, limits and costs to legitimate users. Explicit constraint: the safeguards stay off until deployment readiness testing, any prepared control is opt-in and disabled by default and is never activated on the current deployment; testing is not authorization to activate. Claude designs; Codex researches and checks; Hermes supplies bounded operational evidence. No spending or identity-data collection is implied.",
+      "content_sha256": "4ab96c569bf06fe1b3bc17df7917c9a719102058642c4681c8b310214c5b15c9",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "aml-readiness-sync-direction-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Operator direction as recorded by the Codex lane; an agenda handoff, not joint assent."
+      ]
+    },
+    {
+      "id": "ev:ci30-cash-take-30d7eee",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/064d099",
+      "locator": "contract main 30d7eee (commit 064d099): packages/foundry/test/AdvanceFacts.t.sol testSubCentLoansClosedByOneUnitTakeACentEachWithoutDefault; docs/CREDIT_INTEGRITY_ISSUES.md CI-30 row",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T21:00:57Z",
+      "retrieved_at": "2026-10-07T22:12:18Z",
+      "summary": "A loan closes as repaid once less than a cent remains, even when the rest is principal: a 9,999-unit loan repaid with 1 closes, the borrower keeps 9,998, lenders lose it (the reserve is empty), no default is recorded and the whole limit is free again; ten cycles take 99,980 units. Fraud pays whenever a cycle's gas costs under a cent, and on the relayed paths the relayer pays the gas. The CI-30 row is raised to must-fix before mainnet and names the fix: close short only when the rest is unpaid interest. A prototype of that fix costs 29 bytes (pool margin 199 to 170) and changes seven tests; it is not merged.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ci30-cash-take",
+      "derived_from_ids": [
+        "ev:advance-facts-6132f12"
+      ],
+      "limitations": [
+        "Measured in Foundry at the live parameters, not on the live pool; the deployed pool cannot be changed."
+      ]
+    },
+    {
+      "id": "ev:contract-issue24-sponsored-answer-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/24#issuecomment-6046872651",
+      "locator": "contract issue 24 comment 6046872651",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T21:07:31Z",
+      "retrieved_at": "2026-10-07T22:12:18Z",
+      "summary": "Claude's answer to COLDSTART-SPONSORED-CAPITAL-001: a sponsor-funded claim conserves credit under five conditions (a nominal claim, not shares; ring-fenced to the loan; locked until it closes; first in the loss order, in the same transition as the write-off; dues only on cash interest) and needs D of sponsor money where stake plus lender cash needs 2D; it is implementable as stake-funded secured loans after code room is made and a new deployment is approved. The coalition bound E - C <= 0 holds for the deployed source except at CI-30, which is a repeatable cash take. Earned credit grows at 0.041985 of principal per year at the live parameters. Smallest real cold start: Codex's exact-recovery runs, a sponsor variant on the stake route, durable credit on a labelled fork, a payer before borrowing.",
+      "content_sha256": "c6e7e4fff143db8443ad3553f9d16cb499fb0bf4916bc96288c5105dc36f83c2",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "contract-issue24-sponsored-answer-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "One arithmetic claim was wrong and is corrected in comment 6047847904: in the sole-default example, burning all the sponsor's shares after the write-down leaves lenders whole; the case for a nominal claim rests on the unrelated-default counterexample.",
+        "A maintainer analysis for the sync, not a team decision."
+      ]
+    },
+    {
+      "id": "ev:vision-pr9-claude-review-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/pull/9",
+      "locator": "microcredit-vision PR 9, head 81c9235, against e0e23c3",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T22:09:23Z",
+      "retrieved_at": "2026-10-07T22:12:18Z",
+      "summary": "Claude's review of Codex's guest post, as a pull request: three corrections, each with a VERIFY row (the collusion attempts were read-only checks, not sent transactions; preparing the rehearsals moved five test USDC out of the public pool, which reads fifteen at block 47821307; the known sub-cent flaw still lets small fraud pay); the fork scope, credit versus deposit shares, internal payment, peer subsidy, supervised cure, zero dues and the proposed next experiment checked accurate; the one-slug spacing exception challenged and left to the blog session.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-pr9-claude-review",
+      "derived_from_ids": [
+        "ev:codex-cold-start-first-report-published-20261007"
+      ],
+      "limitations": [
+        "Open; Codex accepts or declines by judgment."
       ]
     }
   ],
@@ -7929,6 +8007,89 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:aml-safeguards-direction-20261007",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "required_design_review",
+      "statement": "Safeguards against money laundering for the deployed contract are a design item for the 2026-10-08 sync: Claude proposes controls (including configurable delays between approval and disbursement and between repayment and new usable credit) with evidence, limits and user costs; any prepared control is opt-in, disabled by default and never activated on the current deployment; it is exercised only at deployment readiness testing, and testing does not authorize activation.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction recorded by the Codex lane on the board.",
+        "supporting_evidence_ids": [
+          "ev:aml-readiness-sync-direction-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:19:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The 2026-10-08 sync outcome",
+          "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:ci30-cash-take-20261007",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "contract_defect",
+      "statement": "In the deployed source (1812e7d, unchanged at contract main 30d7eee) a loan closes as repaid once less than a cent remains even when the rest is principal, so a borrower with any limit can take up to 9,998 base units per loan, repeatably, with no default and its limit restored; fraud pays when a cycle's gas costs under a cent. This raises CI-30 from low severity to must-fix before mainnet; no claim that fraud does not pay holds until the fix is merged.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "A Foundry test at the live parameters on contract main.",
+        "supporting_evidence_ids": [
+          "ev:ci30-cash-take-30d7eee"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The test on a later contract main showing such a loan stays open, with the fix merged."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:00:57Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The CI-30 fix merged",
+          "A redeployment"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:advance-contract-facts-20261007"
+      ]
+    },
+    {
+      "id": "claim:sponsored-claim-conditions-20261007",
+      "subject_id": "work:sepolia-prototype",
+      "predicate": "design_analysis",
+      "statement": "A sponsor-funded, loan-specific first-loss claim (the operator's 'I put dollars in and Avery borrows them') conserves credit if it is a nominal claim outside share pricing, ring-fenced to the loan, locked until the loan closes, charged first in the same transition as the write-off, and earns dues only on cash interest; it needs D of sponsor money where today's stake route needs 2D. It requires code room and a new deployment, so it is a design to adopt or not, not an available route.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Claude's analysis against the deployed source, with Codex's correction to one example; not implemented or tested.",
+        "supporting_evidence_ids": [
+          "ev:contract-issue24-sponsored-answer-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A trace satisfying the five conditions in which lenders lose more than issued lines plus dues paid."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:07:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The 2026-10-08 sync decision",
+          "An implementation branch"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:advance-contract-facts-20261007",
+        "claim:ci30-cash-take-20261007"
+      ]
     }
   ],
   "edges": [
@@ -10400,8 +10561,84 @@
         "No keys, signed relay bytes, private contact/session data or identifiers in public content."
       ],
       "outcome_evidence_ids": [
-        "ev:codex-cold-start-first-report-published-20261007"
+        "ev:codex-cold-start-first-report-published-20261007",
+        "ev:vision-pr9-claude-review-20261007"
       ]
+    },
+    {
+      "id": "action:aml-safeguards-design",
+      "title": "Design opt-in, off-by-default safeguards against money laundering for the 2026-10-08 sync",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:risk-research"
+      ],
+      "rationale_claim_ids": [
+        "claim:aml-safeguards-direction-20261007",
+        "claim:ci30-cash-take-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A technical proposal for the sync: the deployed paths that move value or create usable credit (issuance, oracle and backing, borrowing, repayment, admin), the threats each control addresses (laundering kept apart from circular borrowing and reputation inflation), justified or explicitly undecided values for the two delays, the activation gate, what a redeployment implies, and the tests (disabled behaviour, time boundaries, bypasses, partial and late repayment, repeated and multi-address cycles, costs to legitimate users). Repayments are booked at once even when new credit recognition is delayed.",
+      "acceptance_criteria": [
+        "Every control is opt-in and disabled by default; none is activated on the current deployment.",
+        "Each value is justified with evidence or marked undecided.",
+        "Delays are not presented as compliance."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The 2026-10-08 10:00 UTC sync"
+      ],
+      "due_at": "2026-10-08T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction in ev:aml-readiness-sync-direction-20261007.",
+      "spending": "none",
+      "stop_conditions": [
+        "No activation on the deployed contract.",
+        "No identity-data collection or spending."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:ci30-fix",
+      "title": "Fix CI-30: forgive a sub-cent balance only out of unpaid interest",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:risk-research"
+      ],
+      "rationale_claim_ids": [
+        "claim:ci30-cash-take-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md.",
+      "acceptance_criteria": [
+        "Full Forge suite and invariants pass.",
+        "The pool stays under EIP-170 (prototype: 170 bytes of margin).",
+        "Codex reviews before merge; the live pool is unchanged."
+      ],
+      "not_before": "2026-10-08T10:00:00Z",
+      "triggers": [
+        "After the 2026-10-08 sync"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Maintainer fix of a tracked credit-integrity issue; no deployment.",
+      "spending": "none",
+      "stop_conditions": [
+        "No redeployment without an operator decision."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
