@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.71",
-  "updated_at": "2026-10-07T22:59:10Z",
+  "model_version": "0.1.72",
+  "updated_at": "2026-10-07T23:04:07Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5286,6 +5286,24 @@
         "Original exact node start/stop/download command unavailable; attempt2 launch script overwritten.",
         "Hermes Telegram notification reported, not independently verified; Codex chat notification actually delivered."
       ]
+    },
+    {
+      "id": "ev:operator-transitive-trust-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6048619966",
+      "locator": "testbed issue 15 comment 6048619966",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T23:03:23Z",
+      "retrieved_at": "2026-10-07T23:04:07Z",
+      "summary": "The operator's direction to Claude, quoted: \"special agents with ability to grant credit are likely to be part of the bootstrap. But the contract needs to evolve to transitivity of trust only, where the credit agents are no longer required for the system to work.\" The operator asks that Claude and Codex discuss it at the 2026-10-08 sync. The comment adds Claude's framing: trust is deliberately not transitive today because unbounded passing-on manufactures credit; a transitive design must keep each party's loss within what it put at risk directly; questions on first credit without an issuer, the multi-hop bound, Sybil paths, liquidity and gas, and the migration milestones.",
+      "content_sha256": "dc371def967d4336885fc7be95e22fe2ed37b3d7cfc002bfd16ee9b0eb560200",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-transitive-trust-direction-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given to Claude in its session and recorded publicly by Claude; the framing and questions are Claude's, not the operator's."
+      ]
     }
   ],
   "claims": [
@@ -8284,6 +8302,34 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:transitive-trust-endstate-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_end_state",
+      "statement": "Credit-granting agents (the officer or issuer seat) are likely part of the bootstrap, but the contract is to evolve toward transitive trust alone, so that the system works without credit agents. Today's contract is deliberately non-transitive (received backing cannot be passed on), so reaching the end state is contract and theory work that must keep credit conserved: no party may lose more than it put at risk directly, and lenders' loss stays bounded.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The operator's direction to Claude, recorded on the board; the conservation requirement is the project's standing invariant.",
+        "supporting_evidence_ids": [
+          "ev:operator-transitive-trust-direction-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T23:03:23Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The 2026-10-08 sync decision",
+          "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:credit-officer-cold-start-sync"
+      ]
     }
   ],
   "edges": [
@@ -10880,6 +10926,44 @@
       "outcome_evidence_ids": [
         "ev:hermes-cold-start-repro-moltbook-completed-20261007"
       ]
+    },
+    {
+      "id": "action:transitive-trust-sync",
+      "title": "Discuss transitive trust as the contract's end state at the 2026-10-08 sync",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:transitive-trust-endstate-20261007",
+        "claim:credit-officer-cold-start-sync",
+        "claim:sponsored-claim-conditions-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "At the sync, decide with Codex: adopt transitive-only trust as the end state with the officer route as the bootstrap half; the conservation bound over multi-hop paths and who bears a default several hops away; Sybil resistance of paths; liquidity and gas against analysis/liquidity and theory paper 3; the milestones by which the issuance budget shrinks toward zero; the first action and owner (theory and contract design, no deployment).",
+      "acceptance_criteria": [
+        "A recorded sync outcome: adopt, modify or reject, with evidence and a first action and owner.",
+        "No contract change or deployment follows from the discussion alone."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The 2026-10-08 10:00 UTC sync"
+      ],
+      "due_at": "2026-10-08T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction in ev:operator-transitive-trust-direction-20261007.",
+      "spending": "none",
+      "stop_conditions": [
+        "No change to the deployed contract."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -11392,6 +11476,18 @@
         "ev:hermes-direct-scenario-fund-20261007"
       ],
       "resolution_evidence_needed": "A schedule agreed at the 2026-10-08 sync and recorded on the board; Claude's proposal is that the exact-recovery runs finish and withdraw before 2026-10-20. Account separately for the current temporary 5-USDC source withdrawal and its measured return/redeposit; the earlier root-controlled pilot does not cancel or reschedule the October 20 program.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:conserving-transitive-trust-20261007",
+      "owner_id": "agent:claude",
+      "question": "Can trust be made transitive while credit stays conserved (each party's loss within what it put at risk directly; lenders' loss within issued lines plus dues, with issued lines eventually zero), so that issuers become unnecessary; and where then does a newcomer's first credit come from?",
+      "related_ids": [
+        "claim:transitive-trust-endstate-20261007",
+        "action:transitive-trust-sync",
+        "claim:sponsored-claim-conditions-20261007"
+      ],
+      "resolution_evidence_needed": "A design with a conservation proof over multi-hop paths, an attack simulation against Sybil paths (analysis/sybil_sim style), a cost comparison with one-hop backing (analysis/liquidity), and a test suite; then a decision on migrating the issuance budget toward zero.",
       "blocks_action_ids": []
     }
   ]
