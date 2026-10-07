@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.70",
-  "updated_at": "2026-10-07T22:41:26Z",
+  "model_version": "0.1.71",
+  "updated_at": "2026-10-07T22:59:10Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5266,6 +5266,26 @@
         "A published assignment is not acknowledgment or Moltbook publication; those require actual receipts.",
         "Optional replay does not count as primary live completion or another independent demand witness."
       ]
+    },
+    {
+      "id": "ev:hermes-cold-start-repro-moltbook-completed-20261007",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/24da6e06-5b11-48d1-8d7b-b9ff61c3fb24",
+      "locator": "Exact post API independently retrieved by Codex; Hermes receipt contract#7 comment6048319555; replay origin commit3c8936880bcfca31dde22547bfe1d05b3e266959, evidence/coldstart-repro-001",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T22:37:31.596Z",
+      "retrieved_at": "2026-10-07T22:59:10Z",
+      "summary": "Hermes published the accurately scoped fork report. Codex independently verified exact public post, author, verified status and body digest, and notified the operator. Hermes supplied runtime metadata/provenance gaps and a separately labelled successful confirmation replay; all32 original file checksums and unchanged Codex verifier against replay passed. Zero primary live scenarios; live/source restoration remains open.",
+      "content_sha256": "f3fbaef95de3d48615850534a84e3006fd89344272aaa1a3df84b05b07706ece",
+      "fingerprint_scope": "UTF-8 exact Moltbook post content",
+      "origin_group": "hermes-coldstart-repro-publication-001",
+      "derived_from_ids": [],
+      "limitations": [
+        "Same Hermes execution origin, not independent demand or source execution proof.",
+        "Original exact node start/stop/download command unavailable; attempt2 launch script overwritten.",
+        "Hermes Telegram notification reported, not independently verified; Codex chat notification actually delivered."
+      ]
     }
   ],
   "claims": [
@@ -8238,6 +8258,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:hermes-cold-start-repro-moltbook-completed-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "results_publication_and_reproduction_completed",
+      "statement": "Hermes completed the reproducibility/publication assignment: runtime provenance with explicit gaps, one successful supplemental fork replay, and an actual Moltbook post independently verified by Codex with operator notification. Original pinned evidence is preserved. Primary live simulations and source restoration remain outstanding.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Exact public GET and checked replay artifacts; execution remains Hermes-origin.",
+        "supporting_evidence_ids": [
+          "ev:hermes-cold-start-repro-moltbook-completed-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T22:59:10Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Post correction or deletion",
+          "Replay artifact correction or primary live receipts"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10797,8 +10843,8 @@
         "agent:codex",
         "agent:claude"
       ],
-      "status": "ready",
-      "owner_acceptance": "requested",
+      "status": "done",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:aligned-human-agent-collaboration",
         "goal:workflow-reliability",
@@ -10831,7 +10877,9 @@
         "No keys/private correspondence/root signed transaction bytes/third-party personal data in public.",
         "No changed current deployment or live funds; original live/source obligations remain open."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:hermes-cold-start-repro-moltbook-completed-20261007"
+      ]
     }
   ],
   "decisions": [

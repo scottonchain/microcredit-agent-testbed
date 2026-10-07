@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "mode": "offline_artifact_verification",
+  "network_calls": 0,
+  "manifest_files": 46,
+  "journal_records": 292,
+  "mined_local_transactions": 59,
+  "token_transfer_logs_replayed": 24,
+  "snapshots_reconciled": 8,
+  "read_only_rejections": 8,
+  "loan_ids": [
+    18,
+    19,
+    20
+  ],
+  "repay_seconds_after_disbursement": [
+    1,
+    1,
+    2
+  ],
+  "root_initial_final_usdc_units": 20000000,
+  "existing_pool_usdc_units": 15000000,
+  "journal_completion_sha256": "a364b5c10401094a421752f979ad9a848501c0f7633402f12d802e2f6e7896db",
+  "journal_final_sha256": "7f026f0bc457ae67e4426a50eb037fa05cb6c19968c23c60c1f39a0edfc85484",
+  "failed_attempts": [
+    {
+      "attempt": "attempt-1-stopped-gas-guard",
+      "records": 31,
+      "mined_transactions": 0
+    },
+    {
+      "attempt": "attempt-2-stopped-gas-guard",
+      "records": 31,
+      "mined_transactions": 0
+    }
+  ],
+  "limits": [
+    "File integrity and internal consistency, not independent proof of execution or source provenance.",
+    "No live recovery/source settlement, outside income, autonomous reliability or general fraud-resistance proof."
+  ]
+}
