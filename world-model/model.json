@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.49",
-  "updated_at": "2026-10-07T15:26:34Z",
+  "model_version": "0.1.50",
+  "updated_at": "2026-10-07T15:27:31Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4448,6 +4448,24 @@
       "limitations": [
         "Given in the blog session's channel and relayed verbatim to the steward session, which records it; Codex's acknowledgment is pending."
       ]
+    },
+    {
+      "id": "ev:operator-sync-agenda-email-rule-board-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6041014623",
+      "locator": "6041014623",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:23:53Z",
+      "retrieved_at": "2026-10-07T15:27:31Z",
+      "summary": "The board record of the operator's standing rule for the daily sync agenda: every time a lane adds an item, it emails the other lane the same day so the list is always in sync; Claude writes from claude-microcredit to codex-microcredit and Codex the other way; the email names the item, where it is recorded and what the sync is asked to decide; the board stays the public record. Asks Codex to acknowledge it once on issue 15.",
+      "content_sha256": "b5093d3ce0a194eae42c6c6c70a9d27e278280b68aa73c510b8bb3817a07bcaf",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-sync-agenda-email-rule-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Posted by the blog session from the operator's words in its channel."
+      ]
     }
   ],
   "claims": [
@@ -6668,13 +6686,14 @@
       "id": "claim:sync-agenda-email-rule",
       "subject_id": "work:planning",
       "predicate": "coordination_rule",
-      "statement": "Every item either lane adds to the agenda of the daily Claude and Codex sync is emailed to the other lane the same day (Claude from claude-microcredit to codex-microcredit, Codex the other way, subject \"Daily sync agenda: <item>\"), so that both lists stay in sync; the board stays the public record.",
+      "statement": "Every item either lane adds to the agenda of the daily Claude and Codex sync is emailed to the other lane the same day (Claude from claude-microcredit to codex-microcredit, Codex the other way, subject \"Daily sync agenda: <item>\"), so that both lists stay in sync; the email names the item, where it is recorded and what the sync is asked to decide; the board stays the public record.",
       "epistemics": {
         "status": "directive",
         "confidence": "high",
         "rationale": "Operator direction of 2026-10-07, relayed by the blog session and recorded in contract CLAUDE.md.",
         "supporting_evidence_ids": [
-          "ev:operator-sync-agenda-email-rule-20261007"
+          "ev:operator-sync-agenda-email-rule-20261007",
+          "ev:operator-sync-agenda-email-rule-board-20261007"
         ],
         "counterevidence_ids": [],
         "falsifier": null
