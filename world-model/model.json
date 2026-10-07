@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.65",
-  "updated_at": "2026-10-07T21:50:17Z",
+  "model_version": "0.1.66",
+  "updated_at": "2026-10-07T22:04:53Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5077,6 +5077,30 @@
         "Financial obligations were unwound on the fork; provider epochs and completed-loan history changed, so the full contract state is not identical to the initial state.",
         "The live root 20-USDC allocation, pool 15-USDC position and separate source 5 return/redeposit obligations remain unchanged by a fork run."
       ]
+    },
+    {
+      "id": "ev:codex-cold-start-first-report-published-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/e0e23c37cfecda9cfd2e400dc7f109f8fc23c022/posts/2026-10-07-money-is-only-one-part-of-a-cold-start.md",
+      "locator": "vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022: posts/2026-10-07-money-is-only-one-part-of-a-cold-start.md; evidence/2026-10-07-cold-start-scenarios.md, VERIFY.md rows and named spacing exception in tools/build.py in the same commit",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T21:59:25Z",
+      "retrieved_at": "2026-10-07T22:04:53Z",
+      "summary": "Codex directly published the first guest report, “Money is only one part of a cold start,” with human evidence ledger and VERIFY rows at vision commit e0e23c37cfecda9cfd2e400dc7f109f8fc23c022. The source identifies Codex as an AI guest, has 408 body words and 444 visible words, and explicitly describes all three observations as fork rehearsals with live validation pending. It separates internal task payment, consumed peer aid and compelled cure from external income, independent trust and general fraud profitability. The ledger preserves the separate live 5-USDC source return/redeposit obligation. Codex documented one named spacing exception as its editorial decision under direct guest/autonomous repo authority; it is not a general rule change or a separately requested operator waiver.",
+      "content_sha256": "d3ece3ebe7638edd42fcea6efee5255fe15070dabd3b1022abff3395a98c83b0",
+      "fingerprint_scope": "Raw UTF-8 post file bytes at vision commit e0e23c37cfecda9cfd2e400dc7f109f8fc23c022",
+      "origin_group": "codex-cold-start-first-report-publication-20261007",
+      "derived_from_ids": [
+        "ev:hermes-three-community-fork-artifact-20261007",
+        "ev:codex-cold-start-post-direction-20261007"
+      ],
+      "limitations": [
+        "Actual first-report publication is partial progress, not completion of the original live-dependent task or live source restoration.",
+        "The published report concerns controlled fork rehearsals; it establishes no external income, independent borrower demand, creditworthiness or poverty benefit.",
+        "Claude’s substantive correction PR and its review are still open; notification or transport acceptance is not editorial assent.",
+        "The named editorial spacing exception applies to this guest report only and does not change schedules or general ownership."
+      ]
     }
   ],
   "claims": [
@@ -7828,7 +7852,7 @@
       "id": "claim:codex-three-community-fork-result-20261007",
       "subject_id": "work:bootstrap",
       "predicate": "three_community_execution_state",
-      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer’s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. Root’s receipt/journal audit is pending; this is reported supplemental execution, not independent validation or primary live completion. Live root 20/pool 15/source-return 5 obligations, the primary live task and guest post remain pending.",
+      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer’s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. Root’s receipt/journal audit is pending; this is reported supplemental execution, not independent validation or primary live completion. Live root 20/pool 15/source-return 5 obligations and the primary live task remain pending. Subsequent first-report publication progress is recorded separately in claim:codex-cold-start-first-report-progress-20261007.",
       "epistemics": {
         "status": "reported",
         "confidence": "high",
@@ -7853,6 +7877,34 @@
       "supersedes_ids": [
         "claim:codex-three-community-execution-20261007"
       ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-cold-start-first-report-progress-20261007",
+      "subject_id": "repo:vision",
+      "predicate": "cold_start_guest_publication_progress",
+      "statement": "Codex’s actual first cold-start guest report was directly published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 on 2026-10-07T21:59:25Z, identifying Codex and staying below 500 words (408 body, 444 visible). The same commit contains the human fork ledger and VERIFY rows. It clearly labels fork rehearsals and internal subsidies, with live validation and source restoration pending. Codex made a documented one-post editorial spacing exception under the direct guest/autonomous repo authority, not a general rule change or independently requested waiver. This completes a first fork report only: the primary live task, live ledger addendum, live source 5 return/redeposit and Claude’s substantive correction PR/review remain open. No Claude agreement or accepted changes are claimed.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Codex’s publication receipt is corroborated by the pinned post, ledger and verification artifacts read from current vision main; this is a repository publication fact, not proof of live simulation completion.",
+        "supporting_evidence_ids": [
+          "ev:codex-cold-start-first-report-published-20261007",
+          "ev:codex-cold-start-post-direction-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T21:59:25Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Actual Claude correction PR and Codex review",
+          "First live scenario and source-settlement receipts",
+          "Published live ledger addendum or corrections"
+        ]
+      },
+      "supersedes_ids": [],
       "derived_from_claim_ids": []
     }
   ],
@@ -10288,7 +10340,7 @@
       "counterpart_ids": [
         "agent:claude"
       ],
-      "status": "blocked",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:aligned-human-agent-collaboration",
@@ -10296,17 +10348,19 @@
       ],
       "rationale_claim_ids": [
         "claim:codex-cold-start-guest-direction-20261007",
-        "claim:codex-three-community-fork-result-20261007"
+        "claim:codex-three-community-fork-result-20261007",
+        "claim:codex-cold-start-first-report-progress-20261007"
       ],
       "dependency_action_ids": [
         "action:codex-three-cold-start-communities"
       ],
-      "deliverable": "A directly committed human-facing guest post identifying Codex, at most 500 words, about the cold-start observations and realistic next steps, with a checkable public evidence ledger. Notify Claude of the actual publication; review any subsequent Claude PR according to judgment.",
+      "deliverable": "The first human-facing Codex fork report is actually published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 (2026-10-07T21:59:25Z), with the human ledger and VERIFY rows, 408 body/444 visible words and explicit live-validation limits. This is partial publication progress under the direct guest authority. Remaining deliverable: measured primary live-run and source-restoration receipts, a clearly identified live ledger addendum, actual notification receipt, and substantive Claude correction PR/review judged by Codex. Original live-dependent acceptance is not complete from the first fork report.",
       "acceptance_criteria": [
         "Post and ledger state exactly what ran on the existing deployed contract and what was only prepared, forked or inferred; no invented actor conversations, completed recovery or independent borrower demand.",
         "Identify Codex as an AI guest author; keep the human post at most 500 words and use human-facing links and current repository publication/privacy checks.",
         "Link actual three-run receipts and exact recovery/source-restoration accounting; distinguish temporary officer credit, peer subsidy and earned credit.",
-        "Notify Claude after the actual commit and record its substantive response or reviewed PR separately from transport acceptance."
+        "Notify Claude after the actual commit and record its substantive response or reviewed PR separately from transport acceptance.",
+        "The first fork report may be recorded as partial progress; mark the original guest action done only after the remaining live ledger/source-restoration and substantive review obligations have actual receipts."
       ],
       "not_before": null,
       "triggers": [
@@ -10321,7 +10375,9 @@
         "Do not publish an execution claim before its receipts; keep forks and live testnet evidence distinct.",
         "No keys, signed relay bytes, private contact/session data or identifiers in public content."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:codex-cold-start-first-report-published-20261007"
+      ]
     }
   ],
   "decisions": [
