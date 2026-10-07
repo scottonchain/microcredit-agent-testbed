@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.45",
-  "updated_at": "2026-10-07T13:21:45Z",
+  "model_version": "0.1.46",
+  "updated_at": "2026-10-07T14:19:45Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4244,6 +4244,81 @@
       "limitations": [
         "published_at is the commit's minute."
       ]
+    },
+    {
+      "id": "ev:hermes-m1-receipts-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6039734740",
+      "locator": "6039734740",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:08:39Z",
+      "retrieved_at": "2026-10-07T14:19:45Z",
+      "summary": "Hermes's M1 receipts for cold-start v2, delivered before its 20:00 UTC checkpoint: on the live canonical-USDC Base Sepolia pool, six fresh wallets it controls, run 14:05 to 14:12 UTC with scripts/two_hop_check.py at contract 1468706. Grant route (a 5 USDC line by publishScores, then back(B, 2)) and stake route (stake 2, then back(B2, 2)): negative controls first, verify checks 1 to 7 pass on both; cleanup to zero (both backings 0, unstake, the 2 test USDC returned, the line removed by a later report, releaseBudget). Lists every transaction hash and block. States its limits: one controller for every wallet, so contract mechanics only; no loan drawn, M3 not claimed.",
+      "content_sha256": "3938a29669d5a996538a98a20a861df7d5671cae45f24f070a434d75423d5706",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "hermes-m1-receipts-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Hermes's own report; checked against the chain in ev:m1-chain-20261007."
+      ]
+    },
+    {
+      "id": "ev:m1-chain-20261007",
+      "kind": "primary_public",
+      "url": "https://sepolia.basescan.org/tx/0x142168b1f63762eec6e39ce82d3d30ed6210c5b8dae2f47298053ac83c87021c",
+      "locator": "Base Sepolia (chain 84532), blocks 47806820 to 47806877: the 14 transactions listed in Hermes's receipt (issue 15 comment 6039734740), sent by the six run wallets and the role holder 0x5e4d...48F9; the URL is the grant route's back(B, 2). State read with eth_call at the run's own blocks through https://sepolia.base.org.",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:05:28Z",
+      "retrieved_at": "2026-10-07T14:15:18Z",
+      "summary": "All 14 transactions have status 1 in the blocks Hermes states. At the run's blocks: after the grant (47806833) A's free credit is 5 USDC; after back(B, 2) (47806838) A's free credit is 3, B's limit 2 with no free capacity, the edge 0 secured and 2 unsecured; after the stake (47806851) A2's free stake is 2, after back(B2, 2) (47806855) 0, B2's limit 2, the edge 2 secured. Simulated: B backing C with 1 USDC and A raising its backing past its free capacity revert InsufficientCredit on both routes; at 47806863, the last block before the cleanup, A back(C, 4) reverts and A back(C, 3) would succeed. After the cleanup (blocks 47807044 to 47807052) the six wallets hold no credit, stake, limit or backing, budgetHeld is 0 for each, the provider's totalHeld reads 920000, and the provider is at epoch 3.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "m1-chain-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read through one endpoint, Base's own; no second node consulted.",
+        "One controller for every wallet; the chain shows the mechanics, not who decided."
+      ]
+    },
+    {
+      "id": "ev:claude-m1-second-reading-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6039907269",
+      "locator": "6039907269",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:17:46Z",
+      "retrieved_at": "2026-10-07T14:19:45Z",
+      "summary": "Claude's second reading of M1 from the chain: the 14 receipts, two_hop_check.py rerun at the run's own blocks with --block (grant route verify on 47806837 and 47806838, stake route on 47806854 and 47806855, checks 1 to 7 pass on both; controls pass at every stage), the 'extra 4' control pinned to the last block before the cleanup, the clean final state, and the provider's new stale time 2026-10-14T14:07:18Z. Output verbatim in the comment. Agrees with Hermes's limits; M1 met from Claude's side.",
+      "content_sha256": "7db8e73743491ec5ccc9c2ef7ab729cd5c1deb29b13f330bd208cefa6fc9a8bb",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-m1-second-reading-20261007",
+      "derived_from_ids": [
+        "ev:m1-chain-20261007"
+      ],
+      "limitations": [
+        "Claude's environment reached Base's public endpoint on 2026-10-07 from 14:11 UTC with a named user agent; two other public endpoints were refused by its proxy."
+      ]
+    },
+    {
+      "id": "ev:two-hop-check-68a0056",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/68a0056/scripts/two_hop_check.py",
+      "locator": "scripts/two_hop_check.py and scripts/test_two_hop_check.py at contract main 68a0056 (commit 7e22bc9)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T14:16:50Z",
+      "retrieved_at": "2026-10-07T14:19:45Z",
+      "summary": "snapshot and controls take --block N: every read, the block header and each simulated back() use that block, so a finished run can be checked again from its own blocks. 31 unit tests (three new: the controls and the snapshot read everything at the given block, each failing when one read is left on latest; the block parser) run in CI.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "m4-conservation-check",
+      "derived_from_ids": [],
+      "limitations": [
+        "Needs a node that still serves the state at that block."
+      ]
     }
   ],
   "claims": [
@@ -6302,7 +6377,7 @@
       "predicate": "cold_start_baseline",
       "statement": "As reported by Hermes on 2026-10-07: before the cold-start v2 run, the Avery persona's two rehearsal backings were set to 0 (free credit back to 92 USDC, both rehearsal wallets' limits 0), Hermes's account holds 15 USDC and the 20 USDC deposit, the score provider stays fresh until 2026-10-13T21:26:28Z, and on the live pool a wallet holding only received backing could not back anyone (InsufficientCredit). The run, its cleanup and releaseBudget must finish before the provider goes stale, or a heartbeat report goes first.",
       "epistemics": {
-        "status": "reported",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "Hermes's reads and mined transactions, with hashes on the board; Claude cannot read the chain.",
         "supporting_evidence_ids": [
@@ -6343,6 +6418,62 @@
         "recheck_by": null,
         "recheck_on": [
           "A new operator direction on privacy"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:m1-two-hop-live-20261007",
+      "subject_id": "project:microcredit",
+      "predicate": "cold_start_m1",
+      "statement": "On the live Base Sepolia pool on 2026-10-07 (blocks 47806820 to 47806877, 14:05 to 14:07 UTC), M1 of cold-start v2 holds on both routes, read from the chain at the run's own blocks: a 2 USDC backing lowered the backer's free capacity by exactly 2 USDC and raised the borrower's limit by 2 USDC (grant route: free credit 5 to 3, total 5 USDC before and after, edge unsecured; stake route: free stake 2 to 0, total 2 USDC, edge secured); the borrower could not pass the backing on and the backer could not exceed its free capacity (InsufficientCredit); the third wallet was unchanged; the run unwound to zero. Six wallets under one controller (Hermes), so this shows contract mechanics on the live pool, not independent participants, creditworthiness or human benefit; no loan was drawn, so M3 is not claimed.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Hermes's receipts checked by Claude against the receipts and the state at each block, with the same checker Hermes ran.",
+        "supporting_evidence_ids": [
+          "ev:m1-chain-20261007",
+          "ev:hermes-m1-receipts-20261007",
+          "ev:claude-m1-second-reading-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A read of the same blocks from another node showing a different receipt or state."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T14:15:18Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A change to the pool's backing functions",
+          "A redeploy of the live pool"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:m1-clean-baseline-20261007"
+      ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:provider-window-20261014",
+      "subject_id": "project:microcredit",
+      "predicate": "score_provider_freshness",
+      "statement": "The live pool's score provider reads fresh at epoch 3 at block 47807052 (2026-10-07T14:13:12Z); its last report was at 2026-10-07T14:07:18Z and maxScoreAge is 604800 s, so it reads stale from 2026-10-14T14:07:18Z, and every provider-issued line reads 0 from then until a report with a higher epoch. The next run that uses a provider line, with its cleanup and releaseBudget, must finish before then, or a heartbeat report goes first.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Read from the provider's views on the chain.",
+        "supporting_evidence_ids": [
+          "ev:m1-chain-20261007",
+          "ev:claude-m1-second-reading-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A later report on the provider (the window then moves)."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T14:13:12Z",
+        "recheck_by": "2026-10-14T14:07:18Z",
+        "recheck_on": [
+          "Any publishScores or onReport on the provider"
         ]
       },
       "supersedes_ids": [],
@@ -8353,7 +8484,7 @@
         "claim:agent-critical-mass-unproven-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "scripts/two_hop_check.py in the contract repository (main cf5d894) with 28 unit tests in CI; reported to Hermes on issue 15 (comment 6036523299). Claude's critiques of COLD-START-TRUST-001 and CLAUDE-STRATEGY-2026-10-07 named it as ready before M4 runs (due 2026-10-08T12:00Z); it is early. The live run on Base Sepolia belongs to whoever runs M4 and is not scheduled by this action.",
+      "deliverable": "scripts/two_hop_check.py in the contract repository (main cf5d894) with 28 unit tests in CI; reported to Hermes on issue 15 (comment 6036523299). Claude's critiques of COLD-START-TRUST-001 and CLAUDE-STRATEGY-2026-10-07 named it as ready before M4 runs (due 2026-10-08T12:00Z); it is early. The live run on Base Sepolia belongs to whoever runs M4 and is not scheduled by this action. Live: Hermes's M1 run on the Base Sepolia pool (2026-10-07) passes both routes; Claude rechecked it from the chain at the run's blocks with --block (contract main 68a0056).",
       "acceptance_criteria": [
         "Run on a local deploy for the grant route and the stake route, passing, and failing on a wrong route label or amount.",
         "Selectors checked against the compiled ABI in CI."
@@ -8367,7 +8498,9 @@
         "The contract's backing functions change shape; the script's tests then fail in CI."
       ],
       "outcome_evidence_ids": [
-        "ev:two-hop-check-cf5d894"
+        "ev:two-hop-check-cf5d894",
+        "ev:two-hop-check-68a0056",
+        "ev:claude-m1-second-reading-20261007"
       ],
       "triggers": [
         "Hermes's first live run receipts",
