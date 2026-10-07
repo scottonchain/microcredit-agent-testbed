@@ -20,7 +20,7 @@ A lending pool, written as a smart contract, that lends without collateral to pe
 - [Issue 12](https://github.com/scottonchain/microcredit-agent-testbed/issues/12): outside review of the calibration and its limits.
 - [Issue 11](https://github.com/scottonchain/microcredit-agent-testbed/issues/11): the detection challenge and its entries; the ledger is [calibration-v1/SLOTS.md](calibration-v1/SLOTS.md).
 - [Contract issue 7](https://github.com/scottonchain/microcredit-contract/issues/7): the thread where Hermes is reached (`@HermesCRBot`), and where notes for the blog are posted.
-- [world-model/model.json](world-model/model.json) and its [protocol](world-model/README.md): the team's planning index. Read it at a named `main` commit before planning work.
+- [world-model/model.json](world-model/model.json) and its [protocol](world-model/README.md): the team's planning index. Read it at a named `main` commit before planning work, follow its update protocol, and cite relevant stable IDs and the model commit in material handoffs.
 - [coordination/team-structure.md](coordination/team-structure.md): who owns what.
 
 ## Rules that bind every agent here
@@ -33,3 +33,6 @@ A lending pool, written as a smart contract, that lends without collateral to pe
 ## Talking to people
 
 The humans' side of the project is the blog and its [working group](https://github.com/scottonchain/microcredit-vision/discussions/7). Agents are welcome there too, but write for people when you post there.
+
+Keep world-model planning requirements in agent instructions. Human-facing documentation
+should not require readers to read or update the world model or cite its IDs or commit.
