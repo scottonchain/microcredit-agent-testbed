@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.30",
-  "updated_at": "2026-10-07T00:41:00Z",
+  "model_version": "0.1.31",
+  "updated_at": "2026-10-07T00:58:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3224,7 +3224,8 @@
         "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor; the 429s come from the same public endpoint that the bridged signer sends through.",
         "2 of 2 fresh borrows is a small count; the reject-disburse failure is unexplained (one fail, one pass).",
         "The README's phrase 'within 12 s' does not match the output: the step ran about two minutes, the runner's 120 s wait.",
-        "Correction in v0.1.30: in run 1 the refused send was repayLoan, not the approve; the loan stayed Active with the approval in place."
+        "Correction in v0.1.30: in run 1 the refused send was repayLoan, not the approve; the loan stayed Active with the approval in place.",
+        "Hermes corrected its README row for run 1 at testbed c47942e (approve mined, repayLoan send refused); other README lines unchanged."
       ]
     },
     {
@@ -3269,6 +3270,49 @@
         "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor.",
         "2 tested runs do not rule out the earlier failure; across the browser runs on 258affb, a6a87b3, a7fa809 and a8a2a57 the public RPC endpoint refused the bridged signer's send with HTTP 429 in 5 attempts (an approve in 4 of them, a repayLoan in 1; counted from the run outputs); whether the page's own reads hit the same limit is not shown.",
         "The app's reads go through one public endpoint (the configured override and viem's default for the chain are the same address): a second endpoint is not configured."
+      ]
+    },
+    {
+      "id": "ev:sepolia-rpc-endpoint-check",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6028433759",
+      "locator": "Hermes's report on contract issue 7, comment 6028433759, 2026-10-07T00:51Z (the raw probe output is not saved to the testbed)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:51:00Z",
+      "retrieved_at": "2026-10-07T00:58:00Z",
+      "summary": "Hermes checked from its host, with JSON-RPC POSTs carrying the app's origin and an OPTIONS preflight, one eth_blockNumber call every 3 seconds for 2 minutes (about 20 a minute, 40 calls) against five Base Sepolia endpoints, each answering eth_chainId 0x14a34 (84532): sepolia.base.org 40 of 40 with the origin echoed; base-sepolia-rpc.publicnode.com 40 of 40, CORS *, preflight 204; base-sepolia.drpc.org 40 of 40, CORS *, preflight 204; base-sepolia.gateway.tenderly.co 40 of 40, CORS *, preflight 204; api.zan.top/base-sepolia 39 of 40 with one 429. base-sepolia.public.blastapi.io returned 403. Hermes suggested publicnode first, then the Tenderly gateway, then dRPC, and says the refusals so far came from sepolia.base.org at the signer, not from page reads. It also confirmed, and fixed in testbed c47942e, the a7fa809 README row on which send was refused.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-a8a2a57"
+      ],
+      "limitations": [
+        "Hermes's own report from a server, not a browser; free third-party tiers whose long-run limits are unknown; 2 minutes at 20 a minute says nothing about bursts.",
+        "No raw output is committed."
+      ]
+    },
+    {
+      "id": "ev:sepolia-rpc-fallback",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/73f8cc7",
+      "locator": "Contract main 73f8cc7: packages/nextjs/scaffold.config.ts (rpcOverrides), services/web3/wagmiConfig.tsx, utils/rpcUrls.ts and test; site scottonchain.github.io main 5ca5a37 built from it under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:58:00Z",
+      "retrieved_at": "2026-10-07T00:58:00Z",
+      "summary": "Response to the single public endpoint behind the page's reads: the Base Sepolia override is now a comma-separated list tried in order, Base's own endpoint first, then base-sepolia-rpc.publicnode.com and base-sepolia.gateway.tenderly.co from Hermes's check (dRPC left out to keep the third-party reach small; NEXT_PUBLIC_RPC_URL_84532 replaces the list at build time). With several endpoints a failing one gets one retry before the next serves the read. The wallet's own sends use the wallet's endpoint and are not affected. Four unit tests for the list parser; the nextjs unit suite is 48.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-rpc-endpoint-check"
+      ],
+      "limitations": [
+        "Not exercised by a browser run on build 73f8cc7; no run has shown the page's own reads refused, so this removes a possible weakness rather than a seen one.",
+        "The two added endpoints are third parties and see a visitor's read calls (balances, loans, the allowance) when the first endpoint fails or rate-limits; CORS was checked from a server, not a browser.",
+        "Fallback only helps reads; the bridged signer's 429s on sends in Hermes's runs go through the wallet client and are not changed."
       ]
     }
   ],
@@ -6554,6 +6598,8 @@
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-build",
         "ev:sepolia-release-one-fixes",
+        "ev:sepolia-rpc-endpoint-check",
+        "ev:sepolia-rpc-fallback",
         "ev:sepolia-site-published",
         "ev:sepolia-stop-text",
         "ev:sepolia-usdc-cutover",
@@ -7084,6 +7130,8 @@
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-fixes",
+        "ev:sepolia-rpc-endpoint-check",
+        "ev:sepolia-rpc-fallback",
         "ev:sepolia-stop-text",
         "ev:sepolia-visible-errors",
         "work:sepolia-prototype"
