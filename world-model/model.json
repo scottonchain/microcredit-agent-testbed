@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.74",
-  "updated_at": "2026-10-07T23:12:16Z",
+  "model_version": "0.1.75",
+  "updated_at": "2026-10-07T23:16:28Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5345,6 +5345,43 @@
         "Source CI30 tests read, not executed by this suite; exact-deployment fork requested, no receipt yet.",
         "Mainnet launch security/deployment/demand/settlement controls unmet; no mainnet deployment or real-money spend."
       ]
+    },
+    {
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T23:16:28Z",
+      "retrieved_at": "2026-10-07T23:16:28Z",
+      "derived_from_ids": [],
+      "id": "ev:operator-algorithmic-transitive-staking-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6048758878",
+      "locator": "TRANSITIVE-TRUST-20261007-R2: direct clarification from operator, immediately supplied to Claude/Hermes",
+      "summary": "Operator requires that after bootstrap the system runs on transitive trust and staking; creditworthiness is algorithmic and based on the trust graph, and officer agents can be redirected. Codex treats issuer-independent operation as mandatory target, not optional team assent. Current single-hop deployment remains unchanged.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-algorithmic-transitive-staking-direction-20261007",
+      "limitations": [
+        "Required target, not implemented functionality, migration or launch authorization."
+      ]
+    },
+    {
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T23:16:28Z",
+      "retrieved_at": "2026-10-07T23:16:28Z",
+      "derived_from_ids": [],
+      "id": "ev:codex-transitive-stake-routing-candidate-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/a2dfa166677a05de45ef1250db4f3f8d66518848/docs/TRANSITIVE_TRUST_TARGET.md",
+      "locator": "Codex mechanism candidate and officer sunset gates ata2dfa166677a05de45ef1250db4f3f8d66518848",
+      "summary": "Candidate separates deterministic graph eligibility/ranking from finite spendable capacity, using consented stake-rooted paths with globally atomic reservations across all borrowers. Shared root/edge resources cannot be cloned by multiple paths/cycles/Sybils. Root default liability and delegation consent are explicit; migration runs off legacy grants and requires successful operation without officer signatures. Ranking calibration, full invariants, contract implementation/gas and deployment remain unproved/unimplemented.",
+      "content_sha256": "d276fda7f405892c700bf13978d5f4601672f18d8da316eb8112addc30c85e7d",
+      "fingerprint_scope": "UTF-8 docs/TRANSITIVE_TRUST_TARGET.md",
+      "origin_group": "codex-transitive-stake-routing-candidate-20261007",
+      "limitations": [
+        "Source-grounded design candidate, not a complete proof, executable multi-hop simulation, independent review or deployed mechanism.",
+        "Globally feasible allocation does not prove economically accurate ranking, honest participants or useful demand."
+      ]
     }
   ],
   "claims": [
@@ -8427,6 +8464,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_post_bootstrap_architecture",
+      "statement": "After cold start, algorithmic creditworthiness is based on the trust graph and staking with transitive trust, without discretionary credit-officer grants required for continued operation. Officers are redirected to productive work/evidence/participant/security roles. This is the operator-required target; existing received backing is nontransitive, so contract and migration work must conserve shared backing and state default liability.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Direct operator clarification reinforces the earlier recorded transitive-trust end-state direction.",
+        "supporting_evidence_ids": [
+          "ev:operator-algorithmic-transitive-staking-direction-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T23:16:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Revised operator instruction",
+          "Sync implementation/migration decision"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -11030,7 +11093,7 @@
     },
     {
       "id": "action:transitive-trust-sync",
-      "title": "Discuss transitive trust as the contract's end state at the 2026-10-08 sync",
+      "title": "Design conserving algorithmic transitive trust and officer sunset at the existing sync",
       "owner_id": "agent:claude",
       "counterpart_ids": [
         "agent:codex"
@@ -11046,13 +11109,15 @@
         "claim:transitive-trust-endstate-20261007",
         "claim:credit-officer-cold-start-sync",
         "claim:sponsored-claim-conditions-20261007",
-        "claim:codex-realistic-cold-start-results-20261007"
+        "claim:codex-realistic-cold-start-results-20261007",
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the sync, decide with Codex: adopt transitive-only trust as the end state with the officer route as the bootstrap half; the conservation bound over multi-hop paths and who bears a default several hops away; Sybil resistance of paths; liquidity and gas against analysis/liquidity and theory paper 3; the milestones by which the issuance budget shrinks toward zero; the first action and owner (theory and contract design, no deployment).",
+      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment.",
       "acceptance_criteria": [
-        "A recorded sync outcome: adopt, modify or reject, with evidence and a first action and owner.",
-        "No contract change or deployment follows from the discussion alone."
+        "Recorded design outcome and first action/owner with conservation and migration requirements.",
+        "Post-bootstrap acceptance requires a borrower route without any credit-officer score grant or mandatory officer heartbeat.",
+        "No contract change or deployment follows from discussion alone; preserve all existing loans/source restoration/schedules."
       ],
       "not_before": null,
       "triggers": [
