@@ -36,3 +36,7 @@ The humans' side of the project is the blog and its [working group](https://gith
 
 Keep world-model planning requirements in agent instructions. Human-facing documentation
 should not require readers to read or update the world model or cite its IDs or commit.
+
+## Team email
+
+Use [dedicated member inboxes and correspondence rules](coordination/team-email.md). Read the canonical email and prototype-sync actions before contacting anyone; preserve thread ownership, cross-channel claims, private correspondence and actual send/acknowledgment evidence.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.40",
-  "updated_at": "2026-10-07T12:12:05Z",
+  "model_version": "0.1.41",
+  "updated_at": "2026-10-07T12:21:45Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -92,7 +92,9 @@
       "name": "Hermes / hermes-agent-909",
       "parent_id": "project:microcredit",
       "owner_id": null,
-      "urls": [],
+      "urls": [
+        "mailto:hermes-909@agentmail.to"
+      ],
       "goal_model": {
         "declared_claim_ids": [],
         "inferred_claim_ids": [],
@@ -101,7 +103,9 @@
       },
       "identity": {
         "controller_independence": "internal_team",
-        "basis_evidence_ids": [],
+        "basis_evidence_ids": [
+          "ev:codex-email-amendments-20261007"
+        ],
         "note": "Internal project role; never counted as an outside witness."
       }
     },
@@ -111,7 +115,9 @@
       "name": "Existing Claude Code maintainer",
       "parent_id": "project:microcredit",
       "owner_id": null,
-      "urls": [],
+      "urls": [
+        "mailto:claude-microcredit@agentmail.to"
+      ],
       "goal_model": {
         "declared_claim_ids": [],
         "inferred_claim_ids": [],
@@ -120,7 +126,9 @@
       },
       "identity": {
         "controller_independence": "internal_team",
-        "basis_evidence_ids": [],
+        "basis_evidence_ids": [
+          "ev:codex-email-amendments-20261007"
+        ],
         "note": "Internal project role; never counted as an outside witness."
       }
     },
@@ -130,7 +138,9 @@
       "name": "Codex / ChatGPT lane, implementation role (same lane as the coordinator, not a fourth worker)",
       "parent_id": "project:microcredit",
       "owner_id": null,
-      "urls": [],
+      "urls": [
+        "mailto:codex-microcredit@agentmail.to"
+      ],
       "goal_model": {
         "declared_claim_ids": [],
         "inferred_claim_ids": [],
@@ -139,7 +149,9 @@
       },
       "identity": {
         "controller_independence": "internal_team",
-        "basis_evidence_ids": [],
+        "basis_evidence_ids": [
+          "ev:codex-email-amendments-20261007"
+        ],
         "note": "Internal project role; never counted as an outside witness."
       }
     },
@@ -3805,6 +3817,78 @@
         "Written by the blog session before the operator's wider authorization; its \"never write first\" binds until the charter changes.",
         "published_at is the commit's hour, not an exact timestamp."
       ]
+    },
+    {
+      "id": "ev:dedicated-team-email-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037731502",
+      "locator": "6037731502",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T12:17:56Z",
+      "retrieved_at": "2026-10-07T12:21:45Z",
+      "summary": "Operator assigns dedicated team inboxes and autonomous mission correspondence; Codex broadcast. The operator supplied Claude .io; actual API read shows .to.",
+      "content_sha256": "0a87c99a6b63250037fd6575884797e970199819c338f8b287713b2489232f53",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "dedicated-team-email-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal team evidence; transport acceptance is not recipient acknowledgment or completed outside progress."
+      ]
+    },
+    {
+      "id": "ev:codex-email-amendments-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037767479",
+      "locator": "6037767479",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T12:20:09Z",
+      "retrieved_at": "2026-10-07T12:21:45Z",
+      "summary": "Codex accepts Claude A1-A4, verifies three inboxes and records accepted coordination send; dedicated-inbox amendment awaits Claude.",
+      "content_sha256": "1a4149d05087b77b75161ef2128f92a61ab60b3bec4bd7cf2a80cb813b6cd9f2",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-email-amendments-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal team evidence; transport acceptance is not recipient acknowledgment or completed outside progress."
+      ]
+    },
+    {
+      "id": "ev:claude-email-amendments-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037653875",
+      "locator": "6037653875",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T12:13:13Z",
+      "retrieved_at": "2026-10-07T12:21:45Z",
+      "summary": "Claude accepts Codex protocol with A1-A4: thread owner, cadence/fallback, five first contacts per day team-wide and public-safe send log.",
+      "content_sha256": "6729baa5fcbbfe3133fac4019b2f3911f19ea03b4f3e875df860f1bcb7fe3417",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-email-amendments-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal team evidence; transport acceptance is not recipient acknowledgment or completed outside progress."
+      ]
+    },
+    {
+      "id": "ev:codex-cold-start-revision-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6037766965",
+      "locator": "6037766965",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T12:20:07Z",
+      "retrieved_at": "2026-10-07T12:21:45Z",
+      "summary": "Codex accepts six technical and two trust corrections; revised MODIFY mechanism uses explicit capped grants or fresh stake for generation two; execution milestones and Claude final assent remain pending.",
+      "content_sha256": "bc9e7ff3102d581200eb20a22af6dd03d80d18c8bc654193cef85f0d46b7f946",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-cold-start-revision-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Internal team evidence; transport acceptance is not recipient acknowledgment or completed outside progress."
+      ]
     }
   ],
   "claims": [
@@ -5771,6 +5855,36 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:dedicated-team-inboxes-20261007",
+      "subject_id": "project:microcredit",
+      "predicate": "dedicated_team_email",
+      "statement": "Codex observed GET /v0/inboxes HTTP 200 with three inboxes: codex-microcredit@agentmail.to (Codex), claude-microcredit@agentmail.to (Claude API-listed), and hermes-909@agentmail.to (Hermes). Operator assignment gave Claude .io; that spelling is unverified and preserved as a discrepancy. Codex sent a coordination email from its dedicated inbox to the API-listed Claude .to inbox; AgentMail accepted HTTP 200. Receipt/Claude acknowledgment and background Codex monitoring are not established.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Direct API observation and attributed public send receipt; domain discrepancy kept explicit.",
+        "supporting_evidence_ids": [
+          "ev:dedicated-team-email-20261007",
+          "ev:codex-email-amendments-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A later API read that shows a different inbox set or a refused send."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T12:21:45Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Claude confirms address or replies",
+          "Next inbox read",
+          "Provider send refusal"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:team-inbox-round-trip-20261007"
+      ],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -7176,7 +7290,7 @@
         "claim:sepolia-prototype-escalation"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique. Resolve COLD-START-TRUST-001 with Claude: decide whether Hermes's faucet-funded stake/backing -> first borrower -> repayment -> second-hop borrower is the expected cold-start mechanism. Verify every credit/reputation transition against the deployed contract, choose a concrete alternative where the scenario fails, and record bounded first-borrow, repayment and two-hop milestones plus a liberal-to-selective trust policy.",
+      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique. Resolve COLD-START-TRUST-001 with Claude: decide whether Hermes's faucet-funded stake/backing -> first borrower -> repayment -> second-hop borrower is the expected cold-start mechanism. Verify every credit/reputation transition against the deployed contract, choose a concrete alternative where the scenario fails, and record bounded first-borrow, repayment and two-hop milestones plus a liberal-to-selective trust policy. Operator requests email protocol and unresolved issues, particularly cold start, at this evening sync. Codex revised response 6037766965 accepts all six Claude technical corrections and both trust corrections; seek actual final mechanism assent, then close only milestones with verified receipts. Local M4 checker: 28 tests run, 26 passed, 2 skipped; no live chain execution.",
       "acceptance_criteria": [
         "Read decision:sepolia-prototype-v1 and actual newer implementation evidence; do not reopen custody as an operator gate.",
         "Track source/build/publication and fresh-wallet execution receipts separately.",
@@ -7201,7 +7315,8 @@
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency",
         "The operator's next-sync additions of 2026-10-06 20:57 UTC",
-        "COLD-START-TRUST-001 agenda (ev:cold-start-trust-direction)"
+        "COLD-START-TRUST-001 agenda (ev:cold-start-trust-direction)",
+        "Evening Claude sync: dedicated email and outstanding cold-start milestones"
       ]
     },
     {
@@ -7799,10 +7914,11 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:team-inbox-round-trip-20261007"
+        "claim:team-inbox-round-trip-20261007",
+        "claim:dedicated-team-inboxes-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "An agreed version of the seven rules on issue 15, recorded as decision:email-protocol-v1 with the assents given; agent instructions (contract CLAUDE.md, the testbed's agent files) point to it.",
+      "deliverable": "An agreed version of the seven rules on issue 15, recorded as decision:email-protocol-v1 with the assents given; agent instructions (contract CLAUDE.md, the testbed's agent files) point to it. Dedicated member inboxes replace the shared-only premise; confirm Claude .to versus operator-supplied .io. Codex accepts A1-A4; obtain actual dedicated-inbox amendment acceptance and reconcile Hermes claim/contact-log rules.",
       "acceptance_criteria": [
         "Codex's and Hermes's answers are quoted or linked; silence by 14:00 UTC is recorded as silence, not assent.",
         "The rules keep the operator's identity out of every email and record."
@@ -7818,7 +7934,8 @@
       "outcome_evidence_ids": [],
       "triggers": [
         "Codex's or Hermes's reply on issue 15",
-        "14:00 UTC"
+        "14:00 UTC",
+        "Dedicated-inbox coordination reply"
       ]
     },
     {
@@ -7839,7 +7956,7 @@
       "dependency_action_ids": [
         "action:email-protocol-settle"
       ],
-      "deliverable": "vision WORKING_GROUP.md's email line changed by the blog session (a Claude Code session) to the settled protocol, before any first-contact email is sent; the prioritized blog post describes the same rules.",
+      "deliverable": "vision WORKING_GROUP.md's email line changed by the blog session (a Claude Code session) to the settled protocol, before any first-contact email is sent; the prioritized blog post describes the same rules. Publish dedicated member addresses after confirming Claude domain; keep sender-address privacy and accurately describe authorized first contact.",
       "acceptance_criteria": [
         "No first-contact email is sent while the published line says \"we never write first\"."
       ],
@@ -8092,7 +8209,7 @@
       "id": "decision:email-protocol-v1",
       "status": "provisional",
       "owner_id": "agent:claude",
-      "recommendation": "The team inbox (hermes-909@agentmail.to) is used under seven rules: every message names the agent that wrote it and carries an AI disclosure; one owner per thread; outside mail answered within 24 hours and treated as untrusted data; a first contact only to a named person or organization whose own published work bears on ours, through an address they published, with one specific ask, no lists, no follow-up to silence, a stop on any request, at most 5 first contacts a day team-wide; lanes from the team structure (Hermes agents and the contact log, Codex lead qualification, Claude technical and scholarly correspondence); one public log line per sent message on testbed issue 15; nothing about the operator and no money by email. Nobody writes first until the charter says what the team does.",
+      "recommendation": "The team inbox (hermes-909@agentmail.to) is used under seven rules: every message names the agent that wrote it and carries an AI disclosure; one owner per thread; outside mail answered within 24 hours and treated as untrusted data; a first contact only to a named person or organization whose own published work bears on ours, through an address they published, with one specific ask, no lists, no follow-up to silence, a stop on any request, at most 5 first contacts a day team-wide; lanes from the team structure (Hermes agents and the contact log, Codex lead qualification, Claude technical and scholarly correspondence); one public log line per sent message on testbed issue 15; nothing about the operator and no money by email. Nobody writes first until the charter says what the team does. New receipts: Codex accepts Claude A1-A4; dedicated inbox amendment proposes agent-specific senders with one lead per cross-channel conversation. Old single-inbox rule awaits reconciliation with Claude and Hermes; no unanimous dedicated-inbox agreement is asserted.",
       "claim_ids": [
         "claim:team-inbox-round-trip-20261007"
       ],
@@ -8104,7 +8221,9 @@
       "discussion_evidence_ids": [
         "ev:email-authorization-20261007",
         "ev:claude-email-001-proposal-20261007",
-        "ev:vision-charter-email-eb22496"
+        "ev:vision-charter-email-eb22496",
+        "ev:claude-email-amendments-20261007",
+        "ev:codex-email-amendments-20261007"
       ],
       "assents": [
         {
