@@ -1,0 +1,92 @@
+[
+  {
+    "repo": "unioncredit/union-v2-contracts",
+    "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+    "paths": [
+      "README.md",
+      "contracts/interfaces/IUToken.sol",
+      "contracts/interfaces/IUserManager.sol",
+      "contracts/market/UToken.sol",
+      "contracts/user/UserManager.sol",
+      "test/foundry/comptroller/FakeUserManager.sol"
+    ]
+  },
+  {
+    "repo": "aave/aave-v3-core",
+    "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+    "paths": [
+      "README.md",
+      "certora/README.md",
+      "contracts/protocol/libraries/logic/BorrowLogic.sol",
+      "contracts/protocol/tokenization/base/DebtTokenBase.sol"
+    ]
+  },
+  {
+    "repo": "goldfinch-eng/mono",
+    "commit": "bb251675d8a28d046f4d4763e1cf8874ee7c2723",
+    "paths": [
+      "README.md",
+      "packages/client2/README.md",
+      "packages/client2/components/design-system/form/README.md",
+      "packages/cms/README.md",
+      "packages/docs/README.md",
+      "packages/functions/README.md",
+      "packages/goldfinch-prime/blockchain_scripts/uniqueIdentity/README.md",
+      "packages/goldfinch-prime/lib/forge-std/README.md",
+      "packages/pools/README.md",
+      "packages/protocol-l2/blockchain_scripts/uniqueIdentity/README.md",
+      "packages/protocol-l2/contracts/interfaces/ICreditLine.sol",
+      "packages/protocol-l2/contracts/interfaces/ITranchedPool.sol",
+      "packages/protocol-l2/contracts/protocol/core/CreditLine.sol",
+      "packages/protocol-l2/contracts/protocol/core/TranchedPool.sol",
+      "packages/protocol-l2/contracts/protocol/core/callable/structs/CallableCreditLine.sol",
+      "packages/protocol-l2/contracts/protocol/core/callable/structs/StaleCallableCreditLine.sol",
+      "packages/protocol/blockchain_scripts/airdrop/2022-01-24-backers/README.md",
+      "packages/protocol/blockchain_scripts/uniqueIdentity/README.md",
+      "packages/protocol/contracts/interfaces/ICreditLine.sol",
+      "packages/protocol/contracts/interfaces/ILegacyCreditLine.sol",
+      "packages/protocol/contracts/interfaces/ILegacyTranchedPool.sol",
+      "packages/protocol/contracts/interfaces/ITranchedPool.sol",
+      "packages/protocol/contracts/protocol/core/CreditLine.sol",
+      "packages/protocol/contracts/protocol/core/TranchedPool.sol",
+      "packages/protocol/contracts/protocol/core/callable/structs/CallableCreditLine.sol",
+      "packages/protocol/contracts/protocol/core/callable/structs/StaleCallableCreditLine.sol",
+      "packages/subgraph/README.md",
+      "packages/subgraph/beta-subgraph/README.md"
+    ]
+  },
+  {
+    "repo": "trusttoken/truefi-spec",
+    "commit": "d2752e44908e83d56d7b0fe015c3afa808bb53d8",
+    "paths": [
+      "README.md"
+    ]
+  },
+  {
+    "repo": "trustlines-protocol/contracts",
+    "commit": "12fd38040c5dfa106319767cef6002fef74af8b8",
+    "paths": [
+      "contracts/currency-network/CurrencyNetwork.sol",
+      "contracts/tests/TestCurrencyNetwork.sol",
+      "py-bin/README.md",
+      "py-deploy/README.md"
+    ]
+  },
+  {
+    "repo": "aboutcircles/circles-contracts-v2",
+    "commit": "39338244683e4d9c38cb05c60db8846b5851318b",
+    "paths": [
+      "README.md",
+      "docs/README.md",
+      "script/deployments/README.md",
+      "src/hub/Hub.sol",
+      "src/hub/IHub.sol",
+      "src/migration/IHub.sol",
+      "test/circles/README.md",
+      "test/hub/MockHub.sol",
+      "test/hub/MockMigrationHub.sol",
+      "test/hub/MockPathTransferHub.sol",
+      "test/migration/MockHub.sol"
+    ]
+  }
+]

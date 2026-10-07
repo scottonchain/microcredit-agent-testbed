@@ -1,0 +1,860 @@
+{
+  "repo": "hyperliquid-dex/hyperliquid-python-sdk",
+  "sha": "2fdb18f9517675ea03695a0962bd19eece9c83f0",
+  "tree": [
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "64756966e26f9fc04b5c75d29558df6a87315591",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/64756966e26f9fc04b5c75d29558df6a87315591"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8975950268bd99f0863350cd85b276548dd87276",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/8975950268bd99f0863350cd85b276548dd87276"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa24e4749600173d84985cbe3f74066c0721c0b2",
+      "size": 1867,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/aa24e4749600173d84985cbe3f74066c0721c0b2"
+    },
+    {
+      "path": ".github/workflows/lint.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b251f5c45bdc49ed1520304fceb9a39d87722802",
+      "size": 1370,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b251f5c45bdc49ed1520304fceb9a39d87722802"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f887c8f3000dfa97cb3b22ec141229eb96445bf",
+      "size": 10578,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/6f887c8f3000dfa97cb3b22ec141229eb96445bf"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "527798f0611f1c3cd66c7b2566bdfd17ed85a6f1",
+      "size": 1750,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/527798f0611f1c3cd66c7b2566bdfd17ed85a6f1"
+    },
+    {
+      "path": "LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc989548cff7a9d32da9824f960f46c3f7099164",
+      "size": 1092,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/cc989548cff7a9d32da9824f960f46c3f7099164"
+    },
+    {
+      "path": "Makefile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e34be8aa4f0090a1424500dce837d48c57c19b93",
+      "size": 1560,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e34be8aa4f0090a1424500dce837d48c57c19b93"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3184e5db00a8ce47d31e24cef97d6e84f280af94",
+      "size": 5779,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/3184e5db00a8ce47d31e24cef97d6e84f280af94"
+    },
+    {
+      "path": "SECURITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cbba9158db21465c7097bf4a83aa1598ba3fcdf",
+      "size": 1150,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/5cbba9158db21465c7097bf4a83aa1598ba3fcdf"
+    },
+    {
+      "path": "api",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "36fbd6242dab9585640d9695c3f2c77b4044bdd6",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/36fbd6242dab9585640d9695c3f2c77b4044bdd6"
+    },
+    {
+      "path": "api/components.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d3f54d66af0d925b1d35604dc13a48fe9bc694",
+      "size": 268,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e7d3f54d66af0d925b1d35604dc13a48fe9bc694"
+    },
+    {
+      "path": "api/info",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f633d6dd241e645561512051d94cd59777cba50c",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/f633d6dd241e645561512051d94cd59777cba50c"
+    },
+    {
+      "path": "api/info/allmids.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a33db7e3d75bbb2182c5e343f949f7644c0db35",
+      "size": 1187,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/3a33db7e3d75bbb2182c5e343f949f7644c0db35"
+    },
+    {
+      "path": "api/info/assetctxs.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72fdc16c747f0433bc4c3149e7c02c2030f42eeb",
+      "size": 2172,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/72fdc16c747f0433bc4c3149e7c02c2030f42eeb"
+    },
+    {
+      "path": "api/info/candle.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fec923718bd24f8f66cabe29d14cc74c5450ff7b",
+      "size": 3739,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/fec923718bd24f8f66cabe29d14cc74c5450ff7b"
+    },
+    {
+      "path": "api/info/l2book.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d3b1a5f7f5decf537ce7b0677401de17f521198",
+      "size": 1916,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/3d3b1a5f7f5decf537ce7b0677401de17f521198"
+    },
+    {
+      "path": "api/info/userstate.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27960119bf579e6ce49b27de3c636b1b9be6ed91",
+      "size": 2612,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/27960119bf579e6ce49b27de3c636b1b9be6ed91"
+    },
+    {
+      "path": "examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "557419885c72a5482e6c59c65cbeecd5e8e32ef9",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/557419885c72a5482e6c59c65cbeecd5e8e32ef9"
+    },
+    {
+      "path": "examples/basic_adding.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bff52d58070d26c3bc7be816b1adead15e89fd1f",
+      "size": 9706,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/bff52d58070d26c3bc7be816b1adead15e89fd1f"
+    },
+    {
+      "path": "examples/basic_agent.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e7a5719133d25b287480e4aef97b9195fcc7dbc",
+      "size": 4821,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/7e7a5719133d25b287480e4aef97b9195fcc7dbc"
+    },
+    {
+      "path": "examples/basic_builder_fee.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ffeb980fb1ad6a19cdd11ce863cefff6b3cf94e",
+      "size": 831,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/6ffeb980fb1ad6a19cdd11ce863cefff6b3cf94e"
+    },
+    {
+      "path": "examples/basic_convert_to_multi_sig_user.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ff15888b5416216bc95f8baff66b514f4bf5a78",
+      "size": 1045,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0ff15888b5416216bc95f8baff66b514f4bf5a78"
+    },
+    {
+      "path": "examples/basic_evm_use_big_blocks.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c769e83c03583ba462aa5809b2bf2b744a9c317e",
+      "size": 366,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/c769e83c03583ba462aa5809b2bf2b744a9c317e"
+    },
+    {
+      "path": "examples/basic_leverage_adjustment.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41e2772f75acf3b9d8b0e9eb580128a24975330f",
+      "size": 1217,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/41e2772f75acf3b9d8b0e9eb580128a24975330f"
+    },
+    {
+      "path": "examples/basic_market_order.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3db2c7355b612b9747e4714984209c151495199",
+      "size": 1302,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f3db2c7355b612b9747e4714984209c151495199"
+    },
+    {
+      "path": "examples/basic_order.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e596a1cdf85f00ccd294d1da33c3d033b8dd8968",
+      "size": 1396,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e596a1cdf85f00ccd294d1da33c3d033b8dd8968"
+    },
+    {
+      "path": "examples/basic_order_modify.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f37d6d4ef4608336b814966f92cc77e8ee32e865",
+      "size": 1196,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f37d6d4ef4608336b814966f92cc77e8ee32e865"
+    },
+    {
+      "path": "examples/basic_order_with_builder_deployed_dex.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dbf81f703b91fd3885e75de644cc0ddd33d3e72",
+      "size": 1706,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/2dbf81f703b91fd3885e75de644cc0ddd33d3e72"
+    },
+    {
+      "path": "examples/basic_order_with_cloid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31fed2728ef14e9874d823b00daa87134da8520b",
+      "size": 1197,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/31fed2728ef14e9874d823b00daa87134da8520b"
+    },
+    {
+      "path": "examples/basic_recover_user.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "170046f22be0184a01e913d324277195d6442314",
+      "size": 1949,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/170046f22be0184a01e913d324277195d6442314"
+    },
+    {
+      "path": "examples/basic_schedule_cancel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d46cda46d466084f219a5c1e6cdef31257de8ce8",
+      "size": 990,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d46cda46d466084f219a5c1e6cdef31257de8ce8"
+    },
+    {
+      "path": "examples/basic_send_asset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0afd66fb5107d7a01f8fa9757a586ecd00057332",
+      "size": 760,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0afd66fb5107d7a01f8fa9757a586ecd00057332"
+    },
+    {
+      "path": "examples/basic_set_referrer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3f22464924a113c6901cfd69b5109a82be5a45e",
+      "size": 480,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d3f22464924a113c6901cfd69b5109a82be5a45e"
+    },
+    {
+      "path": "examples/basic_spot_order.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e312541a1e9c5208f4444fbf9960e639099fa85c",
+      "size": 1979,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e312541a1e9c5208f4444fbf9960e639099fa85c"
+    },
+    {
+      "path": "examples/basic_spot_to_builder_deployed_perp_dex.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6db82d2bb712cb218f8dc5a000ad9496854294d",
+      "size": 637,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b6db82d2bb712cb218f8dc5a000ad9496854294d"
+    },
+    {
+      "path": "examples/basic_spot_to_perp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0361ed8899cf9642dd84fb9ebf28323c3a8d5483",
+      "size": 502,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0361ed8899cf9642dd84fb9ebf28323c3a8d5483"
+    },
+    {
+      "path": "examples/basic_spot_transfer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01d4f380b43d37361914a6e5cda24c876a86ba9d",
+      "size": 609,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/01d4f380b43d37361914a6e5cda24c876a86ba9d"
+    },
+    {
+      "path": "examples/basic_staking.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55c3c1ca49018808bcf7d31586ab51e64c2c9b0c",
+      "size": 843,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/55c3c1ca49018808bcf7d31586ab51e64c2c9b0c"
+    },
+    {
+      "path": "examples/basic_sub_account.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1550e71ad99052b2e6aef44713a0a2cd31f08de",
+      "size": 1014,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f1550e71ad99052b2e6aef44713a0a2cd31f08de"
+    },
+    {
+      "path": "examples/basic_tpsl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4e85fefdf1f249dad223eb94016b600d1053bd4",
+      "size": 2912,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d4e85fefdf1f249dad223eb94016b600d1053bd4"
+    },
+    {
+      "path": "examples/basic_transfer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0df92747bc8a700a5fd08125f20cf60cd8479478",
+      "size": 544,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0df92747bc8a700a5fd08125f20cf60cd8479478"
+    },
+    {
+      "path": "examples/basic_vault.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fc16a51035b185952447634c50db8275752a5fe",
+      "size": 916,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/6fc16a51035b185952447634c50db8275752a5fe"
+    },
+    {
+      "path": "examples/basic_vault_transfer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d613e303e6e033e9dfe8640233f69b469df600c2",
+      "size": 455,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d613e303e6e033e9dfe8640233f69b469df600c2"
+    },
+    {
+      "path": "examples/basic_withdraw.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8cf845c48ae1ca0c2ebc35d185397f8d847340b",
+      "size": 514,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e8cf845c48ae1ca0c2ebc35d185397f8d847340b"
+    },
+    {
+      "path": "examples/basic_ws.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0557fa70c45e3fce327b62efb8e649733fd1e8e1",
+      "size": 1390,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0557fa70c45e3fce327b62efb8e649733fd1e8e1"
+    },
+    {
+      "path": "examples/c_signer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2e8b6b7c5b3536050a6a30c8dba80c7f2fedd0f",
+      "size": 809,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/a2e8b6b7c5b3536050a6a30c8dba80c7f2fedd0f"
+    },
+    {
+      "path": "examples/c_validator.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7366e25a7d51bcf0cdb3909adc5120d2c6879320",
+      "size": 1880,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/7366e25a7d51bcf0cdb3909adc5120d2c6879320"
+    },
+    {
+      "path": "examples/cancel_open_orders.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "257d6b68bb039fafa906a20af3ead39f695ac23b",
+      "size": 398,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/257d6b68bb039fafa906a20af3ead39f695ac23b"
+    },
+    {
+      "path": "examples/config.json.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7651794af8c25e14c2c838506ab55556d4caa2b",
+      "size": 1263,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e7651794af8c25e14c2c838506ab55556d4caa2b"
+    },
+    {
+      "path": "examples/dex_abstraction.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "338423c48ed0520430ccd4bbb809cf061c216cc4",
+      "size": 2478,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/338423c48ed0520430ccd4bbb809cf061c216cc4"
+    },
+    {
+      "path": "examples/evm_block_indexer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78ae4e7ffdf00e69f44eff7aad27d0e2ab75f238",
+      "size": 8368,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/78ae4e7ffdf00e69f44eff7aad27d0e2ab75f238"
+    },
+    {
+      "path": "examples/evm_erc20.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82a3f8f20493ba88d2c0df25eb71d9728fa1af65",
+      "size": 39983,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/82a3f8f20493ba88d2c0df25eb71d9728fa1af65"
+    },
+    {
+      "path": "examples/example_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "390a5433c17ceb2fb017889be160358a6fe9a5b5",
+      "size": 3077,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/390a5433c17ceb2fb017889be160358a6fe9a5b5"
+    },
+    {
+      "path": "examples/multi_sig_convert_to_normal_user.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f469a019467d302f54dc3804ee4a6e680724463",
+      "size": 1955,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/2f469a019467d302f54dc3804ee4a6e680724463"
+    },
+    {
+      "path": "examples/multi_sig_order.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e974d1fb7ceb19ffe52036be24b096e3da6df101",
+      "size": 1815,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e974d1fb7ceb19ffe52036be24b096e3da6df101"
+    },
+    {
+      "path": "examples/multi_sig_register_token.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6b1ed9fa4d6a01f2f5e59bf47932a39fe928338",
+      "size": 1891,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f6b1ed9fa4d6a01f2f5e59bf47932a39fe928338"
+    },
+    {
+      "path": "examples/multi_sig_usd_send.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58fd13c67ab4c80590136db607227d292e91909b",
+      "size": 2034,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/58fd13c67ab4c80590136db607227d292e91909b"
+    },
+    {
+      "path": "examples/multi_sig_user_set_abstraction.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e7e87154f20cf399ad901b733884d8ebf617d2d",
+      "size": 2371,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/5e7e87154f20cf399ad901b733884d8ebf617d2d"
+    },
+    {
+      "path": "examples/parse_token_delegate_from_replica_cmds.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee4dcd2049904a803c947023e2842eb6c5822e42",
+      "size": 3109,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ee4dcd2049904a803c947023e2842eb6c5822e42"
+    },
+    {
+      "path": "examples/perp_deploy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffffac78f7d2a573a3099ed1d0976cf96d78d728",
+      "size": 2365,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ffffac78f7d2a573a3099ed1d0976cf96d78d728"
+    },
+    {
+      "path": "examples/priority_fees.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4fbdb9cbd5e50163ea861054c9974f5415ceea4",
+      "size": 751,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b4fbdb9cbd5e50163ea861054c9974f5415ceea4"
+    },
+    {
+      "path": "examples/rounding.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a6105170fb0ba1a0c636b5fe14af2d33249652d",
+      "size": 2522,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/8a6105170fb0ba1a0c636b5fe14af2d33249652d"
+    },
+    {
+      "path": "examples/spot_deploy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f2422a08cc9da66f73c95d521aadeb9cf827301",
+      "size": 5466,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/0f2422a08cc9da66f73c95d521aadeb9cf827301"
+    },
+    {
+      "path": "examples/user_abstraction.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d14a52dae5f69987632d5d0e0ce5048c3f462181",
+      "size": 2015,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d14a52dae5f69987632d5d0e0ce5048c3f462181"
+    },
+    {
+      "path": "hyperliquid",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dba9cb059fbd77ba782c72980dc2771b7dcb8179",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/dba9cb059fbd77ba782c72980dc2771b7dcb8179"
+    },
+    {
+      "path": "hyperliquid/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "hyperliquid/api.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d808f2cea64a54fa38b8ae136154c6661da5d8c9",
+      "size": 1630,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d808f2cea64a54fa38b8ae136154c6661da5d8c9"
+    },
+    {
+      "path": "hyperliquid/exchange.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41a2f66b568451208770517d5afd58af724edded",
+      "size": 38359,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/41a2f66b568451208770517d5afd58af724edded"
+    },
+    {
+      "path": "hyperliquid/info.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "360d0588c378f4a9f2c5584800b1221bb79754ac",
+      "size": 27783,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/360d0588c378f4a9f2c5584800b1221bb79754ac"
+    },
+    {
+      "path": "hyperliquid/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7cc9b800e233c34acf22058e0dec95ebc37c2564",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/7cc9b800e233c34acf22058e0dec95ebc37c2564"
+    },
+    {
+      "path": "hyperliquid/utils/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "hyperliquid/utils/constants.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b2bf9746f84ea41b39666d7259893a2eafc0d34",
+      "size": 144,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/1b2bf9746f84ea41b39666d7259893a2eafc0d34"
+    },
+    {
+      "path": "hyperliquid/utils/error.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c818efb6a3d78796aef518cf1937025cd78af2f",
+      "size": 479,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/9c818efb6a3d78796aef518cf1937025cd78af2f"
+    },
+    {
+      "path": "hyperliquid/utils/signing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "560414711218560a8aa48b6adee311361a3a4029",
+      "size": 16099,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/560414711218560a8aa48b6adee311361a3a4029"
+    },
+    {
+      "path": "hyperliquid/utils/types.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14dc67bd84a9eb23411e5fc9039dcbfd0f086270",
+      "size": 7944,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/14dc67bd84a9eb23411e5fc9039dcbfd0f086270"
+    },
+    {
+      "path": "hyperliquid/websocket_manager.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c73a688148ad93648bfbdf500d58f71a2391d6a",
+      "size": 7546,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/4c73a688148ad93648bfbdf500d58f71a2391d6a"
+    },
+    {
+      "path": "poetry.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53507ef3abcec9188fce8b445f2e00077c98da41",
+      "size": 308150,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/53507ef3abcec9188fce8b445f2e00077c98da41"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30656a819ba812d5df37759f637202a8db80ba2b",
+      "size": 4200,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/30656a819ba812d5df37759f637202a8db80ba2b"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "843077ffdede7c993a5baded113489e9e4628370",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/843077ffdede7c993a5baded113489e9e4628370"
+    },
+    {
+      "path": "tests/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "size": 0,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "tests/cassettes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b325e1d69f8dc66ed7fead873b99ee7a995140f7",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/b325e1d69f8dc66ed7fead873b99ee7a995140f7"
+    },
+    {
+      "path": "tests/cassettes/info_test",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6a693406368f1ae73f4a59c8a1b46d24691cbc08",
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/trees/6a693406368f1ae73f4a59c8a1b46d24691cbc08"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_delegator_history.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b94b3aa9d407629a595c249489993559c7b03086",
+      "size": 1913,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b94b3aa9d407629a595c249489993559c7b03086"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_extra_agents.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca454105510efe9dd7a96a8bd17f96c6567b4605",
+      "size": 1381,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ca454105510efe9dd7a96a8bd17f96c6567b4605"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_all_mids.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3530653f8e1bfdb46eecd502226eac9e09228228",
+      "size": 1262,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/3530653f8e1bfdb46eecd502226eac9e09228228"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_candles_snapshot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7e8de31054e7e49a604c44093f0a3d38fdcc348",
+      "size": 6548,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d7e8de31054e7e49a604c44093f0a3d38fdcc348"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_frontend_open_orders.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3915d68e61dbe8dc485e63dd12934854fae5cb9",
+      "size": 2459,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/c3915d68e61dbe8dc485e63dd12934854fae5cb9"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_funding_history[1684811870000].yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e02164bbfc8348e2d38ebb189ac8b758e3ddf6be",
+      "size": 5997,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/e02164bbfc8348e2d38ebb189ac8b758e3ddf6be"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_funding_history[None].yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37d155cb3b081381ce2e6625f99f8856a8b8b0bc",
+      "size": 92138,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/37d155cb3b081381ce2e6625f99f8856a8b8b0bc"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_info.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "274ec02ce4755fbfc6f559647b5a7baecae79dce",
+      "size": 2173,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/274ec02ce4755fbfc6f559647b5a7baecae79dce"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_l2_snapshot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4a9f8d6c60a61708c2209d4758362ec9f39855f",
+      "size": 4433,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f4a9f8d6c60a61708c2209d4758362ec9f39855f"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_open_orders.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fecc80829568854e75147b0647fc85e65c120e5b",
+      "size": 20492,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/fecc80829568854e75147b0647fc85e65c120e5b"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_user_fills.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "898904baa68d8ead8beadcfce41c7dba187aae66",
+      "size": 134167,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/898904baa68d8ead8beadcfce41c7dba187aae66"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_user_fills_by_time.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5a760f5e9ef0ab80c5aa6824856eb9af084f86c",
+      "size": 134228,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/d5a760f5e9ef0ab80c5aa6824856eb9af084f86c"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_get_user_state.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0db59ba29205054fc516aa2a55b8bb31786daff",
+      "size": 4614,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/f0db59ba29205054fc516aa2a55b8bb31786daff"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_historical_orders.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2e2902316dec4e658c345d2d0a73d1bddad84da",
+      "size": 3331,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b2e2902316dec4e658c345d2d0a73d1bddad84da"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_portfolio.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea58a92689325a374ccd1b188584be66c7a4f6f9",
+      "size": 30217,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ea58a92689325a374ccd1b188584be66c7a4f6f9"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_funding_history_with_end_time.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6954670aa32d52be31521f5149dce5a97e3a5756",
+      "size": 3724,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/6954670aa32d52be31521f5149dce5a97e3a5756"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_funding_history_without_end_time.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4414797525d29cb6393c55ab0d2fda5122d2a24b",
+      "size": 47999,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/4414797525d29cb6393c55ab0d2fda5122d2a24b"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_non_funding_ledger_updates_with_end_time.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f4b66ded1b7c74b258754ed1a1b9b636c108d79",
+      "size": 1264,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/3f4b66ded1b7c74b258754ed1a1b9b636c108d79"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_non_funding_ledger_updates_without_end_time.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffdd4a786cd9982ea37299b09d81e155136789c0",
+      "size": 2414,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ffdd4a786cd9982ea37299b09d81e155136789c0"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_rate_limit.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc17aaebe88ea2c3fa754a476932b61ab4d2876a",
+      "size": 1279,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/fc17aaebe88ea2c3fa754a476932b61ab4d2876a"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_role.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "276f59dc2c97fea90cf31fecf13cad662b2727a8",
+      "size": 1199,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/276f59dc2c97fea90cf31fecf13cad662b2727a8"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_twap_slice_fills.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccea15824a54e017ec394d95b5ee2a60edd4350b",
+      "size": 1194,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/ccea15824a54e017ec394d95b5ee2a60edd4350b"
+    },
+    {
+      "path": "tests/cassettes/info_test/test_user_vault_equities.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72479f5859e3ed8e3362e98a24f80956b7b793b7",
+      "size": 1443,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/72479f5859e3ed8e3362e98a24f80956b7b793b7"
+    },
+    {
+      "path": "tests/info_test.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79e146c9b5f7020169a1d64f93593c7d328c52aa",
+      "size": 11180,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/79e146c9b5f7020169a1d64f93593c7d328c52aa"
+    },
+    {
+      "path": "tests/signing_test.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6e89d9fe9e86f592a23f4df3a4c5ff850232d04",
+      "size": 12491,
+      "url": "https://api.github.com/repos/hyperliquid-dex/hyperliquid-python-sdk/git/blobs/b6e89d9fe9e86f592a23f4df3a4c5ff850232d04"
+    }
+  ]
+}

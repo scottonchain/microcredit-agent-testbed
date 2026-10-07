@@ -1,0 +1,146 @@
+[
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/README.md",
+    "sha256": "f424586f12c9c3e3f1df14a8ba63ea60fdba4f6f4d32a6a7049fa70e9650122c",
+    "bytes": 8544
+  },
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "examples/typescript/servers/express/README.md",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/examples/typescript/servers/express/README.md",
+    "sha256": "38ff759c3241bca20805ba83958560764fd69d93a4e9436c2d5c9152db0a3bc3",
+    "bytes": 6514
+  },
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "examples/typescript/servers/express/index.ts",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/examples/typescript/servers/express/index.ts",
+    "sha256": "8b6b35ed05594ec23190f1c4e9a60616642753be64f2e8dd472403cce300be51",
+    "bytes": 1732
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/README.md",
+    "sha256": "53314b4a6d4abe210880b09bf7ad1f60e764f619f12f4620e58abf7b6c82893b",
+    "bytes": 6852
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/external-evaluation/README.md",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/external-evaluation/README.md",
+    "sha256": "83f02846f19b120ff7f76255fab3b3e8aae5e39828843ab8f3404f348821acb4",
+    "bytes": 3065
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/external-evaluation/buyer.ts",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/external-evaluation/buyer.ts",
+    "sha256": "a5633f26ad4832363b2a492981606b59e79940610efc9c1e9ce24838670a1de3",
+    "bytes": 2772
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/external-evaluation/seller.ts",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/external-evaluation/seller.ts",
+    "sha256": "8cd6f2ddca7ce337e2d216ffb742caf2605de698df68dcecd1d5f086ce918241",
+    "bytes": 2036
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/funds/README.md",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/funds/README.md",
+    "sha256": "b6034e018140cdcc001632f3f804cea39fa4b9ab16d9300286cc7e444d9ea8d4",
+    "bytes": 5716
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/funds/trading/seller.ts",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/funds/trading/seller.ts",
+    "sha256": "1998c8856cb2897f4abda188ca0987be05e4f76df1405bfa838c180fd33fcb0a",
+    "bytes": 11557
+  },
+  {
+    "repo": "Virtual-Protocol/acp-node",
+    "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+    "path": "examples/acp-base/funds/trading/buyer.ts",
+    "url": "https://raw.githubusercontent.com/Virtual-Protocol/acp-node/49dafb4277de646c1c9956bbd74c2313e804de78/examples/acp-base/funds/trading/buyer.ts",
+    "sha256": "6950e74bbd4f29c796eefae50ea29c095cf0fa574269f75f7eb574eadd3e89f1",
+    "bytes": 5609
+  },
+  {
+    "repo": "hyperliquid-dex/hyperliquid-python-sdk",
+    "commit": "2fdb18f9517675ea03695a0962bd19eece9c83f0",
+    "path": "examples/basic_agent.py",
+    "url": "https://raw.githubusercontent.com/hyperliquid-dex/hyperliquid-python-sdk/2fdb18f9517675ea03695a0962bd19eece9c83f0/examples/basic_agent.py",
+    "sha256": "3c366d8d2134f5e7bff776cfe1b92bdb001697d1364eb749dbe7e0950dee80ad",
+    "bytes": 4821
+  },
+  {
+    "repo": "hyperliquid-dex/hyperliquid-python-sdk",
+    "commit": "2fdb18f9517675ea03695a0962bd19eece9c83f0",
+    "path": "examples/basic_leverage_adjustment.py",
+    "url": "https://raw.githubusercontent.com/hyperliquid-dex/hyperliquid-python-sdk/2fdb18f9517675ea03695a0962bd19eece9c83f0/examples/basic_leverage_adjustment.py",
+    "sha256": "2b91873629b758fc07c32aeb8fd4291dde4e2e1feae730ce156840be80f3e4b1",
+    "bytes": 1217
+  },
+  {
+    "repo": "aave/aave-v3-core",
+    "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+    "path": "contracts/interfaces/ICreditDelegationToken.sol",
+    "url": "https://raw.githubusercontent.com/aave/aave-v3-core/782f51917056a53a2c228701058a6c3fb233684a/contracts/interfaces/ICreditDelegationToken.sol",
+    "sha256": "5cf10936bcef4b5f9fdfd6f04efe508fc4ade98d56a4b9e3458fbe118e2016ba",
+    "bytes": 2020
+  },
+  {
+    "repo": "aave/aave-v3-core",
+    "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+    "path": "contracts/protocol/tokenization/base/DebtTokenBase.sol",
+    "url": "https://raw.githubusercontent.com/aave/aave-v3-core/782f51917056a53a2c228701058a6c3fb233684a/contracts/protocol/tokenization/base/DebtTokenBase.sol",
+    "sha256": "83906f39ed25b5d4826db1d502dfef17ac655e9e1ac49d4cd854301ae80e8b04",
+    "bytes": 3621
+  },
+  {
+    "repo": "aave/aave-v3-core",
+    "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+    "path": "contracts/protocol/libraries/logic/BorrowLogic.sol",
+    "url": "https://raw.githubusercontent.com/aave/aave-v3-core/782f51917056a53a2c228701058a6c3fb233684a/contracts/protocol/libraries/logic/BorrowLogic.sol",
+    "sha256": "70f762de50af5d78be419edb890227d515ab46e820501d52869a2289cebe337f",
+    "bytes": 13053
+  },
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "specs/extensions/bazaar.md",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/specs/extensions/bazaar.md",
+    "sha256": "aee078d05b424a28f38a2b3c9473e7c2ba9ee6ab6603e61fedf8204d68aaa179",
+    "bytes": 16729
+  },
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "examples/typescript/clients/mcp-chatbot/README.md",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/examples/typescript/clients/mcp-chatbot/README.md",
+    "sha256": "e3e4b26b3e6927ad8e80a09b994926466755ecc1b83e965233ca644b45e8dd53",
+    "bytes": 7957
+  },
+  {
+    "repo": "coinbase/x402",
+    "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+    "path": "examples/typescript/clients/mcp-chatbot/USAGE.md",
+    "url": "https://raw.githubusercontent.com/coinbase/x402/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/examples/typescript/clients/mcp-chatbot/USAGE.md",
+    "sha256": "9821a78c916e33a6f9828ac8df997f54e372caeedeca6dfb9f026bbcac554e68",
+    "bytes": 5750
+  }
+]

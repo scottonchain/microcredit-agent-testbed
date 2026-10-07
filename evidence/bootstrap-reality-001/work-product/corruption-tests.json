@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "tests": [
+    {
+      "case": "altered excerpt",
+      "rejected": true
+    },
+    {
+      "case": "unsupported claim",
+      "rejected": true
+    },
+    {
+      "case": "mutable source link",
+      "rejected": true
+    },
+    {
+      "case": "duplicate coverage",
+      "rejected": true
+    },
+    {
+      "case": "false customer payment",
+      "rejected": true
+    },
+    {
+      "case": "source-byte mutation",
+      "rejected": true
+    }
+  ]
+}

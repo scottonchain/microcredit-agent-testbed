@@ -1,0 +1,47 @@
+{
+  "reason": "Repository policy excludes personal email addresses, including public upstream metadata/examples. Listed snapshots are sanitized rather than byte-exact; original SHA identifies fetched bytes, public SHA identifies published bytes. No research conclusion altered.",
+  "files": [
+    {
+      "path": "agents/Merit-Systems__agentcash-router-meta.json",
+      "original_sha256": "91ebf09e3e6b4d54a299991641f40e30c4bf68c3f782ea2c91d202f5d6b6c195",
+      "public_sha256": "a0c38743c48a582a38a394d55f75cb848d855ce499ca2d8d4640d1e985f8b703",
+      "redactions": 2
+    },
+    {
+      "path": "agents/coinbase__x402-meta.json",
+      "original_sha256": "04ac584122adf64f04f8d2b8d46a52b856d5ab837fddf9799ba288200a2faaaa",
+      "public_sha256": "bc94c875299d1f65d00f2c00d6665f0b1b8071a6fdece9a928c008eb6c4f0ebe",
+      "redactions": 26
+    },
+    {
+      "path": "agents/Merit-Systems__agentcash-skills-meta.json",
+      "original_sha256": "bc47653de1e08b751c6130794d18be2feb7f51d8f5291f82c8fe6fba399959f3",
+      "public_sha256": "99c3418f2ef9f3ff50cf81a743635473eb0fcbd6503f939d6255a47405019d4e",
+      "redactions": 2
+    },
+    {
+      "path": "agents/andreolf__clawloan-meta.json",
+      "original_sha256": "26a906d5fc0527f3fe9339a79cb4bd34d3eb658e30da7809928fa225081c94a3",
+      "public_sha256": "ab9325780c56de0db83de868907dda7dde31e615ac0eec29d52529719371dca4",
+      "redactions": 2
+    },
+    {
+      "path": "agents/coinbase__agentkit-meta.json",
+      "original_sha256": "42e44a8dc44982e948f38028dc231def1a1b7a9107e2570c0f3ce4128656f5a0",
+      "public_sha256": "4af0439d1e0fba3055c7b278168c98d93f3b53e37dc5046fe61414c12a6285db",
+      "redactions": 2
+    },
+    {
+      "path": "agents/Merit-Systems__agentcash-gtm-agent-meta.json",
+      "original_sha256": "3efa0db291049cc6edaa124509949f1c7619155f8b81a1703b1893d1b0a8438f",
+      "public_sha256": "73d1228b84bef5f37e8ba63a84731187a4592699af8d0c0159edb00872e91c7b",
+      "redactions": 2
+    },
+    {
+      "path": "agents/Merit-Systems__agentcash-skills/mcp/skills/email/SKILL.md",
+      "original_sha256": "06c3b102b4a5f657847ecd4a31d12c6e2c4461136bc5a9a144d4df6db9ecc81c",
+      "public_sha256": "f1a66624c3cb8c965ccb45737ec9633a42428d7ef704d543d147c224a3169978",
+      "redactions": 1
+    }
+  ]
+}

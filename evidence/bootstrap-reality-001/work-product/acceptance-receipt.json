@@ -1,0 +1,19 @@
+{
+  "accepted_rows": 10,
+  "source_bytes_independently_reread": 77135,
+  "checks": [
+    "source-byte hashes",
+    "immutable commit identities",
+    "exact line excerpts",
+    "literal factual grounding",
+    "unique source coverage",
+    "zero-cost/no-payment scope"
+  ],
+  "semantic_interpretations": "human research judgment; validator certifies literal grounds not paraphrase truth",
+  "independent_customer_verified": false,
+  "onchain_execution_verified": false,
+  "accepted": true,
+  "report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc",
+  "measured_runtime_seconds": 0.0020065999997314066,
+  "network_requests": 0
+}

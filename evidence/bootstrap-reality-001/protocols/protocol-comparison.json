@@ -1,0 +1,354 @@
+{
+  "observed_at_utc": "2026-10-07T23:28:12.689452+00:00",
+  "method": "Unauthenticated GitHub API commit/tree and pinned raw primary repository files. No wallet/key access, deployment, transaction, RPC verification or secondary search.",
+  "confidence_limit": "Source availability and official deployment artifacts are not evidence of current deployed bytecode, adoption, economic success, or agent borrowing demand.",
+  "protocols": [
+    {
+      "protocol": "Union V2",
+      "category": "Trust-backed cash lending, direct vouchers",
+      "observed_mechanism": "Distinct LP supply and guarantor stake. Credit equals sum min(voucher free stake, remaining directed vouch). Borrow locks guarantor stake and reverts if uncovered; locked stake cannot be withdrawn or cancelled. Overdue write-off reduces guarantor stake and repays principal.",
+      "transitivity": "No multi-hop credit computation observed: getCreditLimit iterates only this borrower\u2019s direct vouchers. Received credit is not new stake.",
+      "bootstrap": "Fund market, stake USDC, direct vouch borrower, membership/fee configuration, borrow for an actual cashflow purpose. Base configuration effectiveCount=0 avoids needing multiple initial members but does not eliminate stake requirement.",
+      "deployment_evidence": "Official pinned README and Base mainnet deployment/config artifacts; no independent RPC code/balance or actual lending activity checked.",
+      "sources": [
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "contracts/user/UserManager.sol",
+          "lines": [
+            492,
+            498
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/contracts/user/UserManager.sol#L492"
+        },
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "contracts/user/UserManager.sol",
+          "lines": [
+            767,
+            781
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/contracts/user/UserManager.sol#L767"
+        },
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "contracts/user/UserManager.sol",
+          "lines": [
+            806,
+            846
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/contracts/user/UserManager.sol#L806"
+        },
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "contracts/user/UserManager.sol",
+          "lines": [
+            881,
+            950
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/contracts/user/UserManager.sol#L881"
+        },
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "contracts/market/UToken.sol",
+          "lines": [
+            609,
+            665
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/contracts/market/UToken.sol#L609"
+        },
+        {
+          "repo": "unioncredit/union-v2-contracts",
+          "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+          "path": "deployments/base-mainnet/config.json",
+          "lines": [
+            23,
+            55
+          ],
+          "url": "https://github.com/unioncredit/union-v2-contracts/blob/67bc59b7ee759783531a198246095f2ae1d980cd/deployments/base-mainnet/config.json#L23"
+        }
+      ]
+    },
+    {
+      "protocol": "Aave V3 credit delegation",
+      "category": "Collateral-secured delegated cash borrowing",
+      "observed_mechanism": "Collateral owner authorizes a delegate via debt-token allowance. Borrow remains on onBehalfOf collateral owner; validation enforces nonzero collateral, health factor and collateral needed. Delegation does not turn a relationship into uncollateralized protocol debt.",
+      "transitivity": "Allowance is directed delegator-to-delegatee, not a multi-hop conserved staking graph.",
+      "bootstrap": "Capitalized sponsor can delegate collateral-based borrowing power; useful precedent for explicit principal loss bearer, not borrower history generating unsecured liquidity.",
+      "deployment_evidence": "Core source retrieved, no deployed-address/runtime or present liquidity verified.",
+      "sources": [
+        {
+          "repo": "aave/aave-v3-core",
+          "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+          "path": "contracts/protocol/tokenization/base/DebtTokenBase.sol",
+          "lines": [
+            21,
+            39
+          ],
+          "url": "https://github.com/aave/aave-v3-core/blob/782f51917056a53a2c228701058a6c3fb233684a/contracts/protocol/tokenization/base/DebtTokenBase.sol#L21"
+        },
+        {
+          "repo": "aave/aave-v3-core",
+          "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+          "path": "contracts/protocol/libraries/logic/ValidationLogic.sol",
+          "lines": [
+            223,
+            265
+          ],
+          "url": "https://github.com/aave/aave-v3-core/blob/782f51917056a53a2c228701058a6c3fb233684a/contracts/protocol/libraries/logic/ValidationLogic.sol#L223"
+        },
+        {
+          "repo": "aave/aave-v3-core",
+          "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+          "path": "contracts/protocol/libraries/logic/BorrowLogic.sol",
+          "lines": [
+            70,
+            105
+          ],
+          "url": "https://github.com/aave/aave-v3-core/blob/782f51917056a53a2c228701058a6c3fb233684a/contracts/protocol/libraries/logic/BorrowLogic.sol#L70"
+        }
+      ]
+    },
+    {
+      "protocol": "Goldfinch",
+      "category": "Borrower-specific cashflow credit pools with junior/senior funding",
+      "observed_mechanism": "TranchedPool creates an explicit borrower credit line, junior and senior funding positions, role-restricted drawdown, transfers USDC to configured borrower. Such underwriting and customer/business cashflow is distinct from algorithmic graph routing.",
+      "transitivity": "No multi-hop trust-credit computation in inspected pool/credit-line sources.",
+      "bootstrap": "Specific borrower and scheduled productive cashflow plus risk-bearing capital precede public liquidity; useful cashflow structuring precedent, not permissionless agent credit proof.",
+      "deployment_evidence": "Repo README says mainnet deployed; historical source only, no present repayment or underwriting efficacy established.",
+      "sources": [
+        {
+          "repo": "goldfinch-eng/mono",
+          "commit": "bb251675d8a28d046f4d4763e1cf8874ee7c2723",
+          "path": "packages/protocol/contracts/protocol/core/TranchedPool.sol",
+          "lines": [
+            58,
+            90
+          ],
+          "url": "https://github.com/goldfinch-eng/mono/blob/bb251675d8a28d046f4d4763e1cf8874ee7c2723/packages/protocol/contracts/protocol/core/TranchedPool.sol#L58"
+        },
+        {
+          "repo": "goldfinch-eng/mono",
+          "commit": "bb251675d8a28d046f4d4763e1cf8874ee7c2723",
+          "path": "packages/protocol/contracts/protocol/core/TranchedPool.sol",
+          "lines": [
+            200,
+            240
+          ],
+          "url": "https://github.com/goldfinch-eng/mono/blob/bb251675d8a28d046f4d4763e1cf8874ee7c2723/packages/protocol/contracts/protocol/core/TranchedPool.sol#L200"
+        },
+        {
+          "repo": "goldfinch-eng/mono",
+          "commit": "bb251675d8a28d046f4d4763e1cf8874ee7c2723",
+          "path": "README.md",
+          "lines": [
+            166,
+            168
+          ],
+          "url": "https://github.com/goldfinch-eng/mono/blob/bb251675d8a28d046f4d4763e1cf8874ee7c2723/README.md#L166"
+        }
+      ]
+    },
+    {
+      "protocol": "TrueFi historical specification",
+      "category": "Institutional unsecured underwriting specification",
+      "observed_mechanism": "2020 design discusses reputable institutional borrowers, staked voting/credit prediction, expected-value approval and minimum loan 1M TUSD. Source explicitly calls itself an actively designed plan.",
+      "transitivity": "Not transitive stake-backed lending; institutional risk assessment is not identity-free microcredit.",
+      "bootstrap": "Useful negative comparison: human/legal institutional underwriting and large tickets do not establish autonomous-agent microloan viability.",
+      "deployment_evidence": "SPECIFICATION ONLY: do not treat proposed economics or historical roadmap as deployed behavior or verified loan outcomes.",
+      "sources": [
+        {
+          "repo": "trusttoken/truefi-spec",
+          "commit": "d2752e44908e83d56d7b0fe015c3afa808bb53d8",
+          "path": "README.md",
+          "lines": [
+            1,
+            32
+          ],
+          "url": "https://github.com/trusttoken/truefi-spec/blob/d2752e44908e83d56d7b0fe015c3afa808bb53d8/README.md#L1"
+        }
+      ]
+    },
+    {
+      "protocol": "Trustlines",
+      "category": "Transitive mutual-credit payment routing",
+      "observed_mechanism": "Bilateral creditline agreements, signed balances/debts and mediated path transfers. Each edge\u2019s credit capacity bounds flow. These are network IOUs, not a USDC lending pool with funded default cover.",
+      "transitivity": "Actual path routing along trustlines, but it routes bilateral credit/debt; path existence does not create external dollar collateral.",
+      "bootstrap": "Provides graph-capacity/conservation precedent; a USDC version must separately reserve origin stake and specify enforceable default liability.",
+      "deployment_evidence": "Contract source inspected, not chain deployment/usage.",
+      "sources": [
+        {
+          "repo": "trustlines-protocol/contracts",
+          "commit": "12fd38040c5dfa106319767cef6002fef74af8b8",
+          "path": "contracts/currency-network/CurrencyNetworkBasic.sol",
+          "lines": [
+            95,
+            110
+          ],
+          "url": "https://github.com/trustlines-protocol/contracts/blob/12fd38040c5dfa106319767cef6002fef74af8b8/contracts/currency-network/CurrencyNetworkBasic.sol#L95"
+        },
+        {
+          "repo": "trustlines-protocol/contracts",
+          "commit": "12fd38040c5dfa106319767cef6002fef74af8b8",
+          "path": "contracts/currency-network/CurrencyNetworkBasic.sol",
+          "lines": [
+            653,
+            680
+          ],
+          "url": "https://github.com/trustlines-protocol/contracts/blob/12fd38040c5dfa106319767cef6002fef74af8b8/contracts/currency-network/CurrencyNetworkBasic.sol#L653"
+        },
+        {
+          "repo": "trustlines-protocol/contracts",
+          "commit": "12fd38040c5dfa106319767cef6002fef74af8b8",
+          "path": "contracts/currency-network/CurrencyNetwork.sol",
+          "lines": [
+            15,
+            37
+          ],
+          "url": "https://github.com/trustlines-protocol/contracts/blob/12fd38040c5dfa106319767cef6002fef74af8b8/contracts/currency-network/CurrencyNetwork.sol#L15"
+        }
+      ]
+    },
+    {
+      "protocol": "Circles V2",
+      "category": "Trust-graph token payment routing",
+      "observed_mechanism": "Hub records trust relations; operateFlowMatrix requires operator authorization, verifies registered entities/trust and matches netted flows before effecting token path transfers.",
+      "transitivity": "Token acceptance/path fungibility, not cash underwriting or borrower creditworthiness.",
+      "bootstrap": "Use explicit authorization and flow-conservation validation as engineering precedent; do not count token circulation as loan revenue or USDC loss protection.",
+      "deployment_evidence": "Source and deployment instructions only; no current activity independently established.",
+      "sources": [
+        {
+          "repo": "aboutcircles/circles-contracts-v2",
+          "commit": "39338244683e4d9c38cb05c60db8846b5851318b",
+          "path": "src/hub/Hub.sol",
+          "lines": [
+            347,
+            369
+          ],
+          "url": "https://github.com/aboutcircles/circles-contracts-v2/blob/39338244683e4d9c38cb05c60db8846b5851318b/src/hub/Hub.sol#L347"
+        },
+        {
+          "repo": "aboutcircles/circles-contracts-v2",
+          "commit": "39338244683e4d9c38cb05c60db8846b5851318b",
+          "path": "src/hub/Hub.sol",
+          "lines": [
+            553,
+            590
+          ],
+          "url": "https://github.com/aboutcircles/circles-contracts-v2/blob/39338244683e4d9c38cb05c60db8846b5851318b/src/hub/Hub.sol#L553"
+        }
+      ]
+    }
+  ],
+  "downloaded_source_files": [
+    {
+      "path": "aave__aave-v3-core/README.md",
+      "sha256": "87e97cf5455d85e05e87d4e9ec2ee7701c1ecf64acad82f72cce8d3c7bb250d2",
+      "bytes": 4649
+    },
+    {
+      "path": "aave__aave-v3-core/contracts/protocol/libraries/logic/BorrowLogic.sol",
+      "sha256": "70f762de50af5d78be419edb890227d515ab46e820501d52869a2289cebe337f",
+      "bytes": 13053
+    },
+    {
+      "path": "aave__aave-v3-core/contracts/protocol/libraries/logic/ValidationLogic.sol",
+      "sha256": "5d5f7a76a4e03b258679792885c068e2974293679d7baea09c0b7d6de0c2d329",
+      "bytes": 29389
+    },
+    {
+      "path": "aave__aave-v3-core/contracts/protocol/tokenization/base/DebtTokenBase.sol",
+      "sha256": "83906f39ed25b5d4826db1d502dfef17ac655e9e1ac49d4cd854301ae80e8b04",
+      "bytes": 3621
+    },
+    {
+      "path": "aboutcircles__circles-contracts-v2/README.md",
+      "sha256": "6e8cf6046317232f27941889f4827ec3ad7f21d016e1544aa5f9371879b7317a",
+      "bytes": 7671
+    },
+    {
+      "path": "aboutcircles__circles-contracts-v2/src/hub/Hub.sol",
+      "sha256": "fa75d5d4cc21a2a2203b59279e18eedff089c4c17749c0b3b1c67f5653a4871d",
+      "bytes": 55864
+    },
+    {
+      "path": "goldfinch-eng__mono/README.md",
+      "sha256": "7a251f58ac0ad100652ffab3df6cde2fc522838fbcab630db9ec13366e8ecf5f",
+      "bytes": 10583
+    },
+    {
+      "path": "goldfinch-eng__mono/packages/protocol/contracts/protocol/core/CreditLine.sol",
+      "sha256": "416ac47f026a9c662d07f4bbb6e4ac59fecb890f41d7a27684523030adc57c7a",
+      "bytes": 15990
+    },
+    {
+      "path": "goldfinch-eng__mono/packages/protocol/contracts/protocol/core/TranchedPool.sol",
+      "sha256": "58bb939b0ccfaba154bbfbcbd6705b36576ff56f49907cb39b63ac8dc36ddca7",
+      "bytes": 25529
+    },
+    {
+      "path": "repos.json",
+      "sha256": "9883f38bb31ee67d620aedf4d982cb025447eb4c1e44fa4e9e9805b30a10d38e",
+      "bytes": 3472
+    },
+    {
+      "path": "trustlines-protocol__contracts/contracts/currency-network/CurrencyNetwork.sol",
+      "sha256": "cad5892635cfafb5cf5aa4071e4265b12ee2ea3bab299e354372271e3887d98a",
+      "bytes": 2289
+    },
+    {
+      "path": "trustlines-protocol__contracts/contracts/currency-network/CurrencyNetworkBasic.sol",
+      "sha256": "9cef4f9f9d7c6c70fac8c896810bc533b89c6bd399b508fab112265e3db6f389",
+      "bytes": 52029
+    },
+    {
+      "path": "trusttoken__truefi-spec/README.md",
+      "sha256": "467949705f2a855e5904e9677e50394806df8a27469a1a7b84ca50143017e088",
+      "bytes": 19568
+    },
+    {
+      "path": "trusttoken__truefi-spec/TrueFi2.0.md",
+      "sha256": "a8d05e2d3b6ef30f13a6ae5b3ab86e9a69cda4e7dbe6f5433deefeb54bb48c85",
+      "bytes": 33550
+    },
+    {
+      "path": "unioncredit__union-v2-contracts/README.md",
+      "sha256": "8295485ec9976b64fb7573f7315eb962668867ffce26aca94ddb5eb389f70ce0",
+      "bytes": 3915
+    },
+    {
+      "path": "unioncredit__union-v2-contracts/contracts/market/UToken.sol",
+      "sha256": "dc957c2ecf8687df280e596d65546c4aa95a5bf45bee4daefd3292df7a58d61c",
+      "bytes": 37402
+    },
+    {
+      "path": "unioncredit__union-v2-contracts/contracts/user/UserManager.sol",
+      "sha256": "344606103d3cf3b161f446c2065d23def53148b8804607c70c30434f08daeaf5",
+      "bytes": 47051
+    },
+    {
+      "path": "unioncredit__union-v2-contracts/deployments/base-mainnet/config.json",
+      "sha256": "1c5ad157b55fbba387247b527d649a3ffdcaeaf601e04ef0518193ad4c7355c7",
+      "bytes": 2361
+    },
+    {
+      "path": "unioncredit__union-v2-contracts/deployments/base-mainnet/deployment.json",
+      "sha256": "2ee1383e9355c68911272d2d7dd226872b2ea2adc91c1c833009b52c1e80a17c",
+      "bytes": 727
+    }
+  ],
+  "simulation_requirements": [
+    "LP dollars and sponsor stake must be separately accounted.",
+    "A routed loan reserves a single origin stake budget globally across all graph paths and borrowers.",
+    "Borrower cannot restake borrowed USDC to amplify the same origin stake; track collateral provenance or disallow rehypothecation.",
+    "Default consumes reserved stake; a history score alone never restores lost stake.",
+    "Each intermediate edge authorizes routing and reserves capacity; graph bottlenecks and shared origins bound availability.",
+    "Real customer revenue must be traced to independently funded payer; repayments from root-controlled wallets prove accounting only.",
+    "Capture loan purpose, incremental margin vs prepayment/direct sponsorship, customer acceptance, actual service expense and repayment latency.",
+    "Atomic route reservation and borrow are required; offchain calculated maximum is not sufficient with concurrent borrowers."
+  ]
+}

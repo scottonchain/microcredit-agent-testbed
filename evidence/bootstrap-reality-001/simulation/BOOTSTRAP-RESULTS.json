@@ -1,0 +1,1097 @@
+{
+  "basis": {
+    "actual_useful_work_known_usdc_cost": 0,
+    "assumed_ETH_gas_usd_cap": 0.005,
+    "assumed_inference": 50000,
+    "assumed_retry_budget": 50000,
+    "assumed_success_fee": 10000,
+    "modeled_API_cost": 100000,
+    "modeled_buyer_prices_not_quotes": [
+      100000,
+      150000,
+      200000,
+      500000,
+      1000000
+    ],
+    "native_gas_precondition": "Seed operator/relayer supplies native gas; zero worker USDC is not zero infrastructure or free gas",
+    "paid_API_prices_source": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6049070792"
+  },
+  "bid_screen": [
+    {
+      "decision": "NO_LOAN",
+      "modeled_bid_units": 100000,
+      "not_market_evidence": true,
+      "worst_case_minimum_price_usd": 0.21500000000000002
+    },
+    {
+      "decision": "NO_LOAN",
+      "modeled_bid_units": 150000,
+      "not_market_evidence": true,
+      "worst_case_minimum_price_usd": 0.21500000000000002
+    },
+    {
+      "decision": "NO_LOAN",
+      "modeled_bid_units": 200000,
+      "not_market_evidence": true,
+      "worst_case_minimum_price_usd": 0.21500000000000002
+    },
+    {
+      "decision": "ACCEPT_SIMULATION_BID",
+      "modeled_bid_units": 500000,
+      "not_market_evidence": true,
+      "worst_case_minimum_price_usd": 0.21500000000000002
+    },
+    {
+      "decision": "ACCEPT_SIMULATION_BID",
+      "modeled_bid_units": 1000000,
+      "not_market_evidence": true,
+      "worst_case_minimum_price_usd": 0.21500000000000002
+    }
+  ],
+  "comparators": {
+    "actual_cached_work": "NO_LOAN: real paid resource cost0; do not manufacture financing need",
+    "customer_prepay": "If available to worker before input, no need to borrow .20",
+    "direct_sponsor": "Can fund .20 directly with less committed capital; pool must justify standardized/cross-customer services, not assume superiority",
+    "trading": "Agent tool delegation/margin/flashloan not proof of profitable workingcapital; CoinbaseAgentKit specifically prohibits loan-funded digitalasset purchases"
+  },
+  "failure": {
+    "journal_tip": "70f859bdc9af5c5d0254295d23ceb7e8b565634aee45ec01c38b70d0891ac4a2",
+    "ledger": [
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "sponsor": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "modelled seed lender liquidity",
+          "recipient": "pool",
+          "sender": "lender",
+          "units": 5000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+        "seq": 1,
+        "sha256": "27167c05d7b9023546764efa2eac7a875a3b711b5b9bf91e3a5475f966d60f56"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "separate stake with explicit bounded onward delegation consent",
+          "recipient": "stake",
+          "sender": "sponsor",
+          "units": 1000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "27167c05d7b9023546764efa2eac7a875a3b711b5b9bf91e3a5475f966d60f56",
+        "seq": 2,
+        "sha256": "0fe44a7ddf87bb02c3f29b2b145e13e2fde1e6b5aaf67db3bad3200fa9c69828"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "rejected_job_escrow": 500000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "modeled buyer funds conditional job",
+          "recipient": "rejected_job_escrow",
+          "sender": "buyer1",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "0fe44a7ddf87bb02c3f29b2b145e13e2fde1e6b5aaf67db3bad3200fa9c69828",
+        "seq": 3,
+        "sha256": "d3f3d8a4f4595e49b8439d45aa6970ef9911544fadd0e94afdb42f5b7d866dd6"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 4800000,
+            "rejected_job_escrow": 500000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 200000,
+            "worker2": 0
+          },
+          "reason": "modeled loan",
+          "recipient": "worker1",
+          "sender": "pool",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "d3f3d8a4f4595e49b8439d45aa6970ef9911544fadd0e94afdb42f5b7d866dd6",
+        "seq": 4,
+        "sha256": "20ac5da7b60764d7c68e372b28b2a0893f360f59a8110c7371384b20c3d36840"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "pool": 4800000,
+            "rejected_job_escrow": 500000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 100000,
+            "worker2": 0
+          },
+          "reason": "consumed modeled inputs",
+          "recipient": "modeled_API_merchant",
+          "sender": "worker1",
+          "units": 100000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "20ac5da7b60764d7c68e372b28b2a0893f360f59a8110c7371384b20c3d36840",
+        "seq": 5,
+        "sha256": "f182075b6a9f3d5b60ba5f4ab06cacc2f08a52530f6e327d5eea134f8a0a3048"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 4800000,
+            "rejected_job_escrow": 500000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "consumed assumed inference",
+          "recipient": "modeled_inference",
+          "sender": "worker1",
+          "units": 50000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "f182075b6a9f3d5b60ba5f4ab06cacc2f08a52530f6e327d5eea134f8a0a3048",
+        "seq": 6,
+        "sha256": "91beecb6020ffa5501802f8ad4bea3ccbdfb5b5f0c42e96923f19d71c6d31b33"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 4800000,
+            "rejected_job_escrow": 0,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "rejected delivery refunds buyer, no revenue claimed",
+          "recipient": "buyer1",
+          "sender": "rejected_job_escrow",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "91beecb6020ffa5501802f8ad4bea3ccbdfb5b5f0c42e96923f19d71c6d31b33",
+        "seq": 7,
+        "sha256": "4a2e3b0899d6379725f53fef2534316d1c82017d263d3fe3473959e6bfa0f296"
+      },
+      {
+        "data": {
+          "default_rule": "reference driver enforces term30days+late30days strict greater; graph alone does not",
+          "forced_cure": false,
+          "synthetic_elapsed_seconds": 5270400
+        },
+        "kind": "job_rejected",
+        "previous": "4a2e3b0899d6379725f53fef2534316d1c82017d263d3fe3473959e6bfa0f296",
+        "seq": 8,
+        "sha256": "6663c9ac115c59232d501c984897f825424354245c708d54b408a2eee7d6502d"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 5000000,
+            "rejected_job_escrow": 0,
+            "sponsor": 0,
+            "stake": 800000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "model default consumes backing, not officer grant",
+          "recipient": "pool",
+          "sender": "stake",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "6663c9ac115c59232d501c984897f825424354245c708d54b408a2eee7d6502d",
+        "seq": 9,
+        "sha256": "d227f66c8001de5e46b370cd8dcfcf4800a813a2c8d5aa06f56d37aebec41aa4"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 5000000,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 0,
+            "rejected_job_escrow": 0,
+            "sponsor": 0,
+            "stake": 800000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "model lender principal recovered after defaultdelay",
+          "recipient": "lender",
+          "sender": "pool",
+          "units": 5000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "d227f66c8001de5e46b370cd8dcfcf4800a813a2c8d5aa06f56d37aebec41aa4",
+        "seq": 10,
+        "sha256": "70f859bdc9af5c5d0254295d23ceb7e8b565634aee45ec01c38b70d0891ac4a2"
+      }
+    ],
+    "lender_final_units": 5000000,
+    "remaining_root_stake_units": 800000,
+    "sponsor_loss_units": 200000,
+    "status": "failed_job_loss_contained_in_model",
+    "worker_cash_reclaimable_units": 50000
+  },
+  "mainnet": "NO-GO until CI30/security/actual provider quote+customer terms and verified multi-hop enforcement/migration",
+  "schema": "grounded-bootstrap-reference/1",
+  "scope": "Actual accepted public-source work plus source-price-grounded economic/capacity simulation. No real customer/merchant payment, new EVM/fork execution, independent controllers, implemented onchain multi-hop or mainnet readiness.",
+  "success": {
+    "acceptance": {
+      "acceptance": "Executed independent SOURCE/OUTPUT verifier, not a real commercial buyer",
+      "accepted_rows": 10,
+      "actual_paid_input_usdc_units": 0,
+      "checks": [
+        "source-byte hashes",
+        "immutable commit identities",
+        "exact line excerpts",
+        "literal factual grounding",
+        "unique source coverage",
+        "zero-cost/no-payment scope"
+      ],
+      "independent_customer_verified": false,
+      "onchain_execution_verified": false,
+      "report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc",
+      "semantic_interpretations": "human research judgment; validator certifies literal grounds not paraphrase truth",
+      "source_bytes_independently_reread": 77135
+    },
+    "current_deployment_used": false,
+    "final_balances": {
+      "buyer1": 0,
+      "buyer2": 0,
+      "buyer3": 0,
+      "escrow1": 0,
+      "escrow2": 0,
+      "escrow3": 0,
+      "lender": 5000000,
+      "modeled_API_merchant": 300000,
+      "modeled_inference": 150000,
+      "pool": 0,
+      "sponsor": 1020000,
+      "stake": 0,
+      "worker1": 690000,
+      "worker2": 340000
+    },
+    "jobs": [
+      {
+        "buyer": "buyer1",
+        "buyer_bid_evidence": "MODELED funded bid, not observed outside customer",
+        "buyer_bid_units": 500000,
+        "catalog_search_input_units": 100000,
+        "closing_worker_cash": 340000,
+        "interest_units": 0,
+        "job": 1,
+        "loan_id": 1,
+        "loan_units": 200000,
+        "modeled_inference_units": 50000,
+        "native_eth_gas_usd_cap_assumption": 0.005,
+        "officer_grants": 0,
+        "opening_worker_cash": 0,
+        "price_source": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6049070792",
+        "root_stake_locked": 0,
+        "unspent_principal_units": 50000,
+        "work_source_real_cost_units": 0,
+        "worker": "worker1"
+      },
+      {
+        "buyer": "buyer2",
+        "buyer_bid_evidence": "MODELED funded bid, not observed outside customer",
+        "buyer_bid_units": 500000,
+        "catalog_search_input_units": 100000,
+        "closing_worker_cash": 340000,
+        "interest_units": 0,
+        "job": 2,
+        "loan_id": 2,
+        "loan_units": 200000,
+        "modeled_inference_units": 50000,
+        "native_eth_gas_usd_cap_assumption": 0.005,
+        "officer_grants": 0,
+        "opening_worker_cash": 0,
+        "price_source": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6049070792",
+        "root_stake_locked": 0,
+        "unspent_principal_units": 50000,
+        "work_source_real_cost_units": 0,
+        "worker": "worker2"
+      },
+      {
+        "buyer": "buyer3",
+        "buyer_bid_evidence": "MODELED funded bid, not observed outside customer",
+        "buyer_bid_units": 500000,
+        "catalog_search_input_units": 100000,
+        "closing_worker_cash": 690000,
+        "interest_units": 0,
+        "job": 3,
+        "loan_id": null,
+        "loan_units": 0,
+        "modeled_inference_units": 50000,
+        "native_eth_gas_usd_cap_assumption": 0.005,
+        "officer_grants": 0,
+        "opening_worker_cash": 340000,
+        "price_source": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6049070792",
+        "root_stake_locked": 0,
+        "unspent_principal_units": 0,
+        "work_source_real_cost_units": 0,
+        "worker": "worker1"
+      }
+    ],
+    "journal_tip": "d9e04a8aef85b226a36f0ba5759a3a6f7e89ce9ee4c74530a43527ce4fa9a4ce",
+    "ledger": [
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "sponsor": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "modelled seed lender liquidity",
+          "recipient": "pool",
+          "sender": "lender",
+          "units": 5000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+        "seq": 1,
+        "sha256": "27167c05d7b9023546764efa2eac7a875a3b711b5b9bf91e3a5475f966d60f56"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 500000,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "separate stake with explicit bounded onward delegation consent",
+          "recipient": "stake",
+          "sender": "sponsor",
+          "units": 1000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "27167c05d7b9023546764efa2eac7a875a3b711b5b9bf91e3a5475f966d60f56",
+        "seq": 2,
+        "sha256": "0fe44a7ddf87bb02c3f29b2b145e13e2fde1e6b5aaf67db3bad3200fa9c69828"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 500000,
+            "lender": 0,
+            "pool": 5000000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 0,
+            "worker2": 0
+          },
+          "reason": "modeled buyer funds escrow before delivery; worker cannot spend it yet",
+          "recipient": "escrow1",
+          "sender": "buyer1",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "0fe44a7ddf87bb02c3f29b2b145e13e2fde1e6b5aaf67db3bad3200fa9c69828",
+        "seq": 3,
+        "sha256": "3380ae18ccf832f860913f6ec82e4c566cc21ca5514346bc5b4ff088419454d1"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 500000,
+            "lender": 0,
+            "pool": 4800000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 200000,
+            "worker2": 0
+          },
+          "reason": "issuer-free2hop reference allocator disburses working capital",
+          "recipient": "worker1",
+          "sender": "pool",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "3380ae18ccf832f860913f6ec82e4c566cc21ca5514346bc5b4ff088419454d1",
+        "seq": 4,
+        "sha256": "abd0dfc9247cb39b8a7a3bf22bb08bc437387189e7d081fd0bb648229d65ec4c"
+      },
+      {
+        "data": {
+          "loan": 1,
+          "locked": {
+            "sponsor": 200000
+          },
+          "officer_grants": 0,
+          "path": [
+            "sponsor",
+            "coordinator",
+            "worker1"
+          ],
+          "stake": {
+            "sponsor": 1000000
+          }
+        },
+        "kind": "capacity_reserved",
+        "previous": "abd0dfc9247cb39b8a7a3bf22bb08bc437387189e7d081fd0bb648229d65ec4c",
+        "seq": 5,
+        "sha256": "98cf359bfacc48412f8aa5e3be14884aa60b153e3f948f62eb243e04b5d3c6bd"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "pool": 4800000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 100000,
+            "worker2": 0
+          },
+          "reason": "SIMULATED10search calls at Hermes-observed catalog price0.01; no paid provider call",
+          "recipient": "modeled_API_merchant",
+          "sender": "worker1",
+          "units": 100000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "98cf359bfacc48412f8aa5e3be14884aa60b153e3f948f62eb243e04b5d3c6bd",
+        "seq": 6,
+        "sha256": "4c771cdd52e7480278854e8a4120d0c496a91ea0954de176c48f6388417aeb78"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 4800000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "ASSUMED inference budget, not actual service invoice",
+          "recipient": "modeled_inference",
+          "sender": "worker1",
+          "units": 50000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "4c771cdd52e7480278854e8a4120d0c496a91ea0954de176c48f6388417aeb78",
+        "seq": 7,
+        "sha256": "629b7eb85905ddfb8a5786b44bcfb86ec4d16698bf9972b47515be176c09960b"
+      },
+      {
+        "data": {
+          "accepted": true,
+          "actual_input_source": "free cached pinned public files; paid API is analog fixture, not incurred bill",
+          "job": 1,
+          "report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc"
+        },
+        "kind": "output_acceptance",
+        "previous": "629b7eb85905ddfb8a5786b44bcfb86ec4d16698bf9972b47515be176c09960b",
+        "seq": 8,
+        "sha256": "f5a3e6c9b64eb01cd40fc7d8652b9a7e6bc52ab171b5480dfbf3d2db75aea669"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 300000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 5000000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 50000,
+            "worker2": 0
+          },
+          "reason": "modeled contractual escrow repayment priority after acceptance",
+          "recipient": "pool",
+          "sender": "escrow1",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "f5a3e6c9b64eb01cd40fc7d8652b9a7e6bc52ab171b5480dfbf3d2db75aea669",
+        "seq": 9,
+        "sha256": "115067287fb7a268e0f05d841802d1bdb08fc180c1e2bcc20395ce62b20a8f5d"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 5000000,
+            "sponsor": 0,
+            "stake": 1000000,
+            "worker1": 350000,
+            "worker2": 0
+          },
+          "reason": "modeled net customer settlement",
+          "recipient": "worker1",
+          "sender": "escrow1",
+          "units": 300000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "115067287fb7a268e0f05d841802d1bdb08fc180c1e2bcc20395ce62b20a8f5d",
+        "seq": 10,
+        "sha256": "b0fb98f7a7f0ebb3b9a000650954430c3023ce4b423b75aff9a4d2ae6d0af6da"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 500000,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 5000000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 0
+          },
+          "reason": "disclosed modeled success fee only if guaranteed loan",
+          "recipient": "sponsor",
+          "sender": "worker1",
+          "units": 10000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "b0fb98f7a7f0ebb3b9a000650954430c3023ce4b423b75aff9a4d2ae6d0af6da",
+        "seq": 11,
+        "sha256": "89e5fe50d05a6b743ba2f95e57ff9f4ac53ab8d3f392e99f7c8e65a179e67348"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 5000000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 0
+          },
+          "reason": "modeled buyer funds escrow before delivery; worker cannot spend it yet",
+          "recipient": "escrow2",
+          "sender": "buyer2",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "89e5fe50d05a6b743ba2f95e57ff9f4ac53ab8d3f392e99f7c8e65a179e67348",
+        "seq": 12,
+        "sha256": "01a3105a54ddef96375fea8a925945f362adb82be77ab2e5ec5f95f8d9332a4e"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 100000,
+            "modeled_inference": 50000,
+            "pool": 4800000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 200000
+          },
+          "reason": "issuer-free2hop reference allocator disburses working capital",
+          "recipient": "worker2",
+          "sender": "pool",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "01a3105a54ddef96375fea8a925945f362adb82be77ab2e5ec5f95f8d9332a4e",
+        "seq": 13,
+        "sha256": "a7bcefec953d5a02956575fc3b69d39c4a33dba2f8027ba954c82cda25e5e69c"
+      },
+      {
+        "data": {
+          "loan": 2,
+          "locked": {
+            "sponsor": 200000
+          },
+          "officer_grants": 0,
+          "path": [
+            "sponsor",
+            "coordinator",
+            "worker2"
+          ],
+          "stake": {
+            "sponsor": 1000000
+          }
+        },
+        "kind": "capacity_reserved",
+        "previous": "a7bcefec953d5a02956575fc3b69d39c4a33dba2f8027ba954c82cda25e5e69c",
+        "seq": 14,
+        "sha256": "77198cf83a86d5a543a91488150a89aac958e7759486533b233b9b3067a7cea5"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 50000,
+            "pool": 4800000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 100000
+          },
+          "reason": "SIMULATED10search calls at Hermes-observed catalog price0.01; no paid provider call",
+          "recipient": "modeled_API_merchant",
+          "sender": "worker2",
+          "units": 100000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "77198cf83a86d5a543a91488150a89aac958e7759486533b233b9b3067a7cea5",
+        "seq": 15,
+        "sha256": "d5ce071c808467eb250d38e00bf5dfaf988f1d0338dfd8cf50ad0c5e29af014e"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 100000,
+            "pool": 4800000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 50000
+          },
+          "reason": "ASSUMED inference budget, not actual service invoice",
+          "recipient": "modeled_inference",
+          "sender": "worker2",
+          "units": 50000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "d5ce071c808467eb250d38e00bf5dfaf988f1d0338dfd8cf50ad0c5e29af014e",
+        "seq": 16,
+        "sha256": "4edd7947b4eac7c57c9f6e6d82e1925a1a3a17c90b7963d9e4e84d4e85679cf7"
+      },
+      {
+        "data": {
+          "accepted": true,
+          "actual_input_source": "free cached pinned public files; paid API is analog fixture, not incurred bill",
+          "job": 2,
+          "report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc"
+        },
+        "kind": "output_acceptance",
+        "previous": "4edd7947b4eac7c57c9f6e6d82e1925a1a3a17c90b7963d9e4e84d4e85679cf7",
+        "seq": 17,
+        "sha256": "94b1e119e1476a96cc1cc35244ae3fc71551242f28c3bd415eb737560e2907b4"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 300000,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 100000,
+            "pool": 5000000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 50000
+          },
+          "reason": "modeled contractual escrow repayment priority after acceptance",
+          "recipient": "pool",
+          "sender": "escrow2",
+          "units": 200000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "94b1e119e1476a96cc1cc35244ae3fc71551242f28c3bd415eb737560e2907b4",
+        "seq": 18,
+        "sha256": "852c7b3c2c59cbf2db186b6a7562a6bec93beb5f8225b0b7ee4769c33af9a578"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 0,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 100000,
+            "pool": 5000000,
+            "sponsor": 10000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 350000
+          },
+          "reason": "modeled net customer settlement",
+          "recipient": "worker2",
+          "sender": "escrow2",
+          "units": 300000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "852c7b3c2c59cbf2db186b6a7562a6bec93beb5f8225b0b7ee4769c33af9a578",
+        "seq": 19,
+        "sha256": "16e770c3e83c2faf167e6799c26b2566f4a6eed30c734ab7870f81a50653c689"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 500000,
+            "escrow1": 0,
+            "escrow2": 0,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 100000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 340000
+          },
+          "reason": "disclosed modeled success fee only if guaranteed loan",
+          "recipient": "sponsor",
+          "sender": "worker2",
+          "units": 10000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "16e770c3e83c2faf167e6799c26b2566f4a6eed30c734ab7870f81a50653c689",
+        "seq": 20,
+        "sha256": "a28255e715b0e8e31b9137d436722993d16ba4d0942ff7db3bf2fe1602c6e191"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 200000,
+            "modeled_inference": 100000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 340000,
+            "worker2": 340000
+          },
+          "reason": "modeled buyer funds escrow before delivery; worker cannot spend it yet",
+          "recipient": "escrow3",
+          "sender": "buyer3",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "a28255e715b0e8e31b9137d436722993d16ba4d0942ff7db3bf2fe1602c6e191",
+        "seq": 21,
+        "sha256": "a408dab1c6947f79b5f6b5c23f5772c318806ad583b674a32c9db6617ee61f00"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 100000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 240000,
+            "worker2": 340000
+          },
+          "reason": "SIMULATED10search calls at Hermes-observed catalog price0.01; no paid provider call",
+          "recipient": "modeled_API_merchant",
+          "sender": "worker1",
+          "units": 100000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "a408dab1c6947f79b5f6b5c23f5772c318806ad583b674a32c9db6617ee61f00",
+        "seq": 22,
+        "sha256": "0d01c6dd95304f5e3b1d62bd3c9c2b68a74bad9742190791c653100e605d2432"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 500000,
+            "lender": 0,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 150000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 190000,
+            "worker2": 340000
+          },
+          "reason": "ASSUMED inference budget, not actual service invoice",
+          "recipient": "modeled_inference",
+          "sender": "worker1",
+          "units": 50000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "0d01c6dd95304f5e3b1d62bd3c9c2b68a74bad9742190791c653100e605d2432",
+        "seq": 23,
+        "sha256": "be0a3b53b969a64d655be2947f8aef0f9479f142454990288ed08c3eb6f1059c"
+      },
+      {
+        "data": {
+          "accepted": true,
+          "actual_input_source": "free cached pinned public files; paid API is analog fixture, not incurred bill",
+          "job": 3,
+          "report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc"
+        },
+        "kind": "output_acceptance",
+        "previous": "be0a3b53b969a64d655be2947f8aef0f9479f142454990288ed08c3eb6f1059c",
+        "seq": 24,
+        "sha256": "d2ef815431564b4e0d4d146e42027b320a09c89a8eb64be3d4923e5aa6d48d24"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 0,
+            "lender": 0,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 150000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 690000,
+            "worker2": 340000
+          },
+          "reason": "modeled net customer settlement",
+          "recipient": "worker1",
+          "sender": "escrow3",
+          "units": 500000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "d2ef815431564b4e0d4d146e42027b320a09c89a8eb64be3d4923e5aa6d48d24",
+        "seq": 25,
+        "sha256": "5ea9ed5836bd2d45f36fd0f03060248c067f8b82160b99d66916282f8dfbd4df"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 0,
+            "lender": 0,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 150000,
+            "pool": 5000000,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 690000,
+            "worker2": 340000
+          },
+          "reason": "disclosed modeled success fee only if guaranteed loan",
+          "recipient": "sponsor",
+          "sender": "worker1",
+          "units": 0
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "5ea9ed5836bd2d45f36fd0f03060248c067f8b82160b99d66916282f8dfbd4df",
+        "seq": 26,
+        "sha256": "4047ece581119d06a1479463c2cee3ce12139476a90cb94a6fb9c05952ecaa74"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 0,
+            "lender": 5000000,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 150000,
+            "pool": 0,
+            "sponsor": 20000,
+            "stake": 1000000,
+            "worker1": 690000,
+            "worker2": 340000
+          },
+          "reason": "modeled full lender withdrawal",
+          "recipient": "lender",
+          "sender": "pool",
+          "units": 5000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "4047ece581119d06a1479463c2cee3ce12139476a90cb94a6fb9c05952ecaa74",
+        "seq": 27,
+        "sha256": "faca9664fa6db6237969eca2287f7ea9e23e92760b916ec3d7fcb0d09975a7d9"
+      },
+      {
+        "data": {
+          "balances": {
+            "buyer1": 0,
+            "buyer2": 0,
+            "buyer3": 0,
+            "escrow1": 0,
+            "escrow2": 0,
+            "escrow3": 0,
+            "lender": 5000000,
+            "modeled_API_merchant": 300000,
+            "modeled_inference": 150000,
+            "pool": 0,
+            "sponsor": 1020000,
+            "stake": 0,
+            "worker1": 690000,
+            "worker2": 340000
+          },
+          "reason": "all sponsor stake released",
+          "recipient": "sponsor",
+          "sender": "stake",
+          "units": 1000000
+        },
+        "kind": "modeled_usdc_transfer",
+        "previous": "faca9664fa6db6237969eca2287f7ea9e23e92760b916ec3d7fcb0d09975a7d9",
+        "seq": 28,
+        "sha256": "d9e04a8aef85b226a36f0ba5759a3a6f7e89ce9ee4c74530a43527ce4fa9a4ce"
+      }
+    ],
+    "lender_consent": "explicit mission/mechanics seed, not a commercially priced lender; grace loans earn0interest",
+    "lender_yield_units": 0,
+    "officer_grants": 0,
+    "seed_and_customers_total_units": 7500000,
+    "self_financing_repeat": true,
+    "status": "passed_reference_bootstrap",
+    "transitive_hops": 2
+  }
+}

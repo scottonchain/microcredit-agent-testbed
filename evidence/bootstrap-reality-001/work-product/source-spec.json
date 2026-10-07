@@ -1,0 +1,105 @@
+{
+  "scope": "Public-source evidence report; no fees, payments, revenues, loan execution or external customer claimed.",
+  "sources": [
+    {
+      "name": "Union",
+      "repo": "unioncredit/union-v2-contracts",
+      "commit": "67bc59b7ee759783531a198246095f2ae1d980cd",
+      "path": "README.md",
+      "input": "inputs/unioncredit__union-v2-contracts/README.md",
+      "sha256": "8295485ec9976b64fb7573f7315eb962668867ffce26aca94ddb5eb389f70ce0",
+      "needle": "Union is a member-owned",
+      "limitation": "Direct trust underwriting; graph lending precedent, not proof of agent demand."
+    },
+    {
+      "name": "Aave",
+      "repo": "aave/aave-v3-core",
+      "commit": "782f51917056a53a2c228701058a6c3fb233684a",
+      "path": "README.md",
+      "input": "inputs/aave__aave-v3-core/README.md",
+      "sha256": "87e97cf5455d85e05e87d4e9ec2ee7701c1ecf64acad82f72cce8d3c7bb250d2",
+      "needle": "Aave is a decentralized",
+      "limitation": "Collateralized liquidity and one-block borrowing differ from productive unsecured term credit."
+    },
+    {
+      "name": "Goldfinch",
+      "repo": "goldfinch-eng/mono",
+      "commit": "bb251675d8a28d046f4d4763e1cf8874ee7c2723",
+      "path": "packages/protocol/contracts/protocol/core/TranchedPool.sol",
+      "input": "inputs/goldfinch-eng__mono/packages/protocol/contracts/protocol/core/TranchedPool.sol",
+      "sha256": "58bb939b0ccfaba154bbfbcbd6705b36576ff56f49907cb39b63ac8dc36ddca7",
+      "needle": "uint256 public juniorFeePercent",
+      "limitation": "Source contains tranche and junior-fee machinery; no live performance inferred."
+    },
+    {
+      "name": "TrueFi",
+      "repo": "trusttoken/truefi-spec",
+      "commit": "d2752e44908e83d56d7b0fe015c3afa808bb53d8",
+      "path": "README.md",
+      "input": "inputs/trusttoken__truefi-spec/README.md",
+      "sha256": "467949705f2a855e5904e9677e50394806df8a27469a1a7b84ca50143017e088",
+      "needle": "Initially TrueFi will have a single",
+      "limitation": "Historical design explicitly began with trusted-borrower whitelist; this is a specification, not current status."
+    },
+    {
+      "name": "Trustlines",
+      "repo": "trustlines-protocol/contracts",
+      "commit": "12fd38040c5dfa106319767cef6002fef74af8b8",
+      "path": "contracts/currency-network/CurrencyNetwork.sol",
+      "input": "inputs/trustlines-protocol__contracts/contracts/currency-network/CurrencyNetwork.sol",
+      "sha256": "cad5892635cfafb5cf5aa4071e4265b12ee2ea3bab299e354372271e3887d98a",
+      "needle": "Path of transfer starting",
+      "limitation": "Path transfer and debt tracking are demonstrated by source; no USDC cash-pool safety inferred."
+    },
+    {
+      "name": "Circles",
+      "repo": "aboutcircles/circles-contracts-v2",
+      "commit": "39338244683e4d9c38cb05c60db8846b5851318b",
+      "path": "README.md",
+      "input": "inputs/aboutcircles__circles-contracts-v2/README.md",
+      "sha256": "6e8cf6046317232f27941889f4827ec3ad7f21d016e1544aa5f9371879b7317a",
+      "needle": "Trust Networks",
+      "limitation": "Trust connections support currency transfers; currencies are not automatically redeemable USDC credit."
+    },
+    {
+      "name": "x402",
+      "repo": "coinbase/x402",
+      "commit": "dd927a26cfefc98c24b3ec38b3a8f204dad0c60d",
+      "path": "examples/typescript/servers/express/index.ts",
+      "input": "inputs/coinbase__x402/examples/typescript/servers/express/index.ts",
+      "sha256": "8b6b35ed05594ec23190f1c4e9a60616642753be64f2e8dd472403cce300be51",
+      "needle": "price: \"$0.001\"",
+      "limitation": "Example API payment tariff; not an actual merchant quote or loan."
+    },
+    {
+      "name": "ACP",
+      "repo": "Virtual-Protocol/acp-node",
+      "commit": "49dafb4277de646c1c9956bbd74c2313e804de78",
+      "path": "examples/acp-base/external-evaluation/seller.ts",
+      "input": "inputs/Virtual-Protocol__acp-node/examples/acp-base/external-evaluation/seller.ts",
+      "sha256": "8cd6f2ddca7ce337e2d216ffb742caf2605de698df68dcecd1d5f086ce918241",
+      "needle": "please make payment to proceed",
+      "limitation": "Example seller asks for payment before work; need verify escrow spendability before asserting financing gap."
+    },
+    {
+      "name": "Hyperliquid",
+      "repo": "hyperliquid-dex/hyperliquid-python-sdk",
+      "commit": "2fdb18f9517675ea03695a0962bd19eece9c83f0",
+      "path": "examples/basic_agent.py",
+      "input": "inputs/hyperliquid-dex__hyperliquid-python-sdk/examples/basic_agent.py",
+      "sha256": "3c366d8d2134f5e7bff776cfe1b92bdb001697d1364eb749dbe7e0950dee80ad",
+      "needle": "approve_result, agent_key = exchange.approve_agent()",
+      "limitation": "Delegated agent order signing on an account; does not establish repayment profits."
+    },
+    {
+      "name": "AgentCash",
+      "repo": "Merit-Systems/agentcash-gtm-agent",
+      "commit": "e6aaef733a3d5db158ec68f7d0f5b2cf854b14a7",
+      "path": "README.md",
+      "input": "inputs/Merit-Systems__agentcash-gtm-agent/README.md",
+      "sha256": "ce28e68b4aa126eded37f8ae9363505c0613c1c3b648040cc39866a47d2fd609",
+      "needle": "All API calls are pay-per-request in USDC",
+      "limitation": "Wallet funding precedes pay-per-request use; developer documentation, not measured sales or signed customer order."
+    }
+  ]
+}

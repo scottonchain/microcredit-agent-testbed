@@ -1,0 +1,11 @@
+{
+  "task": "produce10row-primary-source-report",
+  "source_count": 10,
+  "input_bytes": 77135,
+  "output_bytes": 11185,
+  "output_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc",
+  "measured_runtime_seconds": 0.0012121239997213706,
+  "network_requests": 0,
+  "usdc_spent": 0,
+  "runtime_scope": "local Python parsing/hashing only; not source discovery, LLM or hosting cost"
+}

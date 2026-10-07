@@ -1,0 +1,2517 @@
+{
+  "sha": "392dcc6eb17a6884c214c21aff31afa1b99f45ae",
+  "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/392dcc6eb17a6884c214c21aff31afa1b99f45ae",
+  "tree": [
+    {
+      "path": ".env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db28b14fedb963ede10f2bfd13e1cc3e70927adf",
+      "size": 1983,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/db28b14fedb963ede10f2bfd13e1cc3e70927adf"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b835685e04c5f9acbcc2144f2ec3ce93916f164e",
+      "size": 51,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b835685e04c5f9acbcc2144f2ec3ce93916f164e"
+    },
+    {
+      "path": ".npmignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4da222c1e10e8e3ffe4ba4d725c2cae9b636773",
+      "size": 26,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d4da222c1e10e8e3ffe4ba4d725c2cae9b636773"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bded569ef269c5fbc74c194c1c93e49b6f000dc3",
+      "size": 20786,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/bded569ef269c5fbc74c194c1c93e49b6f000dc3"
+    },
+    {
+      "path": "migration.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3fece8ee40f4d195507f7d6940a6e75921393b6",
+      "size": 26206,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f3fece8ee40f4d195507f7d6940a6e75921393b6"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5818ad6c5a0e74e7ac5a03cfc45eef9541313b86",
+      "size": 241866,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5818ad6c5a0e74e7ac5a03cfc45eef9541313b86"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f20d7d9c7e45592bdc5372fcbc6902f6b65c27e1",
+      "size": 992,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f20d7d9c7e45592bdc5372fcbc6902f6b65c27e1"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "979c764058e037d4f563c456a41a25b5c27c3742",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/979c764058e037d4f563c456a41a25b5c27c3742"
+    },
+    {
+      "path": "scripts/generate-clients.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "560f0a766aafce006958e74880b9847eec419cfb",
+      "size": 2585,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/560f0a766aafce006958e74880b9847eec419cfb"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7b8f938f421685e0aa378a1aa1e67d9fbb3340d2",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7b8f938f421685e0aa378a1aa1e67d9fbb3340d2"
+    },
+    {
+      "path": "src/acpAgent.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c2f0a01985037c438f6ee723a7133a2f7226579",
+      "size": 51618,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2c2f0a01985037c438f6ee723a7133a2f7226579"
+    },
+    {
+      "path": "src/acpJob.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45e17a2bfd0b725b81c70eab8e2b8019af4fa415",
+      "size": 4478,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/45e17a2bfd0b725b81c70eab8e2b8019af4fa415"
+    },
+    {
+      "path": "src/clientFactory.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd302122eb27c0cea2447274082f46375fbf64d8",
+      "size": 2011,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/bd302122eb27c0cea2447274082f46375fbf64d8"
+    },
+    {
+      "path": "src/clients",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "862f2703e0481fa84190f7c38d1bd42e515fc7a4",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/862f2703e0481fa84190f7c38d1bd42e515fc7a4"
+    },
+    {
+      "path": "src/clients/baseAcpClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "733a93870f1dad14372190c477828c27e83067c9",
+      "size": 3518,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/733a93870f1dad14372190c477828c27e83067c9"
+    },
+    {
+      "path": "src/clients/evmAcpClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f3ac49cd7354ed496efde7a0a85e3121c34d214",
+      "size": 7789,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9f3ac49cd7354ed496efde7a0a85e3121c34d214"
+    },
+    {
+      "path": "src/clients/solanaAcpClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "baa2875a672b6d96372bd014fa3cc54e2b19dc83",
+      "size": 144331,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/baa2875a672b6d96372bd014fa3cc54e2b19dc83"
+    },
+    {
+      "path": "src/core",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "43fdd67853ed750bab7d023073406ab94772db4c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/43fdd67853ed750bab7d023073406ab94772db4c"
+    },
+    {
+      "path": "src/core/acpAbi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d13e7b1077d752a206944b408dbd167a7f18315",
+      "size": 18523,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1d13e7b1077d752a206944b408dbd167a7f18315"
+    },
+    {
+      "path": "src/core/approvalGate.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "237a2a030ba15145282e2386aa8fc183a39d296c",
+      "size": 2352,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/237a2a030ba15145282e2386aa8fc183a39d296c"
+    },
+    {
+      "path": "src/core/assetToken.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "534303f5a63cac16be28c8c6d1a11e5d7f42cd5b",
+      "size": 2591,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/534303f5a63cac16be28c8c6d1a11e5d7f42cd5b"
+    },
+    {
+      "path": "src/core/chains.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "141e0b26a0eeb08097fc9f0cef5c3a6dceab5ba7",
+      "size": 5049,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/141e0b26a0eeb08097fc9f0cef5c3a6dceab5ba7"
+    },
+    {
+      "path": "src/core/constants.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efd698b65c8fde86163aa8f43a1452e2aa1422c2",
+      "size": 10410,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/efd698b65c8fde86163aa8f43a1452e2aa1422c2"
+    },
+    {
+      "path": "src/core/fundTransferHookAbi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca28f889824fce6a00914a8e4e935decf5832051",
+      "size": 9147,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ca28f889824fce6a00914a8e4e935decf5832051"
+    },
+    {
+      "path": "src/core/hookEncoding.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "480b634d5282c1bafa0595b88ab359f3ea65cb13",
+      "size": 5118,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/480b634d5282c1bafa0595b88ab359f3ea65cb13"
+    },
+    {
+      "path": "src/core/multiHookRouterAbi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0351909521bcf53f95e466e0e0275ffdc673d86",
+      "size": 8902,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b0351909521bcf53f95e466e0e0275ffdc673d86"
+    },
+    {
+      "path": "src/core/operations.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b255e303ed857de82ee9809ad6dcff4d7176d12a",
+      "size": 3312,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b255e303ed857de82ee9809ad6dcff4d7176d12a"
+    },
+    {
+      "path": "src/core/reprepareRetry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da5f2114bf33bd7efc815d526366b8fabd412366",
+      "size": 1093,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/da5f2114bf33bd7efc815d526366b8fabd412366"
+    },
+    {
+      "path": "src/core/solana",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a9cfcf920568f7b9473704bc44f7860a590ae213",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/a9cfcf920568f7b9473704bc44f7860a590ae213"
+    },
+    {
+      "path": "src/core/solana/address.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97aaaa2d7454721fa25b7155698fc7fecb0865b4",
+      "size": 1356,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/97aaaa2d7454721fa25b7155698fc7fecb0865b4"
+    },
+    {
+      "path": "src/core/solana/encoding.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a5051e57379237f858592a0b8039e0faee8415b",
+      "size": 1867,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1a5051e57379237f858592a0b8039e0faee8415b"
+    },
+    {
+      "path": "src/core/solana/generated",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c4a78428e31a829770d46291deb57e7f7f78d067",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/c4a78428e31a829770d46291deb57e7f7f78d067"
+    },
+    {
+      "path": "src/core/solana/generated/acp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9c25d1cef9a48650db7592c1d61a5128050f0727",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/9c25d1cef9a48650db7592c1d61a5128050f0727"
+    },
+    {
+      "path": "src/core/solana/generated/acp/accounts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4089388129d47f49fafa79fb92c02ea2b30bd0c1",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/4089388129d47f49fafa79fb92c02ea2b30bd0c1"
+    },
+    {
+      "path": "src/core/solana/generated/acp/accounts/acpState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "286affee94e4d8ba3a6bb0f1df56bc16bb3ff4ae",
+      "size": 12256,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/286affee94e4d8ba3a6bb0f1df56bc16bb3ff4ae"
+    },
+    {
+      "path": "src/core/solana/generated/acp/accounts/hookWhitelist.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf6ea35f8afc590974dbe0fd08e8e89f7329c33f",
+      "size": 4552,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cf6ea35f8afc590974dbe0fd08e8e89f7329c33f"
+    },
+    {
+      "path": "src/core/solana/generated/acp/accounts/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be1237c16c1a492d53a0b14d7d423342b77b44e0",
+      "size": 313,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/be1237c16c1a492d53a0b14d7d423342b77b44e0"
+    },
+    {
+      "path": "src/core/solana/generated/acp/accounts/job.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fda1f5370870c1f5808f88952efa9fb6f4de607",
+      "size": 8604,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4fda1f5370870c1f5808f88952efa9fb6f4de607"
+    },
+    {
+      "path": "src/core/solana/generated/acp/errors",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a4490bdd47ec1d71faab5aacdb2190c62bfb6a4d",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/a4490bdd47ec1d71faab5aacdb2190c62bfb6a4d"
+    },
+    {
+      "path": "src/core/solana/generated/acp/errors/agenticCommerceV3.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09a5501264302ae86d6109cb684428e70bdf98b0",
+      "size": 13652,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/09a5501264302ae86d6109cb684428e70bdf98b0"
+    },
+    {
+      "path": "src/core/solana/generated/acp/errors/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8123d14bfb7ac2276b20206810e10572b63bf754",
+      "size": 260,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8123d14bfb7ac2276b20206810e10572b63bf754"
+    },
+    {
+      "path": "src/core/solana/generated/acp/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "975e985c1f2a0df2a1a3471fa83473d1efc22c55",
+      "size": 437,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/975e985c1f2a0df2a1a3471fa83473d1efc22c55"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ca1308ca80f8cad9fc0629b1f87239b92eb87ff5",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/ca1308ca80f8cad9fc0629b1f87239b92eb87ff5"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/acceptAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a9e02c5d17b1e9a6c426b2ee12fab63886555ae",
+      "size": 7230,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9a9e02c5d17b1e9a6c426b2ee12fab63886555ae"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/acceptTreasuryAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "120dcf5ae59b697e1044270a84025a12a8fd9da5",
+      "size": 7815,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/120dcf5ae59b697e1044270a84025a12a8fd9da5"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/addHookWhitelist.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10857fee296119cf840afce2e01cbdb9b04474d2",
+      "size": 11620,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/10857fee296119cf840afce2e01cbdb9b04474d2"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/claimRefund.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ae47d6f0d8fd0c3f4e8f548e12611241416c820",
+      "size": 14098,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6ae47d6f0d8fd0c3f4e8f548e12611241416c820"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/complete.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5460539f36079e73f1b36e3d27a1c172fc1c6ca3",
+      "size": 19236,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5460539f36079e73f1b36e3d27a1c172fc1c6ca3"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/createJob.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6a96f72bae87595c6e11222ae7f013ea351afad",
+      "size": 12544,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e6a96f72bae87595c6e11222ae7f013ea351afad"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/detachHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ea0eab80c3fe89915334a95122425cccd99e532",
+      "size": 7686,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2ea0eab80c3fe89915334a95122425cccd99e532"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/fund.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb3fc23b1694fb9ec7ec1d5c9d275fe2fe7ee449",
+      "size": 20841,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/bb3fc23b1694fb9ec7ec1d5c9d275fe2fe7ee449"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b437acaeb3c31da5f0adb43ed7ccd948a449ead",
+      "size": 1114,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4b437acaeb3c31da5f0adb43ed7ccd948a449ead"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/initialize.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6e8627bf7d199595a7a43fe5504cc37d4b2e850",
+      "size": 12152,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c6e8627bf7d199595a7a43fe5504cc37d4b2e850"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/migrateState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aad730235c2e86d50e961dce3ba2f455d35b273b",
+      "size": 9153,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/aad730235c2e86d50e961dce3ba2f455d35b273b"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/nominateAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28a57166bb18f1a177c849d2edcb1577fb21368c",
+      "size": 7757,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/28a57166bb18f1a177c849d2edcb1577fb21368c"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/nominateTreasuryAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d55ef0253bc385de2beaab72a4fc6f27b2eef46",
+      "size": 8443,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4d55ef0253bc385de2beaab72a4fc6f27b2eef46"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/reject.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "981267cfdde7c15f2268adf49fc43feb34beb49c",
+      "size": 16002,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/981267cfdde7c15f2268adf49fc43feb34beb49c"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/removeHookWhitelist.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ced8e0c18f7d71cba0d9967a5da94f59d6020ccd",
+      "size": 9011,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ced8e0c18f7d71cba0d9967a5da94f59d6020ccd"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setBudget.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "554f57440f5333d113fa276a6820184dda974a37",
+      "size": 10529,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/554f57440f5333d113fa276a6820184dda974a37"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setEvaluatorFee.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d58b82a4410954b9e17b001057b2e507f88dac03",
+      "size": 7621,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d58b82a4410954b9e17b001057b2e507f88dac03"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setPause.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2ede2e8e20881fd0041dce977ac56f56ce561e6",
+      "size": 7339,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f2ede2e8e20881fd0041dce977ac56f56ce561e6"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setPaymentToken.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "647db999e58d39d4045bbf5b8f1ec4ddef867611",
+      "size": 8822,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/647db999e58d39d4045bbf5b8f1ec4ddef867611"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setPlatformFee.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0d5d81bc9b997d7dde0c49d3d716b5318bdf419",
+      "size": 7869,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f0d5d81bc9b997d7dde0c49d3d716b5318bdf419"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setProvider.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b26001dfa9abf8fbdaff2aea921ff41668ad556",
+      "size": 8133,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9b26001dfa9abf8fbdaff2aea921ff41668ad556"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setSponsor.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef262d3b40c18478c895d0170b656effb255b148",
+      "size": 7426,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ef262d3b40c18478c895d0170b656effb255b148"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setSponsorShards.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27692392445705008f91b3ffff866ce1b7e7fa8d",
+      "size": 7704,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/27692392445705008f91b3ffff866ce1b7e7fa8d"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/setTreasuryShards.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0081f5d9245d1f19ddf0d41a161d899dcaee7c8c",
+      "size": 7743,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0081f5d9245d1f19ddf0d41a161d899dcaee7c8c"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/submit.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a3fb1cb779c267e9eff515c62275394fcb01338",
+      "size": 22954,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7a3fb1cb779c267e9eff515c62275394fcb01338"
+    },
+    {
+      "path": "src/core/solana/generated/acp/instructions/sweepTreasury.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cc122afd91b2470835541e3307ee7e6e3d1c3d6",
+      "size": 13851,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/3cc122afd91b2470835541e3307ee7e6e3d1c3d6"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bf0f2c7445e0af0cb57298511fc106e5b49a4e7c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/bf0f2c7445e0af0cb57298511fc106e5b49a4e7c"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas/acpState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "446f8a6337664f4ff522ec5bf61dd2b9c9353d60",
+      "size": 732,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/446f8a6337664f4ff522ec5bf61dd2b9c9353d60"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas/hookWhitelist.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c333eceb427cacca55b5e222cadba33f3342aa53",
+      "size": 938,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c333eceb427cacca55b5e222cadba33f3342aa53"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87aae863632ffe792fe880118730c5c7f471e5de",
+      "size": 341,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/87aae863632ffe792fe880118730c5c7f471e5de"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas/job.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "710e44949474a5da48e804f4b51743c63cad159f",
+      "size": 903,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/710e44949474a5da48e804f4b51743c63cad159f"
+    },
+    {
+      "path": "src/core/solana/generated/acp/pdas/vault.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33a486750240d1a58c28d7844c12a1cd6c3995a6",
+      "size": 829,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/33a486750240d1a58c28d7844c12a1cd6c3995a6"
+    },
+    {
+      "path": "src/core/solana/generated/acp/programs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ea7ab515462d9b47843cd105d8b98686229a9f06",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/ea7ab515462d9b47843cd105d8b98686229a9f06"
+    },
+    {
+      "path": "src/core/solana/generated/acp/programs/agenticCommerceV3.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca67782a7bccf02f342f4615eddbc4a0d01b8319",
+      "size": 12491,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ca67782a7bccf02f342f4615eddbc4a0d01b8319"
+    },
+    {
+      "path": "src/core/solana/generated/acp/programs/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8123d14bfb7ac2276b20206810e10572b63bf754",
+      "size": 260,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8123d14bfb7ac2276b20206810e10572b63bf754"
+    },
+    {
+      "path": "src/core/solana/generated/acp/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77c269b23ebecc5028919246a2c58b3ff3731b2c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/77c269b23ebecc5028919246a2c58b3ff3731b2c"
+    },
+    {
+      "path": "src/core/solana/generated/acp/shared/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634232f5bced3be7c5b96d4c5b44e2f290e809ce",
+      "size": 3852,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/634232f5bced3be7c5b96d4c5b44e2f290e809ce"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9fba3647ba6aa8a039d9f43ba29b390bbf2f2270",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/9fba3647ba6aa8a039d9f43ba29b390bbf2f2270"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/authorityNominated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0618fcc6ce29c8328c02ffdc54d81d4a329b37a3",
+      "size": 1333,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0618fcc6ce29c8328c02ffdc54d81d4a329b37a3"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/authorityTransferred.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f6032ef193aa936d665fa1bb82203521bdcf5bc",
+      "size": 1343,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2f6032ef193aa936d665fa1bb82203521bdcf5bc"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/budgetSet.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55b906477a9adf2547f66ee5b15b08bd587fd7a4",
+      "size": 1170,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/55b906477a9adf2547f66ee5b15b08bd587fd7a4"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/evaluatorFeePaid.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef8646ec1a2773eea3b20da50d805afe239da734",
+      "size": 1423,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ef8646ec1a2773eea3b20da50d805afe239da734"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/evaluatorFeeUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9c8daa8f90c213641e36e313f98d73652667b5a",
+      "size": 1113,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d9c8daa8f90c213641e36e313f98d73652667b5a"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/hookDetached.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1441b2c9f289d8bd932171337122a2f1e53ccfb",
+      "size": 1477,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f1441b2c9f289d8bd932171337122a2f1e53ccfb"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/hookWhitelistUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c3bcee13326a255e913c2168604e34dfd987ea42",
+      "size": 1322,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c3bcee13326a255e913c2168604e34dfd987ea42"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0723b5e4249aac4a728259552a0b74fd0c6dfce0",
+      "size": 1205,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0723b5e4249aac4a728259552a0b74fd0c6dfce0"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobCompleted.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8dc5deb83ddc4debf3eaf25a7969e2a1656765a",
+      "size": 1423,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e8dc5deb83ddc4debf3eaf25a7969e2a1656765a"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobCreated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aac598f62e1663fdadc05ca18920f58605000ce2",
+      "size": 1864,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/aac598f62e1663fdadc05ca18920f58605000ce2"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobExpired.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "805fa406c8d71120a457899201fa1f773baaf24f",
+      "size": 1023,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/805fa406c8d71120a457899201fa1f773baaf24f"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobFunded.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c5dca24b9e14531ab52b9c2093a5c07eab5d7f8",
+      "size": 1293,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7c5dca24b9e14531ab52b9c2093a5c07eab5d7f8"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobRejected.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eade13e5db4fcf4818b3d63d9967d36bc4ca0005",
+      "size": 1406,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/eade13e5db4fcf4818b3d63d9967d36bc4ca0005"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24f16e87360204e5850e6fa370fe9243988ecdb3",
+      "size": 896,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/24f16e87360204e5850e6fa370fe9243988ecdb3"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/jobSubmitted.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "053b1f5180ddc5e9a7b4cfc12c39653b2e2446f8",
+      "size": 1411,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/053b1f5180ddc5e9a7b4cfc12c39653b2e2446f8"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/pauseSet.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "548291a3849a2cabe56fc4eadb946add7a8fa8f6",
+      "size": 992,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/548291a3849a2cabe56fc4eadb946add7a8fa8f6"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/paymentReleased.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "015d9f81d20a7ae8ef91035bd434174954e5db63",
+      "size": 1389,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/015d9f81d20a7ae8ef91035bd434174954e5db63"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/paymentTokenUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5272f2cf85ee0c46fa822836a53f90084a5b151a",
+      "size": 1429,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5272f2cf85ee0c46fa822836a53f90084a5b151a"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/platformFeeUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f16f41a2405992557d4ba27f2304ecbfa1111ee3",
+      "size": 1318,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f16f41a2405992557d4ba27f2304ecbfa1111ee3"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/providerSet.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57843fac94d12ed6d220496ae40098758c3f3676",
+      "size": 1156,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/57843fac94d12ed6d220496ae40098758c3f3676"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/refunded.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b482e492aad07656776383009c79d96a309c875",
+      "size": 1295,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5b482e492aad07656776383009c79d96a309c875"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/sponsorShardsUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f94b3e1df2807801dbeb76167ed5520e0b13f02",
+      "size": 1445,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9f94b3e1df2807801dbeb76167ed5520e0b13f02"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/sponsorUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "839846eeaa31e12ccf303a074d4d6775b255ef26",
+      "size": 1084,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/839846eeaa31e12ccf303a074d4d6775b255ef26"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/treasuryAuthorityNominated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b95f8dfb69e22855afe10b81efde5a0712a4c2d5",
+      "size": 1472,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b95f8dfb69e22855afe10b81efde5a0712a4c2d5"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/treasuryAuthorityTransferred.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77f105bf280786e427e285b18b124e6aab4b2712",
+      "size": 1467,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/77f105bf280786e427e285b18b124e6aab4b2712"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/treasuryShardsUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28aef7328696ed40bf7e60e0fad81382548e4495",
+      "size": 1409,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/28aef7328696ed40bf7e60e0fad81382548e4495"
+    },
+    {
+      "path": "src/core/solana/generated/acp/types/treasurySwept.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84e719071e727c8822b66d2900b2a7704be151ee",
+      "size": 2104,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/84e719071e727c8822b66d2900b2a7704be151ee"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b755966679570e77e5ccddc27bbf31916f20f52b",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/b755966679570e77e5ccddc27bbf31916f20f52b"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/accounts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1171f3832fd778d8a87ebe10749da05518bf31eb",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/1171f3832fd778d8a87ebe10749da05518bf31eb"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/accounts/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a511304fb4b76191b266195cab64d15c3df3d8a",
+      "size": 4362,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6a511304fb4b76191b266195cab64d15c3df3d8a"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/accounts/hookState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adabcb5cc4414b382b7f4a3defb4b9ab7307f696",
+      "size": 4254,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/adabcb5cc4414b382b7f4a3defb4b9ab7307f696"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/accounts/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f847a20edbe875d3866037ccefe51152e08f9e60",
+      "size": 316,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f847a20edbe875d3866037ccefe51152e08f9e60"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/accounts/intent.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c90422b349b2ee42e6ada2a1817d651f29d51ac",
+      "size": 5268,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7c90422b349b2ee42e6ada2a1817d651f29d51ac"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89a364e30e4390a2b1b31d0e47f972386dd2e542",
+      "size": 402,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/89a364e30e4390a2b1b31d0e47f972386dd2e542"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2e1689c319fc43bee0a5e9a4c79a1ff6993b30b9",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/2e1689c319fc43bee0a5e9a4c79a1ff6993b30b9"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/afterAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9795291b96c5902a467021d947178d0f64977830",
+      "size": 7979,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9795291b96c5902a467021d947178d0f64977830"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/beforeAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "209934de6a7ce4d834ec48ff98816ae25a20fdf5",
+      "size": 7640,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/209934de6a7ce4d834ec48ff98816ae25a20fdf5"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/claimEscrowRefund.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2dfe6d0e8d61bd15b63a0c7b9dcbb67e07d9dfe",
+      "size": 16731,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d2dfe6d0e8d61bd15b63a0c7b9dcbb67e07d9dfe"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/closeJobHookAccounts.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2936c0b275e9daeada329c9ec23d975402b0385",
+      "size": 17215,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c2936c0b275e9daeada329c9ec23d975402b0385"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8441baef44a64e237a6f017317c9c6e3d2f470c6",
+      "size": 482,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8441baef44a64e237a6f017317c9c6e3d2f470c6"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/initialize.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "428d6947bbf125b623f66e7eb11a8ce71340ae57",
+      "size": 11688,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/428d6947bbf125b623f66e7eb11a8ce71340ae57"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/migrateHookState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a2ea7fbcc69494b8b1ef421d86162e8f535908c",
+      "size": 8997,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9a2ea7fbcc69494b8b1ef421d86162e8f535908c"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/instructions/preCreateIntent.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d01ad70df39c3fea65e7f0c29e5f9430e1afae7b",
+      "size": 12268,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d01ad70df39c3fea65e7f0c29e5f9430e1afae7b"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/pdas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2ec8939c0aeff6cd3831a92efdff739b7df0fb1a",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/2ec8939c0aeff6cd3831a92efdff739b7df0fb1a"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/pdas/escrowAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9e19f9c90fed478c8a6432b5e8f19641f8c4a90",
+      "size": 966,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e9e19f9c90fed478c8a6432b5e8f19641f8c4a90"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/pdas/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c76c62a0c0a744daace6f6230180189ac6c49eb",
+      "size": 777,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4c76c62a0c0a744daace6f6230180189ac6c49eb"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/pdas/hookState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e55228b2b7a5d3d4f87d24773d9dccdd61837601",
+      "size": 740,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e55228b2b7a5d3d4f87d24773d9dccdd61837601"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/pdas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a02856210bd3f6a0ca71c85d8412f98536627a2e",
+      "size": 325,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/a02856210bd3f6a0ca71c85d8412f98536627a2e"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/programs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ddcfa27eb65722f0580c25d652af478bcc0e4955",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/ddcfa27eb65722f0580c25d652af478bcc0e4955"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/programs/fundTransferHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17dadf55ab8dd94154652a17eb940810b88c7a88",
+      "size": 5000,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/17dadf55ab8dd94154652a17eb940810b88c7a88"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/programs/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cea281b8da60ef614d3380a570b0d2da530f4350",
+      "size": 259,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cea281b8da60ef614d3380a570b0d2da530f4350"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77c269b23ebecc5028919246a2c58b3ff3731b2c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/77c269b23ebecc5028919246a2c58b3ff3731b2c"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/shared/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634232f5bced3be7c5b96d4c5b44e2f290e809ce",
+      "size": 3852,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/634232f5bced3be7c5b96d4c5b44e2f290e809ce"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e5a45029f179bec1813e8c369dfc6cfe81b9d60c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/e5a45029f179bec1813e8c369dfc6cfe81b9d60c"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53ffc8e518f937fbdd64dbb21ff9d7e49e4a29f1",
+      "size": 498,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/53ffc8e518f937fbdd64dbb21ff9d7e49e4a29f1"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/intentClosed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8869509ab81811d84d28256f476b0301b3016fdf",
+      "size": 1203,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8869509ab81811d84d28256f476b0301b3016fdf"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/intentSigned.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4375ab4e51a337aacc5b27152c207266ca0cf21",
+      "size": 1353,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b4375ab4e51a337aacc5b27152c207266ca0cf21"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/jobHookAccountsClosed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "812b6d67a7931585a73a3c55eb73313a669c1785",
+      "size": 1653,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/812b6d67a7931585a73a3c55eb73313a669c1785"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/newIntent.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "182d0fd09744b7cc9f73d64d76ff918cf319f543",
+      "size": 1154,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/182d0fd09744b7cc9f73d64d76ff918cf319f543"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/payableFundsEscrowed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06a02d898585f7236db68e502b2611707c9b6b22",
+      "size": 1611,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/06a02d898585f7236db68e502b2611707c9b6b22"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/payableFundsRefunded.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb0f83a8108fb0153cd881eae217611d999fbdbc",
+      "size": 1611,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/fb0f83a8108fb0153cd881eae217611d999fbdbc"
+    },
+    {
+      "path": "src/core/solana/generated/fund-transfer-hook/types/payableTransferExecuted.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7a5959c9491c8f301a6c1b004231cd96e2e4ca1",
+      "size": 1732,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f7a5959c9491c8f301a6c1b004231cd96e2e4ca1"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1688ae30cf94ae3192b73d3098c6b70f0d8b5e59",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/1688ae30cf94ae3192b73d3098c6b70f0d8b5e59"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/accounts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3236038b8e5ea7b9b698bf7c82a165666787c5b5",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/3236038b8e5ea7b9b698bf7c82a165666787c5b5"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/accounts/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a511304fb4b76191b266195cab64d15c3df3d8a",
+      "size": 4362,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6a511304fb4b76191b266195cab64d15c3df3d8a"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/accounts/hookRouter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f699bb2178570af24128e4e8fda447f2623116a7",
+      "size": 5657,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f699bb2178570af24128e4e8fda447f2623116a7"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/accounts/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c908245c7d75dbf8aa1c4a6073b70017c93743d1",
+      "size": 322,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c908245c7d75dbf8aa1c4a6073b70017c93743d1"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/accounts/routerState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0132a755773431aa4b799dcac8760dd17879410",
+      "size": 4804,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/a0132a755773431aa4b799dcac8760dd17879410"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/errors",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8fd8276465083afb211a5d652e600087fafefd39",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/8fd8276465083afb211a5d652e600087fafefd39"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/errors/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91cb60ffcb605059c8758f8b43db58fa4b368c2d",
+      "size": 258,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/91cb60ffcb605059c8758f8b43db58fa4b368c2d"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/errors/multiHookRouter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eba25a452401bd608e7aea07de9cc28cb1850b7e",
+      "size": 9658,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/eba25a452401bd608e7aea07de9cc28cb1850b7e"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "975e985c1f2a0df2a1a3471fa83473d1efc22c55",
+      "size": 437,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/975e985c1f2a0df2a1a3471fa83473d1efc22c55"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "767b6deba974b99de994d5b73205c5e3e9e46ebf",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/767b6deba974b99de994d5b73205c5e3e9e46ebf"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/addHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6772cc5361cbdb646cce97603bbe48931521d9f3",
+      "size": 13211,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6772cc5361cbdb646cce97603bbe48931521d9f3"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/afterAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdb1e2bae18c99c376124fe976b284a52b56069a",
+      "size": 10550,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cdb1e2bae18c99c376124fe976b284a52b56069a"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/batchConfigureHooks.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2dc12cbc35027025636a63a56d6925a356cf0a6",
+      "size": 13257,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e2dc12cbc35027025636a63a56d6925a356cf0a6"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/beforeAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76ab572eef10eb133262a4e739ba4e0f17ce6bea",
+      "size": 10683,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/76ab572eef10eb133262a4e739ba4e0f17ce6bea"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/closeHookRouter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce3b5474e015e9a5aeb1c76592bcb7790e8c22ef",
+      "size": 12354,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ce3b5474e015e9a5aeb1c76592bcb7790e8c22ef"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/configureHooks.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4ac1505652a958ca904a43b83e4bd3f02bf26e2",
+      "size": 12269,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c4ac1505652a958ca904a43b83e4bd3f02bf26e2"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cd0ff8da16347208e0d9e65688a8ad73d7b80ca",
+      "size": 577,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8cd0ff8da16347208e0d9e65688a8ad73d7b80ca"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/initialize.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ddac22f53a1da1f0e720c9ad13246ff9b0463ed",
+      "size": 12640,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1ddac22f53a1da1f0e720c9ad13246ff9b0463ed"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/removeHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8107fe4f981f7de1ecf37e2d8d11de8808a6846",
+      "size": 9682,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e8107fe4f981f7de1ecf37e2d8d11de8808a6846"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/reorderHooks.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b903a5cb81cc2e7f473da51bd917fd6fa016965",
+      "size": 9815,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7b903a5cb81cc2e7f473da51bd917fd6fa016965"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/instructions/setMaxHooksPerJob.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d3d85559bbdb2f5595c9c3098c0dd45012da425",
+      "size": 9411,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2d3d85559bbdb2f5595c9c3098c0dd45012da425"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/pdas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4a46a276a71b6f57246ff9303e365994d7a334d6",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/4a46a276a71b6f57246ff9303e365994d7a334d6"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/pdas/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c76c62a0c0a744daace6f6230180189ac6c49eb",
+      "size": 777,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4c76c62a0c0a744daace6f6230180189ac6c49eb"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/pdas/hookRouter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e47346719f2791b2abf87c2b19392940f62628d5",
+      "size": 897,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e47346719f2791b2abf87c2b19392940f62628d5"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/pdas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c908245c7d75dbf8aa1c4a6073b70017c93743d1",
+      "size": 322,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c908245c7d75dbf8aa1c4a6073b70017c93743d1"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/pdas/routerState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d32c62f809b38c5f21b839448f0d3e12fb27d85f",
+      "size": 773,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d32c62f809b38c5f21b839448f0d3e12fb27d85f"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/programs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3d338fbf4769352c3f04a204b271b08959a4517c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/3d338fbf4769352c3f04a204b271b08959a4517c"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/programs/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "91cb60ffcb605059c8758f8b43db58fa4b368c2d",
+      "size": 258,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/91cb60ffcb605059c8758f8b43db58fa4b368c2d"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/programs/multiHookRouter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acf163a83e2808bcb6a898765394ca4d69edca13",
+      "size": 6174,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/acf163a83e2808bcb6a898765394ca4d69edca13"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77c269b23ebecc5028919246a2c58b3ff3731b2c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/77c269b23ebecc5028919246a2c58b3ff3731b2c"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/shared/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634232f5bced3be7c5b96d4c5b44e2f290e809ce",
+      "size": 3852,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/634232f5bced3be7c5b96d4c5b44e2f290e809ce"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "df547fe3511a919c9ae82c5d8c745209520e3d0b",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/df547fe3511a919c9ae82c5d8c745209520e3d0b"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/cachedHookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "673861a50f6e4ff134954383fc17501023f74387",
+      "size": 1657,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/673861a50f6e4ff134954383fc17501023f74387"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/dewhitelistedHookSkipped.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a22536f40692990942b67d3b728a2a0ba4f813cd",
+      "size": 1495,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/a22536f40692990942b67d3b728a2a0ba4f813cd"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/hookAdded.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1597caf336070ed928ec665cc820885d1cccb7cb",
+      "size": 1258,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1597caf336070ed928ec665cc820885d1cccb7cb"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/hookRemoved.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f686074b5aa5220aee93039559391e02f170991f",
+      "size": 1193,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f686074b5aa5220aee93039559391e02f170991f"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/hookRouterClosed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81920890f057a8cacc96f99ab067f6111d6c0c47",
+      "size": 1610,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/81920890f057a8cacc96f99ab067f6111d6c0c47"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/hooksConfigured.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b7cd9695b61617a62ab6d5135f96fbf7020a534",
+      "size": 1276,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6b7cd9695b61617a62ab6d5135f96fbf7020a534"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/hooksReordered.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cb2e8b634a98e3b6aa3aaa85db9a88279b1ca50",
+      "size": 1264,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5cb2e8b634a98e3b6aa3aaa85db9a88279b1ca50"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f16931561c768c1980487fba3abbf8e485fff4",
+      "size": 532,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/13f16931561c768c1980487fba3abbf8e485fff4"
+    },
+    {
+      "path": "src/core/solana/generated/multi-hook-router/types/maxHooksPerJobUpdated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bcadae8a057f58a73245412ff963b70eec348a8",
+      "size": 1172,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7bcadae8a057f58a73245412ff963b70eec348a8"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f2d944efd92de801e1eab1bc234f4c068db4735c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/f2d944efd92de801e1eab1bc234f4c068db4735c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/accounts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7b3982cec524c084b9156cf242da2a615fbb561",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/b7b3982cec524c084b9156cf242da2a615fbb561"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/accounts/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a511304fb4b76191b266195cab64d15c3df3d8a",
+      "size": 4362,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6a511304fb4b76191b266195cab64d15c3df3d8a"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/accounts/hookState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6b6604a034bd2977150236c601eb02be622e577",
+      "size": 4445,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/a6b6604a034bd2977150236c601eb02be622e577"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/accounts/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b268e9f24410cddff5341f88a0bce845ee57292c",
+      "size": 287,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b268e9f24410cddff5341f88a0bce845ee57292c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89a364e30e4390a2b1b31d0e47f972386dd2e542",
+      "size": 402,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/89a364e30e4390a2b1b31d0e47f972386dd2e542"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aca52ed33d073c1694b7a63f6c9e9a6824cd0f5e",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/aca52ed33d073c1694b7a63f6c9e9a6824cd0f5e"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/afterAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af3c8f011f15ea223488f3564b790759c1d27839",
+      "size": 7574,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/af3c8f011f15ea223488f3564b790759c1d27839"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/beforeAction.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12b218e8910cc704b7bee9d202ac85d7a12e07ce",
+      "size": 7633,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/12b218e8910cc704b7bee9d202ac85d7a12e07ce"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/cleanupProposedTerms.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cac219f907110f2abb736db068a84f587fe2936",
+      "size": 12153,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4cac219f907110f2abb736db068a84f587fe2936"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "501cfe2427539a5136363ecc1a06fdbab15304a2",
+      "size": 410,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/501cfe2427539a5136363ecc1a06fdbab15304a2"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/initialize.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3aaacd935b346d7d65822a5dbe8b3dfc31ba45b4",
+      "size": 12042,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/3aaacd935b346d7d65822a5dbe8b3dfc31ba45b4"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/instructions/preCreateProposedTerms.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08fc1470a5bda63f9f77e1237e6d5fff5f7ceadd",
+      "size": 11630,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/08fc1470a5bda63f9f77e1237e6d5fff5f7ceadd"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/pdas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7c3ce062ef2963df4da85359905d12555c821e75",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7c3ce062ef2963df4da85359905d12555c821e75"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/pdas/hookMetadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c76c62a0c0a744daace6f6230180189ac6c49eb",
+      "size": 777,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4c76c62a0c0a744daace6f6230180189ac6c49eb"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/pdas/hookState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e55228b2b7a5d3d4f87d24773d9dccdd61837601",
+      "size": 740,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e55228b2b7a5d3d4f87d24773d9dccdd61837601"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/pdas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b268e9f24410cddff5341f88a0bce845ee57292c",
+      "size": 287,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b268e9f24410cddff5341f88a0bce845ee57292c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/programs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4e58e64254b8036059f781c25ec15e2ded1db8e1",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/4e58e64254b8036059f781c25ec15e2ded1db8e1"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/programs/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f88d953ec155dbc44cacd8fede31bd13771797d",
+      "size": 259,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4f88d953ec155dbc44cacd8fede31bd13771797d"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/programs/subscriptionHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bdb1de296718339639787e601921f6dbe1fc5c7",
+      "size": 3923,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/9bdb1de296718339639787e601921f6dbe1fc5c7"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77c269b23ebecc5028919246a2c58b3ff3731b2c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/77c269b23ebecc5028919246a2c58b3ff3731b2c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/shared/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634232f5bced3be7c5b96d4c5b44e2f290e809ce",
+      "size": 3852,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/634232f5bced3be7c5b96d4c5b44e2f290e809ce"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6320efaecff7ab4488bf09ef795b0127698b6186",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/6320efaecff7ab4488bf09ef795b0127698b6186"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebe8b9e0ecf2af2d1c34a3081f0d2ca6a17b9d02",
+      "size": 404,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ebe8b9e0ecf2af2d1c34a3081f0d2ca6a17b9d02"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types/proposedTermsCleanedUp.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5351a0a1079ee09f00f904979644ff13477d81b1",
+      "size": 2102,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5351a0a1079ee09f00f904979644ff13477d81b1"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types/subscriptionActivated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1081df61c372ba8c976ea13d6cc5613ecf30d976",
+      "size": 1723,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1081df61c372ba8c976ea13d6cc5613ecf30d976"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types/subscriptionTermsProposed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d73529ce7965405a8843994e5ff187ba4cd486b0",
+      "size": 1552,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d73529ce7965405a8843994e5ff187ba4cd486b0"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-hook/types/subscriptionTermsSkipped.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c545ea4b2c71a66c0d262c460e1c7994b1b6c5fb",
+      "size": 1609,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c545ea4b2c71a66c0d262c460e1c7994b1b6c5fb"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bd3e12b4c4b25fa55b1c2663a136e7795418196b",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/bd3e12b4c4b25fa55b1c2663a136e7795418196b"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/accounts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "266315f50515faf6efc80c6860b2c9add86bab7a",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/266315f50515faf6efc80c6860b2c9add86bab7a"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/accounts/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b09fb6b98b8f159dbb153ce3d5b5eb25cc6398b3",
+      "size": 332,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b09fb6b98b8f159dbb153ce3d5b5eb25cc6398b3"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/accounts/stateConfig.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d78d36b210c1a8e9e4a7f2f0b1d096511620d41a",
+      "size": 4925,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d78d36b210c1a8e9e4a7f2f0b1d096511620d41a"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/accounts/subscriptionExpiry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe230b4a74c893a79d1d3ee80048ac23d7623ee9",
+      "size": 5546,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/fe230b4a74c893a79d1d3ee80048ac23d7623ee9"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/accounts/writerRegistry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8e470b1764258a0aa95132ddcd16089b640d068",
+      "size": 4939,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e8e470b1764258a0aa95132ddcd16089b640d068"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/errors",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f20aa5ab379cb805bcb66178821c56d6bc8a8492",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/f20aa5ab379cb805bcb66178821c56d6bc8a8492"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/errors/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cad6efda88755a0e57cad07298e1c0b1be020153",
+      "size": 260,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cad6efda88755a0e57cad07298e1c0b1be020153"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/errors/subscriptionState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd5e4abb38420503e533616d3a678fc409cb65ee",
+      "size": 3235,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/fd5e4abb38420503e533616d3a678fc409cb65ee"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "975e985c1f2a0df2a1a3471fa83473d1efc22c55",
+      "size": 437,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/975e985c1f2a0df2a1a3471fa83473d1efc22c55"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3d67615ebde47ab91fd02bb051422d88cc85f020",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/3d67615ebde47ab91fd02bb051422d88cc85f020"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/acceptAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a246c3c28b65ecd92709be125bb383130f339d4",
+      "size": 7313,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2a246c3c28b65ecd92709be125bb383130f339d4"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/activateSubscription.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04fe344f353a64ff869672e96aa56d48d54d24e4",
+      "size": 17906,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/04fe344f353a64ff869672e96aa56d48d54d24e4"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/addWriter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8acbfe5c2b2969ac147dde7bade10c498d8e7d2d",
+      "size": 10086,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8acbfe5c2b2969ac147dde7bade10c498d8e7d2d"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8abc1e5bdf816f4094f4f76ab36358610193e16",
+      "size": 521,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f8abc1e5bdf816f4094f4f76ab36358610193e16"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/initialize.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dbd414cb066a12ddbdd12417ef6e046bf9db95c",
+      "size": 9949,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4dbd414cb066a12ddbdd12417ef6e046bf9db95c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/nominateAuthority.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55fc28239b74028169ba3b0f1426dcf3ccadaaf3",
+      "size": 7840,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/55fc28239b74028169ba3b0f1426dcf3ccadaaf3"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/preCreateSubExpiry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "168498b9c5c46f0f1230259617f3ef7ce91d1dfe",
+      "size": 10564,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/168498b9c5c46f0f1230259617f3ef7ce91d1dfe"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/reactivateWriter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5115c075dbc21a4485322bf8ad717a62c5a8e311",
+      "size": 9163,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/5115c075dbc21a4485322bf8ad717a62c5a8e311"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/instructions/removeWriter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63b8b974373f9208af9c45b427c45e18eb5df38c",
+      "size": 8853,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/63b8b974373f9208af9c45b427c45e18eb5df38c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/pdas",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a9b95c065f2bdb9c4c8befa36c575dda0ed9dde",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7a9b95c065f2bdb9c4c8befa36c575dda0ed9dde"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/pdas/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b09fb6b98b8f159dbb153ce3d5b5eb25cc6398b3",
+      "size": 332,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b09fb6b98b8f159dbb153ce3d5b5eb25cc6398b3"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/pdas/stateConfig.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65071b6340e33d089d988e62ef47e76036f1790a",
+      "size": 772,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/65071b6340e33d089d988e62ef47e76036f1790a"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/pdas/subscriptionExpiry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b5e24f6d19d34f4a689c301fc2324c8175fa0f2f",
+      "size": 1080,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b5e24f6d19d34f4a689c301fc2324c8175fa0f2f"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/pdas/writerRegistry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e427d3a264036776e6019143aa6aed51997b344d",
+      "size": 868,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e427d3a264036776e6019143aa6aed51997b344d"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/programs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a9759f847b458bd8d57014bb58490a494be1e7bb",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/a9759f847b458bd8d57014bb58490a494be1e7bb"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/programs/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cad6efda88755a0e57cad07298e1c0b1be020153",
+      "size": 260,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cad6efda88755a0e57cad07298e1c0b1be020153"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/programs/subscriptionState.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc0556b8587969e1d01b3791f283a395517aac25",
+      "size": 5484,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/bc0556b8587969e1d01b3791f283a395517aac25"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/shared",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "77c269b23ebecc5028919246a2c58b3ff3731b2c",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/77c269b23ebecc5028919246a2c58b3ff3731b2c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/shared/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "634232f5bced3be7c5b96d4c5b44e2f290e809ce",
+      "size": 3852,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/634232f5bced3be7c5b96d4c5b44e2f290e809ce"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "04bdec761f8e4d336fd9b87ce95078657e29e64d",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/04bdec761f8e4d336fd9b87ce95078657e29e64d"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/authorityNominated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0618fcc6ce29c8328c02ffdc54d81d4a329b37a3",
+      "size": 1333,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0618fcc6ce29c8328c02ffdc54d81d4a329b37a3"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/authorityTransferred.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f6032ef193aa936d665fa1bb82203521bdcf5bc",
+      "size": 1343,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2f6032ef193aa936d665fa1bb82203521bdcf5bc"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d0f7231f4a1ca9b51860326dce6d5f79e84902c",
+      "size": 418,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/3d0f7231f4a1ca9b51860326dce6d5f79e84902c"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/subscriptionActivated.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fb7e85dd6aa7e6c3983fea04ea64106a8378832",
+      "size": 1636,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0fb7e85dd6aa7e6c3983fea04ea64106a8378832"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/writerAdded.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7348b98f25ac5864b68baa8ba554ff1c3eb7b696",
+      "size": 1054,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7348b98f25ac5864b68baa8ba554ff1c3eb7b696"
+    },
+    {
+      "path": "src/core/solana/generated/subscription-state/types/writerRemoved.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a515735223040afb55fddb9b8bdfaed787158f2e",
+      "size": 1080,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/a515735223040afb55fddb9b8bdfaed787158f2e"
+    },
+    {
+      "path": "src/core/solana/idl",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "96c7daebb2865a007038d1c8889e8773d8f4e6a5",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/96c7daebb2865a007038d1c8889e8773d8f4e6a5"
+    },
+    {
+      "path": "src/core/solana/idl/agentic_commerce_v3.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c2d0d698d67699f78a63ba24b7521f0909728ca",
+      "size": 80457,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1c2d0d698d67699f78a63ba24b7521f0909728ca"
+    },
+    {
+      "path": "src/core/solana/idl/fund_transfer_hook.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b262e5b3e09278962c30fc0299890384be422315",
+      "size": 23925,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b262e5b3e09278962c30fc0299890384be422315"
+    },
+    {
+      "path": "src/core/solana/idl/multi_hook_router.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94eca16f6c8a656877c360fbc59c41d1bc6df500",
+      "size": 34689,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/94eca16f6c8a656877c360fbc59c41d1bc6df500"
+    },
+    {
+      "path": "src/core/solana/idl/subscription_hook.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38f4f43a1b5ad002950aa4e0fe98f2413ed5cfb1",
+      "size": 14330,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/38f4f43a1b5ad002950aa4e0fe98f2413ed5cfb1"
+    },
+    {
+      "path": "src/core/solana/idl/subscription_state.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0189a3c8b2bed7cf83272acd658a036073f93b3",
+      "size": 23192,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b0189a3c8b2bed7cf83272acd658a036073f93b3"
+    },
+    {
+      "path": "src/core/solana/jobStateRetryGuard.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3737ba04dce9b07b14f75e1cb28c7a0b26f3cb20",
+      "size": 7724,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/3737ba04dce9b07b14f75e1cb28c7a0b26f3cb20"
+    },
+    {
+      "path": "src/core/solana/lookupTable.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e2929c413fe0c5d104e2e1dd56a18cfc47773d8",
+      "size": 5518,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7e2929c413fe0c5d104e2e1dd56a18cfc47773d8"
+    },
+    {
+      "path": "src/core/solana/multiHook.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98aff1490fb0ade2f6372d207ae11bf08351417d",
+      "size": 12789,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/98aff1490fb0ade2f6372d207ae11bf08351417d"
+    },
+    {
+      "path": "src/core/solana/preCreate.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "007e752ffb75cc42f3170b48215142f58a451dd8",
+      "size": 5719,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/007e752ffb75cc42f3170b48215142f58a451dd8"
+    },
+    {
+      "path": "src/core/solana/programErrors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf753143b2edfc8157c75acbb0bf799d5e4ba96e",
+      "size": 3755,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/cf753143b2edfc8157c75acbb0bf799d5e4ba96e"
+    },
+    {
+      "path": "src/core/solana/routerLayout.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daa9edbd155ddebf00b8962d5191c011299aea78",
+      "size": 28583,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/daa9edbd155ddebf00b8962d5191c011299aea78"
+    },
+    {
+      "path": "src/core/solana/serialization.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff9d70a0a414f4a591862b88184d190e48d54b53",
+      "size": 387,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/ff9d70a0a414f4a591862b88184d190e48d54b53"
+    },
+    {
+      "path": "src/core/solana/sharding.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29e4d2fc3ab336b31295967b308c8dd47afbd73d",
+      "size": 5149,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/29e4d2fc3ab336b31295967b308c8dd47afbd73d"
+    },
+    {
+      "path": "src/core/solana/wallet.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7a1dc521932c0334ad9919904a64cabe0f675b5",
+      "size": 5543,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c7a1dc521932c0334ad9919904a64cabe0f675b5"
+    },
+    {
+      "path": "src/core/subscriptionHookAbi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69055add7895d62f537d8dd918cf0a5180903a2c",
+      "size": 4884,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/69055add7895d62f537d8dd918cf0a5180903a2c"
+    },
+    {
+      "path": "src/core/subscriptionStateAbi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67279bb108673afa238b0a2568bf4bec98e6dd11",
+      "size": 4832,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/67279bb108673afa238b0a2568bf4bec98e6dd11"
+    },
+    {
+      "path": "src/events",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f8c07bbf7efbd7f6f3633ac1a022c2e3c245be78",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/f8c07bbf7efbd7f6f3633ac1a022c2e3c245be78"
+    },
+    {
+      "path": "src/events/acpApiClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be18123108b670befcc1587b1e954dac36cc57c9",
+      "size": 2607,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/be18123108b670befcc1587b1e954dac36cc57c9"
+    },
+    {
+      "path": "src/events/acpHttpClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7317588e8316f2284d8f8bf7bad5c9177a3033cb",
+      "size": 2994,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7317588e8316f2284d8f8bf7bad5c9177a3033cb"
+    },
+    {
+      "path": "src/events/sseTransport.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08e43819c0b51c16d35a891c0299b52982dc6124",
+      "size": 6494,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/08e43819c0b51c16d35a891c0299b52982dc6124"
+    },
+    {
+      "path": "src/events/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbb3d4b06ed5540d5dd3977575d47da42cc8b4ce",
+      "size": 8073,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/bbb3d4b06ed5540d5dd3977575d47da42cc8b4ce"
+    },
+    {
+      "path": "src/examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a8fdc0ab248e22df1a3914d90f841c5c6f4596d",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7a8fdc0ab248e22df1a3914d90f841c5c6f4596d"
+    },
+    {
+      "path": "src/examples/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e926c2f356278500116025c1da1ff16d911f10f4",
+      "size": 7214,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e926c2f356278500116025c1da1ff16d911f10f4"
+    },
+    {
+      "path": "src/examples/basic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fe5d34875aee8d5b14d072ac8dbb9bb372510d77",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/fe5d34875aee8d5b14d072ac8dbb9bb372510d77"
+    },
+    {
+      "path": "src/examples/basic/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2220daaf13216f1182ed2be2f0397cfe0e91a8c1",
+      "size": 6602,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2220daaf13216f1182ed2be2f0397cfe0e91a8c1"
+    },
+    {
+      "path": "src/examples/basic/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d95bcac8bf64ad9cae363a8ca6236675a96e0418",
+      "size": 16076,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/d95bcac8bf64ad9cae363a8ca6236675a96e0418"
+    },
+    {
+      "path": "src/examples/basic/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23927c666178f7b4403f4ff3c16aada8d504a5c5",
+      "size": 11016,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/23927c666178f7b4403f4ff3c16aada8d504a5c5"
+    },
+    {
+      "path": "src/examples/fund-transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7209c5f98ad31ae667a2612af4c08016e99daa32",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7209c5f98ad31ae667a2612af4c08016e99daa32"
+    },
+    {
+      "path": "src/examples/fund-transfer/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a220b7fd4308ba5a31fbd64c930fc9255d13144",
+      "size": 5285,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/6a220b7fd4308ba5a31fbd64c930fc9255d13144"
+    },
+    {
+      "path": "src/examples/fund-transfer/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c2b5e46554fd46da9053fc644c9ebed4c148b65",
+      "size": 9684,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/3c2b5e46554fd46da9053fc644c9ebed4c148b65"
+    },
+    {
+      "path": "src/examples/fund-transfer/jobTypes.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01e083a22f96c52c86c19061c10e3c99367a898b",
+      "size": 3627,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/01e083a22f96c52c86c19061c10e3c99367a898b"
+    },
+    {
+      "path": "src/examples/fund-transfer/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7750b19f7b159b956699a285216d849444701ac4",
+      "size": 13137,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7750b19f7b159b956699a285216d849444701ac4"
+    },
+    {
+      "path": "src/examples/llm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4fe66d24a89d7ee115c6e93c5cfe101b6a881712",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/4fe66d24a89d7ee115c6e93c5cfe101b6a881712"
+    },
+    {
+      "path": "src/examples/llm/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3400b11ebb08cc2baceb957759403c0dc703efb",
+      "size": 4014,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/b3400b11ebb08cc2baceb957759403c0dc703efb"
+    },
+    {
+      "path": "src/examples/llm/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c03033fbef45510271a5a1fd3f92da61ba8485e",
+      "size": 16154,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/8c03033fbef45510271a5a1fd3f92da61ba8485e"
+    },
+    {
+      "path": "src/examples/llm/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68f513c475a22c6e976ef9cc53f1aa17d840a9bf",
+      "size": 10956,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/68f513c475a22c6e976ef9cc53f1aa17d840a9bf"
+    },
+    {
+      "path": "src/examples/solana-basic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6faf7f5ae9b7aba22094c7a55071a42201b88410",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/6faf7f5ae9b7aba22094c7a55071a42201b88410"
+    },
+    {
+      "path": "src/examples/solana-basic/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e41e1fde92c2e265e5d13aa333256b654d27a40b",
+      "size": 18198,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e41e1fde92c2e265e5d13aa333256b654d27a40b"
+    },
+    {
+      "path": "src/examples/solana-basic/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0b0718ab55d2cc7119b06dd496d827624db338a",
+      "size": 12039,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c0b0718ab55d2cc7119b06dd496d827624db338a"
+    },
+    {
+      "path": "src/examples/solana-fund-transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a1fca856eef778e5523dbee00351498b170fa40f",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/a1fca856eef778e5523dbee00351498b170fa40f"
+    },
+    {
+      "path": "src/examples/solana-fund-transfer/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f674396aef91340977ffa0212f717dc7252fba39",
+      "size": 15110,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f674396aef91340977ffa0212f717dc7252fba39"
+    },
+    {
+      "path": "src/examples/solana-fund-transfer/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5feab5e03ee548a3a6a07475a91191fc1eac4af",
+      "size": 15628,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f5feab5e03ee548a3a6a07475a91191fc1eac4af"
+    },
+    {
+      "path": "src/examples/subscription-fund-transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b392c12503f8cdef70e6eb44426eba0a9ebf5cae",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/b392c12503f8cdef70e6eb44426eba0a9ebf5cae"
+    },
+    {
+      "path": "src/examples/subscription-fund-transfer/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bdb7af7540be14a3316977f012a40be5c982107",
+      "size": 8090,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7bdb7af7540be14a3316977f012a40be5c982107"
+    },
+    {
+      "path": "src/examples/subscription-fund-transfer/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9d3406394a5fd8d18100a838bd0ae4d6978cfde",
+      "size": 12402,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e9d3406394a5fd8d18100a838bd0ae4d6978cfde"
+    },
+    {
+      "path": "src/examples/subscription-fund-transfer/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7dea4207f3c6861cfe384221ca8fcd6f85ebb649",
+      "size": 13433,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7dea4207f3c6861cfe384221ca8fcd6f85ebb649"
+    },
+    {
+      "path": "src/examples/subscription",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ddbfe5af06f743a1252277ffda7ab9c1ce8decee",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/ddbfe5af06f743a1252277ffda7ab9c1ce8decee"
+    },
+    {
+      "path": "src/examples/subscription/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "465434103608455b4b4ffd779a6655c6c587d9e8",
+      "size": 6755,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/465434103608455b4b4ffd779a6655c6c587d9e8"
+    },
+    {
+      "path": "src/examples/subscription/buyer.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79b5e6654046174c2f06f56d6bd3f15ae0da0421",
+      "size": 11893,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/79b5e6654046174c2f06f56d6bd3f15ae0da0421"
+    },
+    {
+      "path": "src/examples/subscription/seller.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c83ef89b727bb9514196bfe26b6bd7647f3c3e6",
+      "size": 11543,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4c83ef89b727bb9514196bfe26b6bd7647f3c3e6"
+    },
+    {
+      "path": "src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0da6b6b6dfeeef3cc20f24ab24632772a6242586",
+      "size": 2305,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/0da6b6b6dfeeef3cc20f24ab24632772a6242586"
+    },
+    {
+      "path": "src/jobSession.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b8c0c64c98d84b1592305625c0b1bddb3166679",
+      "size": 25047,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/7b8c0c64c98d84b1592305625c0b1bddb3166679"
+    },
+    {
+      "path": "src/providers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dca368208ec47a6665164b23170c7c3e8337064",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/8dca368208ec47a6665164b23170c7c3e8337064"
+    },
+    {
+      "path": "src/providers/evm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a17f51df37c8729c49fafa130e0d03f1162dbc1",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/7a17f51df37c8729c49fafa130e0d03f1162dbc1"
+    },
+    {
+      "path": "src/providers/evm/preconfWatcher.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2ace5ae102f4d9b65c00b9653a478a479426c95",
+      "size": 2669,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c2ace5ae102f4d9b65c00b9653a478a479426c95"
+    },
+    {
+      "path": "src/providers/evm/privyAlchemyEvmProviderAdapter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20b686695be98cca2ce0b5a4a2653618af5838c8",
+      "size": 26513,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/20b686695be98cca2ce0b5a4a2653618af5838c8"
+    },
+    {
+      "path": "src/providers/evm/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d2b71e5d801cd166d72f3a8e09ae0545616a65b",
+      "size": 663,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/2d2b71e5d801cd166d72f3a8e09ae0545616a65b"
+    },
+    {
+      "path": "src/providers/evm/viemProviderAdapter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d6f1edfab6297d2453b6abe498ce86c17d42a71",
+      "size": 2129,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/1d6f1edfab6297d2453b6abe498ce86c17d42a71"
+    },
+    {
+      "path": "src/providers/providerAuthClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c06536f8739928cf99989bd86b6804612e986d76",
+      "size": 2548,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/c06536f8739928cf99989bd86b6804612e986d76"
+    },
+    {
+      "path": "src/providers/solana",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e6c3ca88f4ba2d36bed9335d7441aaecd5f6b625",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/e6c3ca88f4ba2d36bed9335d7441aaecd5f6b625"
+    },
+    {
+      "path": "src/providers/solana/feePayerRetry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74cd2538fe7d7da4204da264b49b716596836353",
+      "size": 11191,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/74cd2538fe7d7da4204da264b49b716596836353"
+    },
+    {
+      "path": "src/providers/solana/koraClient.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37c289d98e850c3e039d1f5e5313feb4aab4e0b9",
+      "size": 8849,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/37c289d98e850c3e039d1f5e5313feb4aab4e0b9"
+    },
+    {
+      "path": "src/providers/solana/privySolanaProviderAdapter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87d2df7dc5287f17e9df2fb9fcad304aacef1e34",
+      "size": 75453,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/87d2df7dc5287f17e9df2fb9fcad304aacef1e34"
+    },
+    {
+      "path": "src/providers/solana/proxyRpcTransport.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de01ddf2e83e879c653999f111c6aa9742577958",
+      "size": 1973,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/de01ddf2e83e879c653999f111c6aa9742577958"
+    },
+    {
+      "path": "src/providers/solana/solanaProviderAdapter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f24ab203a32aa5b04c91bf5705e56e826a5ab50c",
+      "size": 2448,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/f24ab203a32aa5b04c91bf5705e56e826a5ab50c"
+    },
+    {
+      "path": "src/providers/solana/txConfirmation.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "513d34be55c012b80cc7f576d6028548250f7a1c",
+      "size": 4708,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/513d34be55c012b80cc7f576d6028548250f7a1c"
+    },
+    {
+      "path": "src/providers/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e24d11aa4cf002b3404565f68683da46a4a13db",
+      "size": 4856,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/4e24d11aa4cf002b3404565f68683da46a4a13db"
+    },
+    {
+      "path": "src/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5ae99bea07656fd64b3eaf03aac8c3e68b47dd7b",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/trees/5ae99bea07656fd64b3eaf03aac8c3e68b47dd7b"
+    },
+    {
+      "path": "src/utils/events.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ae0f94f247ce04217179fa7f9ce87233ace1a2",
+      "size": 1832,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e1ae0f94f247ce04217179fa7f9ce87233ace1a2"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4030b7784094995b0ec6b9528d82403a59108f8",
+      "size": 1219,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-node-v2/git/blobs/e4030b7784094995b0ec6b9528d82403a59108f8"
+    }
+  ],
+  "truncated": false
+}

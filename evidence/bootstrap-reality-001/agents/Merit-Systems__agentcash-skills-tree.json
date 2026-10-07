@@ -1,0 +1,1033 @@
+{
+  "sha": "522d5da81af61e955e228d8dbb0499e0fb85171a",
+  "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/522d5da81af61e955e228d8dbb0499e0fb85171a",
+  "tree": [
+    {
+      "path": ".agents",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f74d088f49917b102709cc3e72f1cb4feabe07fb",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/f74d088f49917b102709cc3e72f1cb4feabe07fb"
+    },
+    {
+      "path": ".agents/plugins",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5be446fc7ec97a830155fc804c0922d9e9695487",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/5be446fc7ec97a830155fc804c0922d9e9695487"
+    },
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47adfb74c142aaea48d4c8f488dc5609096d7210",
+      "size": 355,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/47adfb74c142aaea48d4c8f488dc5609096d7210"
+    },
+    {
+      "path": ".claude-plugin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "538c100fdbed94c11e5a628214ac02dabbe4e50e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/538c100fdbed94c11e5a628214ac02dabbe4e50e"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "645bee959842c4638a8307d1ddd23af4816db91a",
+      "size": 714,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/645bee959842c4638a8307d1ddd23af4816db91a"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4710eb6b29e6c491f72f2bbdeba1da489d706011",
+      "size": 89,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4710eb6b29e6c491f72f2bbdeba1da489d706011"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a16dc2d736613122f87bb6ae2c87a69a0e31c7",
+      "size": 5429,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/63a16dc2d736613122f87bb6ae2c87a69a0e31c7"
+    },
+    {
+      "path": "mcp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "48ac03ab1b358f5d2e9f7f5e78d634c5a804a51e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/48ac03ab1b358f5d2e9f7f5e78d634c5a804a51e"
+    },
+    {
+      "path": "mcp/skills",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5bcc07886c37980384244f810783bfcc4b3a58fd",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/5bcc07886c37980384244f810783bfcc4b3a58fd"
+    },
+    {
+      "path": "mcp/skills/agentcash-wallet",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ea0136ea4516faa8f2fcc16c1e562de721fe4c0",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/0ea0136ea4516faa8f2fcc16c1e562de721fe4c0"
+    },
+    {
+      "path": "mcp/skills/agentcash-wallet/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fa1fb6cfce591a83c0b57c42bd6a9d94684717f",
+      "size": 7408,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/3fa1fb6cfce591a83c0b57c42bd6a9d94684717f"
+    },
+    {
+      "path": "mcp/skills/agentcash-wallet/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7f4883afcf91d4d03843df4aee31a5c6faab705",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b7f4883afcf91d4d03843df4aee31a5c6faab705"
+    },
+    {
+      "path": "mcp/skills/agentcash-wallet/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2",
+      "size": 640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2"
+    },
+    {
+      "path": "mcp/skills/data-enrichment",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f4ab9c4c5e487b814c90e409cacb857dd605c89e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/f4ab9c4c5e487b814c90e409cacb857dd605c89e"
+    },
+    {
+      "path": "mcp/skills/data-enrichment/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc22fdb4c6a2396b125001534ac5c2659097f4e1",
+      "size": 10847,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/cc22fdb4c6a2396b125001534ac5c2659097f4e1"
+    },
+    {
+      "path": "mcp/skills/data-enrichment/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4178cb21240f7ed50b725445d41700a2d05ba903",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/4178cb21240f7ed50b725445d41700a2d05ba903"
+    },
+    {
+      "path": "mcp/skills/data-enrichment/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37cd94351a42c2746da4749b689268d1e1ac4122",
+      "size": 1423,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/37cd94351a42c2746da4749b689268d1e1ac4122"
+    },
+    {
+      "path": "mcp/skills/email",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9c2e24a5307c859e8da1e14d3940706b3db2732c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/9c2e24a5307c859e8da1e14d3940706b3db2732c"
+    },
+    {
+      "path": "mcp/skills/email/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51ee277f527d75a7b86c009f0d1bd21e7f723031",
+      "size": 9077,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/51ee277f527d75a7b86c009f0d1bd21e7f723031"
+    },
+    {
+      "path": "mcp/skills/email/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3031cbd72e3e836a78435c63fea63ea233d19f8c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3031cbd72e3e836a78435c63fea63ea233d19f8c"
+    },
+    {
+      "path": "mcp/skills/email/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "895724b5885e35fbe02f8b83c607529755007bd4",
+      "size": 1220,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/895724b5885e35fbe02f8b83c607529755007bd4"
+    },
+    {
+      "path": "mcp/skills/local-search",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3408990fdb7b97d04d8e186e4aef75c3d12eddfe",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3408990fdb7b97d04d8e186e4aef75c3d12eddfe"
+    },
+    {
+      "path": "mcp/skills/local-search/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efc4d24f016282f96816c5a9776bfe3c5d30f6a9",
+      "size": 10043,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/efc4d24f016282f96816c5a9776bfe3c5d30f6a9"
+    },
+    {
+      "path": "mcp/skills/local-search/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "15956dfb8b0d9957d8179afcf422fee3577c1dc5",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/15956dfb8b0d9957d8179afcf422fee3577c1dc5"
+    },
+    {
+      "path": "mcp/skills/local-search/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2",
+      "size": 640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2"
+    },
+    {
+      "path": "mcp/skills/local-search/rules/partial-vs-full.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f36be46bf36a16b0a4cac63dd12b748241d1783",
+      "size": 2014,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/0f36be46bf36a16b0a4cac63dd12b748241d1783"
+    },
+    {
+      "path": "mcp/skills/media-generation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0bad857b7e2e0c3e80b0b8b3ce963a89b7b8791a",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/0bad857b7e2e0c3e80b0b8b3ce963a89b7b8791a"
+    },
+    {
+      "path": "mcp/skills/media-generation/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0343f6171a4b88e1c244afcede5857e6a3922b5c",
+      "size": 11125,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/0343f6171a4b88e1c244afcede5857e6a3922b5c"
+    },
+    {
+      "path": "mcp/skills/media-generation/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3db383ab8b04c7fde30b35369b471e1e75803eb6",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3db383ab8b04c7fde30b35369b471e1e75803eb6"
+    },
+    {
+      "path": "mcp/skills/media-generation/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2",
+      "size": 640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2"
+    },
+    {
+      "path": "mcp/skills/media-generation/rules/uploads.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59d48099d7ef28c9e8f2bbe63598dcfb2f6d6aa1",
+      "size": 857,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/59d48099d7ef28c9e8f2bbe63598dcfb2f6d6aa1"
+    },
+    {
+      "path": "mcp/skills/news-shopping",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0df8cdf7f898f60a2a45706312cd5be2351f4137",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/0df8cdf7f898f60a2a45706312cd5be2351f4137"
+    },
+    {
+      "path": "mcp/skills/news-shopping/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "567f1d6d2263996c8c5d43c2d2cb739a82f80b4d",
+      "size": 7712,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/567f1d6d2263996c8c5d43c2d2cb739a82f80b4d"
+    },
+    {
+      "path": "mcp/skills/news-shopping/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7f4883afcf91d4d03843df4aee31a5c6faab705",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b7f4883afcf91d4d03843df4aee31a5c6faab705"
+    },
+    {
+      "path": "mcp/skills/news-shopping/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2",
+      "size": 640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2"
+    },
+    {
+      "path": "mcp/skills/people-property",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6936049aa1043cb1b17b0ccded762cc43c070778",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/6936049aa1043cb1b17b0ccded762cc43c070778"
+    },
+    {
+      "path": "mcp/skills/people-property/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9403130d254101a78bb1235bd71cca1b1e3f0f6",
+      "size": 6508,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/c9403130d254101a78bb1235bd71cca1b1e3f0f6"
+    },
+    {
+      "path": "mcp/skills/people-property/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7847b4d08a55da39339ad2759bd360896af7b827",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/7847b4d08a55da39339ad2759bd360896af7b827"
+    },
+    {
+      "path": "mcp/skills/people-property/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2",
+      "size": 640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e7d9e15c31ed7ed94acd3e4cc52b1d06d16d03c2"
+    },
+    {
+      "path": "mcp/skills/people-property/rules/privacy.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85495fb639bd7277ccdd430d02c565280a132ae6",
+      "size": 2088,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/85495fb639bd7277ccdd430d02c565280a132ae6"
+    },
+    {
+      "path": "mcp/skills/phone-calls",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a994fc3fe6f4a63d869f1fbd8eb324790661ad60",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/a994fc3fe6f4a63d869f1fbd8eb324790661ad60"
+    },
+    {
+      "path": "mcp/skills/phone-calls/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92bce352591ea733e3204bed8b5ad3cdc1828c54",
+      "size": 7914,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/92bce352591ea733e3204bed8b5ad3cdc1828c54"
+    },
+    {
+      "path": "mcp/skills/phone-calls/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "52013b8ce411c61d05cfb6f332e07b8ae70ede87",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/52013b8ce411c61d05cfb6f332e07b8ae70ede87"
+    },
+    {
+      "path": "mcp/skills/phone-calls/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "637ed4e09ba44286d296915bf0d592b6e8123a7b",
+      "size": 1289,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/637ed4e09ba44286d296915bf0d592b6e8123a7b"
+    },
+    {
+      "path": "mcp/skills/social-intelligence",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "48cc17c22e8b54a3af26799426cf29467b60edc7",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/48cc17c22e8b54a3af26799426cf29467b60edc7"
+    },
+    {
+      "path": "mcp/skills/social-intelligence/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18d3eff20eb18a158e8ce2922243c4b1d2235e07",
+      "size": 4849,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/18d3eff20eb18a158e8ce2922243c4b1d2235e07"
+    },
+    {
+      "path": "mcp/skills/social-intelligence/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cf0c6d444aae2f25b376b1a827235739b40f5ea9",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/cf0c6d444aae2f25b376b1a827235739b40f5ea9"
+    },
+    {
+      "path": "mcp/skills/social-intelligence/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ce42e518eb5128f6b28f9356f5265aec27ec0d1",
+      "size": 747,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/6ce42e518eb5128f6b28f9356f5265aec27ec0d1"
+    },
+    {
+      "path": "mcp/skills/social-intelligence/rules/rate-limits.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40d4055d915cc3ebb3ad8f3881fac95997294956",
+      "size": 1802,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/40d4055d915cc3ebb3ad8f3881fac95997294956"
+    },
+    {
+      "path": "mcp/skills/social-scraping",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "53ff4791c178ffe6be5e4ae2f35894fae4405e69",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/53ff4791c178ffe6be5e4ae2f35894fae4405e69"
+    },
+    {
+      "path": "mcp/skills/social-scraping/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdb50ef79a8754c32cd620023962069f4b7bfd4b",
+      "size": 16460,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/cdb50ef79a8754c32cd620023962069f4b7bfd4b"
+    },
+    {
+      "path": "mcp/skills/social-scraping/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3bd1127c1ae1382cb081a7d772e23a79fe3928da",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3bd1127c1ae1382cb081a7d772e23a79fe3928da"
+    },
+    {
+      "path": "mcp/skills/social-scraping/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a22e14356ecdcfb49ea12b0bc4785868a10e3381",
+      "size": 1394,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/a22e14356ecdcfb49ea12b0bc4785868a10e3381"
+    },
+    {
+      "path": "mcp/skills/upload-and-share",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "52f5be9828c60d1ceb4bbc1ba773a76d30223fb9",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/52f5be9828c60d1ceb4bbc1ba773a76d30223fb9"
+    },
+    {
+      "path": "mcp/skills/upload-and-share/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efe502533a55e9e08e19ce0082a4891b1c015d9e",
+      "size": 9709,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/efe502533a55e9e08e19ce0082a4891b1c015d9e"
+    },
+    {
+      "path": "mcp/skills/upload-and-share/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54cd4b666ebdd0d19b6380d142955760a291f3bd",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/54cd4b666ebdd0d19b6380d142955760a291f3bd"
+    },
+    {
+      "path": "mcp/skills/upload-and-share/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdeca6d6a9034c68645457744c0998f58277c5d0",
+      "size": 1338,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/bdeca6d6a9034c68645457744c0998f58277c5d0"
+    },
+    {
+      "path": "mcp/skills/web-research",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a25fff3bebcfe46b382c70c778c6079c822c4d93",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/a25fff3bebcfe46b382c70c778c6079c822c4d93"
+    },
+    {
+      "path": "mcp/skills/web-research/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f09f82d98fc27ee04b12b743b7e643c35803809",
+      "size": 8526,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/8f09f82d98fc27ee04b12b743b7e643c35803809"
+    },
+    {
+      "path": "mcp/skills/web-research/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1e80d08e4d5b92c37393799a7a55d17e0178f0f8",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/1e80d08e4d5b92c37393799a7a55d17e0178f0f8"
+    },
+    {
+      "path": "mcp/skills/web-research/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d69aed8c5f385d2b0d7a32710c37e44878edc11",
+      "size": 637,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4d69aed8c5f385d2b0d7a32710c37e44878edc11"
+    },
+    {
+      "path": "mcp/skills/web-research/rules/when-to-use.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bda49cf5c926aabd377000e8b12d3061f27efe7",
+      "size": 2895,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/6bda49cf5c926aabd377000e8b12d3061f27efe7"
+    },
+    {
+      "path": "plugin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3ff73e1448d64a08da19d792fd409a2f465ae6d0",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3ff73e1448d64a08da19d792fd409a2f465ae6d0"
+    },
+    {
+      "path": "plugin/.claude-plugin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5b13cf3f894bb6eef4304f709fb3b3af49735f00",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/5b13cf3f894bb6eef4304f709fb3b3af49735f00"
+    },
+    {
+      "path": "plugin/.claude-plugin/plugin.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b964cc43d868243bdd1e4f0ca93cb9bb3c66bc32",
+      "size": 512,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/b964cc43d868243bdd1e4f0ca93cb9bb3c66bc32"
+    },
+    {
+      "path": "plugin/.codex-plugin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "833ac234b5685451f4ee7ec3beb08b214cb13540",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/833ac234b5685451f4ee7ec3beb08b214cb13540"
+    },
+    {
+      "path": "plugin/.codex-plugin/plugin.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "756adc36b8bea720bd3f94454a3c5ebfba444f97",
+      "size": 1479,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/756adc36b8bea720bd3f94454a3c5ebfba444f97"
+    },
+    {
+      "path": "plugin/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebfdd05a48ba89509aa0d73034975e1920208fe3",
+      "size": 49,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/ebfdd05a48ba89509aa0d73034975e1920208fe3"
+    },
+    {
+      "path": "plugin/.mcp.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "009ef908bbc2ed4090bef52b63759db4c8d151bf",
+      "size": 118,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/009ef908bbc2ed4090bef52b63759db4c8d151bf"
+    },
+    {
+      "path": "plugin/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f09efabd29b005bbb69ba3556d480c18e74066d",
+      "size": 10758,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/0f09efabd29b005bbb69ba3556d480c18e74066d"
+    },
+    {
+      "path": "plugin/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e76ef8623ebe43f7836a7d423c83342c7efbbbc",
+      "size": 707,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4e76ef8623ebe43f7836a7d423c83342c7efbbbc"
+    },
+    {
+      "path": "plugin/assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b50412a3db116713e941d85a28c84bd71a59b36b",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b50412a3db116713e941d85a28c84bd71a59b36b"
+    },
+    {
+      "path": "plugin/assets/icon.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66b93b6689f3010d895fdac1480cc8015eaf48a1",
+      "size": 4548,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/66b93b6689f3010d895fdac1480cc8015eaf48a1"
+    },
+    {
+      "path": "plugin/assets/logo-dark.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bac395f60f84b53b1f02d72e0ef55e6ad04c028a",
+      "size": 4461,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/bac395f60f84b53b1f02d72e0ef55e6ad04c028a"
+    },
+    {
+      "path": "plugin/assets/logo.svg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00c8f2cd60c424cda75f9343d1b1a1604a9604a9",
+      "size": 4461,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/00c8f2cd60c424cda75f9343d1b1a1604a9604a9"
+    },
+    {
+      "path": "plugin/skills",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "16952155116c465132c30781f73e0bf5725a7754",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/16952155116c465132c30781f73e0bf5725a7754"
+    },
+    {
+      "path": "plugin/skills/agentcash",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "897f93132086eced22f28feaf2240e716ec7bf94",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/897f93132086eced22f28feaf2240e716ec7bf94"
+    },
+    {
+      "path": "plugin/skills/agentcash/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f48422a7354b7a97e26f3ee9e237d0351db4c4f",
+      "size": 7051,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/3f48422a7354b7a97e26f3ee9e237d0351db4c4f"
+    },
+    {
+      "path": "plugin/skills/agentcash/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2fd67424f7c7d7d7aab668b26b4c6199104bf5f5",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/2fd67424f7c7d7d7aab668b26b4c6199104bf5f5"
+    },
+    {
+      "path": "plugin/skills/agentcash/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11856f739e0f0f5a2e89b575d86df19f6521c820",
+      "size": 747,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/11856f739e0f0f5a2e89b575d86df19f6521c820"
+    },
+    {
+      "path": "skills",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3c4f3560f2e440b7399d08c0ab4c1678a2371eee",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/3c4f3560f2e440b7399d08c0ab4c1678a2371eee"
+    },
+    {
+      "path": "skills/agentcash-onboarding",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eb9b31e24557977ad566140f87a9d17b0bc1ef69",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/eb9b31e24557977ad566140f87a9d17b0bc1ef69"
+    },
+    {
+      "path": "skills/agentcash-onboarding/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dcbf58a9326ade6775b926309956eea62064641",
+      "size": 2392,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/1dcbf58a9326ade6775b926309956eea62064641"
+    },
+    {
+      "path": "skills/agentcash",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a56878c806e0f95beae3484ebea08940d6c44af8",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/a56878c806e0f95beae3484ebea08940d6c44af8"
+    },
+    {
+      "path": "skills/agentcash/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9c27b80297925a18ddfeab267b4e5749d020d23",
+      "size": 7208,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/e9c27b80297925a18ddfeab267b4e5749d020d23"
+    },
+    {
+      "path": "skills/data-enrichment",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "36dfaded52c889d038a27ef5334669283f9bea49",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/36dfaded52c889d038a27ef5334669283f9bea49"
+    },
+    {
+      "path": "skills/data-enrichment/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4975fc029ac1b9dc1b4c50df5218f9d28b9ee5c4",
+      "size": 7229,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4975fc029ac1b9dc1b4c50df5218f9d28b9ee5c4"
+    },
+    {
+      "path": "skills/data-enrichment/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "53358cf9d247ce86afd7c83eb8c49f03c1bd181c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/53358cf9d247ce86afd7c83eb8c49f03c1bd181c"
+    },
+    {
+      "path": "skills/data-enrichment/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d449e67475910327a6938e59d937a59866993426",
+      "size": 1392,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/d449e67475910327a6938e59d937a59866993426"
+    },
+    {
+      "path": "skills/email",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "97f385f09994cc4d7f2d10358475b128cacc4c2e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/97f385f09994cc4d7f2d10358475b128cacc4c2e"
+    },
+    {
+      "path": "skills/email/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b2ec42d1d115d21aba6bc5a365d5f2ffc810aac",
+      "size": 8850,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/1b2ec42d1d115d21aba6bc5a365d5f2ffc810aac"
+    },
+    {
+      "path": "skills/email/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b182c59cdd9f8230a0e1ccef7f1de975ee1bc756",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b182c59cdd9f8230a0e1ccef7f1de975ee1bc756"
+    },
+    {
+      "path": "skills/email/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8d9a37846ea2d5ce6db48dfaa1f1423c3e64517",
+      "size": 1189,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/a8d9a37846ea2d5ce6db48dfaa1f1423c3e64517"
+    },
+    {
+      "path": "skills/enrich-knowledge-graph",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "78c94744017a6e877d2d6f4238213fa1b94b13ca",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/78c94744017a6e877d2d6f4238213fa1b94b13ca"
+    },
+    {
+      "path": "skills/enrich-knowledge-graph/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7893086af7c2ff96c5cf63e788e8a8f2ecb4f9d",
+      "size": 10070,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/a7893086af7c2ff96c5cf63e788e8a8f2ecb4f9d"
+    },
+    {
+      "path": "skills/local-search",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f3cd025239f76719c3b7826983392a873e801ba8",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/f3cd025239f76719c3b7826983392a873e801ba8"
+    },
+    {
+      "path": "skills/local-search/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddec641772bbe7e408d63d350b88c1a635434e5f",
+      "size": 9839,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/ddec641772bbe7e408d63d350b88c1a635434e5f"
+    },
+    {
+      "path": "skills/local-search/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0f4030d998f6cca628444580332eb1ad26738826",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/0f4030d998f6cca628444580332eb1ad26738826"
+    },
+    {
+      "path": "skills/local-search/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4041461dc3746981471ecd480a7767191e07a143",
+      "size": 609,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4041461dc3746981471ecd480a7767191e07a143"
+    },
+    {
+      "path": "skills/local-search/rules/partial-vs-full.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f36be46bf36a16b0a4cac63dd12b748241d1783",
+      "size": 2014,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/0f36be46bf36a16b0a4cac63dd12b748241d1783"
+    },
+    {
+      "path": "skills/media-generation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "774e4e34619a6620cb4f69b65b11d047ac42476c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/774e4e34619a6620cb4f69b65b11d047ac42476c"
+    },
+    {
+      "path": "skills/media-generation/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d90c0c7f06cd6c82223612ff4d2e6f54df74230c",
+      "size": 10922,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/d90c0c7f06cd6c82223612ff4d2e6f54df74230c"
+    },
+    {
+      "path": "skills/media-generation/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0c250408d40d006acefd0f92b54a97fd09d625cb",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/0c250408d40d006acefd0f92b54a97fd09d625cb"
+    },
+    {
+      "path": "skills/media-generation/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4041461dc3746981471ecd480a7767191e07a143",
+      "size": 609,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4041461dc3746981471ecd480a7767191e07a143"
+    },
+    {
+      "path": "skills/media-generation/rules/uploads.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f774fa3b3ce4fe5ef442b8243fef86e427ecf1af",
+      "size": 835,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/f774fa3b3ce4fe5ef442b8243fef86e427ecf1af"
+    },
+    {
+      "path": "skills/news-shopping",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "66d0bca7468956766fc023e7305fff29cc2e03bc",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/66d0bca7468956766fc023e7305fff29cc2e03bc"
+    },
+    {
+      "path": "skills/news-shopping/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6115682624b14790698074c1d38611589921bd2",
+      "size": 7627,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/b6115682624b14790698074c1d38611589921bd2"
+    },
+    {
+      "path": "skills/news-shopping/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dedecb96bcb0bf0a859d9c6f9d4fb5b1d89081f8",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/dedecb96bcb0bf0a859d9c6f9d4fb5b1d89081f8"
+    },
+    {
+      "path": "skills/news-shopping/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4041461dc3746981471ecd480a7767191e07a143",
+      "size": 609,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4041461dc3746981471ecd480a7767191e07a143"
+    },
+    {
+      "path": "skills/people-property",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "67b655c1c963320142477f22b748a2e70770a1bd",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/67b655c1c963320142477f22b748a2e70770a1bd"
+    },
+    {
+      "path": "skills/people-property/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbbeb781bce9945afd0a51a29869a0b0f870b982",
+      "size": 6460,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/fbbeb781bce9945afd0a51a29869a0b0f870b982"
+    },
+    {
+      "path": "skills/people-property/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "06ebb3b50de22c4186e1102004cade6db35c9dd2",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/06ebb3b50de22c4186e1102004cade6db35c9dd2"
+    },
+    {
+      "path": "skills/people-property/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4041461dc3746981471ecd480a7767191e07a143",
+      "size": 609,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4041461dc3746981471ecd480a7767191e07a143"
+    },
+    {
+      "path": "skills/people-property/rules/privacy.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85495fb639bd7277ccdd430d02c565280a132ae6",
+      "size": 2088,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/85495fb639bd7277ccdd430d02c565280a132ae6"
+    },
+    {
+      "path": "skills/phone-calls",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cc22e45f400cc1ca211c089da560f4cf881cf8ff",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/cc22e45f400cc1ca211c089da560f4cf881cf8ff"
+    },
+    {
+      "path": "skills/phone-calls/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a9cde24fd2aa72bbe24c753f309aab6c114e254",
+      "size": 7721,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/3a9cde24fd2aa72bbe24c753f309aab6c114e254"
+    },
+    {
+      "path": "skills/phone-calls/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "63f90ef9e759a260908257aa7063b7ba958ee95b",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/63f90ef9e759a260908257aa7063b7ba958ee95b"
+    },
+    {
+      "path": "skills/phone-calls/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80b45a022426e436c034178b3d98b11a22a24cf6",
+      "size": 1306,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/80b45a022426e436c034178b3d98b11a22a24cf6"
+    },
+    {
+      "path": "skills/social-intelligence",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f05f73092b126a0f5c4711421e2ee921ffb77ea7",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/f05f73092b126a0f5c4711421e2ee921ffb77ea7"
+    },
+    {
+      "path": "skills/social-intelligence/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee1a22b6f23e33e07758b9ee62a7228c31211b23",
+      "size": 4756,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/ee1a22b6f23e33e07758b9ee62a7228c31211b23"
+    },
+    {
+      "path": "skills/social-intelligence/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "979d7a3a6252fed2be4ffd874243748f074648b1",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/979d7a3a6252fed2be4ffd874243748f074648b1"
+    },
+    {
+      "path": "skills/social-intelligence/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad0df5b63879557cdde3c1ec02623f0a824b4ed5",
+      "size": 716,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/ad0df5b63879557cdde3c1ec02623f0a824b4ed5"
+    },
+    {
+      "path": "skills/social-intelligence/rules/rate-limits.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60a940463280aa1fc9c88c2d77a0b3f4a8404cfa",
+      "size": 2039,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/60a940463280aa1fc9c88c2d77a0b3f4a8404cfa"
+    },
+    {
+      "path": "skills/social-scraping",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c30b10980c7ecec37d047c48cdf60c5410b3856a",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/c30b10980c7ecec37d047c48cdf60c5410b3856a"
+    },
+    {
+      "path": "skills/social-scraping/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8441eae2f6b2fe772f4c7ebc3d9b781fac8b60b1",
+      "size": 16387,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/8441eae2f6b2fe772f4c7ebc3d9b781fac8b60b1"
+    },
+    {
+      "path": "skills/social-scraping/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb350d5012794d47957ce66e50a1cfa4db32812c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/fb350d5012794d47957ce66e50a1cfa4db32812c"
+    },
+    {
+      "path": "skills/social-scraping/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a9e8c5e3fe526ea9c2a666d249c7aeaca657fbc",
+      "size": 1403,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/9a9e8c5e3fe526ea9c2a666d249c7aeaca657fbc"
+    },
+    {
+      "path": "skills/upload-and-share",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b9a1244c5f43fec356cb391784e05904c29bc576",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b9a1244c5f43fec356cb391784e05904c29bc576"
+    },
+    {
+      "path": "skills/upload-and-share/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "277e482f92f2dbb281217276fd0b40c08d290068",
+      "size": 9614,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/277e482f92f2dbb281217276fd0b40c08d290068"
+    },
+    {
+      "path": "skills/upload-and-share/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b036d1693ab268b7dc687fdcdd456d0f17d40a35",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/b036d1693ab268b7dc687fdcdd456d0f17d40a35"
+    },
+    {
+      "path": "skills/upload-and-share/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c358560f6af2aa167670484f69f205753431d008",
+      "size": 1392,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/c358560f6af2aa167670484f69f205753431d008"
+    },
+    {
+      "path": "skills/web-research",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6a14d29cc7eb2be4d3c22b846886ab00ca5164b9",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/6a14d29cc7eb2be4d3c22b846886ab00ca5164b9"
+    },
+    {
+      "path": "skills/web-research/SKILL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ba7c2754d18437296aafd88a45c623ea6cbe2d2",
+      "size": 8100,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/1ba7c2754d18437296aafd88a45c623ea6cbe2d2"
+    },
+    {
+      "path": "skills/web-research/rules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5938a1a37267ef2591fdfe5137249ef9f3504c4c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/trees/5938a1a37267ef2591fdfe5137249ef9f3504c4c"
+    },
+    {
+      "path": "skills/web-research/rules/getting-started.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4041461dc3746981471ecd480a7767191e07a143",
+      "size": 609,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/4041461dc3746981471ecd480a7767191e07a143"
+    },
+    {
+      "path": "skills/web-research/rules/when-to-use.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bda49cf5c926aabd377000e8b12d3061f27efe7",
+      "size": 2895,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-skills/git/blobs/6bda49cf5c926aabd377000e8b12d3061f27efe7"
+    }
+  ],
+  "truncated": false
+}

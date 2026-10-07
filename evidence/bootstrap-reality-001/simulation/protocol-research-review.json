@@ -1,0 +1,31 @@
+{
+  "reviewer": "Codex protocol_research subagent",
+  "observed_at_utc": "2026-10-07T23:45:24.483823+00:00",
+  "engine_sha256": "228f628e3be724a2a10cebfe89ab6980cfe07786d8552b715f41923e8def6a40",
+  "test_command": "python3 -m unittest discover -s simulation -p test*.py",
+  "passed": 28,
+  "independent_tests_added": 11,
+  "observations": [
+    "reserve copies supplied allocation paths, preventing caller mutation after commitment",
+    "failed reservations leave graph unchanged including sequence, loan records and locks",
+    "default subtracts precisely still-reserved origin stake and releases same edge/origin locks",
+    "partial repayment greedily releases exactly repaid integer principal, preserves remainder",
+    "already defaulted borrower address cannot borrow again; identity/Sybil aliases remain out of scope",
+    "wildcard root consent is an explicit broad delegation policy up to four edges, not endpoint-specific approval",
+    "Strict positive integer checks reject float/bool stakes, edge limits, loan quantities, repayments and withdrawals without mutation",
+    "RLock serializes mutating methods; actual four-thread simultaneous request test admits exactly three 300000 loans against1000000 stake",
+    "allocate computes candidate allocations on copied origin/edge residual capacities and atomically commits via serialized reserve",
+    "Allocator depth cap is four edges, root consent checked, route uses no officer score or manual per-borrower grant"
+  ],
+  "limitations": [
+    "No token movement, deployed EVM execution, interest/default timing, wallet signature authorization, identity uniqueness, customer income provenance or collateral provenance enforcement",
+    "Public mutable graph state trusted to harness, not adversarial process isolation",
+    "Successful accounting tests demonstrate a proposed reference model, not deployed transitivity support or mainnet readiness",
+    "In-process reservation atomicity is provided by RLock; no durable EVM/distributed transaction or atomic graph-plus-cash settlement implemented.",
+    "Greedy routing can reject a feasible allocation: no residual reverse-edge max-flow search, optimality, fairness or calibrated creditworthiness claim.",
+    "Dense graphs need cumulative search work/memory budget; recommended 1000 queue/candidate visits shared across roots and all split allocations."
+  ],
+  "post_review_codex_change": "Added bounded queue growth and one adversarial breadth/no-mutation regression following reviewer recommendation",
+  "integrated_engine_sha256": "c9ec191cb3fc384b7382c161863841cc88972a4c19fcd1b607e36867936e7603",
+  "integrated_simulation_tests_passed": 29
+}

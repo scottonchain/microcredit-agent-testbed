@@ -1,0 +1,267 @@
+{
+  "units": "integer USDC micro-units",
+  "model_status": "Proposed transitive routing reference model, not deployed Union or project pool",
+  "invariants": [
+    {
+      "id": "origin_conservation",
+      "rule": "For each origin, sum(active reserved principal+reserved fees across every borrower/path) <= funded origin stake. Cycles or diamonds cannot add stake."
+    },
+    {
+      "id": "edge_conservation",
+      "rule": "For each directed authorized edge, sum(active reservations using edge) <= edge limit. Intermediate cannot invent downstream origin authorization."
+    },
+    {
+      "id": "atomic_admission",
+      "rule": "Read capacities, reserve origin+all edges, allocate loan and transfer principal in one atomic state transition. Failure changes no balances, locks, debts or graph."
+    },
+    {
+      "id": "root_consent",
+      "rule": "Root explicitly authorizes scope allowing downstream routing, intermediate identities/depth or delegation scope, maturity and maximum loss. Direct trust to coordinator alone does not imply consent to arbitrary stranger collateral use."
+    },
+    {
+      "id": "withdrawal",
+      "rule": "Origin withdrawal <= stake minus all active reserved liabilities. Active reservations cannot be bypassed by edge revocation, stake relocation, route deletion or partial repayment."
+    },
+    {
+      "id": "repayment",
+      "rule": "Unlock only actually extinguished principal/secured liability; token rounding must not close unpaid principal. Received interest and full loan close do not fabricate origin stake."
+    },
+    {
+      "id": "default",
+      "rule": "Burn/use origin stake to extinguish defaulted secured principal; never unlock it into reusable backing before loss recognized. History never restores lost dollars."
+    },
+    {
+      "id": "collateral_provenance",
+      "rule": "Borrowed liquidity cannot be counted again as externally funded loss-bearing stake unless separately capitalized risk and provenance are explicitly accounted."
+    },
+    {
+      "id": "no_officer",
+      "rule": "Admission uses authorized graph/stake/path-capacity terms only; no oracle, credit-officer score grant or hidden seed credit permitted."
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "two_newcomers",
+      "stake": 1000000,
+      "edges": [
+        [
+          "root",
+          "coordinator",
+          1000000
+        ],
+        [
+          "coordinator",
+          "A",
+          300000
+        ],
+        [
+          "coordinator",
+          "B",
+          300000
+        ]
+      ],
+      "root_scope": [
+        "A",
+        "B"
+      ],
+      "loans": [
+        [
+          "A",
+          300000
+        ],
+        [
+          "B",
+          300000
+        ]
+      ],
+      "expected": {
+        "accepted": 2,
+        "origin_locked": 600000,
+        "origin_free": 400000
+      }
+    },
+    {
+      "id": "four_concurrent",
+      "stake": 1000000,
+      "edges": [
+        [
+          "root",
+          "coordinator",
+          1000000
+        ],
+        [
+          "coordinator",
+          "A",
+          300000
+        ],
+        [
+          "coordinator",
+          "B",
+          300000
+        ],
+        [
+          "coordinator",
+          "C",
+          300000
+        ],
+        [
+          "coordinator",
+          "D",
+          300000
+        ]
+      ],
+      "root_scope": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "loans": [
+        [
+          "A",
+          300000
+        ],
+        [
+          "B",
+          300000
+        ],
+        [
+          "C",
+          300000
+        ],
+        [
+          "D",
+          300000
+        ]
+      ],
+      "expected": {
+        "accepted": 3,
+        "rejected": 1,
+        "origin_locked": 900000,
+        "origin_free": 100000
+      },
+      "concurrency": "Schedule all four from same initial read; only atomic commit may decide. Any three accepted; fourth must fail without side effects."
+    },
+    {
+      "id": "diamond",
+      "stake": 1000000,
+      "edges": [
+        [
+          "root",
+          "X",
+          1000000
+        ],
+        [
+          "root",
+          "Y",
+          1000000
+        ],
+        [
+          "X",
+          "A",
+          1000000
+        ],
+        [
+          "Y",
+          "A",
+          1000000
+        ]
+      ],
+      "root_scope": [
+        "A"
+      ],
+      "request": 1500000,
+      "expected": "reject: two paths share one origin and cannot sum to two million origin stake"
+    },
+    {
+      "id": "cycle",
+      "stake": 1000000,
+      "edges": [
+        [
+          "root",
+          "X",
+          1000000
+        ],
+        [
+          "X",
+          "Y",
+          1000000
+        ],
+        [
+          "Y",
+          "X",
+          1000000
+        ],
+        [
+          "Y",
+          "A",
+          1000000
+        ]
+      ],
+      "root_scope": [
+        "A"
+      ],
+      "request": 1100000,
+      "expected": "reject; cycles excluded or collapsed; no increased origin capacity"
+    },
+    {
+      "id": "locked_withdraw",
+      "stake": 1000000,
+      "active_principal": 600000,
+      "withdraw_request": 400001,
+      "expected": "reject; withdraw400000 succeeds preserving600000 secured stake"
+    },
+    {
+      "id": "no_root_consent",
+      "stake": 1000000,
+      "edges": [
+        [
+          "root",
+          "coordinator",
+          1000000
+        ],
+        [
+          "coordinator",
+          "stranger",
+          1000000
+        ]
+      ],
+      "root_scope": [
+        "coordinator"
+      ],
+      "request": [
+        "stranger",
+        300000
+      ],
+      "expected": "reject even though a graph path exists"
+    },
+    {
+      "id": "partial_then_default",
+      "stake": 1000000,
+      "borrow": 600000,
+      "principal_repaid": 100000,
+      "then_new_borrow": 500000,
+      "first_loan_default_remaining": 500000,
+      "expected": {
+        "after_partial_lock": 500000,
+        "new_total_lock": 1000000,
+        "after_default_stake": 500000,
+        "after_default_lock": 500000,
+        "free_stake": 0
+      },
+      "attack": "If partial repayment closes/release all600000, origin may reuse600000 while500000 legacy debt persists. Default can then consume collateral already allocated to a second loan."
+    },
+    {
+      "id": "subcent_rounding",
+      "stake": 1000000,
+      "borrow": 9999,
+      "repay": 1,
+      "expected": {
+        "remaining_principal": 9998,
+        "remaining_lock": 9998,
+        "closed": false
+      },
+      "relevance": "Current CI30 project bug violates this invariant; transitive model must not inherit it."
+    }
+  ]
+}

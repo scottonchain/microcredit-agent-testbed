@@ -1,0 +1,2319 @@
+{
+  "sha": "1fc2987e34331007a30b07b6a6813f4c267c878c",
+  "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/1fc2987e34331007a30b07b6a6813f4c267c878c",
+  "tree": [
+    {
+      "path": ".changeset",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "002ec25b5cdc55666d3da423e4a5d9cbae9427ee",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/002ec25b5cdc55666d3da423e4a5d9cbae9427ee"
+    },
+    {
+      "path": ".changeset/config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8213321cd46da6674cd07ac420e3053230e3b7b",
+      "size": 271,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b8213321cd46da6674cd07ac420e3053230e3b7b"
+    },
+    {
+      "path": ".env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0bcfa87ab598dc9f5696dda9f28cf7ec9d3ae47",
+      "size": 4405,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e0bcfa87ab598dc9f5696dda9f28cf7ec9d3ae47"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ea9519d97104fbfbf5d6d8aaf52529a35134c237",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ea9519d97104fbfbf5d6d8aaf52529a35134c237"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0cedddda743998f594620c3ab3bf51e68536cb1f",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/0cedddda743998f594620c3ab3bf51e68536cb1f"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc00f634ac1fc9558273c42dca9e2bd2245074de",
+      "size": 816,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/bc00f634ac1fc9558273c42dca9e2bd2245074de"
+    },
+    {
+      "path": ".github/workflows/deprecate-canary.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7b69aae848a0c41d9aae1010c56a59b18689679",
+      "size": 1078,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c7b69aae848a0c41d9aae1010c56a59b18689679"
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d1e8f3f4b0d43d80b043cdf0a2b10e282f56ca5",
+      "size": 4296,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8d1e8f3f4b0d43d80b043cdf0a2b10e282f56ca5"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "067d7112fc9066e4d610a364ab69ba81dd1d7a8e",
+      "size": 92,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/067d7112fc9066e4d610a364ab69ba81dd1d7a8e"
+    },
+    {
+      "path": ".prettierignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18128bb2895fede639c1eae3099a885e49f1ada6",
+      "size": 62,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/18128bb2895fede639c1eae3099a885e49f1ada6"
+    },
+    {
+      "path": ".prettierrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c57e8e161e5e797d83894f07d059e3546d4e99f1",
+      "size": 200,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c57e8e161e5e797d83894f07d059e3546d4e99f1"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7aa4e2e2a438372634b629cb703c1c3c059893ca",
+      "size": 11418,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/7aa4e2e2a438372634b629cb703c1c3c059893ca"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dafc28986b7720151d7ee8a37dc62af61a1eddd",
+      "size": 51892,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1dafc28986b7720151d7ee8a37dc62af61a1eddd"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb3777a3f382e0e503c1ce663056408e4d97174c",
+      "size": 2096,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/eb3777a3f382e0e503c1ce663056408e4d97174c"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3adbf2c5ab479b1b0b608c59d6b23bea32ced4aa",
+      "size": 1070,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3adbf2c5ab479b1b0b608c59d6b23bea32ced4aa"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a26c0f34dbb69718ae59d7d3edab532da696159c",
+      "size": 29783,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a26c0f34dbb69718ae59d7d3edab532da696159c"
+    },
+    {
+      "path": "SECURITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31bcd992a67ef352ea39ff87a71b01916e8798fe",
+      "size": 1588,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/31bcd992a67ef352ea39ff87a71b01916e8798fe"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8550abc8495839b7ec9a2b64b5914c4e529f2815",
+      "size": 1147,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8550abc8495839b7ec9a2b64b5914c4e529f2815"
+    },
+    {
+      "path": "examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "25d7d8b3839f2b6196a4e0a08363c2fd71914be1",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/25d7d8b3839f2b6196a4e0a08363c2fd71914be1"
+    },
+    {
+      "path": "examples/fortune",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6826dde9b5ae15bb65b4a134f35bbd898cf52bef",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/6826dde9b5ae15bb65b4a134f35bbd898cf52bef"
+    },
+    {
+      "path": "examples/fortune/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b8c6585c4475a02631d699ba7932b99b7ac645b",
+      "size": 1343,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9b8c6585c4475a02631d699ba7932b99b7ac645b"
+    },
+    {
+      "path": "examples/fortune/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "250bf69271657e12464020531f400d6d805b85ed",
+      "size": 201,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/250bf69271657e12464020531f400d6d805b85ed"
+    },
+    {
+      "path": "examples/fortune/AGENTCASH_TESTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96208ce9b61f89e632af94c1400d91b3c3b8bcd0",
+      "size": 7952,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/96208ce9b61f89e632af94c1400d91b3c3b8bcd0"
+    },
+    {
+      "path": "examples/fortune/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23f9e9e3f9b481b8be8a2687880ba546da950024",
+      "size": 3309,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/23f9e9e3f9b481b8be8a2687880ba546da950024"
+    },
+    {
+      "path": "examples/fortune/app",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e49fd97128fd740c3127f0ddacb61c2b89abb96f",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/e49fd97128fd740c3127f0ddacb61c2b89abb96f"
+    },
+    {
+      "path": "examples/fortune/app/api",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "38de749a8ed7afd639030a78c74ad94f2a4f35a2",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/38de749a8ed7afd639030a78c74ad94f2a4f35a2"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a110e6f866aa57a9b2071fc88f4db2edde3fde7",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/7a110e6f866aa57a9b2071fc88f4db2edde3fde7"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/dynamic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "478a23dfe2ecb0d1f1456176448096594f297ace",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/478a23dfe2ecb0d1f1456176448096594f297ace"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/dynamic/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d96100367b3e56f86c5bbdc0ca6c1ef8149f7c22",
+      "size": 3316,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d96100367b3e56f86c5bbdc0ca6c1ef8149f7c22"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/favorites",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2f9cf4bd110bf6c0aec986f68fcb623d9507f093",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/2f9cf4bd110bf6c0aec986f68fcb623d9507f093"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/favorites/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3191cd52ea44593e235bab8121cc1828af3db6f8",
+      "size": 2151,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3191cd52ea44593e235bab8121cc1828af3db6f8"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/llm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ecb372a16c9235f9d8b7f30184733c115c2e88eb",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ecb372a16c9235f9d8b7f30184733c115c2e88eb"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/llm/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3c0cf92b8104fc8d57be4d0cef111038d6f7feb",
+      "size": 1314,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f3c0cf92b8104fc8d57be4d0cef111038d6f7feb"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/membership",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0f82c2ee6f382d34684c4b83d5d6d6ba3a187d4b",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/0f82c2ee6f382d34684c4b83d5d6d6ba3a187d4b"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/membership/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a131c092e3274178500782107dce7adfd21b9a1",
+      "size": 1389,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2a131c092e3274178500782107dce7adfd21b9a1"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/premium",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a5e08658fdc8fb51ac7994cdefbde43f13872ea",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/7a5e08658fdc8fb51ac7994cdefbde43f13872ea"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/premium/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee4f3103abdf1d0d57bfd08267d73356dd80e3a2",
+      "size": 2370,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/ee4f3103abdf1d0d57bfd08267d73356dd80e3a2"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/profile",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8f6daf5000cbc0b7ca8e8a6825e76bbe89d25474",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/8f6daf5000cbc0b7ca8e8a6825e76bbe89d25474"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/profile/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64b01ee9c7fd404a4c4df9529b86b46bd8a95aba",
+      "size": 545,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/64b01ee9c7fd404a4c4df9529b86b46bd8a95aba"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd0e954d717e244352a68a1badb00ec4d1b34673",
+      "size": 1322,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cd0e954d717e244352a68a1badb00ec4d1b34673"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/stream",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6f7586c69978a207c5e8ef7ce0eb77258d6ed8da",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/6f7586c69978a207c5e8ef7ce0eb77258d6ed8da"
+    },
+    {
+      "path": "examples/fortune/app/api/fortune/stream/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78e436c7dc5d305495fad4d1fafb8fde59bf7c3c",
+      "size": 1299,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/78e436c7dc5d305495fad4d1fafb8fde59bf7c3c"
+    },
+    {
+      "path": "examples/fortune/app/llms.txt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e8a244c48626063ffbd96c1d9ee46b345c1d6ed9",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/e8a244c48626063ffbd96c1d9ee46b345c1d6ed9"
+    },
+    {
+      "path": "examples/fortune/app/llms.txt/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "324276ad6f6c2d8d37b8dcc296cb307755d010e6",
+      "size": 81,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/324276ad6f6c2d8d37b8dcc296cb307755d010e6"
+    },
+    {
+      "path": "examples/fortune/app/openapi.json",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7d97f800012fb7d01753729920a5566fd6ea070",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/b7d97f800012fb7d01753729920a5566fd6ea070"
+    },
+    {
+      "path": "examples/fortune/app/openapi.json/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ba7d92ced357577842b00b264df3e303404d9c9",
+      "size": 108,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3ba7d92ced357577842b00b264df3e303404d9c9"
+    },
+    {
+      "path": "examples/fortune/eslint.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9dd962e7ce3ee790d7013cd604a56277a2f501f",
+      "size": 320,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b9dd962e7ce3ee790d7013cd604a56277a2f501f"
+    },
+    {
+      "path": "examples/fortune/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7a9d7a54bca3ad0adaefe804e7fc07427a1769bb",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/7a9d7a54bca3ad0adaefe804e7fc07427a1769bb"
+    },
+    {
+      "path": "examples/fortune/lib/logging-plugin.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2099c2ced44f55e786c437bff7ed044c8b74a97",
+      "size": 2741,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f2099c2ced44f55e786c437bff7ed044c8b74a97"
+    },
+    {
+      "path": "examples/fortune/lib/router.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82ae5810a484c87a3725ef8763680152ef5d13d2",
+      "size": 753,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/82ae5810a484c87a3725ef8763680152ef5d13d2"
+    },
+    {
+      "path": "examples/fortune/lib/routes.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e97cb5e720376b8a26547db800a16184bd6c0fd",
+      "size": 422,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2e97cb5e720376b8a26547db800a16184bd6c0fd"
+    },
+    {
+      "path": "examples/fortune/next-env.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4b7818fbb2c2c34c24feb1b627ee824507c5600",
+      "size": 251,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c4b7818fbb2c2c34c24feb1b627ee824507c5600"
+    },
+    {
+      "path": "examples/fortune/next.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84baaeff7511902ca57dd05ccc66db5a32215a41",
+      "size": 607,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/84baaeff7511902ca57dd05ccc66db5a32215a41"
+    },
+    {
+      "path": "examples/fortune/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e73525510cd85fa1dfc194f88ee65854bfa99b74",
+      "size": 750,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e73525510cd85fa1dfc194f88ee65854bfa99b74"
+    },
+    {
+      "path": "examples/fortune/pnpm-lock.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4a46d2b02f42394cff2c5f64480d87d6e5b8259",
+      "size": 140357,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b4a46d2b02f42394cff2c5f64480d87d6e5b8259"
+    },
+    {
+      "path": "examples/fortune/pnpm-workspace.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "277fa3b059f0b6a8276ffc0a3e6ec46ba6153d4f",
+      "size": 85,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/277fa3b059f0b6a8276ffc0a3e6ec46ba6153d4f"
+    },
+    {
+      "path": "examples/fortune/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a88e3dfae1b258eacfc13ed521a18b27c4eb659",
+      "size": 744,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2a88e3dfae1b258eacfc13ed521a18b27c4eb659"
+    },
+    {
+      "path": "examples/hono",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "88bc17446c5ac77d29ec0051ef116c6ffe1c834a",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/88bc17446c5ac77d29ec0051ef116c6ffe1c834a"
+    },
+    {
+      "path": "examples/hono/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98d4b52c4e834fb4b47e7f644fe64aff5f63bc9f",
+      "size": 1001,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/98d4b52c4e834fb4b47e7f644fe64aff5f63bc9f"
+    },
+    {
+      "path": "examples/hono/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "114455345aa830411ba299551471426d0f7b40d2",
+      "size": 579,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/114455345aa830411ba299551471426d0f7b40d2"
+    },
+    {
+      "path": "examples/hono/pnpm-lock.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a167779994885021a891c6c738aaba4ac75a32b",
+      "size": 10820,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4a167779994885021a891c6c738aaba4ac75a32b"
+    },
+    {
+      "path": "examples/hono/src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ba19b6daf967f31a9adea84232256aa0aa15000f",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ba19b6daf967f31a9adea84232256aa0aa15000f"
+    },
+    {
+      "path": "examples/hono/src/server.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2622c0ed7149215fbe184a7bb444b6e6c18ff370",
+      "size": 2078,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2622c0ed7149215fbe184a7bb444b6e6c18ff370"
+    },
+    {
+      "path": "examples/hono/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "155d6d807aacb850c3ae891fbf2e845dc7f494c7",
+      "size": 322,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/155d6d807aacb850c3ae891fbf2e845dc7f494c7"
+    },
+    {
+      "path": "examples/vercel-deploy",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8a469336db157662cc57afbc242d64636eed1c65",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/8a469336db157662cc57afbc242d64636eed1c65"
+    },
+    {
+      "path": "examples/vercel-deploy/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1078bd6e4d013b832814b667b847be3b7133952f",
+      "size": 2587,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1078bd6e4d013b832814b667b847be3b7133952f"
+    },
+    {
+      "path": "examples/vercel-deploy/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "250bf69271657e12464020531f400d6d805b85ed",
+      "size": 201,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/250bf69271657e12464020531f400d6d805b85ed"
+    },
+    {
+      "path": "examples/vercel-deploy/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b23483cbe70b9378b2c9ec39ef6ff14a566648f",
+      "size": 16579,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5b23483cbe70b9378b2c9ec39ef6ff14a566648f"
+    },
+    {
+      "path": "examples/vercel-deploy/app",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "021850720652dee327b8188feda18544e13e7a42",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/021850720652dee327b8188feda18544e13e7a42"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5f521e22bf9fc396a3ae1a914751c47291eba440",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/5f521e22bf9fc396a3ae1a914751c47291eba440"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ab3a0e2e68d024a155881c5400712f7b7dab7264",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ab3a0e2e68d024a155881c5400712f7b7dab7264"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/dynamic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a916aa98f26479d05c39ba537fcdb6fee56677e0",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/a916aa98f26479d05c39ba537fcdb6fee56677e0"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/dynamic/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96dd849fb6da55c18edf792b17644cf384238e9a",
+      "size": 3043,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/96dd849fb6da55c18edf792b17644cf384238e9a"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/favorites",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ddcfac1def5480e95e3eefb55b9e20ee9308cd6e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ddcfac1def5480e95e3eefb55b9e20ee9308cd6e"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/favorites/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29ff7ba945e7a794297628d9262d85b06124c8bf",
+      "size": 1804,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/29ff7ba945e7a794297628d9262d85b06124c8bf"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/llm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "74b5ccb9b99f10d8f5777ff3c1fad2d7db2e30c7",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/74b5ccb9b99f10d8f5777ff3c1fad2d7db2e30c7"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/llm/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ded57aba3c672d49d1294f350f4f1a4a7669e7e",
+      "size": 1773,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0ded57aba3c672d49d1294f350f4f1a4a7669e7e"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/membership",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b5e4bb4a90310875dc39c06a4f17fbad9979c6f9",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/b5e4bb4a90310875dc39c06a4f17fbad9979c6f9"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/membership/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "996c274e6b7c7800b7e0800daaff29d43ec570d4",
+      "size": 1502,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/996c274e6b7c7800b7e0800daaff29d43ec570d4"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/premium",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d111faf80280c4424aceadd88793250a758b2768",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/d111faf80280c4424aceadd88793250a758b2768"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/premium/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e16e51911b44151554ed117b953b3b47aebb840c",
+      "size": 2190,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e16e51911b44151554ed117b953b3b47aebb840c"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/profile",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "099fe5fff276571308018db9e9ec44fce16f5d7a",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/099fe5fff276571308018db9e9ec44fce16f5d7a"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/profile/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a6ce7c9d23eb9ee246f7310f0c5defafe77375d",
+      "size": 490,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9a6ce7c9d23eb9ee246f7310f0c5defafe77375d"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e14f9bbf87980c19fd3cdf23ee3ebc09e05bb4c",
+      "size": 1161,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/7e14f9bbf87980c19fd3cdf23ee3ebc09e05bb4c"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/stream",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4d22bddb35e6516b9f10b4bd58447b5b909ab3af",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/4d22bddb35e6516b9f10b4bd58447b5b909ab3af"
+    },
+    {
+      "path": "examples/vercel-deploy/app/api/fortune/stream/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cabc636e9b2270a75ed4ab24ba9bbc520daeae7d",
+      "size": 1725,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cabc636e9b2270a75ed4ab24ba9bbc520daeae7d"
+    },
+    {
+      "path": "examples/vercel-deploy/app/code-block.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "507ffe31cb64f3af9488c571fc4023bd69be2b6f",
+      "size": 3886,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/507ffe31cb64f3af9488c571fc4023bd69be2b6f"
+    },
+    {
+      "path": "examples/vercel-deploy/app/layout.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5dde60afd6d6eef0c6362bdc64ba3c9e946f7645",
+      "size": 824,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5dde60afd6d6eef0c6362bdc64ba3c9e946f7645"
+    },
+    {
+      "path": "examples/vercel-deploy/app/llms.txt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "976a3b0f36677149310fa131495995ebad288299",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/976a3b0f36677149310fa131495995ebad288299"
+    },
+    {
+      "path": "examples/vercel-deploy/app/llms.txt/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fec75633e615025ba2af685d3027a721c1d0f3ff",
+      "size": 263,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/fec75633e615025ba2af685d3027a721c1d0f3ff"
+    },
+    {
+      "path": "examples/vercel-deploy/app/openapi.json",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "24c3f447436e00cb6b3c4c1a1b5fe7ce7b9bbcc0",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/24c3f447436e00cb6b3c4c1a1b5fe7ce7b9bbcc0"
+    },
+    {
+      "path": "examples/vercel-deploy/app/openapi.json/route.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9132f285fff0949d68e402702094300fcb6436ad",
+      "size": 332,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9132f285fff0949d68e402702094300fcb6436ad"
+    },
+    {
+      "path": "examples/vercel-deploy/app/page.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45e88e0879d599f0fa2bc6f2fb32adee81813e4c",
+      "size": 10162,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/45e88e0879d599f0fa2bc6f2fb32adee81813e4c"
+    },
+    {
+      "path": "examples/vercel-deploy/eslint.config.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9dd962e7ce3ee790d7013cd604a56277a2f501f",
+      "size": 320,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b9dd962e7ce3ee790d7013cd604a56277a2f501f"
+    },
+    {
+      "path": "examples/vercel-deploy/lib",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b98d3d76b41b7fd88807fb21d769156774e90315",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/b98d3d76b41b7fd88807fb21d769156774e90315"
+    },
+    {
+      "path": "examples/vercel-deploy/lib/router.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d29e5f960a31022a21e71c976d71ba1f034e0c6",
+      "size": 3546,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5d29e5f960a31022a21e71c976d71ba1f034e0c6"
+    },
+    {
+      "path": "examples/vercel-deploy/lib/routes.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbd2bb54e20efcce8fb63c045acc2b00d87b960b",
+      "size": 840,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/fbd2bb54e20efcce8fb63c045acc2b00d87b960b"
+    },
+    {
+      "path": "examples/vercel-deploy/next-env.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9edff1c7cacb3bfac9a1eadcf6f51eaa99565e38",
+      "size": 247,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9edff1c7cacb3bfac9a1eadcf6f51eaa99565e38"
+    },
+    {
+      "path": "examples/vercel-deploy/next.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a17fd44d2f67975147065d1eed85f828b93eed43",
+      "size": 326,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a17fd44d2f67975147065d1eed85f828b93eed43"
+    },
+    {
+      "path": "examples/vercel-deploy/package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6b94a1927e22f64e2082eaf195eef2e95439dc2",
+      "size": 283751,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e6b94a1927e22f64e2082eaf195eef2e95439dc2"
+    },
+    {
+      "path": "examples/vercel-deploy/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6768f2e7eb59aa6eb1b57b0c36051b3814f442bc",
+      "size": 762,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6768f2e7eb59aa6eb1b57b0c36051b3814f442bc"
+    },
+    {
+      "path": "examples/vercel-deploy/pnpm-lock.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "226ac27a00432c4f46088717a13668631089c887",
+      "size": 176928,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/226ac27a00432c4f46088717a13668631089c887"
+    },
+    {
+      "path": "examples/vercel-deploy/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a88e3dfae1b258eacfc13ed521a18b27c4eb659",
+      "size": 744,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2a88e3dfae1b258eacfc13ed521a18b27c4eb659"
+    },
+    {
+      "path": "examples/vercel-deploy/vercel.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3931a8e938c9157bcc54819d7159d91313c6fc2b",
+      "size": 179,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3931a8e938c9157bcc54819d7159d91313c6fc2b"
+    },
+    {
+      "path": "knip.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6dac8a660eb77534fb5cf318c8a0bb5fecfbd02",
+      "size": 334,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f6dac8a660eb77534fb5cf318c8a0bb5fecfbd02"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abbfa1a1f1d11ffa573e9ded5eed1ed5aa8131cc",
+      "size": 2443,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/abbfa1a1f1d11ffa573e9ded5eed1ed5aa8131cc"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "645d7b7955a93f8507930af0d930e45508652e20",
+      "size": 206550,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/645d7b7955a93f8507930af0d930e45508652e20"
+    },
+    {
+      "path": "src",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "636424b7b2987c3d9f7c6ef514952546d3dbac2d",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/636424b7b2987c3d9f7c6ef514952546d3dbac2d"
+    },
+    {
+      "path": "src/auth",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "89831fb4edad35895d6a7aabc1a2f9bc9fce4d66",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/89831fb4edad35895d6a7aabc1a2f9bc9fce4d66"
+    },
+    {
+      "path": "src/auth/agent-identity.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6306b879a05fd1b1acd02bd59e184e106aceb99",
+      "size": 2640,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e6306b879a05fd1b1acd02bd59e184e106aceb99"
+    },
+    {
+      "path": "src/auth/api-key.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec305a73ec61c15061e92b0ac0eed54fec3d3231",
+      "size": 806,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/ec305a73ec61c15061e92b0ac0eed54fec3d3231"
+    },
+    {
+      "path": "src/auth/normalize-wallet.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a62cad1ad513d43cd1d01994da0d70245060346",
+      "size": 382,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8a62cad1ad513d43cd1d01994da0d70245060346"
+    },
+    {
+      "path": "src/auth/siwx.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0083c4c36a6b67896462286377de8c3db270f638",
+      "size": 2556,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0083c4c36a6b67896462286377de8c3db270f638"
+    },
+    {
+      "path": "src/builder.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0e2c3caabc0229bbc066a83d77b648004f7c801",
+      "size": 41331,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e0e2c3caabc0229bbc066a83d77b648004f7c801"
+    },
+    {
+      "path": "src/config",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6c229941d88a55cc7302542d242374e986f19510",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/6c229941d88a55cc7302542d242374e986f19510"
+    },
+    {
+      "path": "src/config/error.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0fd03c101b79aab5d93d23f2fa5ff4dc694f50d",
+      "size": 451,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a0fd03c101b79aab5d93d23f2fa5ff4dc694f50d"
+    },
+    {
+      "path": "src/config/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59a891ed5784811173f8b6e3383773537987753c",
+      "size": 232,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/59a891ed5784811173f8b6e3383773537987753c"
+    },
+    {
+      "path": "src/config/schema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0852c24010376e7cfcfad1195af4a79bcf450b3",
+      "size": 27546,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d0852c24010376e7cfcfad1195af4a79bcf450b3"
+    },
+    {
+      "path": "src/config/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2974191eb6e1890f7c06c84fe05b16b4cb9aa71",
+      "size": 4475,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a2974191eb6e1890f7c06c84fe05b16b4cb9aa71"
+    },
+    {
+      "path": "src/config/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "885eb9f8edb648ccf381ff2cf438113111273b80",
+      "size": 2610,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/885eb9f8edb648ccf381ff2cf438113111273b80"
+    },
+    {
+      "path": "src/constants.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "279d6bdec0120a193ec69da83ecdf6253bd39ed6",
+      "size": 1170,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/279d6bdec0120a193ec69da83ecdf6253bd39ed6"
+    },
+    {
+      "path": "src/discovery",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "08d1679fc9e2a4c77edbd5fd1f4f8c22e0d26723",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/08d1679fc9e2a4c77edbd5fd1f4f8c22e0d26723"
+    },
+    {
+      "path": "src/discovery/llms-txt.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd11cc99bc9cc7f98295a156fc3db7005b1956c0",
+      "size": 472,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/fd11cc99bc9cc7f98295a156fc3db7005b1956c0"
+    },
+    {
+      "path": "src/discovery/not-found.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20fb239d6e0b940f419160152f44d3f392ac42a3",
+      "size": 967,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/20fb239d6e0b940f419160152f44d3f392ac42a3"
+    },
+    {
+      "path": "src/discovery/openapi.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e56e58894d4f27eaef587f5452bbf0af1d74511",
+      "size": 7373,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0e56e58894d4f27eaef587f5452bbf0af1d74511"
+    },
+    {
+      "path": "src/discovery/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "04e25bb17a8eb99c1515bfa57cfe38f0b00e45b0",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/04e25bb17a8eb99c1515bfa57cfe38f0b00e45b0"
+    },
+    {
+      "path": "src/discovery/utils/guidance.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78477383f1953a249a8f234db9ea699f58c8acd8",
+      "size": 261,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/78477383f1953a249a8f234db9ea699f58c8acd8"
+    },
+    {
+      "path": "src/discovery/well-known.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ff911166bba5500bc97cb2b0e655c7292859901",
+      "size": 2441,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5ff911166bba5500bc97cb2b0e655c7292859901"
+    },
+    {
+      "path": "src/headers.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "588d0d5b83b70e6047bd5466d387a4faf420f415",
+      "size": 630,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/588d0d5b83b70e6047bd5466d387a4faf420f415"
+    },
+    {
+      "path": "src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62d1bb8419f7a1547c0cdb7065877f1b6c4ad361",
+      "size": 15506,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/62d1bb8419f7a1547c0cdb7065877f1b6c4ad361"
+    },
+    {
+      "path": "src/init",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3629d9cd226f770f01b707adc69812b4e7b8fbf2",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/3629d9cd226f770f01b707adc69812b4e7b8fbf2"
+    },
+    {
+      "path": "src/init/mpp.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "109c67600243dc9b282ea298dedcb7abb8326bd4",
+      "size": 5998,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/109c67600243dc9b282ea298dedcb7abb8326bd4"
+    },
+    {
+      "path": "src/init/mppx.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6e8a2a31124f1c0a3975884c096dc29f8765250",
+      "size": 2786,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f6e8a2a31124f1c0a3975884c096dc29f8765250"
+    },
+    {
+      "path": "src/init/x402-server.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "392329e522bee195d4b5b71bd0fe818be89b65ff",
+      "size": 3567,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/392329e522bee195d4b5b71bd0fe818be89b65ff"
+    },
+    {
+      "path": "src/init/x402.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e3fe7b4d5c063973503ede4c5e29f0433ae6888",
+      "size": 901,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5e3fe7b4d5c063973503ede4c5e29f0433ae6888"
+    },
+    {
+      "path": "src/kv-store",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d7e010bc6ed28ff9d7b202fcbb8f92c8d9fd64a6",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/d7e010bc6ed28ff9d7b202fcbb8f92c8d9fd64a6"
+    },
+    {
+      "path": "src/kv-store/agent-identity-nonce.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "133e80308121d9e51eecfc49b44a33af6a3dff6b",
+      "size": 1719,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/133e80308121d9e51eecfc49b44a33af6a3dff6b"
+    },
+    {
+      "path": "src/kv-store/client.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e6f68d5f7630973f50647f8ea4b67d5a95841ff",
+      "size": 4537,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1e6f68d5f7630973f50647f8ea4b67d5a95841ff"
+    },
+    {
+      "path": "src/kv-store/entitlement.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b362d6fa52da51a3f5d59e83046ab0da4e9d1c4",
+      "size": 1470,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1b362d6fa52da51a3f5d59e83046ab0da4e9d1c4"
+    },
+    {
+      "path": "src/kv-store/facilitator-supported.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9a7474473504b5df95dee2f896471f8840cc80e",
+      "size": 3594,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c9a7474473504b5df95dee2f896471f8840cc80e"
+    },
+    {
+      "path": "src/kv-store/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5521f6fc63cab7e53abf9f2b9c4806ca5f6d2c21",
+      "size": 507,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5521f6fc63cab7e53abf9f2b9c4806ca5f6d2c21"
+    },
+    {
+      "path": "src/kv-store/mpp.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afe29da2ac06a91af95cd6b68f904b48b75702ea",
+      "size": 679,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/afe29da2ac06a91af95cd6b68f904b48b75702ea"
+    },
+    {
+      "path": "src/kv-store/nonce.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6007e18beb59ca7b628156b4f358688df2b6e376",
+      "size": 1062,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6007e18beb59ca7b628156b4f358688df2b6e376"
+    },
+    {
+      "path": "src/next.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa0bab4f40197a2c58a4b169047e0b8bf1da4c89",
+      "size": 2482,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/aa0bab4f40197a2c58a4b169047e0b8bf1da4c89"
+    },
+    {
+      "path": "src/path-params.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d7c69fe96117c076c869b842c2671162496a0ed",
+      "size": 2357,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8d7c69fe96117c076c869b842c2671162496a0ed"
+    },
+    {
+      "path": "src/pipeline",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9a8fb412f5117ebf8ece4011d9a0d5bc99092f77",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/9a8fb412f5117ebf8ece4011d9a0d5bc99092f77"
+    },
+    {
+      "path": "src/pipeline/body.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14052f1db0bc167647beedfc7ba300ac60012a34",
+      "size": 1116,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/14052f1db0bc167647beedfc7ba300ac60012a34"
+    },
+    {
+      "path": "src/pipeline/challenge-extensions.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63f6c131b9e1fceb8bf1a93dce33f31be252dd85",
+      "size": 3157,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/63f6c131b9e1fceb8bf1a93dce33f31be252dd85"
+    },
+    {
+      "path": "src/pipeline/flows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0fa063e03ff518de6076d6143b2a2265c7c25a61",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/0fa063e03ff518de6076d6143b2a2265c7c25a61"
+    },
+    {
+      "path": "src/pipeline/flows/api-key-only.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d14b206662055f15869e033601f68529da51bf0c",
+      "size": 625,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d14b206662055f15869e033601f68529da51bf0c"
+    },
+    {
+      "path": "src/pipeline/flows/challenge-response.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a685c2853fb15c4308c49d2355d31f025d8adae",
+      "size": 3688,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6a685c2853fb15c4308c49d2355d31f025d8adae"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a209e2b90a6c9a61d8d5282eb9f158f6fed35d73",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/a209e2b90a6c9a61d8d5282eb9f158f6fed35d73"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-body-and-price.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d564f66663e16ad38ef06c96c63415dbb87775ce",
+      "size": 1548,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d564f66663e16ad38ef06c96c63415dbb87775ce"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-channel-mgmt.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a9880c327e8c2cb81c941640c33c27d11cd321c",
+      "size": 2213,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0a9880c327e8c2cb81c941640c33c27d11cd321c"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-invoke",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3fe5f0415504fd7f0757d56e48fed35f686843d6",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/3fe5f0415504fd7f0757d56e48fed35f686843d6"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-invoke/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cba644bc4e38d0ffcd94977979debba9279045b",
+      "size": 100,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9cba644bc4e38d0ffcd94977979debba9279045b"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-invoke/metered-invoke.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85b0af3d05eef52aa21551e1ced875cb0b47721f",
+      "size": 2185,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/85b0af3d05eef52aa21551e1ced875cb0b47721f"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-invoke/shared.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d13a4cd0f90aa0d5b7a5e620110e0f00fcc280d",
+      "size": 2243,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9d13a4cd0f90aa0d5b7a5e620110e0f00fcc280d"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-invoke/upto-invoke.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c4df6b4b5937611b72987411f1a7be1230633e3",
+      "size": 1714,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6c4df6b4b5937611b72987411f1a7be1230633e3"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-paid.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4b643cad1d3d45a3570cab7ecffdc911fe0e380",
+      "size": 2686,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b4b643cad1d3d45a3570cab7ecffdc911fe0e380"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-preflight.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd61ee6f58167f89dae6e2f9a7cf4dc0bac62f41",
+      "size": 487,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cd61ee6f58167f89dae6e2f9a7cf4dc0bac62f41"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-request.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b53a811cf6c3a43cb9309bf3599ce2c9e3a94b5c",
+      "size": 2464,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b53a811cf6c3a43cb9309bf3599ce2c9e3a94b5c"
+    },
+    {
+      "path": "src/pipeline/flows/dynamic/dynamic-stream.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dfbbbf39786a4a0b333758f89c07b796b925328",
+      "size": 713,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3dfbbbf39786a4a0b333758f89c07b796b925328"
+    },
+    {
+      "path": "src/pipeline/flows/paid-preamble.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2656dbec0d82b3862a896f8b169165daf14ebd6",
+      "size": 3399,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a2656dbec0d82b3862a896f8b169165daf14ebd6"
+    },
+    {
+      "path": "src/pipeline/flows/paid.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f86a4908254d7327e7be0945318b7ca98c481ee",
+      "size": 384,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2f86a4908254d7327e7be0945318b7ca98c481ee"
+    },
+    {
+      "path": "src/pipeline/flows/siwx-only.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "301440f6176217dc33573321bf320aecf663571c",
+      "size": 5913,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/301440f6176217dc33573321bf320aecf663571c"
+    },
+    {
+      "path": "src/pipeline/flows/static",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "24726bcecb60c7ac3c63c7c37bdd6b85b4a78e9d",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/24726bcecb60c7ac3c63c7c37bdd6b85b4a78e9d"
+    },
+    {
+      "path": "src/pipeline/flows/static/static-body-and-price.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6c5d685601caaf10a64cc96de70108e291088d0",
+      "size": 1179,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b6c5d685601caaf10a64cc96de70108e291088d0"
+    },
+    {
+      "path": "src/pipeline/flows/static/static-invoke.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1746b7f5d0bdb5c03f179a9d67d436bbb0f2c65",
+      "size": 3769,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c1746b7f5d0bdb5c03f179a9d67d436bbb0f2c65"
+    },
+    {
+      "path": "src/pipeline/flows/static/static-paid.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "acdaf5f1b3aad3842e552a59af94ab5c1c408cae",
+      "size": 1215,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/acdaf5f1b3aad3842e552a59af94ab5c1c408cae"
+    },
+    {
+      "path": "src/pipeline/flows/static/static-request.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "303631b1c772fe58c5e37ef6bb4ab286e206dff7",
+      "size": 2502,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/303631b1c772fe58c5e37ef6bb4ab286e206dff7"
+    },
+    {
+      "path": "src/pipeline/flows/unprotected.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "056ae9386a7df1e5e7360b2aa9201656b3a479d8",
+      "size": 192,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/056ae9386a7df1e5e7360b2aa9201656b3a479d8"
+    },
+    {
+      "path": "src/pipeline/handler.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8277967d4ea4297fbb724f2d49b8063f1054b079",
+      "size": 794,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8277967d4ea4297fbb724f2d49b8063f1054b079"
+    },
+    {
+      "path": "src/pipeline/orchestrate.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "375bedb7442473e8dc72b9501f4af585b1edc8ef",
+      "size": 2173,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/375bedb7442473e8dc72b9501f4af585b1edc8ef"
+    },
+    {
+      "path": "src/pipeline/steps",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cee49cb7060b05c0f5ef5d20e6869d44c4c2886c",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/cee49cb7060b05c0f5ef5d20e6869d44c4c2886c"
+    },
+    {
+      "path": "src/pipeline/steps/errors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "686232e4df454039dd62cf1c40c203ce48e626de",
+      "size": 579,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/686232e4df454039dd62cf1c40c203ce48e626de"
+    },
+    {
+      "path": "src/pipeline/steps/fail.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25bfefbf593232057c9581f5423936e28fe26936",
+      "size": 535,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/25bfefbf593232057c9581f5423936e28fe26936"
+    },
+    {
+      "path": "src/pipeline/steps/finalize",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "386eda44a6c70666040269b78faaca25a0c76f88",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/386eda44a6c70666040269b78faaca25a0c76f88"
+    },
+    {
+      "path": "src/pipeline/steps/finalize/epilogue.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b25c62827f95bb91528912076dedfe6b6a9c77c7",
+      "size": 1251,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b25c62827f95bb91528912076dedfe6b6a9c77c7"
+    },
+    {
+      "path": "src/pipeline/steps/finalize/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc277c1ff44ca8bf1671fdcde445953bab04e2c4",
+      "size": 154,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cc277c1ff44ca8bf1671fdcde445953bab04e2c4"
+    },
+    {
+      "path": "src/pipeline/steps/finalize/request.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0589b394570176290f8e9f54c287a7c14f534f85",
+      "size": 1387,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0589b394570176290f8e9f54c287a7c14f534f85"
+    },
+    {
+      "path": "src/pipeline/steps/finalize/response.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9ee895e0f7d67c224205209def0e129c91b2574",
+      "size": 445,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b9ee895e0f7d67c224205209def0e129c91b2574"
+    },
+    {
+      "path": "src/pipeline/steps/finalize/stream.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1429c47329c3c4594a5a2c37bca6a90d18142bc9",
+      "size": 1466,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1429c47329c3c4594a5a2c37bca6a90d18142bc9"
+    },
+    {
+      "path": "src/pipeline/steps/grant-entitlement.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d9c3050d7754512ed55deda4c32f8f3ede0c30d",
+      "size": 414,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1d9c3050d7754512ed55deda4c32f8f3ede0c30d"
+    },
+    {
+      "path": "src/pipeline/steps/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56e04f15d91ee8d314074fd92b9cacc378dd5c26",
+      "size": 1034,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/56e04f15d91ee8d314074fd92b9cacc378dd5c26"
+    },
+    {
+      "path": "src/pipeline/steps/parse-body.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba41024a775d9ddff5d648fc795990f0f17f9e47",
+      "size": 1231,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/ba41024a775d9ddff5d648fc795990f0f17f9e47"
+    },
+    {
+      "path": "src/pipeline/steps/parse-query.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "945611f6c335a3b9756bce656adb561e8fe5c2e6",
+      "size": 895,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/945611f6c335a3b9756bce656adb561e8fe5c2e6"
+    },
+    {
+      "path": "src/pipeline/steps/preflight.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8d1c9db017ecba36fbf1811dd85c04766cd77e7",
+      "size": 1782,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d8d1c9db017ecba36fbf1811dd85c04766cd77e7"
+    },
+    {
+      "path": "src/pipeline/steps/protocol-init-error.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4702dd5b22839e75f21188466957a4e0be1d2fc7",
+      "size": 645,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4702dd5b22839e75f21188466957a4e0be1d2fc7"
+    },
+    {
+      "path": "src/pipeline/steps/resolve-early-body.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "caf3c9e09dc170bcf560b5bd7dec757ac45994ec",
+      "size": 1239,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/caf3c9e09dc170bcf560b5bd7dec757ac45994ec"
+    },
+    {
+      "path": "src/pipeline/steps/run-after-settle.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ebe596479d8f9252d23ebd93d2ba9aa6e016d21",
+      "size": 790,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6ebe596479d8f9252d23ebd93d2ba9aa6e016d21"
+    },
+    {
+      "path": "src/pipeline/steps/run-api-key-gate.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ac06ee35b6774c80340f21d0ebacab9f86c9bb7",
+      "size": 831,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5ac06ee35b6774c80340f21d0ebacab9f86c9bb7"
+    },
+    {
+      "path": "src/pipeline/steps/run-before-settle.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c175fe462cfb5ac323b6aa5a0cbfddbcf660115",
+      "size": 942,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1c175fe462cfb5ac323b6aa5a0cbfddbcf660115"
+    },
+    {
+      "path": "src/pipeline/steps/run-handler-only.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b33144057ebd63ba5e088bf349fbe7fc063fad3",
+      "size": 797,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4b33144057ebd63ba5e088bf349fbe7fc063fad3"
+    },
+    {
+      "path": "src/pipeline/steps/run-settled-handler-error.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52285d4244fc093faf16edd64e5bb12a6fa63d0f",
+      "size": 813,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/52285d4244fc093faf16edd64e5bb12a6fa63d0f"
+    },
+    {
+      "path": "src/pipeline/steps/run-settlement-error.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af26098e0ffc150a6e9ccbc627631d4a6d2f85d9",
+      "size": 648,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/af26098e0ffc150a6e9ccbc627631d4a6d2f85d9"
+    },
+    {
+      "path": "src/pipeline/steps/run-validate.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5ce2a867b5d63fe7a1b94f9177bf605c410980f",
+      "size": 465,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e5ce2a867b5d63fe7a1b94f9177bf605c410980f"
+    },
+    {
+      "path": "src/pipeline/steps/settlement-context.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43ade92e654a2a7001b442278147d583aefb7210",
+      "size": 483,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/43ade92e654a2a7001b442278147d583aefb7210"
+    },
+    {
+      "path": "src/pipeline/steps/should-parse-body-early.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6cc6d701fd22ef16075078537da433b116955a2",
+      "size": 518,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c6cc6d701fd22ef16075078537da433b116955a2"
+    },
+    {
+      "path": "src/pipeline/steps/try-siwx-fast-path.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2af8e758ca23b85488ff6ef32cba3a5556eca451",
+      "size": 1016,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2af8e758ca23b85488ff6ef32cba3a5556eca451"
+    },
+    {
+      "path": "src/pipeline/steps/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb6f13191a4adcd2a5d0ffe8fa262f4f45f87bdf",
+      "size": 1768,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/bb6f13191a4adcd2a5d0ffe8fa262f4f45f87bdf"
+    },
+    {
+      "path": "src/plugin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "57491b400e63d290ec5fde99ffc7baaae67ce42e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/57491b400e63d290ec5fde99ffc7baaae67ce42e"
+    },
+    {
+      "path": "src/plugin/events.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a3f1eb8363b72ed7cc63676d01cfecac686625e",
+      "size": 5321,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0a3f1eb8363b72ed7cc63676d01cfecac686625e"
+    },
+    {
+      "path": "src/plugin/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a3c293ec4c49fde4c55935983e0dcb98e140b34",
+      "size": 3974,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6a3c293ec4c49fde4c55935983e0dcb98e140b34"
+    },
+    {
+      "path": "src/plugin/reporter.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1636b0da69e2c81484a370d506238039657a3d2",
+      "size": 538,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c1636b0da69e2c81484a370d506238039657a3d2"
+    },
+    {
+      "path": "src/pricing",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0d5e89789999927f17b46c9a0fef483e14a38dc3",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/0d5e89789999927f17b46c9a0fef483e14a38dc3"
+    },
+    {
+      "path": "src/pricing/dynamic.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd9092a34a987837f62b6c6a412a26e508a543c1",
+      "size": 2562,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/dd9092a34a987837f62b6c6a412a26e508a543c1"
+    },
+    {
+      "path": "src/pricing/fixed.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37062cf80dca9d404634a8b79930078f75043381",
+      "size": 454,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/37062cf80dca9d404634a8b79930078f75043381"
+    },
+    {
+      "path": "src/pricing/format.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf8a183004cc7042107080e45e619aef62766e20",
+      "size": 2072,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cf8a183004cc7042107080e45e619aef62766e20"
+    },
+    {
+      "path": "src/pricing/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "732a66578bf3af3d18ff5deebbcc1037f7264c61",
+      "size": 1345,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/732a66578bf3af3d18ff5deebbcc1037f7264c61"
+    },
+    {
+      "path": "src/pricing/metered-charge.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f884a3b5f91b724872aa1c2a4f79a4745b4dec10",
+      "size": 1382,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f884a3b5f91b724872aa1c2a4f79a4745b4dec10"
+    },
+    {
+      "path": "src/pricing/tiered.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f01ece42b90e1df4bd2df06b5bc0a4a9422eebd2",
+      "size": 2016,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f01ece42b90e1df4bd2df06b5bc0a4a9422eebd2"
+    },
+    {
+      "path": "src/pricing/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89c71dffc1f17e6249d8828cd7331b0d0439acb9",
+      "size": 794,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/89c71dffc1f17e6249d8828cd7331b0d0439acb9"
+    },
+    {
+      "path": "src/pricing/upto-charge.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c02ea16320f7c4d7ab0b9d5b6e4f49812637f13",
+      "size": 1071,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0c02ea16320f7c4d7ab0b9d5b6e4f49812637f13"
+    },
+    {
+      "path": "src/protocols",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8e661ebd0aad52fe3bfb25a112ab1b7db336080d",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/8e661ebd0aad52fe3bfb25a112ab1b7db336080d"
+    },
+    {
+      "path": "src/protocols/detect.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0234a90a45f6bee9cfbca4a71872b6c4bffa3be",
+      "size": 987,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b0234a90a45f6bee9cfbca4a71872b6c4bffa3be"
+    },
+    {
+      "path": "src/protocols/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "413048ae8a6de500f6b4a09512a9daaee85929c9",
+      "size": 772,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/413048ae8a6de500f6b4a09512a9daaee85929c9"
+    },
+    {
+      "path": "src/protocols/mpp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2c7bb9d85fc23b3268b6b8fdbedc5febf8819795",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/2c7bb9d85fc23b3268b6b8fdbedc5febf8819795"
+    },
+    {
+      "path": "src/protocols/mpp/credential.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3410bc5240e6268956f6562e3ce57b6ae945b7a3",
+      "size": 1826,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3410bc5240e6268956f6562e3ce57b6ae945b7a3"
+    },
+    {
+      "path": "src/protocols/mpp/hash-mode.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00583b614865e04a121447232e968745113f0d40",
+      "size": 3053,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/00583b614865e04a121447232e968745113f0d40"
+    },
+    {
+      "path": "src/protocols/mpp/middleware-types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4274899894a6b5f2ce862e09bffbb5124430fe91",
+      "size": 399,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4274899894a6b5f2ce862e09bffbb5124430fe91"
+    },
+    {
+      "path": "src/protocols/mpp/receipt.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c489dee1df9108c2ce28b5f9c09c8d42571614d0",
+      "size": 679,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c489dee1df9108c2ce28b5f9c09c8d42571614d0"
+    },
+    {
+      "path": "src/protocols/mpp/session-mode.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cd8267efc08fba6b1746549de5f0b46941ba634",
+      "size": 6917,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6cd8267efc08fba6b1746549de5f0b46941ba634"
+    },
+    {
+      "path": "src/protocols/mpp/siwx-mode.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eef82954bf8a794ae00dd3880fa8de2605e12b43",
+      "size": 1031,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/eef82954bf8a794ae00dd3880fa8de2605e12b43"
+    },
+    {
+      "path": "src/protocols/mpp/strategy.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c32f86a570b3d7ec06e2c13c6f2432617f7d0b62",
+      "size": 5211,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c32f86a570b3d7ec06e2c13c6f2432617f7d0b62"
+    },
+    {
+      "path": "src/protocols/mpp/transaction-mode.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7979b599caf670ced550e6eb49513a0bc2d0fe5b",
+      "size": 4100,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/7979b599caf670ced550e6eb49513a0bc2d0fe5b"
+    },
+    {
+      "path": "src/protocols/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "566160d841f87de2d8cecfcc4b7fe8e6e9a076cd",
+      "size": 3995,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/566160d841f87de2d8cecfcc4b7fe8e6e9a076cd"
+    },
+    {
+      "path": "src/protocols/x402",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ade835c42c032340d10e4f0f421a4d238c3862f4",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/ade835c42c032340d10e4f0f421a4d238c3862f4"
+    },
+    {
+      "path": "src/protocols/x402/accepts.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11fc39edf4558c1b9c219fed2ac34fc1afda160c",
+      "size": 2454,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/11fc39edf4558c1b9c219fed2ac34fc1afda160c"
+    },
+    {
+      "path": "src/protocols/x402/challenge.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d86706f11dc5d0e54fb7aeefb22bf887830fbd69",
+      "size": 7299,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d86706f11dc5d0e54fb7aeefb22bf887830fbd69"
+    },
+    {
+      "path": "src/protocols/x402/evm.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a64274f8eb59d9805bba11dcd549c1b3301dc5b4",
+      "size": 1712,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a64274f8eb59d9805bba11dcd549c1b3301dc5b4"
+    },
+    {
+      "path": "src/protocols/x402/facilitator-clients.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d295bee9987881bb98b400d6134e316e24b127d",
+      "size": 2637,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4d295bee9987881bb98b400d6134e316e24b127d"
+    },
+    {
+      "path": "src/protocols/x402/facilitators.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b7d08bb3afa056ecf30527096ae8d02953aa5c8",
+      "size": 3912,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5b7d08bb3afa056ecf30527096ae8d02953aa5c8"
+    },
+    {
+      "path": "src/protocols/x402/requirements.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39bcd5131d5c2f5ec692fe826d73e1a13783cced",
+      "size": 3124,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/39bcd5131d5c2f5ec692fe826d73e1a13783cced"
+    },
+    {
+      "path": "src/protocols/x402/resource-metadata.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f41161e263702b23d759ac4a8b251ac3f9d56a9",
+      "size": 2990,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8f41161e263702b23d759ac4a8b251ac3f9d56a9"
+    },
+    {
+      "path": "src/protocols/x402/settle.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51cfd0291b2eef57781fdfbc2886da6c32cb9bdf",
+      "size": 1122,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/51cfd0291b2eef57781fdfbc2886da6c32cb9bdf"
+    },
+    {
+      "path": "src/protocols/x402/solana.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19e59ca81e5ba518268d7cbfd3bbbab2e5c48b6c",
+      "size": 5272,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/19e59ca81e5ba518268d7cbfd3bbbab2e5c48b6c"
+    },
+    {
+      "path": "src/protocols/x402/strategy.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a63f5957a41462f3cdc92967841bd0b33fce50ec",
+      "size": 7297,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a63f5957a41462f3cdc92967841bd0b33fce50ec"
+    },
+    {
+      "path": "src/protocols/x402/verify.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28a94a1831d661c54f3b7f8ae37be19834fc89b5",
+      "size": 4650,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/28a94a1831d661c54f3b7f8ae37be19834fc89b5"
+    },
+    {
+      "path": "src/registry.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc64cead2891150e0d7abfbf6374198ca6af124c",
+      "size": 3236,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/dc64cead2891150e0d7abfbf6374198ca6af124c"
+    },
+    {
+      "path": "src/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5317fba104267f7a3050f64fa0f9232cfb16b2d1",
+      "size": 22864,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/5317fba104267f7a3050f64fa0f9232cfb16b2d1"
+    },
+    {
+      "path": "src/validate-examples.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0c0fb5f074e0c8d555f735251e26f6b8c40d6d4",
+      "size": 1463,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e0c0fb5f074e0c8d555f735251e26f6b8c40d6d4"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6e93fe0c27717e99e3af479c78ef8fde1cdc284e",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/6e93fe0c27717e99e3af479c78ef8fde1cdc284e"
+    },
+    {
+      "path": "tests/agent-identity.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31e0d8130db6bca37f757b7024fbb2c3733751d7",
+      "size": 6276,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/31e0d8130db6bca37f757b7024fbb2c3733751d7"
+    },
+    {
+      "path": "tests/body.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d115730f1c3ab125e0a72536ca76e433c3cfcdcc",
+      "size": 2176,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d115730f1c3ab125e0a72536ca76e433c3cfcdcc"
+    },
+    {
+      "path": "tests/builder.test-d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4860c33dccfc805b32140f875d08aebe645ded0",
+      "size": 7562,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f4860c33dccfc805b32140f875d08aebe645ded0"
+    },
+    {
+      "path": "tests/builder.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cc3cc7cd66c28d789b3f7cc7910094f8a7ce256",
+      "size": 20209,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/0cc3cc7cd66c28d789b3f7cc7910094f8a7ce256"
+    },
+    {
+      "path": "tests/config.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9862b3fa2153500cd0f4ec41bc8f1da739cf037e",
+      "size": 6675,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9862b3fa2153500cd0f4ec41bc8f1da739cf037e"
+    },
+    {
+      "path": "tests/create-router-inference.test-d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2efca5d8214d47fbe7c094f0f5285d2f7011013c",
+      "size": 1228,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2efca5d8214d47fbe7c094f0f5285d2f7011013c"
+    },
+    {
+      "path": "tests/detect.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29af2eda3da1438e5c5b16b45b2423a8838e24ef",
+      "size": 1288,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/29af2eda3da1438e5c5b16b45b2423a8838e24ef"
+    },
+    {
+      "path": "tests/discovery.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "895909bab5c126c5071c3b0291520885cbc3bb37",
+      "size": 7336,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/895909bab5c126c5071c3b0291520885cbc3bb37"
+    },
+    {
+      "path": "tests/entitlement-store.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dd256953f4eaf385d8e7bc77499f431ccc5711c",
+      "size": 3183,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/1dd256953f4eaf385d8e7bc77499f431ccc5711c"
+    },
+    {
+      "path": "tests/env-drift.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c54c0cd5aaf7706bea5e06a0948a8de5f407065e",
+      "size": 2327,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c54c0cd5aaf7706bea5e06a0948a8de5f407065e"
+    },
+    {
+      "path": "tests/facilitator-clients.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c61f50a10199bae60b209e720e7b00fbc3e04713",
+      "size": 4665,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c61f50a10199bae60b209e720e7b00fbc3e04713"
+    },
+    {
+      "path": "tests/facilitator-coldstart-mixed.integration.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ca074c3987c692aff8822531f993b87af9a03a0",
+      "size": 5627,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/2ca074c3987c692aff8822531f993b87af9a03a0"
+    },
+    {
+      "path": "tests/facilitator-supported-cache.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc1c1d1e8ce90d1b0cb2ac6a4e343cc404bf7d2b",
+      "size": 4913,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/bc1c1d1e8ce90d1b0cb2ac6a4e343cc404bf7d2b"
+    },
+    {
+      "path": "tests/fakes",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e09939f6e8359ba004fdb785729af6238f06a044",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/e09939f6e8359ba004fdb785729af6238f06a044"
+    },
+    {
+      "path": "tests/fakes/agent-identity-deps.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d250cbee1c3f8cbafc345c7df4d26567b0d19e1a",
+      "size": 174,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d250cbee1c3f8cbafc345c7df4d26567b0d19e1a"
+    },
+    {
+      "path": "tests/fakes/request.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "036e6d933776e28ef6f4eb66f9f6256fecd99a44",
+      "size": 945,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/036e6d933776e28ef6f4eb66f9f6256fecd99a44"
+    },
+    {
+      "path": "tests/fakes/x402-server.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98eaedf21b07f85c6b6cc5b7957315f56c89debd",
+      "size": 4171,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/98eaedf21b07f85c6b6cc5b7957315f56c89debd"
+    },
+    {
+      "path": "tests/from-env.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93e76efdc361d1768571c282f1a718bce23b877d",
+      "size": 17895,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/93e76efdc361d1768571c282f1a718bce23b877d"
+    },
+    {
+      "path": "tests/handler.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f16b4bbcc477cfff7f28ab647b0fd95730547e86",
+      "size": 2919,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f16b4bbcc477cfff7f28ab647b0fd95730547e86"
+    },
+    {
+      "path": "tests/hono-fetch.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4a12cafba7b1f4677d9f9cd46f17a4d1d66cf91",
+      "size": 11082,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d4a12cafba7b1f4677d9f9cd46f17a4d1d66cf91"
+    },
+    {
+      "path": "tests/integration-429.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0837d7df2e581509dcf11a4eb5fa36917e75f09",
+      "size": 4196,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a0837d7df2e581509dcf11a4eb5fa36917e75f09"
+    },
+    {
+      "path": "tests/integration",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "293136c224da1e7b07e97b85afd4441082764279",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/trees/293136c224da1e7b07e97b85afd4441082764279"
+    },
+    {
+      "path": "tests/integration/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "318a7cb528177d462ad5228f7351e68d76bc83c6",
+      "size": 1064,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/318a7cb528177d462ad5228f7351e68d76bc83c6"
+    },
+    {
+      "path": "tests/integration/test-session-alignment.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3795d83d96a344c819f2022c99671d4aeb9aa665",
+      "size": 12034,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3795d83d96a344c819f2022c99671d4aeb9aa665"
+    },
+    {
+      "path": "tests/integration/test-x402-exact-upto.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85c0506d80fd1577af073b5b41f7519dfb11c846",
+      "size": 19154,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/85c0506d80fd1577af073b5b41f7519dfb11c846"
+    },
+    {
+      "path": "tests/kv-store.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e3ad2389f139451cf4e201635a934e1f1225a77",
+      "size": 8955,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9e3ad2389f139451cf4e201635a934e1f1225a77"
+    },
+    {
+      "path": "tests/lazy-import-discipline.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6498d025de875e0733a4215e72a7130c08329ac",
+      "size": 2945,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/f6498d025de875e0733a4215e72a7130c08329ac"
+    },
+    {
+      "path": "tests/mpp-alerts.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0fe2e887485b2798a3f0312c65a136c85af3dfc",
+      "size": 2832,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/e0fe2e887485b2798a3f0312c65a136c85af3dfc"
+    },
+    {
+      "path": "tests/mpp-session.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ec6aab3d95d01ab10e18c56a9280751c6384720",
+      "size": 38743,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/4ec6aab3d95d01ab10e18c56a9280751c6384720"
+    },
+    {
+      "path": "tests/network.test-d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b136566709a278c3b8f0d403f3adfb1f62112453",
+      "size": 1541,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/b136566709a278c3b8f0d403f3adfb1f62112453"
+    },
+    {
+      "path": "tests/nonce.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40848b15b2847225e5dcd628af5ce1a7b13e65f1",
+      "size": 2914,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/40848b15b2847225e5dcd628af5ce1a7b13e65f1"
+    },
+    {
+      "path": "tests/not-found.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c03b9b4182a448a3ec6a211a39c4cb70a6e3c062",
+      "size": 1157,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/c03b9b4182a448a3ec6a211a39c4cb70a6e3c062"
+    },
+    {
+      "path": "tests/openapi-discovery.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "98addf3518428f3b263560dbf63a414714f9edb1",
+      "size": 7830,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/98addf3518428f3b263560dbf63a414714f9edb1"
+    },
+    {
+      "path": "tests/orchestrate.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "feda0b137a42e27bbf6c7b372a255e86a22d5db6",
+      "size": 71915,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/feda0b137a42e27bbf6c7b372a255e86a22d5db6"
+    },
+    {
+      "path": "tests/plugin.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6a3e45cacdbc27c2b6bdaf3f31519de45fc744c",
+      "size": 13092,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/a6a3e45cacdbc27c2b6bdaf3f31519de45fc744c"
+    },
+    {
+      "path": "tests/pricing.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "658f8e23affb325e91c29b162dc7fe1fa3877fb6",
+      "size": 7814,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/658f8e23affb325e91c29b162dc7fe1fa3877fb6"
+    },
+    {
+      "path": "tests/protocols-config.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa02633c9c0ef75adace260e0c175c863e93b904",
+      "size": 15541,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/aa02633c9c0ef75adace260e0c175c863e93b904"
+    },
+    {
+      "path": "tests/provider.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8810a0aa34d833b327caae2c000dc0cfadc77451",
+      "size": 11994,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8810a0aa34d833b327caae2c000dc0cfadc77451"
+    },
+    {
+      "path": "tests/registry.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c493a773cff46d0d3ee7c37cafc155be8d92cfa",
+      "size": 2511,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/8c493a773cff46d0d3ee7c37cafc155be8d92cfa"
+    },
+    {
+      "path": "tests/route-definition.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50292ada499d5b0509cf81b92aa2045337b29220",
+      "size": 2464,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/50292ada499d5b0509cf81b92aa2045337b29220"
+    },
+    {
+      "path": "tests/setup.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cefa8d09a8bc0e9ee94f85b2c42d8bcc82cfd397",
+      "size": 383,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/cefa8d09a8bc0e9ee94f85b2c42d8bcc82cfd397"
+    },
+    {
+      "path": "tests/upto-eip2612-gas-sponsoring.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9556dd007af9912f79a0b3f4f863ec3ec4163afa",
+      "size": 8701,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9556dd007af9912f79a0b3f4f863ec3ec4163afa"
+    },
+    {
+      "path": "tests/upto-scheme.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d9ba0b793997f54ea48022add2e44e43e13dfc0",
+      "size": 15157,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/9d9ba0b793997f54ea48022add2e44e43e13dfc0"
+    },
+    {
+      "path": "tests/x402-attribution-metadata.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92450db20c9551c381273c1ffb292de0c916cbe4",
+      "size": 8596,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/92450db20c9551c381273c1ffb292de0c916cbe4"
+    },
+    {
+      "path": "tests/x402-facilitators.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96c635a898545257b0c4a088af16b02dd52adf94",
+      "size": 4414,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/96c635a898545257b0c4a088af16b02dd52adf94"
+    },
+    {
+      "path": "tests/x402-multi-network.integration.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe98068f76b1d55e4a1a22cccefba95783e93d30",
+      "size": 16430,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/fe98068f76b1d55e4a1a22cccefba95783e93d30"
+    },
+    {
+      "path": "tests/x402-payto-body.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aff0fb5c8363ef145b9443e19ffb1cd604e2ed53",
+      "size": 1445,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/aff0fb5c8363ef145b9443e19ffb1cd604e2ed53"
+    },
+    {
+      "path": "tests/x402-protocol.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8245c6332ea43e81da5a2275a5d43a879484710",
+      "size": 1907,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/d8245c6332ea43e81da5a2275a5d43a879484710"
+    },
+    {
+      "path": "tests/x402-settle.test.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca6375fcf14888f0a97ba712d191e8f36d5624b0",
+      "size": 985,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/ca6375fcf14888f0a97ba712d191e8f36d5624b0"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b52be8dcacd6d1947f4917047b3dbc1ab7a17ae",
+      "size": 457,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/6b52be8dcacd6d1947f4917047b3dbc1ab7a17ae"
+    },
+    {
+      "path": "tsconfig.typetest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3dcd0d872255402a0357ac25e0f78349b80c7b29",
+      "size": 187,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3dcd0d872255402a0357ac25e0f78349b80c7b29"
+    },
+    {
+      "path": "tsup.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b787b5b635576715fc9067e6ad56e760c555890",
+      "size": 389,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/3b787b5b635576715fc9067e6ad56e760c555890"
+    },
+    {
+      "path": "vitest.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab30e26ac9646253faa5330ff3245b174097d426",
+      "size": 328,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-router/git/blobs/ab30e26ac9646253faa5330ff3245b174097d426"
+    }
+  ],
+  "truncated": false
+}

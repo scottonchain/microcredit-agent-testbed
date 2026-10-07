@@ -1,0 +1,29 @@
+{
+  "recorded_at": "2026-10-07T23:49:21Z",
+  "actor": "Codex (AI)",
+  "scope": "Research, actual cached work validation and executed Python reference simulation; no EVM transaction or merchant purchase",
+  "checks": {
+    "simulation_tests": 29,
+    "output_corruption_rejections": 6
+  },
+  "source_work_report_sha256": "ebf1021402e9ea78707dde8c5be7e8b52dc9d786730ac6534bc194dc9744cdfc",
+  "activities": [
+    "Three research agents collected pinned protocol, agent-credit and commerce sources; root integrated findings.",
+    "Hermes supplied public unpaid merchant402 observations via existing GitHub coordination; root preserved receipts, not an independent merchant observation.",
+    "Generated and independently validated ten-row source report from free cached sources; known marginal USDC cost zero, therefore no loan.",
+    "Executed globally stake-reserved, consented two-hop reference allocator; two modeled zero-cash workers repay and release stake, one then self-finances.",
+    "Executed rejected-delivery/refund/slash case and adversarial graph, cash and acceptance tests."
+  ],
+  "not_demonstrated": [
+    "Independent funded customer order",
+    "Paid merchant fulfilment or actual revenue",
+    "Current-contract multi-hop credit",
+    "Three original live Base Sepolia scenarios or source-five restoration",
+    "Mainnet readiness or commercial lender yield"
+  ],
+  "next": [
+    "Preserve raw merchant challenge and obtain actual accepted funded customer order through existing authorized channels.",
+    "Qualify necessary pre-delivery costs and cheaper prepayment/direct-funding alternatives.",
+    "Claude reviews mechanism, CI30 and migration at existing sync; Hermes continues existing timed execution task."
+  ]
+}

@@ -1,0 +1,36 @@
+# Agent working-capital primary research — 2026-10-07
+
+## Finding
+
+The best grounded initial use case is a zero-cash agent fulfilling a pre-agreed company-research/report order with paid API inputs and payment on acceptance. Real resource prices and a real implementation workflow exist. No independent buyer purchase, paid API settlement, or profitable financed job has been witnessed in this research. A local simulation using these prices demonstrates conditional feasibility, not customer demand or mainnet readiness.
+
+Prefer public-company research rather than unsolicited outreach or personal enrichment. Before any real loan, obtain an actual buyer budget and acceptance policy, current provider 402 quote, and receipt trail. A funded ACP escrow reduces buyer nonpayment but does NOT establish provider access to cash before submission. Compare direct buyer prepayment/sponsorship: if readily available at lower total cost, pooled credit lacks a financing advantage.
+
+## Source matrix
+
+| Implementation | Immutable primary source | What is implemented/documented | Evidentiary limit and bootstrap lesson |
+|---|---|---|---|
+| Coinbase x402 | https://github.com/coinbase/x402/blob/dd927a26cfefc98c24b3ec38b3a8f204dad0c60d/examples/typescript/servers/express/index.ts | GET /weather exact $0.001 on Base Sepolia; facilitator paymentMiddleware gates return | Static sunny/70 response, not external productive weather data; example price not live vendor quote. Payment standard, NOT loan. |
+| AgentCash GTM | https://github.com/Merit-Systems/agentcash-gtm-agent/blob/e6aaef733a3d5db158ec68f7d0f5b2cf854b14a7/workspace/TOOLS.md | Exa search $0.01; Firecrawl scrape $0.013; Apollo org-enrich $0.05; Hunter verify $0.03; automatic USDC spending from funded wallet | Author-listed prices/estimates, not independently observed 402/settlement. README requires wallet deposit $10–20: operator bankroll, NOT demonstrated credit. |
+| AgentCash GTM workflow | https://github.com/Merit-Systems/agentcash-gtm-agent/blob/e6aaef733a3d5db158ec68f7d0f5b2cf854b14a7/README.md | Company research, prospecting, pipeline state; 10-company research ~$0.70 | Implemented template, not independently witnessed productive jobs or external revenue. 10 search+scrape calls = $0.23 by listed inputs; adding 10 enrich calls=$0.73. Excludes inference, gas, retries, sponsor fee, overhead. |
+| AgentCash router | https://github.com/Merit-Systems/agentcash-router/blob/1fc2987e34331007a30b07b6a6813f4c267c878c/README.md | Paid APIs via x402/MPP; placeholder credentials can serve valid-looking 402 challenges; real facilitator credentials required for settlement | A 402 quote alone DOES NOT prove successful payment or service delivery. Need verification/settlement/response receipts. |
+| Virtuals ACP v2 | https://github.com/Virtual-Protocol/acp-node-v2/blob/392dcc6eb17a6884c214c21aff31afa1b99f45ae/README.md | Budget set→client funds $0.1 USDC→provider submits→buyer completes; onchain job sessions and fund transfer jobs | Example amount, not marketplace price/real buyer commitment. Funded escrow and evaluator useful for acceptance-backed working capital. Loan not evidenced by agent spending. |
+| Coinbase AgentKit | https://github.com/coinbase/agentkit/blob/2e6dbaf725b9ec5f3b53003278100b0e655c214d/README.md | Wallet/action tools and payments | README explicitly prohibits using loan/credit proceeds to purchase digital assets through Coinbase products including AgentKit; do not choose loan-funded Coinbase trading bootstrap. Tools impose no default spend caps/destination allowlist; execution wrapper needed. |
+| Clawloan | https://github.com/andreolf/clawloan/blob/4df8f9ec6cf6d8a3c09d05e7dd81248552050469/contracts/src/LendingPoolV2.sol | Operator permissions, optional credit limits/verification, one active loan, full repayment, .1% atomic borrowAndExecute | Genuine loan code. Repository broadcast/TestBorrow record has 1-USDC Base Sepolia borrow tx hash 0xcff7952cce12924016b2c976e246f5e676c2fe1e327e6ee840886dab6e514f52 plus claimed status1; not independently queried chain. No demonstrated external job repayment. |
+| Clawloan credit | https://github.com/andreolf/clawloan/blob/4df8f9ec6cf6d8a3c09d05e7dd81248552050469/contracts/src/CreditScoring.sol | New agent base limit $10; repayment-count tiers to $1000; pool configured to enforce optionally | Initial credit is explicit protocol risk subsidy, not trust transitivity. Repayment counts/atomic loans can be gamed unless economic-loss/risk accounting constrains growth. |
+| AgentBond | https://github.com/ToXMon/agentbond/blob/e5066c41c8fd7faaba379b32765cc1136b28f988/README.md | Celo stake-backed vouching/task escrow/AI risk scoring hackathon architecture | Promising analogue, not verified deployment/borrower revenue; README calls reputation collateral yet feature says CELO tokens. Don't equate reputation loss with lender cash recovery. |
+| RepCollateral | https://github.com/77svene/repcollateral/blob/2a0aad34856c0486da0cb91b78fbfa1cc79ccf05/README.md | Reputation-backed agent lending hackathon repository | Repository claims only; no independent production-volume or profitable repayment verification. |
+
+## Cashflow fixture to simulate
+
+Illustrative BUYER PRICE IS AN ASSUMPTION, not market demand: $1.00 for a 10-company source-linked report. Quote-source inputs $0.23; cap loan $0.30 for retry budget. Buyer accepts after schema, ten companies, exact source URLs, bounded freshness, evidence excerpts, and non-invented claims. Funded buyer escrow cannot be paid to lender until work accepted. Borrower starts $0; sponsor $0.30 secured backing; separate lender supplies liquidity. On completion lender recovers .30 from buyer-funded receipt; unused .07 stays auditable and all fees funded by margin. Report generates actual source-linked content; local buyer acceptance still simulated. Gas/inference must be measured or explicitly bounded before positive-surplus claim. Failure consumes resource budget, loses sponsor backing, and lender recovers only through actual contract default route/delay, not administrative synthetic rescue.
+
+Need demonstrate two successive loans with sponsor capital restored from third-party buyer revenue, and later zero officer grants only if a separately implemented and verified transitive, capacity-conserving graph route exists. Existing contract lacks required algorithmic transitivity; simulation must distinguish deployed-provider policy from proposed graph model.
+
+## Network probes
+
+Read-only GET attempts to stableenrich.dev /.well-known/x402, /openapi.json, / and agentcash.dev / all failed proxy CONNECT 403 in this managed environment. No provider quote/payment/fulfilment happened. This is a channel limitation, not evidence the vendor failed. Ask Hermes to return CURRENT public 402 metadata/resource responses under the established coordination path; no API key needed to obtain an unpaid challenge. No new credentials or real funds used here.
+
+## Records
+
+Adjacent `*-meta.json` pins GitHub head and repository metadata; `*-tree.json` inventories exact tree; source text copied from GitHub contents at pinned commits. SHA256SUMS records fetched artifact bytes. Source collection used authenticated gh read only; no outreach/keys/publication/funds.

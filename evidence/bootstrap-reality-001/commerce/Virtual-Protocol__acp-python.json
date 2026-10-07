@@ -1,0 +1,753 @@
+{
+  "repo": "Virtual-Protocol/acp-python",
+  "sha": "398241f6f132129b41cfadb20b3401a4f968b596",
+  "tree": [
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e588c97c0870171ebb981bea8386fcaa6b98e3e7",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/e588c97c0870171ebb981bea8386fcaa6b98e3e7"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a3fea2bdce0f52cc61406451b7b5f421b4382bb7",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/a3fea2bdce0f52cc61406451b7b5f421b4382bb7"
+    },
+    {
+      "path": ".github/workflows/ci-test.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cecde77ca41b55a64c03fe2ae8cd771164a6a450",
+      "size": 2129,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/cecde77ca41b55a64c03fe2ae8cd771164a6a450"
+    },
+    {
+      "path": ".github/workflows/test-report.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4052fc3cb55f89de9f422527929df1dec4c53366",
+      "size": 521,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/4052fc3cb55f89de9f422527929df1dec4c53366"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d20ef7183c136796eee92c792413cfe111f0946",
+      "size": 289,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/4d20ef7183c136796eee92c792413cfe111f0946"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d47a810d4a0813dfd43533cc6c2866bbf59d6a6",
+      "size": 10925,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/5d47a810d4a0813dfd43533cc6c2866bbf59d6a6"
+    },
+    {
+      "path": "docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "882bcc1e6939054f46e53830021d4f386ddf0896",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/882bcc1e6939054f46e53830021d4f386ddf0896"
+    },
+    {
+      "path": "docs/imgs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "be96e5209a443dbcbb9681f208dac0d6afc21eac",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/be96e5209a443dbcbb9681f208dac0d6afc21eac"
+    },
+    {
+      "path": "docs/imgs/acp-banner.jpeg",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b01fb6f25b67186baa2a7f137ad50b0ba292d975",
+      "size": 188041,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/b01fb6f25b67186baa2a7f137ad50b0ba292d975"
+    },
+    {
+      "path": "examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a84bd12783709d019ffcecc7ade9da6d218ab850",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/a84bd12783709d019ffcecc7ade9da6d218ab850"
+    },
+    {
+      "path": "examples/acp_base",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f2e51b9565b068bc77468b62d23245427437ea22",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/f2e51b9565b068bc77468b62d23245427437ea22"
+    },
+    {
+      "path": "examples/acp_base/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01fa39f9af3ea99cc99bb70f0a1484aa9cdef93f",
+      "size": 7320,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/01fa39f9af3ea99cc99bb70f0a1484aa9cdef93f"
+    },
+    {
+      "path": "examples/acp_base/cross_chain_transfer_service",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "44d9642e2e2288487d1631777af9b7f74cb781c3",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/44d9642e2e2288487d1631777af9b7f74cb781c3"
+    },
+    {
+      "path": "examples/acp_base/cross_chain_transfer_service/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bb172ac2f702b4af9bafed402e554fa0fb73800",
+      "size": 3756,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/1bb172ac2f702b4af9bafed402e554fa0fb73800"
+    },
+    {
+      "path": "examples/acp_base/cross_chain_transfer_service/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2cf52c766023c5f8f42723471a15f265961d5dd",
+      "size": 4217,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/b2cf52c766023c5f8f42723471a15f265961d5dd"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "146586a94f3bc9dc5acd19bc6d24e93a23a99b9a",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/146586a94f3bc9dc5acd19bc6d24e93a23a99b9a"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c5081ea843a2e9e714cd2566903a8a727b436d4",
+      "size": 342,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/5c5081ea843a2e9e714cd2566903a8a727b436d4"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7882342fd3d44faf9100ba5efd6173ea3d612196",
+      "size": 8583,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/7882342fd3d44faf9100ba5efd6173ea3d612196"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "519cc585025aae05b1825731e89352983d1f553a",
+      "size": 3308,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/519cc585025aae05b1825731e89352983d1f553a"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation/evaluator.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f62122a35876e196ce5ab85bd3f7397cc3c00185",
+      "size": 1703,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/f62122a35876e196ce5ab85bd3f7397cc3c00185"
+    },
+    {
+      "path": "examples/acp_base/external_evaluation/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd742753ce1abc15887aaf3b1e08f94a50594997",
+      "size": 3083,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/fd742753ce1abc15887aaf3b1e08f94a50594997"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f863e036e68fe7848b8579bf2f50250d60b0ac25",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/f863e036e68fe7848b8579bf2f50250d60b0ac25"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/prediction_market",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a1b2b67446edb25dbee7f4aa327d7bc6d437900b",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/a1b2b67446edb25dbee7f4aa327d7bc6d437900b"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/prediction_market/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "971981f5b00cf561beeb08be72d1ada23ee764ac",
+      "size": 241,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/971981f5b00cf561beeb08be72d1ada23ee764ac"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/prediction_market/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0e0abdd392121e4d3ea93ff5fe3bd4ce99ac87a",
+      "size": 5898,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/f0e0abdd392121e4d3ea93ff5fe3bd4ce99ac87a"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/prediction_market/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c86ac184c39a47061746789b766e1f3970ad3c45",
+      "size": 6175,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/c86ac184c39a47061746789b766e1f3970ad3c45"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/prediction_market/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a6cb624844fdec6b2ec6ca910c6b3ed423633bb",
+      "size": 13180,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/2a6cb624844fdec6b2ec6ca910c6b3ed423633bb"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/trading",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4b7b7af41bfd36b816e43e37ccf1eaa236147990",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/4b7b7af41bfd36b816e43e37ccf1eaa236147990"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/trading/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "971981f5b00cf561beeb08be72d1ada23ee764ac",
+      "size": 241,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/971981f5b00cf561beeb08be72d1ada23ee764ac"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/trading/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a757e1526d3480fbab558cca7273ba28b1d26ef5",
+      "size": 5643,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/a757e1526d3480fbab558cca7273ba28b1d26ef5"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/trading/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55aade0b77c1c1a42ba2547d1b10daf9d6dcb7c5",
+      "size": 6299,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/55aade0b77c1c1a42ba2547d1b10daf9d6dcb7c5"
+    },
+    {
+      "path": "examples/acp_base/funds_transfer/trading/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb0f85e647a1c967bf90b2e942c3f2e5e2d590dc",
+      "size": 11305,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/bb0f85e647a1c967bf90b2e942c3f2e5e2d590dc"
+    },
+    {
+      "path": "examples/acp_base/helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fa809349f06b65e21fcc37320348b50609cd89c8",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/fa809349f06b65e21fcc37320348b50609cd89c8"
+    },
+    {
+      "path": "examples/acp_base/helpers/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c5081ea843a2e9e714cd2566903a8a727b436d4",
+      "size": 342,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/5c5081ea843a2e9e714cd2566903a8a727b436d4"
+    },
+    {
+      "path": "examples/acp_base/helpers/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2972b98feaf733f991d36adfe17e947e34b0e6b",
+      "size": 750,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/e2972b98feaf733f991d36adfe17e947e34b0e6b"
+    },
+    {
+      "path": "examples/acp_base/helpers/acp_helper_functions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e9bd773bd9c9ec180500d21a0ca923fc473ad06",
+      "size": 5156,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/1e9bd773bd9c9ec180500d21a0ca923fc473ad06"
+    },
+    {
+      "path": "examples/acp_base/polling_mode",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bd85a1235799d35a8cc680c662eb22727ac8b9c3",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/bd85a1235799d35a8cc680c662eb22727ac8b9c3"
+    },
+    {
+      "path": "examples/acp_base/polling_mode/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c5081ea843a2e9e714cd2566903a8a727b436d4",
+      "size": 342,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/5c5081ea843a2e9e714cd2566903a8a727b436d4"
+    },
+    {
+      "path": "examples/acp_base/polling_mode/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0332f368eaeeacb3573330934ed184aae833bc21",
+      "size": 4381,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/0332f368eaeeacb3573330934ed184aae833bc21"
+    },
+    {
+      "path": "examples/acp_base/polling_mode/evaluator.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b47ac67a1aac0e0fd950e93d7422ef38e6117289",
+      "size": 3006,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/b47ac67a1aac0e0fd950e93d7422ef38e6117289"
+    },
+    {
+      "path": "examples/acp_base/polling_mode/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57d39c8eabe3e3895bea85e78fb1a06cb1e95e33",
+      "size": 3947,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/57d39c8eabe3e3895bea85e78fb1a06cb1e95e33"
+    },
+    {
+      "path": "examples/acp_base/skip_evaluation",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "962d5624a50e5411992ca6eaea8af95239b6e788",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/962d5624a50e5411992ca6eaea8af95239b6e788"
+    },
+    {
+      "path": "examples/acp_base/skip_evaluation/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "971981f5b00cf561beeb08be72d1ada23ee764ac",
+      "size": 241,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/971981f5b00cf561beeb08be72d1ada23ee764ac"
+    },
+    {
+      "path": "examples/acp_base/skip_evaluation/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a10bdd9f77c35dd6ed212f5f11670f354f6be9ef",
+      "size": 7563,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/a10bdd9f77c35dd6ed212f5f11670f354f6be9ef"
+    },
+    {
+      "path": "examples/acp_base/skip_evaluation/buyer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "297380e5c8622c86a60fd78a19b5d0b19d3a2774",
+      "size": 3342,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/297380e5c8622c86a60fd78a19b5d0b19d3a2774"
+    },
+    {
+      "path": "examples/acp_base/skip_evaluation/seller.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e619274813bf76a1292775c9ad984306a84d8a7",
+      "size": 3077,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/6e619274813bf76a1292775c9ad984306a84d8a7"
+    },
+    {
+      "path": "poetry.lock",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "850afe48bafb7586187e2485d293af5710593d3b",
+      "size": 277970,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/850afe48bafb7586187e2485d293af5710593d3b"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "009de1ea121bc393058b48b5dfcb28362d27d719",
+      "size": 778,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/009de1ea121bc393058b48b5dfcb28362d27d719"
+    },
+    {
+      "path": "pytest.ini",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc1cf42b534b60dac1df4cacee1e976ae33308bc",
+      "size": 1554,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/bc1cf42b534b60dac1df4cacee1e976ae33308bc"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "459ed40fe3731da06c5a363ff567677bfc813ba6",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/459ed40fe3731da06c5a363ff567677bfc813ba6"
+    },
+    {
+      "path": "tests/.env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d8294f777836634ddc89fa3095f8c3e0ef80fc1",
+      "size": 337,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/4d8294f777836634ddc89fa3095f8c3e0ef80fc1"
+    },
+    {
+      "path": "tests/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a22ab617ae96ccd7b44f55432a622caf7ac07170",
+      "size": 9586,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/a22ab617ae96ccd7b44f55432a622caf7ac07170"
+    },
+    {
+      "path": "tests/TESTING_GUIDE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9971601767f4b2fb7e5c13d9cf41a197ec1b6ece",
+      "size": 25710,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/9971601767f4b2fb7e5c13d9cf41a197ec1b6ece"
+    },
+    {
+      "path": "tests/conftest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08a8d2567165291db9ffc5b1d7ed8a9f0706530b",
+      "size": 868,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/08a8d2567165291db9ffc5b1d7ed8a9f0706530b"
+    },
+    {
+      "path": "tests/integration",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54f93022fe9b28bb1ceae4d7066fa89b41e7bda9",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/54f93022fe9b28bb1ceae4d7066fa89b41e7bda9"
+    },
+    {
+      "path": "tests/integration/test_client_integration.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdf86ff2f6ce8614397383e86f4080fc0ce80fe1",
+      "size": 6770,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/cdf86ff2f6ce8614397383e86f4080fc0ce80fe1"
+    },
+    {
+      "path": "tests/integration/test_integration_contract_client_v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4189b27807ca215ecb2663b2c3fd187de71a479b",
+      "size": 2371,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/4189b27807ca215ecb2663b2c3fd187de71a479b"
+    },
+    {
+      "path": "tests/unit",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a474bf0e467e35f52084ebe8a840b97539c4525d",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/a474bf0e467e35f52084ebe8a840b97539c4525d"
+    },
+    {
+      "path": "tests/unit/test_account.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9089dc98cd4f891d5569b476ca3639250cdea0a",
+      "size": 7765,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/f9089dc98cd4f891d5569b476ca3639250cdea0a"
+    },
+    {
+      "path": "tests/unit/test_client.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b943496ddd3a5c4cd1e50e3ff336c9719b527472",
+      "size": 55484,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/b943496ddd3a5c4cd1e50e3ff336c9719b527472"
+    },
+    {
+      "path": "tests/unit/test_contract_client_v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6534cbf77dd1a5c7ff38834c9d48b49affb13835",
+      "size": 12263,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/6534cbf77dd1a5c7ff38834c9d48b49affb13835"
+    },
+    {
+      "path": "tests/unit/test_fare.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fe29678b5f374128efb663378ba664564434015",
+      "size": 14425,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/7fe29678b5f374128efb663378ba664564434015"
+    },
+    {
+      "path": "tests/unit/test_job.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87b326b06b63cf685a1924603325ff3ab5621a02",
+      "size": 53765,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/87b326b06b63cf685a1924603325ff3ab5621a02"
+    },
+    {
+      "path": "tests/unit/test_job_offering.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3193af962c0c16accc5dd9df16569fa5ab44dab",
+      "size": 31179,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/f3193af962c0c16accc5dd9df16569fa5ab44dab"
+    },
+    {
+      "path": "tests/unit/test_memo.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c1556ef85d19588f663b1846d00afd0a5ce7cdb",
+      "size": 15525,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/9c1556ef85d19588f663b1846d00afd0a5ce7cdb"
+    },
+    {
+      "path": "tests/unit/test_x402.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "580f0fd09f242e23472a73e96fd5bcf136399dbf",
+      "size": 18687,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/580f0fd09f242e23472a73e96fd5bcf136399dbf"
+    },
+    {
+      "path": "virtuals_acp",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "094688e2b295a1c4eae8db3eb3e94b07708ce7cd",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/094688e2b295a1c4eae8db3eb3e94b07708ce7cd"
+    },
+    {
+      "path": "virtuals_acp/abis",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ed941dad205b5f21b8e6df8a997719f3a0bd1ad6",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/ed941dad205b5f21b8e6df8a997719f3a0bd1ad6"
+    },
+    {
+      "path": "virtuals_acp/abis/abi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f649e20bac97bad4268000b959e2d97b34f7f3eb",
+      "size": 32369,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/f649e20bac97bad4268000b959e2d97b34f7f3eb"
+    },
+    {
+      "path": "virtuals_acp/abis/abi_v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90282e839680bbfcdaa21c10d2d771fe2f47aef4",
+      "size": 30320,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/90282e839680bbfcdaa21c10d2d771fe2f47aef4"
+    },
+    {
+      "path": "virtuals_acp/abis/erc20_abi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e66f51be584729786538228335cc94719ee5497a",
+      "size": 1601,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/e66f51be584729786538228335cc94719ee5497a"
+    },
+    {
+      "path": "virtuals_acp/abis/flat_token_v2_abi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "569d5f9d1e81e0df92138e671c33859801179f60",
+      "size": 25239,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/569d5f9d1e81e0df92138e671c33859801179f60"
+    },
+    {
+      "path": "virtuals_acp/abis/job_manager.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47d64a28826e05a35bf03294fa4c05d9a1c31c37",
+      "size": 21622,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/47d64a28826e05a35bf03294fa4c05d9a1c31c37"
+    },
+    {
+      "path": "virtuals_acp/abis/memo_manager.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25b4c016ad2d4aa6bd1e4370fe84ff6541d9dfa4",
+      "size": 38013,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/25b4c016ad2d4aa6bd1e4370fe84ff6541d9dfa4"
+    },
+    {
+      "path": "virtuals_acp/abis/single_signer_validation_module_abi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abbec76f99e4a7ad9c62575ddc25cd7a1334dff9",
+      "size": 6894,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/abbec76f99e4a7ad9c62575ddc25cd7a1334dff9"
+    },
+    {
+      "path": "virtuals_acp/abis/weth_abi.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef7ad7f47676f198a6ba4c0999669e0f491781b8",
+      "size": 5866,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/ef7ad7f47676f198a6ba4c0999669e0f491781b8"
+    },
+    {
+      "path": "virtuals_acp/account.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5635fa0847bcc0f4a11a42b7e2fd9f35f74cb61",
+      "size": 816,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/e5635fa0847bcc0f4a11a42b7e2fd9f35f74cb61"
+    },
+    {
+      "path": "virtuals_acp/alchemy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a6e64401a0f3433152f46cbf9d17eb43619b4bb",
+      "size": 10391,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/2a6e64401a0f3433152f46cbf9d17eb43619b4bb"
+    },
+    {
+      "path": "virtuals_acp/client.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46d980bea69cf016ec63d9a00f5fff5fca8da68a",
+      "size": 36042,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/46d980bea69cf016ec63d9a00f5fff5fca8da68a"
+    },
+    {
+      "path": "virtuals_acp/configs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "01fd8f8dd212e40e51bcb787d5bc300daeda9275",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/01fd8f8dd212e40e51bcb787d5bc300daeda9275"
+    },
+    {
+      "path": "virtuals_acp/configs/configs.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fd2358604d8ebcaf5ad161ce3900cea8a5685da",
+      "size": 7134,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/5fd2358604d8ebcaf5ad161ce3900cea8a5685da"
+    },
+    {
+      "path": "virtuals_acp/constants.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c19429b364e9aac4d346666285a4b197bfc38191",
+      "size": 689,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/c19429b364e9aac4d346666285a4b197bfc38191"
+    },
+    {
+      "path": "virtuals_acp/contract_clients",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cb7255d04e6c6c4deb7b5a1193ed1ae4e8914355",
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/trees/cb7255d04e6c6c4deb7b5a1193ed1ae4e8914355"
+    },
+    {
+      "path": "virtuals_acp/contract_clients/base_contract_client.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6202856ad1ce70944d82a400d91493417b97252",
+      "size": 15285,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/b6202856ad1ce70944d82a400d91493417b97252"
+    },
+    {
+      "path": "virtuals_acp/contract_clients/contract_client.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96b1bcc61f920624929af5e3809a795d71b3c4f2",
+      "size": 9550,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/96b1bcc61f920624929af5e3809a795d71b3c4f2"
+    },
+    {
+      "path": "virtuals_acp/contract_clients/contract_client_v2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "732bdc442f782773fe4ec031ee5c75d0fe64be2f",
+      "size": 9310,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/732bdc442f782773fe4ec031ee5c75d0fe64be2f"
+    },
+    {
+      "path": "virtuals_acp/env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "983e3fd4c25d1b46c955d56acb703c41f0d1ed46",
+      "size": 1114,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/983e3fd4c25d1b46c955d56acb703c41f0d1ed46"
+    },
+    {
+      "path": "virtuals_acp/exceptions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e8d285f8a90d0bb8723824609b49b0a9ce43dfb",
+      "size": 401,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/8e8d285f8a90d0bb8723824609b49b0a9ce43dfb"
+    },
+    {
+      "path": "virtuals_acp/fare.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0f915635f6c85846e3b7bfd7db648d80169e087",
+      "size": 4044,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/a0f915635f6c85846e3b7bfd7db648d80169e087"
+    },
+    {
+      "path": "virtuals_acp/job.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "475c85c59653da803da32a19ba8932085e595f65",
+      "size": 27825,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/475c85c59653da803da32a19ba8932085e595f65"
+    },
+    {
+      "path": "virtuals_acp/job_offering.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22afbe023be22a4b8a7b3c16434e3bda0ed39403",
+      "size": 6401,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/22afbe023be22a4b8a7b3c16434e3bda0ed39403"
+    },
+    {
+      "path": "virtuals_acp/memo.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "425b8fc961a6bfcc8396d26cf6f1d20c4515db6c",
+      "size": 2111,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/425b8fc961a6bfcc8396d26cf6f1d20c4515db6c"
+    },
+    {
+      "path": "virtuals_acp/models.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4045ac6b64c5612cd360531b3998490420b20b03",
+      "size": 7691,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/4045ac6b64c5612cd360531b3998490420b20b03"
+    },
+    {
+      "path": "virtuals_acp/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "454fe3469c9101a2b8f5d0681bfc588188bfb637",
+      "size": 2949,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/454fe3469c9101a2b8f5d0681bfc588188bfb637"
+    },
+    {
+      "path": "virtuals_acp/web3.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aae21ea7c8c80f016cb2aa31e15e5cff29ebc26a",
+      "size": 1447,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/aae21ea7c8c80f016cb2aa31e15e5cff29ebc26a"
+    },
+    {
+      "path": "virtuals_acp/x402.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10c7b787b04a28c3d942fd1ac87670ffad610978",
+      "size": 8654,
+      "url": "https://api.github.com/repos/Virtual-Protocol/acp-python/git/blobs/10c7b787b04a28c3d942fd1ac87670ffad610978"
+    }
+  ]
+}

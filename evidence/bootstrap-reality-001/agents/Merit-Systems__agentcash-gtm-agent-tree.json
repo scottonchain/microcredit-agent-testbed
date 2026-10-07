@@ -1,0 +1,125 @@
+{
+  "sha": "e6aaef733a3d5db158ec68f7d0f5b2cf854b14a7",
+  "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/trees/e6aaef733a3d5db158ec68f7d0f5b2cf854b14a7",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fa32d60efb9df0ae643c6903d721a052bb610dd",
+      "size": 65,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/6fa32d60efb9df0ae643c6903d721a052bb610dd"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "598228c20ea4a9df010d1a11057de8db911e25ce",
+      "size": 4925,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/598228c20ea4a9df010d1a11057de8db911e25ce"
+    },
+    {
+      "path": "manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41d755b93331a607ebaaf5bfb465912c23843b88",
+      "size": 2378,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/41d755b93331a607ebaaf5bfb465912c23843b88"
+    },
+    {
+      "path": "workspace",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fa73ac7a26317ae09431f5be03ed0b70144c0313",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/trees/fa73ac7a26317ae09431f5be03ed0b70144c0313"
+    },
+    {
+      "path": "workspace/AGENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "491931cb5fec14dc57be45c942f59b67e48b27f1",
+      "size": 3711,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/491931cb5fec14dc57be45c942f59b67e48b27f1"
+    },
+    {
+      "path": "workspace/HEARTBEAT.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bce985896019c2bc6f2378c9c5945c466b9f63e",
+      "size": 393,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/8bce985896019c2bc6f2378c9c5945c466b9f63e"
+    },
+    {
+      "path": "workspace/IDENTITY.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a59e46e4b1d63c9bde67289d95cf836c751107a",
+      "size": 262,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/1a59e46e4b1d63c9bde67289d95cf836c751107a"
+    },
+    {
+      "path": "workspace/SOUL.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69f5287cc687a9d4f8f003ec649289479b8224bf",
+      "size": 3081,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/69f5287cc687a9d4f8f003ec649289479b8224bf"
+    },
+    {
+      "path": "workspace/TOOLS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89feeb55e2031ed91ceb1480dc04943c50bde0af",
+      "size": 2260,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/89feeb55e2031ed91ceb1480dc04943c50bde0af"
+    },
+    {
+      "path": "workspace/USER.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fec75752b99fc6add2ea5378236c6a59b3d70dd3",
+      "size": 412,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/fec75752b99fc6add2ea5378236c6a59b3d70dd3"
+    },
+    {
+      "path": "workspace/data",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "640bc5f6e53bfecdd983f863ff9aa4e2153c2db2",
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/trees/640bc5f6e53bfecdd983f863ff9aa4e2153c2db2"
+    },
+    {
+      "path": "workspace/data/campaigns.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c56958666281fced986bd3c00b700b3e951ae09b",
+      "size": 913,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/c56958666281fced986bd3c00b700b3e951ae09b"
+    },
+    {
+      "path": "workspace/data/icp.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41cf1ef773ff39815c81bd3c798af33c8883e092",
+      "size": 717,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/41cf1ef773ff39815c81bd3c798af33c8883e092"
+    },
+    {
+      "path": "workspace/data/outreach-log.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b76e5814d287a2e9d05e0e78e33142a00c52d770",
+      "size": 19,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/b76e5814d287a2e9d05e0e78e33142a00c52d770"
+    },
+    {
+      "path": "workspace/data/pipeline.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "179c346862dc6dac36335c0a5aa43f70a4520a21",
+      "size": 126,
+      "url": "https://api.github.com/repos/Merit-Systems/agentcash-gtm-agent/git/blobs/179c346862dc6dac36335c0a5aa43f70a4520a21"
+    }
+  ],
+  "truncated": false
+}

@@ -1,0 +1,2618 @@
+{
+  "repo": "aave/aave-v3-core",
+  "sha": "782f51917056a53a2c228701058a6c3fb233684a",
+  "tree": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52031de51c4ca324ffd010344868a723a6c36b8d",
+      "size": 33,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/52031de51c4ca324ffd010344868a723a6c36b8d"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9978e148b7848b801e1ecd377c087058c841d290",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/9978e148b7848b801e1ecd377c087058c841d290"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "275c945879cbeee25d246a01dd7b12378c0f5686",
+      "size": 81,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/275c945879cbeee25d246a01dd7b12378c0f5686"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "aba2501dbb3cd4df57644fe6b657cd21961c5a8c",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/aba2501dbb3cd4df57644fe6b657cd21961c5a8c"
+    },
+    {
+      "path": ".github/workflows/certora.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9042a3f2bbac2c31c10dfd99959b27e758bcf02",
+      "size": 1531,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d9042a3f2bbac2c31c10dfd99959b27e758bcf02"
+    },
+    {
+      "path": ".github/workflows/node.js.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d2fba62ab9715eb2627915370d9c3d259675848",
+      "size": 788,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1d2fba62ab9715eb2627915370d9c3d259675848"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "772f5a61f88de5453c57df92a89102e08d7f35db",
+      "size": 1147,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/772f5a61f88de5453c57df92a89102e08d7f35db"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1560df062035ee729d22469fce05241063edfac1",
+      "size": 358,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1560df062035ee729d22469fce05241063edfac1"
+    },
+    {
+      "path": ".gitlab-ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23de908a634d58361115acb54bbbec2c558405f6",
+      "size": 3291,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/23de908a634d58361115acb54bbbec2c558405f6"
+    },
+    {
+      "path": ".husky",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5a0a2afd7ac787cf3158fb59ad53537783396c9d",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/5a0a2afd7ac787cf3158fb59ad53537783396c9d"
+    },
+    {
+      "path": ".husky/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31354ec1389994b5f6708c7d915fdcc6bb76ba6e",
+      "size": 2,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/31354ec1389994b5f6708c7d915fdcc6bb76ba6e"
+    },
+    {
+      "path": ".husky/pre-commit",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "36af219892fda8ea669cd4b6725cd7b892231967",
+      "size": 58,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/36af219892fda8ea669cd4b6725cd7b892231967"
+    },
+    {
+      "path": ".npmrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "284495c09b0943172d0101d91b2db8acfc36825b",
+      "size": 34,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/284495c09b0943172d0101d91b2db8acfc36825b"
+    },
+    {
+      "path": ".nvmrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff650592a1e32d0bdaf21a11f2c0a015f5de5651",
+      "size": 9,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ff650592a1e32d0bdaf21a11f2c0a015f5de5651"
+    },
+    {
+      "path": ".prettierignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "769704e5ef1af24ef289d8c3431ccf583c58b48b",
+      "size": 123,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/769704e5ef1af24ef289d8c3431ccf583c58b48b"
+    },
+    {
+      "path": ".prettierrc",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7608ccf5911c946d8e989aa16deddbeb1464de9",
+      "size": 333,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c7608ccf5911c946d8e989aa16deddbeb1464de9"
+    },
+    {
+      "path": ".solcover.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc2d2b9901d0a7c993e51c764e9d7e487cddef10",
+      "size": 435,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/dc2d2b9901d0a7c993e51c764e9d7e487cddef10"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "677cd074fdf6420afce3dba3c1ab2aa9033a5346",
+      "size": 99977,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/677cd074fdf6420afce3dba3c1ab2aa9033a5346"
+    },
+    {
+      "path": "Dockerfile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "022840ec2bb9ff01c5bea98f8b4dcba19028f984",
+      "size": 117,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/022840ec2bb9ff01c5bea98f8b4dcba19028f984"
+    },
+    {
+      "path": "LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a6bf0122d0ffc8ae486aedc48bf477f2def213a",
+      "size": 3935,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4a6bf0122d0ffc8ae486aedc48bf477f2def213a"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "025e22ca9044b89fa68354ffc43da7a29494f822",
+      "size": 4649,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/025e22ca9044b89fa68354ffc43da7a29494f822"
+    },
+    {
+      "path": "audits",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ad522a7eede2e67a01e1a5d9e7de7678069478f",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/0ad522a7eede2e67a01e1a5d9e7de7678069478f"
+    },
+    {
+      "path": "audits/01-11-2021_OpenZeppelin_AaveV3.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82ec1625bb598a690eb94795ffab391d6d14cf8d",
+      "size": 1224058,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/82ec1625bb598a690eb94795ffab391d6d14cf8d"
+    },
+    {
+      "path": "audits/07-01-2022_TrailOfBits_AaveV3.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed9ede303a3d0c5424f090cdd41c0ce7fa75d672",
+      "size": 417141,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ed9ede303a3d0c5424f090cdd41c0ce7fa75d672"
+    },
+    {
+      "path": "audits/09-12-2022_PeckShield_AaveV3-0-1.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be293a4fed30fa13d6f56c5b938d057dea8de34e",
+      "size": 341086,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/be293a4fed30fa13d6f56c5b938d057dea8de34e"
+    },
+    {
+      "path": "audits/14-01-2022_PeckShield_AaveV3.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab37429450e8fbdb7a86be36d423b627297d88fa",
+      "size": 395584,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ab37429450e8fbdb7a86be36d423b627297d88fa"
+    },
+    {
+      "path": "audits/19-04-2023_SigmaPrime_AaveV3-0-2.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5de568eab6c7009f52a3e8285c38ca83c1f24583",
+      "size": 361256,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/5de568eab6c7009f52a3e8285c38ca83c1f24583"
+    },
+    {
+      "path": "audits/23-12-2022_SigmaPrime_AaveV3-0-1.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "317d9dcde97aef3e2c448028670d24f1ecaa9418",
+      "size": 351225,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/317d9dcde97aef3e2c448028670d24f1ecaa9418"
+    },
+    {
+      "path": "audits/27-01-2022_ABDK_AaveV3.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e212a7523cc257c58ebb5306c66d13f0e18fc44",
+      "size": 1405807,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7e212a7523cc257c58ebb5306c66d13f0e18fc44"
+    },
+    {
+      "path": "audits/27-01-2022_SigmaPrime_AaveV3.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea6e78f788c2e7b83d36053b460bd98366c49fd1",
+      "size": 433393,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ea6e78f788c2e7b83d36053b460bd98366c49fd1"
+    },
+    {
+      "path": "certora",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4ed468d35f0915733fa4166990e7ef3ec0821877",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/4ed468d35f0915733fa4166990e7ef3ec0821877"
+    },
+    {
+      "path": "certora/Aave_V3.0.1_Formal_Verification_Report_Dec2022.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ceadfc2645e89137a79bbe8aa704fdde47e7a42",
+      "size": 502990,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9ceadfc2645e89137a79bbe8aa704fdde47e7a42"
+    },
+    {
+      "path": "certora/Aave_V3.0.2_PR_820_Report_Mar2023.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f1e3e1af6044efa166d16cd2e482d79927361ddf",
+      "size": 218438,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f1e3e1af6044efa166d16cd2e482d79927361ddf"
+    },
+    {
+      "path": "certora/Aave_V3_Formal_Verification_Report_Jan2022.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e2907f9830c990c08e71a7dbe222696f4f8d150",
+      "size": 115198,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4e2907f9830c990c08e71a7dbe222696f4f8d150"
+    },
+    {
+      "path": "certora/Makefile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e33459caba154199907115ed7f439e0ad96ae81",
+      "size": 698,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0e33459caba154199907115ed7f439e0ad96ae81"
+    },
+    {
+      "path": "certora/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "860d907b4f520e0a833bdc4f641f9637d45058ce",
+      "size": 2164,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/860d907b4f520e0a833bdc4f641f9637d45058ce"
+    },
+    {
+      "path": "certora/applyHarness.patch",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f61ba7c55b0a487393ef1a1602faf01d35abee17",
+      "size": 1540,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f61ba7c55b0a487393ef1a1602faf01d35abee17"
+    },
+    {
+      "path": "certora/harness",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e265f76e7eb1d46f5e9d4a992944df1011eea9f1",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/e265f76e7eb1d46f5e9d4a992944df1011eea9f1"
+    },
+    {
+      "path": "certora/harness/ATokenHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "032db675b9125277e9ed3dc8ab5a9eb294e9e3b5",
+      "size": 938,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/032db675b9125277e9ed3dc8ab5a9eb294e9e3b5"
+    },
+    {
+      "path": "certora/harness/PoolHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fb9eace2b777977779e8e0bac7e9e42598fb5e7",
+      "size": 857,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4fb9eace2b777977779e8e0bac7e9e42598fb5e7"
+    },
+    {
+      "path": "certora/harness/ReserveConfigurationHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e9708ef5770b183ce8f3ee9e2e5e38ea0916eec",
+      "size": 12968,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1e9708ef5770b183ce8f3ee9e2e5e38ea0916eec"
+    },
+    {
+      "path": "certora/harness/SimpleERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1af708f6fc2789fa827f6f4aca4fd34aa0efe8d9",
+      "size": 1719,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1af708f6fc2789fa827f6f4aca4fd34aa0efe8d9"
+    },
+    {
+      "path": "certora/harness/StableDebtTokenHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07052d16b3f655b069a3d94c963aeeff7083a14c",
+      "size": 1343,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/07052d16b3f655b069a3d94c963aeeff7083a14c"
+    },
+    {
+      "path": "certora/harness/SymbolicPriceOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b21a1d6eb194aa71d6e863c132e589069fa3a6c5",
+      "size": 601,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b21a1d6eb194aa71d6e863c132e589069fa3a6c5"
+    },
+    {
+      "path": "certora/harness/UserConfigurationHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eddf96ebbc6fd7540c6430a72466d6084fcc2b2c",
+      "size": 3229,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/eddf96ebbc6fd7540c6430a72466d6084fcc2b2c"
+    },
+    {
+      "path": "certora/harness/VariableDebtTokenHarness.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae8c7444a2c303a3f69ad0d60f60a6a8c765d009",
+      "size": 612,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ae8c7444a2c303a3f69ad0d60f60a6a8c765d009"
+    },
+    {
+      "path": "certora/munged",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "96233b34ccba706a9f89dca87a9282a3cd836e0a",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/96233b34ccba706a9f89dca87a9282a3cd836e0a"
+    },
+    {
+      "path": "certora/munged/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6b7ef32c8478a48c3994dcadc86837f4371184d",
+      "size": 14,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d6b7ef32c8478a48c3994dcadc86837f4371184d"
+    },
+    {
+      "path": "certora/scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3ff033066d95e83a15dd95bc054050d0bd75d2a3",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/3ff033066d95e83a15dd95bc054050d0bd75d2a3"
+    },
+    {
+      "path": "certora/scripts/verifyAToken.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "fc776a4262ccce9023ac4020552004df660bc83a",
+      "size": 300,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fc776a4262ccce9023ac4020552004df660bc83a"
+    },
+    {
+      "path": "certora/scripts/verifyPool.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "270fe551b1caeb2bbe2f27bda54675fa7bdd3859",
+      "size": 512,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/270fe551b1caeb2bbe2f27bda54675fa7bdd3859"
+    },
+    {
+      "path": "certora/scripts/verifyReserveConfiguration.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "57500b8797ea006a35486c9b37995f26be3b0924",
+      "size": 273,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/57500b8797ea006a35486c9b37995f26be3b0924"
+    },
+    {
+      "path": "certora/scripts/verifyStableTokenCLI.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "2aefbee519e1f09219d89f1d0505a1aee45229c2",
+      "size": 280,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2aefbee519e1f09219d89f1d0505a1aee45229c2"
+    },
+    {
+      "path": "certora/scripts/verifyUserConfigCLI.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "be8370a7105a37403a69e178f835a0924fc7eb3e",
+      "size": 271,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/be8370a7105a37403a69e178f835a0924fc7eb3e"
+    },
+    {
+      "path": "certora/scripts/verifyVariableTokenCLI.sh",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "aad0dcfd38592a718f48f06cbc6a500f1573183c",
+      "size": 227,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/aad0dcfd38592a718f48f06cbc6a500f1573183c"
+    },
+    {
+      "path": "certora/specs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "391f188fd008c13359580d42c1437ff5da1bcaf3",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/391f188fd008c13359580d42c1437ff5da1bcaf3"
+    },
+    {
+      "path": "certora/specs/AToken.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe5488dc0e0b245a0d4e71fd188f5cc1cb1e17b7",
+      "size": 11950,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fe5488dc0e0b245a0d4e71fd188f5cc1cb1e17b7"
+    },
+    {
+      "path": "certora/specs/ReserveConfiguration.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "887f1effbb634dfb692c804c47f993a0961e5d09",
+      "size": 7966,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/887f1effbb634dfb692c804c47f993a0961e5d09"
+    },
+    {
+      "path": "certora/specs/StableDebtToken.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbff132d9b033fac51db9585026ae089eb2ce166",
+      "size": 10989,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fbff132d9b033fac51db9585026ae089eb2ce166"
+    },
+    {
+      "path": "certora/specs/UserConfiguration.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b89918ce07d8401857f643333730b0a1fcb49d9a",
+      "size": 7841,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b89918ce07d8401857f643333730b0a1fcb49d9a"
+    },
+    {
+      "path": "certora/specs/VariableDebtToken.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89afd41f9732ef3c8f487e46059a8f1154f8e013",
+      "size": 9203,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/89afd41f9732ef3c8f487e46059a8f1154f8e013"
+    },
+    {
+      "path": "certora/specs/pool.spec",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a94fa404a2cb416ee5a0d6a19e295c5ed7680d20",
+      "size": 8224,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a94fa404a2cb416ee5a0d6a19e295c5ed7680d20"
+    },
+    {
+      "path": "contracts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a134678c5f336e706bcf0e75f7dbc29ace1fb623",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/a134678c5f336e706bcf0e75f7dbc29ace1fb623"
+    },
+    {
+      "path": "contracts/dependencies",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fbde8fb1406f93f77d0d09a11710fe08227d349b",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/fbde8fb1406f93f77d0d09a11710fe08227d349b"
+    },
+    {
+      "path": "contracts/dependencies/chainlink",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f2f3ad4afc9ce7eca7df79dcb80ec2235bafc1f2",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/f2f3ad4afc9ce7eca7df79dcb80ec2235bafc1f2"
+    },
+    {
+      "path": "contracts/dependencies/chainlink/AggregatorInterface.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "496151aa07da300d0abd2c52ed9588880048ed4b",
+      "size": 627,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/496151aa07da300d0abd2c52ed9588880048ed4b"
+    },
+    {
+      "path": "contracts/dependencies/gnosis",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7dad171240f4c4a77152fa6ef6f6f83db31a3c26",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/7dad171240f4c4a77152fa6ef6f6f83db31a3c26"
+    },
+    {
+      "path": "contracts/dependencies/gnosis/contracts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "94af0a8e64e918a2db6a0c5e858eb59a9f8a7e5f",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/94af0a8e64e918a2db6a0c5e858eb59a9f8a7e5f"
+    },
+    {
+      "path": "contracts/dependencies/gnosis/contracts/GPv2SafeERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa234fa7d52b5fcb52d591a96168895265dcb2db",
+      "size": 4725,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fa234fa7d52b5fcb52d591a96168895265dcb2db"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2c7f4df8e0303b90e1755393bb363bc41159207f",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/2c7f4df8e0303b90e1755393bb363bc41159207f"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1de5c8f50165be0fed03cba6cb4718f2475b8b1c",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/1de5c8f50165be0fed03cba6cb4718f2475b8b1c"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/AccessControl.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b3e7c311805bee17e01adff10a1673e042b09c3",
+      "size": 6593,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3b3e7c311805bee17e01adff10a1673e042b09c3"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/Address.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a6bb205aeb2f1da4fec76a1a9326130327d4963",
+      "size": 7381,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9a6bb205aeb2f1da4fec76a1a9326130327d4963"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/Context.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01377c6d8fd772cf31224af86872bebd37a6813c",
+      "size": 921,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/01377c6d8fd772cf31224af86872bebd37a6813c"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/ERC165.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f34e13d7125a8b33b71cb0b4508af06ad505e1e",
+      "size": 907,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3f34e13d7125a8b33b71cb0b4508af06ad505e1e"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/ERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc52c0608b5abc9285a5b888368594605c795dd4",
+      "size": 10297,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/cc52c0608b5abc9285a5b888368594605c795dd4"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/IAccessControl.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b63934d2426f2b106f52280a0f6fb9f3d15f129",
+      "size": 2733,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2b63934d2426f2b106f52280a0f6fb9f3d15f129"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/IERC165.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7c8e53d00ae546585e67d3fb1f9775897066e5e",
+      "size": 768,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c7c8e53d00ae546585e67d3fb1f9775897066e5e"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/IERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d470e0155ca78d08e4eb0bd71a67af3311d9519",
+      "size": 2578,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1d470e0155ca78d08e4eb0bd71a67af3311d9519"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/IERC20Detailed.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bd0685ab7d64783b1eedbd677833ce01387c52a",
+      "size": 310,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/6bd0685ab7d64783b1eedbd677833ce01387c52a"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/Ownable.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a65c2ceb9f3a006977afcee70e0a3ee4dcb732c3",
+      "size": 2104,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a65c2ceb9f3a006977afcee70e0a3ee4dcb732c3"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/SafeCast.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2ec219709f5e9ca3b4eaf30fc60e0a7ec855382",
+      "size": 7437,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a2ec219709f5e9ca3b4eaf30fc60e0a7ec855382"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/SafeERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93db74c110feb17601d8fb3814c81cb8d8c00a7e",
+      "size": 3632,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/93db74c110feb17601d8fb3814c81cb8d8c00a7e"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/SafeMath.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c673f640d6ca541dcbbf25e7435cd49b8627a949",
+      "size": 1773,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c673f640d6ca541dcbbf25e7435cd49b8627a949"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/contracts/Strings.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89c8b98a3a1431df91da52db402655a244eeb58e",
+      "size": 1777,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/89c8b98a3a1431df91da52db402655a244eeb58e"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9c812b9e960fd95d71313d0fcb7b006ad6ade65c",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/9c812b9e960fd95d71313d0fcb7b006ad6ade65c"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/AdminUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c686cc741e9ec9ff6dd36174b1305255d94d8cca",
+      "size": 1391,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c686cc741e9ec9ff6dd36174b1305255d94d8cca"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/BaseAdminUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f65f3697352a8b87e0fc272a5055d04e9ae96d6",
+      "size": 3847,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2f65f3697352a8b87e0fc272a5055d04e9ae96d6"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/BaseUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0d9b80f0f09b5db629996f6588f9f15a631ded3",
+      "size": 1955,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a0d9b80f0f09b5db629996f6588f9f15a631ded3"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/Initializable.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "805bdd74156166dcbc70f2093afacc8ca8169f5c",
+      "size": 2071,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/805bdd74156166dcbc70f2093afacc8ca8169f5c"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/InitializableAdminUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33ebadc2771183e943360661ae0c7939da1e4e02",
+      "size": 1549,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/33ebadc2771183e943360661ae0c7939da1e4e02"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/InitializableUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "519ab539418624569132821882c3c60bf3531cec",
+      "size": 1227,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/519ab539418624569132821882c3c60bf3531cec"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/Proxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a22797b782f3c3794a4f7c3fdeafc8cd63bd9c2",
+      "size": 2248,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4a22797b782f3c3794a4f7c3fdeafc8cd63bd9c2"
+    },
+    {
+      "path": "contracts/dependencies/openzeppelin/upgradeability/UpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6dce7c09be5c3a543c019cdbbe0d1bfd8bcee65",
+      "size": 1139,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e6dce7c09be5c3a543c019cdbbe0d1bfd8bcee65"
+    },
+    {
+      "path": "contracts/dependencies/weth",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ebd9c87cb964e05a95c8f27dffc6f870f56199f0",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/ebd9c87cb964e05a95c8f27dffc6f870f56199f0"
+    },
+    {
+      "path": "contracts/dependencies/weth/WETH9.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "829d345505de1913884caf2f5e2f9420e5c06706",
+      "size": 37536,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/829d345505de1913884caf2f5e2f9420e5c06706"
+    },
+    {
+      "path": "contracts/deployments",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9230afb1741197a2a141b97a52c5df5345f90aa2",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/9230afb1741197a2a141b97a52c5df5345f90aa2"
+    },
+    {
+      "path": "contracts/deployments/ReservesSetupHelper.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b410c4f203f559a4d480a9a22b0faeb2deff6bf",
+      "size": 2264,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7b410c4f203f559a4d480a9a22b0faeb2deff6bf"
+    },
+    {
+      "path": "contracts/flashloan",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b2f99d0bae6b6d5574a0f9a1b2e22b0f8fadcc21",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/b2f99d0bae6b6d5574a0f9a1b2e22b0f8fadcc21"
+    },
+    {
+      "path": "contracts/flashloan/base",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ebae4162ff022a4bd49314d95ba59a622b7a9971",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/ebae4162ff022a4bd49314d95ba59a622b7a9971"
+    },
+    {
+      "path": "contracts/flashloan/base/FlashLoanReceiverBase.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4092bdd66f807f22bfeafb9d5588074dac6e021a",
+      "size": 697,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4092bdd66f807f22bfeafb9d5588074dac6e021a"
+    },
+    {
+      "path": "contracts/flashloan/base/FlashLoanSimpleReceiverBase.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c73c4d505e6b8479e70dc6fe38b2899518e3b85",
+      "size": 727,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2c73c4d505e6b8479e70dc6fe38b2899518e3b85"
+    },
+    {
+      "path": "contracts/flashloan/base/LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "506d18ec4b4019186024e3559d7b7a1ed7454956",
+      "size": 544,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/506d18ec4b4019186024e3559d7b7a1ed7454956"
+    },
+    {
+      "path": "contracts/flashloan/interfaces",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6c421438b25737f95f7405dcba2acd741765cb1b",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/6c421438b25737f95f7405dcba2acd741765cb1b"
+    },
+    {
+      "path": "contracts/flashloan/interfaces/IFlashLoanReceiver.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f006202d86e46b98b9e2e529e6522ce96d11bdb5",
+      "size": 1432,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f006202d86e46b98b9e2e529e6522ce96d11bdb5"
+    },
+    {
+      "path": "contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "492b627a24ac3d4cbd4938d6034668e945a8c5ce",
+      "size": 1398,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/492b627a24ac3d4cbd4938d6034668e945a8c5ce"
+    },
+    {
+      "path": "contracts/flashloan/interfaces/LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "506d18ec4b4019186024e3559d7b7a1ed7454956",
+      "size": 544,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/506d18ec4b4019186024e3559d7b7a1ed7454956"
+    },
+    {
+      "path": "contracts/interfaces",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "087163a41c0f87750d5ff66c3a2b58692b9c95d5",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/087163a41c0f87750d5ff66c3a2b58692b9c95d5"
+    },
+    {
+      "path": "contracts/interfaces/IACLManager.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5d97ceb0f1a9019715d21e4cef2e1aef6a0130a",
+      "size": 5463,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d5d97ceb0f1a9019715d21e4cef2e1aef6a0130a"
+    },
+    {
+      "path": "contracts/interfaces/IAToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1379dff683f64ac5d67f039d20ba17928f030d93",
+      "size": 5469,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1379dff683f64ac5d67f039d20ba17928f030d93"
+    },
+    {
+      "path": "contracts/interfaces/IAaveIncentivesController.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c06c605a958c3cf5c423f8c4cc3941aa1db0322c",
+      "size": 847,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c06c605a958c3cf5c423f8c4cc3941aa1db0322c"
+    },
+    {
+      "path": "contracts/interfaces/IAaveOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d4aa3130ef487c7c5db9254c6809d66f775a0f4",
+      "size": 2394,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0d4aa3130ef487c7c5db9254c6809d66f775a0f4"
+    },
+    {
+      "path": "contracts/interfaces/ICreditDelegationToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "323118f12646e8b634ad33e34aac023a637e175f",
+      "size": 2020,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/323118f12646e8b634ad33e34aac023a637e175f"
+    },
+    {
+      "path": "contracts/interfaces/IDefaultInterestRateStrategy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22770226a73df88be4d516e28986b4a7b61531e5",
+      "size": 3795,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/22770226a73df88be4d516e28986b4a7b61531e5"
+    },
+    {
+      "path": "contracts/interfaces/IDelegationToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "171b95e2feba229b5ca8d42d0399d894efec756a",
+      "size": 388,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/171b95e2feba229b5ca8d42d0399d894efec756a"
+    },
+    {
+      "path": "contracts/interfaces/IERC20WithPermit.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1053aab1d2a55fa26c41b2eb2a341ac24f288ef",
+      "size": 938,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d1053aab1d2a55fa26c41b2eb2a341ac24f288ef"
+    },
+    {
+      "path": "contracts/interfaces/IInitializableAToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b16baa82b2091d026cb8c1f37b1906925201a49",
+      "size": 2041,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0b16baa82b2091d026cb8c1f37b1906925201a49"
+    },
+    {
+      "path": "contracts/interfaces/IInitializableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad8cd7c6ce14b170afceb7b6305396d6a3a4653d",
+      "size": 1931,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ad8cd7c6ce14b170afceb7b6305396d6a3a4653d"
+    },
+    {
+      "path": "contracts/interfaces/IL2Pool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cbe6c7bf9745116930f316f4cb92c5ce9ec29af",
+      "size": 6717,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8cbe6c7bf9745116930f316f4cb92c5ce9ec29af"
+    },
+    {
+      "path": "contracts/interfaces/IPool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef306e737f93a6ae9a4e54fb2ed3684aee35b64f",
+      "size": 32693,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ef306e737f93a6ae9a4e54fb2ed3684aee35b64f"
+    },
+    {
+      "path": "contracts/interfaces/IPoolAddressesProvider.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "587a0d0bc9563688e301cb782144b935d57a5b68",
+      "size": 8215,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/587a0d0bc9563688e301cb782144b935d57a5b68"
+    },
+    {
+      "path": "contracts/interfaces/IPoolAddressesProviderRegistry.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07cf4c795963144b5599ce769d8d95ddeeb7bba0",
+      "size": 2428,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/07cf4c795963144b5599ce769d8d95ddeeb7bba0"
+    },
+    {
+      "path": "contracts/interfaces/IPoolConfigurator.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53b96565b59ff17affe4713f4ae0b57e870d40ba",
+      "size": 19304,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/53b96565b59ff17affe4713f4ae0b57e870d40ba"
+    },
+    {
+      "path": "contracts/interfaces/IPoolDataProvider.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ebabab20b77fdb653c5f6b30810d20524b1fe793",
+      "size": 8981,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ebabab20b77fdb653c5f6b30810d20524b1fe793"
+    },
+    {
+      "path": "contracts/interfaces/IPriceOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a6db80ac709e3c7902d7e40500f818623fdf491",
+      "size": 619,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3a6db80ac709e3c7902d7e40500f818623fdf491"
+    },
+    {
+      "path": "contracts/interfaces/IPriceOracleGetter.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e0df3e73c40ad58ddc99d742f67e3e1b7a85bef",
+      "size": 853,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0e0df3e73c40ad58ddc99d742f67e3e1b7a85bef"
+    },
+    {
+      "path": "contracts/interfaces/IPriceOracleSentinel.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a49b717cd4113897aa00bc447d3ef8bf38d4dd8",
+      "size": 2198,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7a49b717cd4113897aa00bc447d3ef8bf38d4dd8"
+    },
+    {
+      "path": "contracts/interfaces/IReserveInterestRateStrategy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87ad2ca075143f2fda50ce3573287cf583617fc8",
+      "size": 834,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/87ad2ca075143f2fda50ce3573287cf583617fc8"
+    },
+    {
+      "path": "contracts/interfaces/IScaledBalanceToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe311fbb124e44d7ebef02987d88610bc80aabd5",
+      "size": 2740,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fe311fbb124e44d7ebef02987d88610bc80aabd5"
+    },
+    {
+      "path": "contracts/interfaces/ISequencerOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a01a3d27bae63fa1eadb88b5c6e55208a40377a4",
+      "size": 982,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a01a3d27bae63fa1eadb88b5c6e55208a40377a4"
+    },
+    {
+      "path": "contracts/interfaces/IStableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87ca180002b19953300ddd0f510c5b26f47520e1",
+      "size": 5328,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/87ca180002b19953300ddd0f510c5b26f47520e1"
+    },
+    {
+      "path": "contracts/interfaces/IVariableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50602e6ca994e590af82e5224badd816b5f2347e",
+      "size": 1791,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/50602e6ca994e590af82e5224badd816b5f2347e"
+    },
+    {
+      "path": "contracts/interfaces/LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "506d18ec4b4019186024e3559d7b7a1ed7454956",
+      "size": 544,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/506d18ec4b4019186024e3559d7b7a1ed7454956"
+    },
+    {
+      "path": "contracts/misc",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "be0ba445849dcadeb46d32292b1f8de302b4a2c7",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/be0ba445849dcadeb46d32292b1f8de302b4a2c7"
+    },
+    {
+      "path": "contracts/misc/AaveOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1467f1bed5749148b16e7f619dff9dde545a89f0",
+      "size": 5067,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1467f1bed5749148b16e7f619dff9dde545a89f0"
+    },
+    {
+      "path": "contracts/misc/AaveProtocolDataProvider.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58cbe9ac0bf377d0daf9371de9d2b5b709de8afe",
+      "size": 10369,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/58cbe9ac0bf377d0daf9371de9d2b5b709de8afe"
+    },
+    {
+      "path": "contracts/misc/L2Encoder.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c959058ad20e16177c91d2a03e89f3fa38addc81",
+      "size": 13106,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c959058ad20e16177c91d2a03e89f3fa38addc81"
+    },
+    {
+      "path": "contracts/misc/ZeroReserveInterestRateStrategy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3324dc32b4bce8759ccd7609ee7d4036890027c9",
+      "size": 3959,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3324dc32b4bce8759ccd7609ee7d4036890027c9"
+    },
+    {
+      "path": "contracts/misc/interfaces",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "909ed50b6afba0beeb66e9a069e1b8ab7a40f535",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/909ed50b6afba0beeb66e9a069e1b8ab7a40f535"
+    },
+    {
+      "path": "contracts/misc/interfaces/IWETH.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0140f0480d07be2f06329f1aba47a6e38df0081",
+      "size": 321,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c0140f0480d07be2f06329f1aba47a6e38df0081"
+    },
+    {
+      "path": "contracts/misc/interfaces/LICENSE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "506d18ec4b4019186024e3559d7b7a1ed7454956",
+      "size": 544,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/506d18ec4b4019186024e3559d7b7a1ed7454956"
+    },
+    {
+      "path": "contracts/mocks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fb7115cfae304b5243a3810a6a24f0e556d60e2d",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/fb7115cfae304b5243a3810a6a24f0e556d60e2d"
+    },
+    {
+      "path": "contracts/mocks/flashloan",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e7639b8f34fe4a97ddd5e8acb0c042ffafb32b88",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/e7639b8f34fe4a97ddd5e8acb0c042ffafb32b88"
+    },
+    {
+      "path": "contracts/mocks/flashloan/MockFlashLoanReceiver.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b249da2802a05ea404f5f236a7ffe2e16a88fed",
+      "size": 2429,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4b249da2802a05ea404f5f236a7ffe2e16a88fed"
+    },
+    {
+      "path": "contracts/mocks/flashloan/MockSimpleFlashLoanReceiver.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0d1b9d40383fcd572d1e0c5db22294714d96ffe",
+      "size": 2454,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d0d1b9d40383fcd572d1e0c5db22294714d96ffe"
+    },
+    {
+      "path": "contracts/mocks/helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b860835b0edbf3014e50f36988a4a5792771274e",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/b860835b0edbf3014e50f36988a4a5792771274e"
+    },
+    {
+      "path": "contracts/mocks/helpers/MockIncentivesController.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0937a4c44b7b38c6bbfaccb8776f3530de26f153",
+      "size": 292,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0937a4c44b7b38c6bbfaccb8776f3530de26f153"
+    },
+    {
+      "path": "contracts/mocks/helpers/MockL2Pool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e205055201af9963edbe5fd1c4f1c22ef1908f0",
+      "size": 392,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3e205055201af9963edbe5fd1c4f1c22ef1908f0"
+    },
+    {
+      "path": "contracts/mocks/helpers/MockPeripheryContract.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60e9edf0e739ce01af2317e9e5ed66afd40daa54",
+      "size": 948,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/60e9edf0e739ce01af2317e9e5ed66afd40daa54"
+    },
+    {
+      "path": "contracts/mocks/helpers/MockPool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22f856bf5fcddc8058fa62823a272dcfffbfa73f",
+      "size": 1478,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/22f856bf5fcddc8058fa62823a272dcfffbfa73f"
+    },
+    {
+      "path": "contracts/mocks/helpers/MockReserveConfiguration.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29100f3be373060b643024eb8bf82dc489ae4211",
+      "size": 5205,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/29100f3be373060b643024eb8bf82dc489ae4211"
+    },
+    {
+      "path": "contracts/mocks/helpers/SelfDestructTransfer.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bf22bd914d385b3b7f25747894608855151be19",
+      "size": 191,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/5bf22bd914d385b3b7f25747894608855151be19"
+    },
+    {
+      "path": "contracts/mocks/oracle",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "760b7bbc8b49dd1a28d658386b9e3967d7105bf5",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/760b7bbc8b49dd1a28d658386b9e3967d7105bf5"
+    },
+    {
+      "path": "contracts/mocks/oracle/CLAggregators",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "95a6952ab4e6869fbbbecc79c3fbe6f02b435cff",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/95a6952ab4e6869fbbbecc79c3fbe6f02b435cff"
+    },
+    {
+      "path": "contracts/mocks/oracle/CLAggregators/MockAggregator.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "855648f3195c7dfb3678c7e71ca523e6f7dc89f4",
+      "size": 593,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/855648f3195c7dfb3678c7e71ca523e6f7dc89f4"
+    },
+    {
+      "path": "contracts/mocks/oracle/PriceOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a916df990bfcf7057dcf0c9867d21b1709f04ef1",
+      "size": 929,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a916df990bfcf7057dcf0c9867d21b1709f04ef1"
+    },
+    {
+      "path": "contracts/mocks/oracle/SequencerOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19dcf9f5fa6132a660aed333170388474334d439",
+      "size": 1185,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/19dcf9f5fa6132a660aed333170388474334d439"
+    },
+    {
+      "path": "contracts/mocks/tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "418485e70ddc68128fd64b48afd40c403b237652",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/418485e70ddc68128fd64b48afd40c403b237652"
+    },
+    {
+      "path": "contracts/mocks/tests/FlashloanAttacker.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e47715a8b4ac9a37afe7d7222c62e3ecc0f2dba",
+      "size": 2084,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9e47715a8b4ac9a37afe7d7222c62e3ecc0f2dba"
+    },
+    {
+      "path": "contracts/mocks/tests/MockReserveInterestRateStrategy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd8116d86541ecde607586c05f8681940b7c110f",
+      "size": 3392,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/dd8116d86541ecde607586c05f8681940b7c110f"
+    },
+    {
+      "path": "contracts/mocks/tests/WadRayMathWrapper.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6e8b34b7829a39706b87523608b6f1b4bc0066e",
+      "size": 1166,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c6e8b34b7829a39706b87523608b6f1b4bc0066e"
+    },
+    {
+      "path": "contracts/mocks/tokens",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ed8a1819e72f3542aef6455b12e633fad275de27",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/ed8a1819e72f3542aef6455b12e633fad275de27"
+    },
+    {
+      "path": "contracts/mocks/tokens/MintableDelegationERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a472802fce422452a46892db1f5c9dd9c9655b8c",
+      "size": 894,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a472802fce422452a46892db1f5c9dd9c9655b8c"
+    },
+    {
+      "path": "contracts/mocks/tokens/MintableERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b0ac6566e6ce733bc1c4e4f515d88858bfb782b",
+      "size": 2655,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0b0ac6566e6ce733bc1c4e4f515d88858bfb782b"
+    },
+    {
+      "path": "contracts/mocks/tokens/MockATokenRepayment.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a3fbb205d2407389c682486126fcd089fad6ac5",
+      "size": 601,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8a3fbb205d2407389c682486126fcd089fad6ac5"
+    },
+    {
+      "path": "contracts/mocks/tokens/WETH9Mocked.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46be79b3f3fac50079ac5e690a42b7b1e0fd07ba",
+      "size": 547,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/46be79b3f3fac50079ac5e690a42b7b1e0fd07ba"
+    },
+    {
+      "path": "contracts/mocks/upgradeability",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "86357ce8e1d1be301c33c1f6c34ef29d964b9362",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/86357ce8e1d1be301c33c1f6c34ef29d964b9362"
+    },
+    {
+      "path": "contracts/mocks/upgradeability/MockAToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "847ae73c86e03916cfa329e3e9298180e67db1df",
+      "size": 341,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/847ae73c86e03916cfa329e3e9298180e67db1df"
+    },
+    {
+      "path": "contracts/mocks/upgradeability/MockInitializableImplementation.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb93b55aa9e5221653d8baec6fc809f39fa5a3de",
+      "size": 2593,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/eb93b55aa9e5221653d8baec6fc809f39fa5a3de"
+    },
+    {
+      "path": "contracts/mocks/upgradeability/MockStableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67431bbf347c8f7078d5ab944d26add26fb58970",
+      "size": 386,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/67431bbf347c8f7078d5ab944d26add26fb58970"
+    },
+    {
+      "path": "contracts/mocks/upgradeability/MockVariableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83df26433dd4246b37bbed2fd7e3ae121ac28616",
+      "size": 396,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/83df26433dd4246b37bbed2fd7e3ae121ac28616"
+    },
+    {
+      "path": "contracts/protocol",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4347e2c9bc9bc24b1eba343db0120321cc37990d",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/4347e2c9bc9bc24b1eba343db0120321cc37990d"
+    },
+    {
+      "path": "contracts/protocol/configuration",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "97b3a0b1fc44091bbd909c07316177274d4ddced",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/97b3a0b1fc44091bbd909c07316177274d4ddced"
+    },
+    {
+      "path": "contracts/protocol/configuration/ACLManager.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc4de67d9714a569519dc7da3cabd24460032297",
+      "size": 4391,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/dc4de67d9714a569519dc7da3cabd24460032297"
+    },
+    {
+      "path": "contracts/protocol/configuration/PoolAddressesProvider.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06fa9333ad2531718c96ca181317c66f0384d9cd",
+      "size": 8298,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/06fa9333ad2531718c96ca181317c66f0384d9cd"
+    },
+    {
+      "path": "contracts/protocol/configuration/PoolAddressesProviderRegistry.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7368df008f6d880438709e211c70f9d1862af78e",
+      "size": 4098,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7368df008f6d880438709e211c70f9d1862af78e"
+    },
+    {
+      "path": "contracts/protocol/configuration/PriceOracleSentinel.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "796ede41d621ee5450676a1ae4732e1363b3c628",
+      "size": 3501,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/796ede41d621ee5450676a1ae4732e1363b3c628"
+    },
+    {
+      "path": "contracts/protocol/libraries",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1b23bf84f1f8a178859029981924ab9cabeb208f",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/1b23bf84f1f8a178859029981924ab9cabeb208f"
+    },
+    {
+      "path": "contracts/protocol/libraries/aave-upgradeability",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "49ff0584d3cfac1688be42f34a161ee54bc7152a",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/49ff0584d3cfac1688be42f34a161ee54bc7152a"
+    },
+    {
+      "path": "contracts/protocol/libraries/aave-upgradeability/BaseImmutableAdminUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a61babe48fa632bed30f702096249c82a5243f4",
+      "size": 2770,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0a61babe48fa632bed30f702096249c82a5243f4"
+    },
+    {
+      "path": "contracts/protocol/libraries/aave-upgradeability/InitializableImmutableAdminUpgradeabilityProxy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec34735272b164a520fd40048ccacd3d76df72ee",
+      "size": 1070,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ec34735272b164a520fd40048ccacd3d76df72ee"
+    },
+    {
+      "path": "contracts/protocol/libraries/aave-upgradeability/VersionedInitializable.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "317a16465f447cb2077b1b3e5d3bf356ce0d36c3",
+      "size": 2584,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/317a16465f447cb2077b1b3e5d3bf356ce0d36c3"
+    },
+    {
+      "path": "contracts/protocol/libraries/configuration",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3d7a15a58c2beca01f2dd78b98af813a0afb8ef2",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/3d7a15a58c2beca01f2dd78b98af813a0afb8ef2"
+    },
+    {
+      "path": "contracts/protocol/libraries/configuration/ReserveConfiguration.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9772e69ac133ba8a82ef0ae61bec62bf1c0343e4",
+      "size": 23655,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9772e69ac133ba8a82ef0ae61bec62bf1c0343e4"
+    },
+    {
+      "path": "contracts/protocol/libraries/configuration/UserConfiguration.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6adf189d15a715b5b02c43cb3ba6725a5b4eec69",
+      "size": 8807,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/6adf189d15a715b5b02c43cb3ba6725a5b4eec69"
+    },
+    {
+      "path": "contracts/protocol/libraries/helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9f06397248a362cd4c9fbf0c1c3f9e3ae5f76499",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/9f06397248a362cd4c9fbf0c1c3f9e3ae5f76499"
+    },
+    {
+      "path": "contracts/protocol/libraries/helpers/Errors.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "990069e0f6f928efbc65823cc0bd1983d33e38c9",
+      "size": 9910,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/990069e0f6f928efbc65823cc0bd1983d33e38c9"
+    },
+    {
+      "path": "contracts/protocol/libraries/helpers/Helpers.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "189343abe1b5696da901ce273f0d6e8461d1324b",
+      "size": 814,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/189343abe1b5696da901ce273f0d6e8461d1324b"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2ace4fa6e7e55fdee56ec0991a830d32a99c9018",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/2ace4fa6e7e55fdee56ec0991a830d32a99c9018"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/BorrowLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ac22d9482a02d02585df9f9fd4fa6510c8c87c4",
+      "size": 13053,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7ac22d9482a02d02585df9f9fd4fa6510c8c87c4"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/BridgeLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef1f7f8145ab6c5928a9a109abf12c0012b3e9e6",
+      "size": 5768,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ef1f7f8145ab6c5928a9a109abf12c0012b3e9e6"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/CalldataLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a36790d937b97eee85b5b45640d37027ea8a227",
+      "size": 9098,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/6a36790d937b97eee85b5b45640d37027ea8a227"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/ConfiguratorLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d9672d1e581fe96bd3311a3504bf1365ac8660b7",
+      "size": 8461,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d9672d1e581fe96bd3311a3504bf1365ac8660b7"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/EModeLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82b08a151d4b265194fb2b50bdb6d5cec3e72025",
+      "size": 4344,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/82b08a151d4b265194fb2b50bdb6d5cec3e72025"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/FlashLoanLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c60a5d8fec88b11ec62f7baa1566698d21f1caa0",
+      "size": 10845,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c60a5d8fec88b11ec62f7baa1566698d21f1caa0"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/GenericLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3342316e772a7e733723ef2963ab79566904fb30",
+      "size": 9973,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3342316e772a7e733723ef2963ab79566904fb30"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/IsolationModeLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "473840ea3174beb02dcae86bd1d47e58a5cad46b",
+      "size": 2731,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/473840ea3174beb02dcae86bd1d47e58a5cad46b"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/LiquidationLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57f00fd47d14af2643dd8103a47adb70b664ec00",
+      "size": 21250,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/57f00fd47d14af2643dd8103a47adb70b664ec00"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/PoolLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18b312c7f084ffd82d1c9b2bc1b04b83d04fa6fb",
+      "size": 7283,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/18b312c7f084ffd82d1c9b2bc1b04b83d04fa6fb"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/ReserveLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc48163dbbfcac7c832d2e9dfef71a9ddadfe836",
+      "size": 14202,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bc48163dbbfcac7c832d2e9dfef71a9ddadfe836"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/SupplyLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59cef41c04b52a2740a9da52d84ad7fd7debc7f2",
+      "size": 11636,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/59cef41c04b52a2740a9da52d84ad7fd7debc7f2"
+    },
+    {
+      "path": "contracts/protocol/libraries/logic/ValidationLogic.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75218f0549067bf1a1a037d401668abe3fcba648",
+      "size": 29389,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/75218f0549067bf1a1a037d401668abe3fcba648"
+    },
+    {
+      "path": "contracts/protocol/libraries/math",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0670559322777611b65643ae1ccebfac1252ce68",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/0670559322777611b65643ae1ccebfac1252ce68"
+    },
+    {
+      "path": "contracts/protocol/libraries/math/MathUtils.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9adca939db36cbe1009d0a00600def9314fc7332",
+      "size": 3357,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9adca939db36cbe1009d0a00600def9314fc7332"
+    },
+    {
+      "path": "contracts/protocol/libraries/math/PercentageMath.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c000be3a6c38a959aa3d28737445eaa5762c53b0",
+      "size": 2349,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c000be3a6c38a959aa3d28737445eaa5762c53b0"
+    },
+    {
+      "path": "contracts/protocol/libraries/math/WadRayMath.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f61fe87f2f2748144cd4d113c848e649c41a4e5d",
+      "size": 4151,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f61fe87f2f2748144cd4d113c848e649c41a4e5d"
+    },
+    {
+      "path": "contracts/protocol/libraries/types",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "925cac1600471e4f7bc4f816c2459b8c4f4bc054",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/925cac1600471e4f7bc4f816c2459b8c4f4bc054"
+    },
+    {
+      "path": "contracts/protocol/libraries/types/ConfiguratorInputTypes.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "229473563071eddbe7640394de4bdb53b40e8197",
+      "size": 947,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/229473563071eddbe7640394de4bdb53b40e8197"
+    },
+    {
+      "path": "contracts/protocol/libraries/types/DataTypes.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6e20ab1850594df8db32526b42d4cd0acb51278",
+      "size": 7369,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e6e20ab1850594df8db32526b42d4cd0acb51278"
+    },
+    {
+      "path": "contracts/protocol/pool",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "10fc1baf21daf59b51b002e6fdb5b2d841f2b8a4",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/10fc1baf21daf59b51b002e6fdb5b2d841f2b8a4"
+    },
+    {
+      "path": "contracts/protocol/pool/DefaultReserveInterestRateStrategy.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb03f2cae5421c00175589a633fe9e8ca1015169",
+      "size": 10287,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bb03f2cae5421c00175589a633fe9e8ca1015169"
+    },
+    {
+      "path": "contracts/protocol/pool/L2Pool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8206601d8bcfcb0ff93a1c5ff9b5973d2bbbbee8",
+      "size": 4207,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8206601d8bcfcb0ff93a1c5ff9b5973d2bbbbee8"
+    },
+    {
+      "path": "contracts/protocol/pool/Pool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0a533b0d6b71c31bcff2b051e2a647e328ba945",
+      "size": 21282,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b0a533b0d6b71c31bcff2b051e2a647e328ba945"
+    },
+    {
+      "path": "contracts/protocol/pool/PoolConfigurator.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22119e4c0d928742e55bee7ade83ece96168c749",
+      "size": 19432,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/22119e4c0d928742e55bee7ade83ece96168c749"
+    },
+    {
+      "path": "contracts/protocol/pool/PoolStorage.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccf22b3fdf7eff0b30a36fba5a377e7b7b45f2ce",
+      "size": 2212,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ccf22b3fdf7eff0b30a36fba5a377e7b7b45f2ce"
+    },
+    {
+      "path": "contracts/protocol/tokenization",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1a5f7e361ed3d3ec5a5238dd463bfcc7f071a6b8",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/1a5f7e361ed3d3ec5a5238dd463bfcc7f071a6b8"
+    },
+    {
+      "path": "contracts/protocol/tokenization/AToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f613b66619a03874ece83d086d6fe79198e70fd0",
+      "size": 8295,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f613b66619a03874ece83d086d6fe79198e70fd0"
+    },
+    {
+      "path": "contracts/protocol/tokenization/DelegationAwareAToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca496d64550b6e54caf6bd2febe3b22ed05be8a9",
+      "size": 1199,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ca496d64550b6e54caf6bd2febe3b22ed05be8a9"
+    },
+    {
+      "path": "contracts/protocol/tokenization/StableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "666676ea0ba160556683b88c5fd7337b44f5bb2c",
+      "size": 13195,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/666676ea0ba160556683b88c5fd7337b44f5bb2c"
+    },
+    {
+      "path": "contracts/protocol/tokenization/VariableDebtToken.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd935f182b4a76fa1463f5ce87375b233e2f6482",
+      "size": 5053,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fd935f182b4a76fa1463f5ce87375b233e2f6482"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "537405137458ae0c87ce31e0caae5706e3e2c425",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/537405137458ae0c87ce31e0caae5706e3e2c425"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base/DebtTokenBase.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f28eb9eee76b564a96f9d7588d5e8be33a59898",
+      "size": 3621,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/6f28eb9eee76b564a96f9d7588d5e8be33a59898"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base/EIP712Base.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8660c541d64a1077e918ebb90328c6ac143ae404",
+      "size": 1987,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8660c541d64a1077e918ebb90328c6ac143ae404"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base/IncentivizedERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "824252e6fc93d40dd01a64f26e0fa68272deaf79",
+      "size": 8010,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/824252e6fc93d40dd01a64f26e0fa68272deaf79"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base/MintableIncentivizedERC20.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cbd125fb0d7b73be53a7668ad8b4e3901dd7625c",
+      "size": 2304,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/cbd125fb0d7b73be53a7668ad8b4e3901dd7625c"
+    },
+    {
+      "path": "contracts/protocol/tokenization/base/ScaledBalanceTokenBase.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d705b539b42bd7568699c36002eecfd3deb8f8d",
+      "size": 5973,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1d705b539b42bd7568699c36002eecfd3deb8f8d"
+    },
+    {
+      "path": "docker-compose.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c22d4b5d90d85a06ef7ab521eb8aeae189513218",
+      "size": 646,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/c22d4b5d90d85a06ef7ab521eb8aeae189513218"
+    },
+    {
+      "path": "hardhat.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d3ab5e3d0b5ae84dfc16424d988cd2417a5c4f6",
+      "size": 2562,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7d3ab5e3d0b5ae84dfc16424d988cd2417a5c4f6"
+    },
+    {
+      "path": "helper-hardhat-config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84e629ebd3aafa079fcad77d20029c157179fdfa",
+      "size": 2007,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/84e629ebd3aafa079fcad77d20029c157179fdfa"
+    },
+    {
+      "path": "helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0056347164d4dd97d78277044453d3ba7721cbe1",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/0056347164d4dd97d78277044453d3ba7721cbe1"
+    },
+    {
+      "path": "helpers/constants.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b44397ce1c067ef71131d6fe9c41ab856f4910e",
+      "size": 1447,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2b44397ce1c067ef71131d6fe9c41ab856f4910e"
+    },
+    {
+      "path": "helpers/contracts-helpers.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "efa51e9d6e4d7c6edb6b377d48e814f796d92b61",
+      "size": 3977,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/efa51e9d6e4d7c6edb6b377d48e814f796d92b61"
+    },
+    {
+      "path": "helpers/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "972e1c626c4e55e44e6a5cf32e1196386acbcc5d",
+      "size": 91,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/972e1c626c4e55e44e6a5cf32e1196386acbcc5d"
+    },
+    {
+      "path": "helpers/misc-utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cafdffffa2be66cd17093e935fd7d5699f159fb1",
+      "size": 1215,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/cafdffffa2be66cd17093e935fd7d5699f159fb1"
+    },
+    {
+      "path": "helpers/tenderly-utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27cf57aa112c1c71cb2daebc8636c5ca63cc931d",
+      "size": 262,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/27cf57aa112c1c71cb2daebc8636c5ca63cc931d"
+    },
+    {
+      "path": "helpers/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8961434ebe23a0c50cbaba19d33979496b6a0c1",
+      "size": 16082,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a8961434ebe23a0c50cbaba19d33979496b6a0c1"
+    },
+    {
+      "path": "lib.tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cba628233f00324b132748866d790c874606285b",
+      "size": 417,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/cba628233f00324b132748866d790c874606285b"
+    },
+    {
+      "path": "package-lock.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf608d970bf793873fe645986dd1bb4591eba284",
+      "size": 826982,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/cf608d970bf793873fe645986dd1bb4591eba284"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "913e971f68335c5b0bf51d23b3f95bbf06b7e357",
+      "size": 3294,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/913e971f68335c5b0bf51d23b3f95bbf06b7e357"
+    },
+    {
+      "path": "setup-test-env.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "816074f955dacbd3ad98b63dd35666ef2f4e38ea",
+      "size": 1314,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/816074f955dacbd3ad98b63dd35666ef2f4e38ea"
+    },
+    {
+      "path": "techpaper",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "44c4776418280c0c9156cd622c80d2d7a58a710c",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/44c4776418280c0c9156cd622c80d2d7a58a710c"
+    },
+    {
+      "path": "techpaper/Aave_V3_Technical_Paper.pdf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df6451ee4c801a9d90a517e91116377353a05b82",
+      "size": 780174,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/df6451ee4c801a9d90a517e91116377353a05b82"
+    },
+    {
+      "path": "test-suites",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "667766effdc9b7170d4b58a0c17d87fbda169792",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/667766effdc9b7170d4b58a0c17d87fbda169792"
+    },
+    {
+      "path": "test-suites/__setup.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adbc68d51233029bc0af1760b9097e41b68e5218",
+      "size": 403,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/adbc68d51233029bc0af1760b9097e41b68e5218"
+    },
+    {
+      "path": "test-suites/aave-oracle.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc26050c845a321ea87a4c922a090826714f7e33",
+      "size": 7158,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bc26050c845a321ea87a4c922a090826714f7e33"
+    },
+    {
+      "path": "test-suites/aave-protocol-data-provider.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94984fa50dce0ff02f543cd146826d9a3e8bb010",
+      "size": 1883,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/94984fa50dce0ff02f543cd146826d9a3e8bb010"
+    },
+    {
+      "path": "test-suites/acl-manager.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7a3c622137d8cb3861e7fc4a5ab82c9ae41820b",
+      "size": 9653,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d7a3c622137d8cb3861e7fc4a5ab82c9ae41820b"
+    },
+    {
+      "path": "test-suites/addresses-provider-registry.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d89aff10aada82501c8a38e1e687bfaf050c495",
+      "size": 8478,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8d89aff10aada82501c8a38e1e687bfaf050c495"
+    },
+    {
+      "path": "test-suites/atoken-delegation-aware.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "810e488eb76b346361f684d8b9f9e028bcb99088",
+      "size": 1653,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/810e488eb76b346361f684d8b9f9e028bcb99088"
+    },
+    {
+      "path": "test-suites/atoken-edge.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "345971efb1c34ce8f752f10afe0fcdf68f60d810",
+      "size": 9462,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/345971efb1c34ce8f752f10afe0fcdf68f60d810"
+    },
+    {
+      "path": "test-suites/atoken-event-accounting.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e565efa2fee37d724f2d8ab2b6cfe8ab412f760f",
+      "size": 20977,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e565efa2fee37d724f2d8ab2b6cfe8ab412f760f"
+    },
+    {
+      "path": "test-suites/atoken-events.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fb0238ddb3f718bbea027cc0d18a576ce256e96",
+      "size": 25456,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7fb0238ddb3f718bbea027cc0d18a576ce256e96"
+    },
+    {
+      "path": "test-suites/atoken-modifiers.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68771e524a1e485a9a9c7a0fffdb2f277475e7cf",
+      "size": 1312,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/68771e524a1e485a9a9c7a0fffdb2f277475e7cf"
+    },
+    {
+      "path": "test-suites/atoken-permit.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26d3459670d008316cffa4816dbbd02af6d9e555",
+      "size": 9162,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/26d3459670d008316cffa4816dbbd02af6d9e555"
+    },
+    {
+      "path": "test-suites/atoken-repay.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11dd558ed0cea698d939cc68cc5a920b628ea4c8",
+      "size": 10308,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/11dd558ed0cea698d939cc68cc5a920b628ea4c8"
+    },
+    {
+      "path": "test-suites/atoken-transfer.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a657d9b61caf3971d6b89b1c4c636b6ad798dbcd",
+      "size": 9250,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a657d9b61caf3971d6b89b1c4c636b6ad798dbcd"
+    },
+    {
+      "path": "test-suites/bridge-logic.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae0985499a939084354618a031b933fc1cc51b08",
+      "size": 13846,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ae0985499a939084354618a031b933fc1cc51b08"
+    },
+    {
+      "path": "test-suites/configurator-borrow-cap.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdb23366c70cfb74f3bf6701a9ba2d8a7ec1b1bf",
+      "size": 14193,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bdb23366c70cfb74f3bf6701a9ba2d8a7ec1b1bf"
+    },
+    {
+      "path": "test-suites/configurator-edge.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d1eb3da2d017ecaaef65a8ee0f4c564db742eef",
+      "size": 11865,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/6d1eb3da2d017ecaaef65a8ee0f4c564db742eef"
+    },
+    {
+      "path": "test-suites/configurator-liquidation-protocol-fee.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3155edd5f77bdf5978cfdbd1b1cf84be10dfd3",
+      "size": 4432,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fc3155edd5f77bdf5978cfdbd1b1cf84be10dfd3"
+    },
+    {
+      "path": "test-suites/configurator-modifiers.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e28e672d25dad1972657957add73332ed5a85e9b",
+      "size": 5707,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e28e672d25dad1972657957add73332ed5a85e9b"
+    },
+    {
+      "path": "test-suites/configurator-rate-strategy.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "372d7806d7637d394c2f1f4646707df55747a334",
+      "size": 12190,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/372d7806d7637d394c2f1f4646707df55747a334"
+    },
+    {
+      "path": "test-suites/configurator-supply-cap.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4b4d8bf5a9ee338f893b57fc61e6bfffc45f6d53",
+      "size": 12392,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4b4d8bf5a9ee338f893b57fc61e6bfffc45f6d53"
+    },
+    {
+      "path": "test-suites/configurator.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eab943fa4c90e173e43a7fc1811ab72c3d01d6d5",
+      "size": 41898,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/eab943fa4c90e173e43a7fc1811ab72c3d01d6d5"
+    },
+    {
+      "path": "test-suites/debt-token-delegation-permit.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e29ec014eaccc07d8084f97f9ae30dfb5df98d3",
+      "size": 13753,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/2e29ec014eaccc07d8084f97f9ae30dfb5df98d3"
+    },
+    {
+      "path": "test-suites/emode.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7649da68a38a866d8d89aac10617ffdf4591b12",
+      "size": 29136,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b7649da68a38a866d8d89aac10617ffdf4591b12"
+    },
+    {
+      "path": "test-suites/emptyrun.coverage.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa3f1684e7013c469b28c89ba5e271c7d255476e",
+      "size": 147,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fa3f1684e7013c469b28c89ba5e271c7d255476e"
+    },
+    {
+      "path": "test-suites/helpers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c466a2af1b9ccb0bac16152c0902d1438e674430",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/c466a2af1b9ccb0bac16152c0902d1438e674430"
+    },
+    {
+      "path": "test-suites/helpers/actions.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a32964225a56037c33f770c1dadf56705a0dfbc",
+      "size": 30210,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9a32964225a56037c33f770c1dadf56705a0dfbc"
+    },
+    {
+      "path": "test-suites/helpers/make-suite.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e8473f2c5eb6a166697a5f175214a91f6cf0b5d",
+      "size": 7363,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7e8473f2c5eb6a166697a5f175214a91f6cf0b5d"
+    },
+    {
+      "path": "test-suites/helpers/scenario-engine.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd2b37f0f710ddffd9e85be3f09a738a86bcd50c",
+      "size": 7831,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/dd2b37f0f710ddffd9e85be3f09a738a86bcd50c"
+    },
+    {
+      "path": "test-suites/helpers/scenarios",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "70fb59a277e26a04833765c2f8a456a2d549eb65",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/70fb59a277e26a04833765c2f8a456a2d549eb65"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/borrow-negatives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4c11214fdde305bcede42d2e584deaa9444a05e",
+      "size": 3423,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b4c11214fdde305bcede42d2e584deaa9444a05e"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/borrow-repay-stable-edge.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0833e7cbdbb63f57db68d7149ef6e070c6886411",
+      "size": 2143,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0833e7cbdbb63f57db68d7149ef6e070c6886411"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/borrow-repay-stable.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c1ecc8521685c3c745da9e1ed1670d4ac1e3819",
+      "size": 15600,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3c1ecc8521685c3c745da9e1ed1670d4ac1e3819"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/borrow-repay-variable.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10285da9b6fb9d86db56f09b06a7774c27bde711",
+      "size": 22474,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/10285da9b6fb9d86db56f09b06a7774c27bde711"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/borrow-repayWithPermit-variable.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef03e32947f2da3d0263cc1819baa64101715786",
+      "size": 4808,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/ef03e32947f2da3d0263cc1819baa64101715786"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/credit-delegation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7727c44200773cf72a8d4f03cd088d46ea212aa4",
+      "size": 3988,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7727c44200773cf72a8d4f03cd088d46ea212aa4"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/deposit.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3751108a2e795a240aab6cacdf7f7d49f12249c5",
+      "size": 5887,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3751108a2e795a240aab6cacdf7f7d49f12249c5"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/rebalance-stable-rate.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8588952fb71048319089594487ed9ec2816025e1",
+      "size": 7042,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8588952fb71048319089594487ed9ec2816025e1"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/set-use-as-collateral.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edb49d294ffaaafc0028137f77a346846df60169",
+      "size": 5690,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/edb49d294ffaaafc0028137f77a346846df60169"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/swap-rate-mode.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a68bc08863c65f6d4fc45be2bb0516155e55a713",
+      "size": 4220,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a68bc08863c65f6d4fc45be2bb0516155e55a713"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/withdraw-negatives.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f79ca7cdf858d7a736b9fa7b597af86b5ca2f42",
+      "size": 2727,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3f79ca7cdf858d7a736b9fa7b597af86b5ca2f42"
+    },
+    {
+      "path": "test-suites/helpers/scenarios/withdraw.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e90df1c234ce4180e56013568fa3aa165efd853f",
+      "size": 8749,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e90df1c234ce4180e56013568fa3aa165efd853f"
+    },
+    {
+      "path": "test-suites/helpers/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "110acd939eca5b87108c45ad77d3b4fb28ef20f2",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/110acd939eca5b87108c45ad77d3b4fb28ef20f2"
+    },
+    {
+      "path": "test-suites/helpers/utils/calculations.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bdb7eab35468b1c7b8a6ca29694a1621fc34458",
+      "size": 53696,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1bdb7eab35468b1c7b8a6ca29694a1621fc34458"
+    },
+    {
+      "path": "test-suites/helpers/utils/funds.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7f7c79e4bffc0e3ee0ff4560f1de2788e05de84",
+      "size": 538,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d7f7c79e4bffc0e3ee0ff4560f1de2788e05de84"
+    },
+    {
+      "path": "test-suites/helpers/utils/helpers.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a10c0184c871b7e88fb37c3873dc9b373c2d0c3",
+      "size": 8913,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/7a10c0184c871b7e88fb37c3873dc9b373c2d0c3"
+    },
+    {
+      "path": "test-suites/helpers/utils/interfaces",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b05c8c96f7166389ca0b6b8fde0c6410f54e2e8c",
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/trees/b05c8c96f7166389ca0b6b8fde0c6410f54e2e8c"
+    },
+    {
+      "path": "test-suites/helpers/utils/interfaces/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50136fe0ca0fa9fade260d2dbb031e95da0dc8b8",
+      "size": 1322,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/50136fe0ca0fa9fade260d2dbb031e95da0dc8b8"
+    },
+    {
+      "path": "test-suites/helpers/utils/tokenization-events.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1a72b295f270c7541a351e698bcf5f101d33283",
+      "size": 24001,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b1a72b295f270c7541a351e698bcf5f101d33283"
+    },
+    {
+      "path": "test-suites/helpers/utils/wadraymath.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "782fbed9b03c29562ee255a80cb5807468e0d5a3",
+      "size": 2586,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/782fbed9b03c29562ee255a80cb5807468e0d5a3"
+    },
+    {
+      "path": "test-suites/helpers/utils/wallets.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "529585024fb695b19e9fceb479a556c55a5e7697",
+      "size": 281,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/529585024fb695b19e9fceb479a556c55a5e7697"
+    },
+    {
+      "path": "test-suites/interest-overflow.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "759fdc01c8549862d3451f10c200db954da47f5a",
+      "size": 12946,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/759fdc01c8549862d3451f10c200db954da47f5a"
+    },
+    {
+      "path": "test-suites/isolation-mode.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54428b5289deac7c5a16de2962e6453413e33d4b",
+      "size": 28471,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/54428b5289deac7c5a16de2962e6453413e33d4b"
+    },
+    {
+      "path": "test-suites/liquidation-atoken.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb7d1d807c69554eba71cdf4a148f4bc6f49bc74",
+      "size": 15792,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bb7d1d807c69554eba71cdf4a148f4bc6f49bc74"
+    },
+    {
+      "path": "test-suites/liquidation-edge.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9f6a6f7816fd2a5f80fb04c59f6b795625048c0",
+      "size": 10442,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/a9f6a6f7816fd2a5f80fb04c59f6b795625048c0"
+    },
+    {
+      "path": "test-suites/liquidation-emode-interest.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d34593d01cf53f33111c7cfc2ef80635a87dc759",
+      "size": 8378,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d34593d01cf53f33111c7cfc2ef80635a87dc759"
+    },
+    {
+      "path": "test-suites/liquidation-emode.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45f68f07573ee8c34b26bd9acd319fb1376b7695",
+      "size": 22801,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/45f68f07573ee8c34b26bd9acd319fb1376b7695"
+    },
+    {
+      "path": "test-suites/liquidation-underlying.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d4f6d1f4a172d9aa5431f65f3c7e72a26ff2cdf4",
+      "size": 17531,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d4f6d1f4a172d9aa5431f65f3c7e72a26ff2cdf4"
+    },
+    {
+      "path": "test-suites/liquidation-with-fee.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "046d4403b910074297a93d16d06b3e7729393d10",
+      "size": 32772,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/046d4403b910074297a93d16d06b3e7729393d10"
+    },
+    {
+      "path": "test-suites/liquidity-indexes.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcab6f1b0e420198841de3e9498fd5236dc20368",
+      "size": 3485,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/fcab6f1b0e420198841de3e9498fd5236dc20368"
+    },
+    {
+      "path": "test-suites/ltv-validation.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2331a0192ad984533be8876a1c4bbf94dfbe3d5",
+      "size": 10016,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/f2331a0192ad984533be8876a1c4bbf94dfbe3d5"
+    },
+    {
+      "path": "test-suites/mint-to-treasury.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23b70661265a284b1e74dfb43395489a41757e9f",
+      "size": 2883,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/23b70661265a284b1e74dfb43395489a41757e9f"
+    },
+    {
+      "path": "test-suites/no-incentives-controller.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3bc41692eb3012c5ada5234ad2dcbc3d54092ed",
+      "size": 9968,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d3bc41692eb3012c5ada5234ad2dcbc3d54092ed"
+    },
+    {
+      "path": "test-suites/pausable-pool.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "995f9f94a687d4e0a99b37bb2c77462350c87959",
+      "size": 14555,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/995f9f94a687d4e0a99b37bb2c77462350c87959"
+    },
+    {
+      "path": "test-suites/pausable-reserve.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b13981d69a2564cc0508de3ea7ceb228599712c",
+      "size": 11677,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9b13981d69a2564cc0508de3ea7ceb228599712c"
+    },
+    {
+      "path": "test-suites/pool-addresses-provider.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "901f33f10cbf43cf4c89422450523c1535e89a4a",
+      "size": 20860,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/901f33f10cbf43cf4c89422450523c1535e89a4a"
+    },
+    {
+      "path": "test-suites/pool-authorized-flashloan.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ba190f25aa405d9f96e2f2e66900d4334c4ed62",
+      "size": 16150,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0ba190f25aa405d9f96e2f2e66900d4334c4ed62"
+    },
+    {
+      "path": "test-suites/pool-drop-reserve.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42241d344300c3b7bb20ea17fa46c609f18e4573",
+      "size": 4135,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/42241d344300c3b7bb20ea17fa46c609f18e4573"
+    },
+    {
+      "path": "test-suites/pool-edge.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64d93018d8c212e91e994f47ac47f2f4dcf86b86",
+      "size": 45849,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/64d93018d8c212e91e994f47ac47f2f4dcf86b86"
+    },
+    {
+      "path": "test-suites/pool-flashloan.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e359395dc97174791fa41f1386f4e1255150497",
+      "size": 27878,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/4e359395dc97174791fa41f1386f4e1255150497"
+    },
+    {
+      "path": "test-suites/pool-get-reserve-address-by-id.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b168d0049ec3095a39771440eb53c33590527ba3",
+      "size": 1074,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/b168d0049ec3095a39771440eb53c33590527ba3"
+    },
+    {
+      "path": "test-suites/pool-l2.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d09e5c3aa31aff8424f185e29a0557fb2e9938b4",
+      "size": 25415,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d09e5c3aa31aff8424f185e29a0557fb2e9938b4"
+    },
+    {
+      "path": "test-suites/pool-normal-flashloan.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d383dd2539ae8b7856de266a370618e7614c3955",
+      "size": 12146,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d383dd2539ae8b7856de266a370618e7614c3955"
+    },
+    {
+      "path": "test-suites/pool-simple-flashloan.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abe75f27b905bd92969970c2270d788e7a5f64ee",
+      "size": 15657,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/abe75f27b905bd92969970c2270d788e7a5f64ee"
+    },
+    {
+      "path": "test-suites/price-oracle-sentinel.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21c5dc19b9a5043aeb5729a9f86f64120f900590",
+      "size": 20887,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/21c5dc19b9a5043aeb5729a9f86f64120f900590"
+    },
+    {
+      "path": "test-suites/rate-strategy.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "688d1c4362a95dfb03ac8d013a07c17d6b195564",
+      "size": 15856,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/688d1c4362a95dfb03ac8d013a07c17d6b195564"
+    },
+    {
+      "path": "test-suites/rescue-tokens.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0843a700d878c57f8abfe0081dd332b5c1ba4ef",
+      "size": 3959,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/e0843a700d878c57f8abfe0081dd332b5c1ba4ef"
+    },
+    {
+      "path": "test-suites/reserve-configuration.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f4f8369b5cfee02374e20c89248fbccd0371fc5",
+      "size": 16562,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/1f4f8369b5cfee02374e20c89248fbccd0371fc5"
+    },
+    {
+      "path": "test-suites/scenario.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfe867b69246e4a51d3207e9caa752171a32d3f2",
+      "size": 1288,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bfe867b69246e4a51d3207e9caa752171a32d3f2"
+    },
+    {
+      "path": "test-suites/siloed-borrowing.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c97f0a1c8937d4a4d79f6476cd2998e6ce239b6",
+      "size": 7139,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/3c97f0a1c8937d4a4d79f6476cd2998e6ce239b6"
+    },
+    {
+      "path": "test-suites/stable-debt-token-events.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d4b51ca5a16c7030c145bf0e9fe5e6b1ed41239",
+      "size": 16859,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/8d4b51ca5a16c7030c145bf0e9fe5e6b1ed41239"
+    },
+    {
+      "path": "test-suites/stable-debt-token.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d91bd33d1e6a67ed3dd32fca685557ecfbfd43ce",
+      "size": 18088,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/d91bd33d1e6a67ed3dd32fca685557ecfbfd43ce"
+    },
+    {
+      "path": "test-suites/subgraph-scenarios.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfc5a2c90c386079df19ff2c39a779d67c86fff7",
+      "size": 841,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bfc5a2c90c386079df19ff2c39a779d67c86fff7"
+    },
+    {
+      "path": "test-suites/upgradeability.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f2f711ef2c177d4019abb7c8823b6dc1a8a2c78",
+      "size": 21343,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9f2f711ef2c177d4019abb7c8823b6dc1a8a2c78"
+    },
+    {
+      "path": "test-suites/validation-logic.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd9494d97718a52731a1785c65728eff3052fb05",
+      "size": 34392,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bd9494d97718a52731a1785c65728eff3052fb05"
+    },
+    {
+      "path": "test-suites/variable-debt-token-events.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09a0106607c0ad4e6d92d8462b0395ed364c1a0f",
+      "size": 17615,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/09a0106607c0ad4e6d92d8462b0395ed364c1a0f"
+    },
+    {
+      "path": "test-suites/variable-debt-token.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d4e8b99b1b762a00cbd69494381302d8df3bca6",
+      "size": 21240,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/9d4e8b99b1b762a00cbd69494381302d8df3bca6"
+    },
+    {
+      "path": "test-suites/wadraymath.spec.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "934bae911f40fc7e026d4bc66b9747c247c0b894",
+      "size": 3768,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/934bae911f40fc7e026d4bc66b9747c247c0b894"
+    },
+    {
+      "path": "test-wallets.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65da7d4bdbaf704b523e46231c7e82905feb9129",
+      "size": 1007,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/65da7d4bdbaf704b523e46231c7e82905feb9129"
+    },
+    {
+      "path": "tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc8e137b866cb0ff1737da35926c756bf4821408",
+      "size": 517,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/bc8e137b866cb0ff1737da35926c756bf4821408"
+    },
+    {
+      "path": "tslint.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e579d439c43b7118d672aab7d7b369463166a00",
+      "size": 279,
+      "url": "https://api.github.com/repos/aave/aave-v3-core/git/blobs/0e579d439c43b7118d672aab7d7b369463166a00"
+    }
+  ]
+}

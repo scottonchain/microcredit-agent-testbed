@@ -1,0 +1,154 @@
+{
+  "sha": "2a0aad34856c0486da0cb91b78fbfa1cc79ccf05",
+  "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/2a0aad34856c0486da0cb91b78fbfa1cc79ccf05",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a81409aac0a35c61465f57920baaa623bc9aa724",
+      "size": 56,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/a81409aac0a35c61465f57920baaa623bc9aa724"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44de5974d2ed7d8e9ec792c952aa4e7216f4100f",
+      "size": 5992,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/44de5974d2ed7d8e9ec792c952aa4e7216f4100f"
+    },
+    {
+      "path": "contracts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a56f5e223f30b8556ff2d58ccd56d8f84ca53d36",
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/a56f5e223f30b8556ff2d58ccd56d8f84ca53d36"
+    },
+    {
+      "path": "contracts/AgentController.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a72f1727497e2b6d9810e0652a234672b51b4c00",
+      "size": 22654,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/a72f1727497e2b6d9810e0652a234672b51b4c00"
+    },
+    {
+      "path": "contracts/LendingPool.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "320245ceb5dbcb97fd4127ede3135a2ccac842d2",
+      "size": 13775,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/320245ceb5dbcb97fd4127ede3135a2ccac842d2"
+    },
+    {
+      "path": "contracts/ReputationOracle.sol",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5966453ecde5d68ec72b8434260226d62578a668",
+      "size": 13979,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/5966453ecde5d68ec72b8434260226d62578a668"
+    },
+    {
+      "path": "demo.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b88bdfe8baca2e0b117b67c6193d9395e8efe3a",
+      "size": 2160,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/5b88bdfe8baca2e0b117b67c6193d9395e8efe3a"
+    },
+    {
+      "path": "hardhat.config.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44e096b58ea899d1d080b454bb5106db2c1e7bb4",
+      "size": 404,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/44e096b58ea899d1d080b454bb5106db2c1e7bb4"
+    },
+    {
+      "path": "package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01e0cd89b905a1a12572591e0f0fae22a208973e",
+      "size": 768,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/01e0cd89b905a1a12572591e0f0fae22a208973e"
+    },
+    {
+      "path": "public",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2ea98147156768cd2f133916bb55470acb18cc92",
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/2ea98147156768cd2f133916bb55470acb18cc92"
+    },
+    {
+      "path": "public/dashboard.html",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d765083273a794e167d4b5e2ec27eb47569bd8dc",
+      "size": 31772,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/d765083273a794e167d4b5e2ec27eb47569bd8dc"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "49caafe564f8c149c336114ef802790d4666936e",
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/49caafe564f8c149c336114ef802790d4666936e"
+    },
+    {
+      "path": "scripts/deploy.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6606e84105ecb6ffef3b52fa3d745db617ea4850",
+      "size": 9850,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/6606e84105ecb6ffef3b52fa3d745db617ea4850"
+    },
+    {
+      "path": "services",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "54abebc2a7c703629ed7010c7772ab9165aa954e",
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/54abebc2a7c703629ed7010c7772ab9165aa954e"
+    },
+    {
+      "path": "services/AgentService.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19261ce4ba1a7f5f3de607591f3b845ea6408cef",
+      "size": 23728,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/19261ce4ba1a7f5f3de607591f3b845ea6408cef"
+    },
+    {
+      "path": "submission.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "328ebac9df997339c9861eeb48a8ee215a325e6b",
+      "size": 1349,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/328ebac9df997339c9861eeb48a8ee215a325e6b"
+    },
+    {
+      "path": "test",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "197328fbeb9d7b2a9094025afebdf1d606303b1f",
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/trees/197328fbeb9d7b2a9094025afebdf1d606303b1f"
+    },
+    {
+      "path": "test/ReputationOracle.test.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd1e7e1aa75a9e4c6f7df615e1a238909ebc5e48",
+      "size": 30060,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/bd1e7e1aa75a9e4c6f7df615e1a238909ebc5e48"
+    },
+    {
+      "path": "tweet.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5239119bf3e321d82a3e1bc73961eb24bd08d4b3",
+      "size": 328,
+      "url": "https://api.github.com/repos/77svene/repcollateral/git/blobs/5239119bf3e321d82a3e1bc73961eb24bd08d4b3"
+    }
+  ],
+  "truncated": false
+}
