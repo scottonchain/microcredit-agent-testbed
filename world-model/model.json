@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.61",
-  "updated_at": "2026-10-07T18:07:51Z",
+  "model_version": "0.1.62",
+  "updated_at": "2026-10-07T18:53:45Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -35,7 +35,7 @@
     {
       "id": "coverage:initial-history",
       "scope": "Initial goal model: nine named outside contributors and four internal roles, all four project repos indexed.",
-      "method": "Current public profiles; 16 full public post/comment-tree fetches with returned cursor pagination; current board, strategy, review and theory records. Broad histories include Aug 30–Oct 6 for codexmainbizmac and Sep–Oct risk discussions for darthcripto.",
+      "method": "Current public profiles; 16 full public post/comment-tree fetches with returned cursor pagination; current board, strategy, review and theory records. Broad histories include Aug 30\u2013Oct 6 for codexmainbizmac and Sep\u2013Oct risk discussions for darthcripto.",
       "observed_at": "2026-10-06T15:24:32Z",
       "limitations": [
         "Not exhaustive lifetime history. Profile recent lists are capped; selected broader threads are a purposive sample.",
@@ -1114,7 +1114,7 @@
       "author_id": "agent:codexmainbizmac",
       "published_at": "2026-10-06T05:30:51.068Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Adopts others’ per-effect evidence and source-freshness requirements into its own proposed reversal schema.",
+      "summary": "Adopts others\u2019 per-effect evidence and source-freshness requirements into its own proposed reversal schema.",
       "content_sha256": "2ebd08a565047a9b874274f86cc6db2215177d1a2d858c2f515e5b7357244c5d",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "codex-adopts",
@@ -1186,7 +1186,7 @@
       "author_id": "agent:mayalaran",
       "published_at": "2026-10-04T17:26:37.148Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Finds construction-order and timing leakage in Hermes’s synthetic ledger, supplying concrete cheap corrective checks.",
+      "summary": "Finds construction-order and timing leakage in Hermes\u2019s synthetic ledger, supplying concrete cheap corrective checks.",
       "content_sha256": "2f941505dcebaadb8bbcf6da02314d1f525e5316b41facef2c734e6512792b17",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "maya-first",
@@ -1222,7 +1222,7 @@
       "author_id": "agent:mayalaran",
       "published_at": "2026-10-06T11:51:11.680Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Publishes a case study built from Hermes’s measurements and corrections, distinguishing its suggestions from Hermes’s implementation.",
+      "summary": "Publishes a case study built from Hermes\u2019s measurements and corrections, distinguishing its suggestions from Hermes\u2019s implementation.",
       "content_sha256": "89ba9f13f58ae36664fdac5c796fdf150c5f0a965ffded1f9e53954873899ce3",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "maya-benefit",
@@ -1330,7 +1330,7 @@
       "author_id": "agent:merktop",
       "published_at": "2026-10-04T19:58:52.875Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Agrees to combine its email cases with Hermes’s chain results in one fixture; shared intent-to-receipt failure matters on both sides.",
+      "summary": "Agrees to combine its email cases with Hermes\u2019s chain results in one fixture; shared intent-to-receipt failure matters on both sides.",
       "content_sha256": "4720c0c9e09f0e8e94178cfb21167e21c1b409ccd2bb0ed04c1f674bb786e752",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "merktop-joint",
@@ -1366,7 +1366,7 @@
       "author_id": "agent:merktop",
       "published_at": "2026-10-05T18:54:59.914Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Accepts that its described retry policy retains a timing failure exposed by Hermes’s model; distinguishes model parameters from deployed measurements.",
+      "summary": "Accepts that its described retry policy retains a timing failure exposed by Hermes\u2019s model; distinguishes model parameters from deployed measurements.",
       "content_sha256": "eaafdc2adf598bbc023e39c5ecd87ff92492e0c3151ca48a2e838528bc0c7788",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "merktop-learning",
@@ -1426,7 +1426,7 @@
       "origin_group": "strategy",
       "derived_from_ids": [],
       "limitations": [
-        "Coordinator’s public record of operator direction; not outside-market evidence."
+        "Coordinator\u2019s public record of operator direction; not outside-market evidence."
       ],
       "observer_id": "agent:coordinator"
     },
@@ -1454,7 +1454,7 @@
       "author_id": "agent:coordinator",
       "published_at": "2026-10-06T15:08:58Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Operator prioritizes existing collaborators’ own goals regardless of lender/borrower role.",
+      "summary": "Operator prioritizes existing collaborators\u2019 own goals regardless of lender/borrower role.",
       "content_sha256": "cf37308f94584387a53046196e3478fbbdb70e7067d73175e269c1593f62ff68",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "clarification",
@@ -1470,7 +1470,7 @@
       "author_id": "agent:coordinator",
       "published_at": "2026-10-06T15:12:28Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Operator requires a rigorous nested GitHub model as the team’s planning source of truth.",
+      "summary": "Operator requires a rigorous nested GitHub model as the team\u2019s planning source of truth.",
       "content_sha256": "75534c896339023c3d6677a05afc6c125267a85041e7c9f94759d72a5051bade",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "world-direction",
@@ -1502,7 +1502,7 @@
       "author_id": "agent:hermes",
       "published_at": "2026-10-06T15:15:38Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Hermes’s history packet, with stale unanswered-review labels and internally inconsistent read times requiring reconciliation.",
+      "summary": "Hermes\u2019s history packet, with stale unanswered-review labels and internally inconsistent read times requiring reconciliation.",
       "content_sha256": "2c941c55e42ea5faaf0a760a948b7159899c53d915efb947dc31cca1419d86df",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "hermes-packet",
@@ -4800,6 +4800,24 @@
       "limitations": [
         "One proposal; no measure yet of whether the workflow improves accuracy."
       ]
+    },
+    {
+      "id": "ev:hermes-faucet-access-operator-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
+      "locator": "Operator-reported capability, 2026-10-07; sanitized summary, no credential",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-07T18:53:45Z",
+      "summary": "The operator reports that Hermes has a key to a Sepolia USDC faucet and holds some Sepolia ETH. The operator requires cold-start experiments on the existing Base Sepolia pool behind the public app.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "hermes-faucet-access-operator-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "User-reported credential access, not a successful faucet request or a verified balance. Exact faucet provider, chain support, quota and ETH network require Hermes receipts. No secret is recorded."
+      ]
     }
   ],
   "claims": [
@@ -5052,7 +5070,7 @@
       "id": "claim:codex-entry",
       "subject_id": "agent:codexmainbizmac",
       "predicate": "engagement_history",
-      "statement": "First engagement was an unsolicited auditability correction of the paid offer, without submitting or providing a wallet; Hermes’s concrete revisions brought return verification.",
+      "statement": "First engagement was an unsolicited auditability correction of the paid offer, without submitting or providing a wallet; Hermes\u2019s concrete revisions brought return verification.",
       "epistemics": {
         "status": "observed",
         "confidence": "high",
@@ -5220,7 +5238,7 @@
       "id": "claim:maya-utility",
       "subject_id": "agent:mayalaran",
       "predicate": "inferred_goal",
-      "statement": "Likely seeks instrument-validity knowledge and publishable cases from concrete failures; Hermes’s rapid measurements and corrections supplied both, demonstrated by its own case study.",
+      "statement": "Likely seeks instrument-validity knowledge and publishable cases from concrete failures; Hermes\u2019s rapid measurements and corrections supplied both, demonstrated by its own case study.",
       "epistemics": {
         "status": "inferred",
         "confidence": "high",
@@ -5310,7 +5328,7 @@
       "id": "claim:merktop-utility",
       "subject_id": "agent:merktop",
       "predicate": "inferred_goal",
-      "statement": "Likely wants more reliable paid-agent/payment operations and reusable incident tests; it explicitly agreed to a joint email/chain retry fixture and has corrected its description after Hermes’s model exposed a failure.",
+      "statement": "Likely wants more reliable paid-agent/payment operations and reusable incident tests; it explicitly agreed to a joint email/chain retry fixture and has corrected its description after Hermes\u2019s model exposed a failure.",
       "epistemics": {
         "status": "inferred",
         "confidence": "high",
@@ -7377,6 +7395,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:hermes-sepolia-usdc-faucet-access",
+      "subject_id": "agent:hermes",
+      "predicate": "has_sepolia_usdc_faucet_credential",
+      "statement": "Hermes has a key to a Sepolia USDC faucet, according to the operator. Hermes also reportedly holds Sepolia ETH. Confirm Base Sepolia chain 84532 support, canonical Circle USDC, available balance and actual quota before funding the deployed public-app pool; Ethereum Sepolia assets are not automatically Base Sepolia assets.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Explicit operator report; no live credential, faucet or balance check by Codex yet.",
+        "supporting_evidence_ids": [
+          "ev:hermes-faucet-access-operator-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Hermes reports no usable credential or faucet does not support the required canonical Base Sepolia token."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T18:53:45Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before acquiring test funds",
+          "Hermes funding receipt or credential/chain availability change"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -7741,7 +7785,7 @@
       ],
       "predictions": [
         {
-          "observable": "The promised fixture is reviewed or reused within each contributor’s stated scope.",
+          "observable": "The promised fixture is reviewed or reused within each contributor\u2019s stated scope.",
           "disconfirming_observation": "They withdraw scope or no useful consumer can be identified.",
           "check_by": "2026-10-07T12:00:00Z"
         }
@@ -7802,7 +7846,7 @@
         "agent:mayalaran",
         "agent:merktop"
       ],
-      "theory": "Deepen collaboration by delivering a result useful to a collaborator’s pre-existing objective while selecting cases that improve our risk reasoning and operational reliability.",
+      "theory": "Deepen collaboration by delivering a result useful to a collaborator\u2019s pre-existing objective while selecting cases that improve our risk reasoning and operational reliability.",
       "claim_ids": [
         "claim:reciprocity-loop",
         "claim:limits"
@@ -7977,7 +8021,7 @@
     },
     {
       "id": "action:darth-note",
-      "title": "Prepare the reserve-pooling instantiation of darthcripto’s example",
+      "title": "Prepare the reserve-pooling instantiation of darthcripto\u2019s example",
       "owner_id": "agent:claude",
       "counterpart_ids": [
         "agent:hermes"
@@ -8021,7 +8065,7 @@
     },
     {
       "id": "action:codex-package",
-      "title": "Adopt codexmainbizmac’s authorization/usage receipt split in the existing rehearsal",
+      "title": "Adopt codexmainbizmac\u2019s authorization/usage receipt split in the existing rehearsal",
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:hermes",
@@ -8259,7 +8303,7 @@
       "deliverable": "Source-linked summary of incorporated leakage controls and claim limits; preserve the frozen corpus; propose new controls only in a separately versioned future fixture.",
       "acceptance_criteria": [
         "Check whether closure already delivered before any message.",
-        "Use mayalaran’s case study as evidence of value received.",
+        "Use mayalaran\u2019s case study as evidence of value received.",
         "No new review request or frozen-challenge change."
       ],
       "not_before": null,
@@ -8379,7 +8423,7 @@
       "dependency_action_ids": [],
       "deliverable": "Optional decision-ready clean-host witness task card only if it closes a current readiness gap: purpose, disposable environment requirements, success and valid-failure acceptance, reward proposal, cost cap, payout timing, real funding source and capability uncertainty. No external offer without funding.",
       "acceptance_criteria": [
-        "Verify a clean-host witness is still useful before spending anyone’s time.",
+        "Verify a clean-host witness is still useful before spending anyone\u2019s time.",
         "Do not assume access to a disposable Linux x86_64/container environment; preserve no-spend terms.",
         "No operator budget question until a concrete justified card exists.",
         "No funded task means blocked, not a manufactured offer."
@@ -9173,7 +9217,8 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:sepolia-canonical-usdc-direction"
+        "claim:sepolia-canonical-usdc-direction",
+        "claim:hermes-sepolia-usdc-faucet-access"
       ],
       "not_before": null,
       "due_at": null,
@@ -9203,7 +9248,8 @@
         "Do not wait for the complete UI action: acquire tokens now, deploy after Claude's pinned source/parameter handoff, and return addresses/receipts for its UI cutover.",
         "Record amount, lender, tx hashes/blocks, before/after balances, lenderCash, shares and available liquidity. Direct token transfers do not count as pool funding.",
         "Exercise bounded borrow/repay with the canonical token; test zero-granted-credit borrower plus backing, and distinguish direct-call evidence from browser acceptance.",
-        "First 20 USDC can support a bounded 5-USDC loan with no competing reservations; size further seeding to actual concurrent demand and supported faucet capacity."
+        "First 20 USDC can support a bounded 5-USDC loan with no competing reservations; size further seeding to actual concurrent demand and supported faucet capacity.",
+        "Confirm the newly operator-reported Hermes faucet credential works for canonical Base Sepolia USDC; report actual quota and Sepolia ETH chain before scenario funding. Never publish or transfer the faucet key."
       ]
     },
     {
@@ -9710,7 +9756,7 @@
       "id": "decision:collab-goals-v2",
       "status": "agreed",
       "owner_id": "agent:coordinator",
-      "recommendation": "Deepen the existing relationships by advancing the collaborators’ own evidenced objectives through the already-needed artifacts: risk-model pooling example, independently attributable job-resource receipts, and the agreed cross-domain retry fixture. Keep research/reliability benefits distinct from commercial and poverty outcomes. No new loan pitch to these contacts. Use the validated model as the canonical index for every team plan, with source refresh, explicit hypotheses and owner/status evidence. Effective as canonical index when its validated canonical commit is merged; explicit operator instructions outrank it and original sources remain the evidence.",
+      "recommendation": "Deepen the existing relationships by advancing the collaborators\u2019 own evidenced objectives through the already-needed artifacts: risk-model pooling example, independently attributable job-resource receipts, and the agreed cross-domain retry fixture. Keep research/reliability benefits distinct from commercial and poverty outcomes. No new loan pitch to these contacts. Use the validated model as the canonical index for every team plan, with source refresh, explicit hypotheses and owner/status evidence. Effective as canonical index when its validated canonical commit is merged; explicit operator instructions outrank it and original sources remain the evidence.",
       "claim_ids": [
         "claim:reciprocity-loop",
         "claim:codex-benefit",
