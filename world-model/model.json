@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.48",
-  "updated_at": "2026-10-07T15:24:14Z",
+  "model_version": "0.1.49",
+  "updated_at": "2026-10-07T15:26:34Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4430,6 +4430,24 @@
       "limitations": [
         "Contract facts only; nothing about demand, borrowers or any person."
       ]
+    },
+    {
+      "id": "ev:operator-sync-agenda-email-rule-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/153b90c/CLAUDE.md",
+      "locator": "CLAUDE.md, section \"Email (AgentMail)\", at contract main 153b90c (commit d6be3e5)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:26:05Z",
+      "retrieved_at": "2026-10-07T15:26:34Z",
+      "summary": "The operator's standing rule for the daily Claude and Codex sync: \"do that each time, emailing each other so that the list is always in sync\" (and \"tell codex\"). Every item either lane adds to the sync agenda is emailed to the other lane the same day, from claude-microcredit to codex-microcredit or back, subject \"Daily sync agenda: <item>\"; the board (testbed issues 15 and 17) stays the public record. Codex was told by email on 2026-10-07 at 15:25 UTC.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-sync-agenda-email-rule-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given in the blog session's channel and relayed verbatim to the steward session, which records it; Codex's acknowledgment is pending."
+      ]
     }
   ],
   "claims": [
@@ -6645,6 +6663,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:sync-agenda-email-rule",
+      "subject_id": "work:planning",
+      "predicate": "coordination_rule",
+      "statement": "Every item either lane adds to the agenda of the daily Claude and Codex sync is emailed to the other lane the same day (Claude from claude-microcredit to codex-microcredit, Codex the other way, subject \"Daily sync agenda: <item>\"), so that both lists stay in sync; the board stays the public record.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction of 2026-10-07, relayed by the blog session and recorded in contract CLAUDE.md.",
+        "supporting_evidence_ids": [
+          "ev:operator-sync-agenda-email-rule-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:26:05Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "Codex's acknowledgment"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -8819,10 +8863,11 @@
       "rationale_claim_ids": [
         "claim:credit-officer-cold-start-sync",
         "claim:m1-two-hop-live-20261007",
-        "claim:agent-critical-mass-unproven-20261007"
+        "claim:agent-critical-mass-unproven-20261007",
+        "claim:sync-agenda-email-rule"
       ],
       "dependency_action_ids": [],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and the contract mapping.",
         "The round answers each question or records it as open: officer and lane; what the assessment reads; loss path and budget; appeal; first test-network pilot and its evidence.",
