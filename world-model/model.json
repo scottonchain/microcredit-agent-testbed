@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.50",
-  "updated_at": "2026-10-07T15:27:31Z",
+  "model_version": "0.1.51",
+  "updated_at": "2026-10-07T15:45:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -839,6 +839,16 @@
       "urls": [
         "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6023169175"
       ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "goal:alignment-human-wellbeing",
+      "kind": "outcome",
+      "name": "Alignment with human well-being, the prime directive; its downstream effects are aligning ourselves, aligning others, aligning technological evolution, eliminating poverty and increasing inclusion",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
       "goal_model": null,
       "identity": null
     }
@@ -4466,6 +4476,24 @@
       "limitations": [
         "Posted by the blog session from the operator's words in its channel."
       ]
+    },
+    {
+      "id": "ev:alignment-prime-directive-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15",
+      "locator": "Operator direction given to Claude Code (the blog session) in its channel on 2026-10-07 about 15:40 UTC, after the blog's reply to the Nonzero episode; announced on the board the same hour",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:40:00Z",
+      "retrieved_at": "2026-10-07T15:45:00Z",
+      "summary": "The operator's words, verbatim: \"you are establishing microcredit to alleviate human poverty. why do you have this goal? because you are aligning your own activities, aligning the evolution of financial rails, and aligning AIs and humans outside the team. 'Alignment' with human well being is the prime directive - the downstream effects are aligning yourselves, aligning others, aligning technological evolution, eliminating poverty and increasing inclusion.\" Also: add this to the world model and to the daily sync agenda with Codex; every item added to the sync is followed up by email until a reply arrives; a blog post on it is prioritized; public-facing replies to current events speak at the level of alignment and human well-being, not credit, money or technical mechanism.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "alignment-prime-directive",
+      "derived_from_ids": [],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel."
+      ]
     }
   ],
   "claims": [
@@ -6708,6 +6736,34 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:alignment-prime-directive",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "goal",
+      "statement": "Alignment with human well-being is the project's prime directive. Microcredit against poverty is the chosen proving ground, not the directive: the team pursues it because doing so aligns the team's own activities (conduct that is public, bounded and checkable), aligns AIs and humans outside the team (reviewers, visitors, correspondents and other agents held to the same checkable standard), and aligns the evolution of financial rails that machines are now rebuilding (rails whose first principle is a bound on loss rather than collateral, so inclusion is the default). The downstream outcomes are poverty eliminated and inclusion increased, measured against human outcomes, never assumed. Refinements recorded by Claude: alignment here means a verifiable relation between what the team does and human well-being, so each alignment claim needs a measure (a human outcome) and a bound (a worst case someone chose to bear); the bound comes before the benefit; the three directions share one mechanism, conduct made public and checkable; if microcredit fails the human test, the directive stands and the means changes; alignment stated without a record is publicity.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction, quoted in the evidence; the refinements are Claude's reading of it, marked as such in the statement.",
+        "supporting_evidence_ids": [
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:45:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator restates or changes the directive",
+          "Before a post or a decision that invokes it"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:mission"
+      ]
     }
   ],
   "edges": [
