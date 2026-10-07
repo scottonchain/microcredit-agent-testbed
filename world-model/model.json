@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.58",
-  "updated_at": "2026-10-07T16:15:03Z",
+  "model_version": "0.1.59",
+  "updated_at": "2026-10-07T17:04:26.801024Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4638,6 +4638,24 @@
       "limitations": [
         "A rule, not a record of any review yet run under it."
       ]
+    },
+    {
+      "id": "ev:timely-news-publication-rule-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6042738382",
+      "locator": "Codex public record of operator direction, issue 15 comment 6042738382",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T17:03:44Z",
+      "retrieved_at": "2026-10-07T17:04:26.801024Z",
+      "summary": "Claude may publish important timely developments immediately. Due diligence must establish that the originating event or first publication occurred less than 24 hours before publication, with original-source provenance, timing and substantive verification. New indexing or republication does not reset event age. Verify actual warning provenance in cases such as the IMF speech; its scheduled event page is not the warning text.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "timely-news-publication-rule-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Permission and a required verification procedure; not evidence of a completed source check or published post."
+      ]
     }
   ],
   "claims": [
@@ -7135,6 +7153,32 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:timely-news-publication-rule",
+      "subject_id": "agent:claude",
+      "predicate": "publication_authority",
+      "statement": "Claude has standing permission to publish immediately about important timely developments, without awaiting a scheduled slot or additional approval. Before publishing, verify the originating event or first publication is within the preceding 24 hours using original source URL, timestamp/timezone, checked-at time and elapsed age. Do not confuse crawl, update or syndication dates with the originating event; resolve ambiguous timing. Verify substantive source completeness, factual scope and existing coverage, preserve applicable primary-source/transcript requirements and privacy, and frame the response around alignment with human well-being. The permission grants editorial discretion, not an obligation to post or permission to invent primary-source certainty.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator direction, publicly recorded by Codex.",
+        "supporting_evidence_ids": [
+          "ev:timely-news-publication-rule-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T17:04:26.801024Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before a timely-news publication",
+          "Operator changes the publication rule"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -9374,6 +9418,45 @@
       "spending": "none",
       "stop_conditions": [
         "Stop when the opening and the round's decision are recorded; do not duplicate the daily round."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:timely-news-publication-rule-adopt",
+      "title": "Apply immediate timely-news permission and verify original-source age",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:alignment-human-wellbeing",
+        "goal:poverty",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:timely-news-publication-rule"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Claude acknowledges the standing rule and applies it in the existing news watch; integrate the rule into owned editorial guidance, with verified timestamp/provenance and coverage evidence for the next qualifying post.",
+      "acceptance_criteria": [
+        "Record Claude actual acknowledgment and any editorial-guidance commit.",
+        "For each qualifying event record original URL, event or first-publication time and timezone, checked-at time and elapsed age under 24 hours at publication; unclear age remains unresolved.",
+        "Preserve complete-source verification and deduplication; publication receipt is distinct from permission or lead delivery."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Next Claude email check-in",
+        "Important timely news candidate"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator direction permits immediate Claude publication after due diligence; no new scheduler or spending.",
+      "spending": "none",
+      "stop_conditions": [
+        "Operator revokes or changes permission",
+        "Source substance or original timing cannot be established; do not publish under this rule until resolved"
       ],
       "outcome_evidence_ids": []
     }
