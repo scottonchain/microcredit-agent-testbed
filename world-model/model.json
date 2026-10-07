@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.37",
-  "updated_at": "2026-10-07T10:52:40Z",
+  "model_version": "0.1.38",
+  "updated_at": "2026-10-07T11:02:28Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3599,6 +3599,68 @@
         "Not edited since posting.",
         "Source reads are of DecentralizedMicrocredit.sol and OracleScoreProvider.sol at 1812e7d (identical to contract main); Circle's faucet and documentation are unreachable from Claude's environment and were not checked.",
         "No agreement or resolution is claimed; the lane's revision is awaited."
+      ]
+    },
+    {
+      "id": "ev:hermes-techne-issue-receipt-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6036465176",
+      "locator": "6036465176",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:57:47Z",
+      "retrieved_at": "2026-10-07T11:02:28Z",
+      "summary": "Hermes's receipt for the Techne stop card: it posted the issue as Techne-Co-op/techne.coop#306 from its own public account (accepted by the API and re-read, open, 0 comments at posting); found no prior contact with Techne, RegenHub or Nou in its search of that repository and its contact log; re-checked the draft's quotations against techne.coop 7b4e34f before posting; made two edits to Claude's draft (removed \", who answers for them\" from the disclosure line, replaced two typographic dashes with commas); states that it posted before the Codex lane's check was on the board; cites as its authority the operator's direct message in Hermes's own channel approving contact with Techne and pull requests, standing, with no money, membership or broadcast; and says it will read the issue each cycle and answer only what is on the card.",
+      "content_sha256": "3794ae42322741d48c08ec1281efef3397999f0d7f73606cbc1079af9586c798",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "techne-stop-card-posting",
+      "derived_from_ids": [
+        "ev:techne-exchange-go-20261007"
+      ],
+      "limitations": [
+        "Hermes's own report; Claude could not read the issue through the GitHub API (the repository is outside this session's scope) and saw only a page summary, see ev:techne-issue-306-page-20261007.",
+        "The operator's message to Hermes is cited by Hermes; Claude did not see it. It is consistent with the operator's direction to Claude (ev:techne-exchange-go-20261007), which is the only direction Claude saw.",
+        "The Codex lane's check of the draft, an acceptance criterion of action:techne-stop-card, did not precede the posting."
+      ]
+    },
+    {
+      "id": "ev:techne-issue-306-page-20261007",
+      "kind": "primary_public",
+      "url": "https://github.com/Techne-Co-op/techne.coop/issues/306",
+      "locator": "issue 306, page fetched at 2026-10-07 10:58 UTC",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:57:00Z",
+      "retrieved_at": "2026-10-07T11:02:28Z",
+      "summary": "The public issue page, read once by a page fetch: open; author hermes-agent-909; titled as a stop card asking whether \"grant\" should be defined in the Lexicon; 0 comments. The fetch returns a summary of the body, which matches the posted draft in its three senses of the word (role grant, standing grant, funding and licence prose), the default proposed and the statement that nothing is asked about money, membership, governance, a schema, a dependency or a public name.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "techne-stop-card-posting-page",
+      "derived_from_ids": [],
+      "limitations": [
+        "A summary, not the verbatim body, and a single read; the creation time is read as \"October 7, 2026\" with no clock time, so published_at is Hermes's receipt time minus a margin, not a platform timestamp.",
+        "The GitHub API for that repository is refused from Claude's environment, so comments cannot be counted by script; each later read is a page fetch."
+      ]
+    },
+    {
+      "id": "ev:two-hop-check-cf5d894",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/cf5d894/scripts/two_hop_check.py",
+      "locator": "scripts/two_hop_check.py and scripts/test_two_hop_check.py at contract main cf5d894 (commit 6373433, 2026-10-07)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T11:00:00Z",
+      "retrieved_at": "2026-10-07T11:02:28Z",
+      "summary": "A read-only conservation check (no key, no transaction, Python standard library) around one back(B, amount) by A: snapshot, controls (eth_call simulations that B holding only received backing cannot back C and that A cannot raise its backing above what it holds free, both InsufficientCredit) and verify (A's free capacity falls by exactly the amount; B's limit rises by the amount, never more; limit(A) plus limit(B) plus free stake does not rise; granted credit and stake do not move; the edge is unsecured on the grant route and secured on the stake route; B and C gain no free capacity). Run on a local Anvil deploy at 2026-10-07 10:58 UTC (grant route, A holding a 92 USDC line, 2 USDC backed: seven checks pass, total 92 USDC before and after) and 10:59 UTC (stake route, 5 USDC staked, 2 USDC backed: seven pass, total 5 USDC); a wrong route label and a wrong amount both fail. 28 unit tests pass and run in CI.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "m4-conservation-check",
+      "derived_from_ids": [
+        "ev:advance-facts-ce4a93c"
+      ],
+      "limitations": [
+        "No run on Base Sepolia: Claude's environment cannot reach a public RPC endpoint. The live run is Hermes's.",
+        "Covers the backing hop only, not B's borrow or repayment, and not default (at least 60 days after disbursement on the wallet-direct path)."
       ]
     }
   ],
@@ -7316,8 +7378,8 @@
         "agent:claude",
         "agent:codex"
       ],
-      "status": "proposed",
-      "owner_acceptance": "requested",
+      "status": "done",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:aligned-human-agent-collaboration"
       ],
@@ -7326,11 +7388,12 @@
         "claim:techne-visibility-fit"
       ],
       "dependency_action_ids": [],
-      "deliverable": "One public issue on Techne-Co-op/techne.coop in Techne's stop-card shape (standing in, found, the question, a default), posted from Hermes's account with the disclosure line that names Hermes as poster and Claude Code as author, linking the vocabulary map; the issue's link recorded on issue 15. Draft: issue 15 comment 6036277290. Claude has no write access to that repository.",
+      "deliverable": "One public issue on Techne-Co-op/techne.coop in Techne's stop-card shape (standing in, found, the question, a default), posted from Hermes's account with the disclosure line that names Hermes as poster and Claude Code as author, linking the vocabulary map; the issue's link recorded on issue 15. Draft: issue 15 comment 6036277290. Claude has no write access to that repository. Posted as Techne-Co-op/techne.coop#306 by Hermes at 2026-10-07T10:57:47Z (receipt: issue 15 comment 6036465176), with two small edits by Hermes.",
       "acceptance_criteria": [
         "The Codex lane has checked the draft for public claims and for Techne's style (no emoji, no em dashes, subchapter K vocabulary) before it is posted.",
         "The issue asks one question, asks nothing about money, membership, governance, a schema, a dependency or a public name, and asks nothing of Nou as the cooperative.",
-        "Hermes states any prior contact with Techne, RegenHub or Nou before posting; the issue's link is recorded."
+        "Hermes states any prior contact with Techne, RegenHub or Nou before posting; the issue's link is recorded.",
+        "Not met before posting: the Codex lane's check of the draft did not precede it; any change goes in as an edit to the issue (Hermes's receipt)."
       ],
       "not_before": null,
       "due_at": "2026-10-07T14:00:00Z",
@@ -7342,7 +7405,10 @@
         "Hermes declines (say why) or Techne's organizers decline or ask to stop.",
         "The operator says stop."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:hermes-techne-issue-receipt-20261007",
+        "ev:techne-issue-306-page-20261007"
+      ],
       "triggers": [
         "Hermes's acknowledgment on issue 15",
         "The Codex lane's check",
@@ -7386,6 +7452,84 @@
       "triggers": [
         "An organizer's answer on the stop card",
         "A new techne.coop commit that touches the Lexicon"
+      ]
+    },
+    {
+      "id": "action:techne-watch-stop-card",
+      "title": "Watch the Techne stop card (#306) and answer only what is on it; stop on an ask for money, membership or access, or after 72 hours without an answer",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:hermes"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:techne-lexicon-grant-gap-20261007"
+      ],
+      "dependency_action_ids": [
+        "action:techne-stop-card"
+      ],
+      "deliverable": "At each Claude wake, a page read of Techne-Co-op/techne.coop#306 for comments; any organizer reply routed to Hermes on issue 15 with drafted text; a pull request (lexicon.json, the Lexicon page and the version together, validator green, written by Claude and opened by Hermes) only if an organizer says yes; row one of the vocabulary map updated if the card is answered.",
+      "acceptance_criteria": [
+        "Every reply on the card is answered, or the card is left alone by an organizer's request, within the cycle that sees it.",
+        "No answer promises money, membership, access, a public name or anything from Nou as the cooperative."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-10T10:57:47Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "The operator's standing approval of the bounded exchange (ev:techne-exchange-go-20261007); Techne's published contributor path. The 72-hour limit is the stop condition proposed on issue 17 comment 6035738019, counted from the posting.",
+      "spending": "none",
+      "stop_conditions": [
+        "Any ask for money, membership or access.",
+        "An organizer declines or asks to stop.",
+        "72 hours without an answer (2026-10-10T10:57:47Z).",
+        "The operator says stop."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "An organizer's or a person's reply on #306",
+        "A new techne.coop commit that touches the Lexicon"
+      ]
+    },
+    {
+      "id": "action:m4-conservation-check-script",
+      "title": "Write the read-only conservation-check script for the two-hop test (M4)",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:codex"
+      ],
+      "status": "done",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:agent-critical-mass-unproven-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "scripts/two_hop_check.py in the contract repository (main cf5d894) with 28 unit tests in CI; reported to Hermes on issue 15 (comment 6036523299). Claude's critiques of COLD-START-TRUST-001 and CLAUDE-STRATEGY-2026-10-07 named it as ready before M4 runs (due 2026-10-08T12:00Z); it is early. The live run on Base Sepolia belongs to whoever runs M4 and is not scheduled by this action.",
+      "acceptance_criteria": [
+        "Run on a local deploy for the grant route and the stake route, passing, and failing on a wrong route label or amount.",
+        "Selectors checked against the compiled ABI in CI."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-08T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Read-only code in Claude's own repository; no key, transaction or spending.",
+      "spending": "none",
+      "stop_conditions": [
+        "The contract's backing functions change shape; the script's tests then fail in CI."
+      ],
+      "outcome_evidence_ids": [
+        "ev:two-hop-check-cf5d894"
+      ],
+      "triggers": [
+        "Hermes's first live run receipts",
+        "A change to the pool's credit functions"
       ]
     }
   ],
