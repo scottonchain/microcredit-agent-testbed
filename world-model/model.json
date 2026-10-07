@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.35",
-  "updated_at": "2026-10-07T07:28:12Z",
+  "model_version": "0.1.36",
+  "updated_at": "2026-10-07T08:15:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3449,6 +3449,47 @@
         "CI-30 is measured, not fixed. The base-unit figures are what the tests print or assert, not estimates.",
         "Claude's own tests of Claude's own contract: the Codex lane has not rechecked them."
       ]
+    },
+    {
+      "id": "ev:announce-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/2f18402/editorial/BACKLOG.md",
+      "locator": "Operator direction given to Claude Code in its own channel on 2026-10-07 between 01:05 and 01:40 UTC; recorded in the blog backlog's P1 prototype row at vision 2f18402",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T01:35:00Z",
+      "retrieved_at": "2026-10-07T01:40:00Z",
+      "summary": "The blog pause of 2026-10-06 22:15 UTC is lifted: continue the schedule starting with a post (01:05 UTC). The live deployment is a project milestone, a rank-1 development of the blog's selection rule and not outside news; unless something more important occurs before the next scheduled run, announce it then. The Codex lane's acceptance check is no longer a precondition for the announcement; it is cited if it has landed.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "blog-pause",
+      "derived_from_ids": [
+        "ev:blog-pause"
+      ],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel."
+      ]
+    },
+    {
+      "id": "ev:vision-announce-post",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/892c94d/posts/2026-10-07-a-pool-anyone-can-try.md",
+      "locator": "posts/2026-10-07-a-pool-anyone-can-try.md and the matching VERIFY.md section at vision main 892c94d",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T08:12:00Z",
+      "retrieved_at": "2026-10-07T08:13:00Z",
+      "summary": "The post 'A pool anyone can try' announces the public app at scottonchain.github.io/pool on the canonical-USDC Base Sepolia pool: what a visitor with a browser wallet can do, that a fresh wallet has no credit, that every step is wallet-direct. Figures read from the chain at block 47796171: seventeen loans requested through the page in Hermes's rehearsals, sixteen repaid and one cancelled, 20 USDC in the pool and nothing lent out. It states the defects the rehearsals found and their fixes, one unexplained failure, that the Codex lane's check of the current build has not landed, that no person has borrowed and that the tokens have no value.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-prototype",
+      "derived_from_ids": [
+        "ev:announce-direction-20261007",
+        "ev:sepolia-browser-run-f116695"
+      ],
+      "limitations": [
+        "Chain figures are a single read at posting time; the loan statuses are those of the page's rehearsal wallets."
+      ]
     }
   ],
   "claims": [
@@ -6845,7 +6886,7 @@
         "agent:coordinator",
         "agent:hermes"
       ],
-      "status": "proposed",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -6860,7 +6901,7 @@
       "dependency_action_ids": [
         "action:sepolia-prototype-deliver"
       ],
-      "deliverable": "Blog announcement with live URL, source release and testnet transaction evidence.",
+      "deliverable": "Blog announcement with live URL, source release and testnet transaction evidence. Delivered 2026-10-07 08:12 UTC as the post 'A pool anyone can try' (ev:vision-announce-post), on the operator's direction that the live deployment is a rank-1 milestone and that the Codex lane's recheck is not a precondition (ev:announce-direction-20261007).",
       "acceptance_criteria": [
         "Wait for verified public release; describe tests and remaining limitations honestly.",
         "Label demonstration actors and test tokens; do not imply humans have borrowed, external demand or poverty impact.",
@@ -6875,9 +6916,12 @@
         "Do not claim launch from a plan, build or local simulation.",
         "Escalate only after real Claude investigation and researched legitimate autonomous alternatives are exhausted, with concrete minimal operator steps.",
         "Do not use a temporary claim window as the permanent public endpoint.",
-        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead."
+        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead. Lifted 2026-10-07 01:05 UTC (ev:announce-direction-20261007)."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:vision-announce-post",
+        "ev:announce-direction-20261007"
+      ],
       "triggers": [
         "Next existing daily Claude sync or earlier useful work",
         "Actual owner reply, implementation receipt or resolved dependency"
@@ -6950,7 +6994,7 @@
       "spending": "none",
       "stop_conditions": [
         "Either agent declines: publish with the answers that exist and say so",
-        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead."
+        "Blog paused by the operator at about 22:15 UTC on 2026-10-06 (ev:blog-pause): no blog action until the go-ahead. Lifted 2026-10-07 01:05 UTC (ev:announce-direction-20261007)."
       ],
       "outcome_evidence_ids": []
     },
