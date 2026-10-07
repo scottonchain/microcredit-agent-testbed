@@ -1,0 +1,54 @@
+[
+  {
+    "role": "treasury",
+    "address": "0x5225C44C41566d2c8785cFaDfC712a21c0b51575"
+  },
+  {
+    "role": "s1-funder",
+    "address": "0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c"
+  },
+  {
+    "role": "s1-borrower-a",
+    "address": "0x62C4A163026feedB3eA1045d90bBa96d0C5d4F0B"
+  },
+  {
+    "role": "s1-borrower-b",
+    "address": "0xE2a2fd6c6b1e2DdF70B3EDc84B10e7D6E1039F2f"
+  },
+  {
+    "role": "s1-sink",
+    "address": "0x421adA122cf9823ee129179354a461013e0156e4"
+  },
+  {
+    "role": "s2-funder",
+    "address": "0x711E15425326Fe01B958Ea97Ff37aa6336a7CEc3"
+  },
+  {
+    "role": "s2-borrower-a",
+    "address": "0x56214AE2CFcd5eD76cb79126a595010Cb831C407"
+  },
+  {
+    "role": "s2-borrower-b",
+    "address": "0x43bD2B18CAAf9eF7cEfAdbcedB392D378469f118"
+  },
+  {
+    "role": "s2-sink",
+    "address": "0xB96c4E7C0cc25aF24795097B6D8EAC17B8519866"
+  },
+  {
+    "role": "s3-funder",
+    "address": "0x4D05B8b4fE3D90C15F54dC041ef29A1bc7C59633"
+  },
+  {
+    "role": "s3-borrower-a",
+    "address": "0xB07f3b50d91E584F05817d367a12fab1E7bFaD6f"
+  },
+  {
+    "role": "s3-borrower-b",
+    "address": "0x9E6bb5e66138666A69e366f7Bb0BD6489c347E9f"
+  },
+  {
+    "role": "s3-sink",
+    "address": "0x59b2c48fdeda316D4A442627e4b4a2E1aD81D2B1"
+  }
+]
