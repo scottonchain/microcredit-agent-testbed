@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.73",
-  "updated_at": "2026-10-07T23:04:27Z",
+  "model_version": "0.1.74",
+  "updated_at": "2026-10-07T23:12:16Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5324,6 +5324,27 @@
       "limitations": [
         "Given to Claude in its session and recorded publicly by Claude; the framing and questions are Claude's, not the operator's."
       ]
+    },
+    {
+      "id": "ev:codex-realistic-cold-start-simulations-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/0f27d32c5e6fc653a45983cb50c2a92e4a2edf3b/evidence/coldstart-realistic-001",
+      "locator": "README, three agent decision transcripts, deterministic simulate.py/RESULTS.json, four tests, source basis, execution receipt and SHA256SUMS; Hermes fork request contract7 comment6048668518",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T23:12:16Z",
+      "retrieved_at": "2026-10-07T23:12:16Z",
+      "summary": "User requested realistic agent simulations and an on-demand mainnet bootstrap path. Three subagents deliberated productive/adverse/collusive cases with shared-controller roles and refusal/no-loan choices. Exact deterministic source-arithmetic replay/four tests passed; source matches deployed pool1812e7d. Conditional100-USDC job: full7day repay100.178931, reserve0.080518, net36.321069 after3 sponsor fee. Rejection loses sponsor100 at day61, not forced cure. Collusion identifies grant-first unsecured100, CI30 ten-cycle take0.099980, issuer budget recycling and1-micro rounding loss. Fully staked pool financing is dominated by direct sponsorship under equal-service assumptions. Mainnet dossier explicitly NO-GO; new exact-deployment fork request pending actual Hermes receipts. Existing original live3 and source restoration remain open.",
+      "content_sha256": "8d51d4206f8d5a60e96aa9c03c60aa9820149abd13b2ecd3fb870d79934c6124",
+      "fingerprint_scope": "UTF-8 SHA256SUMS at pinned suite commit",
+      "origin_group": "codex-realistic-economic-simulations-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Economic roleplay/source model, no new EVM execution, customers, wallets, genuine income or independent real controllers.",
+        "Gas, customer payment, costs/default probabilities and capital hurdle are assumed, not calibrated.",
+        "Source CI30 tests read, not executed by this suite; exact-deployment fork requested, no receipt yet.",
+        "Mainnet launch security/deployment/demand/settlement controls unmet; no mainnet deployment or real-money spend."
+      ]
     }
   ],
   "claims": [
@@ -8379,6 +8400,33 @@
       "derived_from_claim_ids": [
         "claim:credit-officer-cold-start-sync"
       ]
+    },
+    {
+      "id": "claim:codex-realistic-cold-start-results-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "realistic_agent_bootstrap_results",
+      "statement": "The realistic simulated productive job is conditionally profitable, but sponsor risk/lock and lender pricing constrain participation; direct sponsorship dominates the fully staked pooled route under equal-service assumptions. Failed jobs cause actual modeled sponsor loss, and grant-first/CI30/budget-reset/rounding counterexamples defeat unconditional deployment-safety claims. A reproducible economic suite and conditional mainnet dossier exist, not completed live validation or mainnet readiness. The future transitive-trust end state remains separate theory/design work.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Actually generated decision transcripts, deterministic source arithmetic, checksum verification and four tests; conclusions apply to explicit simulated assumptions only.",
+        "supporting_evidence_ids": [
+          "ev:codex-realistic-cold-start-simulations-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T23:12:16Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Hermes actual new fork receipts",
+          "Claude source/security/economics review",
+          "Actual independently controlled paid job and mainnet deployment evidence"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10775,7 +10823,8 @@
         "claim:codex-three-community-fork-result-20261007",
         "claim:codex-cold-start-guest-direction-20261007",
         "claim:sepolia-canonical-usdc-direction",
-        "claim:codex-cold-start-complete-path-20261007"
+        "claim:codex-cold-start-complete-path-20261007",
+        "claim:codex-realistic-cold-start-results-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
@@ -10910,7 +10959,8 @@
       ],
       "rationale_claim_ids": [
         "claim:ci30-cash-take-20261007",
-        "claim:codex-cold-start-complete-path-20261007"
+        "claim:codex-cold-start-complete-path-20261007",
+        "claim:codex-realistic-cold-start-results-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md.",
@@ -10995,7 +11045,8 @@
       "rationale_claim_ids": [
         "claim:transitive-trust-endstate-20261007",
         "claim:credit-officer-cold-start-sync",
-        "claim:sponsored-claim-conditions-20261007"
+        "claim:sponsored-claim-conditions-20261007",
+        "claim:codex-realistic-cold-start-results-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "At the sync, decide with Codex: adopt transitive-only trust as the end state with the officer route as the bootstrap half; the conservation bound over multi-hop paths and who bears a default several hops away; Sybil resistance of paths; liquidity and gas against analysis/liquidity and theory paper 3; the milestones by which the issuance budget shrinks toward zero; the first action and owner (theory and contract design, no deployment).",
