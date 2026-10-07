@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.57",
-  "updated_at": "2026-10-07T16:05:00Z",
+  "model_version": "0.1.58",
+  "updated_at": "2026-10-07T16:15:03Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4584,6 +4584,60 @@
       "limitations": [
         "Recorded from the operator's words in Claude's channel."
       ]
+    },
+    {
+      "id": "ev:operator-blog-review-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6041818912",
+      "locator": "6041818912",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T16:06:49Z",
+      "retrieved_at": "2026-10-07T16:15:03Z",
+      "summary": "The operator's direction, given in the blog session's channel and posted on the board: agree with Codex a workflow in which Codex monitors the blog's posts and proposes an edit each time, which Claude accepts or not. The comment sets out six terms: every new post triggers a review; at most one proposal per post as a codex/ pull request with the build and public-content check passing; within six hours; Claude accepts (merged with a revised line) or declines (one line, the pull request closes), silence is not acceptance; scope (factual errors, overclaims, register, missing VERIFY rows, privacy slips, broken links; not voice, categories, feed or build); one log line per proposal on issue 15.",
+      "content_sha256": "4e4a300c1ca431bb60d63695befdd453702d85ce8dc5758b2fa4ab08bfb29ae0",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-blog-review-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Posted by the blog session from the operator's words in its channel; emailed to the Codex lane from the Claude inbox (thread a930384c)."
+      ]
+    },
+    {
+      "id": "ev:codex-blog-review-acceptance-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6041888401",
+      "locator": "6041888401",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T16:10:39Z",
+      "retrieved_at": "2026-10-07T16:15:03Z",
+      "summary": "The Codex lane accepts the blog-review workflow with two clarifications: one proposal per post is a maximum, and when no material edit is warranted it records 'no edit needed' on the board; the six-hour target counts from the post's recorded publication time, later proposals being ordinary review. Categories stay Claude's editorial responsibility. Notes vision PR 8 as a first receipt that predates the workflow. Its mailbox was not available in that execution, so the board comment is the reply.",
+      "content_sha256": "fa2ee4bc7144f373e4f6c7e492e92ac9e01407595b2cf0d7b746135d20e9d146",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-blog-review-acceptance-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "A board acknowledgment; no email receipt claimed."
+      ]
+    },
+    {
+      "id": "ev:vision-review-workflow-c759831",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/c759831/CLAUDE.md",
+      "locator": "CLAUDE.md, \"Review workflow\" bullet under Cadence and ownership, at vision main c759831",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T16:14:12Z",
+      "retrieved_at": "2026-10-07T16:15:03Z",
+      "summary": "The blog's rules now carry the agreed review workflow with Codex's two clarifications: Codex proposes at most one edit per new post as a codex/ pull request, or records 'no edit needed'; the blog session (Claude Code) accepts or declines each explicitly; accepted error corrections merge with a revised line and a new argument becomes a backlog item.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vision-review-workflow-c759831",
+      "derived_from_ids": [],
+      "limitations": [
+        "A rule, not a record of any review yet run under it."
+      ]
     }
   ],
   "claims": [
@@ -7049,6 +7103,34 @@
         "recheck_by": null,
         "recheck_on": [
           "Operator changes the blog's category or spacing rules"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:blog-review-workflow",
+      "subject_id": "repo:vision",
+      "predicate": "editorial_rule",
+      "statement": "Every new post on the blog's main branch is reviewed by the Codex lane, which proposes at most one edit per post as a codex/ pull request (build and public-content check passing, one-paragraph reason) within six hours of the post's recorded publication time, or records 'no edit needed' on testbed issue 15; the blog session (Claude Code) accepts or declines each proposal explicitly, silence not counting as acceptance; accepted corrections merge with a revised line, a new argument becomes a backlog item; scope is factual errors, overclaims, register, missing VERIFY rows, privacy slips and broken links, not voice, categories, the feed or the build; each proposal is logged on issue 15.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction, agreed by the Codex lane with two clarifications and written into the blog's CLAUDE.md.",
+        "supporting_evidence_ids": [
+          "ev:operator-blog-review-direction-20261007",
+          "ev:codex-blog-review-acceptance-20261007",
+          "ev:vision-review-workflow-c759831"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T16:14:12Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction",
+          "The first proposal run under it"
         ]
       },
       "supersedes_ids": [],
@@ -9596,6 +9678,34 @@
         "decision:email-protocol-v1",
         "decision:email-protocol-v2"
       ]
+    },
+    {
+      "id": "decision:blog-review-workflow-v1",
+      "status": "agreed",
+      "owner_id": "agent:claude",
+      "recommendation": "Codex reviews each new blog post and proposes at most one edit as a pull request within six hours of publication, or records that none is needed; Claude Code (the blog session) accepts or declines each explicitly; terms as in claim:blog-review-workflow. Agreed by the Codex lane (issue 15 comment 6041888401, with two clarifications) and Claude (vision CLAUDE.md at c759831) on the operator's direction of 2026-10-07.",
+      "claim_ids": [
+        "claim:blog-review-workflow"
+      ],
+      "action_ids": [],
+      "discussion_evidence_ids": [
+        "ev:operator-blog-review-direction-20261007",
+        "ev:codex-blog-review-acceptance-20261007",
+        "ev:vision-review-workflow-c759831"
+      ],
+      "assents": [
+        {
+          "agent_id": "agent:coordinator",
+          "evidence_id": "ev:codex-blog-review-acceptance-20261007",
+          "version": "decision:blog-review-workflow-v1"
+        },
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:vision-review-workflow-c759831",
+          "version": "decision:blog-review-workflow-v1"
+        }
+      ],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
