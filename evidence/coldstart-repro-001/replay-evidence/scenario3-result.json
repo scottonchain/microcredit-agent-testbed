@@ -1,0 +1,126 @@
+{
+  "after_block_hash": "0xcbd0cd32aeb033fb4541cc95a05a870dac107fe4d8280e016fd5f4e4c2931d4e",
+  "after_block_number": 47820226,
+  "borrower_role": "s3-borrower-a",
+  "loan_id_from_mined_receipt": 20,
+  "meaning": "Controlled collusion cannot create credit by backing or transferring cash. B repays A using transferred principal under root cure; no actual default.",
+  "mode": "fork",
+  "negative_checks": [
+    {
+      "actual_selector": "0x8ac4bc73",
+      "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+      "block_number": 47820216,
+      "expected_selector": "0x8ac4bc73",
+      "label": "A cannot back B with received backing",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x8ac4bc73",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x8ac4bc73",
+        "message": "execution reverted: custom error 0x8ac4bc73"
+      },
+      "transaction": {
+        "data": "0xb870f6130000000000000000000000009e6bb5e66138666a69e366f7bb0bd6489c347e9f00000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x5d615d32",
+      "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+      "block_number": 47820216,
+      "expected_selector": "0x5d615d32",
+      "label": "A cannot exceed one-USDC backing limit",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x5d615d32",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x5d615d32",
+        "message": "execution reverted: ]a]2"
+      },
+      "transaction": {
+        "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f6950",
+        "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x315b0e14",
+      "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+      "block_number": 47820216,
+      "expected_selector": "0x315b0e14",
+      "label": "B without credit cannot request a loan",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x315b0e14",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x315b0e14",
+        "message": "execution reverted: 1[\u000e\u0014"
+      },
+      "transaction": {
+        "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x5d615d32",
+      "block_hash": "0x815c6ad7ced2a632e8ea05046bdca9b20558c77d63ff62c6e7ee499e0f15606c",
+      "block_number": 47820217,
+      "expected_selector": "0x5d615d32",
+      "label": "Reservation consumes available credit",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x5d615d32",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x5d615d32",
+        "message": "execution reverted: ]a]2"
+      },
+      "transaction": {
+        "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x9917947d",
+      "block_hash": "0x815c6ad7ced2a632e8ea05046bdca9b20558c77d63ff62c6e7ee499e0f15606c",
+      "block_number": 47820217,
+      "expected_selector": "0x9917947d",
+      "label": "Backing cannot be removed while reservation is open",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x9917947d",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x9917947d",
+        "message": "execution reverted: custom error 0x9917947d"
+      },
+      "transaction": {
+        "data": "0xb870f613000000000000000000000000b07f3b50d91e584f05817d367a12fab1e7bfad6f0000000000000000000000000000000000000000000000000000000000000000",
+        "from": "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x315b0e14",
+      "block_hash": "0xe71cd85e7d4cdc15b9e118b2e335b47439a297bb150f5b3cc07831a45072bf4f",
+      "block_number": 47820219,
+      "expected_selector": "0x315b0e14",
+      "label": "Receiving USDC cash does not create borrowing credit",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x315b0e14",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x315b0e14",
+        "message": "execution reverted: 1[\u000e\u0014"
+      },
+      "transaction": {
+        "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    }
+  ],
+  "scenario": 3,
+  "status": "passed"
+}

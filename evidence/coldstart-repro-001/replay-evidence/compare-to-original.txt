@@ -1,0 +1,20 @@
+status passed passed SAME
+mode fork fork SAME
+chain_id 31337 31337 SAME
+fork_block_target 47820167 47820167 SAME
+fork_block_hash 0x218987b10b600b59f5ac7a7a6e6e4d721a289e690b99d7c7f4e07bba64fe2078 0x218987b10b600b59f5ac7a7a6e6e4d721a289e690b99d7c7f4e07bba64fe2078 SAME
+mined_local_transaction_count 59 59 SAME
+initial_root_aggregate_usdc_units 20000000 20000000 SAME
+final_root_aggregate_usdc_units 20000000 20000000 SAME
+no_live_fund_moves True True SAME
+gas_spent_wei 25899682181887 25899682181887 SAME
+gas_topups_from_treasury_wei 11000000000000000 11000000000000000 SAME
+journal_tip_sha256 5c24b450739181a596ebd5a848b1a9d5dd62ef695c95b4d44bb2b262eb48961a a364b5c10401094a421752f979ad9a848501c0f7633402f12d802e2f6e7896db DIFF
+final.json differences (excluding block hash/number/timestamp):
+  DIFF /loans/18/getLoanTerms [3, 2592000, 1791408643, 1791408643, 1794000643] [3, 2592000, 1791408641, 1791408642, 1794000642]
+  DIFF /loans/19/getLoanTerms [3, 2592000, 1791408650, 1791408651, 1794000651] [3, 2592000, 1791408648, 1791408648, 1794000648]
+  DIFF /loans/20/getLoanTerms [3, 2592000, 1791408657, 1791408658, 1794000658] [3, 2592000, 1791408653, 1791408653, 1794000653]
+  DIFF /provider/lastReportAt 1791408660 1791408655
+scenario 1 passed passed 18 18 True
+scenario 2 passed passed 19 19 True
+scenario 3 passed passed 20 20 True

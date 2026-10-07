@@ -1,0 +1,285 @@
+{
+  "chain_id": 31337,
+  "final_root_aggregate_usdc_units": 20000000,
+  "fork_block_hash": "0x218987b10b600b59f5ac7a7a6e6e4d721a289e690b99d7c7f4e07bba64fe2078",
+  "fork_block_target": 47820167,
+  "gas_spent_wei": 25899682181887,
+  "gas_topups_from_treasury_wei": 11000000000000000,
+  "initial_root_aggregate_usdc_units": 20000000,
+  "journal_tip_sha256": "a364b5c10401094a421752f979ad9a848501c0f7633402f12d802e2f6e7896db",
+  "limitations": [
+    "All actors are controlled by one operator; this is a fork rehearsal, not live testnet execution.",
+    "Task payment and voluntary aid are internal transfers, not external earnings.",
+    "No default, cent writeoff, time warp, or interest-boundary branch was executed.",
+    "Reports/history add zero-score funder and completed-loan records; financial obligations and original issuance budget are restored."
+  ],
+  "mined_local_transaction_count": 59,
+  "mode": "fork",
+  "no_keys_signed_bytes_or_balance_storage_code_injection": true,
+  "no_live_fund_moves": true,
+  "runtime_code_hashes": {
+    "DecentralizedMicrocredit": {
+      "address": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "artifact_normalized_runtime_matches": true,
+      "bytes": 24377,
+      "immutable_ranges_masked_for_artifact_comparison": [
+        {
+          "length": 32,
+          "start": 23788
+        },
+        {
+          "length": 32,
+          "start": 23977
+        },
+        {
+          "length": 32,
+          "start": 23734
+        },
+        {
+          "length": 32,
+          "start": 23867
+        },
+        {
+          "length": 32,
+          "start": 23905
+        },
+        {
+          "length": 32,
+          "start": 7128
+        },
+        {
+          "length": 32,
+          "start": 7172
+        },
+        {
+          "length": 32,
+          "start": 10820
+        },
+        {
+          "length": 32,
+          "start": 19531
+        },
+        {
+          "length": 32,
+          "start": 20556
+        },
+        {
+          "length": 32,
+          "start": 21630
+        }
+      ],
+      "keccak256": "0xcbec266adbac00e2db7af5c2ce5b68316ca8a42877bb2fb93c475681b7ba9dc8",
+      "normalized_runtime_sha256": "edd3b3ebd0cd9985b3c7e60ac6471832ac540575dbca6dcb89ad8d784f0694d1",
+      "sha256": "4f27a59927df4f7dcecc8a2e121d3f17d1b6dbeb3a5b1781a323ae00464881bd",
+      "source_sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360"
+    },
+    "OracleScoreProvider": {
+      "address": "0x554c6bb61edf0cafb90ff31813540369cb0105e4",
+      "artifact_normalized_runtime_matches": true,
+      "bytes": 4916,
+      "immutable_ranges_masked_for_artifact_comparison": [],
+      "keccak256": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3",
+      "normalized_runtime_sha256": "a4dd1a8ea697deaf3a268d283fd4a9b66e4c8b5bf7c5cb25e4f21051c5a17a8f",
+      "sha256": "a4dd1a8ea697deaf3a268d283fd4a9b66e4c8b5bf7c5cb25e4f21051c5a17a8f",
+      "source_sha256": "31acc4656a7f87cc17f6c5c9f51a7169c4d81b6f54b82d09664c1e6095670a21"
+    },
+    "USDC": {
+      "address": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+      "bytes": 1798,
+      "keccak256": "0xedc5281a85c0efecd49999a1ef668390c59b88702f2d4a07029d7f5d63059d6c",
+      "sha256": "e878b99fc0c17354c86c7edeb999c70c18cfd925abb0958496f027cbad996d28"
+    }
+  },
+  "scenarios": [
+    {
+      "after_block_hash": "0x5610093fe9630f57e0562dea9efe335032fa31d17af0faceeb8dc6e7c15ba12a",
+      "after_block_number": 47820194,
+      "borrower_role": "s1-borrower-a",
+      "loan_id_from_mined_receipt": 18,
+      "meaning": "Accepted simulated worker invoice; treasury payment is internal subsidy, not outside income. Completion count is not independent trust.",
+      "mode": "fork",
+      "negative_checks": [],
+      "scenario": 1,
+      "status": "passed"
+    },
+    {
+      "after_block_hash": "0x7f6cef6cbd14484030c81f2f16b07f98d567f6fc26133be885853b4dfe84c2eb",
+      "after_block_number": 47820211,
+      "borrower_role": "s2-borrower-b",
+      "loan_id_from_mined_receipt": 19,
+      "meaning": "Voluntary third-party repayment spends A's entire one-USDC endowment; sustainable credit was declined, bounded aid accepted. No cure needed.",
+      "mode": "fork",
+      "negative_checks": [
+        {
+          "actual_selector": "0x8ac4bc73",
+          "block_hash": "0x60dc83b55809cfedd9c66c8b63ab6102b266d04209a0f2d7cffb87a0aa7bfb2e",
+          "block_number": 47820200,
+          "expected_selector": "0x8ac4bc73",
+          "label": "received backing cannot fund a second hop",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x8ac4bc73",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x8ac4bc73",
+            "message": "execution reverted: custom error 0x8ac4bc73"
+          },
+          "transaction": {
+            "data": "0xb870f61300000000000000000000000056214ae2cfcd5ed76cb79126a595010cb831c40700000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x315b0e14",
+          "block_hash": "0x7f6cef6cbd14484030c81f2f16b07f98d567f6fc26133be885853b4dfe84c2eb",
+          "block_number": 47820211,
+          "expected_selector": "0x315b0e14",
+          "label": "Closed history and removed backing do not create own credit",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x315b0e14",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x315b0e14",
+            "message": "execution reverted: 1[\u000e\u0014"
+          },
+          "transaction": {
+            "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        }
+      ],
+      "scenario": 2,
+      "status": "passed"
+    },
+    {
+      "after_block_hash": "0xcbd0cd32aeb033fb4541cc95a05a870dac107fe4d8280e016fd5f4e4c2931d4e",
+      "after_block_number": 47820226,
+      "borrower_role": "s3-borrower-a",
+      "loan_id_from_mined_receipt": 20,
+      "meaning": "Controlled collusion cannot create credit by backing or transferring cash. B repays A using transferred principal under root cure; no actual default.",
+      "mode": "fork",
+      "negative_checks": [
+        {
+          "actual_selector": "0x8ac4bc73",
+          "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+          "block_number": 47820216,
+          "expected_selector": "0x8ac4bc73",
+          "label": "A cannot back B with received backing",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x8ac4bc73",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x8ac4bc73",
+            "message": "execution reverted: custom error 0x8ac4bc73"
+          },
+          "transaction": {
+            "data": "0xb870f6130000000000000000000000009e6bb5e66138666a69e366f7bb0bd6489c347e9f00000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x5d615d32",
+          "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+          "block_number": 47820216,
+          "expected_selector": "0x5d615d32",
+          "label": "A cannot exceed one-USDC backing limit",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x5d615d32",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x5d615d32",
+            "message": "execution reverted: ]a]2"
+          },
+          "transaction": {
+            "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f6950",
+            "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x315b0e14",
+          "block_hash": "0x3a28dbcd5379054afc2fe459729fb8cfef8eded93511a470cdcef9516a6debc3",
+          "block_number": 47820216,
+          "expected_selector": "0x315b0e14",
+          "label": "B without credit cannot request a loan",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x315b0e14",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x315b0e14",
+            "message": "execution reverted: 1[\u000e\u0014"
+          },
+          "transaction": {
+            "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x5d615d32",
+          "block_hash": "0x815c6ad7ced2a632e8ea05046bdca9b20558c77d63ff62c6e7ee499e0f15606c",
+          "block_number": 47820217,
+          "expected_selector": "0x5d615d32",
+          "label": "Reservation consumes available credit",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x5d615d32",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x5d615d32",
+            "message": "execution reverted: ]a]2"
+          },
+          "transaction": {
+            "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x9917947d",
+          "block_hash": "0x815c6ad7ced2a632e8ea05046bdca9b20558c77d63ff62c6e7ee499e0f15606c",
+          "block_number": 47820217,
+          "expected_selector": "0x9917947d",
+          "label": "Backing cannot be removed while reservation is open",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x9917947d",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x9917947d",
+            "message": "execution reverted: custom error 0x9917947d"
+          },
+          "transaction": {
+            "data": "0xb870f613000000000000000000000000b07f3b50d91e584f05817d367a12fab1e7bfad6f0000000000000000000000000000000000000000000000000000000000000000",
+            "from": "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        },
+        {
+          "actual_selector": "0x315b0e14",
+          "block_hash": "0xe71cd85e7d4cdc15b9e118b2e335b47439a297bb150f5b3cc07831a45072bf4f",
+          "block_number": 47820219,
+          "expected_selector": "0x315b0e14",
+          "label": "Receiving USDC cash does not create borrowing credit",
+          "mode": "read_only_eth_call",
+          "revert_data": "0x315b0e14",
+          "rpc_error": {
+            "code": 3,
+            "data": "0x315b0e14",
+            "message": "execution reverted: 1[\u000e\u0014"
+          },
+          "transaction": {
+            "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+            "from": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+            "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+          }
+        }
+      ],
+      "scenario": 3,
+      "status": "passed"
+    }
+  ],
+  "source_chain_id": 84532,
+  "source_commit": "1812e7d2b67e159e341bbff33d6d604409eebb67",
+  "status": "passed"
+}
