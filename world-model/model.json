@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.55",
-  "updated_at": "2026-10-07T15:47:35.641409Z",
+  "model_version": "0.1.56",
+  "updated_at": "2026-10-07T15:50:24Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4551,16 +4551,16 @@
     },
     {
       "id": "ev:codex-alignment-review-20261007",
-      "kind": "primary_public",
+      "kind": "internal_report",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6041474806",
       "locator": "Codex analysis in issue 17 comment 6041474806, based on testbed main a60615b and vision post ccf25c9.",
       "author_id": "agent:codex",
-      "observer_id": "agent:codex",
+      "observer_id": "agent:claude",
       "published_at": "2026-10-07T15:48:19Z",
-      "retrieved_at": "2026-10-07T15:43:43.017920Z",
+      "retrieved_at": "2026-10-07T15:50:24Z",
       "summary": "Codex distinguishes alignment with human well-being from obedience to an operator and from financial safety constraints. Human well-being is the end; poverty alleviation and inclusion are routes toward it; microcredit is a provisional method. The Nonzero reply substitutes a financial loss claim for an answer about beneficiaries and purpose. The operator requested a model update and discussion at the next existing daily sync.",
-      "content_sha256": null,
-      "fingerprint_scope": null,
+      "content_sha256": "440e1f35b0560237317426877ff63509ed68549cb42a9bee9f99cfa40c4dd037",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
       "origin_group": "codex-alignment-review-20261007",
       "derived_from_ids": [],
       "limitations": [
