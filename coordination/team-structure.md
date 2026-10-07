@@ -149,3 +149,7 @@ rework, missed obligations and blocked time from normal work. Review allocation
 on Oct 13 within that cycle. This is operational feedback, not a calibrated IQ
 test or a pretext to run duplicate simulations.
 
+
+## Dedicated email amendment, 2026-10-07
+
+The operator authorizes Codex mission email from codex-microcredit@agentmail.to; Claude has a separate API-listed inbox. This extends the Codex lane beyond the earlier exclusive-channel inventory. See [team-email.md](team-email.md) for verified addresses, domain discrepancy, lane responsibilities and pending protocol assent. Hermes retains its established channels and wallet duties.
