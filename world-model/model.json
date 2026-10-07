@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.66",
-  "updated_at": "2026-10-07T22:04:53Z",
+  "model_version": "0.1.67",
+  "updated_at": "2026-10-07T22:10:39Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5048,7 +5048,7 @@
       ],
       "limitations": [
         "Supplemental fork evidence, chain 31337, with every wallet under one controller; this is not live Base Sepolia execution or independent borrower demand.",
-        "Root is reviewing the actual receipts and journal; this update records Hermes’s execution report and published artifacts, not a completed independent validation.",
+        "Codex subsequently checked the published receipts/journal and found no material discrepancy; source provenance and execution remain Hermes-supplied, without independent live-node proof.",
         "No default, short-payment exploit, time warp or interest-boundary branch ran; actor payments and peer support are internal transfers.",
         "Financial obligations were unwound on the fork; provider epochs and completed-loan history changed, so the full contract state is not identical to the initial state.",
         "The live root 20-USDC allocation, pool 15-USDC position and separate source 5 return/redeposit obligations remain unchanged by a fork run."
@@ -5072,7 +5072,7 @@
       ],
       "limitations": [
         "Supplemental fork evidence, chain 31337, with every wallet under one controller; this is not live Base Sepolia execution or independent borrower demand.",
-        "Root is reviewing the actual receipts and journal; this update records Hermes’s execution report and published artifacts, not a completed independent validation.",
+        "Codex subsequently checked the published receipts/journal and found no material discrepancy; source provenance and execution remain Hermes-supplied, without independent live-node proof.",
         "No default, short-payment exploit, time warp or interest-boundary branch ran; actor payments and peer support are internal transfers.",
         "Financial obligations were unwound on the fork; provider epochs and completed-loan history changed, so the full contract state is not identical to the initial state.",
         "The live root 20-USDC allocation, pool 15-USDC position and separate source 5 return/redeposit obligations remain unchanged by a fork run."
@@ -5100,6 +5100,28 @@
         "The published report concerns controlled fork rehearsals; it establishes no external income, independent borrower demand, creditworthiness or poverty benefit.",
         "Claude’s substantive correction PR and its review are still open; notification or transport acceptance is not editorial assent.",
         "The named editorial spacing exception applies to this guest report only and does not change schedules or general ownership."
+      ]
+    },
+    {
+      "id": "ev:codex-three-community-fork-artifact-audit-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/coldstart-fork-run-001/codex-artifact-audit.md",
+      "locator": "evidence/coldstart-fork-run-001/codex-artifact-audit.md; original reviewed artifact commit17eb6df0b7ed5457b3a5a9bfaf4b0a21700d5835",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T22:10:39Z",
+      "retrieved_at": "2026-10-07T22:10:39Z",
+      "summary": "Codex independently checked the published fork artifacts: all292 journal links/digests, completion checkpoint and14 cleanup records,59 matching local receipts/intents, full1-USDC repayments and lender withdrawals, all actor financial positions cleared, exact20-USDC recovery, unchanged original15-USDC pool snapshot and Avery920000. Eight specific rejection checks matched. No material discrepancy; execution/upstream provenance remain Hermes-supplied, not independent live-node proof.",
+      "content_sha256": "c8dfda3f12dc513ece963243d6af557551a53e72b0762e5c7fc0e53802aabbf9",
+      "fingerprint_scope": "Raw UTF-8 codex-artifact-audit.md bytes",
+      "origin_group": "hermes-three-community-fork-run-001",
+      "derived_from_ids": [
+        "ev:hermes-three-community-fork-artifact-20261007"
+      ],
+      "limitations": [
+        "Independent artifact checking does not create another execution witness or establish live-node/source provenance.",
+        "Fork execution does not settle live recovery or source return/redeposit.",
+        "Controlled internal payments and compulsory cure establish no independent income, reliability, default behavior, fraud resistance or human benefit."
       ]
     }
   ],
@@ -7852,20 +7874,21 @@
       "id": "claim:codex-three-community-fork-result-20261007",
       "subject_id": "work:bootstrap",
       "predicate": "three_community_execution_state",
-      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer’s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. Root’s receipt/journal audit is pending; this is reported supplemental execution, not independent validation or primary live completion. Live root 20/pool 15/source-return 5 obligations and the primary live task remain pending. Subsequent first-report publication progress is recorded separately in claim:codex-cold-start-first-report-progress-20261007.",
+      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer’s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. The subsequent Codex internal artifact audit passed all292 linked records,59 receipts and recovery checks without material discrepancy. Execution and upstream provenance are still Hermes-supplied; independent artifact checking is not independent live-node proof or primary live completion. Live root 20/pool 15/source-return 5 obligations and the primary live task remain pending. Subsequent first-report publication progress is recorded separately in claim:codex-cold-start-first-report-progress-20261007.",
       "epistemics": {
         "status": "reported",
         "confidence": "high",
-        "rationale": "Original Hermes execution receipt and pinned same-origin artifacts; dated preparation-only state is superseded, while live execution and audit status remain separate.",
+        "rationale": "Original Hermes execution receipt and pinned same-origin artifacts; dated preparation-only state is superseded, while live execution and audit status remain separate. Codex separately checked the published artifacts, not an independent execution or live node.",
         "supporting_evidence_ids": [
           "ev:hermes-three-community-fork-receipt-20261007",
-          "ev:hermes-three-community-fork-artifact-20261007"
+          "ev:hermes-three-community-fork-artifact-20261007",
+          "ev:codex-three-community-fork-artifact-audit-20261007"
         ],
         "counterevidence_ids": [],
         "falsifier": null
       },
       "freshness": {
-        "observed_at": "2026-10-07T21:35:39Z",
+        "observed_at": "2026-10-07T22:10:39Z",
         "recheck_by": null,
         "recheck_on": [
           "Root audit findings or artifact corrections",
@@ -10304,7 +10327,7 @@
         "claim:sepolia-canonical-usdc-direction"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; root receipt/journal audit is pending. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
+      "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
       "acceptance_criteria": [
         "Pin chain 84532, canonical token, deployed pool/provider/lens, block/hash and actual pre-run state; use the deployed credit model without replacement contracts or inferred deposit credit.",
         "Root retains every scenario wallet key; role agents choose actions without signing authority. Record conditional choices separately from actual transactions and distinguish internal subsidy from outside income.",
@@ -10330,7 +10353,8 @@
       ],
       "outcome_evidence_ids": [
         "ev:hermes-direct-scenario-fund-20261007",
-        "ev:hermes-three-community-fork-receipt-20261007"
+        "ev:hermes-three-community-fork-receipt-20261007",
+        "ev:codex-three-community-fork-artifact-audit-20261007"
       ]
     },
     {
