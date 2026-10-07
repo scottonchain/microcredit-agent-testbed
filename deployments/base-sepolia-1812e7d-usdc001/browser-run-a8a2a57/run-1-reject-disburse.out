@@ -1,0 +1,50 @@
+
+== open and connect
+   ok: build commit a8a2a57; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-07T00:32:19.900Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:32:20.247Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0x354bd7b3f06d49eecd8eb06fd645e3d1d4c454fa2d5c1ffe129a4186dde841d1
+    [2026-10-07T00:32:25.294Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-07T00:32:28.562Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0x3d7a8ae0c54a3a74053379fc7180552d37f874d3f548ed5f6b4b0e6c53cfd633
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload
+    [2026-10-07T00:32:40.335Z] wallet got eth_sendTransaction 0x8d5d3429 (page asked)
+    [2026-10-07T00:32:40.614Z] sent 0x8d5d3429
+    tx 0x8d5d3429 -> 0x475fc5107e17bbd17cb466514f9c81096f628132dcff7a1cedf8068acf1404cd
+    [2026-10-07T00:32:48.847Z] wallet got eth_sendTransaction 0xb73e4da0 (page asked)
+    [2026-10-07T00:32:49.108Z] sent 0xb73e4da0
+    tx 0xb73e4da0 -> 0x0f10c0765ccf2a8097da54aa1ac4adfab59fd0c55a159c48fe54a36bec756825
+   ok: request 0x475fc5107e17bbd17cb466514f9c81096f628132dcff7a1cedf8068acf1404cd created loan #15; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x0f10c0765ccf2a8097da54aa1ac4adfab59fd0c55a159c48fe54a36bec756825 for loan #15; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-07T00:33:00.261Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:33:01.049Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0x5b8cd8002b35f834b6776a0060a1cb0f7b5e8de4ceb9abdf6003d44a45f09841
+    [2026-10-07T00:33:03.803Z] wallet got eth_sendTransaction 0x8a700b53 (page asked)
+    [2026-10-07T00:33:09.309Z] sent 0x8a700b53
+    tx 0x8a700b53 -> 0x6de1f7f809447a8a783be0dc5626f320fc6dc61eb1821e49fe9bb3b1f6f65962
+   ok: loan #15 repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-07T00:33:18.591Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-07T00:33:19.030Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0x8319c8b6c641323b9ab669e33359282c2a558d40443f68fd13c4fc76698f382a
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba8/run-1-reject-disburse.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a8a2a57; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0x354bd7b3f06d49eecd8eb06fd645e3d1d4c454fa2d5c1ffe129a4186dde841d1<br>0x3d7a8ae0c54a3a74053379fc7180552d37f874d3f548ed5f6b4b0e6c53cfd633 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload | yes | 0x475fc5107e17bbd17cb466514f9c81096f628132dcff7a1cedf8068acf1404cd<br>0x0f10c0765ccf2a8097da54aa1ac4adfab59fd0c55a159c48fe54a36bec756825 | request 0x475fc5107e17bbd17cb466514f9c81096f628132dcff7a1cedf8068acf1404cd created loan #15; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x0f10c0765ccf2a8097da54aa1ac4adfab59fd0c55a159c48fe54a36bec756825 for loan #15; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | yes | 0x5b8cd8002b35f834b6776a0060a1cb0f7b5e8de4ceb9abdf6003d44a45f09841<br>0x6de1f7f809447a8a783be0dc5626f320fc6dc61eb1821e49fe9bb3b1f6f65962 | loan #15 repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x8319c8b6c641323b9ab669e33359282c2a558d40443f68fd13c4fc76698f382a | page said confirmed: true; balance rose |

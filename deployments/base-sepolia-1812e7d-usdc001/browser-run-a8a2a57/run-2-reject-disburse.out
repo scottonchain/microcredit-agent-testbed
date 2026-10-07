@@ -1,0 +1,101 @@
+
+== open and connect
+   ok: build commit a8a2a57; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-07T00:33:53.422Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:33:53.700Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0x88cd657c4f4cdfaaedab6cc5175d4d27276afce30d42f9ddda9cd98699e928f1
+    [2026-10-07T00:33:58.879Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-07T00:34:01.977Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0x6477007cf37b70c0ca574234bff672de470541a8072def0b1bb38e6b98cb1946
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload
+    [2026-10-07T00:34:14.051Z] wallet got eth_sendTransaction 0x8d5d3429 (page asked)
+    [2026-10-07T00:34:14.313Z] sent 0x8d5d3429
+    tx 0x8d5d3429 -> 0xfdd7d78c276fb459254d44e1f051137910f8dcc67a91e001e90286eb786ca402
+    [2026-10-07T00:34:22.408Z] wallet got eth_sendTransaction 0xb73e4da0 (page asked)
+    [2026-10-07T00:34:22.665Z] sent 0xb73e4da0
+    tx 0xb73e4da0 -> 0x623c4b9e709e30614c325bedb33c7f394b298ceaf2ac6addf5fcc3ba4f686616
+   ok: request 0xfdd7d78c276fb459254d44e1f051137910f8dcc67a91e001e90286eb786ca402 created loan #16; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x623c4b9e709e30614c325bedb33c7f394b298ceaf2ac6addf5fcc3ba4f686616 for loan #16; exactly one new loan
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-07T00:34:33.512Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    SEND FAILED (0x095ea7b3): HTTP request failed. |  | Status: 429 | URL: https://sepolia.base.org/ | Request body: {"method":"eth_sendRawTransaction","params":["0x02f8b083014a3472830f4240836acfc082dbb094036cbd53842c5426634e7929541ec2318f3dcf7e80b844095ea7b300000000000000000000000073872b8fb7f1771c67911f03edc75abdc951497300000000000000000000000000000000000000000000000000000000000f4240c001a0e456b38b123024f41f3cf6a839cee9a1ee5bf40cc5819600954da7b9b9c8db5da0723dc310bc8f494738436c74ddf47c1702c992ae25806e093deb4166446025f8"]} |  
+   failed: loan #16 did not become Repaid
+REPAY THE LOAN IN FULL (APPROVE, REPAYLOAN) PAGE TEXT AT FAILURE: LoanLink
+Social lending platform
+Borrower
+Lender
+$24.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+The repayment stopped: HTTP request failed. Status: 429 The network endpoint is limiting requests. If this says nothing was sent, wait a minute and press the button again.
+Active Loan & Repayment
+Loan Summary
+Principal:
+$1.00
+Outstanding:
+$1.00
+Status:
+Current
+Repayment Schedule
+Term:
+30 days
+Due Date:
+11/6/2026
+Status:
+Current
+Make a Payment
+
+One approval, no gas. You’ll sign a permit; our relayer submits the repayment.
+
+Full Repayment
+
+Pay off your entire outstanding balance
+
+Pay $1.00
+Partial Repayment
+
+Make a partial payment to reduce your balance
+
+Repay
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit a8a2a57. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+REPAY THE LOAN IN FULL (APPROVE, REPAYLOAN) ALERT BOXES: ["The repayment stopped: HTTP request failed. Status: 429 The network endpoint is limiting requests. If this says nothing was sent, wait a minute and press the button again."]
+REPAY THE LOAN IN FULL (APPROVE, REPAYLOAN) CONSOLE (last 10): ["2026-10-07T00:34:31.732Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.736Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.739Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.744Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.748Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.752Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:31.757Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:34:34.278Z error: ⚡️ ~ file: useTransactor.ts ~ error ContractFunctionExecutionError: An unknown RPC error occurred.\n\nRequest Arguments:\n  chain:  undefined (id: 84532)\n  from:   0x108450c748EEF7AeF23e64739bC508f56E596247\n  to:     0x036CbD53842c5426634e7929541eC2318f3dCF7e\n  data:   0x095ea7b300000000000000000000000","2026-10-07T00:34:34.278Z error: Transaction error: ContractFunctionExecutionError: An unknown RPC error occurred.\n\nRequest Arguments:\n  chain:  undefined (id: 84532)\n  from:   0x108450c748EEF7AeF23e64739bC508f56E596247\n  to:     0x036CbD53842c5426634e7929541eC2318f3dCF7e\n  data:   0x095ea7b300000000000000000000000073872b8fb7f1771c","2026-10-07T00:34:34.278Z error: Unknown error occurred: ContractFunctionExecutionError: An unknown RPC error occurred.\n\nRequest Arguments:\n  chain:  undefined (id: 84532)\n  from:   0x108450c748EEF7AeF23e64739bC508f56E596247\n  to:     0x036CbD53842c5426634e7929541eC2318f3dCF7e\n  data:   0x095ea7b300000000000000000000000073872b8fb7f"]
+REPAY THE LOAN IN FULL (APPROVE, REPAYLOAN) WALLET CALLS (last 12): [{"t":"2026-10-07T00:34:22.408Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-07T00:34:30.790Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:34:30.820Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:34:30.827Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:30.930Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:34:30.932Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:30.949Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:33.483Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:33.496Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:33.506Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:34:33.512Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-07T00:34:34.257Z","who":"borrower","method":"eth_sendTransaction","sendError":"HTTP request failed."}]
+   FAILED: failed: loan #16 did not become Repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-07T00:36:11.241Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-07T00:36:11.516Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0x046c75e6586d6b46b595cbf7ab02742b3509c1b09bc1bfaddbc79c8fb54ada4d
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba8/run-2-reject-disburse.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a8a2a57; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0x88cd657c4f4cdfaaedab6cc5175d4d27276afce30d42f9ddda9cd98699e928f1<br>0x6477007cf37b70c0ca574234bff672de470541a8072def0b1bb38e6b98cb1946 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload | yes | 0xfdd7d78c276fb459254d44e1f051137910f8dcc67a91e001e90286eb786ca402<br>0x623c4b9e709e30614c325bedb33c7f394b298ceaf2ac6addf5fcc3ba4f686616 | request 0xfdd7d78c276fb459254d44e1f051137910f8dcc67a91e001e90286eb786ca402 created loan #16; second prompt rejected; recovery card shown: true; after reload the card is shown: true, the request form is hidden: true; disbursed by 0x623c4b9e709e30614c325bedb33c7f394b298ceaf2ac6addf5fcc3ba4f686616 for loan #16; exactly one new loan |
+| repay the loan in full (approve, repayLoan) | no | none | failed: loan #16 did not become Repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x046c75e6586d6b46b595cbf7ab02742b3509c1b09bc1bfaddbc79c8fb54ada4d | page said confirmed: true; balance rose |

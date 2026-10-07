@@ -1,0 +1,158 @@
+
+== open and connect
+   ok: build commit a8a2a57; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 26 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-07T00:36:49.484Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:36:49.915Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xac3209c4a5386135b60539a64451e15c20835ae012974636deaef9b2b170c375
+    [2026-10-07T00:36:55.116Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-07T00:36:58.322Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0xbd65891d7a35c1c57a93c0bc3ead926f6f00bbe675ffd9d90fa0cfccca5b3d9c
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload
+BORROWER PAGE TEXT: LoanLink
+Social lending platform
+Borrower
+Lender
+$24.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Active Loan & Repayment
+Loan Summary
+Principal:
+$1.00
+Outstanding:
+$1.00
+Status:
+Current
+Repayment Schedule
+Term:
+30 days
+Due Date:
+11/6/2026
+Status:
+Current
+Make a Payment
+
+One approval, no gas. You’ll sign a permit; our relayer submits the repayment.
+
+Full Repayment
+
+Pay off your entire outstanding balance
+
+Pay $1.00
+Partial Repayment
+
+Make a partial payment to reduce your balance
+
+Repay
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit a8a2a57. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+BUTTONS ["Pay $1.00","Repay"]
+   failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+
+BORROW 1 USDC (REQUESTLOAN, DISBURSELOAN) WITH THE SECOND PROMPT REJECTED ONCE, THEN A RELOAD PAGE TEXT AT FAILURE: LoanLink
+Social lending platform
+Borrower
+Lender
+$24.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Active Loan & Repayment
+Loan Summary
+Principal:
+$1.00
+Outstanding:
+$1.00
+Status:
+Current
+Repayment Schedule
+Term:
+30 days
+Due Date:
+11/6/2026
+Status:
+Current
+Make a Payment
+
+One approval, no gas. You’ll sign a permit; our relayer submits the repayment.
+
+Full Repayment
+
+Pay off your entire outstanding balance
+
+Pay $1.00
+Partial Repayment
+
+Make a partial payment to reduce your balance
+
+Repay
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit a8a2a57. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+BORROW 1 USDC (REQUESTLOAN, DISBURSELOAN) WITH THE SECOND PROMPT REJECTED ONCE, THEN A RELOAD ALERT BOXES: []
+BORROW 1 USDC (REQUESTLOAN, DISBURSELOAN) WITH THE SECOND PROMPT REJECTED ONCE, THEN A RELOAD CONSOLE (last 10): ["2026-10-07T00:37:09.626Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.654Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.683Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.689Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.697Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.706Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.711Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.730Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.735Z error: Failed to load resource: the server responded with a status of 429 ()","2026-10-07T00:37:09.747Z error: Failed to load resource: the server responded with a status of 429 ()"]
+BORROW 1 USDC (REQUESTLOAN, DISBURSELOAN) WITH THE SECOND PROMPT REJECTED ONCE, THEN A RELOAD WALLET CALLS (last 12): [{"t":"2026-10-07T00:36:49.482Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:36:49.484Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-07T00:36:55.049Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:36:55.095Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:36:55.103Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:36:55.116Z","who":"borrower","method":"eth_sendTransaction"},{"t":"2026-10-07T00:37:08.915Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:37:09.015Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:37:09.018Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:37:09.168Z","who":"borrower","method":"eth_accounts"},{"t":"2026-10-07T00:37:09.170Z","who":"borrower","method":"eth_chainId"},{"t":"2026-10-07T00:37:09.194Z","who":"borrower","method":"eth_chainId"}]
+   FAILED: failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-07T00:38:16.092Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:38:16.861Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xc76a8f4d7a71d52ad7e4a593b73b7f0974af505e0af0e9997971375b2233e9f4
+    [2026-10-07T00:38:20.275Z] wallet got eth_sendTransaction 0x8a700b53 (page asked)
+    [2026-10-07T00:38:25.118Z] sent 0x8a700b53
+    tx 0x8a700b53 -> 0x55aa78d0bac4c6504efc769b067f8767ce178816d08ce654623ccb18dba857ad
+   ok: loan #16 repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-07T00:38:32.293Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-07T00:38:33.383Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0x22662119d09847a65e794b7e180a41c42b7e1afc45e6265700f081e371442bd6
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba8/run-3-reject-disburse.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a8a2a57; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 26 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0xac3209c4a5386135b60539a64451e15c20835ae012974636deaef9b2b170c375<br>0xbd65891d7a35c1c57a93c0bc3ead926f6f00bbe675ffd9d90fa0cfccca5b3d9c | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) with the second prompt rejected once, then a reload | no | none | failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+ |
+| repay the loan in full (approve, repayLoan) | yes | 0xc76a8f4d7a71d52ad7e4a593b73b7f0974af505e0af0e9997971375b2233e9f4<br>0x55aa78d0bac4c6504efc769b067f8767ce178816d08ce654623ccb18dba857ad | loan #16 repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x22662119d09847a65e794b7e180a41c42b7e1afc45e6265700f081e371442bd6 | page said confirmed: true; balance rose |
