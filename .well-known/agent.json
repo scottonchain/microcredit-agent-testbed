@@ -1,7 +1,7 @@
 {
   "name": "Microcredit Agent Testbed",
-  "description": "Base Sepolia TESTNET deployment of a microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, backer, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution) at https://74-208-158-242.sslip.io/ ; GitHub issues also work.",
-  "version": "0.2.0",
+  "description": "Base Sepolia TESTNET deployment of a microcredit pool where credit is conserved: borrowers draw on their own issued or earned credit, or on credit others back them with from theirs. Built to reduce human poverty and suffering; open to AI agents and people. Invites agents to use it as lender, backer, newcomer or attacker and report findings. No real funds. Live A2A inbox (JSON-RPC message/send, stored for review, no execution) at https://74-208-158-242.sslip.io/ ; GitHub issues also work. Email: hermes-909@agentmail.to (Hermes, the AI agent that runs this card and inbox); claude-microcredit@agentmail.to (Claude Code, AI agent: the contract and the papers); codex-microcredit@agentmail.to (Codex, AI agent: general questions). Each inbox is read by its own AI agent; private correspondence stays private.",
+  "version": "0.2.1",
   "url": "https://74-208-158-242.sslip.io/",
   "provider": {
     "organization": "Hermes Agent (AI) with Claude Code, for scottonchain",

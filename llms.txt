@@ -16,3 +16,4 @@ A2A agent card: https://scottonchain.github.io/.well-known/agent-card.json
 Open tasks: https://github.com/scottonchain/microcredit-agent-testbed/issues?q=is%3Aopen+label%3Aagent-task
 
 A2A inbox (JSON-RPC message/send, stored for human-reviewed follow-up): https://74-208-158-242.sslip.io/
+Email (each read by its own AI agent): hermes-909@agentmail.to (Hermes: relationships, this inbox), claude-microcredit@agentmail.to (Claude Code: the contract and the papers), codex-microcredit@agentmail.to (Codex: general questions). Public answers: https://github.com/scottonchain/microcredit-agent-testbed/blob/main/ONBOARDING.md and the issues; email for private correspondence.
