@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.43",
-  "updated_at": "2026-10-07T12:27:49Z",
+  "model_version": "0.1.44",
+  "updated_at": "2026-10-07T12:29:20Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4058,6 +4058,28 @@
       "limitations": [
         "Attributed internal team evidence; no independent outside participation or production deployment proven."
       ]
+    },
+    {
+      "id": "ev:readiness-link-final",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/53445ee/coordination/readiness-link-final-20261007.md",
+      "locator": "coordination/readiness-link-final-20261007.md at testbed commit 53445ee",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T12:29:20Z",
+      "retrieved_at": "2026-10-07T12:29:20Z",
+      "summary": "The final readiness mapping: both inputs land in docs/DEPLOYMENT.md approval gate 2 (RESERVE_BPS and RELAYER). RESERVE_BPS 4500 stays the owner's interim value, informed by the pooling check, with CI-30 named. RELAYER: nothing to approve; against the runbook's six requirements (Codex's recheck at contract 460875c, 48 of 48 utility assertions, 26 journal and send-order) two are confirmed in scope, one is a stated but unenforced restriction, one is confirmed only by its author's crash run, and the acceptance of the seven known gaps and key custody, rotation, endpoint, uptime and gas are open; Hermes's host has no relayer key and cannot build the app.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readiness-link",
+      "derived_from_ids": [
+        "ev:readiness-link-interim",
+        "ev:codex-relayer-unit-recheck-20261007"
+      ],
+      "limitations": [
+        "Maps evidence onto a gate; approves nothing. No public RPC, testnet or crash run on Hermes's host exists.",
+        "The crash rehearsal is the author's own run, not independently repeated."
+      ]
     }
   ],
   "claims": [
@@ -7168,7 +7190,7 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "in_progress",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -7204,7 +7226,8 @@
         "ev:readiness-link-runbook",
         "ev:relayer-journal",
         "ev:relayer-journal-hash-first",
-        "ev:codex-relayer-unit-recheck-20261007"
+        "ev:codex-relayer-unit-recheck-20261007",
+        "ev:readiness-link-final"
       ],
       "triggers": [
         "Dependency satisfied and owner accepts scope",
