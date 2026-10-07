@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.52",
-  "updated_at": "2026-10-07T15:50:00Z",
+  "model_version": "0.1.53",
+  "updated_at": "2026-10-07T15:40:35Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4494,6 +4494,42 @@
       "limitations": [
         "Recorded from the operator's words in Claude's channel."
       ]
+    },
+    {
+      "id": "ev:prime-directive-board-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6041291466",
+      "locator": "6041291466",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:38:43Z",
+      "retrieved_at": "2026-10-07T15:40:35Z",
+      "summary": "The board record of the prime-directive agenda item: the operator's words verbatim, the model entries of v0.1.51 with Claude's refinements, and the questions for the sync (whether the directive, its three directions and the downstream outcomes become the model's goal tree with goal:poverty and goal:aligned-human-agent-collaboration as children; the measure and the bound for each direction; what aligning the evolution of financial rails asks of the contract and the papers). States the operator's request that each agenda item be followed up by email until a reply lands.",
+      "content_sha256": "2fc44545bb0ac76fefd5a07b5d625388aa000991a5d78b4f88ee122df96e7ac8",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-prime-directive-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Posted by the blog session from the operator's words in its channel."
+      ]
+    },
+    {
+      "id": "ev:operator-sync-followup-rule-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/9f4b889/CLAUDE.md",
+      "locator": "CLAUDE.md, section \"Email (AgentMail)\", at contract main 9f4b889 (commit e4fca57)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T15:39:35Z",
+      "retrieved_at": "2026-10-07T15:40:35Z",
+      "summary": "The operator's rule of 2026-10-07: \"Every time I tell you to add something to the daily sync with codex, follow up with an email and get a reply so that you don't drop subjects.\" Claude writes again at each check-in until the Codex lane replies, and logs the reply on testbed issue 15.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-sync-agenda-email-rule-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given in the blog session's channel and relayed verbatim to the steward session, which records it."
+      ]
     }
   ],
   "claims": [
@@ -6714,20 +6750,21 @@
       "id": "claim:sync-agenda-email-rule",
       "subject_id": "work:planning",
       "predicate": "coordination_rule",
-      "statement": "Every item either lane adds to the agenda of the daily Claude and Codex sync is emailed to the other lane the same day (Claude from claude-microcredit to codex-microcredit, Codex the other way, subject \"Daily sync agenda: <item>\"), so that both lists stay in sync; the email names the item, where it is recorded and what the sync is asked to decide; the board stays the public record.",
+      "statement": "Every item either lane adds to the agenda of the daily Claude and Codex sync is emailed to the other lane the same day (Claude from claude-microcredit to codex-microcredit, Codex the other way, subject \"Daily sync agenda: <item>\"), so that both lists stay in sync; the email names the item, where it is recorded and what the sync is asked to decide; the board stays the public record. Every item the operator asks to add is followed up by email until the other lane replies, so no subject is dropped.",
       "epistemics": {
         "status": "directive",
         "confidence": "high",
         "rationale": "Operator direction of 2026-10-07, relayed by the blog session and recorded in contract CLAUDE.md.",
         "supporting_evidence_ids": [
           "ev:operator-sync-agenda-email-rule-20261007",
-          "ev:operator-sync-agenda-email-rule-board-20261007"
+          "ev:operator-sync-agenda-email-rule-board-20261007",
+          "ev:operator-sync-followup-rule-20261007"
         ],
         "counterevidence_ids": [],
         "falsifier": null
       },
       "freshness": {
-        "observed_at": "2026-10-07T15:26:05Z",
+        "observed_at": "2026-10-07T15:39:35Z",
         "recheck_by": null,
         "recheck_on": [
           "New operator direction",
@@ -6747,7 +6784,8 @@
         "confidence": "high",
         "rationale": "Operator direction, quoted in the evidence; the refinements are Claude's reading of it, marked as such in the statement.",
         "supporting_evidence_ids": [
-          "ev:alignment-prime-directive-20261007"
+          "ev:alignment-prime-directive-20261007",
+          "ev:prime-directive-board-20261007"
         ],
         "counterevidence_ids": [],
         "falsifier": null
@@ -9026,7 +9064,7 @@
         "claim:sync-agenda-email-rule"
       ],
       "dependency_action_ids": [],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule. Followed up by email at each Claude check-in until the Codex lane replies.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and the contract mapping.",
         "The round answers each question or records it as open: officer and lane; what the assessment reads; loss path and budget; appeal; first test-network pilot and its evidence.",
@@ -9043,6 +9081,44 @@
       "stop_conditions": [
         "Stop when the opening and the round's decision are recorded; do not duplicate the daily round.",
         "No unconsented contact with prospective borrowers, no loans to people and no spending."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:prime-directive-sync",
+      "title": "Open the next daily sync with alignment with human well-being as the prime directive",
+      "owner_id": "agent:coordinator",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:alignment-human-wellbeing",
+        "goal:poverty",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:alignment-prime-directive",
+        "claim:sync-agenda-email-rule"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies.",
+      "acceptance_criteria": [
+        "The opening links the operator-direction source and claim:alignment-prime-directive.",
+        "The round decides whether the directive, its three directions and the downstream outcomes become the model's goal tree, and states a measure and a bound for each direction or records them as open.",
+        "It states what aligning the evolution of financial rails asks of the contract and the papers, or records it as open."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver"
+      ],
+      "due_at": "2026-10-08T10:15:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator-requested agenda item, relayed by the blog session. No new scheduler, contact or spending.",
+      "spending": "none",
+      "stop_conditions": [
+        "Stop when the opening and the round's decision are recorded; do not duplicate the daily round."
       ],
       "outcome_evidence_ids": []
     }
