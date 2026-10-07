@@ -1,0 +1,907 @@
+{
+  "app": "https://scottonchain.github.io/pool",
+  "rpc": "https://sepolia.base.org",
+  "chainId": 84532,
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  "buildCommit": "a7fa809",
+  "flags": [],
+  "borrower": "0x108450c748EEF7AeF23e64739bC508f56E596247",
+  "backer": null,
+  "startedAt": "2026-10-07T00:11:56.254Z",
+  "steps": [
+    {
+      "name": "open and connect",
+      "startedAt": "2026-10-07T00:11:58.147Z",
+      "before": {
+        "eth": "0.002935377612355023",
+        "usdc": "26",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "build commit a7fa809; banner present; wallet connected",
+      "txs": [],
+      "after": {
+        "eth": "0.002935377612355023",
+        "usdc": "26",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:12:02.109Z"
+    },
+    {
+      "name": "test USDC already held (no public mint on this token)",
+      "startedAt": "2026-10-07T00:12:03.148Z",
+      "before": {
+        "eth": "0.002935377612355023",
+        "usdc": "26",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "wallet holds 26 USDC",
+      "txs": [],
+      "after": {
+        "eth": "0.002935377612355023",
+        "usdc": "26",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:12:05.241Z"
+    },
+    {
+      "name": "lend 2 USDC (approve, depositFunds)",
+      "startedAt": "2026-10-07T00:12:06.326Z",
+      "before": {
+        "eth": "0.002935377612355023",
+        "usdc": "26",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "page said confirmed: true; lender balance rose",
+      "txs": [
+        {
+          "t": "2026-10-07T00:12:09.598Z",
+          "who": "borrower",
+          "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "selector": "0x095ea7b3",
+          "hash": "0xa4d257fd2ea42c0d564a91bdf230758d3b404099a140ec29675669da16259cc5"
+        },
+        {
+          "t": "2026-10-07T00:12:41.758Z",
+          "who": "borrower",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0x3b76594d",
+          "hash": "0x76ebfe11449a7949068b53138f9a9dbbfd4863847f55c614ea9ff2e834b00321"
+        }
+      ],
+      "after": {
+        "eth": "0.002934431334076996",
+        "usdc": "24",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:12:48.099Z"
+    },
+    {
+      "name": "borrow 1 USDC (requestLoan, disburseLoan)",
+      "startedAt": "2026-10-07T00:12:49.241Z",
+      "before": {
+        "eth": "0.002934431334076996",
+        "usdc": "24",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "ok": false,
+      "note": "failed: locator.waitFor: Timeout 60000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: /Borrow \\(two wallet transactions\\)/i }) to be visible\n",
+      "txs": [],
+      "after": {
+        "eth": "0.002934431334076996",
+        "usdc": "24",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:13:52.897Z"
+    },
+    {
+      "name": "repay the loan in full (approve, repayLoan)",
+      "startedAt": "2026-10-07T00:13:53.994Z",
+      "before": {
+        "eth": "0.002934431334076996",
+        "usdc": "24",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "9",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Active",
+            "outstanding": "1"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "loan #12 repaid",
+      "txs": [
+        {
+          "t": "2026-10-07T00:13:58.172Z",
+          "who": "borrower",
+          "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+          "selector": "0x095ea7b3",
+          "hash": "0xe984fb478a43cd06b9ddd6c2422596292daa7d1d6276daa40b10b2c3600a1cf1"
+        },
+        {
+          "t": "2026-10-07T00:14:06.497Z",
+          "who": "borrower",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0x8a700b53",
+          "hash": "0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813"
+        }
+      ],
+      "after": {
+        "eth": "0.00293321228986619",
+        "usdc": "23",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "10",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Repaid",
+            "outstanding": "0"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:14:11.111Z"
+    },
+    {
+      "name": "withdraw 2 USDC (withdrawFunds)",
+      "startedAt": "2026-10-07T00:14:12.162Z",
+      "before": {
+        "eth": "0.00293321228986619",
+        "usdc": "23",
+        "lenderBalance": "2",
+        "limit": "10",
+        "available": "10",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Repaid",
+            "outstanding": "0"
+          }
+        ]
+      },
+      "ok": true,
+      "note": "page said confirmed: true; balance rose",
+      "txs": [
+        {
+          "t": "2026-10-07T00:14:15.391Z",
+          "who": "borrower",
+          "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+          "selector": "0x155dd5ee",
+          "hash": "0x2a6b143c6b4e583956770c20576089c7713de62f3e93b80790683af713e398b2"
+        }
+      ],
+      "after": {
+        "eth": "0.002932727195758024",
+        "usdc": "25",
+        "lenderBalance": "0",
+        "limit": "10",
+        "available": "10",
+        "loans": [
+          {
+            "id": "2",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "3",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "4",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "5",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "6",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "7",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "8",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "9",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "10",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "11",
+            "status": "Repaid",
+            "outstanding": "0"
+          },
+          {
+            "id": "12",
+            "status": "Repaid",
+            "outstanding": "0"
+          }
+        ]
+      },
+      "finishedAt": "2026-10-07T00:14:21.539Z"
+    }
+  ],
+  "finishedAt": "2026-10-07T00:14:21.539Z",
+  "transactions": [
+    {
+      "t": "2026-10-07T00:12:09.598Z",
+      "who": "borrower",
+      "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "selector": "0x095ea7b3",
+      "hash": "0xa4d257fd2ea42c0d564a91bdf230758d3b404099a140ec29675669da16259cc5"
+    },
+    {
+      "t": "2026-10-07T00:12:41.758Z",
+      "who": "borrower",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0x3b76594d",
+      "hash": "0x76ebfe11449a7949068b53138f9a9dbbfd4863847f55c614ea9ff2e834b00321"
+    },
+    {
+      "t": "2026-10-07T00:13:58.172Z",
+      "who": "borrower",
+      "to": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "selector": "0x095ea7b3",
+      "hash": "0xe984fb478a43cd06b9ddd6c2422596292daa7d1d6276daa40b10b2c3600a1cf1"
+    },
+    {
+      "t": "2026-10-07T00:14:06.497Z",
+      "who": "borrower",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0x8a700b53",
+      "hash": "0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813"
+    },
+    {
+      "t": "2026-10-07T00:14:15.391Z",
+      "who": "borrower",
+      "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "selector": "0x155dd5ee",
+      "hash": "0x2a6b143c6b4e583956770c20576089c7713de62f3e93b80790683af713e398b2"
+    }
+  ],
+  "walletCalls": 50
+}

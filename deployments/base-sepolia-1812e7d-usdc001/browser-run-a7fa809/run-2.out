@@ -1,0 +1,105 @@
+
+== open and connect
+   ok: build commit a7fa809; banner present; wallet connected
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 26 USDC
+
+== lend 2 USDC (approve, depositFunds)
+    [2026-10-07T00:12:09.305Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:12:09.597Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xa4d257fd2ea42c0d564a91bdf230758d3b404099a140ec29675669da16259cc5
+    [2026-10-07T00:12:41.443Z] wallet got eth_sendTransaction 0x3b76594d (page asked)
+    [2026-10-07T00:12:41.757Z] sent 0x3b76594d
+    tx 0x3b76594d -> 0x76ebfe11449a7949068b53138f9a9dbbfd4863847f55c614ea9ff2e834b00321
+   ok: page said confirmed: true; lender balance rose
+
+== borrow 1 USDC (requestLoan, disburseLoan)
+BORROWER PAGE TEXT: LoanLink
+Social lending platform
+Borrower
+Lender
+$24.00 USDC
+Base Sepolia
+0x10…6247
+Request Loan
+Credit Limit
+$10.00
+your credit + backing
+Max Loan
+$8.64
+available now
+APR
+9.33%
+fixed rate
+Active Loan & Repayment
+Loan Summary
+Principal:
+$1.00
+Outstanding:
+$1.00
+Status:
+Current
+Repayment Schedule
+Term:
+30 days
+Due Date:
+11/6/2026
+Status:
+Current
+Make a Payment
+
+One approval, no gas. You’ll sign a permit; our relayer submits the repayment.
+
+Full Repayment
+
+Pay off your entire outstanding balance
+
+Pay $1.00
+Partial Repayment
+
+Make a partial payment to reduce your balance
+
+Repay
+
+Test network. This app talks to the project's pool on Base Sepolia (chain id 84532, a Base test network, not Ethereum Sepolia). Every token here is a test token with no value, and no real person has borrowed from this pool.
+
+Pool 0x73872b8fb7f1771c67911f03edc75abdc9514973, deployed from contract commit 1812e7d; this page was built from commit a7fa809. Your wallet signs and pays for each transaction: you need a little Base Sepolia ETH for gas and test USDC from Circle's faucet. A new wallet has no credit to borrow against until someone who holds credit backs it or an issuer grants it a line. Step-by-step walkthrough: test gas, test USDC, credit, the wallet prompts and what to do after a rejected or lost transaction.
+BUTTONS ["Pay $1.00","Repay"]
+   failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+
+   FAILED: failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+
+
+== repay the loan in full (approve, repayLoan)
+    [2026-10-07T00:13:57.709Z] wallet got eth_sendTransaction 0x095ea7b3 (page asked)
+    [2026-10-07T00:13:58.172Z] sent 0x095ea7b3
+    tx 0x095ea7b3 -> 0xe984fb478a43cd06b9ddd6c2422596292daa7d1d6276daa40b10b2c3600a1cf1
+    [2026-10-07T00:14:03.149Z] wallet got eth_sendTransaction 0x8a700b53 (page asked)
+    [2026-10-07T00:14:06.497Z] sent 0x8a700b53
+    tx 0x8a700b53 -> 0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813
+   ok: loan #12 repaid
+
+== withdraw 2 USDC (withdrawFunds)
+    [2026-10-07T00:14:15.113Z] wallet got eth_sendTransaction 0x155dd5ee (page asked)
+    [2026-10-07T00:14:15.391Z] sent 0x155dd5ee
+    tx 0x155dd5ee -> 0x2a6b143c6b4e583956770c20576089c7713de62f3e93b80790683af713e398b2
+   ok: page said confirmed: true; balance rose
+
+wrote /root/work/run_bw2/ba7/run-2.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a7fa809; banner present; wallet connected |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 26 USDC |
+| lend 2 USDC (approve, depositFunds) | yes | 0xa4d257fd2ea42c0d564a91bdf230758d3b404099a140ec29675669da16259cc5<br>0x76ebfe11449a7949068b53138f9a9dbbfd4863847f55c614ea9ff2e834b00321 | page said confirmed: true; lender balance rose |
+| borrow 1 USDC (requestLoan, disburseLoan) | no | none | failed: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: /Borrow \(two wallet transactions\)/i }) to be visible
+ |
+| repay the loan in full (approve, repayLoan) | yes | 0xe984fb478a43cd06b9ddd6c2422596292daa7d1d6276daa40b10b2c3600a1cf1<br>0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813 | loan #12 repaid |
+| withdraw 2 USDC (withdrawFunds) | yes | 0x2a6b143c6b4e583956770c20576089c7713de62f3e93b80790683af713e398b2 | page said confirmed: true; balance rose |

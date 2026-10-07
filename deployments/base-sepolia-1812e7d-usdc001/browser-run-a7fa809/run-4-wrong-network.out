@@ -1,0 +1,17 @@
+
+== open and connect
+   ok: build commit a7fa809; banner present; wallet connected
+
+== wrong network: nothing is sent
+   ok: no transaction sent; wrong-network state shown: true
+
+== test USDC already held (no public mint on this token)
+   ok: wallet holds 25 USDC
+
+wrote /root/work/run_bw2/ba7/run-4-wrong-network.json
+
+| step | ok | transactions | note |
+| --- | --- | --- | --- |
+| open and connect | yes | none | build commit a7fa809; banner present; wallet connected |
+| wrong network: nothing is sent | yes | none | no transaction sent; wrong-network state shown: true |
+| test USDC already held (no public mint on this token) | yes | none | wallet holds 25 USDC |
