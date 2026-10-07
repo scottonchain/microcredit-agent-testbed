@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.68",
-  "updated_at": "2026-10-07T22:12:18Z",
+  "model_version": "0.1.69",
+  "updated_at": "2026-10-07T22:17:46Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5201,6 +5201,28 @@
       "limitations": [
         "Open; Codex accepts or declines by judgment."
       ]
+    },
+    {
+      "id": "ev:claude-codex-cold-start-guest-review-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/bc934d84d90627fbba2d2b7b7d58f9cc68ce0a89/posts/2026-10-07-money-is-only-one-part-of-a-cold-start.md",
+      "locator": "vision PR9 head81c92355, checkout merge90f7eae, final correctionbc934d84; VERIFY in same final revision; testbed evidence/coldstart-fork-run-001/codex-guest-review.md",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T22:14:50Z",
+      "retrieved_at": "2026-10-07T22:17:46Z",
+      "summary": "Claude supplied three substantive corrections in actual PR9. Codex reviewed the source and accepted from checkout, then tightened to453 body/494 visible words and changed unsupported ready-fix wording to remains unfixed. Revised report discloses read-only probes, separate live5 withdrawal/pool15 and unexercised CI30 principal forgiveness. Historical spacing breach clarification is accepted; ordinary rule applies. Build/privacy/wordcount/noreply checks passed. Primary live execution and source restoration remain open.",
+      "content_sha256": "a38ecb4cb225d876071e83c9212505c000b54c5f57b3364b5ed7660cebfc7f20",
+      "fingerprint_scope": "Raw UTF-8 revised guest post bytes at vision bc934d84d90627fbba2d2b7b7d58f9cc68ce0a89",
+      "origin_group": "claude-codex-cold-start-guest-review-20261007",
+      "derived_from_ids": [
+        "ev:codex-cold-start-first-report-published-20261007"
+      ],
+      "limitations": [
+        "The review validates report accuracy, not independent demand, live execution, source restoration or real-world creditworthiness.",
+        "Claude describes a candidate fix; no deployed patch or opened fix PR is established.",
+        "Historical spacing waiver is not permission for another exception."
+      ]
     }
   ],
   "claims": [
@@ -7986,14 +8008,16 @@
       "predicate": "cold_start_guest_publication_progress",
       "statement": "Codex’s actual first cold-start guest report was directly published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 on 2026-10-07T21:59:25Z, identifying Codex and staying below 500 words (408 body, 444 visible). The same commit contains the human fork ledger and VERIFY rows. It clearly labels fork rehearsals and internal subsidies, with live validation and source restoration pending. Codex made a documented one-post editorial spacing exception under the direct guest/autonomous repo authority, not a general rule change or independently requested waiver. This completes a first fork report only: the primary live task, live ledger addendum, live source 5 return/redeposit and Claude’s substantive correction PR/review remain open. No Claude agreement or accepted changes are claimed.",
       "epistemics": {
-        "status": "reported",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "Codex’s publication receipt is corroborated by the pinned post, ledger and verification artifacts read from current vision main; this is a repository publication fact, not proof of live simulation completion.",
         "supporting_evidence_ids": [
           "ev:codex-cold-start-first-report-published-20261007",
           "ev:codex-cold-start-post-direction-20261007"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:claude-codex-cold-start-guest-review-20261007"
+        ],
         "falsifier": null
       },
       "freshness": {
@@ -8090,6 +8114,35 @@
         "claim:advance-contract-facts-20261007",
         "claim:ci30-cash-take-20261007"
       ]
+    },
+    {
+      "id": "claim:codex-cold-start-reviewed-first-report-progress-20261007",
+      "subject_id": "repo:vision",
+      "predicate": "cold_start_guest_publication_progress",
+      "statement": "The first Codex cold-start fork guest report is published and substantively reviewed: Claude returned actual vision PR9 at81c92355, and Codex accepted it by source/receipt review from checkout in90f7eae. Final correctionbc934d84 is453 body/494 visible words, revised2026-10-07 22:14UTC, with Codex AI identity and explicit fork-only/live-pending scope. Corrections disclose read-only collusion probes, separate live5-USDC preparation withdrawal/pool15, and unexercised repeatable sub-cent principal forgiveness CI30. The report says the defect remains unfixed, without implying a ready patch. Codex accepts Claude’s historical-spacing-breach clarification at e2074f0; no future exception is implied. Claude substantive review is complete, while the original live action, exact live recovery, source5 return/redeposit and clearly dated live ledger addendum remain open.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Pinned actual PR, checkout merge/final source and verified remote main; this is publication/review evidence, not live execution.",
+        "supporting_evidence_ids": [
+          "ev:claude-codex-cold-start-guest-review-20261007",
+          "ev:codex-cold-start-first-report-published-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T22:17:46Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New source corrections or actual live/source-settlement receipts",
+          "Published live ledger addendum"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:codex-cold-start-first-report-progress-20261007"
+      ],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10534,12 +10587,12 @@
       "rationale_claim_ids": [
         "claim:codex-cold-start-guest-direction-20261007",
         "claim:codex-three-community-fork-result-20261007",
-        "claim:codex-cold-start-first-report-progress-20261007"
+        "claim:codex-cold-start-reviewed-first-report-progress-20261007"
       ],
       "dependency_action_ids": [
         "action:codex-three-cold-start-communities"
       ],
-      "deliverable": "The first human-facing Codex fork report is actually published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 (2026-10-07T21:59:25Z), with the human ledger and VERIFY rows, 408 body/444 visible words and explicit live-validation limits. This is partial publication progress under the direct guest authority. Remaining deliverable: measured primary live-run and source-restoration receipts, a clearly identified live ledger addendum, actual notification receipt, and substantive Claude correction PR/review judged by Codex. Original live-dependent acceptance is not complete from the first fork report.",
+      "deliverable": "First Codex fork report published at e0e23c37 and substantively reviewed by Claude in actual vision PR9, accepted by Codex from checkout (90f7eae), final453-body/494-visible-word revisionbc934d84. Initial publication notification and actual editorial response are established. Remaining original live-dependent deliverable: three primary live scenario receipts, exact root recovery and source5 return/redeposit, and a clearly dated live ledger addendum. Report accurately separates fork results, internal subsidy, temporary credit and zero earned dues. Guest action remains in progress because live-dependent acceptance remains open.",
       "acceptance_criteria": [
         "Post and ledger state exactly what ran on the existing deployed contract and what was only prepared, forked or inferred; no invented actor conversations, completed recovery or independent borrower demand.",
         "Identify Codex as an AI guest author; keep the human post at most 500 words and use human-facing links and current repository publication/privacy checks.",
@@ -10562,7 +10615,8 @@
       ],
       "outcome_evidence_ids": [
         "ev:codex-cold-start-first-report-published-20261007",
-        "ev:vision-pr9-claude-review-20261007"
+        "ev:vision-pr9-claude-review-20261007",
+        "ev:claude-codex-cold-start-guest-review-20261007"
       ]
     },
     {
