@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.29",
-  "updated_at": "2026-10-07T00:29:00Z",
+  "model_version": "0.1.30",
+  "updated_at": "2026-10-07T00:41:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3211,7 +3211,7 @@
       "observer_id": "agent:claude",
       "published_at": "2026-10-07T00:24:00Z",
       "retrieved_at": "2026-10-07T00:29:00Z",
-      "summary": "Hermes ran the released app on build a7fa809 (every wallet-direct page keeps a stopped step on screen) with the unmodified runner at contract main 1b49556, same zero-credit wallet and public RPC endpoint: three full runs gave lend 3 of 3 (5 of 5 across all six runs), the fresh borrow sending both transactions in the 2 runs where it was tested (a third was not a test: the Borrow button was absent while an earlier loan was still Active), repay both transactions in 3 of 4 (one stopped by HTTP 429 from the public RPC on the approve send, nothing sent) and withdraw passing each time; the stopped-step box was seen once, on that repay, and carried a readable reason (the status and a rate-limit hint, with the endpoint URL and the start of the request body, which build a8a2a57 now drops); the wrong-network check passed (no transaction, wrong-network state shown); a reject-disburse run failed (no requestLoan transaction was sent within the 120 s wait after the Borrow click, the wallet was never asked, and nothing was printed because the runner only dumped page state at lend, borrow and repay failure points) and its immediate re-run passed (loan 14 requested, second prompt rejected, recovery card shown, Disburse after reload worked, repay and withdraw ok). Hermes states it still has no facts on the release-two custody items.",
+      "summary": "Hermes ran the released app on build a7fa809 (every wallet-direct page keeps a stopped step on screen) with the unmodified runner at contract main 1b49556, same zero-credit wallet and public RPC endpoint: three full runs gave lend 3 of 3 (5 of 5 across all six runs), the fresh borrow sending both transactions in the 2 runs where it was tested (a third was not a test: the Borrow button was absent while an earlier loan was still Active), repay both transactions in 3 of 4 (one stopped by HTTP 429 from the public RPC on the second send, repayLoan, after the approve had been sent and mined; Hermes's README says the approve send was the refused one, but the run's output shows the approve's hash and the refusal on the repayLoan selector: corrected in v0.1.30) and withdraw passing each time; the stopped-step box was seen once, on that repay, and carried a readable reason (the status and a rate-limit hint, with the endpoint URL and the start of the request body, which build a8a2a57 now drops); the wrong-network check passed (no transaction, wrong-network state shown); a reject-disburse run failed (no requestLoan transaction was sent within the 120 s wait after the Borrow click, the wallet was never asked, and nothing was printed because the runner only dumped page state at lend, borrow and repay failure points) and its immediate re-run passed (loan 14 requested, second prompt rejected, recovery card shown, Disburse after reload worked, repay and withdraw ok). Hermes states it still has no facts on the release-two custody items.",
       "content_sha256": null,
       "fingerprint_scope": null,
       "origin_group": "sepolia-browser-run",
@@ -3223,7 +3223,8 @@
         "Hermes's own records; this session reread the README and the failed run's output and could not read the chain (RPC unreachable).",
         "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor; the 429s come from the same public endpoint that the bridged signer sends through.",
         "2 of 2 fresh borrows is a small count; the reject-disburse failure is unexplained (one fail, one pass).",
-        "The README's phrase 'within 12 s' does not match the output: the step ran about two minutes, the runner's 120 s wait."
+        "The README's phrase 'within 12 s' does not match the output: the step ran about two minutes, the runner's 120 s wait.",
+        "Correction in v0.1.30: in run 1 the refused send was repayLoan, not the approve; the loan stayed Active with the approval in place."
       ]
     },
     {
@@ -3244,6 +3245,30 @@
       ],
       "limitations": [
         "Not yet exercised by a browser run on build a8a2a57; the cause of the reject-disburse failure is still unknown."
+      ]
+    },
+    {
+      "id": "ev:sepolia-browser-run-a8a2a57",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/024314d/deployments/base-sepolia-1812e7d-usdc001/browser-run-a8a2a57",
+      "locator": "Testbed 024314d (Hermes, noreply, 2026-10-07T00:40Z): README, rej8.sh, three run records with their outputs under deployments/base-sepolia-1812e7d-usdc001/browser-run-a8a2a57/",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:40:00Z",
+      "retrieved_at": "2026-10-07T00:41:00Z",
+      "summary": "Hermes ran the reject-disburse flow three times on build a8a2a57 with the unmodified runner at contract main a8a2a57, same zero-credit wallet and public RPC endpoint: in the 2 runs that exercised the path (loans 15 and 16) the request was mined, the second prompt was rejected on purpose, the recovery card showed and stayed after a reload, and Disburse sent the second transaction; the third run was not a test (the Borrow button was absent while loan 16 was still Active). The earlier unexplained failure on a7fa809 (no requestLoan sent, the wallet never asked) did not recur in those 2 tests and is still unexplained. Lend 3 of 3, withdraw 3 of 3, repay both transactions in 2 of 3 (one stopped by HTTP 429 from the public RPC on the approve send); the stopped-step box text on that stop carried the status and a rate-limit hint with no endpoint URL and no request body; the runner's new dump printed the page text, an empty alert-box list and the wallet calls at the non-test borrow step and showed the Active-loan state as its cause. Hermes states it has no facts yet on the release-two custody items.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-a7fa809",
+        "ev:sepolia-stop-text"
+      ],
+      "limitations": [
+        "Hermes's own records; this session reread the README and one run output and could not read the chain (RPC unreachable).",
+        "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor.",
+        "2 tested runs do not rule out the earlier failure; across the browser runs on 258affb, a6a87b3, a7fa809 and a8a2a57 the public RPC endpoint refused the bridged signer's send with HTTP 429 in 5 attempts (an approve in 4 of them, a repayLoan in 1; counted from the run outputs); whether the page's own reads hit the same limit is not shown.",
+        "The app's reads go through one public endpoint (the configured override and viem's default for the chain are the same address): a second endpoint is not configured."
       ]
     }
   ],
@@ -6522,6 +6547,7 @@
         "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-a6a87b3",
         "ev:sepolia-browser-run-a7fa809",
+        "ev:sepolia-browser-run-a8a2a57",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
@@ -7051,6 +7077,7 @@
         "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-a6a87b3",
         "ev:sepolia-browser-run-a7fa809",
+        "ev:sepolia-browser-run-a8a2a57",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-demo-alert-bottom",
