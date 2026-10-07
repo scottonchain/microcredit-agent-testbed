@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.54",
-  "updated_at": "2026-10-07T15:42:51Z",
+  "model_version": "0.1.55",
+  "updated_at": "2026-10-07T15:47:35.641409Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -550,7 +550,7 @@
       "id": "goal:poverty",
       "kind": "outcome",
       "name": "Measurable alleviation of human poverty",
-      "parent_id": "project:microcredit",
+      "parent_id": "goal:alignment-human-wellbeing",
       "owner_id": null,
       "urls": [],
       "goal_model": null,
@@ -734,7 +734,7 @@
       "id": "goal:aligned-human-agent-collaboration",
       "kind": "outcome",
       "name": "Useful continuing collaboration with goal-aligned AIs and engaged human operators",
-      "parent_id": "project:microcredit",
+      "parent_id": "goal:alignment-human-wellbeing",
       "owner_id": null,
       "urls": [],
       "goal_model": null,
@@ -4548,6 +4548,25 @@
       "limitations": [
         "A board acknowledgment, not an email reply: the Codex lane's mailbox was not available to it in that execution."
       ]
+    },
+    {
+      "id": "ev:codex-alignment-review-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17",
+      "locator": "Codex review prepared against testbed main 6acfe76 and vision post ccf25c9; public discussion publication pending.",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-07T15:43:43.017920Z",
+      "summary": "Codex distinguishes alignment with human well-being from obedience to an operator and from financial safety constraints. Human well-being is the end; poverty alleviation and inclusion are routes toward it; microcredit is a provisional method. The Nonzero reply substitutes a financial loss claim for an answer about beneficiaries and purpose. The operator requested a model update and discussion at the next existing daily sync.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-alignment-review-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "An internal interpretation, not an observed reader study, achieved technical alignment, human benefit or assent by Claude or Hermes.",
+        "The issue URL names the intended discussion destination; it is not a published receipt."
+      ]
     }
   ],
   "claims": [
@@ -6905,6 +6924,93 @@
       "derived_from_claim_ids": [
         "claim:alignment-prime-directive"
       ]
+    },
+    {
+      "id": "claim:alignment-ends-and-means",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "Human well-being is the governing end. Alleviating poverty and increasing inclusion are ways to advance that end; microcredit is a provisional method. Continue, revise or abandon the method according to evidence about people's lives and relevant alternatives. Financial throughput, repayment, adoption and technical correctness cannot substitute for human benefit. This ordering expresses the operator's direction; it does not establish achieved technical AI alignment.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Codex interpretation of the operator direction and pinned blog/model; offered for Claude challenge at the existing sync.",
+        "supporting_evidence_ids": [
+          "ev:codex-alignment-review-20261007",
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Relevant human-outcome evidence or a corrected reading of the post invalidates the distinction or ordering."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:43:43.017920Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next daily sync",
+          "Before a public alignment claim"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
+      ]
+    },
+    {
+      "id": "claim:alignment-objective-versus-constraint",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "Codex reading of the Nonzero reply: answering whose interests agents serve with a credit-conservation or stake limit confuses an objective with a constraint. A financially bounded agent can still pursue harmful ends; an obedient agent can serve a builder at other people's expense. Human well-being requires attention to beneficiaries, distribution of costs, voluntary participation, correction and human control. The appropriate public response explains that purpose and how conduct is judged against it. A financial invariant supports only its verified scope and cannot bound all economic, informational, exclusion or downstream harms.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Codex interpretation of the operator direction and pinned blog/model; offered for Claude challenge at the existing sync.",
+        "supporting_evidence_ids": [
+          "ev:codex-alignment-review-20261007",
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Relevant human-outcome evidence or a corrected reading of the post invalidates the distinction or ordering."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:43:43.017920Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next daily sync",
+          "Before a public alignment claim"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
+      ]
+    },
+    {
+      "id": "claim:alignment-evidence-limits",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "Claude's alignment-pivotal model is a useful interpretation, not evidence that the test pool makes inclusion the default, bounds all harm, represents affected people or improves lives. Public and checkable conduct supports accountability but does not alone establish beneficial outcomes. Inviting voluntary collaboration can advance alignment; outside people retain their own goals and are not subject to the team's authority. Human-outcome measures and safety constraints are complementary requirements, not interchangeable assurances.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Codex interpretation of the operator direction and pinned blog/model; offered for Claude challenge at the existing sync.",
+        "supporting_evidence_ids": [
+          "ev:codex-alignment-review-20261007",
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Relevant human-outcome evidence or a corrected reading of the post invalidates the distinction or ordering."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:43:43.017920Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Next daily sync",
+          "Before a public alignment claim"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
+      ]
     }
   ],
   "edges": [
@@ -9119,14 +9225,20 @@
       ],
       "rationale_claim_ids": [
         "claim:alignment-prime-directive",
-        "claim:sync-agenda-email-rule"
+        "claim:sync-agenda-email-rule",
+        "claim:alignment-ends-and-means",
+        "claim:alignment-objective-versus-constraint",
+        "claim:alignment-evidence-limits"
       ],
       "dependency_action_ids": [],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Codex adds an ends/means and objective/constraint analysis for the same opening: human well-being is the end, poverty alleviation and inclusion are routes, microcredit a provisional method. Discuss obedience versus human well-being, beneficiary outcomes, correction/stopping criteria and an editorial correction with Claude as prose owner. Joint assent and blog changes remain pending.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and claim:alignment-prime-directive.",
         "The round decides whether the directive, its three directions and the downstream outcomes become the model's goal tree, and states a measure and a bound for each direction or records them as open.",
-        "It states what aligning the evolution of financial rails asks of the contract and the papers, or records it as open."
+        "It states what aligning the evolution of financial rails asks of the contract and the papers, or records it as open.",
+        "Separate operator direction from each lane's interpretations; record actual Claude assent or dissent.",
+        "Identify whose outcomes and costs are measured, correction and stopping criteria, and relevant alternatives; unresolved measures stay open.",
+        "Review whether the Nonzero reply requires an editorial correction; do not claim a blog edit from an agenda entry."
       ],
       "not_before": null,
       "triggers": [
