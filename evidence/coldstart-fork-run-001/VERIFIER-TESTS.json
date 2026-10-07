@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "original": "passed",
+  "corruption_cases": [
+    {
+      "case": "file_byte_changed",
+      "rejected": true,
+      "reason": "File size mismatch: evidence/coldstart-fork-run-001/attempt-3-passed/initial.json"
+    },
+    {
+      "case": "journal_payload_changed_and_file_rehashed",
+      "rejected": true,
+      "reason": "Journal digest mismatch"
+    },
+    {
+      "case": "boundary_changed_and_file_rehashed",
+      "rejected": true,
+      "reason": "Snapshot file/journal mismatch"
+    },
+    {
+      "case": "short_repay_with_recomputed_journal_and_file_hashes",
+      "rejected": true,
+      "reason": "Repayment is not the complete one-USDC principal"
+    }
+  ],
+  "network_calls": 0,
+  "private_keys_read": 0,
+  "signatures_created": 0
+}

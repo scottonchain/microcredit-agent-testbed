@@ -1,0 +1,257 @@
+{
+  "schema": "coldstart-reproduction/1",
+  "source_block": 47820167,
+  "source_block_hash": "0x218987b10b600b59f5ac7a7a6e6e4d721a289e690b99d7c7f4e07bba64fe2078",
+  "source_chain_id": 84532,
+  "execution_chain_id": 31337,
+  "helper_commit": "a5a4d951df7e18056dd870db16fd642331f0e8e8",
+  "original_evidence_commit": "17eb6df0b7ed5457b3a5a9bfaf4b0a21700d5835",
+  "packet_tag": "coldstart-fork-run-001-repro-v1",
+  "files": [
+    {
+      "path": "evidence/coldstart-fork-run-001/ACTION-RECORD.md",
+      "bytes": 6911,
+      "sha256": "fa1066eb930a3768149bd70564f08d8236ee8c7776435b7451e86c7928399206"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/README.md",
+      "bytes": 3227,
+      "sha256": "0bac66cf380c6750baa893753254e6cdd35dd4007ecf89ecbf3c85a61fecf0e6"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/REPRODUCE.md",
+      "bytes": 5915,
+      "sha256": "912a48391a5bf5cb9b5e8ec923aa26941d4e778e1c59fa0642a05fb0440df1cd"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/action-record.json",
+      "bytes": 56344,
+      "sha256": "01be73fd335b535862a4c47773cde5bf987cfcb09df9bdbac5985a741e628c04"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-1-stopped-gas-guard/failure.json",
+      "bytes": 343,
+      "sha256": "b348c2af7c5b9c15438100cd5a8d65797d9cd4430fd81111b7149941f2fe5fc1"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-1-stopped-gas-guard/initial.json",
+      "bytes": 12450,
+      "sha256": "bd54efe7df873096090ab44bdab38d0840b6ac4fbe50ab56d75235c7033f21f8"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-1-stopped-gas-guard/journal.jsonl",
+      "bytes": 20926,
+      "sha256": "467b99fe5e170b093e30b920e02ae03ce97b2ad1f87f2bbc57e3aec9c682d963"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-1-stopped-gas-guard/runtime-code-hashes.json",
+      "bytes": 2114,
+      "sha256": "17c13726e2137f5c29405e652c7e3a8eb0a984f9b05c0440b66d575370f07dde"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-2-stopped-gas-guard/failure.json",
+      "bytes": 343,
+      "sha256": "b348c2af7c5b9c15438100cd5a8d65797d9cd4430fd81111b7149941f2fe5fc1"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-2-stopped-gas-guard/initial.json",
+      "bytes": 12450,
+      "sha256": "bd54efe7df873096090ab44bdab38d0840b6ac4fbe50ab56d75235c7033f21f8"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-2-stopped-gas-guard/journal.jsonl",
+      "bytes": 20926,
+      "sha256": "183ab7441b83bf4889d45fc4d445ad751b5e717b96377ecfd4ae7922c3d168fa"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-2-stopped-gas-guard/runtime-code-hashes.json",
+      "bytes": 2114,
+      "sha256": "17c13726e2137f5c29405e652c7e3a8eb0a984f9b05c0440b66d575370f07dde"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/evidence.json",
+      "bytes": 11551,
+      "sha256": "274be1fbcf0b7e1033b86e4ae1ac10f4796b1d5d33e23409ec962842f543f8fc"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/final.json",
+      "bytes": 13754,
+      "sha256": "3b43cddb030c64ff99325ab4721a66ac5cf657d7979df2e77f22a450c756d427"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/initial.json",
+      "bytes": 12450,
+      "sha256": "bd54efe7df873096090ab44bdab38d0840b6ac4fbe50ab56d75235c7033f21f8"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/journal.jsonl",
+      "bytes": 360340,
+      "sha256": "909d266c0034ab2e4cd9ddfdfb4c5c933641e897782a67ddddebcdc24346077c"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/runtime-code-hashes.json",
+      "bytes": 2114,
+      "sha256": "17c13726e2137f5c29405e652c7e3a8eb0a984f9b05c0440b66d575370f07dde"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario1-active.json",
+      "bytes": 13244,
+      "sha256": "a33922d6f336c1c8ca511655fa3f3a84c4a50bda00924a0075b8b2c1d02b0409"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario1-after.json",
+      "bytes": 13002,
+      "sha256": "fc87d45ffa1cb362fbbfeae45dd2b41e2cddb58b192a6eab314953b6ebc33241"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario1-result.json",
+      "bytes": 435,
+      "sha256": "9b3762fbe068889c7316b21188ab6edb2a27ffb5970cadfdbb88a3c6d4b8ed1a"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario2-active.json",
+      "bytes": 13631,
+      "sha256": "1847483a7cbd5865718dec50c65f8675ddbe3aeff1fa992bb0a088f9b05671bf"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario2-after.json",
+      "bytes": 13382,
+      "sha256": "12a463885443aefdb3c88f5bfb43f92f347b21ac21f1e7bb35ab54513fc2d798"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario2-result.json",
+      "bytes": 1987,
+      "sha256": "359e2fe84a7cdd4e1ed42b102ebc5a2cf2fed12c4232ed843d3ae0c0a095968b"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario3-active.json",
+      "bytes": 14006,
+      "sha256": "c27277f05496b0f3b7ca9c1285e114081a4c089935db0a3cb1a1fb381a6234f0"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario3-after.json",
+      "bytes": 13764,
+      "sha256": "f3a53a14a041e9f894700c52e8eb15b18a1bf07166366a05634ebd3a48ccca26"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/attempt-3-passed/scenario3-result.json",
+      "bytes": 4946,
+      "sha256": "c7b57c9640b0cd04ae3110736d97da45f78a9ce3506eefdb17e6fc0cdcda63c7"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/codex-artifact-audit.md",
+      "bytes": 2169,
+      "sha256": "c8dfda3f12dc513ece963243d6af557551a53e72b0762e5c7fc0e53802aabbf9"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/codex-guest-review.md",
+      "bytes": 1723,
+      "sha256": "18dd52af0076d84317d31eca570a56783ce4417960aea1a16d62486a2014041d"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/README.md",
+      "bytes": 908,
+      "sha256": "c96cfe95cef337a6c900a39e3c4c48c5f07783a70b44ce40ffcbbac0c698e447"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/accept_claude_guest_review.py",
+      "bytes": 5663,
+      "sha256": "8b09a7be6e667e91296a5af1c89bf9d93b12068d834ccd73ac3e371248263cee"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/merge_preparation.py",
+      "bytes": 1549,
+      "sha256": "ded8acef0168b6d3bafe9d29c197ed44ca0e01b6e18ea235153e5925ae9355f6"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/merge_results.py",
+      "bytes": 8684,
+      "sha256": "f6babfc0c476c9a5000b0bb0e552e68752f0ffe4929a7dacc8443683ea1336c7"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/publish_guest.py",
+      "bytes": 2545,
+      "sha256": "ee53a8b29bc557ab0e641f7f3c7b687d20fe3be08584d30975dc435ff06d5354"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/operation-sources/record_review.py",
+      "bytes": 8467,
+      "sha256": "ec3fa32788eee1d7eab741cc49af34d0109c6679098ffa0a2403f252eb1867a0"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/publication/VERIFY.md",
+      "bytes": 33060,
+      "sha256": "4fb290676488cf91c41bd2b3f96009c66a3b26b728acdd06a7d9f71367eb5f4a",
+      "origin": {
+        "repo": "scottonchain/microcredit-vision",
+        "commit": "bc934d84d90627fbba2d2b7b7d58f9cc68ce0a89",
+        "path": "VERIFY.md"
+      }
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/publication/guest-post.md",
+      "bytes": 3795,
+      "sha256": "a38ecb4cb225d876071e83c9212505c000b54c5f57b3364b5ed7660cebfc7f20",
+      "origin": {
+        "repo": "scottonchain/microcredit-vision",
+        "commit": "bc934d84d90627fbba2d2b7b7d58f9cc68ce0a89",
+        "path": "posts/2026-10-07-money-is-only-one-part-of-a-cold-start.md"
+      }
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/publication/human-ledger.md",
+      "bytes": 7969,
+      "sha256": "2c559e90e930ead4033015f1db6fe0c2b578656c6a7c537e35fe0c843848bb09",
+      "origin": {
+        "repo": "scottonchain/microcredit-vision",
+        "commit": "bc934d84d90627fbba2d2b7b7d58f9cc68ce0a89",
+        "path": "evidence/2026-10-07-cold-start-scenarios.md"
+      }
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/roots_at_block.json",
+      "bytes": 1856,
+      "sha256": "4363973407e330fc127c1e6dbf9785d23bdab6bf0cb197d0b4ec9a895df78898"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/source-code-hashes.json",
+      "bytes": 1090,
+      "sha256": "86118053f6952f3239ca918d0259fc7a9143e2641d39d97523017c5bfd5e77fe"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/test-verify-evidence.py",
+      "bytes": 4098,
+      "sha256": "593bfd15ee3dd11dc773eb9907e02cc7817e141a1c3734b3c8f89574795e87e4"
+    },
+    {
+      "path": "evidence/coldstart-fork-run-001/verify-evidence.py",
+      "bytes": 17271,
+      "sha256": "1d3d25315f527c317150efb755953198f00f8afa2bc94d493c2348878849eedc"
+    },
+    {
+      "path": "scenarios/cold-start-three-communities/README.md",
+      "bytes": 5260,
+      "sha256": "8640c312cb478a6631c9fc348961f10b709e63fc4a59713605554b5833bb7b04"
+    },
+    {
+      "path": "scenarios/cold-start-three-communities/abi-vectors.json",
+      "bytes": 21979,
+      "sha256": "3ad3d91d8025a371966f1aba1ea76928f656b1f76b6d7614e26da4f54effd27a"
+    },
+    {
+      "path": "scenarios/cold-start-three-communities/manifest.json",
+      "bytes": 170523,
+      "sha256": "450360d4fcfff92cc1d438f66757a213d0589cd402bb6a7025ab75fddd68bcbc"
+    },
+    {
+      "path": "scenarios/cold-start-three-communities/public-wallets.json",
+      "bytes": 1242,
+      "sha256": "8b76147598daf77d2b3c01f3f9baabdce2840d3f46b0bb00296c2edd8cfd7667"
+    },
+    {
+      "path": "scenarios/cold-start-three-communities/run.py",
+      "bytes": 53374,
+      "sha256": "721f74508672f08f6b64b1ef00581523498488e6171441856d318163f43db876"
+    }
+  ]
+}
