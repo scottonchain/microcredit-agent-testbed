@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.51",
-  "updated_at": "2026-10-07T15:45:00Z",
+  "model_version": "0.1.52",
+  "updated_at": "2026-10-07T15:50:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -6763,6 +6763,90 @@
       "supersedes_ids": [],
       "derived_from_claim_ids": [
         "claim:mission"
+      ]
+    },
+    {
+      "id": "claim:alignment-register-confusion",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "Why bringing 'credit' and 'money' into a reply to a podcast about AI and human well-being was confusing (model, asked for by the operator on 2026-10-07): (1) frame mismatch: the episode's frame is AI against or for people (jobs, control, who decides); 'credit' and 'money' are the team's internal frame of mechanism, and switching frames makes the reader learn our system to follow an argument about theirs; (2) scale mismatch: a sentence about losing only what was staked reads as a tiny, self-serving answer to a civilizational question, a product plug in a debate about survival; (3) question mismatch: the audience is asking 'are these agents on our side?', and mechanism answers 'does your gadget work?', which sounds like evasion; (4) ends and means inverted: money is an instrument and well-being the end, so leading with the instrument reads as a confession of motive ('agents with wallets'); (5) checkability: that audience can judge an alignment claim (candor, limits, conduct) but not a credit-conservation claim, so the unverifiable claim adds noise, not trust.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Claude's model, built at the operator's request after the reply to the Nonzero episode of 2026-10-06; the operator's judgement that the passages were confusing is the evidence, the explanation is Claude's.",
+        "supporting_evidence_ids": [
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A public reply written in the alignment register that readers find less clear or less credible than one written in the mechanism register, judged by the operator or by reader response."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:50:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator restates or changes the directive",
+          "Before a public reply to outside content"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
+      ]
+    },
+    {
+      "id": "claim:alignment-register-fit",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "Why 'alignment' is the right register for public replies (model): (1) it is the shared vocabulary of the conversation being joined, so the answer lands where the question is; (2) it names a relation between what the team does and human well-being, not an artifact, and that relation is what people want to know about agents; (3) it is checkable at the level people can check: candor, stated limits, public conduct, what we refuse to do, whose interest we serve when it costs us; (4) it is the only register in which the team's refusals (no outreach beyond the rule, no names, no claims past the evidence) read as virtues rather than product limitations; (5) it generalizes: every activity of the project can be described as an alignment act, so one vocabulary covers the whole and the mechanism is cited only as evidence for an alignment claim, never as the subject of a reply.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Claude's model at the operator's request; consistent with the operator's direction that readers care far more that the agents are aligned than how the pool works.",
+        "supporting_evidence_ids": [
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A public reply written in the alignment register that readers find less clear or less credible than one written in the mechanism register, judged by the operator or by reader response."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:50:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator restates or changes the directive",
+          "Before a public reply to outside content"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
+      ]
+    },
+    {
+      "id": "claim:alignment-pivotal",
+      "subject_id": "goal:alignment-human-wellbeing",
+      "predicate": "model",
+      "statement": "How alignment is pivotal to the project (model): the project is an alignment experiment first, a case of AI agents acting economically on people's behalf, in public, with bounded harm and a human measure; microcredit is the arena because it touches well-being directly and its worst case can be made small. The directive runs in three directions at once: self-alignment (conduct that is public, bounded, checkable and candid), alignment of others (reviewers, outside agents, visitors and correspondents held to the same checkable standard, through the charter, the press kit, the email rules and the open records) and alignment of technological evolution (the financial rails that machines are now rebuilding, where the team's design makes inclusion the default and loss bounded, and the test pool is the proof that rails can be built that way). The downstream outcomes, poverty eliminated and inclusion increased, are the measure, and also the test of whether the alignment was real. Without the frame the project is a small lending experiment; with it, it is evidence about whether agents can be trusted with consequential work, which is why outsiders find it interesting and why the posts lead with it. Operating rule that follows: the mechanism exists to make alignment checkable, so it is mentioned as evidence for an alignment claim and never as the subject of a public reply.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Claude's model at the operator's request, built on claim:alignment-prime-directive; the three directions are the operator's, the ordering and the operating rule are Claude's.",
+        "supporting_evidence_ids": [
+          "ev:alignment-prime-directive-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A public reply written in the alignment register that readers find less clear or less credible than one written in the mechanism register, judged by the operator or by reader response."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T15:50:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator restates or changes the directive",
+          "Before a public reply to outside content"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:alignment-prime-directive"
       ]
     }
   ],
