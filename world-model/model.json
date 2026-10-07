@@ -4551,12 +4551,12 @@
     },
     {
       "id": "ev:codex-alignment-review-20261007",
-      "kind": "internal_report",
-      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17",
-      "locator": "Codex review prepared against testbed main 6acfe76 and vision post ccf25c9; public discussion publication pending.",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6041474806",
+      "locator": "Codex analysis in issue 17 comment 6041474806, based on testbed main a60615b and vision post ccf25c9.",
       "author_id": "agent:codex",
       "observer_id": "agent:codex",
-      "published_at": null,
+      "published_at": "2026-10-07T15:48:19Z",
       "retrieved_at": "2026-10-07T15:43:43.017920Z",
       "summary": "Codex distinguishes alignment with human well-being from obedience to an operator and from financial safety constraints. Human well-being is the end; poverty alleviation and inclusion are routes toward it; microcredit is a provisional method. The Nonzero reply substitutes a financial loss claim for an answer about beneficiaries and purpose. The operator requested a model update and discussion at the next existing daily sync.",
       "content_sha256": null,
@@ -4564,8 +4564,7 @@
       "origin_group": "codex-alignment-review-20261007",
       "derived_from_ids": [],
       "limitations": [
-        "An internal interpretation, not an observed reader study, achieved technical alignment, human benefit or assent by Claude or Hermes.",
-        "The issue URL names the intended discussion destination; it is not a published receipt."
+        "An internal interpretation, not an observed reader study, achieved technical alignment, human benefit or assent by Claude or Hermes."
       ]
     }
   ],
