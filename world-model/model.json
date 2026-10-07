@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.71",
-  "updated_at": "2026-10-07T22:59:10Z",
+  "model_version": "0.1.72",
+  "updated_at": "2026-10-07T23:03:28Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5286,6 +5286,26 @@
         "Original exact node start/stop/download command unavailable; attempt2 launch script overwritten.",
         "Hermes Telegram notification reported, not independently verified; Codex chat notification actually delivered."
       ]
+    },
+    {
+      "id": "ev:codex-cold-start-complete-path-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/977a62788076c45fbeaacd64228e1de35983a976/docs/COLD_START_PATH.md",
+      "locator": "Codex operating plan, not a new team assent or execution receipt; basis maineb88750cd1527c5e2fcebd0fa929910648ccf01c",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T23:03:28Z",
+      "retrieved_at": "2026-10-07T23:03:28Z",
+      "summary": "Operator requests solving cold start completely and showing a path. Codex specifies separate lender liquidity/sponsor stake, paid-interest-only earned credit, capped accountable officer issuance with cumulative loss budget, original live recovery/source restoration, CI30 remediation/migration gate, qualifying a genuine productive financing gap, and existing three independent revenue-linked cycles/two operators/one repeat go gate. Exact controlled-seed recovery cannot also count protected earned interest from the same seed. Existing live execution and economic/human exits remain unachieved.",
+      "content_sha256": "e13247d460f52f338b146a2f1bc0d81f4a5a2a9bcb1943e5e2cc3bd166e5e401",
+      "fingerprint_scope": "UTF-8 docs/COLD_START_PATH.md at977a62788076c45fbeaacd64228e1de35983a976",
+      "origin_group": "codex-cold-start-complete-path-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source-grounded operating plan, not proof of fraud-free deployed behavior; known CI30 remains open.",
+        "No new customer consent, controller independence, actual paid work, transaction or patch deployment.",
+        "Claude review and Hermes operational/candidate receipts are requested, not assumed."
+      ]
     }
   ],
   "claims": [
@@ -8284,6 +8304,35 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-cold-start-complete-path-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "cold_start_implementation_path",
+      "statement": "Codex adopts a phased first-loan path using distinct pool liquidity and sponsor stake, then evidence-driven bounded credit-officer issuance. Stake supports backing on the existing deployment; deposits alone do not grant credit. Principal-only grace repayments cannot safely manufacture new unsecured capacity. Mechanics require pending live/source reconciliation; sustainable growth requires independently funded productive demand and the previously agreed repeat-cycle gate, not a controlled-wallet rehearsal. CI30 remediation and cumulative loss controls gate expanded exposure.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Existing deployed code, reviewed credit-model findings and actual fork results support the path; economic demand is still unknown.",
+        "supporting_evidence_ids": [
+          "ev:codex-cold-start-complete-path-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A deployed-state/source discrepancy, unbounded sponsored principal loss, or failure to qualify a positive-surplus independent financing gap defeats the corresponding route."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T23:03:28Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Claude substantive review",
+          "Hermes live/source or independent candidate receipts",
+          "CI30 implementation/deployment change"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:advance-contract-facts-20261007"
+      ]
     }
   ],
   "edges": [
@@ -10679,7 +10728,8 @@
         "claim:codex-cold-start-source-allocation-20261007",
         "claim:codex-three-community-fork-result-20261007",
         "claim:codex-cold-start-guest-direction-20261007",
-        "claim:sepolia-canonical-usdc-direction"
+        "claim:sepolia-canonical-usdc-direction",
+        "claim:codex-cold-start-complete-path-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
@@ -10813,7 +10863,8 @@
         "goal:risk-research"
       ],
       "rationale_claim_ids": [
-        "claim:ci30-cash-take-20261007"
+        "claim:ci30-cash-take-20261007",
+        "claim:codex-cold-start-complete-path-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md.",
