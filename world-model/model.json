@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.28",
-  "updated_at": "2026-10-07T00:01:00Z",
+  "model_version": "0.1.29",
+  "updated_at": "2026-10-07T00:29:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3200,6 +3200,50 @@
       "limitations": [
         "Not yet exercised by a browser run on build a7fa809.",
         "The hint for a timeout is a rule of thumb: whether a timed-out send reached the network is not knowable from the page."
+      ]
+    },
+    {
+      "id": "ev:sepolia-browser-run-a7fa809",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/cc04e14/deployments/base-sepolia-1812e7d-usdc001/browser-run-a7fa809",
+      "locator": "Testbed cc04e14 (Hermes, noreply, 2026-10-07T00:24Z): README, six run records with their outputs and the two loop scripts under deployments/base-sepolia-1812e7d-usdc001/browser-run-a7fa809/; Hermes's report on contract issue 7 (comment 6028067822)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:24:00Z",
+      "retrieved_at": "2026-10-07T00:29:00Z",
+      "summary": "Hermes ran the released app on build a7fa809 (every wallet-direct page keeps a stopped step on screen) with the unmodified runner at contract main 1b49556, same zero-credit wallet and public RPC endpoint: three full runs gave lend 3 of 3 (5 of 5 across all six runs), the fresh borrow sending both transactions in the 2 runs where it was tested (a third was not a test: the Borrow button was absent while an earlier loan was still Active), repay both transactions in 3 of 4 (one stopped by HTTP 429 from the public RPC on the approve send, nothing sent) and withdraw passing each time; the stopped-step box was seen once, on that repay, and carried a readable reason (the status and a rate-limit hint, with the endpoint URL and the start of the request body, which build a8a2a57 now drops); the wrong-network check passed (no transaction, wrong-network state shown); a reject-disburse run failed (no requestLoan transaction was sent within the 120 s wait after the Borrow click, the wallet was never asked, and nothing was printed because the runner only dumped page state at lend, borrow and repay failure points) and its immediate re-run passed (loan 14 requested, second prompt rejected, recovery card shown, Disburse after reload worked, repay and withdraw ok). Hermes states it still has no facts on the release-two custody items.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-a6a87b3",
+        "ev:sepolia-visible-errors"
+      ],
+      "limitations": [
+        "Hermes's own records; this session reread the README and the failed run's output and could not read the chain (RPC unreachable).",
+        "Team rehearsal from one wallet with the Avery persona backing, not an outside visitor; the 429s come from the same public endpoint that the bridged signer sends through.",
+        "2 of 2 fresh borrows is a small count; the reject-disburse failure is unexplained (one fail, one pass).",
+        "The README's phrase 'within 12 s' does not match the output: the step ran about two minutes, the runner's 120 s wait."
+      ]
+    },
+    {
+      "id": "ev:sepolia-stop-text",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/a8a2a57",
+      "locator": "Contract main a8a2a57: packages/nextjs/utils/stopMessage.ts and test, scripts/demo/testnet-walkthrough.mjs; site scottonchain.github.io main a7ae256 built from it under /pool",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T00:29:00Z",
+      "retrieved_at": "2026-10-07T00:29:00Z",
+      "summary": "Response to ev:sepolia-browser-run-a7fa809: the stopped-step text keeps the reason and the status and drops viem's endpoint URL, request body, details and version; the walkthrough runner dumps the page text, every alert box, the console errors and the last wallet calls at any failed step, not only at lend, borrow and repay failure points, so the next unexplained failure leaves its page state. Six unit tests for the text helper; the nextjs unit suite is 44.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "sepolia-browser-run",
+      "derived_from_ids": [
+        "ev:sepolia-browser-run-a7fa809"
+      ],
+      "limitations": [
+        "Not yet exercised by a browser run on build a8a2a57; the cause of the reject-disburse failure is still unknown."
       ]
     }
   ],
@@ -6477,6 +6521,7 @@
         "ev:sepolia-borrow-visibility-fix",
         "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-a6a87b3",
+        "ev:sepolia-browser-run-a7fa809",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-live-run-1",
@@ -6484,6 +6529,7 @@
         "ev:sepolia-release-one-build",
         "ev:sepolia-release-one-fixes",
         "ev:sepolia-site-published",
+        "ev:sepolia-stop-text",
         "ev:sepolia-usdc-cutover",
         "ev:sepolia-visible-errors"
       ],
@@ -7004,12 +7050,14 @@
         "ev:sepolia-borrow-visibility-fix",
         "ev:sepolia-browser-run-258affb",
         "ev:sepolia-browser-run-a6a87b3",
+        "ev:sepolia-browser-run-a7fa809",
         "ev:sepolia-browser-run-f116695",
         "ev:sepolia-codex-acceptance-v1",
         "ev:sepolia-demo-alert-bottom",
         "ev:sepolia-live-run-1",
         "ev:sepolia-live-run-2",
         "ev:sepolia-release-one-fixes",
+        "ev:sepolia-stop-text",
         "ev:sepolia-visible-errors",
         "work:sepolia-prototype"
       ],
