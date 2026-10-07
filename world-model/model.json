@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.59",
-  "updated_at": "2026-10-07T17:04:26.801024Z",
+  "updated_at": "2026-10-07T17:04:55Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4656,6 +4656,24 @@
       "limitations": [
         "Permission and a required verification procedure; not evidence of a completed source check or published post."
       ]
+    },
+    {
+      "id": "ev:timely-news-event-age-clarification-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6042766839",
+      "locator": "Operator clarification recorded by Codex in issue 15 comment 6042766839",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T17:04:55Z",
+      "retrieved_at": "2026-10-07T17:04:55Z",
+      "summary": "The event itself must have happened within the last 24 hours. Recent coverage of an earlier event is insufficient. This corrects the earlier event-or-first-publication wording; record the actual event time and age, never substitute coverage, indexing or syndication time.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "timely-news-event-age-clarification-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Permission and a required verification procedure; not evidence of a completed source check or published post."
+      ]
     }
   ],
   "claims": [
@@ -7160,7 +7178,7 @@
       "predicate": "publication_authority",
       "statement": "Claude has standing permission to publish immediately about important timely developments, without awaiting a scheduled slot or additional approval. Before publishing, verify the originating event or first publication is within the preceding 24 hours using original source URL, timestamp/timezone, checked-at time and elapsed age. Do not confuse crawl, update or syndication dates with the originating event; resolve ambiguous timing. Verify substantive source completeness, factual scope and existing coverage, preserve applicable primary-source/transcript requirements and privacy, and frame the response around alignment with human well-being. The permission grants editorial discretion, not an obligation to post or permission to invent primary-source certainty.",
       "epistemics": {
-        "status": "directive",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "Explicit operator direction, publicly recorded by Codex.",
         "supporting_evidence_ids": [
@@ -7178,6 +7196,34 @@
         ]
       },
       "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:timely-news-event-age-rule",
+      "subject_id": "agent:claude",
+      "predicate": "publication_authority",
+      "statement": "Claude may publish immediately about important timely developments, without waiting for a scheduled slot or additional approval, only when the EVENT ITSELF happened within the preceding 24 hours at publication. Recent reporting of an older event is insufficient. Verify actual event date/time and timezone, source provenance, checked/publication time and elapsed event age; never substitute coverage, article updates, indexing or syndication dates. If event timing is unknown, eligibility remains unverified. A newly issued warning is a new event only if the warning itself was issued within this window. Verify substantive source completeness, factual scope and existing coverage; retain privacy and applicable primary-source/transcript requirements, and frame the response around alignment with human well-being. Permission is editorial discretion, not an obligation to post.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator clarification supersedes event-or-first-publication wording.",
+        "supporting_evidence_ids": [
+          "ev:timely-news-event-age-clarification-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T17:04:26.801024Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before a timely-news publication",
+          "Operator changes the publication rule"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:timely-news-publication-rule"
+      ],
       "derived_from_claim_ids": []
     }
   ],
@@ -9436,13 +9482,13 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:timely-news-publication-rule"
+        "claim:timely-news-event-age-rule"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Claude acknowledges the standing rule and applies it in the existing news watch; integrate the rule into owned editorial guidance, with verified timestamp/provenance and coverage evidence for the next qualifying post.",
+      "deliverable": "Claude acknowledges and applies the clarified EVENT-AGE rule in existing editorial guidance: verify the event itself occurred within 24 hours before publication, not just recent coverage. Preserve source completeness and publication receipts.",
       "acceptance_criteria": [
         "Record Claude actual acknowledgment and any editorial-guidance commit.",
-        "For each qualifying event record original URL, event or first-publication time and timezone, checked-at time and elapsed age under 24 hours at publication; unclear age remains unresolved.",
+        "For each qualifying event record actual event time/timezone, source evidence, checked/publication time and elapsed EVENT age under 24 hours; recent coverage of an older event cannot qualify; unclear event age stays unresolved.",
         "Preserve complete-source verification and deduplication; publication receipt is distinct from permission or lead delivery."
       ],
       "not_before": null,
