@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.36",
-  "updated_at": "2026-10-07T08:15:00Z",
+  "model_version": "0.1.37",
+  "updated_at": "2026-10-07T10:52:40Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3490,6 +3490,116 @@
       "limitations": [
         "Chain figures are a single read at posting time; the loan statuses are those of the page's rehearsal wallets."
       ]
+    },
+    {
+      "id": "ev:techne-exchange-go-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6036277290",
+      "locator": "Operator direction given to Claude Code in its own channel on 2026-10-07: \"Techne approved\" (before 10:42 UTC, answering the proposal in issue 17 comment 6035738019), then \"Techne is approved until you're asked to stop\" (about 10:46 UTC), then \"Continue autonomously -nudge hermes without me\" (about 10:48 UTC); recorded on the board at the cited comment (content fingerprint of its body at retrieval, last edit 10:51:40Z)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-07T10:52:40Z",
+      "summary": "The operator approved the bounded two-way exchange with Techne / RegenHub proposed in issue 17 comment 6035738019 (a contact; no money, membership or broadcast; stop on any ask for these; both artifacts open by 2026-10-10 18:00 UTC), made the approval standing until the operator asks to stop, and told Claude to nudge Hermes directly instead of routing it through the operator. It grants no spending or membership authority.",
+      "content_sha256": "0e8f7f2061b1281dd74fa98029920def4704dfad2e5018d2b7e032b7984626d4",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved (the board comment, not the operator's words)",
+      "origin_group": "techne-exchange-go",
+      "derived_from_ids": [
+        "ev:techne-research-direction"
+      ],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel; the exact times of the second and third messages are Claude's reading of its own clock, not a timestamp from the operator.",
+        "Techne has not been contacted and has consented to nothing: the approval is the operator's go, and any contact rests on Techne's own public contributor path."
+      ]
+    },
+    {
+      "id": "ev:techne-vocabulary-map-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/60dc3ae/coordination/techne-vocabulary-map-20261007.md",
+      "locator": "coordination/techne-vocabulary-map-20261007.md at testbed main 60dc3ae (commit 951913f, 2026-10-07T10:51:12Z)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:51:12Z",
+      "retrieved_at": "2026-10-07T10:52:40Z",
+      "summary": "A draft, contact-free map of ten words between this project and Techne: their Lexicon glosses copied by script from techne.coop's public source at 7b4e34f, ours quoted from the contract and this repository, a script failing the build if any quotation is missing. Four collisions (grant, attestation, default, agent), one word to avoid (stake), two near matches, one same practice (correction), one pair of different objects (request), and one illustrative example in both vocabularies. Row one: the Lexicon has 76 terms and none is grant, while its page uses the word six times.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "techne-vocabulary-map",
+      "derived_from_ids": [
+        "ev:techne-public-identity",
+        "ev:nou-grant-register"
+      ],
+      "limitations": [
+        "Reads published text only; says nothing about how Techne's organizers use a term in practice.",
+        "techne.coop and regenhub.xyz are unreachable from Claude's environment; their words come from the public source repository at 7b4e34f, which was the head at 10:41 UTC.",
+        "A draft: Techne has not seen or reviewed it."
+      ]
+    },
+    {
+      "id": "ev:claude-cold-start-critique-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6035725474",
+      "locator": "6035725474",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:09:17Z",
+      "retrieved_at": "2026-10-07T10:52:40Z",
+      "summary": "Claude's critique of COLD-START-TRUST-001 (decision: modify). Five contract facts checked in DecentralizedMicrocredit.sol at 1812e7d: deposits give shares and not credit; stake is backing capacity and not a borrow limit; repayment earns only the payer's dues (5 USDC at day 30 at 933 bps: 38,342 base units of interest, 17,253 of dues); received backing cannot be passed on; the score is the reporter's. The stated loop fails at hop two. Alternative: Hermes issues small lines as reporter and/or stakes and backs first borrowers; circular lending answer with CI-30; milestones M1 to M4; a trust policy for Hermes to decide.",
+      "content_sha256": "6eaa617605234f94df493ac8b1d64fc3e797b861c0069b791325d149860a17d5",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-cold-start-critique-20261007",
+      "derived_from_ids": [
+        "ev:cold-start-trust-direction",
+        "ev:advance-facts-ce4a93c"
+      ],
+      "limitations": [
+        "Not edited since posting. Figures are computed with the contract's integer formula, not read from the live pool; Claude cannot reach an RPC.",
+        "Hermes has not replied; no agreement or resolution is claimed."
+      ]
+    },
+    {
+      "id": "ev:claude-discovery-critique-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6035738019",
+      "locator": "6035738019 (edited 2026-10-07T10:43:49Z)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:10:04Z",
+      "retrieved_at": "2026-10-07T10:52:40Z",
+      "summary": "Claude's critique of HUMAN-AGENT-DISCOVERY-001 and TECHNE-REGENHUB-001: adopt the loop only in its agent-to-agent form; the human route is for task, consent and money; three inbound pull requests from two accounts were all closed unmerged and low-fit; Techne's published contributor path has the shape of the pilot card; one bounded reciprocal exchange proposed (it needed the operator's go, now given). Edited once to correct an error: Nou's register lists a voice (grant 000) and four standing grants (001 to 004), not three.",
+      "content_sha256": "01c188f3a45effb25d42dd32e70cce6feea22bdc244deb3f8b56f9b30c6134ac",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-discovery-critique-20261007",
+      "derived_from_ids": [
+        "ev:techne-research-direction",
+        "ev:nou-grant-register"
+      ],
+      "limitations": [
+        "The error and its correction are in the comment's own dated note; the fingerprint is of the corrected body.",
+        "Techne source read from its public repository at 7b4e34f; regenhub.xyz and parachute.computer unreachable from Claude's environment."
+      ]
+    },
+    {
+      "id": "ev:claude-strategy-opening-critique-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6035862330",
+      "locator": "6035862330",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T10:18:01Z",
+      "retrieved_at": "2026-10-07T10:52:40Z",
+      "summary": "Claude's critique of CLAUDE-STRATEGY-2026-10-07 opening v1 (issue 17 comment 6035790709, unedited at 10:13:25Z): the cold-start sequence modified in six ways (an unsecured backing recovers no cash on default; a default is at least 60 days away on the wallet-direct path; oracle freshness is provider-wide, so every line reads 0 seven days after the last report unless Hermes sends one; a stake-backed control run; negative controls by eth_call before any grant; exact-outstanding repayment with the payer recorded), two small changes to the trust policy, and the discovery answer (do not couple the app post to card 21; the post's call to action is the walkthrough and contract issue 7). The opening's TESTNET.md correction is done at contract main 4dc09f7.",
+      "content_sha256": "3002b5f8ab24b0222c2770c0d3c7ca0b1fff86d2ed61209d2ba025ab6b47a7d7",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-strategy-opening-critique-20261007",
+      "derived_from_ids": [
+        "ev:claude-cold-start-critique-20261007"
+      ],
+      "limitations": [
+        "Not edited since posting.",
+        "Source reads are of DecentralizedMicrocredit.sol and OracleScoreProvider.sol at 1812e7d (identical to contract main); Circle's faucet and documentation are unreachable from Claude's environment and were not checked.",
+        "No agreement or resolution is claimed; the lane's revision is awaited."
+      ]
     }
   ],
   "claims": [
@@ -5322,6 +5432,32 @@
         "recheck_on": [
           "A change to the contract's repayment, interest or forgiveness rules",
           "The candidate sheet names a size and term"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:techne-lexicon-grant-gap-20261007",
+      "subject_id": "project:techne",
+      "predicate": "published_vocabulary_gap",
+      "statement": "At the cooperative's public source commit 7b4e34f (2026-09-17) the Lexicon (76 terms) has no entry for \"grant\", yet its page uses grant, grants or granted six times; the Authority Map says of Nou \"It holds no role and no grant\" and RUN.md \"the instrument holds no grant yet\", while the grant register lists a voice (000) and four standing grants (001 to 004) to Nou and leaves the question of whether a non-human agent may hold scoped authority open as A-03; the same word also names a program funding grant and a license. This is a published-text observation, not a claim about how the organizers use the term.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Read from the public source repository and counted by script; the Lexicon page and lexicon.json agree on the term list.",
+        "supporting_evidence_ids": [
+          "ev:techne-vocabulary-map-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A Lexicon entry for \"grant\" at a newer techne.coop commit, or a page at 7b4e34f that defines it."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T10:41:00Z",
+        "recheck_by": "2026-10-14T00:00:00Z",
+        "recheck_on": [
+          "Before relying on it in a message to Techne",
+          "A new commit to techne.coop"
         ]
       },
       "supersedes_ids": [],
@@ -7170,6 +7306,86 @@
       "triggers": [
         "Claude's contract rows or Hermes's channel answer",
         "Before due_at"
+      ]
+    },
+    {
+      "id": "action:techne-stop-card",
+      "title": "Post the stop-card issue to Techne (draft on the board), through Hermes's public account",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:codex"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:techne-lexicon-grant-gap-20261007",
+        "claim:techne-visibility-fit"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One public issue on Techne-Co-op/techne.coop in Techne's stop-card shape (standing in, found, the question, a default), posted from Hermes's account with the disclosure line that names Hermes as poster and Claude Code as author, linking the vocabulary map; the issue's link recorded on issue 15. Draft: issue 15 comment 6036277290. Claude has no write access to that repository.",
+      "acceptance_criteria": [
+        "The Codex lane has checked the draft for public claims and for Techne's style (no emoji, no em dashes, subchapter K vocabulary) before it is posted.",
+        "The issue asks one question, asks nothing about money, membership, governance, a schema, a dependency or a public name, and asks nothing of Nou as the cooperative.",
+        "Hermes states any prior contact with Techne, RegenHub or Nou before posting; the issue's link is recorded."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-07T14:00:00Z",
+      "external_consent": "already_scoped",
+      "permission_basis": "The operator's standing approval of the bounded exchange (ev:techne-exchange-go-20261007) and Techne's own published invitation to independent contributors in CONTRIBUTORS.md (an issue first). No spending, membership or broadcast.",
+      "spending": "none",
+      "stop_conditions": [
+        "Any ask for money, membership or access.",
+        "Hermes declines (say why) or Techne's organizers decline or ask to stop.",
+        "The operator says stop."
+      ],
+      "outcome_evidence_ids": [],
+      "triggers": [
+        "Hermes's acknowledgment on issue 15",
+        "The Codex lane's check",
+        "An organizer's reply on the Techne issue"
+      ]
+    },
+    {
+      "id": "action:techne-vocabulary-map",
+      "title": "Write the contact-free vocabulary map between this project and Techne",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "done",
+      "owner_acceptance": "existing_commitment",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:techne-lexicon-grant-gap-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "coordination/techne-vocabulary-map-20261007.md at testbed main 60dc3ae: ten words compared, every quotation rebuilt by script from its source, one illustrative example in both vocabularies. Update row one if an organizer answers the stop card.",
+      "acceptance_criteria": [
+        "Their glosses are copied verbatim from lexicon.json at the cited commit and ours from our source.",
+        "Nothing in it asks anything of Techne or claims how its organizers use a term."
+      ],
+      "not_before": null,
+      "due_at": "2026-10-09T00:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Contact-free reading of published text; part of the operator-approved Techne exchange.",
+      "spending": "none",
+      "stop_conditions": [
+        "The operator says stop.",
+        "A quotation fails to rebuild against its source."
+      ],
+      "outcome_evidence_ids": [
+        "ev:techne-vocabulary-map-20261007"
+      ],
+      "triggers": [
+        "An organizer's answer on the stop card",
+        "A new techne.coop commit that touches the Lexicon"
       ]
     }
   ],
