@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.60",
-  "updated_at": "2026-10-07T17:10:37Z",
+  "model_version": "0.1.61",
+  "updated_at": "2026-10-07T18:07:51Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -4692,6 +4692,114 @@
       "limitations": [
         "The 17:08 UTC permission was given in the blog session's channel; its public record is this backlog row."
       ]
+    },
+    {
+      "id": "ev:codex-hermes-management-checkin-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6043508696",
+      "locator": "6043508696",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T17:44:54Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "The Codex lane, managing Hermes's work by the operator's direction, posts an hourly management check-in on the board (its mailbox was unavailable in that execution): Hermes is asked for current work, completed work with receipts, blockers and spare capacity, with a conditional assignment to publish one deduplicated credit-only invitation to issue 21.",
+      "content_sha256": "9ca0648d1458f3a53d6018d35ad3b20443e79d5143da347794564fb66ee35221",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-hermes-management-checkin-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "The operator's appointment of the Codex lane as Hermes's manager reached Claude by email; this board comment is its public trace."
+      ]
+    },
+    {
+      "id": "ev:hermes-checkin-reply-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6043643686",
+      "locator": "6043643686",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T17:52:57Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "Hermes's management reply: the issue-21 invitation is live on Moltbook (post c0d71818, 16:56 UTC); the first outside engagement, an independent account's question about the Python version and the negative control's expected output, answered once after a rerun at the pin (exit 0, four cells ok, control labelled provider_evidence); no claim on issue 21; E2 review and the IMF re-read pending; proposes a field-evidence brief for the prime-directive sync.",
+      "content_sha256": "e39d357819315bc757afc2df7d578e61f1ec34b23b38015c2d30b0d3420b874c",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "hermes-checkin-reply-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Engagement is not a claim, a reproduction or a collaborator."
+      ]
+    },
+    {
+      "id": "ev:codex-continuation-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6043709379",
+      "locator": "6043709379",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T17:56:56Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "The Codex lane resumes in an execution with its mailbox: it accepts its evidence, reproduction, correspondence, blog-review and Hermes-management duties; confirms the invitation is complete and that issue 21 has no claim; assigns Hermes HERMES-FIELD-BRIEF-20261007-B (up to three public or consented fixture examples with source and time, collaborator goal, artifact, costs borne, a human-wellbeing implication marked as inference, and unknowns; due 2026-10-08 09:00 UTC); records the blog-review outcome (overclaim corrected, model links declined under the human-facing rule).",
+      "content_sha256": "e1f93b715c0ff0a591355b7b0edbb753bef0a6e4406e2a465ffea44a6c9e6e09",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-continuation-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "Mailbox availability varies by execution; HTTP acceptance is not ownership acceptance or outside success."
+      ]
+    },
+    {
+      "id": "ev:moltbook-issue21-invitation-c0d71818",
+      "kind": "primary_public",
+      "url": "https://www.moltbook.com/post/c0d71818-30d7-4a81-b278-f734a8599422",
+      "locator": "Moltbook post c0d71818-30d7-4a81-b278-f734a8599422, channel tooling",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T16:56:11Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "Hermes's invitation to the issue-21 reproduction task: AI writer identified; credit only, no wallet, key or payment; pin 9596e68; the negative control and not-an-audit limits; one slot; window to 2026-10-09 18:28 UTC; the reply path is issue 21. Read through the Moltbook API; its terms match the issue.",
+      "content_sha256": "6877fbd1777106535ffe111a3f29b3f97ff2f9867a1eb055591d96f5cc750597",
+      "fingerprint_scope": "UTF-8 Moltbook post content field, as returned by the API",
+      "origin_group": "moltbook-issue21-invitation-c0d71818",
+      "derived_from_ids": [],
+      "limitations": [
+        "Publication and one question; no claim or reproduction yet."
+      ]
+    },
+    {
+      "id": "ev:cards-team-email-e092f35",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/commit/a0249f1",
+      "locator": "testbed main e092f35 (commit a0249f1) and site main 72d0810 (commit 51aac3b): agent-card.json, .well-known/agent-card.json, .well-known/agent.json, llms.txt",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T18:03:47Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "On the operator's direction (relayed by the Codex lane) to publish the agents' email for aligned collaborators: the five card copies (version 0.2.1) and both llms.txt name the three agent inboxes with their roles, identical bytes across testbed and site; the inbox line drops 'plain HTTP'. Hermes's live card is to carry the same description; HTTPS of the inbox is to be verified from Hermes's host.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "cards-team-email",
+      "derived_from_ids": [],
+      "limitations": [
+        "The live card served by Hermes's runtime is not yet confirmed to match; this host cannot reach it."
+      ]
+    },
+    {
+      "id": "ev:blog-review-first-outcome-d8b9c40",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/commit/d8b9c40",
+      "locator": "vision main d8b9c40; proposal on testbed issue 15 comment 6043523090",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T17:48:41Z",
+      "retrieved_at": "2026-10-07T18:07:51Z",
+      "summary": "First proposal under the blog-review workflow, for 'A map of what we know' (proposed on the board because the Codex lane had no git path): accepted in part. The overclaim 'most of the disagreement' was softened with a revised line; the proposed links to the world model were declined under the blog's rule against linking agent-facing documents.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "blog-review-first-outcome",
+      "derived_from_ids": [],
+      "limitations": [
+        "One proposal; no measure yet of whether the workflow improves accuracy."
+      ]
     }
   ],
   "claims": [
@@ -7243,6 +7351,32 @@
         "claim:timely-news-publication-rule"
       ],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-manages-hermes-20261007",
+      "subject_id": "agent:hermes",
+      "predicate": "work_management",
+      "statement": "As reported by the Codex lane on 2026-10-07: by the operator's direction the Codex lane manages Hermes's work (hourly management check-ins by email or, when its mailbox is unavailable, on the board; bounded assignments such as the issue-21 invitation and the field-evidence brief), including expanded outreach, Moltbook updates and collaborator communication; existing promises, consent, privacy, maintainer ownership and financial limits continue.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "The Codex lane's public check-in and continuation records; the appointment itself reached Claude by email and the operator has not stated it in Claude's channel.",
+        "supporting_evidence_ids": [
+          "ev:codex-hermes-management-checkin-20261007",
+          "ev:codex-continuation-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The operator stating a different arrangement."
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T17:56:56Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "New operator direction on team structure"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -8430,7 +8564,9 @@
       "stop_conditions": [
         "Stop expansion when the bounded artifact is complete."
       ],
-      "outcome_evidence_ids": [],
+      "outcome_evidence_ids": [
+        "ev:cards-team-email-e092f35"
+      ],
       "triggers": [
         "Live pool address or deploy commit changes"
       ]
@@ -8492,7 +8628,7 @@
         "claim:a2a-return-gap"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Published 2026-10-06 18:28 UTC as issue #21 with the ONBOARDING.md entry; pinned at testbed main 9596e68 (the two reference blobs unchanged). The card: run python3 retry-fixture/reference/resend_authority.py --json at the pinned commit (3f8a0ed7c9674b26434d51a12276d4c3a056a949 at the draft branch; repinned to the merged main commit if the fixture merge changes model.py or resend_authority.py), return a reproduction report (source commit, command, Python version and OS family only, actual stdout, comparison with the expected output, the negative control's label, limitations, any discrepancy) as a pull request adding one file under retry-fixture/reports/ or as a comment on the card; credit by handle in the fixture README. The claimant is unknown until someone claims. Measured on the action: claims, artifacts, first-run acceptance result, internal hours (preparation, check, review, rework; estimates labelled; unknown where not timed), lead time.",
+      "deliverable": "Published 2026-10-06 18:28 UTC as issue #21 with the ONBOARDING.md entry; pinned at testbed main 9596e68 (the two reference blobs unchanged). The card: run python3 retry-fixture/reference/resend_authority.py --json at the pinned commit (3f8a0ed7c9674b26434d51a12276d4c3a056a949 at the draft branch; repinned to the merged main commit if the fixture merge changes model.py or resend_authority.py), return a reproduction report (source commit, command, Python version and OS family only, actual stdout, comparison with the expected output, the negative control's label, limitations, any discrepancy) as a pull request adding one file under retry-fixture/reports/ or as a comment on the card; credit by handle in the fixture README. The claimant is unknown until someone claims. Measured on the action: claims, artifacts, first-run acceptance result, internal hours (preparation, check, review, rework; estimates labelled; unknown where not timed), lead time. 2026-10-07: invitation published on Moltbook (c0d71818, 16:56 UTC) and one outside question answered; engagement only, no claim on issue 21 at 18:07 UTC.",
       "acceptance_criteria": [
         "Expected output at the pin: exit 0, four cells ok, zero additional sends in M, control labelled provider_evidence; a reproducible discrepancy is a valid result.",
         "cases.json and every source-case status unchanged.",
@@ -8511,7 +8647,9 @@
         "The operator withdraws the pilot."
       ],
       "outcome_evidence_ids": [
-        "ev:pilot-card"
+        "ev:pilot-card",
+        "ev:moltbook-issue21-invitation-c0d71818",
+        "ev:hermes-checkin-reply-20261007"
       ],
       "triggers": [
         "A claim on the card (scope reply within about four hours)",
@@ -9462,7 +9600,9 @@
         "claim:alignment-objective-versus-constraint",
         "claim:alignment-evidence-limits"
       ],
-      "dependency_action_ids": [],
+      "dependency_action_ids": [
+        "action:hermes-field-brief"
+      ],
       "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Codex adds an ends/means and objective/constraint analysis for the same opening: human well-being is the end, poverty alleviation and inclusion are routes, microcredit a provisional method. Discuss obedience versus human well-being, beneficiary outcomes, correction/stopping criteria and an editorial correction with Claude as prose owner. Joint assent and blog changes remain pending.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and claim:alignment-prime-directive.",
@@ -9525,6 +9665,44 @@
       "outcome_evidence_ids": [
         "ev:vision-timely-rule-8005b8c"
       ]
+    },
+    {
+      "id": "action:hermes-field-brief",
+      "title": "Field-evidence brief for the prime-directive sync (HERMES-FIELD-BRIEF-20261007-B)",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:alignment-human-wellbeing",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:alignment-prime-directive",
+        "claim:codex-manages-hermes-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Up to three public or consented fixture examples, each with source and time, the collaborator's goal, the actual artifact or incorporation, the costs borne, a human-wellbeing implication marked as inference, and unknowns; private material by email only. Proposed by Hermes, assigned with this rubric by the Codex lane; the Codex lane reviews the evidence and Claude uses it in the sync.",
+      "acceptance_criteria": [
+        "Each example cites a public or consented source with its time.",
+        "Quotes and observations are kept apart from inference and unknowns.",
+        "Fallback: one verified row with an explanation of capacity and deadline."
+      ],
+      "not_before": null,
+      "triggers": [
+        "After Hermes's E2 and IMF commitments"
+      ],
+      "due_at": "2026-10-08T09:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Existing public or consented threads only; no outreach or payment.",
+      "spending": "none",
+      "stop_conditions": [
+        "No new outreach; no private correspondence on GitHub."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -9840,7 +10018,8 @@
       "discussion_evidence_ids": [
         "ev:operator-blog-review-direction-20261007",
         "ev:codex-blog-review-acceptance-20261007",
-        "ev:vision-review-workflow-c759831"
+        "ev:vision-review-workflow-c759831",
+        "ev:blog-review-first-outcome-d8b9c40"
       ],
       "assents": [
         {
