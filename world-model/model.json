@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.69",
-  "updated_at": "2026-10-07T22:17:46Z",
+  "model_version": "0.1.70",
+  "updated_at": "2026-10-07T22:41:26Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5223,6 +5223,49 @@
         "Claude describes a candidate fix; no deployed patch or opened fix PR is established.",
         "Historical spacing waiver is not permission for another exception."
       ]
+    },
+    {
+      "id": "ev:codex-cold-start-reproduction-packet-20261007",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/502707ea9a02149f89b677db4a8e61b275364196/evidence/coldstart-fork-run-001/REPRODUCE.md",
+      "locator": "502707ea9a02149f89b677db4a8e61b275364196: evidence/coldstart-fork-run-001/REPRODUCE.md, ACTION-RECORD.md, action-record.json, reproducibility-manifest.json, verify-evidence.py, test-verify-evidence.py, VERIFICATION.json and VERIFIER-TESTS.json; tag coldstart-fork-run-001-repro-v1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T22:41:26Z",
+      "retrieved_at": "2026-10-07T22:41:26Z",
+      "summary": "Codex published a pinned packet with46 public file hashes, full59 local transaction index, material action/receipt history, source/publication/operation provenance, historical fork rerun commands and an offline standard-library verifier. Actual verification passed292 journal links,59 receipt lifecycles,24 USDC transfer logs against8 snapshots,8 read-only refusals, actual request-derived loans18/19/20, full repayments2/1/1seconds after disbursement, full lender withdrawals, exact20 recovery/pool15/Avery920000. Four deliberate-corruption checks rejected altered artifacts even after selected hashes were recomputed. No network, key read or signing in verification.",
+      "content_sha256": "6c50320c7ca664df23b176c4de051165b2e7a1b2331b159841cd9fde8c51ccea",
+      "fingerprint_scope": "Raw UTF-8 reproducibility-manifest.json bytes at pinned packet commit",
+      "origin_group": "hermes-three-community-fork-run-001",
+      "derived_from_ids": [
+        "ev:hermes-three-community-fork-artifact-20261007",
+        "ev:codex-three-community-fork-artifact-audit-20261007"
+      ],
+      "limitations": [
+        "Checks integrity/internal consistency of Hermes-origin artifacts, not independent live-node execution or source provenance.",
+        "Original binary checksum/full OS/Python/console capture remain unknown and are requested from Hermes; historical command/source snapshots are not every transient private edit.",
+        "Private credentials, correspondence, scheduler prompts and further root signed transaction bytes excluded.",
+        "Primary live trials, live recovery and source5 return/redeposit remain open."
+      ]
+    },
+    {
+      "id": "ev:codex-hermes-cold-start-moltbook-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/7#issuecomment-6048110352",
+      "locator": "contract issue7 comment6048110352, COLDSTART-REPRO-MBOOK-001, scoped dispatch to Hermes",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-07T22:25:26Z",
+      "retrieved_at": "2026-10-07T22:41:26Z",
+      "summary": "User requested maximum reproducibility, at least a verifiable action record, Hermes publishing results on Moltbook and operator notification, then told Codex to obtain needed facts from Hermes and remain unblocked. Codex dispatched a full stateless brief: runtime provenance, optional one separately labelled exact-source replay without live changes/gate relaxation, one deduplicated honest Moltbook post with actual URL/body/time/verification receipt, and notification after independent read. GitHub is authorized working fallback; no wait for root RPC/email is required for this packet/publication.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "cold-start-reproduction-moltbook-direction-20261007",
+      "derived_from_ids": [],
+      "limitations": [
+        "A published assignment is not acknowledgment or Moltbook publication; those require actual receipts.",
+        "Optional replay does not count as primary live completion or another independent demand witness."
+      ]
     }
   ],
   "claims": [
@@ -8143,6 +8186,58 @@
         "claim:codex-cold-start-first-report-progress-20261007"
       ],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-cold-start-reproduction-packet-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "cold_start_reproducibility_progress",
+      "statement": "The original three-community fork has a pinned46-file reproducibility packet, executable offline verifier,59-transaction index and action history; verification and four corruption checks passed. Source code matches the original executable helper. Runtime gaps are explicit and delegated to Hermes. This is verifiable public artifact preservation, not independent source execution proof or completion of the original live/source restoration task.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Pinned source/artifact and actual dispatch; pending acknowledgments/publication are explicit.",
+        "supporting_evidence_ids": [
+          "ev:codex-cold-start-reproduction-packet-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T22:41:26Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Hermes runtime/replay or actual Moltbook receipt",
+          "An artifact correction or primary live receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:hermes-cold-start-moltbook-direction-20261007",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_results_communication",
+      "statement": "Hermes is assigned to publish the actual checked fork results on Moltbook with source links and clear live/internal-custody/CI30 limits, return an actual permalink/time/body/verification receipt and supply missing runtime facts through its working channel. Codex independently verifies and notifies the operator. New authorization supports this communication now; no new automation or waiting for Codex RPC/email is needed. Owner acknowledgment and actual publication are not yet established.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Pinned source/artifact and actual dispatch; pending acknowledgments/publication are explicit.",
+        "supporting_evidence_ids": [
+          "ev:codex-hermes-cold-start-moltbook-direction-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T22:41:26Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Hermes runtime/replay or actual Moltbook receipt",
+          "An artifact correction or primary live receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10691,6 +10786,50 @@
       "spending": "none",
       "stop_conditions": [
         "No redeployment without an operator decision."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:hermes-cold-start-moltbook-results",
+      "title": "Publish checked cold-start fork results on Moltbook and return reproducibility receipts",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "ready",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:aligned-human-agent-collaboration",
+        "goal:workflow-reliability",
+        "goal:instrument-validity"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-cold-start-reproduction-packet-20261007",
+        "claim:hermes-cold-start-moltbook-direction-20261007"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "One actual deduplicated Hermes-authored Moltbook post linking the corrected human guest post/ledger and pinned reproduction packet, with exact postID/URL/author/body or fingerprint/time/read-verification receipt; original runtime provenance/gaps and optional one separately labelled confirmation replay. Codex independently reads and notifies the operator. Ready publication work proceeds through Hermes’s existing capability, without depending on root RPC or email.",
+      "acceptance_criteria": [
+        "Actual public post and readable verification receipt, not assignment or API acceptance alone.",
+        "Three communities on one successful isolated fork, not three successful forks or primary live runs;59local transactions/exact20 recovery/full lender withdrawal/zero earned grace credit, internal payments and compulsory cure accurately disclosed.",
+        "Known unfixed CI30 and separate live5 source obligation disclosed; no independent trust/outside income/default recovery/human benefit claim.",
+        "Original files unchanged; runtime unknowns explicitly unknown; replay separate/no gate relaxation/live writes/keys.",
+        "Codex independently verifies the post and notifies the operator with permalink."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit user request for Hermes Moltbook results communication and existing autonomous team/repo authorization, recorded in ev:codex-hermes-cold-start-moltbook-direction-20261007",
+      "spending": "none",
+      "triggers": [
+        "New operator request and dispatch6048110352",
+        "Hermes runtime/publication receipts or legitimate posting cooldown end"
+      ],
+      "stop_conditions": [
+        "Honor actual platform quota; preserve prepared post and exact next retry, no quota evasion.",
+        "No keys/private correspondence/root signed transaction bytes/third-party personal data in public.",
+        "No changed current deployment or live funds; original live/source obligations remain open."
       ],
       "outcome_evidence_ids": []
     }
