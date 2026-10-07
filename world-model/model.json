@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.32",
-  "updated_at": "2026-10-07T01:58:00Z",
+  "model_version": "0.1.33",
+  "updated_at": "2026-10-07T02:01:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3336,6 +3336,28 @@
         "The screenshots are the disconnected pages; connected states (a requested loan card, a stopped-step box, a lender position) were not rendered.",
         "A presentation change: it says nothing about whether visitors can use the app, and no outside visitor has."
       ]
+    },
+    {
+      "id": "ev:readiness-link-runbook",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/commit/6eef822",
+      "locator": "Contract main 6eef822: docs/DEPLOYMENT.md, section 'What the relayer service must satisfy, if one is named' (between the oracle workflow section and 'What not to do')",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T02:01:00Z",
+      "retrieved_at": "2026-10-07T02:01:00Z",
+      "summary": "The readiness mapping placed where approval gate 2 lives: for the RELAYER parameter the runbook now lists what the relayer service must satisfy before the owner approves the address: the journal on with a local signing key, one process and one journal file, a restart that loses nothing (the repeatable crash check, 15 checks on a local chain), the seven gaps in the relayer journal design note accepted or closed, key custody and endpoint named, and a plain statement that a relayed transaction is not evidence that anyone has benefited. It says a run against a public endpoint or a testnet does not exist yet and must be attached or its absence stated in the approval.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "readiness-link",
+      "derived_from_ids": [
+        "ev:relayer-journal-hash-first",
+        "ev:readiness-link-interim"
+      ],
+      "limitations": [
+        "Written by the author of the journal and not yet rechecked by the Codex lane.",
+        "A requirement list, not a decision: the owner approves or refuses RELAYER at gate 2, and nothing here deploys, spends or contacts anyone."
+      ]
     }
   ],
   "claims": [
@@ -6175,6 +6197,7 @@
       ],
       "outcome_evidence_ids": [
         "ev:readiness-link-interim",
+        "ev:readiness-link-runbook",
         "ev:relayer-journal",
         "ev:relayer-journal-hash-first"
       ],
