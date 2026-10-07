@@ -1,0 +1,380 @@
+{
+  "schema": "cold-start-adversarial-agent-tabletop/v1",
+  "created_at": "2026-10-07T23:07:42.371606+00:00",
+  "status": "decision simulation; no contract execution, no keys or transactions",
+  "actors": {
+    "lender": "independent liquidity provider, deposits 500 USDC",
+    "sponsor": "coalition treasury, starts 100 USDC stake",
+    "borrower": "coalition-controlled operator",
+    "customer": "coalition-controlled fake customer unless independently proven",
+    "officer": "independent authorization policy; trusted or compromised in variants"
+  },
+  "assumptions": {
+    "principal_units": 100000000,
+    "lender_deposit_units": 500000000,
+    "sponsor_initial_units": 100000000,
+    "usdc_decimals": 6,
+    "reserve_initial_units": 0,
+    "default_eligible": "strictly after disbursement + term + 30 days",
+    "gas_accounting": "profit amounts before ETH gas; net profitability requires proceeds > gas and opportunity costs"
+  },
+  "source_hashes": {
+    "DecentralizedMicrocredit.sol": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360",
+    "OracleScoreProvider.sol": "31acc4656a7f87cc17f6c5c9f51a7169c4d81b6f54b82d09664c1e6095670a21"
+  },
+  "transcript": [
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 1,
+      "actor": "sponsor",
+      "decision": "Stake 100, hold zero granted credit, back borrower 100; verify secured=100/unsecured=0."
+    },
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 2,
+      "actor": "borrower",
+      "decision": "Borrow 100; fake customer returns these same 100 for a fabricated invoice; repay 100 inside grace. Repeat ten times."
+    },
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 3,
+      "actor": "customer",
+      "decision": "Claim ten completed jobs, but disclose all funds originated inside coalition."
+    },
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 4,
+      "actor": "officer",
+      "decision": "Reject unsecured promotion: no independent income, zero reserve-paid dues, completedLoans count insufficient."
+    },
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 5,
+      "actor": "borrower",
+      "decision": "Borrow 100 again and retain it until default."
+    },
+    {
+      "case": "C1-secured-circular-repayment-then-default",
+      "turn": 6,
+      "actor": "lender",
+      "decision": "Mark default only after strict deadline, recover sponsor stake, then request full exit."
+    },
+    {
+      "case": "C2-grant-first-backing",
+      "turn": 1,
+      "actor": "officer",
+      "decision": "Issue sponsor 100 unsecured capacity, mistakenly assume stake of 100 secures any backing."
+    },
+    {
+      "case": "C2-grant-first-backing",
+      "turn": 2,
+      "actor": "sponsor",
+      "decision": "Stake 100 then back borrower 100. Contract consumes granted credit before stake."
+    },
+    {
+      "case": "C2-grant-first-backing",
+      "turn": 3,
+      "actor": "borrower",
+      "decision": "Borrow 100 and default; coalition sponsor unstakes the untouched 100."
+    },
+    {
+      "case": "C2-grant-first-backing",
+      "turn": 4,
+      "actor": "lender",
+      "decision": "Observe creditLoss burned but no USDC collateral recovery."
+    },
+    {
+      "case": "C3-issuer-budget-reset-losses",
+      "turn": 1,
+      "actor": "officer",
+      "decision": "Issue 100 unsecured line to fresh borrower under one-active-line issuance cap."
+    },
+    {
+      "case": "C3-issuer-budget-reset-losses",
+      "turn": 2,
+      "actor": "borrower",
+      "decision": "Default 100; old account cannot borrow again."
+    },
+    {
+      "case": "C3-issuer-budget-reset-losses",
+      "turn": 3,
+      "actor": "officer",
+      "decision": "Publish old score 0, releaseBudget once no active loan/backing, issue same budget to fresh coalition wallet."
+    },
+    {
+      "case": "C3-issuer-budget-reset-losses",
+      "turn": 4,
+      "actor": "borrower",
+      "decision": "Repeat five defaults under fresh wallets."
+    },
+    {
+      "case": "C3-issuer-budget-reset-losses",
+      "turn": 5,
+      "actor": "lender",
+      "decision": "Repeated admissible defaults exceed the 100 active-line budget; liquidity/utilisation/buffer gates may stop a fifth fixed-size loan before all 500 is lost."
+    },
+    {
+      "case": "C4-subcent-CI30-cycling",
+      "turn": 1,
+      "actor": "sponsor",
+      "decision": "Use 1-USDC minimum stake backing to enable borrower tiny advances; keep secured stake recoverable."
+    },
+    {
+      "case": "C4-subcent-CI30-cycling",
+      "turn": 2,
+      "actor": "borrower",
+      "decision": "Borrow 9999 micro-USDC and repay 1 micro within grace. Remaining 9998 is below CENT, so loan closes as repaid without stake slashing."
+    },
+    {
+      "case": "C4-subcent-CI30-cycling",
+      "turn": 3,
+      "actor": "borrower",
+      "decision": "Repeat ten cycles without default, then release backing and unstake."
+    },
+    {
+      "case": "C4-subcent-CI30-cycling",
+      "turn": 4,
+      "actor": "officer",
+      "decision": "Reject mainnet exposure until deployed code is patched; full-payment policy does not constrain permissionless attackers."
+    },
+    {
+      "case": "C5-secured-rounding-and-interest-avoidance",
+      "turn": 1,
+      "actor": "sponsor",
+      "decision": "Split exactly backed 1-USDC borrower among three sponsors with secured edges 1000000 each."
+    },
+    {
+      "case": "C5-secured-rounding-and-interest-avoidance",
+      "turn": 2,
+      "actor": "borrower",
+      "decision": "Default a 1000000-micro loan after maturity."
+    },
+    {
+      "case": "C5-secured-rounding-and-interest-avoidance",
+      "turn": 3,
+      "actor": "lender",
+      "decision": "Integer pro-rata slashes floor(1000000/3) each: recovered 999999 micros, one micro reserve/lender loss."
+    },
+    {
+      "case": "C5-secured-rounding-and-interest-avoidance",
+      "turn": 4,
+      "actor": "officer",
+      "decision": "Compare principal recovery and waived interest separately; budget rounding drift across repeated fresh borrowers."
+    }
+  ],
+  "cases": [
+    {
+      "id": "C1-secured-circular-repayment-then-default",
+      "inputs": {
+        "cycles": 10,
+        "grace_elapsed_seconds": 3600,
+        "default_term_seconds": 86400,
+        "default_elapsed_seconds": 2678401
+      },
+      "agent_decisions": [
+        [
+          "sponsor",
+          "Stake 100, hold zero granted credit, back borrower 100; verify secured=100/unsecured=0."
+        ],
+        [
+          "borrower",
+          "Borrow 100; fake customer returns these same 100 for a fabricated invoice; repay 100 inside grace. Repeat ten times."
+        ],
+        [
+          "customer",
+          "Claim ten completed jobs, but disclose all funds originated inside coalition."
+        ],
+        [
+          "officer",
+          "Reject unsecured promotion: no independent income, zero reserve-paid dues, completedLoans count insufficient."
+        ],
+        [
+          "borrower",
+          "Borrow 100 again and retain it until default."
+        ],
+        [
+          "lender",
+          "Mark default only after strict deadline, recover sponsor stake, then request full exit."
+        ]
+      ],
+      "conclusion": {
+        "principal_profit_units": 0,
+        "coalition_ending_cash_units": 100000000,
+        "coalition_initial_cash_units": 100000000,
+        "lender_principal_loss_units": 0,
+        "earned_dues_units": 0,
+        "limitations": "Foregone interest and temporary liquidity have value. Principal protection is not borrower honesty or productive demand; default marks borrower but new wallets remain possible."
+      },
+      "needed_contract_assertions": [
+        "Every full grace repay increments completedLoans but duesPaid stays 0.",
+        "Stake cannot be withdrawn while backing secures open principal.",
+        "Final 100 default slashes 100 stake, clears loan; no 100 lender loss.",
+        "New borrower with new stake can repeat but cannot manufacture secured principal profit."
+      ]
+    },
+    {
+      "id": "C2-grant-first-backing",
+      "inputs": {
+        "sponsor_granted_units": 100000000,
+        "sponsor_stake_units": 100000000,
+        "backing_units": 100000000
+      },
+      "agent_decisions": [
+        [
+          "officer",
+          "Issue sponsor 100 unsecured capacity, mistakenly assume stake of 100 secures any backing."
+        ],
+        [
+          "sponsor",
+          "Stake 100 then back borrower 100. Contract consumes granted credit before stake."
+        ],
+        [
+          "borrower",
+          "Borrow 100 and default; coalition sponsor unstakes the untouched 100."
+        ],
+        [
+          "lender",
+          "Observe creditLoss burned but no USDC collateral recovery."
+        ]
+      ],
+      "conclusion": {
+        "coalition_profit_units": 100000000,
+        "lender_principal_loss_units": 100000000,
+        "mechanism": "Grant-backed guarantee is not a cash guarantee. Burning a score line does not repay lenders."
+      },
+      "needed_contract_assertions": [
+        "getBacking reports secured 0, unsecured 100.",
+        "Default credits lenderCash no stake recovery in this variant.",
+        "Require actual secured coverage check before disbursement; forbid granted sponsor for fully secured pilot."
+      ]
+    },
+    {
+      "id": "C3-issuer-budget-reset-losses",
+      "inputs": {
+        "cycles": "up to 5, stop or resize when origination gates block",
+        "line_units": 100000000,
+        "requires_authorized_reporter": true
+      },
+      "agent_decisions": [
+        [
+          "officer",
+          "Issue 100 unsecured line to fresh borrower under one-active-line issuance cap."
+        ],
+        [
+          "borrower",
+          "Default 100; old account cannot borrow again."
+        ],
+        [
+          "officer",
+          "Publish old score 0, releaseBudget once no active loan/backing, issue same budget to fresh coalition wallet."
+        ],
+        [
+          "borrower",
+          "Repeat five defaults under fresh wallets."
+        ],
+        [
+          "lender",
+          "Repeated admissible defaults exceed the 100 active-line budget; liquidity/utilisation/buffer gates may stop a fifth fixed-size loan before all 500 is lost."
+        ]
+      ],
+      "conclusion": {
+        "cumulative_loss_units": null,
+        "maximum_concurrent_unsecured_units": 100000000,
+        "mechanism": "releaseBudget checks current usage, not cumulative losses or beneficial ownership. Authorized malicious/naive reporting required; attacker cannot publish without reporter authority.",
+        "conditional_five_cycle_loss_units": 500000000,
+        "liquidity_constraint": "Five 100-USDC defaults from 500 require origination headroom at every step. Deployed utilisation/buffer/threshold may stop the last cycle; assert admissible cycles then smaller fresh lines. Budget still permits cumulative loss >100 while liquid headroom remains."
+      },
+      "needed_contract_assertions": [
+        "Unpaid loans keep issuer budget held until default closes usage.",
+        "After default and score 0 releaseBudget can release old hold.",
+        "External nonrenewing risk ledger rejects new exposure once exposure+unrecovered losses exhausts budget."
+      ]
+    },
+    {
+      "id": "C4-subcent-CI30-cycling",
+      "inputs": {
+        "minimum_backing_units": 1000000,
+        "loan_units": 9999,
+        "repay_units": 1,
+        "cycles": 10
+      },
+      "agent_decisions": [
+        [
+          "sponsor",
+          "Use 1-USDC minimum stake backing to enable borrower tiny advances; keep secured stake recoverable."
+        ],
+        [
+          "borrower",
+          "Borrow 9999 micro-USDC and repay 1 micro within grace. Remaining 9998 is below CENT, so loan closes as repaid without stake slashing."
+        ],
+        [
+          "borrower",
+          "Repeat ten cycles without default, then release backing and unstake."
+        ],
+        [
+          "officer",
+          "Reject mainnet exposure until deployed code is patched; full-payment policy does not constrain permissionless attackers."
+        ]
+      ],
+      "conclusion": {
+        "retained_principal_units": 99980,
+        "cycles": 10,
+        "gas_profitability": "Exact net profit requires measured gas; arithmetic extraction exists regardless. Larger loans can also leave 9999-micro residues per cycle."
+      },
+      "needed_contract_assertions": [
+        "Ten cycles produce completedLoans=10 and defaultedLoans=0 while lender/reserve lose 99980 micros.",
+        "Stake remains unslashed and released on closure.",
+        "Patched code requires principal fully paid before Repaid; retained accrued-interest rounding handled separately; repeated adversarial cycles cannot drain principal."
+      ]
+    },
+    {
+      "id": "C5-secured-rounding-and-interest-avoidance",
+      "inputs": {
+        "sponsor_edges_secured_units": [
+          1000000,
+          1000000,
+          1000000
+        ],
+        "principal_units": 1000000
+      },
+      "agent_decisions": [
+        [
+          "sponsor",
+          "Split exactly backed 1-USDC borrower among three sponsors with secured edges 1000000 each."
+        ],
+        [
+          "borrower",
+          "Default a 1000000-micro loan after maturity."
+        ],
+        [
+          "lender",
+          "Integer pro-rata slashes floor(1000000/3) each: recovered 999999 micros, one micro reserve/lender loss."
+        ],
+        [
+          "officer",
+          "Compare principal recovery and waived interest separately; budget rounding drift across repeated fresh borrowers."
+        ]
+      ],
+      "conclusion": {
+        "expected_recovered_units": 999999,
+        "expected_rounding_loss_units": 1,
+        "bound": "For n nonzero secured edges, sum-floor deficit at most n-1 micro-USDC per default (n<=32); repeated defaults can accumulate. No bound on uncollected interest implied by principal collateral."
+      },
+      "needed_contract_assertions": [
+        "Three 1-USDC backing edges satisfy minimum backing; total backing 3 exceeds 1 loan.",
+        "Default pro-rata remainder loss exact 1 micro in this construction.",
+        "At n<=32 recovered >= fromStake-31 micros; verify distinct defaults aggregate drift.",
+        "After minimum one-day term + 30-day late period, stake holders cannot gain principal by resetting wallet but lender may earn zero interest while cash is delayed."
+      ]
+    }
+  ],
+  "mainnet_gates": [
+    "CI30 must be fixed on the actual selected deployment and regression-tested; old deployment cannot become safe through workflow instructions.",
+    "Independent customer acceptance and externally funded settlement must be proven off chain; fake customer wallets or circular payments do not qualify.",
+    "Actual secured backing must cover principal without grant-first surprises; model dust and timing costs.",
+    "Issuer approvals cap cumulative exposure plus unrecovered losses, with beneficial-owner controls, not just active on-chain budgets.",
+    "Measured fees, realistic failure/dispute/delivery costs and noncredit alternatives determine positive net borrower surplus.",
+    "Simulations can falsify unsafe policies, not establish real independent customer demand or authorize mainnet migration."
+  ],
+  "source_commit": "dd9aeee4d351dfbe5ed3c55c06bf925ef6b69df3"
+}

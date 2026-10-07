@@ -1,0 +1,22 @@
+{
+  "deployed_source_commit": "1812e7d2b67e159e341bbff33d6d604409eebb67",
+  "pool_source_sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360",
+  "pool_source_matches_local_checkout": true,
+  "source_reads_not_tests_executed": [
+    "stake/back/_setBacking grant-first",
+    "_interestAccrued grace and nested floor",
+    "markDefaulted30day late and principal slash",
+    "_repay subcent forgiveness",
+    "_chargeBackers pro-rata floor"
+  ],
+  "CI30_regression_commit": "30d7eee",
+  "CI30_regression_path": "packages/foundry/test/AdvanceFacts.t.sol",
+  "CI30_regression_read_not_executed": true,
+  "historical_parameters": {
+    "interest_rate_bps": 933,
+    "reserve_bps": 4500,
+    "protocol_fee_bps": 0
+  },
+  "fresh_live_parameters": "requested from Hermes, not observed by this suite",
+  "chain_execution": "none; economic/source model only"
+}

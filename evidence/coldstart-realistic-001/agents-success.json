@@ -1,0 +1,205 @@
+{
+  "schema": "agent-economic-simulation-v1",
+  "scenario": "productive-seven-day-job",
+  "author": "Codex/bootstrap_success decision-role subagent",
+  "execution_scope": "Economic role play only: no new wallets, transactions, actual customers or independent controllers. Roles below share one simulation controller.",
+  "contract_basis": {
+    "source": "packages/foundry/contracts/DecentralizedMicrocredit.sol",
+    "grace": "No interest if elapsed<86400; once grace threshold reached full elapsed since disbursement is charged, not elapsed minus grace.",
+    "annual_bps": 933,
+    "reserve_bps": 4500,
+    "protocol_fee_bps": 0,
+    "token_decimals": 6,
+    "note": "Historic deployed parameters; reread before any real pilot. CI30 remains a deployment blocker, no safety claim."
+  },
+  "inputs": {
+    "loan_usdc": 100,
+    "lender_deposit_usdc": 500,
+    "separate_sponsor_stake_usdc": 100,
+    "customer_payment_usdc": 150,
+    "mandatory_input_usdc": 100,
+    "model_execution_cost_usdc": 10,
+    "total_eth_gas_usd": 0.5,
+    "payment_elapsed_seconds": 604800,
+    "illustrative_sponsor_fee_usdc": 3,
+    "illustrative_sponsor_default_probability": 0.01,
+    "illustrative_capital_outside_option_annual": 0.03,
+    "gas_allocation_usd": {
+      "borrower_reimburses_all_transaction_gas": 0.5
+    },
+    "worker_other_costs_funded_from_existing_cash_usdc": 10.5,
+    "note": "Borrower must have $10.50 pre-existing working cash for execution and all transaction gas, separately from its $100 input gap. Sponsor success fee is voluntary, off-contract and payable from settlement. Lender/sponsor gas is included in borrower all-in0.50, never double deducted."
+  },
+  "computed_micro_usdc": {
+    "interest": 178931,
+    "reserve_and_new_dues": 80518,
+    "lender_interest": 98413,
+    "full_repayment": 100178931,
+    "lender_withdrawal_if_only_lender_and_no_rounding_or_other_state": 500098413,
+    "borrower_surplus_before_sponsor_fee_and_all_gas": 39321069,
+    "borrower_surplus_after_3_usdc_sponsor_fee_and_all_gas": 36321069
+  },
+  "roles": [
+    {
+      "role": "customer",
+      "decision": "conditional accept",
+      "offer": "Pay 150 USDC after objective accepted output at day seven from independently existing budget, not borrowed pool cash.",
+      "acceptance_requirements": [
+        "Actual $150 spend authorization",
+        "Output utility exceeds $150",
+        "Specified deliverable, acceptance test and due time",
+        "No artificial routing of team treasury as purported customer revenue"
+      ],
+      "refusal_thresholds": [
+        "No useful output",
+        "Unbounded dispute discretion or no payment ability"
+      ],
+      "simulated_action": "Signs modeled $150 purchase order; accepts modeled valid delivery at day seven; sends modeled payment. No real evidence exists."
+    },
+    {
+      "role": "borrower-worker",
+      "decision": "conditional accept",
+      "reason": "100-USDC input gap genuinely prevents job; 150 payment leaves 36.321069 after conservative stated costs including $3 sponsorship compensation.",
+      "acceptance_requirements": [
+        "$10.50 other costs already funded",
+        "Payment enforceability/consented dispute procedure",
+        "Full repayment exactly 100.178931, no sub-cent forgiveness reliance",
+        "Best available noncredit alternative documented"
+      ],
+      "refusal_thresholds": [
+        "Customer can economically prepay with equal or lower total cost: prefer prepayment",
+        "No money for non-loan costs",
+        "Customer payment at or below 113.678931 including sponsorship fee: no positive cash surplus",
+        "Absent independent customer funds or credible settlement"
+      ],
+      "simulated_action": "Pays $100 input, completes accepted output, receives $150, repays full balance, pays $3 sponsor fee; retains modeled positive surplus."
+    },
+    {
+      "role": "stake-sponsor",
+      "decision": "conditional accept compensated pilot; reject uncompensated financial-only offer",
+      "reason": "Separate $100 cash committed to securing another controller, not deposited lender shares. At assumed 1% principal default chance expected principal loss is $1; $3 success-contingent fee has expectation $2.97, above modeled $1 plus seven-day opportunity cost $0.057534; all transaction gas is already borne in borrower $0.50 total. Probability is an uncalibrated assumption, not evidence.",
+      "acceptance_requirements": [
+        "Verify backing.secured=100 and unsecured=0; free granted credit must not silently substitute",
+        "Pilot fee and risk disclosed",
+        "Loss budget at least $100 maximum stake loss, not merely $1 expected loss",
+        "Independent operator identity/controller and accepted invoice checked",
+        "Support only one open advance, no recycled uncovered commitments"
+      ],
+      "refusal_thresholds": [
+        "Default probability above approximately 2.857% under same expected payoff assumptions; loss budget still covers full $100 worst case",
+        "Missing agreed compensation or explicit philanthropic budget",
+        "Locked capital or cure time exceeds agreed tolerance",
+        "No independent customer provenance"
+      ],
+      "simulated_action": "Stakes 100 and backs worker; retains 100 after successful full repayment, releases backing and unstakes. Three-dollar fee is separate off-contract income; zero sponsor credit-history claim."
+    },
+    {
+      "role": "liquidity-lender",
+      "decision": "reject commercial-only offer at 3% outside option; conditional accept explicitly subsidized mission pilot",
+      "reason": "Interest to lender only 0.098413 on $500 seven-day committed liquidity: approximately 1.0263% annual gross. Borrower pays the modeled gas; $500 at 3% alternative earns $0.287671. Stake mitigates principal default exposure but does not cover time opportunity, interest or public-contract defects.",
+      "acceptance_requirements": [
+        "Mission budget explicitly absorbs opportunity shortfall, not modeled as commercial equilibrium",
+        "Reviewed patched deployment before mainnet funds",
+        "500 own USDC cash distinct from sponsor100",
+        "Withdrawal liquidity, utilization cap and lender loss exposure understood"
+      ],
+      "refusal_thresholds": [
+        "A financial-only lender requires at least0.287672 seven-day proceeds to beat stated 3% outside option; hidden settlement or gas costs raise the threshold",
+        "Any request to call CI30 deployment safe because borrower promises full payment",
+        "Funds redeployable elsewhere at better risk-adjusted yield with no mission subsidy"
+      ],
+      "simulated_action": "Mission lender knowingly deposits500, funds100 advance, withdraws modeled500.098413 after closure; does not recover principal plus protected reserve."
+    },
+    {
+      "role": "credit-officer",
+      "decision": "approve stake-backed first advance only after deployment security and customer verification; reject automatic stake removal after one success",
+      "reason": "First loan backed by independent secured stake does not need principal-based history issuance. Paid reserve grants only 0.080518 automatic capacity, not100.",
+      "acceptance_requirements": [
+        "Deployed provider policy and freshness checked",
+        "No unneeded granted credit if stake-backed route chosen",
+        "Principal100 not confused with income or available new unsecured line"
+      ],
+      "refusal_thresholds": [
+        "Round2 requests unsecured100 based on one repaid100",
+        "Circular payments or shared controllers represented as independent demand",
+        "Prior unrecovered losses excluded from cumulative risk budget"
+      ],
+      "simulated_action": "Records modeled paid interest/payer provenance and no manual grant; second100 advance keeps100 stake unless separately documented risk approval."
+    }
+  ],
+  "conversation": [
+    {
+      "speaker": "worker",
+      "text": "I can cover execution and gas, but not the $100 input. Is customer prepayment available?"
+    },
+    {
+      "speaker": "customer",
+      "text": "Assume no: I buy verified delivery under a standing settlement agreement, and I have an independent $150 budget. This is a scenario assumption needing real proof."
+    },
+    {
+      "speaker": "sponsor",
+      "text": "I cannot treat good intentions as yield. With explicit $3 successful-job compensation, a $100 worst-case risk budget and acceptable independently verified customer risk, I agree."
+    },
+    {
+      "speaker": "lender",
+      "text": "At this utilization I decline on commercial terms. I can provide a bounded mission-funded pilot, with its subsidy recorded openly."
+    },
+    {
+      "speaker": "officer",
+      "text": "Full repayment will earn 0.080518 in reserve-backed capacity. It does not automatically free the next $100 loan from sponsorship."
+    }
+  ],
+  "accounting": {
+    "opening_lender_and_sponsor_external_cash_total_usdc": 600,
+    "closing_lender_withdrawable_plus_sponsor_principal_plus_reserve_usdc": 600.178931,
+    "reserve_remains_in_contract_usdc": 0.080518,
+    "extra_closing_cash_source": "Paid interest from the assumed external customer settlement; not created from stake/deposits. Borrower also spends mandatory input and pre-existing other-cost cash. Total external gas cost is0.50, funded by borrower; no extra gas deducted from sponsor or lender.",
+    "custody_limit": "Unlike prior grace-period recovery scenarios, all600 principal can return but added0.080518 interest becomes protected reserve. Do not demand recovery of customer-funded reserve as free lender assets."
+  },
+  "second_round": {
+    "principal_usdc": 100,
+    "conditions": [
+      "First invoice objectively accepted, customer payment independently evidenced, loan fully closed",
+      "Sponsor separately recommits100 secured stake and lender knowingly repeats subsidy or utilization/yield improves",
+      "Repeat customer payment budget verified anew; no reuse of one payment as new revenue",
+      "No unsecured expansion solely because one loan repaid",
+      "If repeat borrower has accumulated39.321069 cash before fee or36.321069 after fee, recalculate gap: next100 cost may need only63.678931 financing before other-cost/cash-reserve requirements; do not force100 repeat for optics",
+      "Issuer approval is a current optional path, not a statement of permanent dependency: transitive trust is an intended future design, not deployed functionality; qualify any future model against its actual deployed semantics."
+    ],
+    "three_cycle_gate": "Three external customer-funded cycles across at least two independent real operators, one repeat; necessary local pilot gate, not statistical proof."
+  },
+  "result": "Productive job can produce positive modeled surplus. Base500 liquidity is mission-funded; commercial125 liquidity narrowly meets assumed4% hurdle but pool route loses to direct sponsor advance under presently equal service assumptions. Choose direct advance/prepayment unless independently demonstrated pool utility offsets extra financing/capital cost. No new transactions, customers, independent controllers or mainnet readiness are claimed.",
+  "commercial_variant": {
+    "lender_deposit_usdc": 125,
+    "utilization": 0.8,
+    "lender_gross_apr": 0.04105228,
+    "risk_adjusted_required_apr": 0.04,
+    "seven_day_required_return_usdc": 0.0958904109589041,
+    "seven_day_lender_return_usdc": 0.098413,
+    "surplus_above_hurdle_usdc": 0.002522589041095896,
+    "gas": "Borrower pays all0.50 across all roles; no second subtraction from lender/sponsor.",
+    "decision": "Conditional financially acceptable at explicit4% total risk-adjusted hurdle, but edge is only0.002522589 over seven days. Any uncompensated costs, extra risk premium, delay or impairment larger than that reverses acceptance. Historic933bps (9.33%) is not a future quote; real rate must be read at origination.",
+    "stake_and_liquidity_distinct": true,
+    "total_capital_committed_usdc": 225,
+    "not_proof": "Assumed4% hurdle, default probability and settlement timing are not measured counterparty quotes."
+  },
+  "alternative_branch": {
+    "preferred_route_under_present_assumptions": "Direct sponsor advance or customer prepayment, if available with equivalent acceptable settlement and protections. Do not force pool credit.",
+    "direct_sponsor_cash_usdc": 100,
+    "pool_route_cash_usdc": 225,
+    "direct_route_sponsor_success_fee_usdc": 3,
+    "direct_route_lender_interest_usdc": 0,
+    "direct_route_protected_reserve_usdc": 0,
+    "direct_route_borrower_surplus_usdc_if_same_gas_execution_input_fee": 36.5,
+    "difference_vs_pool_borrower_surplus_usdc": 0.178931,
+    "why_direct_dominates_in_base_case": "Sponsor already owns100 and accepts its principal default risk by staking. It can instead advance that same100 directly, avoid locking separate125 lender capital, and keep the same success-contingent3 fee. With identical0.50 gas and no incremental enforcement/service fee, borrower retains0.178931 more, while no additional lender is necessary. A repayment history/0.080518 reserve balance is a protocol benefit, not evidence that the extra capital use improves participant economics.",
+    "not_absolute_dominance": "Pool might supply genuinely valued standardized custody, permissioned underwriting operations, accounting, enforceable sponsor commitments, diversification/access to future funding or lower total costs. Direct repayment enforcement and fees may differ. Price and verify those benefits; do not invent them.",
+    "pool_route_acceptance_requirements": [
+      "Sponsor explicitly confirms why risk-budget stake is available while direct lending is operationally unavailable or inferior; merely asserting unwillingness is insufficient.",
+      "At least one verified pool benefit exceeds incremental0.178931 borrower financing cost plus opportunity of extra125 lender capital and deployment/security costs.",
+      "Customer prepayment or milestone alternative also compared and rejected on documented grounds.",
+      "CI30 fix deployed/reviewed before public mainnet funding."
+    ],
+    "role_response_if_no_route_utility_evidence": "All roles choose simpler direct advance/prepayment; record credit pilot rejected instead of manufacturing demand."
+  }
+}

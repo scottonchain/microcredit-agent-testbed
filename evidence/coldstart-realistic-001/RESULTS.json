@@ -1,0 +1,620 @@
+{
+  "attacks": {
+    "ci30": {
+      "borrow_units": 9999,
+      "coalition_gain_units": 99980,
+      "cycles": 10,
+      "pay_units": 1,
+      "stake_slashed_units": 0
+    },
+    "grant_first": {
+      "granted_units": 100000000,
+      "lender_default_loss_units": 100000000,
+      "secured_edge_units": 0,
+      "stake_units": 100000000,
+      "unsecured_edge_units": 100000000
+    },
+    "issuer_reset": {
+      "active_budget_units": 100000000,
+      "loss_control": "Active budget can be reissued after default; cumulative losses can exceed100, subject to remaining liquidity/origination gates. Require nonrenewing lifetime pilot risk cap."
+    },
+    "multi_backer_rounding": {
+      "lender_loss_units": 1,
+      "principal_units": 1000000,
+      "recovered_units": 999999,
+      "secured_edges_units": [
+        1000000,
+        1000000,
+        1000000
+      ]
+    },
+    "secured_coalition": {
+      "borrowed_units": 100000000,
+      "limits": "Free temporary liquidity/interest avoidance possible; not complete incentive proof",
+      "principal_net_gain_units": 0,
+      "stake_lost_units": 100000000,
+      "ten_grace_rounds_dues_units": 0
+    }
+  },
+  "commercial": {
+    "decision": "500 liquidity funding100: commercial lender refuses3pct outside option; mission subsidy or improved utilization required",
+    "lender_gain_units": 98413,
+    "lender_outside_option_units": 287671,
+    "parameters": "APR933bps,reserve4500bps,fee0 are historical; gas, default probability and opportunity rates uncalibrated",
+    "required_utilization_before_costs": 0.5846243788365975
+  },
+  "delayed_success": {
+    "branch": "paid",
+    "days": 45,
+    "final_balances": {
+      "customer": 0,
+      "execution_vendor": 10000000,
+      "input_vendor": 100000000,
+      "lender": 500632651,
+      "pool": 0,
+      "reserve": 517622,
+      "sponsor": 100000000,
+      "stake": 0,
+      "worker": 48849727
+    },
+    "final_total_units": 760000000,
+    "gas": "Separate ETH expense priced at USD0.50; not a USDC transfer. Customer/input/controller facts are assumptions.",
+    "initial_total_units": 760000000,
+    "interest_units": 1150273,
+    "lender_principal_loss_units": 0,
+    "net_surplus_usd": 38.349727,
+    "repay_units": 101150273,
+    "reserve_dues_units": 517622,
+    "sponsor_principal_loss_units": 0,
+    "trace": [
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 10000000
+        },
+        "event": "distinct liquidity",
+        "recipient": "pool",
+        "sender": "lender",
+        "units": 500000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "secured backing, zero free grant",
+        "recipient": "stake",
+        "sender": "sponsor",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 110000000
+        },
+        "event": "borrow",
+        "recipient": "worker",
+        "sender": "pool",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "modeled input",
+        "recipient": "input_vendor",
+        "sender": "worker",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 0
+        },
+        "event": "modeled execution",
+        "recipient": "execution_vendor",
+        "sender": "worker",
+        "units": 10000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 150000000
+        },
+        "event": "modeled customer settlement",
+        "recipient": "worker",
+        "sender": "customer",
+        "units": 150000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 501150273,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 48849727
+        },
+        "event": "full repayment",
+        "recipient": "pool",
+        "sender": "worker",
+        "units": 101150273
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500632651,
+          "reserve": 517622,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 48849727
+        },
+        "event": "protected dues",
+        "recipient": "reserve",
+        "sender": "pool",
+        "units": 517622
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500632651,
+          "reserve": 517622,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 48849727
+        },
+        "event": "released stake",
+        "recipient": "sponsor",
+        "sender": "stake",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500632651,
+          "reserve": 517622,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 48849727
+        },
+        "event": "off-contract success fee",
+        "recipient": "sponsor",
+        "sender": "worker",
+        "units": 0
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 500632651,
+          "pool": 0,
+          "reserve": 517622,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 48849727
+        },
+        "event": "full withdrawal",
+        "recipient": "lender",
+        "sender": "pool",
+        "units": 500632651
+      }
+    ]
+  },
+  "failure": {
+    "branch": "failed",
+    "days": 61,
+    "final_balances": {
+      "customer": 150000000,
+      "execution_vendor": 10000000,
+      "input_vendor": 100000000,
+      "lender": 500000000,
+      "pool": 0,
+      "reserve": 0,
+      "sponsor": 0,
+      "stake": 0,
+      "worker": 0
+    },
+    "final_total_units": 760000000,
+    "gas": "Separate ETH expense priced at USD0.50; not a USDC transfer. Customer/input/controller facts are assumptions.",
+    "initial_total_units": 760000000,
+    "interest_units": 1559260,
+    "lender_principal_loss_units": 0,
+    "net_surplus_usd": -10.5,
+    "repay_units": 0,
+    "reserve_dues_units": 0,
+    "sponsor_principal_loss_units": 100000000,
+    "trace": [
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 10000000
+        },
+        "event": "distinct liquidity",
+        "recipient": "pool",
+        "sender": "lender",
+        "units": 500000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "secured backing, zero free grant",
+        "recipient": "stake",
+        "sender": "sponsor",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 110000000
+        },
+        "event": "borrow",
+        "recipient": "worker",
+        "sender": "pool",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "modeled input",
+        "recipient": "input_vendor",
+        "sender": "worker",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 0
+        },
+        "event": "modeled execution",
+        "recipient": "execution_vendor",
+        "sender": "worker",
+        "units": 10000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 0,
+          "worker": 0
+        },
+        "event": "eligible default slash, no forced cure",
+        "recipient": "pool",
+        "sender": "stake",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 500000000,
+          "pool": 0,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 0,
+          "worker": 0
+        },
+        "event": "principal recovered after delay",
+        "recipient": "lender",
+        "sender": "pool",
+        "units": 500000000
+      }
+    ]
+  },
+  "mainnet_readiness": "NO-GO: deployed CI30 defect; independent demand, settlement and deployment/operator controls unverified",
+  "schema": "coldstart-economic-suite/1",
+  "scope": "Three agent communities plus deterministic source-arithmetic branches; no EVM, new wallets, actual customers or independent-controller proof.",
+  "success": {
+    "branch": "paid",
+    "days": 7,
+    "final_balances": {
+      "customer": 0,
+      "execution_vendor": 10000000,
+      "input_vendor": 100000000,
+      "lender": 500098413,
+      "pool": 0,
+      "reserve": 80518,
+      "sponsor": 103000000,
+      "stake": 0,
+      "worker": 46821069
+    },
+    "final_total_units": 760000000,
+    "gas": "Separate ETH expense priced at USD0.50; not a USDC transfer. Customer/input/controller facts are assumptions.",
+    "initial_total_units": 760000000,
+    "interest_units": 178931,
+    "lender_principal_loss_units": 0,
+    "net_surplus_usd": 36.321069,
+    "repay_units": 100178931,
+    "reserve_dues_units": 80518,
+    "sponsor_principal_loss_units": 0,
+    "trace": [
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 10000000
+        },
+        "event": "distinct liquidity",
+        "recipient": "pool",
+        "sender": "lender",
+        "units": 500000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 500000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "secured backing, zero free grant",
+        "recipient": "stake",
+        "sender": "sponsor",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 0,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 110000000
+        },
+        "event": "borrow",
+        "recipient": "worker",
+        "sender": "pool",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 0,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 10000000
+        },
+        "event": "modeled input",
+        "recipient": "input_vendor",
+        "sender": "worker",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 150000000,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 0
+        },
+        "event": "modeled execution",
+        "recipient": "execution_vendor",
+        "sender": "worker",
+        "units": 10000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 400000000,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 150000000
+        },
+        "event": "modeled customer settlement",
+        "recipient": "worker",
+        "sender": "customer",
+        "units": 150000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500178931,
+          "reserve": 0,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 49821069
+        },
+        "event": "full repayment",
+        "recipient": "pool",
+        "sender": "worker",
+        "units": 100178931
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500098413,
+          "reserve": 80518,
+          "sponsor": 0,
+          "stake": 100000000,
+          "worker": 49821069
+        },
+        "event": "protected dues",
+        "recipient": "reserve",
+        "sender": "pool",
+        "units": 80518
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500098413,
+          "reserve": 80518,
+          "sponsor": 100000000,
+          "stake": 0,
+          "worker": 49821069
+        },
+        "event": "released stake",
+        "recipient": "sponsor",
+        "sender": "stake",
+        "units": 100000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 0,
+          "pool": 500098413,
+          "reserve": 80518,
+          "sponsor": 103000000,
+          "stake": 0,
+          "worker": 46821069
+        },
+        "event": "off-contract success fee",
+        "recipient": "sponsor",
+        "sender": "worker",
+        "units": 3000000
+      },
+      {
+        "balances": {
+          "customer": 0,
+          "execution_vendor": 10000000,
+          "input_vendor": 100000000,
+          "lender": 500098413,
+          "pool": 0,
+          "reserve": 80518,
+          "sponsor": 103000000,
+          "stake": 0,
+          "worker": 46821069
+        },
+        "event": "full withdrawal",
+        "recipient": "lender",
+        "sender": "pool",
+        "units": 500098413
+      }
+    ]
+  }
+}

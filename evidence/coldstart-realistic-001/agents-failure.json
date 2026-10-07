@@ -1,0 +1,135 @@
+{
+  "schema": "coldstart.adverse-roleplay.v1",
+  "execution_kind": "agent roleplay and exact source arithmetic; not EVM execution or live transactions",
+  "author": "Codex subagent bootstrap_failure",
+  "source": {
+    "path": "packages/foundry/contracts/DecentralizedMicrocredit.sol",
+    "default_term_seconds": 2592000,
+    "late_period_seconds": 2592000,
+    "default_rule": "block.timestamp > disbursedAt + term + LATE_PERIOD",
+    "interest_rule": "floor(floor(principal_microUSDC * APR_bps / 10000) * elapsed_seconds / 31536000); zero only while elapsed < 86400",
+    "checked_checkout_commit": "dd9aeee4d351dfbe5ed3c55c06bf925ef6b69df3",
+    "deployed_source_commit": "1812e7d2b67e159e341bbff33d6d604409eebb67",
+    "source_sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360",
+    "source_bytes_match_deployed_source": true
+  },
+  "inputs": {
+    "lender_USDC": 500,
+    "sponsor_stake_USDC": 100,
+    "borrower_input_gap_USDC": 100,
+    "customer_acceptance_payment_USDC": 150,
+    "execution_opportunity_cost_USDC": 10,
+    "gas_USD_estimate": 0.5,
+    "apr_bps": 933,
+    "sponsor_free_granted_credit": 0,
+    "controller_separation": "assumed for scenario; must verify actual independent operators before pilot",
+    "customer_funding": "independent customer assumed; not root-funded cosmetic external wallet"
+  },
+  "transcript": [
+    {
+      "role": "customer",
+      "decision": "Payment is 150 only if deliverable passes acceptance. No advance. If rejected I pay zero; dispute may delay accepted settlement to day45."
+    },
+    {
+      "role": "borrower",
+      "decision": "I need mandatory 100 input. I cannot fund it. I accept only an explicit written acceptance test and an estimate showing surplus; failed input cannot be resold and I have no cash to cure."
+    },
+    {
+      "role": "lender",
+      "decision": "I deposit 500 separately from sponsor stake. I permit at most100 outstanding fully secured principal, with 60-day-plus liquidity exposure disclosed. I can recover400 liquid now, not a guaranteed500 immediately."
+    },
+    {
+      "role": "sponsor",
+      "decision": "I may stake100 only if I knowingly accept losing all100. I have zero free issued credit and require getBacking secured100/unsecured0. I will not send another100 or accrued interest after rejection merely to make the run look successful."
+    },
+    {
+      "role": "officer",
+      "decision": "No borrower line from principal recycling. I originate no loan if sponsor refuses full loss, cash lock is unacceptable, payer is not independently funded, or prepayment removes gap."
+    },
+    {
+      "role": "customer",
+      "branch": "accepted_delayed",
+      "decision": "Day7 delivery meets acceptance, but dispute or settlement delay releases150 on day45. This is assumed scenario settlement, not observed revenue."
+    },
+    {
+      "role": "borrower",
+      "branch": "accepted_delayed",
+      "decision": "On day45 I use independent customer150 to repay full outstanding101.150273, preserving conservative surplus38.349727 after input, labor10 and gas0.50."
+    },
+    {
+      "role": "customer",
+      "branch": "rejected",
+      "decision": "Day7 reject against recorded acceptance requirements. Pay zero."
+    },
+    {
+      "role": "borrower",
+      "branch": "rejected",
+      "decision": "Input consumed. No remaining cash. I default; no forced treasury injection."
+    },
+    {
+      "role": "sponsor",
+      "branch": "rejected",
+      "decision": "I refuse discretionary cure and accept contractual loss100. That is the agreed loss bearer, not a win for every agent."
+    },
+    {
+      "role": "officer",
+      "branch": "rejected",
+      "decision": "Do not roll loan, expand grant or reset identity. Mark default strictly after day60 under default30-day loan; maintain cumulative loss ledger100. Day7 forecast loss is not eligible default."
+    },
+    {
+      "role": "lender",
+      "branch": "rejected",
+      "decision": "After eligible default, sponsor100 is slashed into lender cash, restoring my principal500. I receive no contractual accrued interest from default; until default,100 remained unavailable. Recovery costs and code failures are additional risks."
+    }
+  ],
+  "branches": {
+    "no_loan": {
+      "gate": "sponsor refuses worst-case100 loss or liquidity lock, poor acceptance, no independent payer, or cheaper prepayment works",
+      "loan_originated": false,
+      "lender_principal_loss_USDC": 0,
+      "sponsor_loss_USDC": 0,
+      "borrower_job_income_USDC": 0,
+      "verdict": "correct abstention, not manufactured loan success"
+    },
+    "accepted_delayed": {
+      "settlement_day": 45,
+      "term_day": 30,
+      "interest_microUSDC": 1150273,
+      "repay_microUSDC": 101150273,
+      "borrower_economic_surplus_microUSDC": 38349727,
+      "sponsor_principal_loss_USDC": 0,
+      "principal_returned": true,
+      "sponsor_unlock": "after loan closed, reduce backing then unstake; do not assume repayment automatically unstakes",
+      "credit_promotion": "Only reserve component of paid interest automatically earns dues; officer expansion bounded by cumulative risk budget, no principal-derived credit"
+    },
+    "rejected_default": {
+      "rejection_day": 7,
+      "customer_payment_USDC": 0,
+      "borrower_cash_available_USDC": 0,
+      "first_eligible_default_second": 5184001,
+      "unpaid_principal_microUSDC": 100000000,
+      "hypothetical_interest_at_day60_microUSDC": 1533698,
+      "interest_recovered_microUSDC": 0,
+      "secured_sponsor_loss_microUSDC": 100000000,
+      "lender_principal_recovery_microUSDC": 100000000,
+      "lender_liquidity_before_default_USDC": 400,
+      "lender_principal_withdrawable_after_default_USDC": 500,
+      "sponsor_remaining_stake_USDC": 0,
+      "borrower_income_USDC": 0,
+      "borrower_opportunity_and_gas_loss_USD": 10.5,
+      "credit_promotion": "none; defaulted identity cannot borrow/back, human controller tracking needed against resets",
+      "exact_seed_recovery": false,
+      "verdict": "principal risk containment works assuming source behavior; customer job and sponsor economics fail"
+    }
+  },
+  "mainnet_conditions": [
+    "Reviewed CI30 principal-forgiveness fix deployed and exact code/address pinned; simulation policy does not repair deployed code.",
+    "Actual independently funded customer and valid input invoice, testable acceptance, documented rejection/dispute terms, positive conservative surplus.",
+    "Separate lender500 and sponsor100 capital; secured backing on-chain, sponsor free-granted-credit0 or explicitly verify actual secured/unsecured split.",
+    "Default30-day term needs more than60 days, not45; record custom term if used, no live warp.",
+    "Sponsor knowingly accepts100 complete loss and lender knowingly accepts liquidity/interest risk; gas budget exists without forced cure.",
+    "Accountable officer/controller mapping and cumulative-loss ledger; no fresh identity grants after losses.",
+    "ETH gas estimate0.50 is a hypothesis, not fixed network cost; interest/fee/reserve state must be freshly read.",
+    "Rejected job has no exact total-funds restoration:100 input is real expenditure, sponsor loses100; live test funds cannot promise original-seed equality while running actual productive failure."
+  ]
+}
