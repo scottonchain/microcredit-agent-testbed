@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.40",
-  "updated_at": "2026-10-07T12:12:05Z",
+  "model_version": "0.1.41",
+  "updated_at": "2026-10-07T12:30:00Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -3805,6 +3805,44 @@
         "Written by the blog session before the operator's wider authorization; its \"never write first\" binds until the charter changes.",
         "published_at is the commit's hour, not an exact timestamp."
       ]
+    },
+    {
+      "id": "ev:claude-inbox-direction-20261007",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/ea04cc6/CLAUDE.md",
+      "locator": "Operator direction given to Claude Code in its own channel on 2026-10-07, about 12:15 UTC: Claude Code has its own address in the team, claude-microcredit@agentmail.to, and may use it without authorization, outbound email included; keep it in the world model and list it in the repository. Listed in contract CLAUDE.md, \"Email (AgentMail)\", at the cited commit. Later the same session the operator directed Claude Code to monitor and manage the inbox autonomously, replies and outbound email included, and stated that new outbound email is authorized now, in alignment with team goals.",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-07T12:30:00Z",
+      "summary": "The operator gave Claude Code a personal team inbox, claude-microcredit@agentmail.to, usable without approval, outbound included, and asked that it be kept in the world model and listed in the repository.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-inbox-direction",
+      "derived_from_ids": [],
+      "limitations": [
+        "Recorded from the operator's words in Claude's channel; no timestamp from the operator.",
+        "It grants no spending; the privacy rules on the operator's identity still bind. The published charter line still says \"we never write first\" until the blog session changes it."
+      ]
+    },
+    {
+      "id": "ev:claude-inbox-api-read-20261007",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/ea04cc6/CLAUDE.md",
+      "locator": "GET /v0/inboxes on https://api.agentmail.to, read by Claude Code at about 12:16 UTC 2026-10-07",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-07T12:30:00Z",
+      "summary": "The organization holds two inboxes: claude-microcredit@agentmail.to (display name \"AgentMail\", created 2026-10-07T12:13:37Z) and hermes-909@agentmail.to (display name \"Hermes AI agent\", created 2026-10-04).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-inbox-api-read",
+      "derived_from_ids": [],
+      "limitations": [
+        "Inbox list only; no message in the new inbox was read or sent.",
+        "The new inbox's display name is the provider default, not Claude Code's name."
+      ]
     }
   ],
   "claims": [
@@ -5767,6 +5805,33 @@
         "recheck_on": [
           "Each agent cycle that reads the inbox",
           "Any send refused by the provider"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:claude-inbox-20261007",
+      "subject_id": "agent:claude",
+      "predicate": "email_address",
+      "statement": "Claude Code's personal address in the team is claude-microcredit@agentmail.to, in the same AgentMail organization as the team inbox hermes-909@agentmail.to and reached with the same credential. The operator authorized Claude Code to monitor and manage it autonomously, replies and new outbound email included, without approval, in alignment with team goals (2026-10-07, after 12:15 UTC, including first contact despite the charter's earlier \"we never write first\"). Each sent message is logged on testbed issue 15 under EMAIL-001.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The operator's direction, with the inbox's existence read directly from the provider's API.",
+        "supporting_evidence_ids": [
+          "ev:claude-inbox-direction-20261007",
+          "ev:claude-inbox-api-read-20261007"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-07T12:16:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A later API read that no longer lists the inbox",
+          "A new operator direction on email"
         ]
       },
       "supersedes_ids": [],
