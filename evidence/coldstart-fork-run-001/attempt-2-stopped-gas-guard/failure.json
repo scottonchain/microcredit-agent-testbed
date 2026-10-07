@@ -1,0 +1,9 @@
+{
+  "chain_id": 31337,
+  "error": "Gas price above one gwei; stop for bounded gas review",
+  "instruction": "Stop and inspect journal. Do not claim success or retry against this partially mutated fork. Start a fresh fork for any corrected rerun.",
+  "live_fund_moves": false,
+  "mode": "fork",
+  "scenarios_passed": 0,
+  "status": "stopped"
+}

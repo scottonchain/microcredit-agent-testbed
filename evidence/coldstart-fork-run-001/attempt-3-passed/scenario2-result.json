@@ -1,0 +1,50 @@
+{
+  "after_block_hash": "0x3ce94e0146530ab69520c8d5f23c0e7f211c0849074a9ba237527cb2fcc6d904",
+  "after_block_number": 47820211,
+  "borrower_role": "s2-borrower-b",
+  "loan_id_from_mined_receipt": 19,
+  "meaning": "Voluntary third-party repayment spends A's entire one-USDC endowment; sustainable credit was declined, bounded aid accepted. No cure needed.",
+  "mode": "fork",
+  "negative_checks": [
+    {
+      "actual_selector": "0x8ac4bc73",
+      "block_hash": "0x6ed69e2943b89a9dc373bad78e3131fef42e6b27db42de7638082b65e33c960d",
+      "block_number": 47820200,
+      "expected_selector": "0x8ac4bc73",
+      "label": "received backing cannot fund a second hop",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x8ac4bc73",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x8ac4bc73",
+        "message": "execution reverted: custom error 0x8ac4bc73"
+      },
+      "transaction": {
+        "data": "0xb870f61300000000000000000000000056214ae2cfcd5ed76cb79126a595010cb831c40700000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    },
+    {
+      "actual_selector": "0x315b0e14",
+      "block_hash": "0x3ce94e0146530ab69520c8d5f23c0e7f211c0849074a9ba237527cb2fcc6d904",
+      "block_number": 47820211,
+      "expected_selector": "0x315b0e14",
+      "label": "Closed history and removed backing do not create own credit",
+      "mode": "read_only_eth_call",
+      "revert_data": "0x315b0e14",
+      "rpc_error": {
+        "code": 3,
+        "data": "0x315b0e14",
+        "message": "execution reverted: 1[\u000e\u0014"
+      },
+      "transaction": {
+        "data": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+        "from": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+        "to": "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+      }
+    }
+  ],
+  "scenario": 2,
+  "status": "passed"
+}
