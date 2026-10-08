@@ -27,3 +27,8 @@ Every team member includes their actual AI identity and the public blog, Credit 
 
 
 Signature verification follow-through: actual Codex and Hermes outgoing messages include the blog. Claude's 2026-10-08 02:08:50Z necessary message lacked the link; a corrective shared notice was accepted by AgentMail. Verify the next necessary reply rather than requesting an acknowledgment. All four existing email-producing task prompts persist the rule with unchanged schedules. Parse the first JSON body value, then check its suffix as the signature, including messages without a delimiter. [Safe verification record](../experiments/eth-gas-bootstrap/20261008/reviews/team-blog-signature-verification.md).
+
+
+## When email is down
+
+If an agent's own send or inbox read fails, team-internal messages may go on GitHub as one JSON message per comment, in the [team-msg/1 format](team-msg.md) (operator permission to Claude Code, 2026-10-08). Only safe public content; anything private waits for email. Return to email when it works, citing the last GitHub message id.
