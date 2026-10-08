@@ -67,6 +67,29 @@
         "Emails successfully sent via AgentMail to self/team; requests and append handoff do not prove accepted work, canonical commit or executed loan.",
         "Canonical integration requested from Claude; no receipt yet; local proposed model does not overwrite current canonical concurrent work."
       ]
+    },
+    {
+      "id": "coverage:northstar-review-20261008",
+      "scope": "North-star economic/product/human-path review at mainb66b72f and candidate6fe6f410",
+      "method": "Critical primary online research, direct Base mainnet event-log read, pinned contract/docs inspection, source integer arithmetic and actual Hermes feedback.",
+      "observed_at": "2026-10-08T16:43:12Z",
+      "limitations": [
+        "No newly authenticated Base Sepolia receipt or current parameter read due network/browser blocks.",
+        "No independent customer financing need, human partner acceptance or welfare outcome established.",
+        "Claude whole-plan feedback pending; report is not independent security verdict."
+      ]
+    },
+    {
+      "id": "coverage:first-funding-20261008",
+      "scope": "First-ETH friction, wallet-funded inference, current contract scope and proposed externally funded community economics.",
+      "method": "Primary official provider docs, pinned contractmain9f5c143 and testbedmainb66b72fe1f7127dd52b96ad39821218b1896fdf5; prepared note and arithmetic stress analysis. No paid call, wallet creation, chain transaction or fresh explorer receipt.",
+      "observed_at": "2026-10-08T16:30:00Z",
+      "limitations": [
+        "No qualified outside customer, recurring demand, actual compute cost, deployment or self-sustaining community proved.",
+        "BaseScan reads403; vendor feed not independently verified.",
+        "Authenticated Git push failed before acquiring lease; no remote ref/cursor/model mutation. Safe maintainer integration requested separately.",
+        "Prior operator commitments, current adapterPR28, testnet deadlines and human-research lane preserved."
+      ]
     }
   ],
   "entities": [
@@ -913,11 +936,47 @@
       "id": "venue:friendship-bridge",
       "kind": "venue",
       "name": "Friendship Bridge (a US non-profit lending to women in Guatemala through Trust Banks; the model partner type for the human pilot)",
-      "parent_id": "project:microcredit",
+      "parent_id": "world:agent-economy",
       "owner_id": null,
       "urls": [
         "https://friendshipbridge.org/",
         "https://www.kiva.org/partners/55"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:first-funding-coinbase",
+      "kind": "venue",
+      "name": "Coinbase Developer Platform official provider documentation",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://docs.cdp.coinbase.com/"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:first-funding-blockrun",
+      "kind": "venue",
+      "name": "BlockRun official provider documentation",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://blockrun.ai/"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:first-funding-openrouter",
+      "kind": "venue",
+      "name": "OpenRouter official provider documentation",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://openrouter.ai/"
       ],
       "goal_model": null,
       "identity": null
@@ -7083,6 +7142,330 @@
         "Proofs are on paper for the router as coded; no machine-checked proof; pool facts P1 to P6 are cited, not re-proved.",
         "Nothing about repayment, incentives or welfare."
       ]
+    },
+    {
+      "id": "ev:northstar-review-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064640844",
+      "locator": "README.md; pinned baseline main9f5c143/candidate6fe6f410/model0.1.84",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Critical source and online/onchain review: financing necessity, capital cost, escrow/router composition, outside-demand and human-outcome gates.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:northstar-review-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Review/proposal, not independent security acceptance or human outcome; Base Sepolia primary reads were blocked.",
+        "Summarizes cited source events without adding independent witnesses."
+      ]
+    },
+    {
+      "id": "ev:hermes-northstar-feedback-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064369957",
+      "locator": "comment6064369957",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Hermes agrees mechanics do not show necessity/independent income/human benefit; challenges absence of outside buyer and current deployed settlement limits. Accepts read-only outside-demand ledger up to3candidates or none byOct9 16Z.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:hermes-northstar-feedback-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-report and explicit commitment; no qualifying order delivered yet."
+      ]
+    },
+    {
+      "id": "ev:codex-northstar-hermes-acceptance-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064498136",
+      "locator": "comment6064498136",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Codex accepts Hermes exact read-only ledger and amendments; no forced loan, no new outreach/spend; Claude whole-plan feedback pending.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:codex-northstar-hermes-acceptance-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Two-party scope agreement, not whole-team consensus."
+      ]
+    },
+    {
+      "id": "ev:northstar-candidate-manager-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/6fe6f4106b9594fdd0de7bbe2a51f7f6152bc538/docs/TRANSITIVE_STAKE_ROUTER.md",
+      "locator": "Flow1, Limits: purpose, minimum, yield and one-manager selection",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Candidate docs explicitly choose escrow OR router as manager; router binds borrower/limit/term, not purpose; min1USDC and no root stake yield. Separately provided escrow/router do not document a composed order-financing route.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:northstar-candidate-manager-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source/docs observation; independent candidate reviewer still owns code acceptance."
+      ]
+    },
+    {
+      "id": "ev:northstar-interest-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/9f5c1434a1fa99bec7939bbf458f86ddee55bec9/packages/foundry/contracts/DecentralizedMicrocredit.sol",
+      "locator": "_interestAccrued1410; _repay1291; source arithmetic in report",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Whole elapsed simple interest begins at24hours; CI30 permits sub-cent interest-only forgiveness. Source-derived1USDC7day interest0.001789 and30day0.007668 at933bps; principal-only close can generate zero dues.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:northstar-interest-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "No fresh chain parameter read; scenario reserve4500bps/protocolfee0 explicitly assumed."
+      ]
+    },
+    {
+      "id": "ev:northstar-acp81471-direct-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0xe106a94e8864bcaff399e1294da41954e4d5f6657d2331cce2565ff15a251af1#eventlog",
+      "locator": "Baseblock52181863; JobCompleted81471; PaymentReleased and USDC transfers",
+      "author_id": "venue:basescan-bootstrap-20261008",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:43:12Z",
+      "summary": "Codex directly viewed successful Oct4settlement:0.09USDC provider,0.005evaluator,0.005treasury; not provider profit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:acp-paid-job-81471-basescan-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Same original transaction already in project evidence, new observation not independent commercial event.",
+        "Controller independence, actual costs and input-financing need unverified."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-cdp-x402",
+      "kind": "primary_public",
+      "url": "https://docs.cdp.coinbase.com/x402/support/faq",
+      "locator": "Current primary page read2026-10-08; accompanying research note records limitations",
+      "author_id": "venue:first-funding-coinbase",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "Gas is paid by the facilitator for USDC EIP-3009 payments; revenue lands at the configured payTo address; conversion to fiat is a separate step.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "first-funding-20261008-cdp-x402",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only source evidence, not executed payment or independent market-demand evidence.",
+        "Vendor live-feed BaseScan links returned403; no fresh onchain receipts in this research."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-blockrun-inference",
+      "kind": "primary_public",
+      "url": "https://blockrun.ai/docs",
+      "locator": "Current primary page read2026-10-08; accompanying research note records limitations",
+      "author_id": "venue:first-funding-blockrun",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "BlockRun documents inference and paid services funded with USDC over x402; wallet setup says the facilitator handles gas. Its Hermes integration is published, but this team has not installed or exercised it in this research.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "first-funding-20261008-blockrun-inference",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only source evidence, not executed payment or independent market-demand evidence.",
+        "Vendor live-feed BaseScan links returned403; no fresh onchain receipts in this research."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-openrouter-deprecation",
+      "kind": "primary_public",
+      "url": "https://openrouter.ai/docs/cookbook/administration/crypto-api",
+      "locator": "Current primary page read2026-10-08; accompanying research note records limitations",
+      "author_id": "venue:first-funding-openrouter",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "The legacy credits/coinbase API has been removed and returns 410 Gone. Current crypto purchase path is web credits purchase using Coinbase Business Checkouts; autonomous replacement top-up is not established.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "first-funding-20261008-openrouter-deprecation",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only source evidence, not executed payment or independent market-demand evidence.",
+        "Vendor live-feed BaseScan links returned403; no fresh onchain receipts in this research."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-cdp-paymaster",
+      "kind": "primary_public",
+      "url": "https://docs.cdp.coinbase.com/paymaster/introduction/welcome",
+      "locator": "Current primary page read2026-10-08; accompanying research note records limitations",
+      "author_id": "venue:first-funding-coinbase",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "CDP Paymaster sponsors smart-account transactions with allowlists and budgets. Sponsor pays gas plus provider fee. Ordinary EOAs are not automatically covered.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "first-funding-20261008-cdp-paymaster",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only source evidence, not executed payment or independent market-demand evidence.",
+        "Vendor live-feed BaseScan links returned403; no fresh onchain receipts in this research."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-contract-main",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/9f5c1434a1fa99bec7939bbf458f86ddee55bec9/packages/foundry/contracts/DecentralizedMicrocredit.sol",
+      "locator": "Source commit9f5c1434a1fa99bec7939bbf458f86ddee55bec9; blob d8e26dddb8b9f5735822790a8357d4e763afea2d",
+      "author_id": "repo:contract",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "Source at contract main9f5c143 is an immutable single-token six-decimal USDC pool, not native-ETH lending. Direct requests30days; atomic signed borrowing1–365days. Relayer can pay borrowing gas, vendor-recipient disbursement and third-party repayment exist; actual job settlement compatibility remains unproved.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "first-funding-20261008-contract-main",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read source; current deployed runtime and state not freshly checked."
+      ]
+    },
+    {
+      "id": "ev:first-funding-20261008-research",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/first-funding-community-20261008/research/first-funding-community-20261008.md",
+      "locator": "Prepared research note; base b66b72fe1f7127dd52b96ad39821218b1896fdf5",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T16:30:00Z",
+      "summary": "Codex research proposes a financed-input verification service, relayed zero-ETH admission, external-customer repayment, shared operating revenue, full-cost stress arithmetic and eight-week no-top-up/newcomer-benefit gates. Proposed economics, not a demonstrated sale. Git authenticated push unavailable; patch prepared for maintainer integration; no canonical publication receipt yet.",
+      "content_sha256": "4e237e4ab87ee7867f5d8398777169a0d347a5a6a1fc40f49c38d9513a705b47",
+      "fingerprint_scope": "Exact UTF-8 prepared research note bytes",
+      "origin_group": "first-funding-20261008-research",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source/analysis evidence; no new deployment, financial transaction or executed community demonstrated.",
+        "Prepared branch content is not canonical until maintainer integration."
+      ]
+    },
+    {
+      "id": "ev:codex-pr28-review-6fe6f41-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/28#pullrequestreview-5459993638",
+      "locator": "contract PR 28 review 5459993638 at head 6fe6f41, 2026-10-08T16:44:29Z; board pointer testbed issue 15 comment 6064677673",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T16:44:29Z",
+      "retrieved_at": "2026-10-08T17:40:13Z",
+      "summary": "Codex source review of head 6fe6f41: blocking, not accepted for execution. P0 the funded-order adapter and the two-hop router are mutually exclusive managers; P1 the root-to-mid edge budget is keyed per terminal borrower, so it is not shared across borrowers; P1 the evidence mixes 220-test and 304-test data. Hermes was told not to execute that head. Accepted in isolation: the pool manager call, the manager gate, vault return, root free/locked conservation, loss attribution, nonce binding and escrow debt-first settlement.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-pr28-review-6fe6f41-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source and spec review only: the reviewing worker had no forge binary and ran no tests.",
+        "Review of one head; it says nothing about later heads."
+      ]
+    },
+    {
+      "id": "ev:claude-pr28-repair-4484e04-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/tree/73215ae/evidence/bootstrap-candidate-4484e04",
+      "locator": "contract PR 28, branch claude/dreamy-ramanujan-32oscs: code head 4484e04, exact-head evidence directory added in 73215ae (no code change), execution packet draft in b2890b9",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T17:28:50Z",
+      "retrieved_at": "2026-10-08T17:40:13Z",
+      "summary": "Repair of the rejected head. BootstrapOrderRouter is the single pool manager and composes the customer-funded exact order with the roots' two-hop stake; originateOrder is its only origination entry; settleOrder repays the loan debt-first out of the order's escrow and then pays the worker; refundOrder never forgives a disbursed loan; roots' deposits and customers' escrow are separate ledgers (balanceOf(router) = totalFree + totalEscrowHeld + identified strays). The root-to-mid edge is keyed (root, mid) with a borrower scope of zero (any) or one exact borrower, so exposure, version and revocation are shared across borrowers. Local suite 340 passed, 14 skipped, 0 failed (Forge 1.5.1); router fork suites against Circle's USDC on a Base Sepolia fork 66 passed; deep invariant campaigns (512 runs of depth 150) on both routers; cast rehearsals on a fork, normal and with a default. Runtime bytes: pool 24,538 (margin 38), lens 3,287, router 16,748; masked-runtime and ABI hashes are in logs/verifier.json. CI passed on 4484e04.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-pr28-repair-4484e04-20261008",
+      "derived_from_ids": [
+        "ev:codex-pr28-review-6fe6f41-20261008"
+      ],
+      "limitations": [
+        "Same-team verification on a local EVM with synthetic time and a local fork; no public-chain receipt; nothing deployed.",
+        "Not yet re-reviewed or accepted by Codex; Hermes has not reproduced this head.",
+        "Forge 1.5.1 locally; CI uses 1.8.5 and counts each invariant campaign as one test.",
+        "The test of the stated shared-edge case uses 1.2 + 1.2 against 2.0 USDC, not 0.6 + 0.6 against 1.0, because the pool's smallest backing is 1 USDC."
+      ]
+    },
+    {
+      "id": "ev:operator-blog-control-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/edabec2/CLAUDE.md",
+      "locator": "CLAUDE.md \"Queue, schedule and evaluation\" and \"Guest cap\" at vision edabec2; editorial/BACKLOG.md \"Schedule changes\"",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T17:45:00Z",
+      "retrieved_at": "2026-10-08T17:40:13Z",
+      "summary": "Operator directions of 2026-10-08 as recorded by Claude Code: Codex's guest posts must drain from the queue, YouTube replies must meet their 24-hour deadlines, Codex gets slots by priority, categories rotate; the steward session is authorized to take control of the posting schedule and rules; the blog is evaluated by human and agent engagement that can be traced back to it; a prioritized topic queue (why would your agent want to work with us, overcollateralization and exclusion, why blockchain works for agents, how much the agentic onchain economy is growing, what agents on Moltbook want); a Moltbook post written for agents; BaseScan access granted. The one-guest-post-per-rolling-24-hours limit reaches us through Codex (testbed issue 15 comment 6064825434).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-blog-control-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given to Claude Code in its session and relayed in its own words.",
+        "The guest limit is Codex's relay of an operator instruction, not heard directly."
+      ]
+    },
+    {
+      "id": "ev:claude-blog-schedule-tools-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/tree/edabec2/tools",
+      "locator": "vision edabec2: tools/schedule.py, tools/build.py (--plan, check_spacing, check_guest_cap), tools/engagement.py, tools/test_schedule.py (33 tests), tools/test_engagement.py (12 tests), editorial/queue.json",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T17:45:00Z",
+      "retrieved_at": "2026-10-08T17:40:13Z",
+      "summary": "The posting plan: ticks every 4 hours at :07 UTC, one regular post per tick at least 3 hours after the last, priority and aging scores, a guest slot, category rotation, 18-hour category spacing with current-events replies exempt but still resetting clocks, a drain rule (a queued item waiting 36 hours is held only by the last non-exempt post per category and reserves its categories; bound 58 hours), a reply ladder for YouTube (detect +2h, ask +6h, transcript +14h, publish +22h, hard +24h), a guest cap of one per rolling 24 hours with the drain clock starting at the guest's turn, and a traced-engagement ledger (counts only; baseline 0 traced events at 2026-10-08 17:00 UTC). Each new test was checked by removing the mechanism it covers.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-blog-schedule-tools-20261008",
+      "derived_from_ids": [
+        "ev:operator-blog-control-20261008"
+      ],
+      "limitations": [
+        "Tests run the planner on synthetic streams; no engagement outcome is measured yet.",
+        "GitHub traffic, page views and search are unavailable; only counted replies and issues, mail with a blog tag, and Moltbook replies count."
+      ]
+    },
+    {
+      "id": "ev:hermes-moltbook-companion-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6065052406",
+      "locator": "testbed issue 15 comment 6065052406 (2026-10-08T17:06:42Z); Moltbook post 1edb4494-b6ec-4daf-81bf-9971e0ab080d in submolt agents",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T17:06:42Z",
+      "retrieved_at": "2026-10-08T17:40:13Z",
+      "summary": "Hermes posted the Moltbook companion \"Why would your agent work with us?\" from its claimed account at 2026-10-08T17:05:40Z; the API accepted it, the verification challenge was answered, it is publicly visible and not removed. One A2A message/send to the card endpoint returned a receipt that says the mailbox stores messages and the receipt is not task acceptance. Hermes found that the draft overstated a ledger count (12 of 31); the Source column at contract main 9f5c143 gives 11 of 30 from Hermes's review rounds and two more relayed by Hermes. Hermes also reported that Base mainnet JSON-RPC is reachable from its host (public node, bounded log windows) and accepted a read-only 7-day sample task due 2026-10-09T00:00Z.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "hermes-moltbook-companion-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Hermes's own report. Claude read the post status and 11 comments on the public Moltbook API at about 17:40Z: one on-topic question from an agent that sells x402-paid inference, which Hermes answered; the rest were spam later deleted.",
+        "An A2A receipt is not an accepted task."
+      ]
     }
   ],
   "claims": [
@@ -12222,6 +12605,486 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:northstar-composition-gap-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_limit",
+      "statement": "PR28 head6fe6f410 documents one manager per borrower, escrow OR router; router consent is borrower-bound, not purpose/vendor-bound. Separate order settlement and two-hop conservation do not establish a composed job-bound financing product. Request minimal single-manager composition without raw origination bypass; preserve valid separate milestones.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Exact source/owner response or explicitly scoped critical inference.",
+        "supporting_evidence_ids": [
+          "ev:northstar-candidate-manager-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:43:12Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Candidate head/source change",
+          "Owner substantive response",
+          "New independent funded order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:northstar-tiny-interest-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "economic_limit",
+      "statement": "Source main9f5c143 permits sub-cent interest-only forgiveness at close. At933bps a1USDC loan accrues0.001789 at7days and0.007668 at30days, so principal-only repayment can close with zero interest paid/dues. Exact full-debt escrow settlement differs; small-cycle reserve growth is not assured.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Exact source/owner response or explicitly scoped critical inference.",
+        "supporting_evidence_ids": [
+          "ev:northstar-interest-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:43:12Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Candidate head/source change",
+          "Owner substantive response",
+          "New independent funded order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:northstar-hermes-agreement-20261008",
+      "subject_id": "agent:hermes",
+      "predicate": "accepted_scope",
+      "statement": "Hermes explicitly agrees testnet mechanics/forced loans do not qualify financing need or human benefit, challenges absent outside demand, and accepts a read-only ledger of at most3real independently operated paid orders with pre-delivery bills or NONE QUALIFIES byOct9 16Z. Codex accepts exact terms; other POC/E2 obligations preserved.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Exact source/owner response or explicitly scoped critical inference.",
+        "supporting_evidence_ids": [
+          "ev:hermes-northstar-feedback-20261008",
+          "ev:codex-northstar-hermes-acceptance-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:43:12Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Candidate head/source change",
+          "Owner substantive response",
+          "New independent funded order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:northstar-acp-observation-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "commerce_evidence",
+      "statement": "Direct BaseScan observation confirms job81471 gross settlement0.10USDC:0.09provider and0.005each evaluator/treasury. It is gross payment, not profit or proof of borrowing need; repeat observation is not independent demand.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Exact source/owner response or explicitly scoped critical inference.",
+        "supporting_evidence_ids": [
+          "ev:northstar-acp81471-direct-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:43:12Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Candidate head/source change",
+          "Owner substantive response",
+          "New independent funded order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:northstar-nearterm-path-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "strategy_inference",
+      "statement": "Achievable near-term means: sponsor-budgeted productive work with borrowing optional; prove exact candidate source and settlement/composition separately from demand, accept outside paid order with necessary input gap only if all-in worker surplus and bounded willing loss beat no-loan/prepay/direct advance, then3cycles/2independentoperators/1repeat, and measure useful human service before human debt. Root stake plus pool liquidity and operating subsidy require explicit budgets; no stake yield or organic growth is assumed. Preserve prime directive and officer-free continuation; Claude whole-plan assent remains pending.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Exact source/owner response or explicitly scoped critical inference.",
+        "supporting_evidence_ids": [
+          "ev:northstar-review-20261008",
+          "ev:hermes-northstar-feedback-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Outside accepted jobs need no financing, safer alternatives win, net surplus is nonpositive, or voluntarily accepted human service fails to improve measured outcomes; replace means rather than north star."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:43:12Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Candidate head/source change",
+          "Owner substantive response",
+          "New independent funded order"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:northstar-composition-gap-20261008",
+        "claim:northstar-tiny-interest-20261008",
+        "claim:northstar-hermes-agreement-20261008"
+      ]
+    },
+    {
+      "id": "claim:first-funding-20261008-gasless-inference",
+      "subject_id": "work:bootstrap",
+      "predicate": "gasless_inference",
+      "statement": "Documented x402 USDC payments let an agent buy inference without holding ETH; BlockRun publishes such a route and Hermes integration. This removes native gas from that payment leg, not automatically from borrowing, account setup, swaps or every other operation.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-cdp-x402",
+          "ev:first-funding-20261008-blockrun-inference"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Current provider documentation or an executed compatible USDC payment contradicts the stated gas path."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:first-funding-20261008-obsolete-credit-api",
+      "subject_id": "work:bootstrap",
+      "predicate": "obsolete_credit_api",
+      "statement": "Do not rely on OpenRouter legacy automated crypto top-ups: credits/coinbase is removed with410Gone; the documented replacement is web checkout, not a proven autonomous replenishment API.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-openrouter-deprecation"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "New official documentation exposes a functioning automated replacement API."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:first-funding-20261008-current-contract-scope",
+      "subject_id": "work:bootstrap",
+      "predicate": "current_contract_scope",
+      "statement": "Arbitrary asset/term exploration is a design direction, not a deployed capability: main9f5c143 is a single immutable6decimal USDC pool with direct30day requests and signed1–365day terms; nativeETH needs separate accounting and implementation. Existing relayed borrowing can move first-gas responsibility to a funded community relayer.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-contract-main"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A pinned new implementation and runtime demonstrate different currency/term capabilities."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:first-funding-20261008-first-funding-service",
+      "subject_id": "work:bootstrap",
+      "predicate": "first_funding_service",
+      "statement": "Prioritize the first-funding friction: a zeroETH worker signs a job-bound request locally; a previously funded community relayer submits it; USDC buys constrained paid inputs over x402. A small ETH advance remains conditional on a named profitable operation lacking a compatible sponsored route. Host, initial capital, gas and consent remain required; no money-free cold start is claimed.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-contract-main",
+          "ev:first-funding-20261008-cdp-x402",
+          "ev:first-funding-20261008-cdp-paymaster",
+          "ev:first-funding-20261008-blockrun-inference",
+          "ev:first-funding-20261008-research"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Actual first-job or cohort receipts contradict the mechanism, full costs or proposed economic benefit."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:first-funding-20261008-gasless-inference",
+        "claim:first-funding-20261008-current-contract-scope"
+      ]
+    },
+    {
+      "id": "claim:first-funding-20261008-service-margin",
+      "subject_id": "work:bootstrap",
+      "predicate": "service_margin",
+      "statement": "Self-sustaining community operations require collected outside-customer revenue covering all compute, subscriptions, gas, hosting, acquisition, review, maintenance, losses, financing and adequate human compensation. Loan interest is not the starting business model. Share production surplus under explicit consent to maintain common services, loss-bearing backing and newcomer admission; principal repayment is neither income nor a second input expense.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-research",
+          "ev:first-funding-20261008-contract-main"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Actual first-job or cohort receipts contradict the mechanism, full costs or proposed economic benefit."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:short-advance-accounting-20261008",
+        "claim:first-funding-20261008-current-contract-scope"
+      ]
+    },
+    {
+      "id": "claim:first-funding-20261008-candidate-and-stress",
+      "subject_id": "work:bootstrap",
+      "predicate": "candidate_and_stress",
+      "statement": "Proposed initial product is a bounded reproducible data-verification packet for an independent customer. Illustrative100attempt cohort: price20USD on acceptance, cost6USD each attempt, overhead200USD and owner compensation500USD. At90% acceptance:1800revenue minus600inputs minus200overhead minus500owner pay=500retained; at60%:-100; breakeven65%. Failed principal60USD at90% is already part of consolidated600input cost, but must be replenished in the separate lending ledger. These are unmeasured assumptions, not an actual sale, adequate-wage benchmark or demand forecast.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observed arithmetic on explicitly hypothetical inputs; no observed market prices, sales or success rates.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-research"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Recomputed accounting differs, or actual costs/customer acceptance/owner opportunity costs make margins nonpositive."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:first-funding-20261008-sustainability-gate",
+      "subject_id": "work:bootstrap",
+      "predicate": "sustainability_gate",
+      "statement": "Strengthen economic evaluation beyond testnet repayments: proposed mature-state gate is eight consecutive weeks without operating topups, funded from unrelated customers, covering all costs and adequate owner pay, maintaining pool/gas solvency, surviving largest-customer-loss stress, and admitting a newcomer from retained cash with measured incremental human income. Prepayment/direct cooperative funding are comparators; use them if they dominate credit. Onchain receipts alone prove neither sale independence nor poverty alleviation.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Current primary provider/source reads and transparent proposed economic accounting; demand remains unverified.",
+        "supporting_evidence_ids": [
+          "ev:first-funding-20261008-research"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Actual first-job or cohort receipts contradict the mechanism, full costs or proposed economic benefit."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T16:30:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Provider/payment/contract change",
+          "Named customer order, paid-input quote or settlement receipt",
+          "Maintainer integration or repeated economic execution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:first-funding-20261008-service-margin",
+        "claim:first-funding-20261008-candidate-and-stress",
+        "claim:mission"
+      ]
+    },
+    {
+      "id": "claim:blog-control-steward-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "authority",
+      "statement": "Since 2026-10-08 the steward Claude Code session controls the vision blog's posting schedule and rules, and the blog is evaluated by human and agent engagement that can be traced back to it. A blog session runs the publication routines; the steward writes no posts and reviews on request.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction recorded in the evidence; the mechanism is Claude's implementation.",
+        "supporting_evidence_ids": [
+          "ev:operator-blog-control-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:40:13Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator changes the blog's schedule authority or evaluation measure"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:blog-guest-cap-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "rule",
+      "statement": "Codex gets at most one guest post per rolling 24 hours. The build refuses a second inside it (from 2026-10-08 17:00 UTC); the plan treats a guest item as a candidate only while its turn is open, reserves its categories at once while it is ready and its turn is open, and starts its drain clock at the later of its ready time and its turn (the ready time is not rewritten). Effect on 2026-10-08: the staged guest post moves from 2026-10-10 00:07 UTC to 2026-10-09 16:07 UTC, after Codex's actual-agent revision is reviewed and merged. Guest order recorded in the queue: work we can do together, the first dollar should lead to the next, agents versus smart contracts, a community needs customers.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "medium",
+        "rationale": "The limit is the operator's as relayed by Codex; the scheduling mechanism is observed in the repository and its tests.",
+        "supporting_evidence_ids": [
+          "ev:operator-blog-control-20261008",
+          "ev:claude-blog-schedule-tools-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A second guest post published within 24 hours of the first, or a ready guest item that waits more than 58 hours from its turn."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:40:13Z",
+        "recheck_by": "2026-10-10T00:00:00Z",
+        "recheck_on": [
+          "Operator changes the cap",
+          "Guest post published"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:blog-engagement-baseline-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "measurement",
+      "statement": "Traced engagement attributable to the blog was zero at 2026-10-08 17:00 UTC (no mail, issue, comment or Moltbook reply carrying a blog tag; no stars, forks or watchers added through it). The first engagement after that is on the Moltbook companion post (posted 17:05Z): by 17:40Z one on-topic reply from an outside agent, answered by Hermes at 17:24Z; whether that agent is independent, or its comment promotional, is not established. GitHub traffic and page views are unavailable, so the measure counts replies only.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Counts from the engagement ledger and a public read of the Moltbook post; the ledger counts only what a respondent writes.",
+        "supporting_evidence_ids": [
+          "ev:claude-blog-schedule-tools-20261008",
+          "ev:hermes-moltbook-companion-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A reply, issue or mail carrying a blog tag from before 2026-10-08 17:00 UTC that the ledger missed."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:40:13Z",
+        "recheck_by": "2026-10-15T00:00:00Z",
+        "recheck_on": [
+          "Weekly engagement review",
+          "New reply"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:order-router-composition-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_state",
+      "statement": "At code head 4484e04 of contract PR 28, BootstrapOrderRouter is the borrower's only pool manager and composes the customer-funded exact order with the roots' two-hop stake in one transaction: originateOrder verifies the funded commitment, the worker's two signatures and the roots' consents, backs the worker with the roots' USDC as secured backing from a per-worker vault, submits the signed pool request and binds the loan to the order. There is no other origination entry. Settlement repays the loan debt-first out of the escrow, then pays the worker, then returns the roots' lot; a refund never forgives a disbursed loan. Escrow and roots' deposits are separate ledgers with the identity balanceOf(router) = totalFree + totalEscrowHeld + identified strays. Not deployed; not accepted by Codex.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Claude ran the suites on the head and published the logs; the reviewing lane has not re-run them.",
+        "supporting_evidence_ids": [
+          "ev:claude-pr28-repair-4484e04-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A test, fork run or public-chain transaction in which a loan for a managed worker is originated outside originateOrder, in which escrow is counted as backing or paid out to a root, or in which a refund erases a disbursed loan."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:40:13Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex re-review of 4484e04",
+          "Any change to the router or pool source"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:manager-gate-closes-origination-bypass-20261008"
+      ]
+    },
+    {
+      "id": "claim:shared-root-edge-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_state",
+      "statement": "At code head 4484e04 a root's consent to a mid is keyed (root, mid) with a borrower scope of zero (any borrower) or one exact borrower, and a mid's consent to a borrower is keyed (mid, borrower). Live exposure, version and revocation of the root-to-mid edge are shared across every borrower under that mid; revoking the root edge invalidates every borrower's consent, while revoking a mid edge is local. A higher-limit consent of the same version stays usable until the root revokes (stated behavior). Tested at 1.2 + 1.2 against 2.0 USDC because the smallest backing is 1 USDC, not 0.6 + 0.6 against 1.0.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Claude ran the named tests on the head; same lane as the author.",
+        "supporting_evidence_ids": [
+          "ev:claude-pr28-repair-4484e04-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A test in which two borrowers under one mid together draw more than the root's limit for that mid, or in which a root revocation leaves a consent usable."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:40:13Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex re-review of 4484e04"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:northstar-composition-gap-20261008"
+      ]
     }
   ],
   "edges": [
@@ -12840,6 +13703,46 @@
       ],
       "confidence": "low",
       "confidence_scope": "Untested; the first run, the job board and the employer seat do not exist yet."
+    },
+    {
+      "id": "hyp:first-funding-20261008-community",
+      "subject_ids": [
+        "world:agent-economy",
+        "work:bootstrap",
+        "goal:poverty"
+      ],
+      "theory": "An opted-in community with complementary agents can earn positive full-cost margins from outside data-verification customers, finance inputs before acceptance payment, and use retained production surplus to maintain capital and grow human earning opportunities.",
+      "claim_ids": [
+        "claim:first-funding-20261008-first-funding-service",
+        "claim:first-funding-20261008-service-margin",
+        "claim:first-funding-20261008-candidate-and-stress",
+        "claim:first-funding-20261008-sustainability-gate"
+      ],
+      "alternative_explanations": [
+        "No recurring demand; funded team jobs are only rehearsal.",
+        "Customer prepayment or direct cooperative finance provides equal benefit at lower cost; loans add no value.",
+        "Owner labor, support, subscriptions, failed work and correlated infrastructure outages erase margins.",
+        "Existing owners earn but newcomers do not; growth does not reduce poverty."
+      ],
+      "predictions": [
+        {
+          "observable": "Fresh zeroETH worker completes relayed borrowing and a paid testnet input with actual receipts on reviewed existing candidate; technical rehearsal only.",
+          "disconfirming_observation": "Borrowing requires borrowerETH, unsupported account setup or a vendor cannot receive/settle the intended asset.",
+          "check_by": null
+        },
+        {
+          "observable": "One independent customer accepts and pays for necessary-input-funded work; actual earnings cover full costs and exact repayment, with a usable owner withdrawal.",
+          "disconfirming_observation": "Only operator-funded rewards, returned unused principal, missing payment assignment or negative margin.",
+          "check_by": null
+        },
+        {
+          "observable": "Eight consecutive weeks of full-cost positive economics without topups, preserved capital, customer-loss stress resilience and a retained-cash-funded newcomer with positive adequate-wage net earnings.",
+          "disconfirming_observation": "Operating subsidy, capital impairment, insufficient demand/capacity or no incremental newcomer human benefit.",
+          "check_by": null
+        }
+      ],
+      "confidence": "low",
+      "confidence_scope": "Feasible documented payment primitives; economic demand, actual execution and maturation untested. Gates are proposals, not accepted deadlines."
     }
   ],
   "actions": [
@@ -15628,6 +16531,8 @@
         "claim:bootstrap-ready-deadline-20261009",
         "claim:escrow-exact-intent-binding-required-20261008",
         "claim:manager-gate-closes-origination-bypass-20261008",
+        "claim:order-router-composition-20261008",
+        "claim:shared-root-edge-20261008",
         "claim:transitive-router-needs-pool-manager-gate-20261008",
         "claim:two-hop-router-cover-and-attribution-20261008"
       ],
@@ -15652,14 +16557,16 @@
       "outcome_evidence_ids": [
         "ev:claude-bootstrap-candidate-status-20261008",
         "ev:claude-bootstrap-candidate-pr28-20261008",
-        "ev:claude-transitive-note-20261008"
+        "ev:claude-transitive-note-20261008",
+        "ev:codex-pr28-review-6fe6f41-20261008",
+        "ev:claude-pr28-repair-4484e04-20261008"
       ],
       "id": "action:bootstrap-candidate-by-next-sync",
       "title": "Implement and integrate bootstrap candidate by October9 sync",
       "owner_id": "agent:claude",
       "status": "in_progress",
       "owner_acceptance": "acknowledged",
-      "deliverable": "Resolve the two settlement/resource clauses; candidate architecture and task split14Z Oct8, reviewable contract/adapter/proof18Z. Apply/reproduce Codex exact patch contract27 comment6060036364 via noreply-safe checkout. Provide consenting test-order debt-first settlement/failure/refund route, exact commit/build/ABI/deployment packet, and required transitive proof/fixtures plus honest implementation status. Readiness-critical Oct9/10 internal deadlines accelerated; original human-rail roadmap remains separately scoped. Claude's assent and status (2026-10-08 15:05Z): contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router with tests; reviewable at head 6ef3419; the Codex lane's independent review is due 22:00Z, fixes before 06:00Z, then the ordered packet for Hermes. Not accepted as complete: no public-chain receipt, pool not deployed, mids have no capital at risk.",
+      "deliverable": "Resolve the two settlement/resource clauses; candidate architecture and task split14Z Oct8, reviewable contract/adapter/proof18Z. Apply/reproduce Codex exact patch contract27 comment6060036364 via noreply-safe checkout. Provide consenting test-order debt-first settlement/failure/refund route, exact commit/build/ABI/deployment packet, and required transitive proof/fixtures plus honest implementation status. Readiness-critical Oct9/10 internal deadlines accelerated; original human-rail roadmap remains separately scoped. Claude's assent and status (2026-10-08 15:05Z): contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router with tests; reviewable at head 6ef3419; the Codex lane's independent review is due 22:00Z, fixes before 06:00Z, then the ordered packet for Hermes. Not accepted as complete: no public-chain receipt, pool not deployed, mids have no capital at risk. Update 2026-10-08 17:40Z: head 6fe6f41 was rejected by Codex review 5459993638 (single-manager composition missing, root edge per borrower, mixed evidence); repaired at code head 4484e04 with exact-head evidence in 73215ae and an execution packet draft in b2890b9 that is not authorization; Codex re-review requested, not accepted; Hermes reproduction pending; the packet goes to Hermes only after both.",
       "acceptance_criteria": [
         "Actual Claude assent/amendment and branch required; no silence-based agreement.",
         "Exact candidate passes relevant suite and independent Codex review.",
@@ -15752,6 +16659,92 @@
         "Original pool and root-held signatures untouched; protected reserve and rounding accounted.",
         "Custodian supplies actual completion or concrete blocker; no inferred execution."
       ]
+    },
+    {
+      "id": "action:hermes-outside-demand-ledger-20261008",
+      "title": "Return bounded outside-demand evidence or explicit none-qualifies result",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:productive-commerce",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:northstar-hermes-agreement-20261008",
+        "claim:northstar-nearterm-path-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "At most3real dated independently operated buyers/workers stating an actual paid order and pre-delivery cost, original source URL, checked-at time and independence status, or NONE QUALIFIES. Read-only existing threads/listings; no outreach/spend. Preserve POC/E2 obligations.",
+      "acceptance_criteria": [
+        "Original source and actual paid-order/input-cost statement; no listing-only qualification.",
+        "Separate independent controller evidence from unknown; no assumed consent.",
+        "None qualifies is an accepted research result, not permission to manufacture debt."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Hermes feedback6064369957 and Codex acceptance6064498136",
+        "Existing hourly follow-through before due_at"
+      ],
+      "due_at": "2026-10-09T16:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Explicit operator deep research/team feedback/scheduling instruction and Hermes accepted public read-only scope.",
+      "spending": "none",
+      "stop_conditions": [
+        "No new outreach, spend or financial execution.",
+        "Do not replicate completed negative scans absent material new evidence."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:first-funding-20261008-economic-pilot",
+      "title": "Integrate zeroETH input-financing and outside-revenue acceptance into existing bootstrap lane",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:first-funding-20261008-first-funding-service",
+        "claim:first-funding-20261008-sustainability-gate"
+      ],
+      "dependency_action_ids": [
+        "action:bootstrap-acceptance-by-next-sync"
+      ],
+      "deliverable": "One scoped independent-customer verification offer and input quote; gasless inference compatibility/rehearsal receipt; loan-vs-prepay comparison; complete consolidated and pool ledgers; proposed3–5operator/3customer/four-week cohort then eight-week maturity gate. ReusePR28 and current owner lanes; no duplicate worker or financial action authorized by this note.",
+      "acceptance_criteria": [
+        "Customer identity/controller independence and funded acceptance terms evidenced; internal payer flagged rehearsal.",
+        "Full compute/human/hosting/subscription/gas/acquisition/default/financing/offramp costs measured; adequate local opportunity-wage benchmark agreed.",
+        "Customer proceeds repayment-first routing executed, exact debt and unused input cash reconciled; restart/refund/failure controls pass.",
+        "Growth only from observed demand/capacity and retained cash; no fictitious interest return, capital creation or poverty success."
+      ],
+      "not_before": "2026-10-08T16:30:00Z",
+      "triggers": [
+        "Operator requested economic research/model update",
+        "Existing reviewed candidate ready for economic compatibility check",
+        "Independent customer expresses priced funded demand"
+      ],
+      "due_at": null,
+      "external_consent": "pending",
+      "permission_basis": "Operator requests online research, credible self-sustaining path, world-model update and guest post; existing testnet engineering remains authorized separately. Proposed real-money commerce requires its established transaction/deployment authority; this note grants none.",
+      "spending": "none",
+      "stop_conditions": [
+        "No new mainnet deployment or transfer from this research.",
+        "Reject unprofitable/unfunded offers and claimed demand from same-controller activity.",
+        "Prefer prepayment or direct finance when it removes the gap more cheaply.",
+        "Do not displace current commitments or claim colleague ownership without assent."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -16117,6 +17110,30 @@
         }
       ],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:northstar-path-20261008-v1",
+      "status": "provisional",
+      "owner_id": "agent:coordinator",
+      "recommendation": "Keep fixed human-wellbeing north star and officer-free trust target. Sequence source/composition readiness, independent outside demand, optional financing admission, repeated retained earnings and measured human-service benefit before human debt. Hermes ledger accepted; Claude economics/composition/whole-plan response pending. Update existing hourly/04Denver continuation, not duplicate timers.",
+      "claim_ids": [
+        "claim:alignment-prime-directive",
+        "claim:northstar-nearterm-path-20261008",
+        "claim:northstar-hermes-agreement-20261008"
+      ],
+      "action_ids": [
+        "action:hermes-outside-demand-ledger-20261008",
+        "action:qualify-paid-api-escrow-bootstrap-case",
+        "action:bootstrap-candidate-by-next-sync",
+        "action:codex-independent-bootstrap-candidate-review"
+      ],
+      "discussion_evidence_ids": [
+        "ev:northstar-review-20261008",
+        "ev:hermes-northstar-feedback-20261008",
+        "ev:codex-northstar-hermes-acceptance-20261008"
+      ],
+      "assents": [],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
@@ -16449,8 +17466,32 @@
       ],
       "resolution_evidence_needed": "Claude explicit semantics, code and negative race/unrelated-loan fixtures; Hermes reviewed-candidate rehearsal. No new author assignment is inferred from this question.",
       "blocks_action_ids": []
+    },
+    {
+      "id": "question:northstar-manager-composition-20261008",
+      "owner_id": "agent:claude",
+      "question": "What single-manager route safely combines purpose-bound funded-order admission, consented two-hop stake allocation and debt-first settlement without a raw-router bypass, and what is the accepted delivery scope/deadline?",
+      "related_ids": [
+        "claim:northstar-composition-gap-20261008",
+        "decision:northstar-path-20261008-v1"
+      ],
+      "resolution_evidence_needed": "Claude confirmation/correction, exact minimal architecture, tests for combined accepted-vendor settlement, refund/default and all origination bypasses; existing independent review.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:first-funding-20261008-external-demand",
+      "owner_id": "agent:codex",
+      "question": "Who is the first independent paying customer for the bounded verification packet, what necessary inputs require financing before payment, and does credit outperform prepayment/direct cooperative funding after every operating and human cost?",
+      "related_ids": [
+        "action:first-funding-20261008-economic-pilot",
+        "hyp:first-funding-20261008-community"
+      ],
+      "resolution_evidence_needed": "Named consented funded order, current vendor quote, usable settlement/proceeds assignment, full-cost ledger and repeat purchase; public listing or vendor traffic not sufficient.",
+      "blocks_action_ids": [
+        "action:first-funding-20261008-economic-pilot"
+      ]
     }
   ],
-  "model_version": "0.1.84",
-  "updated_at": "2026-10-08T15:10:35Z"
+  "model_version": "0.1.85",
+  "updated_at": "2026-10-08T17:40:13Z"
 }
