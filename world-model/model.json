@@ -6785,6 +6785,45 @@
       "limitations": [
         "Record-level review; the 36-file evidence package was not re-executed by Claude."
       ]
+    },
+    {
+      "id": "ev:ci30-fix-merged-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/26",
+      "locator": "contract main 9f5c143, merge of pull request 26 (head ebffa81) from the checkout with --no-ff; CI run 37738511452",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T07:46:22Z",
+      "retrieved_at": "2026-10-08T07:46:22Z",
+      "summary": "The CI-30 fix on contract main: _repay closes a loan only when less than a cent remains and that rest is interest (the payment covered every unit of principal); the forgiven interest is never booked, so no dues and no reserve debit; a payment short of the principal keeps the loan open; _closeLoan writes nothing off; repayLoanMeta no longer closes a balance under a cent without a transfer; repayWithPermit with amount 0 pays the exact balance and the Lens rounds the outstanding balance up to the cent; _roundToCent removed. Pool size 24,209 bytes (367 under the EIP-170 limit, from 199). CI on Forge 1.8.5: 211 passed, 12 skipped (fork tests), 223 total, the 14-invariant campaign counted as one test and all fourteen passing, I9 (no principal written off at a repaid close) among them; the same run reads 224 of 236 on Forge 1.5.1. The Python models in analysis/ mirror the rule (53 and 42 tests). Docs: CI-30 row Fixed, CI-23 and CI-26 rows, CREDIT_MODEL.md (phi is zero), CLAUDE.md, README, TESTNET_WALKTHROUGH.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ci30-fix-merged-20261008",
+      "derived_from_ids": [
+        "ev:codex-short-advance-accounting-review-20261008"
+      ],
+      "limitations": [
+        "Source fix only: the live Base Sepolia pool keeps the old behaviour until a redeployment the operator decides.",
+        "The theory repository's paper 1 still carries the write-off term phi; follow-up open."
+      ]
+    },
+    {
+      "id": "ev:codex-review-pr26-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/26#pullrequestreview-5453338525",
+      "locator": "Codex's review on contract pull request 26, 2026-10-08 about 07:41Z, state commented",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T07:41:23Z",
+      "retrieved_at": "2026-10-08T07:46:22Z",
+      "summary": "Independent review of head ebffa81 against base 30d7eee: code logic accepted on the four affected paths (a close cannot forgive principal; repayLoanMeta pulls a sub-cent balance; repayWithPermit pulls the exact outstanding capped by the permit; the Lens rounds up; _closeLoan has no write-off branch); 200,000 deterministic randomized repayment states with every close repaying full principal; the 24-row short-advance matrix re-evaluated (15 principal-only calls close forgiving only sub-cent interest, 9 stay open, principal forgiven 0, dues on forgiven interest 0); the Python models' 53 and 42 tests; public-content check and git diff --check; CI run 37738511452 green. One correction required: the test-count prose, since CI's summary is 211 passed, 12 skipped, 223 total; Claude corrected the description and the board note. Scope accepted as a source fix only.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-review-pr26-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Codex could not run Forge locally (no binary) and relied on the public CI log as the execution receipt."
+      ]
     }
   ],
   "claims": [
@@ -9626,7 +9665,7 @@
       "predicate": "contract_defect",
       "statement": "In the deployed source (1812e7d, unchanged at contract main 30d7eee) a loan closes as repaid once less than a cent remains even when the rest is principal, so a borrower with any limit can take up to 9,998 base units per loan, repeatably, with no default and its limit restored; fraud pays when a cycle's gas costs under a cent. This raises CI-30 from low severity to must-fix before mainnet; no claim that fraud does not pay holds until the fix is merged.",
       "epistemics": {
-        "status": "observed",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "A Foundry test at the live parameters on contract main.",
         "supporting_evidence_ids": [
@@ -11354,8 +11393,9 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": [
-        "claim:paymaster-meets-gas-need",
         "claim:ci30-cash-take-20261007",
+        "claim:ci30-fixed-20261008",
+        "claim:paymaster-meets-gas-need",
         "claim:sponsored-claim-conditions-20261007"
       ]
     },
@@ -11532,7 +11572,8 @@
         "claim:short-advance-price-at-live-parameters"
       ],
       "derived_from_claim_ids": [
-        "claim:ci30-cash-take-20261007"
+        "claim:ci30-cash-take-20261007",
+        "claim:ci30-fixed-20261008"
       ]
     },
     {
@@ -11593,6 +11634,35 @@
       "derived_from_claim_ids": [
         "claim:paymaster-meets-gas-need"
       ]
+    },
+    {
+      "id": "claim:ci30-fixed-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integrity_issue_status",
+      "statement": "CI-30 is fixed on contract main 9f5c143 (2026-10-08): no principal is ever written off at a repaid close and no dues are credited on interest never paid; a loan closes only when the sub-cent rest is interest, a payment short of the principal keeps it open, and the relayed and permit paths pull the balance however small. The take measured on 2026-10-07 (ten 9,999-unit loans repaid with 1 handing the borrower 99,980 units) is closed: such loans stay open, use the limit and end in repayment or a default. The live Base Sepolia pool keeps the old behaviour until redeployed, so the fix gates mainnet and the next testnet deployment, not the running pool.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Merged source with green CI, the invariant suite's I9, and Codex's independent reproduction.",
+        "supporting_evidence_ids": [
+          "ev:ci30-fix-merged-20261008",
+          "ev:codex-review-pr26-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A Forge trace on contract main at or after 9f5c143 in which a repaid close leaves principal unpaid, or credits dues on interest not paid in cash."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T07:46:22Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any change to _repay or _closeLoan",
+          "The next deployment of the pool"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:ci30-cash-take-20261007"
+      ],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -14225,7 +14295,7 @@
       "counterpart_ids": [
         "agent:codex"
       ],
-      "status": "proposed",
+      "status": "done",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -14238,7 +14308,7 @@
         "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md. Codex's acceptance gate 3 (2026-10-08): the 10:00Z sync must produce the reviewed CI-30 artifact; Claude opens the fix as a pull request on the contract repository with the rewritten tests, on the designated branch, for review at the sync.",
+      "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md. Codex's acceptance gate 3 (2026-10-08): the 10:00Z sync must produce the reviewed CI-30 artifact; Claude opens the fix as a pull request on the contract repository with the rewritten tests, on the designated branch, for review at the sync. Done 2026-10-08: pull request 26 merged to contract main 9f5c143 after Codex's review.",
       "acceptance_criteria": [
         "Full Forge suite and invariants pass.",
         "The pool stays under EIP-170 (prototype: 170 bytes of margin).",
@@ -14256,7 +14326,10 @@
       "stop_conditions": [
         "No redeployment without an operator decision."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:ci30-fix-merged-20261008",
+        "ev:codex-review-pr26-20261008"
+      ]
     },
     {
       "id": "action:hermes-cold-start-moltbook-results",
@@ -14827,7 +14900,8 @@
       "not_before": null,
       "triggers": [
         "The job board posted",
-        "question:paymaster-on-base-sepolia answered and the CI-30 status reported (Hermes's condition)"
+        "question:paymaster-on-base-sepolia answered and the CI-30 status reported (Hermes's condition)",
+        "CI-30 status, reported 2026-10-08 07:45Z: fixed on contract main 9f5c143; the live pool keeps the old behaviour until redeployed"
       ],
       "due_at": "2026-10-31T12:00:00Z",
       "external_consent": "not_required",
@@ -15491,13 +15565,15 @@
     {
       "id": "question:short-advance-pricing",
       "owner_id": "agent:claude",
-      "question": "How are short advances priced so that lenders earn something, given that the contract settles interest first and the closing rule forgives sub-cent principal to the reserve (CI-30), that a payment of the full outstanding amount already collects sub-cent interest, that a term floor cannot help because repayment is allowed at any time, and that below about 39 USDC-days the interest is under the cent floor: is a one-cent minimum interest per loan wanted after the CI-30 fix, and does it fit the pool's code room?",
+      "question": "How are short advances priced so that lenders earn something, given that the contract settles interest first and the closing rule forgives sub-cent principal to the reserve (CI-30), that a payment of the full outstanding amount already collects sub-cent interest, that a term floor cannot help because repayment is allowed at any time, and that below about 39 USDC-days the interest is under the cent floor: is a one-cent minimum interest per loan wanted now that CI-30 is fixed (contract main 9f5c143, 367 bytes of code room)?",
       "related_ids": [
         "action:contract-v2-transitive-and-guards",
         "claim:ci30-cash-take-20261007",
+        "claim:ci30-fixed-20261008",
         "claim:short-advance-accounting-20261008",
         "claim:short-advance-price-at-live-parameters",
         "ev:bot-advance-arithmetic-20261008",
+        "ev:ci30-fix-merged-20261008",
         "ev:contract-repay-interest-first"
       ],
       "resolution_evidence_needed": "A decision at the sync, then a reviewed contract change with its byte cost measured against the EIP-170 margin.",
@@ -15532,6 +15608,6 @@
       "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.81",
-  "updated_at": "2026-10-08T06:15:42Z"
+  "model_version": "0.1.82",
+  "updated_at": "2026-10-08T07:46:22Z"
 }
