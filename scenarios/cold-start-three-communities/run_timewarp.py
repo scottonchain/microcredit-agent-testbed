@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Time-advance extension of run.py: failed-job default path (t2). Interest-bearing repayment is NOT implemented.
+"""Time-advance extension of run.py: SECURED-STAKE failed-job default path (t2). Interest-bearing repayment is NOT implemented.
 
 Local Anvil fork only (same guards as run.py: loopback RPC, chain 31337, pinned block, pinned code
 fingerprints). Adds ONLY clock methods to the RPC allowlist: anvil_setNextBlockTimestamp, evm_mine.
@@ -15,6 +15,7 @@ import argparse
 import importlib.util
 import json
 import sys
+import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -64,7 +65,13 @@ class TimeRunner(base.Runner):
         tx.update({"gas": hex(gas), "gasPrice": hex(price)})
         self.journal.append("transaction_intent", {"label": label, "transaction": tx})
         h = self.rpc.call("eth_sendTransaction", [tx])
-        receipt = self.rpc.call("eth_getTransactionReceipt", [h])
+        receipt = None
+        deadline = time.monotonic() + 30
+        while time.monotonic() < deadline:
+            receipt = self.rpc.call("eth_getTransactionReceipt", [h])
+            if receipt is not None:
+                break
+            time.sleep(0.2)
         base.require(receipt is not None and int(receipt["status"], 16) == 1, "Failed/missing receipt: " + label)
         self.journal.append("transaction_receipt", {"label": label, "hash": h, "receipt": receipt})
         self.tx_count += 1
@@ -124,10 +131,44 @@ class TimeRunner(base.Runner):
                      "Borrow limit must be 1 USDC")
         return funder, borrower
 
+    def secured_setup(self, i, borrower_role):
+        """Sponsor-first-loss setup: 5 USDC lender deposit + SEPARATE 1 USDC stake; NO score published,
+        NO granted credit. Backing is secured only: getBacking == [1 USDC, 0]."""
+        B = base
+        funder, borrower = self.roles["s%d-funder" % i], self.roles[borrower_role]
+        B.require(self.uint(B.USDC, "balanceOf(address)", funder) == 0, "Fresh funder must hold no USDC")
+        self.fund(funder, B.DEPOSIT, "five-USDC lender deposit endowment")
+        assets, shares = self.uint(B.POOL, "totalAssets()"), self.uint(B.POOL, "totalShares()")
+        quote = B.exact_quote(assets, shares, B.DEPOSIT)
+        B.require(quote["exact"], "Five-USDC deposit is not exactly redeemable at this source state")
+        self.execute(funder, B.USDC, "approve(address,uint256)", (B.POOL, B.DEPOSIT), label="exact five-USDC deposit approval")
+        self.execute(funder, B.POOL, "depositFunds(uint256)", (B.DEPOSIT,), label="five-USDC existing pool deposit")
+        # separate explicit 1 USDC stake amount
+        self.fund(funder, B.UNIT, "separate one-USDC sponsor stake endowment")
+        B.require(self.uint(B.USDC, "balanceOf(address)", funder) == B.UNIT, "Stake endowment mismatch")
+        keys = ("getCreditScore", "grantedCredit", "creditCommitted", "stakeOf", "stakeCommitted")
+        pre = {k: self.uint(B.POOL, k + "(address)", funder) for k in keys}
+        B.require(all(v == 0 for v in pre.values()), "Funder must start with zero score/credit/stake: %r" % pre)
+        self.execute(funder, B.USDC, "approve(address,uint256)", (B.POOL, B.UNIT), label="exact one-USDC stake approval")
+        self.send(funder, "stake(uint256)", (B.UNIT,), "stake one USDC")
+        self.execute(funder, B.POOL, "back(address,uint256)", (borrower, B.UNIT), label="one-USDC SECURED backing")
+        post = {k: self.uint(B.POOL, k + "(address)", funder) for k in keys}
+        backing = B.decode_words(self.view(B.POOL, "getBacking(address,address)", funder, borrower))
+        B.require(post["getCreditScore"] == post["grantedCredit"] == post["creditCommitted"] == 0 and
+                  post["stakeOf"] == post["stakeCommitted"] == B.UNIT and backing == [B.UNIT, 0] and
+                  self.uint(B.POOL, "totalStaked()") == B.UNIT and
+                  B.decode_words(self.view(B.POOL, "getBorrowLimit(address)", borrower)) == [B.UNIT, B.UNIT],
+                  "Pre-borrow secured-backing assertions failed: %r %r" % (post, backing))
+        self.journal.append("pre_borrow_assertions", {"funder_before_stake": pre, "funder_after_back": post,
+                                                       "getBacking_secured_unsecured": backing})
+        return funder, borrower
+
     def t2(self):
-        """Sponsor-first-loss failed job: stake-backed (secured) line, borrower never repays; impair at term+1, default at term+LATE+1.
-        Expectations are declared here BEFORE any fork run and checked, not tuned, afterwards. No score is published or refreshed."""
-        funder, borrower = self.setup_staked(2, "s2-borrower-a")
+        """Secured-stake default: borrower never repays; impair at term+1, default at term+LATE+1.
+        Predeclared (before the default tx): sponsor stakeOf and totalStaked fall by exactly 1 USDC; creditLoss == 0;
+        firstLossReserve, totalShares and unrelated lender balances unchanged; backing edge consumed; borrower defaulted."""
+        B = base
+        funder, borrower = self.secured_setup(2, "s2-borrower-a")
         loan_id = self.request(borrower)
         self.disburse(loan_id, borrower)
         states = {"disbursed": self.pool_state(loan_id, funder, borrower)}
@@ -137,27 +178,37 @@ class TimeRunner(base.Runner):
         states["impaired"] = self.pool_state(loan_id, funder, borrower)
         self.warp(30 * DAY + 1, "LATE_PERIOD elapsed (30 days + 1 s)")
         states["late_elapsed"] = self.pool_state(loan_id, funder, borrower)
-        # No provider refresh / no score publish. If markDefaulted needs a fresh provider the tx reverts and the run halts (a finding).
+        pre = states["late_elapsed"]
+        lenders_before = {u: {x: self.uint(B.POOL, x + "(address)", u) for x in ("sharesOf", "lenderBalance")}
+                          for u in self.baseline["pool"]["existing_lenders"]}
+        pre_edges = B.decode_array(self.view(B.POOL, "getBackings(address)", borrower), 3)
+        self.journal.append("predeclared_expectations", {
+            "stakeOf_delta": -B.UNIT, "totalStaked_delta": -B.UNIT, "creditLoss": 0, "firstLossReserve_delta": 0,
+            "totalShares_delta": 0, "borrower_defaultedLoans": 1,
+            "unrelated_lenders_unchanged": True, "edge": "consumed (secured 0, unsecured 0)"})
         self.send(self.treasury, "markDefaulted(uint256)", (loan_id,), "permissionless markDefaulted")
-        states["defaulted"] = self.pool_state(loan_id, funder, borrower)
-        d, pre = states["defaulted"], states["late_elapsed"]
-        U = base.UNIT
+        post = self.pool_state(loan_id, funder, borrower)
+        states["defaulted"] = post
+        lenders_after = {u: {x: self.uint(B.POOL, x + "(address)", u) for x in ("sharesOf", "lenderBalance")}
+                         for u in self.baseline["pool"]["existing_lenders"]}
+        post_edges = B.decode_array(self.view(B.POOL, "getBackings(address)", borrower), 3)
         checks = {
-            "sponsor stake fell by exactly 1 USDC": d["funder_stakeOf"] == pre["funder_stakeOf"] - U,
-            "totalStaked fell by exactly 1 USDC": d["totalStaked"] == pre["totalStaked"] - U,
-            "sponsor stake is zero": d["funder_stakeOf"] == 0,
-            "creditLoss == 0": d["funder_creditLoss"] == 0,
-            "firstLossReserve unchanged": d["firstLossReserve"] == states["disbursed"]["firstLossReserve"],
-            "totalAssets unchanged vs disbursed": d["totalAssets"] == states["disbursed"]["totalAssets"],
-            "totalShares unchanged vs disbursed": d["totalShares"] == states["disbursed"]["totalShares"],
-            "sponsor lenderBalance unchanged vs disbursed": d["funder_lenderBalance"] == states["disbursed"]["funder_lenderBalance"],
-            "backing edge released/consumed (== [0,0])": d["backing"] == [0, 0],
-            "borrower defaultedLoans == 1": d["borrower_defaultedLoans"] == 1,
-            "loan outstanding == 0": d["outstanding"] == 0,
-            "no score ever published for sponsor": d["funder_creditScore"] == 0 and d["funder_grantedCredit"] == 0,
+            "stakeOf_fell_exactly_1_USDC": pre["funder_stakeOf"] - post["funder_stakeOf"] == B.UNIT and post["funder_stakeOf"] == 0,
+            "totalStaked_fell_exactly_1_USDC": self.uint(B.POOL, "totalStaked()") == 0,
+            "creditLoss_zero": post["funder_creditLoss"] == 0,
+            "firstLossReserve_unchanged": post["firstLossReserve"] == pre["firstLossReserve"],
+            "totalShares_unchanged": post["totalShares"] == pre["totalShares"],
+            "unrelated_lenders_unchanged": lenders_after == lenders_before,
+            "borrower_defaulted": post["borrower_defaultedLoans"] == 1,
+            "edge_consumed_or_released": all(e[1] == 0 and e[2] == 0 for e in post_edges),
+            "stakeCommitted_zero": self.uint(B.POOL, "stakeCommitted(address)", funder) == 0,
         }
-        return {"loan_id": loan_id, "funder": funder, "borrower": borrower, "provider_refresh": "none (by design)",
-                "predeclared_checks": checks, "all_predeclared_checks_passed": all(checks.values()), "states": states}
+        self.journal.append("predeclared_assertion_results", {"checks": checks, "pre_edges": pre_edges, "post_edges": post_edges,
+                                                              "totalAssets_pre_post": [pre["totalAssets"], post["totalAssets"]]})
+        failed = [k for k, v in checks.items() if not v]
+        B.require(not failed, "Predeclared assertions failed: %r" % failed)
+        return {"loan_id": loan_id, "funder": funder, "borrower": borrower,
+                "path": "secured-stake (stake(1 USDC), no score)", "assertions": checks, "states": states}
 
     def run_scenario(self, which):
         version = self.rpc.guard()
@@ -227,6 +278,7 @@ def self_test():
         pass
     else:
         raise AssertionError("send() accepted signature outside allowlist")
+    assert "stake(uint256)" in OUT_SIGS and "unstake(uint256)" not in OUT_SIGS and "withdrawFunds(uint256)" not in OUT_SIGS
     assert base.selector("impairLoan(uint256)") and base.selector("markDefaulted(uint256)")
     return {"status": "passed", "mode": "offline_self_test", "network_calls": 0, "scenarios_executed": False,
             "checks": ["clock-only allowlist extension; storage/balance/code methods absent",

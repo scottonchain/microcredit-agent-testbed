@@ -1,0 +1,224 @@
+{
+  "chain_id": 31337,
+  "client_version": "anvil/v1.8.4",
+  "clock": [
+    {
+      "after": 1794000649,
+      "before": 1791408648,
+      "label": "term elapsed (30 days + 1 s)",
+      "seconds": 2592001,
+      "time": "synthetic"
+    },
+    {
+      "after": 1796592650,
+      "before": 1794000649,
+      "label": "LATE_PERIOD elapsed (30 days + 1 s)",
+      "seconds": 2592001,
+      "time": "synthetic"
+    }
+  ],
+  "fork_block": 47820167,
+  "limitations": [
+    "Final fork state is not restored; discard the node.",
+    "All actors controlled by one operator; synthetic time; not live-chain evidence."
+  ],
+  "mode": "fork",
+  "result": {
+    "assertions": {
+      "borrower_defaulted": true,
+      "creditLoss_zero": true,
+      "edge_consumed_or_released": true,
+      "firstLossReserve_unchanged": true,
+      "stakeCommitted_zero": true,
+      "stakeOf_fell_exactly_1_USDC": true,
+      "totalShares_unchanged": true,
+      "totalStaked_fell_exactly_1_USDC": true,
+      "unrelated_lenders_unchanged": true
+    },
+    "borrower": "0x56214ae2cfcd5ed76cb79126a595010cb831c407",
+    "funder": "0x711e15425326fe01b958ea97ff37aa6336a7cec3",
+    "loan_id": 18,
+    "path": "secured-stake (stake(1 USDC), no score)",
+    "states": {
+      "defaulted": {
+        "backing": [
+          0,
+          0
+        ],
+        "block_timestamp": 1796592650,
+        "borrower_completedLoans": 0,
+        "borrower_defaultedLoans": 1,
+        "firstLossReserve": 0,
+        "funder_creditCommitted": 0,
+        "funder_creditLoss": 0,
+        "funder_creditScore": 0,
+        "funder_grantedCredit": 0,
+        "funder_lenderBalance": 5000000,
+        "funder_stakeCommitted": 0,
+        "funder_stakeOf": 0,
+        "lenderCash": 20000000,
+        "loan_terms": [
+          4,
+          2592000,
+          1791408648,
+          1791408648,
+          1794000648
+        ],
+        "outstanding": 0,
+        "protocolFees": 0,
+        "provider_isFresh": 0,
+        "reservedLiquidity": 0,
+        "token_balance": 20000000,
+        "totalAssets": 20000000,
+        "totalImpaired": 0,
+        "totalLentOut": 0,
+        "totalShares": 20000000000000,
+        "totalStaked": 0
+      },
+      "disbursed": {
+        "backing": [
+          1000000,
+          0
+        ],
+        "block_timestamp": 1791408648,
+        "borrower_completedLoans": 0,
+        "borrower_defaultedLoans": 0,
+        "firstLossReserve": 0,
+        "funder_creditCommitted": 0,
+        "funder_creditLoss": 0,
+        "funder_creditScore": 0,
+        "funder_grantedCredit": 0,
+        "funder_lenderBalance": 5000000,
+        "funder_stakeCommitted": 1000000,
+        "funder_stakeOf": 1000000,
+        "lenderCash": 19000000,
+        "loan_terms": [
+          2,
+          2592000,
+          1791408648,
+          1791408648,
+          1794000648
+        ],
+        "outstanding": 1000000,
+        "protocolFees": 0,
+        "provider_isFresh": 1,
+        "reservedLiquidity": 0,
+        "token_balance": 20000000,
+        "totalAssets": 20000000,
+        "totalImpaired": 0,
+        "totalLentOut": 1000000,
+        "totalShares": 20000000000000,
+        "totalStaked": 1000000
+      },
+      "impaired": {
+        "backing": [
+          1000000,
+          0
+        ],
+        "block_timestamp": 1794000649,
+        "borrower_completedLoans": 0,
+        "borrower_defaultedLoans": 0,
+        "firstLossReserve": 0,
+        "funder_creditCommitted": 0,
+        "funder_creditLoss": 0,
+        "funder_creditScore": 0,
+        "funder_grantedCredit": 0,
+        "funder_lenderBalance": 5000000,
+        "funder_stakeCommitted": 1000000,
+        "funder_stakeOf": 1000000,
+        "lenderCash": 19000000,
+        "loan_terms": [
+          2,
+          2592000,
+          1791408648,
+          1791408648,
+          1794000648
+        ],
+        "outstanding": 1007668,
+        "protocolFees": 0,
+        "provider_isFresh": 0,
+        "reservedLiquidity": 0,
+        "token_balance": 20000000,
+        "totalAssets": 20000000,
+        "totalImpaired": 0,
+        "totalLentOut": 1000000,
+        "totalShares": 20000000000000,
+        "totalStaked": 1000000
+      },
+      "late_elapsed": {
+        "backing": [
+          1000000,
+          0
+        ],
+        "block_timestamp": 1796592650,
+        "borrower_completedLoans": 0,
+        "borrower_defaultedLoans": 0,
+        "firstLossReserve": 0,
+        "funder_creditCommitted": 0,
+        "funder_creditLoss": 0,
+        "funder_creditScore": 0,
+        "funder_grantedCredit": 0,
+        "funder_lenderBalance": 5000000,
+        "funder_stakeCommitted": 1000000,
+        "funder_stakeOf": 1000000,
+        "lenderCash": 19000000,
+        "loan_terms": [
+          2,
+          2592000,
+          1791408648,
+          1791408648,
+          1794000648
+        ],
+        "outstanding": 1015336,
+        "protocolFees": 0,
+        "provider_isFresh": 0,
+        "reservedLiquidity": 0,
+        "token_balance": 20000000,
+        "totalAssets": 20000000,
+        "totalImpaired": 0,
+        "totalLentOut": 1000000,
+        "totalShares": 20000000000000,
+        "totalStaked": 1000000
+      },
+      "term_elapsed": {
+        "backing": [
+          1000000,
+          0
+        ],
+        "block_timestamp": 1794000649,
+        "borrower_completedLoans": 0,
+        "borrower_defaultedLoans": 0,
+        "firstLossReserve": 0,
+        "funder_creditCommitted": 0,
+        "funder_creditLoss": 0,
+        "funder_creditScore": 0,
+        "funder_grantedCredit": 0,
+        "funder_lenderBalance": 5000000,
+        "funder_stakeCommitted": 1000000,
+        "funder_stakeOf": 1000000,
+        "lenderCash": 19000000,
+        "loan_terms": [
+          2,
+          2592000,
+          1791408648,
+          1791408648,
+          1794000648
+        ],
+        "outstanding": 1007668,
+        "protocolFees": 0,
+        "provider_isFresh": 0,
+        "reservedLiquidity": 0,
+        "token_balance": 20000000,
+        "totalAssets": 20000000,
+        "totalImpaired": 0,
+        "totalLentOut": 1000000,
+        "totalShares": 20000000000000,
+        "totalStaked": 1000000
+      }
+    }
+  },
+  "scenario": "t2",
+  "status": "ran",
+  "time": "synthetic",
+  "tx_count": 22
+}

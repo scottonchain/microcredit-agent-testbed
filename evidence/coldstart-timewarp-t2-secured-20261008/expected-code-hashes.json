@@ -1,0 +1,26 @@
+{
+  "source_chain_id": 84532,
+  "fork_block_number": 47820167,
+  "fork_block_hash": "0x218987b10b600b59f5ac7a7a6e6e4d721a289e690b99d7c7f4e07bba64fe2078",
+  "block_timestamp": 1791408622,
+  "contracts": {
+    "DecentralizedMicrocredit": {
+      "address": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+      "sha256": "4f27a59927df4f7dcecc8a2e121d3f17d1b6dbeb3a5b1781a323ae00464881bd",
+      "keccak256": "0xcbec266adbac00e2db7af5c2ce5b68316ca8a42877bb2fb93c475681b7ba9dc8",
+      "code_bytes": 24377
+    },
+    "OracleScoreProvider": {
+      "address": "0x554c6bb61edf0cafb90ff31813540369cb0105e4",
+      "sha256": "a4dd1a8ea697deaf3a268d283fd4a9b66e4c8b5bf7c5cb25e4f21051c5a17a8f",
+      "keccak256": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3",
+      "code_bytes": 4916
+    },
+    "USDC": {
+      "address": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+      "sha256": "e878b99fc0c17354c86c7edeb999c70c18cfd925abb0958496f027cbad996d28",
+      "keccak256": "0xedc5281a85c0efecd49999a1ef668390c59b88702f2d4a07029d7f5d63059d6c",
+      "code_bytes": 1798
+    }
+  }
+}
