@@ -1,0 +1,1120 @@
+{
+  "schema": "codex.eth-gas-read-only-winner-probe/1",
+  "startedAt": "2026-10-08T00:41:51.011Z",
+  "mode": "READ_ONLY_SAMPLED_DISCOVERY",
+  "chainId": 8453,
+  "prizePool": "0x45b2010d8a4f08b53c9fa7544c51dfd9733732cb",
+  "status": "COMPLETE_READ_ONLY_SAMPLE",
+  "stage": "complete",
+  "limits": {
+    "maxAddresses": 128,
+    "maxCandidatesChecked": 12,
+    "maxHttpRequests": 80,
+    "maxRpcOperations": 160,
+    "maxRuntimeMs": 90000
+  },
+  "counters": {
+    "httpRequests": 48,
+    "rpcOperations": 48
+  },
+  "candidates": [
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 4,
+      "prizeIndex": 10,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": true,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "11115556537608",
+      "unclaimedAtSnapshot": false,
+      "eligibleForFurtherSimulation": false,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 4,
+      "prizeIndex": 199,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": true,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "11115556537608",
+      "unclaimedAtSnapshot": false,
+      "eligibleForFurtherSimulation": false,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 264,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 1571,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 1619,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 1654,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 1687,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 1720,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 2414,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 2556,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 3448,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    },
+    {
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndex": 3937,
+      "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+      "drawId": 841,
+      "isWinner": true,
+      "wasClaimed": false,
+      "hooks": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      },
+      "noEnabledHooks": true,
+      "singleClaimQuotedFeeWethWei": "109312671627",
+      "unclaimedAtSnapshot": true,
+      "eligibleForFurtherSimulation": true,
+      "exactClaimSimulated": false,
+      "completeCyclePriced": false,
+      "spendAuthorizedByProbe": false
+    }
+  ],
+  "claims": {
+    "liveExecution": false,
+    "earnedRevenue": false,
+    "loanDisbursed": false,
+    "globalOpportunityAbsence": false
+  },
+  "caveats": [
+    "Historical addresses are an incomplete sample, not current winner evidence.",
+    "Calculator results are checked at the recorded block; all conditions can change afterward.",
+    "A candidate is not a profitable operation; exact fresh call simulation and whole-cycle gas pricing remain required.",
+    "minFeePerClaim does not protect against zero successful claims or race gas loss.",
+    "This script forces all eth_call and eth_getCode reads to one block, including official helper calls missing explicit blockNumber."
+  ],
+  "seed": {
+    "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c",
+    "historical": true,
+    "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+    "availableAddressCount": 1104,
+    "sampledAddressCount": 128,
+    "sample": "first unique <=128 supplied addresses; not representative"
+  },
+  "library": {
+    "name": "@generationsoftware/js-winner-calc",
+    "version": "1.3.1",
+    "officialApiSourceCommit": "442688d182bc7dba100c729530d3f3db5fd336d1",
+    "executedEntrySha256": "a9667a61ade0f8c3bfd9a154dfee6f0278bc24e0eab7d003b22fdca97516740c"
+  },
+  "block": {
+    "number": "52315382",
+    "hash": "0x47aadbed15a1aca022a3ec66008bb8d3d3702e8ad968e74dada5ecfc7c0792ed",
+    "timestamp": "1791420111",
+    "fixedRpcCallTag": "0x31e44f6"
+  },
+  "contracts": {
+    "drawId": 841,
+    "numTiers": 7,
+    "prizeToken": "0x4200000000000000000000000000000000000006",
+    "claimer": "0xcdCE635b774DE77cdF791647601dba64a75547ba",
+    "canonicalBaseWethAddressMatch": true,
+    "fingerprints": {
+      "pool": {
+        "address": "0x45b2010d8a4f08b53c9fa7544c51dfd9733732cb",
+        "runtimeCodeKeccak256": "0x431957ea10f05778f0be1c017a5569dd4d3a3222948b2535b8a22d2c5e8b4e53"
+      },
+      "vault": {
+        "address": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+        "runtimeCodeKeccak256": "0x3ac546a6de0c470932b00df77413b770d18c837404fc9b68d6ca91fd4fc53302"
+      },
+      "claimer": {
+        "address": "0xcdCE635b774DE77cdF791647601dba64a75547ba",
+        "runtimeCodeKeccak256": "0x735301cccf58dc61eef97f8986631537f030d3d615d137c6403b8e2ab69dccc7"
+      },
+      "prizeToken": {
+        "address": "0x4200000000000000000000000000000000000006",
+        "runtimeCodeKeccak256": "0x8a3a1f6a9f9dce633117adee5b458245835a8645a8c8726a26382a4622508b1c"
+      }
+    }
+  },
+  "tiers": [
+    4,
+    5,
+    6
+  ],
+  "calculatedWinners": [
+    {
+      "user": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "prizes": {
+        "4": [
+          10,
+          199
+        ],
+        "6": [
+          264,
+          1571,
+          1619,
+          1654,
+          1687,
+          1720,
+          2414,
+          2556,
+          3448,
+          3937
+        ]
+      }
+    },
+    {
+      "user": "0x4a290f18c35bbfe97b2557cf765de9387726de39",
+      "prizes": {
+        "4": [
+          243
+        ]
+      }
+    },
+    {
+      "user": "0x8452f039e833b68ef48fe137d57854fc1c2e3337",
+      "prizes": {
+        "4": [
+          88,
+          150
+        ],
+        "5": [
+          4,
+          46,
+          83,
+          99,
+          192,
+          240,
+          278,
+          518,
+          544,
+          586,
+          598,
+          660,
+          874,
+          963,
+          1000
+        ],
+        "6": [
+          25,
+          111,
+          185,
+          197,
+          206,
+          299,
+          302,
+          426,
+          657,
+          684,
+          768,
+          858,
+          890,
+          966,
+          1146,
+          1149,
+          1194,
+          1299,
+          1355,
+          1486,
+          1506,
+          1562,
+          1577,
+          1620,
+          1672,
+          1884,
+          1929,
+          2084,
+          2157,
+          2185,
+          2188,
+          2275,
+          2373,
+          2401,
+          2582,
+          2636,
+          2787,
+          2799,
+          2918,
+          2929,
+          2949,
+          2977,
+          3033,
+          3344,
+          3580,
+          3608,
+          3641,
+          3693,
+          3716,
+          3729,
+          3982,
+          4009,
+          4021,
+          4080,
+          4089
+        ]
+      }
+    },
+    {
+      "user": "0x0d3d681762f9eda9541fab6acfb17c50025b630b",
+      "prizes": {
+        "4": [
+          70,
+          153,
+          239,
+          240
+        ],
+        "5": [
+          1,
+          26,
+          48,
+          51,
+          64,
+          148,
+          256,
+          257,
+          301,
+          307,
+          329,
+          373,
+          375,
+          456,
+          485,
+          497,
+          525,
+          550,
+          613,
+          624,
+          677,
+          729,
+          833,
+          834,
+          868,
+          869,
+          886,
+          918,
+          927,
+          974
+        ],
+        "6": [
+          9,
+          62,
+          72,
+          95,
+          162,
+          295,
+          350,
+          352,
+          419,
+          453,
+          476,
+          504,
+          565,
+          669,
+          672,
+          711,
+          729,
+          741,
+          811,
+          872,
+          977,
+          1012,
+          1043,
+          1089,
+          1142,
+          1200,
+          1263,
+          1369,
+          1389,
+          1591,
+          1643,
+          1689,
+          1734,
+          1786,
+          1793,
+          1801,
+          1853,
+          1871,
+          1890,
+          1931,
+          1935,
+          1988,
+          2041,
+          2057,
+          2063,
+          2085,
+          2102,
+          2105,
+          2106,
+          2148,
+          2201,
+          2215,
+          2270,
+          2309,
+          2468,
+          2508,
+          2511,
+          2554,
+          2616,
+          2647,
+          2689,
+          2711,
+          2741,
+          2820,
+          2909,
+          2910,
+          2993,
+          3009,
+          3024,
+          3075,
+          3141,
+          3194,
+          3297,
+          3398,
+          3514,
+          3524,
+          3574,
+          3699,
+          3761,
+          3778,
+          3839,
+          3867,
+          3902,
+          3927,
+          3953,
+          3998,
+          4021,
+          4072
+        ]
+      }
+    },
+    {
+      "user": "0x9b2247e137387c2a2c49e9607e4b70473891e9fc",
+      "prizes": {
+        "4": [
+          34,
+          66,
+          120
+        ],
+        "5": [
+          20,
+          31,
+          39,
+          40,
+          50,
+          299,
+          371,
+          378,
+          401,
+          417,
+          435,
+          443,
+          501,
+          506,
+          794,
+          814,
+          888,
+          899,
+          946,
+          967
+        ],
+        "6": [
+          6,
+          41,
+          107,
+          204,
+          385,
+          461,
+          492,
+          558,
+          567,
+          599,
+          668,
+          714,
+          981,
+          1044,
+          1046,
+          1095,
+          1168,
+          1205,
+          1296,
+          1364,
+          1367,
+          1389,
+          1455,
+          1513,
+          1564,
+          1647,
+          1651,
+          1656,
+          1695,
+          1762,
+          1774,
+          1778,
+          1882,
+          1943,
+          1991,
+          2006,
+          2051,
+          2223,
+          2254,
+          2273,
+          2344,
+          2412,
+          2438,
+          2460,
+          2486,
+          2543,
+          2830,
+          2945,
+          2971,
+          3011,
+          3127,
+          3151,
+          3170,
+          3225,
+          3264,
+          3455,
+          3489,
+          3651,
+          3667,
+          3688,
+          3711,
+          3840,
+          3879,
+          3994,
+          4057,
+          4079
+        ]
+      }
+    },
+    {
+      "user": "0x1c62a9962a39f504db04ded3210fff40e58ef283",
+      "prizes": {
+        "4": [
+          100,
+          105,
+          223,
+          253
+        ],
+        "5": [
+          87,
+          102,
+          219,
+          299,
+          305,
+          333,
+          391,
+          419,
+          506,
+          544,
+          698,
+          775,
+          934,
+          944,
+          1002,
+          1008
+        ],
+        "6": [
+          18,
+          62,
+          146,
+          204,
+          515,
+          548,
+          627,
+          685,
+          773,
+          886,
+          951,
+          996,
+          1125,
+          1201,
+          1641,
+          1666,
+          1697,
+          1719,
+          1982,
+          2063,
+          2082,
+          2110,
+          2150,
+          2152,
+          2190,
+          2291,
+          2367,
+          2439,
+          2547,
+          2600,
+          2606,
+          2631,
+          2739,
+          2754,
+          2818,
+          3064,
+          3075,
+          3378,
+          3422,
+          3466,
+          3491,
+          3529,
+          3557,
+          3685,
+          3739,
+          3799,
+          3812,
+          3875,
+          3934,
+          3951,
+          3988,
+          4008
+        ]
+      }
+    },
+    {
+      "user": "0x386f51648612814c12c5ce1d950c772c3ab8c05d",
+      "prizes": {
+        "4": [
+          28,
+          37,
+          61,
+          148,
+          150,
+          161,
+          202,
+          209,
+          238,
+          251,
+          255
+        ],
+        "5": [
+          12,
+          30,
+          37,
+          52,
+          54,
+          88,
+          131,
+          163,
+          183,
+          283,
+          290,
+          308,
+          332,
+          370,
+          423,
+          434,
+          454,
+          460,
+          474,
+          500,
+          502,
+          522,
+          550,
+          598,
+          650,
+          725,
+          728,
+          739,
+          852,
+          855,
+          870,
+          904,
+          947
+        ],
+        "6": [
+          14,
+          41,
+          90,
+          159,
+          169,
+          212,
+          232,
+          263,
+          264,
+          433,
+          496,
+          514,
+          603,
+          614,
+          621,
+          743,
+          746,
+          819,
+          898,
+          965,
+          987,
+          1002,
+          1006,
+          1046,
+          1054,
+          1091,
+          1152,
+          1183,
+          1277,
+          1297,
+          1301,
+          1303,
+          1352,
+          1403,
+          1404,
+          1424,
+          1432,
+          1448,
+          1524,
+          1543,
+          1631,
+          1635,
+          1842,
+          1852,
+          1889,
+          1936,
+          1954,
+          1966,
+          1999,
+          2040,
+          2116,
+          2135,
+          2204,
+          2240,
+          2263,
+          2360,
+          2368,
+          2376,
+          2383,
+          2397,
+          2418,
+          2471,
+          2535,
+          2598,
+          2607,
+          2608,
+          2671,
+          2681,
+          2691,
+          2700,
+          2750,
+          2777,
+          2800,
+          2802,
+          2830,
+          2845,
+          2849,
+          2875,
+          2966,
+          2979,
+          2986,
+          3030,
+          3059,
+          3153,
+          3184,
+          3222,
+          3265,
+          3287,
+          3301,
+          3317,
+          3393,
+          3394,
+          3466,
+          3530,
+          3560,
+          3587,
+          3629,
+          3678,
+          3774,
+          3777,
+          3820,
+          3823,
+          3874,
+          3928,
+          3946,
+          3972,
+          3976,
+          3991,
+          4009,
+          4018,
+          4047,
+          4062
+        ]
+      }
+    },
+    {
+      "user": "0x1720d7f1549f88c2454d4bbb39ab897b9428a13d",
+      "prizes": {
+        "5": [
+          93,
+          801
+        ],
+        "6": [
+          2687,
+          2768
+        ]
+      }
+    },
+    {
+      "user": "0x3888132606615fc0759853b6ec1107e717d0ae52",
+      "prizes": {
+        "5": [
+          152,
+          987
+        ],
+        "6": [
+          75,
+          441,
+          2571,
+          3157,
+          3767
+        ]
+      }
+    },
+    {
+      "user": "0xe0257443f00d0d342cc5ef77c64c5a81d54db3ca",
+      "prizes": {
+        "5": [
+          579,
+          695
+        ],
+        "6": [
+          264,
+          1330,
+          1928,
+          1933,
+          2116,
+          2231,
+          3482
+        ]
+      }
+    },
+    {
+      "user": "0x398b0c8920b448eade3f950f8fff8f6b1fa1635d",
+      "prizes": {
+        "6": [
+          217,
+          516
+        ]
+      }
+    },
+    {
+      "user": "0xed02c0259b0198a8940d155904f3b467519f1bca",
+      "prizes": {
+        "6": [
+          1839
+        ]
+      }
+    },
+    {
+      "user": "0x0ec061d7eed1022bc12a2daacfd6f766654bede9",
+      "prizes": {
+        "6": [
+          3270
+        ]
+      }
+    },
+    {
+      "user": "0x7a1fbc61b8ec06286faf1fe16c0a8bb5e3506319",
+      "prizes": {
+        "5": [
+          734,
+          786
+        ],
+        "6": [
+          444,
+          810,
+          1036,
+          1171,
+          1181,
+          1731,
+          1760,
+          2645,
+          2842,
+          3157,
+          3188,
+          3191,
+          3220,
+          3292,
+          3408,
+          3504,
+          3569,
+          3783
+        ]
+      }
+    },
+    {
+      "user": "0x7f9f291791f5c04ad79ad1388e99156848533bad",
+      "prizes": {
+        "6": [
+          3425
+        ]
+      }
+    },
+    {
+      "user": "0x7f853004ac73d758112f4f735a3ae096ec43afee",
+      "prizes": {
+        "5": [
+          149
+        ],
+        "6": [
+          176
+        ]
+      }
+    },
+    {
+      "user": "0x86e49de3ba0ff01651a540de5ff465b15632df22",
+      "prizes": {
+        "6": [
+          1898
+        ]
+      }
+    },
+    {
+      "user": "0x950751f5cb95d1f1a44bf116cccea833834e5b8a",
+      "prizes": {
+        "6": [
+          1202,
+          1374,
+          1618,
+          3118
+        ]
+      }
+    },
+    {
+      "user": "0x462526226e1e0171c79c0e8cfdd138c01f8184ba",
+      "prizes": {
+        "6": [
+          3364
+        ]
+      }
+    },
+    {
+      "user": "0x23dea5b106b49dfa2638d57142d18f2ff4ef738e",
+      "prizes": {
+        "5": [
+          114,
+          147,
+          972
+        ],
+        "6": [
+          139,
+          1306,
+          1881,
+          2372
+        ]
+      }
+    },
+    {
+      "user": "0xa16a73758eab36407f9bd0101065093af19b3502",
+      "prizes": {
+        "6": [
+          778,
+          1768
+        ]
+      }
+    },
+    {
+      "user": "0xad3d892dd7cfd71b27514b3c6f4b54a54f1b91ed",
+      "prizes": {
+        "5": [
+          374
+        ],
+        "6": [
+          911
+        ]
+      }
+    }
+  ],
+  "eligibleForFurtherSimulationCount": 10,
+  "finishedAt": "2026-10-08T00:42:24.881Z",
+  "elapsedMs": 33870
+}

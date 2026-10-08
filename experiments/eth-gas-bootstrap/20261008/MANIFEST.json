@@ -8,8 +8,8 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 5105,
-    "sha256": "e07b0cf3360c953e6d0b11a8414c41fad32716bc102d0d41f1d5cb01b167c3f8"
+    "bytes": 6826,
+    "sha256": "87fc9991d45cb12062b844ad20440bf8bb0fa51e81c3bc06d2cbde3db8a0939f"
   },
   "audit-only.py": {
     "bytes": 12416,
@@ -27,9 +27,57 @@
     "bytes": 79858,
     "sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e"
   },
+  "hermes-ptv5-r6/README.md": {
+    "bytes": 2986,
+    "sha256": "daa2b1883646b6cfb1e6af05382aa006e96be21d8d7d8780f8d680aca806235e"
+  },
+  "hermes-ptv5-r6/SHA256SUMS": {
+    "bytes": 745,
+    "sha256": "b7ff4e978a025c374bd8163a26a21e4a0db151a34875ef943cf7ff6bbc348b27"
+  },
+  "hermes-ptv5-r6/package-lock.json": {
+    "bytes": 5751,
+    "sha256": "eeaecf525b79e2bcb90d131d319cadc61fdd4ba92ed25ceca2fa110ab2c4f645"
+  },
+  "hermes-ptv5-r6/package.json": {
+    "bytes": 346,
+    "sha256": "9d3dc8ac1cf0b7982f604018984f377b10f9cfedee875c03d421cc95001b8255"
+  },
+  "hermes-ptv5-r6/probe.json": {
+    "bytes": 23821,
+    "sha256": "741e999d2e4a7ee8969a32e52ab2b50e5d2cdaf304602d07fa9117458925383d"
+  },
+  "hermes-ptv5-r6/read-only-winner-probe.mjs": {
+    "bytes": 12863,
+    "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
+  },
+  "hermes-ptv5-r6/sim-claim-minfee.json": {
+    "bytes": 768,
+    "sha256": "2d87f9ceca48b229e5de3eb45f0f8fb153e55ae404bbaf50a8834ddf232cfdad"
+  },
+  "hermes-ptv5-r6/sim-claim-minfee.mjs": {
+    "bytes": 2619,
+    "sha256": "819be109715c53f351f6266ce079885e13e165d6975dbb33a507374e427af7f4"
+  },
+  "hermes-ptv5-r6/sim-claim.json": {
+    "bytes": 1303,
+    "sha256": "f48fb623af05f3df0697fa1a85ccc66e0ee25304f681ec6510d06be262bf79a6"
+  },
+  "hermes-ptv5-r6/sim-claim.mjs": {
+    "bytes": 2602,
+    "sha256": "097b917eb840312ac298ad09129b4cf074cacdc748ad865137245dd4066428c9"
+  },
   "historical-draw735-vault-seed.json": {
     "bytes": 79152,
     "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c"
+  },
+  "read-only-candidate-reread.mjs": {
+    "bytes": 12495,
+    "sha256": "c3623278ee1a4a19c72c217689c42f1ebfc1ec83d31177560174420ac66ae94e"
+  },
+  "read-only-claim-diagnostic.mjs": {
+    "bytes": 7610,
+    "sha256": "ae1fded1519fb8f4d48018d946520cd5ef1088a2d4687bc29e011e845dc869b4"
   },
   "read-only-cycle-quote.mjs": {
     "bytes": 22674,

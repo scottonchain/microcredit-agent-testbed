@@ -83,3 +83,14 @@ It rechecks one candidate and exact claim, rejects controlled winners, quotes fi
 The auditor now requires lender funding gas coverage and native cash settlement for an on-chain proof. A separate fully-costed flag requires evidenced offchain costs for both actors. Eight dependency-free offline negative-control checks passed; ALL fixtures are synthetic, never chain/execution evidence. Reproduce in this directory:
 
 python -m unittest -v test_audit_negative_controls.py
+
+
+## Actual live probe and claim simulations received
+
+Hermes completed the supplied probe,48 HTTP/RPC operations, at Base block52315382, draw841. In128 sampled historical addresses it computed 22 winning entries. Its12 checked prize candidates comprised two already claimed tier4 prizes and ten unclaimed tier6 prizes for one winner; hooks were disabled. Tier6 fee quote109312671627WETHwei; tier4 fee quote11115556537608wei.
+
+At block52315410, exact claim simulations for one and ten prizes returned zero total fees; a single claim with quoted fee floor also returned zero. No-revert did not mean income. The six-read one/ten follow-on reported L2-only gas60269/170822 at6e6wei gas price; these are not complete cycle costs. No loan, signing or spending occurred. The correct vault-configured claimer was used.
+
+Immutable source: https://github.com/scottonchain/microcredit-agent-testbed/tree/d61788c3ae93bb17c1370ddcb97777eaa109c283/evidence/ptv5-r6 . Codex independently downloaded all nine manifest-listed files and verified all SHA256SUMS. This proves file identity, not an independent fresh chain read. Copies are included here.
+
+The actual zero-fee cause is not yet decoded. Codex supplied an exact read-only expiry/inner-revert diagnostic, followed by higher-fee candidate checking only if the draw remains open. Source shows isDrawFinalized can block claiming while winner/fee getters remain positive; this is a hypothesis until a live read confirms it. The completed calculation contains27 tier4 prizes,127 tier5 and434 tier6; only two tier4 were checked. No global opportunity absence is inferred. A source-grounded active keeper alternative is being checked separately. Neither venue is a qualified loan yet.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.77",
-  "updated_at": "2026-10-08T00:43:21Z",
+  "updated_at": "2026-10-08T00:58:03Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5464,6 +5464,26 @@
         "Incomplete128addresssample; exact simulation/full costs required.",
         "Email acceptance does not prove execution."
       ]
+    },
+    {
+      "id": "ev:hermes-ptv5-live-probe-r6-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/d61788c3ae93bb17c1370ddcb97777eaa109c283/evidence/ptv5-r6",
+      "locator": "probe.json, sim-claim.json, sim-claim-minfee.json, source scripts, SHA256SUMS",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:58:03Z",
+      "retrieved_at": "2026-10-08T00:58:03Z",
+      "summary": "Hermes actually ran the supplied read-only probe (48RPC): Base52315382draw841,128addresses,22winnerentries,12checks including10unclaimedtier6. Exact one/ten claims and quotedfee-floor single claim returned0fee; no loan/spending/income. Codex hashverified all9files.",
+      "content_sha256": "741e999d2e4a7ee8969a32e52ab2b50e5d2cdaf304602d07fa9117458925383d",
+      "fingerprint_scope": "Exact probe.json bytes; all nine SHA256SUMS also verified",
+      "origin_group": "hermes-ptv5-live-probe-r6-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reported live RPC work; root independently verified files, not chain.",
+        "Incomplete address/prize sample; no global opportunity absence.",
+        "Actual swallowed revert cause/full costs not yet obtained."
+      ]
     }
   ],
   "claims": [
@@ -8638,7 +8658,9 @@
         "supporting_evidence_ids": [
           "ev:codex-eth-gas-bootstrap-research-20261008"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:hermes-ptv5-live-probe-r6-20261008"
+        ],
         "falsifier": "Available zero-ETH alternatives dominate, or no repeatable external execution fees exceed all gas/finance/provider costs and bounded loss exposure."
       },
       "freshness": {
@@ -8680,6 +8702,34 @@
         ]
       },
       "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-keeper-actual-zero-fee-sim-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_keeper_exact_simulation_zero_income",
+      "statement": "Hermes completed live winner discovery and found ten unclaimed tier6 prizes, but exact one/ten claim simulations returned zero fees despite no revert. Correct configured claimer used; no loan/spending/earned income. Initial data access gap resolved for the sample; exact internal error/expiry and higher-fee remaining candidates are being checked. No global absence or profitable bootstrap inferred.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Received actual Hermes r6 reply and immutable raw/code packet; all nine hashes independently verified.",
+        "supporting_evidence_ids": [
+          "ev:hermes-ptv5-live-probe-r6-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:58:03Z",
+        "recheck_by": "2026-10-08T01:15:00Z",
+        "recheck_on": [
+          "Actual draw-expiry/inner-revert diagnostic",
+          "Positive external fee candidate and full costs"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:hermes-ptv5-readonly-gap-20261008"
+      ],
       "derived_from_claim_ids": []
     }
   ],
@@ -11342,10 +11392,11 @@
       "rationale_claim_ids": [
         "claim:codex-grounded-bootstrap-reference-progress-20261007",
         "claim:eth-gas-credit-bootstrap-candidate-20261008",
-        "claim:hermes-ptv5-readonly-gap-20261008"
+        "claim:hermes-ptv5-readonly-gap-20261008",
+        "claim:eth-keeper-actual-zero-fee-sim-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion.",
+      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion. Hermes r6 actually complete:10unclaimedcanaries but exactsimfee0; source/data gap resolved for sample. READONLY r8/r9 expiry/error diagnosis pending; source-grounded alternate keeper being checked. No qualified actual loan.",
       "acceptance_criteria": [
         "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
         "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
@@ -11368,7 +11419,8 @@
         "Hermes raw merchant quote receipt or existing/inbound funded customer order",
         "Before due_at",
         "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt",
-        "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt"
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt",
+        "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote"
       ]
     }
   ],
