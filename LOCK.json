@@ -1,8 +1,8 @@
 {
   "protocol": "git-explicit-lease-v2",
-  "state": "unlocked",
-  "owner": null,
-  "execution": null,
-  "released_by": "codex-claude-research-support-20261008",
-  "released_at_utc": "2026-10-08T03:36:51"
+  "state": "locked",
+  "owner": "codex-human-pilot-owner-20261008",
+  "execution": "run-human-pilot-owner-20261008",
+  "acquired_at_utc": "2026-10-08T03:49:04",
+  "released_by": null
 }
