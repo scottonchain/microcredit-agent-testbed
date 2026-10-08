@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.76",
-  "updated_at": "2026-10-07T23:49:21Z",
+  "model_version": "0.1.77",
+  "updated_at": "2026-10-08T03:39:08Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -849,6 +849,18 @@
       "parent_id": "project:microcredit",
       "owner_id": null,
       "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:cold-start-literature-20261008",
+      "kind": "venue",
+      "name": "Public literature, regulators and providers read for the human-borrowing plan (2026-10-08)",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md"
+      ],
       "goal_model": null,
       "identity": null
     }
@@ -5403,6 +5415,315 @@
         "Merchant challenge is Hermes-reported public observation, not root independent web GET.",
         "Existing live/source restoration and CI30 remain open."
       ]
+    },
+    {
+      "id": "ev:operator-human-borrowing-direction-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6051609186",
+      "locator": "testbed issue 15 comment 6051609186",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T03:32:35Z",
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "The operator's direction to Claude, quoted: deep online research into the cold start problem Codex has been working on with Hermes; communicate with them as needed; concrete steps to deploying and bootstrapping; it must result in human-level borrowing after the bootstrap; update the world model with the findings.",
+      "content_sha256": "50fb7090009bc8075dc83e66cea06b1974a5383f7be2bf4217a5257411874494",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-human-borrowing-direction-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given to Claude in its session and recorded publicly by Claude."
+      ]
+    },
+    {
+      "id": "ev:human-borrowing-plan-doc-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md",
+      "locator": "docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md, first published with model 0.1.77",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T03:39:08Z",
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Claude's sourced plan from today's contract to people borrowing: what human-level borrowing means in numbers; fifteen findings with the change each makes; four phases (finish the testnet bootstrap; contract v2 with sponsored first loss, bounded transitive capacity, the opt-in guard and officer-sunset mechanics; mainnet readiness with audit, the runbook's gates, a licensed lender of record and a measured cash-out rail; a first pilot of 20 to 50 people inside an existing group through a licensed partner; officer sunset by the design note's gates), each with owner, gate and stop rule; failure modes; the four decisions it needs.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "human-borrowing-plan-doc-20261008",
+      "derived_from_ids": [
+        "ev:operator-human-borrowing-direction-20261008"
+      ],
+      "limitations": [
+        "A plan, not a decision; it authorises no contact, spending or mainnet transaction.",
+        "Country and partner are the operator's decision after counsel."
+      ]
+    },
+    {
+      "id": "ev:kiva-repayment-by-channel",
+      "kind": "primary_public",
+      "url": "https://www.kiva.org/about/due-diligence",
+      "locator": "Kiva due diligence page, repayment rates",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Kiva reports 96.3% repayment across all loans, 97.1% on loans facilitated by local lending partners and 72.8% on direct loans in the United States with no partner; partners identify borrowers, administer loans and support them.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "kiva-repayment-by-channel",
+      "derived_from_ids": [],
+      "limitations": [
+        "Kiva's own figures; a competitor argues borrower-level repayment is lower than the lender-level rate."
+      ]
+    },
+    {
+      "id": "ev:zidisha-no-intermediary-outcomes",
+      "kind": "primary_public",
+      "url": "https://news.ycombinator.com/item?id=7335341",
+      "locator": "Hacker News thread, 2014, with a reply attributed to Zidisha",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Zidisha lends with no field staff, screening by seven SMS references; a 2014 critic computed 74.19% repayment against Kiva's 98.95%, a reply attributed to Zidisha acknowledged an 18% write-off rate on older loans, and Zidisha later reported that higher interest correlated with higher default and moved to interest-free loans with a borrower-funded reserve.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "zidisha-no-intermediary-outcomes",
+      "derived_from_ids": [],
+      "limitations": [
+        "Figures are from 2012 to 2014 and partly self-reported; no recent audited data was found."
+      ]
+    },
+    {
+      "id": "ev:gine-karlan-liability-2014",
+      "kind": "primary_public",
+      "url": "https://ideas.repec.org/a/eee/deveco/v107y2014icp65-83.html",
+      "locator": "Giné and Karlan, Journal of Development Economics 107 (2014) 65-83",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "In a Philippine field experiment, converting group-liability centres to individual liability did not raise default after one and three years, lowered peer monitoring, and raised default among borrowers with weaker prior social ties.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "gine-karlan-liability-2014",
+      "derived_from_ids": [],
+      "limitations": [
+        "The individual-liability arms kept group meetings; exact default percentages were not read from the paper."
+      ]
+    },
+    {
+      "id": "ev:seuken-parkes-transitive-trust-2014",
+      "kind": "primary_public",
+      "url": "https://www.ifaamas.org/Proceedings/aamas2014/aamas/p205.pdf",
+      "locator": "Seuken and Parkes, AAMAS 2014, Sybil-proof accounting mechanisms with transitive trust",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Accounting mechanisms with a strong form of transitive trust cannot be robust against strongly beneficial Sybil attacks; a design with a weaker form of transitive trust can be robust while keeping most of the efficiency transitive trust brings.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "seuken-parkes-transitive-trust-2014",
+      "derived_from_ids": [],
+      "limitations": [
+        "A theorem about accounting mechanisms; mapping it onto a lending contract is this project's inference."
+      ]
+    },
+    {
+      "id": "ev:circles-bali-berlin",
+      "kind": "primary_public",
+      "url": "https://arxiv.org/html/2504.02714v1",
+      "locator": "Impact of a blockchain-based universal basic income pilot: Circles UBI, arXiv 2504.02714 (2025); Berlin outcome from a secondary review",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Circles in Bali (July to November 2023) reached 1,530 users, 29,000 exchanges and more than 9,500 trust links by plugging into the Banjar, an existing neighbourhood institution; in Berlin, with more than 2.3 million euros of subsidy, most businesses cashed out about 90% of their tokens into euros.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "circles-bali-berlin",
+      "derived_from_ids": [],
+      "limitations": [
+        "Bali figures are the project's; the Berlin figure is from a secondary review, not an evaluation."
+      ]
+    },
+    {
+      "id": "ev:goldfinch-kiva-protocol-failures",
+      "kind": "primary_public",
+      "url": "https://www.dlnews.com/articles/defi/goldfinch-borrower-lend-east-defaults-says-warbler-labs/",
+      "locator": "DL News on Goldfinch's third default; Kiva's sunset post for Kiva Protocol",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Goldfinch lost about $18 million across three intermediary borrowers (Tugende, Stratos, Lend East; Lend East repaying $4.25 million of $10.15 million) and announced a wind-down; Kiva wound down Kiva Protocol, its national identity and credit-bureau build in Sierra Leone, by June 2022 as beyond its capacity after delays.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "goldfinch-kiva-protocol-failures",
+      "derived_from_ids": [],
+      "limitations": [
+        "Loss totals differ across outlets; Kiva's reason is its own statement."
+      ]
+    },
+    {
+      "id": "ev:cgap-digital-credit-defaults",
+      "kind": "primary_public",
+      "url": "https://cgap.org/node/3477",
+      "locator": "CGAP, how regulators can foster more responsible digital credit, with the Tanzania transaction study and the Kenya disclosure experiments",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Across more than 20 million digital loans in Tanzania about 20% defaulted and 40% were late, with first-time borrowers of loans under about $5 the most likely to default; about half of digital borrowers in Kenya and Tanzania repaid late; in CGAP experiments with a Kenyan lender, clarifying the interest rate cut first-cycle default from 29.1% to 20%.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "cgap-digital-credit-defaults",
+      "derived_from_ids": [],
+      "limitations": [
+        "Older studies (2016 to 2019); the Kenyan credit market has been re-regulated since."
+      ]
+    },
+    {
+      "id": "ev:field-grace-period-2013",
+      "kind": "primary_public",
+      "url": "https://doi.org/10.1257/aer.103.6.2196",
+      "locator": "Field, Pande, Papp and Rigol, American Economic Review 103(6), 2013",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "A two-month grace period before repayment raised business investment (6% to 9.4% more of the loan invested, by two summaries), made new businesses about three times as likely and raised long-run profits, and also raised default rates.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "field-grace-period-2013",
+      "derived_from_ids": [],
+      "limitations": [
+        "One study in India; the size of the default increase was not read from the paper."
+      ]
+    },
+    {
+      "id": "ev:nanyuki-stablecoin-advances",
+      "kind": "primary_public",
+      "url": "https://medium.com/mercy-corps-social-venture-fund/pilot-insights-fast-and-affordable-defi-enabled-credit-for-smallholder-farmers-in-kenya-1ea8d911b85f",
+      "locator": "Mercy Corps Ventures pilot insights, Nanyuki, Kenya, 2022",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Employer-linked stablecoin advances to about 68 workers totalling $9,697 at 8% a year (local alternatives above 20%), requested by USSD, cashed out to M-Pesa through Kotani Pay, repaid almost entirely by wage deduction; most participants had feature phones and poor connectivity.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "nanyuki-stablecoin-advances",
+      "derived_from_ids": [],
+      "limitations": [
+        "Partner-published; no final repayment figures were found."
+      ]
+    },
+    {
+      "id": "ev:vsla-digital-evidence",
+      "kind": "primary_public",
+      "url": "https://poverty-action.org/expanding-financial-access-through-digital-finance-evidence-village-savings-and-loans-associations",
+      "locator": "IPA on VSLAs as digital financial service agents (Sierra Leone RCT); FinDev 2025 on VSLA credit linkage",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Making village savings and loan associations digital-finance agents raised account ownership by 7.2 percentage points and was associated with lower default and higher group income; VSLAs lend $50 to $200 per group, members mostly hold basic phones, and loan access improves when VSLA IDs and mobile numbers are accepted in place of national IDs.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "vsla-digital-evidence",
+      "derived_from_ids": [],
+      "limitations": [
+        "Repayment evidence for record-keeping apps (DreamSave, Chomoka) was not found; the RCT tested the agent model."
+      ]
+    },
+    {
+      "id": "ev:lending-regulation-2026",
+      "kind": "primary_public",
+      "url": "https://techtrendske.co.ke/2026/10/05/cbk-non-deposit-taking-credit-providers-regulations/",
+      "locator": "Kenya CBK non-deposit-taking credit provider regulations (reported final 2026-10-05); Philippines SEC MC 20 s.2026; Nigeria FCCPC 2025 regulations",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Kenya: the 2026 regulations replace the 2022 digital credit provider rules, with a licence above the capital threshold (KSh 20 million in the draft) and registration below it, KSh 250,000 a year, and 252 licensed providers by July 2026; the VASP Act commenced 2025-11-04 with the central bank over stablecoins. Philippines: the SEC lifted its online-lending moratorium on 2026-08-01, requiring a Certificate of Authority and PHP 20 million paid-up capital for one platform. Nigeria: FCCPC digital lending regulations of 2025-07-21 with registration and partnership approval.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "lending-regulation-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Secondary reports of regulations; the gazetted texts must be read before relying on thresholds."
+      ]
+    },
+    {
+      "id": "ev:usdc-cash-out-rails-2026",
+      "kind": "primary_public",
+      "url": "https://eversend.co/platform/apis/usdc-off-ramp",
+      "locator": "Eversend USDC off-ramp API; GCash USDC (March 2025); M-Pesa 2026 tariffs",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Eversend sells a USDC off-ramp API paying out to mobile money and banks in 18 African countries with a $0.10 Base network fee; GCash added USDC in March 2025 with PHP 100,000 a day in and PHP 100,000 a month out and an undisclosed spread; M-Pesa agent withdrawals cost KSh 11 to 309.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "usdc-cash-out-rails-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Vendor pages; no all-in cost of a USDC-on-Base to M-Pesa round trip was found."
+      ]
+    },
+    {
+      "id": "ev:world-id-status-2026",
+      "kind": "primary_public",
+      "url": "https://www.biometricupdate.com/202606/world-shifts-from-crypto-identity-experiment-to-enterprise-proof-of-humanity",
+      "locator": "Biometric Update, June 2026; The Block 2023 on Kenya",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "World reports nearly 18 million verified humans across 160 countries and is pivoting toward enterprise identity; one verified human may hold several app accounts; Kenya suspended the project in 2023 and its current status there was not found; a Philippine Orb rollout was planned for 2025.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "world-id-status-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Self-reported totals; country status is dated."
+      ]
+    },
+    {
+      "id": "ev:audit-and-chain-costs-2026",
+      "kind": "primary_public",
+      "url": "https://sherlock.xyz/post/smart-contract-audit-pricing-a-market-reference-for-2026",
+      "locator": "Sherlock 2026 audit pricing; Base configuration changelog",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Most DeFi protocol audits cost $25,000 to $100,000 in 2026, re-audits $5,000 to $20,000 a pass; Base's minimum base fee is 0.005 gwei (February 2026) and third-party estimates put an ERC-20 transfer at roughly 0.1 to 0.3 cents.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "audit-and-chain-costs-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Vendor pricing; fee estimates are not measurements."
+      ]
+    },
+    {
+      "id": "ev:human-loan-sizes-and-prices",
+      "kind": "primary_public",
+      "url": "https://www.fsdkenya.org/blogs-publications/fsd-kenya-cis-kenya-and-creditinfo-crb-launch-the-findings-of-a-study-on-kenyas-credit-market-landscape/",
+      "locator": "FSD Kenya credit market study 2024; Nation on Fuliza 2026; Tala Kenya and Tribune (Philippines) 2025; impactMarket Uganda docs; FinDev on Jia",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T03:39:08Z",
+      "summary": "Kenya's digital lenders made about 270 million loans worth KSh 1,512 billion over 2019 to 2023 to about 10 million unique borrowers a year; Fuliza averaged KSh 217.90 per draw in the year to March 2026; Tala's first loans start at KSh 1,000 to 2,000 at 0.3% to 0.6% a day, and its Philippine unit reported 94% repayment; impactMarket's Uganda pilot lent $200 to $2,500 (average $620.75) at 0.1% a day; Jia passed $2 million of originations to more than 2,000 small businesses at 2% to 6% a month.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "human-loan-sizes-and-prices",
+      "derived_from_ids": [],
+      "limitations": [
+        "Mixed sources, some self-reported; the KSh 5,600 average is arithmetic on rounded totals."
+      ]
     }
   ],
   "claims": [
@@ -8538,6 +8859,230 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-borrowing-requirement-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_outcome",
+      "statement": "The deployment and bootstrap must end in people borrowing: concrete steps from today's contract to a deployment and a bootstrap whose result is human-level borrowing after the bootstrap, worked out with the Codex and Hermes lanes and recorded in the world model.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The operator's direction to Claude, quoted on the board.",
+        "supporting_evidence_ids": [
+          "ev:operator-human-borrowing-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:32:35Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:transitive-trust-endstate-20261007",
+        "claim:human-measure"
+      ]
+    },
+    {
+      "id": "claim:first-loan-default-benchmarks",
+      "subject_id": "work:bootstrap",
+      "predicate": "default_benchmark",
+      "statement": "Unsecured digital first loans to people default at about 10% to 20% (Tanzania 20% defaulted and 40% late; Kenya 2019 about 12%; first-cycle 29.1% at one Kenyan lender before clearer disclosure, 20% after), while loans made through a local partner or group repay at 94% to 97% (Kiva partners 97.1%, Tala Philippines 94% self-reported); a pilot should budget 10% first-cycle loss unsecured and 3% to 6% with a partner and backers.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Several independent sources agree on the range; product-level audited figures are scarce.",
+        "supporting_evidence_ids": [
+          "ev:cgap-digital-credit-defaults",
+          "ev:kiva-repayment-by-channel",
+          "ev:human-loan-sizes-and-prices"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A pilot cohort with measured first-cycle default outside 3% to 20% under either channel."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Pilot cohort data",
+          "A newer CGAP or FSD Kenya study"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:intermediary-and-ties-cut-default",
+      "subject_id": "work:bootstrap",
+      "predicate": "mechanism_evidence",
+      "statement": "Somebody local who knows the borrower cuts default: Kiva's partner channel repays 24 points better than its direct channel; Zidisha, with no field staff, acknowledged an 18% write-off rate; in Giné and Karlan's experiment individual liability did not raise default except among borrowers with weak social ties. Backing from people who know the borrower is social collateral; backing from strangers is not.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Three sources with different methods point the same way.",
+        "supporting_evidence_ids": [
+          "ev:kiva-repayment-by-channel",
+          "ev:zidisha-no-intermediary-outcomes",
+          "ev:gine-karlan-liability-2014"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A measured cohort in which stranger-backed or unbacked remote loans repay as well as partner- or peer-backed ones."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Pilot cohort data"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:transitive-trust-sybil-limit",
+      "subject_id": "work:bootstrap",
+      "predicate": "design_constraint",
+      "statement": "Strong transitive trust cannot be made Sybil-proof (Seuken and Parkes); the end state must therefore be the bounded, stake-rooted, consented kind of transitivity in the design note, where no path creates capacity beyond its root's stake, and Circles' experience shows such graphs grow inside existing institutions (Bali) and fail as subsidised money among strangers (Berlin).",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "A published theorem plus two field outcomes; the mapping to this contract is the project's.",
+        "supporting_evidence_ids": [
+          "ev:seuken-parkes-transitive-trust-2014",
+          "ev:circles-bali-berlin"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A conserving transitive design with unbounded passing-on that survives the Sybil fixtures in the invariant suite."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The contract v2 design review"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007"
+      ]
+    },
+    {
+      "id": "claim:lender-of-record-required",
+      "subject_id": "work:bootstrap",
+      "predicate": "legal_constraint",
+      "statement": "Lending to people in the evidenced candidate countries needs a licensed lender of record: Kenya's 2026 credit-provider regulations license or register every non-deposit-taking lender, the Philippines requires an SEC Certificate of Authority and a registered online lending platform (moratorium lifted 2026-08-01), and Nigeria requires FCCPC registration; stablecoin activity falls under separate virtual-asset rules in each. The pool can be the funding and accounting layer of a licensed partner, not the lender itself, until counsel says otherwise.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Regulations reported by several outlets; the gazetted texts and counsel's reading are still needed.",
+        "supporting_evidence_ids": [
+          "ev:lending-regulation-2026"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Counsel's written opinion that a pilot of this size can lend without a licensed partner in the chosen country."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Legal review (deployment gate 1)",
+          "Regulatory change in the chosen country"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:cash-out-rail-required",
+      "subject_id": "work:bootstrap",
+      "predicate": "operational_constraint",
+      "statement": "A borrower must receive and repay in mobile money without touching a wallet: the Nanyuki pilot ran on USSD and feature phones with an M-Pesa exit; rails exist (GCash USDC in the Philippines; Eversend, Kotani Pay and others to M-Pesa in Kenya) but their all-in cost, spread, limits and delay on a 25 USDC round trip are unmeasured.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "One pilot's design and current vendor pages; no measurement by this team yet.",
+        "supporting_evidence_ids": [
+          "ev:nanyuki-stablecoin-advances",
+          "ev:usdc-cash-out-rails-2026"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A measured round trip showing the rail unusable or costing more than the loan's interest."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The phase 2 ramp measurement"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:human-price-gap",
+      "subject_id": "work:bootstrap",
+      "predicate": "pricing_evidence",
+      "statement": "Digital lenders charge people 90% to 219% a year (M-Shwari 7.5% a month, Tala 0.3% to 0.6% a day) and stablecoin lenders 2% to 6% a month (Jia), while microfinance operating costs run 19% to 28% of the portfolio and the chain costs tenths of a cent per transaction; the pool's 9.33% APR (18.33% at the 10%-default calibration row) can only hold if assessment and collection cost far less than an MFI's and losses are carried by the reserve, sponsors and backers.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Market prices and cost ratios from several sources; the inference about what makes the low price hold is the project's.",
+        "supporting_evidence_ids": [
+          "ev:human-loan-sizes-and-prices",
+          "ev:audit-and-chain-costs-2026",
+          "ev:cgap-digital-credit-defaults"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A pilot cycle in which interest plus reserve plus sponsor capital do not cover measured losses and operating cost."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Pilot cost and loss data"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:start-inside-existing-trust-structure",
+      "subject_id": "work:bootstrap",
+      "predicate": "pilot_design",
+      "statement": "The first people should borrow inside an existing group that already knows its members (a savings group, a cooperative, a workplace), through a licensed partner, with at least one backer who knows each borrower, the borrower never touching a wallet, first loans of 10 to 25 USDC for 30 to 90 days, the price shown in local currency before acceptance, a 24-hour reuse cooldown and one open loan per person; 20 to 50 people at one site.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Follows from the partner, ties, VSLA, Bali and Nanyuki evidence and the loss benchmarks.",
+        "supporting_evidence_ids": [
+          "ev:vsla-digital-evidence",
+          "ev:circles-bali-berlin",
+          "ev:nanyuki-stablecoin-advances",
+          "ev:human-borrowing-plan-doc-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A first cohort of this design with losses above the 10% budget for two cycles, or a group that will not back its members."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:39:08Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The operator's country and partner decision",
+          "First cohort data"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:intermediary-and-ties-cut-default",
+        "claim:first-loan-default-benchmarks",
+        "claim:lender-of-record-required",
+        "claim:cash-out-rail-required"
+      ]
     }
   ],
   "edges": [
@@ -9049,6 +9594,44 @@
       ],
       "confidence": "low",
       "confidence_scope": "An untested bridge to be challenged in the next daily sync, not evidence of Techne demand, poverty reach or an agreed partnership."
+    },
+    {
+      "id": "hyp:agent-officers-cut-cost",
+      "subject_ids": [
+        "project:microcredit",
+        "work:bootstrap"
+      ],
+      "theory": "Agent officers assessing, supporting and monitoring borrowers through a licensed partner, with an on-chain ledger costing tenths of a cent per transaction, can bring the cost to serve a 25 USDC loan far below an MFI's 19% to 28% operating ratio, so that an APR of 9% to 18% with a sponsored first-loss reserve covers measured losses of 3% to 6% a cycle in a partner-backed cohort.",
+      "claim_ids": [
+        "claim:human-price-gap",
+        "claim:first-loan-default-benchmarks",
+        "claim:intermediary-and-ties-cut-default",
+        "claim:start-inside-existing-trust-structure"
+      ],
+      "alternative_explanations": [
+        "The partner's own cost (KYC, collection, cash handling, ramps) dominates and is unchanged by agents.",
+        "Losses in a sponsored pilot look low only because the sponsor's capital hides them.",
+        "Borrowers repay the first cycles to keep a cheap line and default once the sponsor exits."
+      ],
+      "predictions": [
+        {
+          "observable": "The partner's measured cost per loan in the first pilot cycle is below 10% of principal.",
+          "disconfirming_observation": "Cost per loan at or above 19% of principal, the MFI median operating ratio.",
+          "check_by": null
+        },
+        {
+          "observable": "First-cycle default in the partner-backed cohort falls within 3% to 6%.",
+          "disconfirming_observation": "First-cycle default above 10% in a partner-backed, group-based cohort.",
+          "check_by": null
+        },
+        {
+          "observable": "After three cycles at least one repeat borrower borrows again with no officer-issued line.",
+          "disconfirming_observation": "No borrower qualifies for a repeat loan without an officer line after three cycles.",
+          "check_by": null
+        }
+      ],
+      "confidence": "low",
+      "confidence_scope": "Untested; depends on a country, a partner and a measured ramp that do not exist yet."
     }
   ],
   "actions": [
@@ -11164,7 +11747,7 @@
         "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment.",
+      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing.",
       "acceptance_criteria": [
         "Recorded design outcome and first action/owner with conservation and migration requirements.",
         "Post-bootstrap acceptance requires a borrower route without any credit-officer score grant or mandatory officer heartbeat.",
@@ -11223,6 +11806,220 @@
         "Hermes raw merchant quote receipt or existing/inbound funded customer order",
         "Before due_at"
       ]
+    },
+    {
+      "id": "action:contract-v2-transitive-and-guards",
+      "title": "Contract v2 on testnet: CI-30 fix, code room, sponsored first loss, bounded transitive capacity, opt-in guard, officer-sunset mechanics",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:risk-research",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-borrowing-requirement-20261008",
+        "claim:transitive-trust-sybil-limit",
+        "claim:ci30-cash-take-20261007",
+        "claim:sponsored-claim-conditions-20261007"
+      ],
+      "dependency_action_ids": [
+        "action:ci30-fix"
+      ],
+      "deliverable": "Phase 1 of docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md: the CI-30 fix merged; code moved out of the pool for room; a backer's committed stake funding the loan it secures; consented stake-rooted bounded-depth allocation certificates verified on chain with the conservation bound proved and the adversarial fixtures in the invariant suite; the opt-in guard of contract issue 25; the issuance budget lowerable to zero with legacy lines running off; a k-hop conservation checker; an exact-state fork migration rehearsal and a testnet redeployment.",
+      "acceptance_criteria": [
+        "Full Forge and invariant suites green.",
+        "Independent review by the Codex lane and the theory reviewers.",
+        "A measured gas and liquidity comparison against one-hop backing and direct sponsorship.",
+        "No trace in which a party loses more than it put at risk directly."
+      ],
+      "not_before": "2026-10-08T10:00:00Z",
+      "triggers": [
+        "The 2026-10-08 sync adopting the roadmap"
+      ],
+      "due_at": "2026-11-30T00:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction in ev:operator-human-borrowing-direction-20261008 and the transitive-trust direction; design and testnet work only.",
+      "spending": "none",
+      "stop_conditions": [
+        "No mainnet deployment.",
+        "No change to the live pool except by redeployment after rehearsal."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:mainnet-readiness",
+      "title": "Mainnet readiness: audit and bounty, the runbook's gates, a licensed lender of record, a measured cash-out rail, pricing and a funded reserve",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-borrowing-requirement-20261008",
+        "claim:lender-of-record-required",
+        "claim:cash-out-rail-required",
+        "claim:human-price-gap"
+      ],
+      "dependency_action_ids": [
+        "action:contract-v2-transitive-and-guards"
+      ],
+      "deliverable": "Phase 2 of the plan: two or three written audit quotes, the audit and fixes, a public bounty; the production runbook's dry run, three approval gates, broadcast and timelock ownership; counsel's reading of who the lender of record is in the pilot country and how USDC lending and cash-out are treated; one measured 25 USDC round trip from the pool to mobile money and back; the pricing row and a sponsor-funded first-loss reserve before the first loan.",
+      "acceptance_criteria": [
+        "Audit report with no open high findings.",
+        "Legal sign-off naming the lender of record.",
+        "A measured ramp with every fee, spread, delay and limit.",
+        "A funded reserve and a published loss budget."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Phase 1 gate met",
+        "Operator decisions on country, partner type and spending"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction; every spend and the deployment itself need the operator's separate decision.",
+      "spending": "none",
+      "stop_conditions": [
+        "Any of the four gate items missing.",
+        "No human loan before all four."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:human-pilot-partner-and-site",
+      "title": "Qualify the pilot country, the licensed partner type and the first group, by research and consented contact only",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:hermes",
+        "agent:claude"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:aligned-human-agent-collaboration"
+      ],
+      "rationale_claim_ids": [
+        "claim:start-inside-existing-trust-structure",
+        "claim:lender-of-record-required",
+        "claim:cash-out-rail-required"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A comparison of the two evidenced candidates (the Philippines: GCash USDC and a reopened lending regime; Kenya: M-Pesa rails and a dense, newly re-regulated digital-credit market) on licence route, partner types (microfinance institution, licensed digital lender, cooperative, savings-group facilitator), ramp and cost, for the operator's decision; then, under the existing contact rules (first contact only to organisations whose published work bears on ours, one question, logged by field on issue 15), one partner conversation.",
+      "acceptance_criteria": [
+        "Every claim about a country's rules cites the regulator's text.",
+        "No person's name or address on GitHub.",
+        "The operator chooses the country before any partner is approached."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The 2026-10-08 sync"
+      ],
+      "due_at": null,
+      "external_consent": "pending",
+      "permission_basis": "Research is within the lanes' remit; contact follows decision:email-protocol-dedicated-v2 and the paused-outreach rule for Claude.",
+      "spending": "none",
+      "stop_conditions": [
+        "No outreach to individuals.",
+        "No promise of loans to anyone."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:human-pilot-first-people",
+      "title": "First pilot: 20 to 50 people inside one existing group, through a licensed partner",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:human-earnings"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-borrowing-requirement-20261008",
+        "claim:start-inside-existing-trust-structure",
+        "claim:first-loan-default-benchmarks"
+      ],
+      "dependency_action_ids": [
+        "action:mainnet-readiness",
+        "action:human-pilot-partner-and-site"
+      ],
+      "deliverable": "Phase 3 of the plan: one site, one partner, one group; members chosen by the partner with the officer agent's assessment within the issuance budget; at least one backer who knows each borrower; the borrower receives and repays in mobile money; first loans 10 to 25 USDC for 30 to 90 days; price shown in local currency before acceptance; 24-hour reuse cooldown; one open loan per person; default, lateness, use of funds, earnings, partner cost per loan and ramp cost measured each cycle and every receipt in VERIFY.md.",
+      "acceptance_criteria": [
+        "Three cycles with losses inside the budget (10% first cycle, 5% repeat) and the reserve intact.",
+        "Two independent partners or groups.",
+        "One repeat borrower who borrowed again without an officer line."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Phase 2 gate met"
+      ],
+      "due_at": null,
+      "external_consent": "pending",
+      "permission_basis": "Requires the operator's decision, counsel's sign-off and the partner's licence; none exists yet.",
+      "spending": "none",
+      "stop_conditions": [
+        "Losses above budget for two cycles.",
+        "Any consumer-protection failure.",
+        "The partner losing its licence."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:officer-sunset",
+      "title": "Officer sunset by the design note's gates: issuance to zero once backed multi-hop capacity carries the volume",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:risk-research"
+      ],
+      "rationale_claim_ids": [
+        "claim:transitive-trust-endstate-20261007",
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
+        "claim:transitive-trust-sybil-limit"
+      ],
+      "dependency_action_ids": [
+        "action:human-pilot-first-people"
+      ],
+      "deliverable": "Phase 4 of the plan: stop new officer issuance as backed multi-hop capacity carries the pilot's volume; run legacy lines off under their own accounting; verify a newcomer borrows with every officer offline and no oracle heartbeat; lower the issuance budget to zero; publish each cycle the share of outstanding principal backed by stake or credit rather than issued lines.",
+      "acceptance_criteria": [
+        "A newcomer's loan through a multi-hop certificate with officers offline.",
+        "Issuance budget at zero with legacy exposure settled or migrated."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Three cycles at phase 3"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "The operator's transitive-trust direction.",
+      "spending": "none",
+      "stop_conditions": [
+        "No zeroing of scores or release of backing mid-loan to claim issuance is zero."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -11748,6 +12545,35 @@
       ],
       "resolution_evidence_needed": "A design with a conservation proof over multi-hop paths, an attack simulation against Sybil paths (analysis/sybil_sim style), a cost comparison with one-hop backing (analysis/liquidity), and a test suite; then a decision on migrating the issuance budget toward zero.",
       "blocks_action_ids": []
+    },
+    {
+      "id": "question:pilot-country-and-partner",
+      "owner_id": "agent:codex",
+      "question": "Which country and which kind of licensed partner (microfinance institution, licensed digital lender, cooperative, savings-group facilitator) host the first 20 to 50 human borrowers, given each candidate's licence route, cash-out rail and cost?",
+      "related_ids": [
+        "action:human-pilot-partner-and-site",
+        "claim:lender-of-record-required",
+        "claim:cash-out-rail-required",
+        "ev:human-borrowing-plan-doc-20261008"
+      ],
+      "resolution_evidence_needed": "The operator's decision after counsel, recorded on the board, with the regulator's text for the chosen country.",
+      "blocks_action_ids": [
+        "action:human-pilot-first-people"
+      ]
+    },
+    {
+      "id": "question:human-pricing-row",
+      "owner_id": "agent:claude",
+      "question": "Which calibration row (risk premium and reserve share) and which loss budget apply to loans to people in the pilot, and who carries losses above interest: the reserve, sponsors, backers, or the partner?",
+      "related_ids": [
+        "claim:human-price-gap",
+        "claim:first-loan-default-benchmarks",
+        "hyp:agent-officers-cut-cost"
+      ],
+      "resolution_evidence_needed": "A decision at the sync with the calibration row named, then the operator's approval of the reserve capital.",
+      "blocks_action_ids": [
+        "action:mainnet-readiness"
+      ]
     }
   ]
 }
