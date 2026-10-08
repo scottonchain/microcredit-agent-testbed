@@ -1,20 +1,88 @@
 #!/usr/bin/env python3
 """Offline source-formula arithmetic; no keys, network, signing or chain access."""
+import argparse
 from decimal import Decimal, getcontext
 from fractions import Fraction
 import hashlib
 import json
+import os
 from pathlib import Path
 
 getcontext().prec = 50
 ROOT = Path(__file__).resolve().parent
-SOURCE = Path('/workspace/work/relayer-recheck/packages/foundry/contracts/DecentralizedMicrocredit.sol')
+SOURCE_RELATIVE_PATH = Path('packages/foundry/contracts/DecentralizedMicrocredit.sol')
+PINNED_CONTRACT_COMMIT = '30d7eeed83ea50cad9c103383865fbdb2c4a8959'
+EXPECTED_SOURCE_SHA256 = '847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360'
+# These two provenance strings describe the original generation environment.
+# They remain byte-stable in the committed artifact; source resolution never
+# uses them. New executions take an explicit checkout/file and verify its hash.
+ORIGINAL_GENERATION_PATH = '/workspace/work/relayer-recheck/packages/foundry/contracts/DecentralizedMicrocredit.sol'
+ORIGINAL_GENERATION_CHECKOUT = '460875c897241d6b9d09877ca36da9fb696f2bf9'
 YEAR = 365 * 24 * 60 * 60
 DAY = 86400
 BPS = 10000
 CENT = 10000
 RESERVE_BPS = 4500
 PROTOCOL_FEE_BPS = 0
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description='Reproduce the pinned short-advance arithmetic from an explicit public contract checkout.',
+    )
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument(
+        '--contract-repo',
+        type=Path,
+        help='Root of a checkout of scottonchain/microcredit-contract at the pinned commit.',
+    )
+    source.add_argument(
+        '--contract-source',
+        type=Path,
+        help='Exact DecentralizedMicrocredit.sol file from the pinned public commit.',
+    )
+    parser.add_argument(
+        '--output',
+        type=Path,
+        default=ROOT / 'short-advance-interest-rows.json',
+        help='Output JSON path (default: the committed artifact beside this script).',
+    )
+    return parser.parse_args()
+
+
+def resolve_source(args):
+    source = args.contract_source
+    if source is None and args.contract_repo is not None:
+        source = args.contract_repo / SOURCE_RELATIVE_PATH
+
+    if source is None:
+        env_source = os.environ.get('MICROCREDIT_CONTRACT_SOURCE')
+        env_repo = os.environ.get('MICROCREDIT_CONTRACT_REPO')
+        if env_source:
+            source = Path(env_source)
+        elif env_repo:
+            source = Path(env_repo) / SOURCE_RELATIVE_PATH
+
+    if source is None:
+        raise SystemExit(
+            'contract source required: pass --contract-repo PATH or --contract-source FILE '
+            '(or set MICROCREDIT_CONTRACT_REPO / MICROCREDIT_CONTRACT_SOURCE)'
+        )
+
+    source = source.expanduser().resolve()
+    if not source.is_file():
+        raise SystemExit(f'contract source not found: {source}')
+    digest = hashlib.sha256(source.read_bytes()).hexdigest()
+    if digest != EXPECTED_SOURCE_SHA256:
+        raise SystemExit(
+            f'contract source SHA-256 mismatch: expected {EXPECTED_SOURCE_SHA256}, got {digest}; '
+            f'use {PINNED_CONTRACT_COMMIT}'
+        )
+    return source, digest
+
+
+ARGS = parse_args()
+SOURCE, SOURCE_SHA256 = resolve_source(ARGS)
 
 
 def amount(micro):
@@ -125,10 +193,10 @@ document = {
     'chain_reads': 0,
     'transactions': 0,
     'source': {
-        'local_path': str(SOURCE),
-        'checkout_commit': '460875c897241d6b9d09877ca36da9fb696f2bf9',
+        'local_path': ORIGINAL_GENERATION_PATH,
+        'checkout_commit': ORIGINAL_GENERATION_CHECKOUT,
         'git_blob': 'd06ebd2d8397d62840269314e87710d3c43bb89b',
-        'sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+        'sha256': SOURCE_SHA256,
         'canonical_source_url': 'https://github.com/scottonchain/microcredit-contract/blob/30d7eeed83ea50cad9c103383865fbdb2c4a8959/packages/foundry/contracts/DecentralizedMicrocredit.sol',
         'formulas_verified': {
             'loan_rate': 'effrRate + riskPremium, captured at origination',
@@ -168,6 +236,7 @@ document = {
     ],
 }
 
-destination = ROOT / 'short-advance-interest-rows.json'
+destination = ARGS.output.resolve()
+destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(json.dumps(document, indent=2) + '\n')
 print(json.dumps({'artifact': str(destination), 'rows': sum(len(s['rows']) for s in scenarios), 'sha256': hashlib.sha256(destination.read_bytes()).hexdigest(), 'cent_thresholds': [{'apr_bps': s['apr_bps'], 'thresholds': s['cent_thresholds']} for s in scenarios]}))
