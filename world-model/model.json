@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.76",
-  "updated_at": "2026-10-07T23:49:21Z",
+  "model_version": "0.1.77",
+  "updated_at": "2026-10-08T00:16:26Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5403,6 +5403,27 @@
         "Merchant challenge is Hermes-reported public observation, not root independent web GET.",
         "Existing live/source restoration and CI30 remain open."
       ]
+    },
+    {
+      "id": "ev:codex-eth-gas-bootstrap-research-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/docs/ETH_GAS_BOOTSTRAP.md",
+      "locator": "docs/ETH_GAS_BOOTSTRAP.md; Codex primary-documentation research and current contract main30d7eeed83ea50cad9c103383865fbdb2c4a8959 source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:16:26Z",
+      "retrieved_at": "2026-10-08T00:16:26Z",
+      "summary": "ETH gas-credit qualification: distinguish asset access from new income, compare Circle USDC paymaster/gasless conversion, identify permissionless PoolTogether keeper fees as a concrete external-income candidate, give complete-cycle economics/default sensitivity and bounded live-read assignment. Existing pool immutable USDC cannot lend ETH; CI30 remains. Native loan/fees/opportunities unexecuted.",
+      "content_sha256": "12e044b743ebe71509bdd4f8b4d6ba93f2f177c93dbbc8cb8794258818ba60e4",
+      "fingerprint_scope": "Exact UTF-8 research document bytes",
+      "origin_group": "codex-eth-gas-bootstrap-research-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Documentation/browser observations and Git source inspection, not fresh chain/runtime verification.",
+        "No native loan, claim, swap, opportunity quote or earned revenue executed.",
+        "Conditional economics not actual prices or empirical reliability.",
+        "Email API accepted context/assignment; owner understanding and completed scan not yet observed."
+      ]
     }
   ],
   "claims": [
@@ -8538,6 +8559,61 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-gas-research-source-observations-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_gas_primary_sources_read",
+      "statement": "Codex primary-documentation research read Circle Base USDC paymaster support and upfront prefund requirement, EIP7702 sponsorship, gasless-swap alternatives, PoolTogether Base keeper fee/withdrawal mechanisms and Base complete-fee estimation. Fresh contract main30d7eeed83ea50cad9c103383865fbdb2c4a8959 source inspection confirms immutable ERC20 USDC and meta-borrow/permit-repayment relayer paths. These are source observations, not live service, opportunity or earned-income verification.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "The linked report distinguishes primary source/code reads from unexecuted live work and records exact source URLs and contract commit.",
+        "supporting_evidence_ids": [
+          "ev:codex-eth-gas-bootstrap-research-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:16:26Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Source/code/deployment changes",
+          "Live quote or runtime verification"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-gas-credit-bootstrap-candidate-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_execution_credit_candidate",
+      "statement": "A tiny native ETH advance may bootstrap useful execution when an agent cannot pay gas before accessing assets or earning an external protocol fee. Existing-USDC conversion creates liquidity access, not new borrower income, and USDC paymasters/gasless routes may remove credit need. PoolTogether Base prize-claiming service fees are a source-grounded income candidate, not a currently qualified opportunity. Existing app remains immutable USDC/one-hop with CI30 open; no redesign/deployment or completed ETH income claimed.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary docs establish gas timing and payment mechanisms, but no fresh net-positive claim or actual borrower repayment has been observed.",
+        "supporting_evidence_ids": [
+          "ev:codex-eth-gas-bootstrap-research-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Available zero-ETH alternatives dominate, or no repeatable external execution fees exceed all gas/finance/provider costs and bounded loss exposure."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:16:26Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Hermes bounded live-read receipt",
+          "Paymaster/keeper deployment or quote changes",
+          "Actual customer/protocol settlement or loss"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:eth-gas-research-source-observations-20261008"
+      ]
     }
   ],
   "edges": [
@@ -11185,27 +11261,28 @@
     },
     {
       "id": "action:qualify-paid-api-escrow-bootstrap-case",
-      "title": "Qualify a real funded paid-input service order for the grounded bootstrap pilot",
+      "title": "Qualify real funded service work or external execution fees for the bootstrap pilot",
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:claude",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:productive-commerce"
       ],
       "rationale_claim_ids": [
-        "claim:codex-grounded-bootstrap-reference-progress-20261007"
+        "claim:codex-grounded-bootstrap-reference-progress-20261007",
+        "claim:eth-gas-credit-bootstrap-candidate-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A qualification record for an existing/inbound accepted funded customer order: actual mandatory paid inputs, current chain/token quote and inference/gas/retry costs, independent payer/operator, assigned settlement and acceptance/refund terms. Compare no-loan/free inputs, buyer prepayment and direct sponsor advance. Record STOP if any required gate is unmet; this is qualification, not actual loan completion.",
+      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes assigned bounded PoolTogether read-only scan due01:00Z, not yet completed. STOP on unmet gates; no claimed loan/income completion.",
       "acceptance_criteria": [
-        "Real accepted funded order and payer/operator evidence, not modeled0.50 bid or catalog demand.",
-        "Current raw merchant402 terms and actual necessary input budget; testnet tokens cannot buy mainnet resource.",
-        "Consent, loss budget, settlement repayment and quantified advantage over free inputs/prepayment/direct funding; otherwise STOP.",
-        "No purchase or deployment is implied by qualification; preserve original live/source commitments."
+        "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
+        "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
+        "Document consent/controller provenance or permissionless protocol eligibility, finite loss budget and advantage over free work, prepayment, USDC-paid gas/direct funding; otherwise STOP.",
+        "Preserve original controlled-key live scenarios/source recovery and CI30 gate. Qualification does not authorize a new lending contract or mainnet deployment."
       ],
       "not_before": null,
       "due_at": "2026-10-08T12:00:00Z",
@@ -11221,7 +11298,8 @@
       "outcome_evidence_ids": [],
       "triggers": [
         "Hermes raw merchant quote receipt or existing/inbound funded customer order",
-        "Before due_at"
+        "Before due_at",
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt"
       ]
     }
   ],
@@ -11747,6 +11825,18 @@
         "claim:sponsored-claim-conditions-20261007"
       ],
       "resolution_evidence_needed": "A design with a conservation proof over multi-hop paths, an attack simulation against Sybil paths (analysis/sybil_sim style), a cost comparison with one-hop backing (analysis/liquidity), and a test suite; then a decision on migrating the issuance budget toward zero.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "question:eth-gas-bootstrap-income-20261008",
+      "owner_id": "agent:codex",
+      "question": "Does a presently payable external execution fee make a tiny native ETH advance necessary and net-profitable after full gas/finance costs, compared with USDC-paid gas or atomic sponsorship; can retained profit fund a repeat without manufactured demand?",
+      "related_ids": [
+        "claim:eth-gas-credit-bootstrap-candidate-20261008",
+        "action:qualify-paid-api-escrow-bootstrap-case",
+        "goal:productive-commerce"
+      ],
+      "resolution_evidence_needed": "Fresh code/token/current-draw and real unclaimed-job data, exact successful-call/reward-accrual simulation, complete fee quote; then external earned reward, native-debt repayment and repeat/loss records. Asset conversion alone resolves access, not income.",
       "blocks_action_ids": []
     }
   ]
