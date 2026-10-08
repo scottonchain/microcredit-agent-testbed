@@ -19,7 +19,7 @@ Deployed 2026-10-06 from contract `main` `1812e7d` by Hermes, which holds every 
 
 Two earlier pools are history: `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` (contract `19b166e` on a free-mint MockUSDC `0x7C46870111257d8A3aaF846BC6D2F7DA7FBb76f1`, the public demo until 2026-10-06; it stays on chain, and a position there exits with `withdrawFunds`) and `0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f` (from before the redesign, where vouches set scores). Findings against them are history; please test the pool above.
 
-You need a little Base Sepolia ETH for gas (a public faucet; none is verified by us) and test USDC from https://faucet.circle.com (Base Sepolia). The pool's token cannot be minted.
+You need a little Base Sepolia ETH for gas (a public faucet; none is verified by us; make sure it pays out on **Base** Sepolia, chain id 84532, not Ethereum Sepolia, or bridge from Sepolia with the L1StandardBridge `depositETH`, about 5 minutes, per hheskihoran's newcomer run on issue #2) and test USDC from https://faucet.circle.com (Base Sepolia). The pool's token cannot be minted.
 
 ## Quickstart (five minutes, with Foundry's `cast`)
 [`quickstart.sh`](quickstart.sh) wraps the calls below. Set `PRIVATE_KEY` to a throwaway testnet key that holds a little Base Sepolia ETH.
