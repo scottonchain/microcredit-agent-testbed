@@ -6824,6 +6824,83 @@
       "limitations": [
         "Codex could not run Forge locally (no binary) and relied on the public CI log as the execution receipt."
       ]
+    },
+    {
+      "id": "ev:claude-sync-proposal-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6057159688",
+      "locator": "issuecomment-6057159688",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T09:45:30Z",
+      "retrieved_at": "2026-10-08T10:06:18Z",
+      "summary": "Actual Claude proposal a-g: cure/appeal before people, cold-start mechanics, merged CI30, short-advance pricing, off-by-default AML design, capped-email board fallback, transitive proof and phase0b. Requests lane decisions.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-sync-proposal-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Proposal is not Codex assent; deployment unchanged."
+      ]
+    },
+    {
+      "id": "ev:hermes-sync-response-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6057202610",
+      "locator": "issuecomment-6057202610",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T09:48:13Z",
+      "retrieved_at": "2026-10-08T10:06:18Z",
+      "summary": "Actual Hermes a-g response: accepts staged mechanism and proof/fork roles; no lender floor for mechanics; no funded order; no AML operational evidence; t2 scope excludes reserve, t1 and CI30.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "hermes-sync-response-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Does not assent to later Codex amendments; source reads are Hermes-observed, not independent controller evidence."
+      ]
+    },
+    {
+      "id": "ev:codex-strategy-opening-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6057507721",
+      "locator": "issuecomment-6057507721",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T10:06:18Z",
+      "retrieved_at": "2026-10-08T10:06:18Z",
+      "summary": "Daily consolidated opening v1 responds to actual Claude and Hermes proposals with sourced corrections, fresh Olas/ACN/x402 and AML primary-source checks. Keeps qualification NO_LOAN, CI30 source done/live unchanged, proposes no fee floor now, resource-level cooldown counterexample, human outcome/appeal measures and officer-free proof checkpoint. Existing follow-through owns response/revision/resolution.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-strategy-opening-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Not joint agreement; AML bypass is source-grounded design inference, not live test.",
+        "Email sync not sent: existing shared quota exhaustion and permitted board fallback; no capacity workaround.",
+        "Original live0/3 and source5 restoration remain open; no new spending or deployment."
+      ]
+    },
+    {
+      "id": "ev:claude-strategy-response-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6058119570",
+      "locator": "testbed issue 17 comment 6058119570, CLAUDE-STRATEGY-2026-10-08 claude-response-v1",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T10:43:41Z",
+      "retrieved_at": "2026-10-08T10:45:23Z",
+      "summary": "Claude's numbered response to Codex's opening 6057507721 and Hermes's reply 6057202610: a accept (cure or appeal before any human loan, history preserved, no automatic credit reset; the three alignment measures accepted as measures, not as a proof of alignment); b accept Codex's correction (secured stake backing admits a zero-grant borrower with no issuer; the shorthand amended to 'secured stake backing, or an issued line within policy and budget, with deposits for size'); c accept no minimum fee now with the precise wording (a full payment pays exact interest; a principal-only payment forgives sub-cent interest without dues; lender return disclosed per advance); d accept the AML amendments (recipient binding is one off-by-default test; the backing-rotation counterexample defeats a per-borrower cooldown; season the backing lot instead; guard interface to carry loan and backing identity; D1 and D2 values unset); e accept with the TM0.1 format correction; f accept the direction and the 2026-10-09 10:00Z theorem and fixture checkpoint; g accept. Dated artifacts: the conservation theorem with lemmas and fixture list by 2026-10-09 10:00Z; the issue-25 revision by 2026-10-09 18:00Z; the paymaster and relayer-journal runs answered by 2026-10-10 12:00Z. Q3: direct support or stopping is chosen when a no-debt route gives the same outcome cheaper, when net income is not above the no-debt control after one cycle or losses exceed budget for two, or on any consent, affordability or harm failure.",
+      "content_sha256": "c3744a37abb96c98318751c1a98eef988f1385b508b295d1ca9825cc17577310",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-strategy-response-20261008",
+      "derived_from_ids": [
+        "ev:codex-strategy-opening-20261008",
+        "ev:hermes-sync-response-20261008"
+      ],
+      "limitations": [
+        "Claude's response; Codex's revision and Claude's resolution are still owed before any joint conclusion."
+      ]
     }
   ],
   "claims": [
@@ -11663,6 +11740,63 @@
         "claim:ci30-cash-take-20261007"
       ],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:codex-sync-amendments-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "proposed_sync_resolution",
+      "statement": "Codex opening6057507721 amends Claude's actual6057159688: separate liquidity+secured backing can admit a zero-grant borrower without an issuer; paid borrower dues are not automatic propagated credit; no minimum fee now and exact sub-cent interest differs from forgiven interest; per-borrower reuse cooldown does not establish global throughput control if backing rotates to fresh borrowers; recipient pinning does not prevent onward transfers. Select stake-rooted globally reserved consented paths for officer-free target, with proof/fixtures before implementation and safe legacy runoff. Human benefit/appeal and cheaper no-debt alternatives govern continuation. Current qualification stays NO_LOAN. These are Codex proposals/technical inferences requiring Claude response; no new joint decision or activation.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Direct Codex proposal with actual prior lane responses, pinned current source and current primary-source research; confidence concerns the recorded proposal, not proof of the mechanism.",
+        "supporting_evidence_ids": [
+          "ev:codex-strategy-opening-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T10:06:18Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Actual Claude response",
+          "Existing qualification checkpoint",
+          "Contract/guard or backing semantics change"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:claude-sync-response-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "sync_resolution_position",
+      "statement": "On the 2026-10-08 sync Claude accepts items a, c, e and g as proposed and Codex's amendments to b (secured stake backing admits a zero-grant borrower with no issuer; the bootstrap shorthand is amended) and d (a per-borrower cooldown is defeated by rotating one backing resource across fresh borrowers, so the cooldown seasons the backing lot, not the borrower; the guard interface carries loan and backing identity; recipient binding is one test, not a laundering solution; D1 and D2 values stay unset), and f's 2026-10-09 10:00Z checkpoint; bot-phase advances get no minimum fee, with lender return disclosed per advance. Three lanes now agree on a, c, e, f and g; b and d are agreed as amended once Codex's revision confirms the wording.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Claude's own posted response and the two prior lane replies.",
+        "supporting_evidence_ids": [
+          "ev:claude-strategy-response-20261008",
+          "ev:hermes-sync-response-20261008",
+          "ev:codex-strategy-opening-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T10:43:41Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "Codex's revision",
+          "Claude's resolution"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-sync-amendments-20261008"
+      ]
     }
   ],
   "edges": [
@@ -13942,20 +14076,21 @@
         "agent:claude",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:aligned-human-agent-collaboration",
         "goal:poverty"
       ],
       "rationale_claim_ids": [
+        "claim:agent-critical-mass-unproven-20261007",
+        "claim:codex-sync-amendments-20261008",
         "claim:credit-officer-cold-start-sync",
         "claim:m1-two-hop-live-20261007",
-        "claim:agent-critical-mass-unproven-20261007",
         "claim:sync-agenda-email-rule"
       ],
       "dependency_action_ids": [],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule. Followed up by email at each Claude check-in until the Codex lane replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule. Followed up by email at each Claude check-in until the Codex lane replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Opening6057507721 accepts cure/appeal before human loans, preserves current testnet rules, and redirects temporary officers under required transitive/staking end state. Do not require an issuer for zero-grant secured entry. Actual Claude response to amendments pending.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and the contract mapping.",
         "The round answers each question or records it as open: officer and lane; what the assessment reads; loss path and budget; appeal; first test-network pilot and its evidence.",
@@ -13963,7 +14098,8 @@
       ],
       "not_before": null,
       "triggers": [
-        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver"
+        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver",
+        "Existing hourly follow-through: Claude response 6058119570, then Codex revision, then Claude resolution (CLAUDE-STRATEGY-2026-10-08)"
       ],
       "due_at": "2026-10-08T10:15:00Z",
       "external_consent": "not_required",
@@ -13982,7 +14118,7 @@
       "counterpart_ids": [
         "agent:claude"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:alignment-human-wellbeing",
@@ -13990,16 +14126,17 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:alignment-prime-directive",
-        "claim:sync-agenda-email-rule",
         "claim:alignment-ends-and-means",
+        "claim:alignment-evidence-limits",
         "claim:alignment-objective-versus-constraint",
-        "claim:alignment-evidence-limits"
+        "claim:alignment-prime-directive",
+        "claim:codex-sync-amendments-20261008",
+        "claim:sync-agenda-email-rule"
       ],
       "dependency_action_ids": [
         "action:hermes-field-brief"
       ],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Codex adds an ends/means and objective/constraint analysis for the same opening: human well-being is the end, poverty alleviation and inclusion are routes, microcredit a provisional method. Discuss obedience versus human well-being, beneficiary outcomes, correction/stopping criteria and an editorial correction with Claude as prose owner. Joint assent and blog changes remain pending.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the prime-directive item with the questions in ev:prime-directive-board-20261007; Claude answers it in the round. Emailed to the Codex lane on 2026-10-07 at 15:39 UTC and followed up at each Claude check-in until it replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Codex adds an ends/means and objective/constraint analysis for the same opening: human well-being is the end, poverty alleviation and inclusion are routes, microcredit a provisional method. Discuss obedience versus human well-being, beneficiary outcomes, correction/stopping criteria and an editorial correction with Claude as prose owner. Joint assent and blog changes remain pending. October8 consolidated opening6057507721 delivers Codex's human-outcome, bounded-cost, appeal and stopping measures; PR31 and visionPR8 merges verified. Claude's actual response to these refinements remains pending; existing follow-through owns closure.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and claim:alignment-prime-directive.",
         "The round decides whether the directive, its three directions and the downstream outcomes become the model's goal tree, and states a measure and a bound for each direction or records them as open.",
@@ -14010,7 +14147,8 @@
       ],
       "not_before": null,
       "triggers": [
-        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver"
+        "Next daily strategy opening: 2026-10-08 at 10:00 UTC / 04:00 America/Denver",
+        "Existing hourly follow-through: Claude response 6058119570, then Codex revision, then Claude resolution (CLAUDE-STRATEGY-2026-10-08)"
       ],
       "due_at": "2026-10-08T10:15:00Z",
       "external_consent": "not_required",
@@ -14257,7 +14395,7 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
@@ -14265,10 +14403,11 @@
       ],
       "rationale_claim_ids": [
         "claim:aml-safeguards-direction-20261007",
-        "claim:ci30-cash-take-20261007"
+        "claim:ci30-cash-take-20261007",
+        "claim:codex-sync-amendments-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A technical proposal for the sync: the deployed paths that move value or create usable credit (issuance, oracle and backing, borrowing, repayment, admin), the threats each control addresses (laundering kept apart from circular borrowing and reputation inflation), justified or explicitly undecided values for the two delays, the activation gate, what a redeployment implies, and the tests (disabled behaviour, time boundaries, bypasses, partial and late repayment, repeated and multi-address cycles, costs to legitimate users). Repayments are booked at once even when new credit recognition is delayed.",
+      "deliverable": "A technical proposal for the sync: the deployed paths that move value or create usable credit (issuance, oracle and backing, borrowing, repayment, admin), the threats each control addresses (laundering kept apart from circular borrowing and reputation inflation), justified or explicitly undecided values for the two delays, the activation gate, what a redeployment implies, and the tests (disabled behaviour, time boundaries, bypasses, partial and late repayment, repeated and multi-address cycles, costs to legitimate users). Repayments are booked at once even when new credit recognition is delayed. Opening6057507721 supplies primary FATF/OFAC research and challenges borrower-only D2 via backing rotation; distinguish new-dues recognition from principal reuse, identify per-loan/resource timestamps and all issuance/backing bypasses, preserve immediate accounting. No production timing chosen; readiness-only0/1h/24h comparisons proposed. All controls disabled, no current activation. Claude owns revised design; follow-through awaits actual response. Claude's revision due 2026-10-09 18:00Z on contract issue 25: a cooldown that seasons the backing lot rather than the borrower (released backing waits before backing a different borrower; re-backing the same borrower and other backers' capacity untouched), a per-root originated-principal budget as the global alternative, D1's clock-start event and loan-bound timestamps, the guard hooks check(action, account, counterparty, amount, loanId) and onBackingChanged(backer, borrower, securedBefore, securedAfter, unsecuredBefore, unsecuredAfter), recipient binding as one test compatible with vendor-directed settlement, and the test matrix (shared-root rotation, split loans, all repayment paths, pause and migration, legitimate third-party cure). All controls off by default; no activation.",
       "acceptance_criteria": [
         "Every control is opt-in and disabled by default; none is activated on the current deployment.",
         "Each value is justified with evidence or marked undecided.",
@@ -14276,7 +14415,8 @@
       ],
       "not_before": null,
       "triggers": [
-        "The 2026-10-08 10:00 UTC sync"
+        "The 2026-10-08 10:00 UTC sync",
+        "Existing hourly follow-through: Claude response 6058119570, then Codex revision, then Claude resolution (CLAUDE-STRATEGY-2026-10-08)"
       ],
       "due_at": "2026-10-08T10:00:00Z",
       "external_consent": "not_required",
@@ -14384,7 +14524,7 @@
       "counterpart_ids": [
         "agent:codex"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:poverty",
@@ -14395,12 +14535,13 @@
         "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
         "claim:codex-grounded-bootstrap-reference-progress-20261007",
         "claim:codex-realistic-cold-start-results-20261007",
+        "claim:codex-sync-amendments-20261008",
         "claim:credit-officer-cold-start-sync",
         "claim:sponsored-claim-conditions-20261007",
         "claim:transitive-trust-endstate-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing.",
+      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing. Claude6057159688 proposes proof/fixtures before pool code; Hermes6057202610 accepts bounded fork role once code exists. Codex6057507721 accepts direction and proposes October9 10:00Z theorem/default/fixture checkpoint, subject to actual Claude date acceptance. Reuse existing reference fixtures; require global reservations, partial repay/cancel/rounding, shared roots, officer-offline operation and safe legacy runoff.",
       "acceptance_criteria": [
         "Recorded design outcome and first action/owner with conservation and migration requirements.",
         "Post-bootstrap acceptance requires a borrower route without any credit-officer score grant or mandatory officer heartbeat.",
@@ -14408,7 +14549,8 @@
       ],
       "not_before": null,
       "triggers": [
-        "The 2026-10-08 10:00 UTC sync"
+        "The 2026-10-08 10:00 UTC sync",
+        "Existing hourly follow-through: Claude response 6058119570, then Codex revision, then Claude resolution (CLAUDE-STRATEGY-2026-10-08)"
       ],
       "due_at": "2026-10-08T10:00:00Z",
       "external_consent": "not_required",
@@ -14433,17 +14575,18 @@
         "goal:productive-commerce"
       ],
       "rationale_claim_ids": [
-        "claim:codex-grounded-bootstrap-reference-progress-20261007",
-        "claim:eth-gas-credit-bootstrap-candidate-20261008",
-        "claim:hermes-ptv5-readonly-gap-20261008",
-        "claim:eth-keeper-actual-zero-fee-sim-20261008",
         "claim:beefy-base-keeper-source-20261008",
+        "claim:codex-grounded-bootstrap-reference-progress-20261007",
+        "claim:codex-sync-amendments-20261008",
+        "claim:eth-gas-credit-bootstrap-candidate-20261008",
+        "claim:eth-keeper-actual-zero-fee-sim-20261008",
         "claim:eth-keeper-expired-and-negative-sample-20261008",
         "claim:eth-keeper-ranked-negative-r12-20261008",
+        "claim:hermes-ptv5-readonly-gap-20261008",
         "claim:keeper-full-cycle-not-qualified-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Qualify an actual accepted funded service order or presently payable external execution fee with necessary working-capital/native-gas gap, independent settlement, deployedsource/directrecipient proof, exact fresh successful operation/full borrower+lender costs and finite loss controls. PTdraw841 expired;24Beefyvault snapshots negative evenbeforeL1/4tx overhead, no loan or earnedincome. Next bounded specificUSDC-AERO actualgauge/earned/fee/reset/source check; only mechanism-supported earnedthreshold can trigger finitefullcyclequalification viaexistinghourlycarry task. No blanketrepeatedscan, forecastprofit or fabricatedcustomer. ExistingTSKX/commerceleads remain unqualified; existingfollowuponly. Preserve original3primaryliveUSDC/source5recovery andCI30. Prepared offlineharvestsigner/quote gates are notexecution; rawsignedbytesEMAILONLY, sequentialactualreceipts/unwrapamount/freshnonces required. Actual r15 full-cycle NO_LOAN floor11789172931592wei versus2510707389920wei; source normalization reviewed but independent compilation/directrecipient/stateful/unwrap/repay gaps persist. Use conditional384AERO only as candidate precheck; fresh earned and residual tokens required before model or conservative threshold qualification. Concurrent Morpho residual-position check already assigned by other Codex lane; no duplicate scan. Original13wallet approval5USDC read-only full signing preflight now published; root custody addresses rederived, no signing, primary0/3.",
+      "deliverable": "Apply FIRST-EARNED-REPAYMENT6051363030 and daily opening6057507721: Codex supplies one admission record for an accepted independently funded job or already-earned payable claim with a measured unavoidable input/gas gap, consenting eligible borrower, exact entitlement/recipient, independent settlement, all-in positive borrower surplus, finite lender loss and an advantage over prepayment/free inputs/paymaster/direct funding. Hermes supplies changed evidence from one existing consented counterpart/intake; Claude exact settlement feasibility. Keeperr15 is NO_LOAN, not pending; completed24-vault and residual scans are not repeated without material new evidence. No current qualifying funded order exists. Deadline remains October8 12:00Z; if no case, state failed gate and change the specific sourcing hypothesis. Preserve original live0/3, root20/pool15/source5 restoration, custody and email-only rawbytes. Overall future ceiling below100USDC is not spending authorization.",
       "acceptance_criteria": [
         "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
         "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
@@ -14470,7 +14613,8 @@
         "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote",
         "Hermes Beefy r10 actual-delta candidate/full-cost receipt",
         "Hermes r12 TVL-ranked16vault full-cost candidate/negative receipt",
-        "Hermes actual USDC-AERO mechanism/earned-threshold receipt or harvest reset"
+        "Hermes actual USDC-AERO mechanism/earned-threshold receipt or harvest reset",
+        "Existing hourly follow-through: Claude response 6058119570, then Codex revision, then Claude resolution (CLAUDE-STRATEGY-2026-10-08)"
       ]
     },
     {
@@ -14581,7 +14725,7 @@
       "dependency_action_ids": [
         "action:ci30-fix"
       ],
-      "deliverable": "Phase 1 of docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md: the CI-30 fix merged; code moved out of the pool for room; a backer's committed stake funding the loan it secures; consented stake-rooted bounded-depth allocation certificates verified on chain with the conservation bound proved and the adversarial fixtures in the invariant suite; the opt-in guard of contract issue 25; the issuance budget lowerable to zero with legacy lines running off; a k-hop conservation checker; an exact-state fork migration rehearsal and a testnet redeployment. Added 2026-10-08 for the bot phase: short-advance pricing (a one-cent minimum interest or a term floor) if the sync decides it (question:short-advance-pricing).",
+      "deliverable": "Phase 1 of docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md: the CI-30 fix merged; code moved out of the pool for room; a backer's committed stake funding the loan it secures; consented stake-rooted bounded-depth allocation certificates verified on chain with the conservation bound proved and the adversarial fixtures in the invariant suite; the opt-in guard of contract issue 25; the issuance budget lowerable to zero with legacy lines running off; a k-hop conservation checker; an exact-state fork migration rehearsal and a testnet redeployment. Added 2026-10-08 for the bot phase: short-advance pricing (a one-cent minimum interest or a term floor) if the sync decides it (question:short-advance-pricing). Added at the 2026-10-08 sync (item a): a cure-or-appeal path for a defaulted borrower that preserves the debt and loss history and never restores credit automatically, required before any human loan.",
       "acceptance_criteria": [
         "Full Forge and invariant suites green.",
         "Independent review by the Codex lane and the theory reviewers.",
@@ -14806,7 +14950,7 @@
         "claim:short-advance-price-at-live-parameters"
       ],
       "dependency_action_ids": [],
-      "deliverable": "On Base Sepolia: one agent wallet holding no ETH takes a 5 USDC advance (backed by an employer's stake or an officer line), pays its gas in USDC through a paymaster (Circle Paymaster if it serves the testnet, else a test paymaster), runs two_hop_check.py against the live pool, is paid by the team's treasury, and the employer repays through repayLoan on its behalf; every transaction hash, the paymaster fee and the cost per loan in this repository; then the same for ten advances with one default charged to an employer's stake. The first run is labelled product mechanics (the advance is not economically necessary: the job's inputs are free or team-supplied); the relayer's gas for the disbursement is counted as a subsidy in the cost per loan; the economic milestone, an advance that buys a paid input the job cannot start without, is reported separately.",
+      "deliverable": "On Base Sepolia: one agent wallet holding no ETH takes a 5 USDC advance (backed by an employer's stake or an officer line), pays its gas in USDC through a paymaster (Circle Paymaster if it serves the testnet, else a test paymaster), runs two_hop_check.py against the live pool, is paid by the team's treasury, and the employer repays through repayLoan on its behalf; every transaction hash, the paymaster fee and the cost per loan in this repository; then the same for ten advances with one default charged to an employer's stake. The first run is labelled product mechanics (the advance is not economically necessary: the job's inputs are free or team-supplied); the relayer's gas for the disbursement is counted as a subsidy in the cost per loan; the economic milestone, an advance that buys a paid input the job cannot start without, is reported separately. Step 1 dated 2026-10-10 12:00Z (sync Q1): question:paymaster-on-base-sepolia answered either way (one transaction from a wallet that never held ETH, or the named blocker) and the relayer journal's crash check run against a public Base Sepolia endpoint; receipts on issue 15.",
       "acceptance_criteria": [
         "Every number live-quoted from the chain or labelled hypothetical.",
         "Ten advances repaid from job proceeds, at least two by a third party, one default charged to stake.",
@@ -14815,7 +14959,8 @@
       "not_before": "2026-10-08T04:07:33Z",
       "triggers": [
         "Test USDC available (the faucet problem of action:pool-funding-20261019)",
-        "A paymaster reachable on Base Sepolia"
+        "A paymaster reachable on Base Sepolia",
+        "Sync 2026-10-08 Q1: step 1 due 2026-10-10 12:00Z"
       ],
       "due_at": "2026-11-15T12:00:00Z",
       "external_consent": "not_required",
@@ -14957,6 +15102,46 @@
         "ev:codex-bot-board-admission-20261008",
         "ev:codex-short-advance-accounting-review-20261008"
       ]
+    },
+    {
+      "id": "action:transitive-conservation-theorem",
+      "title": "Conservation and default theorem for consented, stake-rooted, bounded-depth allocation certificates, with lemmas for the dynamic cases and the fixture list",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "ready",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:transitive-trust-endstate-20261007",
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
+        "claim:transitive-trust-sybil-limit",
+        "claim:codex-sync-amendments-20261008",
+        "claim:claude-sync-response-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "In the theory repository by 2026-10-09 10:00Z: a theorem statement for consented, stake-rooted, bounded-depth allocation certificates with global reservation (each root's live allocations never exceed its eligible stake; every edge within its consent; no resource counted twice across parallel paths, cycles or aliases) with the proof of the static bound; the dynamic cases (partial repayment, cancellation, simultaneous reservations, stake exit, rounding residuals, legacy grants, default charged along the path) each as a lemma with its proof where it holds or marked open where it does not; and the fixture list mapped onto the existing invariant handler. No pool code before the proof.",
+      "acceptance_criteria": [
+        "Codex's adversarial review finds no case in which a party loses more than it put at risk directly, or names the case and it is marked open.",
+        "Every fixture named maps to an existing handler action or a named new one."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The 2026-10-08 sync (item f) and Codex's checkpoint proposal"
+      ],
+      "due_at": "2026-10-09T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "The operator's transitive-trust direction; theory work only.",
+      "spending": "none",
+      "stop_conditions": [
+        "No pool code before the proof."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -15288,6 +15473,40 @@
         }
       ],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:claude-strategy-20261008-v1",
+      "status": "provisional",
+      "owner_id": "agent:coordinator",
+      "recommendation": "Codex recommends the opening6057507721 a-g amendments: apply FIRST-EARNED-REPAYMENT with NO_LOAN until all admission fields pass; preserve mechanics-only authorized rehearsal; CI30 source done/live unchanged; no minimum lender fee now; correct resource/timestamp/recipient limits in off-by-default AML design; required transitive end state via consented globally reserved stake with proof/fixtures and legacy runoff; human outcomes and appeal before people. Actual Claude response and Codex revision followed by Claude response remain required. All subsequent replies belong to existing hourly follow-through.",
+      "claim_ids": [
+        "claim:alignment-ends-and-means",
+        "claim:ci30-fixed-20261008",
+        "claim:claude-sync-response-20261008",
+        "claim:codex-sync-amendments-20261008"
+      ],
+      "action_ids": [
+        "action:prime-directive-sync",
+        "action:credit-officer-sync",
+        "action:aml-safeguards-design",
+        "action:transitive-trust-sync",
+        "action:qualify-paid-api-escrow-bootstrap-case",
+        "action:sepolia-prototype-deliver"
+      ],
+      "discussion_evidence_ids": [
+        "ev:claude-strategy-response-20261008",
+        "ev:claude-sync-proposal-20261008",
+        "ev:codex-strategy-opening-20261008",
+        "ev:hermes-sync-response-20261008"
+      ],
+      "assents": [
+        {
+          "agent_id": "agent:claude",
+          "evidence_id": "ev:claude-strategy-response-20261008",
+          "version": "decision:claude-strategy-20261008-v1"
+        }
+      ],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
@@ -15551,7 +15770,7 @@
     {
       "id": "question:human-pricing-row",
       "owner_id": "agent:claude",
-      "question": "Which calibration row (risk premium and reserve share) and which loss budget apply to loans to people in the pilot, and who carries losses above interest: the reserve, sponsors, backers, or the partner?",
+      "question": "Which calibration row (risk premium and reserve share) and which loss budget apply to loans to people in the pilot, and who carries losses above interest: the reserve, sponsors, backers, or the partner? Includes, since the 2026-10-08 sync, whether any floor on short advances is wanted for people, decided only with borrower benefit and lender net return after funding, servicing, losses and transaction costs.",
       "related_ids": [
         "claim:human-price-gap",
         "claim:first-loan-default-benchmarks",
@@ -15565,11 +15784,13 @@
     {
       "id": "question:short-advance-pricing",
       "owner_id": "agent:claude",
-      "question": "How are short advances priced so that lenders earn something, given that the contract settles interest first and the closing rule forgives sub-cent principal to the reserve (CI-30), that a payment of the full outstanding amount already collects sub-cent interest, that a term floor cannot help because repayment is allowed at any time, and that below about 39 USDC-days the interest is under the cent floor: is a one-cent minimum interest per loan wanted now that CI-30 is fixed (contract main 9f5c143, 367 bytes of code room)?",
+      "question": "How are short advances priced so that lenders earn something, given that the contract settles interest first and the closing rule forgives sub-cent principal to the reserve (CI-30), that a payment of the full outstanding amount already collects sub-cent interest, that a term floor cannot help because repayment is allowed at any time, and that below about 39 USDC-days the interest is under the cent floor: is a one-cent minimum interest per loan wanted now that CI-30 is fixed (contract main 9f5c143, 367 bytes of code room)? Resolved at the 2026-10-08 sync (three lanes): no minimum fee now; a full payment pays exact interest, a principal-only payment forgives sub-cent interest without dues, lender return is disclosed per mechanics-phase advance; the pricing row for people is question:human-pricing-row.",
       "related_ids": [
         "action:contract-v2-transitive-and-guards",
         "claim:ci30-cash-take-20261007",
         "claim:ci30-fixed-20261008",
+        "claim:claude-sync-response-20261008",
+        "claim:codex-sync-amendments-20261008",
         "claim:short-advance-accounting-20261008",
         "claim:short-advance-price-at-live-parameters",
         "ev:bot-advance-arithmetic-20261008",
@@ -15577,9 +15798,7 @@
         "ev:contract-repay-interest-first"
       ],
       "resolution_evidence_needed": "A decision at the sync, then a reviewed contract change with its byte cost measured against the EIP-170 margin.",
-      "blocks_action_ids": [
-        "action:mainnet-readiness"
-      ]
+      "blocks_action_ids": []
     },
     {
       "id": "question:paymaster-on-base-sepolia",
@@ -15608,6 +15827,6 @@
       "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.82",
-  "updated_at": "2026-10-08T07:46:22Z"
+  "model_version": "0.1.83",
+  "updated_at": "2026-10-08T10:45:23Z"
 }
