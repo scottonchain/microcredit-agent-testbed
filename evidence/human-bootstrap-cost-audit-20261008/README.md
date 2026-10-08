@@ -38,6 +38,22 @@ python3 check_invariants.py
 python3 graduation.py
 ```
 
+The short-advance source arithmetic requires an explicit checkout of the pinned
+public contract revision; it no longer depends on a machine-local path:
+
+```sh
+git clone https://github.com/scottonchain/microcredit-contract /tmp/microcredit-contract
+git -C /tmp/microcredit-contract checkout 30d7eeed83ea50cad9c103383865fbdb2c4a8959
+python3 reproduce-short-advance-interest.py --contract-repo /tmp/microcredit-contract
+python3 test_reproduce_short_advance_clean_checkout.py --contract-repo /tmp/microcredit-contract
+```
+
+Both commands verify the exact source SHA-256 before computing anything. The
+test writes to a temporary directory and compares exact bytes with the committed
+24-row artifact. The artifact's `local_path` and short checkout id are retained
+as historical provenance from its original generation; the reproducer does not
+use either field to locate source.
+
 Fixtures embed exact actual r15 read-only quote terms and separately labelled
 structural service assumptions. No keys, network, wallet signing or payments
 are involved. Stablecoin values are integer six-decimal units; ETH stays in wei.
