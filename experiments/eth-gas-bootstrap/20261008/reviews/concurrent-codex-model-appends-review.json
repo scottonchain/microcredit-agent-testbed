@@ -1,0 +1,453 @@
+{
+  "scope": "Public append-only proposal for existing PR37; not merged, approved or earned bootstrap",
+  "base_model_version": "0.1.77",
+  "base_updated_at": "2026-10-08T01:37:56Z",
+  "source_comments": [
+    "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+    "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+    "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+    "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050741125",
+    "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639"
+  ],
+  "additional_counts": {
+    "entities": 2,
+    "evidence": 17,
+    "claims": 25,
+    "hypotheses": 1,
+    "actions": 2,
+    "open_questions": 3,
+    "coverage": 2
+  },
+  "conflicts": [],
+  "unresolved_references": [],
+  "lineage": [
+    {
+      "collection": "entities",
+      "id": "venue:basescan-bootstrap-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "entities",
+      "id": "work:escrow-input-bootstrap-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:acp-paid-job-81471-basescan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:acp-refunds-basescan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:beefy-negative-basescan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:microcredit-source-mismatch-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:prior-merchant-cost-receipt-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:acp-payment-real-not-profit-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:keeper-reject-realized-spread-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:escrow-refund-risk-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:fast-loan-accounting-gap-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:paid-input-closest-microcredit-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:under100-bootstrap-plan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "hypotheses",
+      "id": "hyp:escrow-input-sustainable-credit-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "actions",
+      "id": "action:escrow-input-order-qualification-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "actions",
+      "id": "action:fast-microloan-design-review-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "open_questions",
+      "id": "q:actual-profitable-funded-job-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "open_questions",
+      "id": "q:acp-payment-assignment-supported-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "coverage",
+      "id": "coverage:basescan-bootstrap-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050413845",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:40:18Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:agentbounties-funded-parent-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:deskcrew-payout-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:agentbounties-timeout-routing-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:hermes-r14-readonly-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:morpho-gas-callback-mechanism-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:bond-credit-qualified-eligibility-missing-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:deskcrew-entry-credit-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:timeout-no-caller-income-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:r14-eth-gas-loan-not-ready-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:eth-gas-callback-credit-hypothesis-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:eth-native-accounting-amendment-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-agentbounties-funded-parent-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-deskcrew-payout-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-agentbounties-timeout-routing-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-hermes-r14-readonly-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-morpho-gas-callback-mechanism-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "open_questions",
+      "id": "q:morpho-live-executor-packet-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "coverage",
+      "id": "coverage:eth-and-bounty-extension-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050551777",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:53:20Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:basescan-beefy-impl-source-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:morpho-historical-basescan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:blue-community-executor-source-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-basescan-beefy-impl-source-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-morpho-historical-basescan-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-blue-community-executor-source-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:gas-loan-profit-accounting-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050602043",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T01:57:58Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:harvest-only-signer-readiness-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050741125",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:10:34Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-harvest-only-signer-readiness-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050741125",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:10:34Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:hermes-r15-full-cycle-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:hermes-r15-morpho-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "evidence",
+      "id": "ev:hermes-r15-source-matches-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-hermes-r15-full-cycle-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-hermes-r15-morpho-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    },
+    {
+      "collection": "claims",
+      "id": "claim:observed-hermes-r15-source-matches-20261008",
+      "comment_url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050803639",
+      "comment_author": "scottonchain",
+      "created_at": "2026-10-08T02:16:19Z",
+      "disposition": "additional candidate retained verbatim"
+    }
+  ],
+  "preservation": "Candidate records preserved verbatim. Current model metadata and existing records untouched. Observed statuses are embedded claims about source observations; this package remains a maintainer-review proposal, not confirmation of paid or earned bootstrap.",
+  "synthetic_merge_validation": {
+    "valid": true,
+    "command": "python3 world-model/validate.py --check-schema <scratch merged model>",
+    "base_records_preserved": true,
+    "protected_model_modified": false
+  },
+  "base_model_file": "/workspace/work/eth-bootstrap/integration/world-model/model.json",
+  "base_model_sha256": "3fe615aa97e4e8073d5018330985990e113c8fc83fccb0ebfa1ba16ac4f65d10",
+  "base_git_head": "f95dac644eb1386d21b4790585aad8a30f5834c1",
+  "identical_existing_ids_omitted": [],
+  "budget_interpretation": "Appended $75/$100 proposal remains attributed historical other-worker research, not new spending authorization in this lane. Root ETH pilot caps remain separately <=$0.50; this append package does not change permissions."
+}

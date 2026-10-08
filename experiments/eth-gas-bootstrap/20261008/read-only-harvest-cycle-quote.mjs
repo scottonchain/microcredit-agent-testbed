@@ -1,0 +1,114 @@
+#!/usr/bin/env node
+// READ ONLY. Direct strategy harvest economics, never a transaction to the lens.
+// Node >=20, exact viem@2.17.0. No key handling, signing, approvals or sending.
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { createRequire } from 'node:module';
+import { dirname, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+const argv=process.argv.slice(2);
+if(argv.includes('--help')){console.log(`Install: npm install --save-exact viem@2.17.0
+Run: BASE_READ_RPC='approved HTTPS endpoint' node read-only-harvest-cycle-quote.mjs --probe beefy-probe.json --index 0 --deps /path/to/install-directory > harvest-cycle-quote.json
+Optional --work-cost-wei N (default0: on-chain margin only), --rpc-env NAME.
+Funding, DIRECT strategy.harvest(borrower), WETH unwrap, native repayment: four UNSIGNED PREVIEWS.
+Never pre-sign a bundle. Rebuild unwrap amount from ACTUAL canonical WETH harvest receipt.
+Refresh nonce/gas and sign each phase separately after authenticating the preceding receipt.
+Lens.harvest(strategy,WETH) is ETH_CALL ONLY, never included in transaction intents.
+One optional eth_simulateV1 checks the exact four calls and harvest WETH Transfer logs.
+Limits: 60 RPC operations,90seconds, at most3 pricing passes; block age<=120s/future<=5s.
+Borrower must have nonce/native/WETH0; borrower and lender must have empty code.
+No RPC endpoint or error payload is printed.
+Later signer must independently verify deployed source, recheck nonce/caps, and refresh simulation.`);process.exit(0);}
+function arg(name,fallback){const i=argv.indexOf(name);if(i<0)return fallback;if(!argv[i+1]||argv[i+1].startsWith('--'))throw new Error('ArgumentValue');return argv[i+1];}
+const BORROWER='0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b';
+const LENDER='0xdb3de88e9dba1b07a06d186dfbd86fae309043ad';
+const WETH='0x4200000000000000000000000000000000000006';
+const ORACLE='0x420000000000000000000000000000000000000f';
+const LENS='0x71e4df2bdc7ce0b2dc7cdb9eac983b251f8a0b58';
+const PRICE_FEED='0x71041dddad3595f9ced3dccfbe3d1f4b0a16bb70';
+const started=Date.now(),abort=new AbortController();let printed=false,stage='arguments';
+const report={schema:'codex.eth-gas-read-only-harvest-cycle-quote/1',venue:'beefy-harvest',mode:'READ_ONLY_DIRECT_HARVEST_CONSERVATIVE_CYCLE',chainId:8453,startedAt:new Date().toISOString(),borrower:BORROWER,lender:LENDER,weth:WETH,lens:LENS,
+ counters:{httpRequests:0,rpcOperations:0},caps:{nativePrincipalWei:'50000000000000',principalUsdMicros:'500000',grossExposureUsdMicros:'1000000',worstLossUsdMicros:'250000'},spendAuthorized:false,loanDisbursed:false,liveExecution:false,earnedRevenue:false,
+ executionPolicy:{allIntents:'UNSIGNED_PREVIEW_ONLY',neverPresignBundle:true,requireSeparateFreshNonceGasAndSignaturePerPhase:true,requireAuthenticatedPrecedingReceipt:true,unwrapAmount:'PREVIEW_ONLY_REBUILD_FROM_ACTUAL_CANONICAL_WETH_HARVEST_RECEIPT',repayIntent:'REPRICE_FROM_ACTUAL_PHASE_BALANCES_GAS_AND_RECORDED_DEBT'},
+ caveats:['Lens token delta is simulated revenue, not earned revenue. Lens caller differs from direct EOA caller.','A nonreverting direct harvest with empty returndata alone does not independently establish WETH receipt.','No atomic EOA profit guard exists; competitors can consume rewards and one bounded attempt can lose gas.','Unwrap100000gas is a conservative reservation unless a stateful cycle simulation succeeds.','GasPriceOracle L1 upper bound covers99.99% of transactions, not a mathematical worst-case guarantee.','Snapshot L1/operator quotes are doubled, but future protocol prices have no transaction-level cap.','Dollar limits use fresh Chainlink ETH/USD with a20% price buffer.','Zero work cost means on-chain contribution margin only.','Recorded runtime hashes are fingerprints, not source-verification certificates.','The lens is only eth_call; never submit the lens calldata or assign it borrower funds.'],
+ sources:{lensAbi:'https://github.com/beefyfinance/beefy-cowllector-v2/blob/00955cd894ba2605b0936688e3908e51ccb185ae/apps/cowllector/src/abi/BeefyHarvestLensV2ABI.ts',lensAbiFileBlobSha:'5b85a7572cdf823f652490f5d552f28b565340c2',vaultRegistry:'https://github.com/beefyfinance/beefy-v2/blob/c30017071065df81a32890eb2a36c3c05c2dc604/src/config/vault/base.json',gasOracleFileBlobSha:'ab6cdcf80c4fe4336aa0711d91982bc282c96f77',ethUsdFeed:'https://data.chain.link/feeds/base/mainnet/eth-usd'}};
+function finish(status,error){if(printed)return;printed=true;Object.assign(report,{status,stage,finishedAt:new Date().toISOString(),elapsedMs:Date.now()-started});if(error)report.error={kind:error.safeKind||(/^[A-Za-z][A-Za-z0-9_]{0,80}$/.test(error.message||'')?error.message:error.name)||'Error',message:'Read-only quote stopped. No signing or spending occurred.'};console.log(JSON.stringify(report,(_,v)=>typeof v==='bigint'?v.toString():v,2));}
+const timer=setTimeout(()=>{abort.abort();finish('STOPPED_RUNTIME_CAP');process.exit(2);},90_000);
+try{
+ const name=arg('--rpc-env','BASE_READ_RPC');if(!/^[A-Z][A-Z0-9_]*$/.test(name))throw new Error('RpcEnvName');const endpoint=process.env[name];if(!endpoint||new URL(endpoint).protocol!=='https:')throw new Error('ApprovedHttpsRpcRequired');
+ const bytes=readFileSync(resolve(arg('--probe','beefy-probe.json')));if(bytes.length>2_000_000)throw new Error('InputTooLarge');const probe=JSON.parse(bytes),index=Number(arg('--index','0'));
+ if(!Array.isArray(probe.candidates)||!Number.isInteger(index)||index<0||index>=probe.candidates.length)throw new Error('CandidateIndex');const source=probe.candidates[index];
+ if(!/^0x[0-9a-fA-F]{40}$/.test(source.vault)||!/^0x[0-9a-fA-F]{40}$/.test(source.strategy))throw new Error('CandidateSchema');const vault=source.vault.toLowerCase(),strategy=source.strategy.toLowerCase();
+ const workCost=BigInt(arg('--work-cost-wei','0'));if(workCost<0n||workCost>50_000_000_000_000n)throw new Error('WorkCostLimit');
+ report.input={sha256:createHash('sha256').update(bytes).digest('hex'),candidateIndex:index,vaultId:source.id,vault,strategy,priorBlock:probe.block||null};
+ const depDir=resolve(arg('--deps',dirname(new URL(import.meta.url).pathname)));const require=createRequire(resolve(depDir,'package.json'));const manifest=JSON.parse(readFileSync(require.resolve('viem/package.json')));if(manifest.version!=='2.17.0')throw new Error('ExactViemVersionRequired');
+ const {parseAbi,encodeFunctionData,decodeFunctionResult,decodeEventLog,serializeTransaction,keccak256}=await import(pathToFileURL(require.resolve('viem')).href);
+ const hex=n=>'0x'+BigInt(n).toString(16);const allowed=new Set(['eth_chainId','eth_getBlockByNumber','eth_call','eth_getCode','eth_getBalance','eth_getTransactionCount','eth_maxPriorityFeePerGas','eth_estimateGas','eth_simulateV1']);let id=0;
+ async function rpc(method,params){if(!allowed.has(method))throw new Error('DeniedRpcMethod');if(++report.counters.httpRequests>60||++report.counters.rpcOperations>60)throw new Error('RpcCap');if(Date.now()-started>=90_000)throw new Error('RuntimeCap');
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:++id,method,params}),redirect:'error',signal:AbortSignal.any([abort.signal,AbortSignal.timeout(10_000)])});const text=await response.text();if(!response.ok||text.length>2_000_000)throw new Error('RpcHttpFailure');const result=JSON.parse(text);if(result.error){const e=new Error('RpcError');e.safeKind='RpcError_'+String(result.error.code);throw e;}if(!Object.hasOwn(result,'result'))throw new Error('RpcResultMissing');return result.result;
+ }
+ stage='fresh_snapshot';if(BigInt(await rpc('eth_chainId',[]))!==8453n)throw new Error('WrongChain');const block=await rpc('eth_getBlockByNumber',['latest',false]);if(!block?.hash||!block?.number||!block?.timestamp||!block?.baseFeePerGas)throw new Error('BlockSchema');const tag=block.number;
+ report.block={number:BigInt(tag),hash:block.hash,timestamp:BigInt(block.timestamp),baseFeePerGas:BigInt(block.baseFeePerGas),fixedRpcCallTag:tag};
+ const freshness=()=>{const wallClockUnixSeconds=BigInt(Math.floor(Date.now()/1000)),ageSeconds=wallClockUnixSeconds-BigInt(block.timestamp);return {wallClockUnixSeconds,blockTimestamp:BigInt(block.timestamp),ageSeconds,maxAgeSeconds:120,maxFutureSeconds:5,withinBounds:ageSeconds<=120n&&ageSeconds>=-5n};};
+ report.freshness={initial:freshness()};if(!report.freshness.initial.withinBounds)throw new Error('BlockOutsideWallClockFreshnessBounds');
+ const vaultAbi=parseAbi(['function strategy() view returns(address)']);
+ const stratAbi=parseAbi(['function native() view returns(address)','function paused() view returns(bool)','function lastHarvest() view returns(uint256)','function harvest(address callFeeRecipient)']);
+ const lensAbi=parseAbi(['function harvest(address _strategy,address _rewardToken) returns((uint256 callReward,uint256 lastHarvest,uint256 gasUsed,uint256 blockNumber,int8 isCalmBeforeHarvest,bool paused,bool success,bytes harvestResult) res)']);
+ const wethAbi=parseAbi(['function balanceOf(address) view returns(uint256)','function withdraw(uint256)','event Transfer(address indexed from,address indexed to,uint256 value)','event Withdrawal(address indexed src,uint256 wad)']);
+ const oracleAbi=parseAbi(['function getL1FeeUpperBound(uint256) view returns(uint256)','function getOperatorFee(uint256) view returns(uint256)','function isFjord() view returns(bool)']);
+ const priceAbi=parseAbi(['function decimals() view returns(uint8)','function description() view returns(string)','function latestRoundData() view returns(uint80,int256,uint256,uint256,uint80)']);
+ const read=async(to,abi,fn,args=[])=>decodeFunctionResult({abi,functionName:fn,data:await rpc('eth_call',[{to,data:encodeFunctionData({abi,functionName:fn,args})},tag])});
+ const [freshStrategy,native,paused,lastHarvest,borrowerEth,lenderEth,borrowerNonce,lenderNonce,borrowerPendingNonce,lenderPendingNonce,borrowerWeth,lenderWeth,priceDecimals,priceDescription,priceRound,fjord]=await Promise.all([
+  read(vault,vaultAbi,'strategy'),read(strategy,stratAbi,'native'),read(strategy,stratAbi,'paused'),read(strategy,stratAbi,'lastHarvest'),rpc('eth_getBalance',[BORROWER,tag]),rpc('eth_getBalance',[LENDER,tag]),rpc('eth_getTransactionCount',[BORROWER,tag]),rpc('eth_getTransactionCount',[LENDER,tag]),rpc('eth_getTransactionCount',[BORROWER,'pending']),rpc('eth_getTransactionCount',[LENDER,'pending']),read(WETH,wethAbi,'balanceOf',[BORROWER]),read(WETH,wethAbi,'balanceOf',[LENDER]),read(PRICE_FEED,priceAbi,'decimals'),read(PRICE_FEED,priceAbi,'description'),read(PRICE_FEED,priceAbi,'latestRoundData'),read(ORACLE,oracleAbi,'isFjord')]);
+ report.contracts={vault,strategy,freshVaultStrategy:freshStrategy,nativeRewardToken:native,paused,lastHarvest,weth:WETH,lens:LENS,gasOracle:ORACLE};
+ if(freshStrategy.toLowerCase()!==strategy||native.toLowerCase()!==WETH||paused!==false||!fjord)throw new Error('StrategyNotEligibleAtSnapshot');
+ report.before={borrower:{nativeWei:BigInt(borrowerEth),wethWei:borrowerWeth,nonce:BigInt(borrowerNonce)},lender:{nativeWei:BigInt(lenderEth),wethWei:lenderWeth,nonce:BigInt(lenderNonce)}};report.pendingNonces={borrower:BigInt(borrowerPendingNonce),lender:BigInt(lenderPendingNonce)};
+ const [borrowerCode,lenderCode]=await Promise.all([rpc('eth_getCode',[BORROWER,tag]),rpc('eth_getCode',[LENDER,tag])]);
+ report.actorCode={borrower:borrowerCode,lender:lenderCode,borrowerHasEmptyCode:borrowerCode==='0x',lenderHasEmptyCode:lenderCode==='0x',nativeTransfer21000GasAssumptionsVerified:borrowerCode==='0x'&&lenderCode==='0x'};
+ if(borrowerCode!=='0x'||lenderCode!=='0x')throw new Error('ActorCodeViolatesPlainEoaGasAssumptions');
+ if(BigInt(borrowerEth)!==0n||borrowerWeth!==0n||BigInt(borrowerNonce)!==0n)throw new Error('BorrowerNotFreshColdState');
+ report.fingerprints={};for(const [label,address]of[['vault',vault],['strategy',strategy],['weth',WETH],['oracle',ORACLE],['lens',LENS],['priceFeed',PRICE_FEED]]){const code=await rpc('eth_getCode',[address,tag]);if(!code||code==='0x')throw new Error('ContractCodeMissing');report.fingerprints[label]={address,runtimeCodeKeccak256:keccak256(code)};}
+ if(priceDecimals!==8||!/ETH\s*\/\s*USD/i.test(priceDescription)||priceRound[1]<=0n||priceRound[3]<=0n||BigInt(block.timestamp)-priceRound[3]<0n||BigInt(block.timestamp)-priceRound[3]>3600n||priceRound[4]<priceRound[0])throw new Error('PriceFeedNotFresh');
+ const price8=priceRound[1],bufferedPrice8=(price8*120n+99n)/100n;const usdMicros=wei=>(wei*bufferedPrice8+100_000_000_000_000_000_000n-1n)/100_000_000_000_000_000_000n;
+ report.ethUsd={feed:PRICE_FEED,description:priceDescription,decimals:priceDecimals,roundId:priceRound[0],answer:price8,updatedAt:priceRound[3],ageSeconds:BigInt(block.timestamp)-priceRound[3],capPriceAnswerWith20PercentBuffer:bufferedPrice8};
+ stage='fresh_lens_and_direct_simulation';
+ const lensData=encodeFunctionData({abi:lensAbi,functionName:'harvest',args:[strategy,WETH]});const lensRaw=await rpc('eth_call',[{from:BORROWER,to:LENS,data:lensData,gas:'0x4c4b40',gasPrice:'0x0',value:'0x0'},tag]);const lens=decodeFunctionResult({abi:lensAbi,functionName:'harvest',data:lensRaw});
+ report.lensSimulation={to:LENS,mode:'ETH_CALL_ONLY_NEVER_SUBMIT',data:lensData,rawReturnData:lensRaw,decoded:lens,actualSimulatedLensWethDeltaWei:lens.callReward,directEoaRewardIndependentlyVerified:false};
+ if(lens.blockNumber!==BigInt(tag)||lens.paused||!lens.success||lens.callReward<=0n)throw new Error('LensNoPositiveActualSimulatedWethDelta');
+ const reward=lens.callReward;const harvestData=encodeFunctionData({abi:stratAbi,functionName:'harvest',args:[BORROWER]});
+ const directRaw=await rpc('eth_call',[{from:BORROWER,to:strategy,data:harvestData,gas:'0x4c4b40',gasPrice:'0x0',value:'0x0'},tag]);
+ report.directHarvestSimulation={from:BORROWER,to:strategy,feeRecipient:BORROWER,data:harvestData,valueWei:0n,rawReturnData:directRaw,nonreverting:true,rewardAmountProvenByEmptyReturnData:false};
+ let tip;try{tip=BigInt(await rpc('eth_maxPriorityFeePerGas',[]));}catch{tip=1_000_000n;report.priorityFeeFallbackWei=tip;}if(tip<1_000_000n)tip=1_000_000n;const maxFee=2n*BigInt(block.baseFeePerGas)+tip;
+ let gasEstimate;try{gasEstimate=BigInt(await rpc('eth_estimateGas',[{from:BORROWER,to:strategy,data:harvestData,value:'0x0',maxFeePerGas:hex(maxFee),maxPriorityFeePerGas:hex(tip)},tag,{[BORROWER]:{balance:hex(1_000_000_000_000_000_000n)}}]));report.gasEstimateUsesNativeBalanceOverride=true;}
+ catch(error){report.balanceOverrideEstimateErrorKind=error.safeKind||error.name;gasEstimate=BigInt(await rpc('eth_estimateGas',[{from:BORROWER,to:strategy,data:harvestData,value:'0x0',gasPrice:'0x0'},tag]));report.gasEstimateUsesGasPriceZeroFallback=true;}
+ const harvestGas=(gasEstimate*130n+99n)/100n;if(harvestGas>4_000_000n)throw new Error('HarvestGasLimitExceeded');const Bnonce=BigInt(borrowerNonce),Lnonce=BigInt(lenderNonce);if(Bnonce+2n>BigInt(Number.MAX_SAFE_INTEGER)||Lnonce>BigInt(Number.MAX_SAFE_INTEGER))throw new Error('NonceUnsafeInteger');
+ const tx=(name,from,to,nonce,gas,data='0x',value=0n)=>({name,from,to,chainId:8453,nonce,gas,maxFeePerGas:maxFee,maxPriorityFeePerGas:tip,data,value,type:'eip1559',intentState:'UNSIGNED_PREVIEW_ONLY',mustRebuildFromActualPhaseState:true,mustRefreshNonceAndGasBeforeSeparateSignature:true});
+ const txs=[tx('fund',LENDER,BORROWER,Lnonce,21_000n),tx('harvest',BORROWER,strategy,Bnonce,harvestGas,harvestData),tx('unwrap',BORROWER,WETH,Bnonce+1n,100_000n,encodeFunctionData({abi:wethAbi,functionName:'withdraw',args:[reward]})),tx('repay',BORROWER,LENDER,Bnonce+2n,21_000n)];
+ txs[2].amountBasis='PREVIEW_ONLY_REBUILD_FROM_ACTUAL_CANONICAL_WETH_HARVEST_RECEIPT';txs[2].previewLensRewardWei=reward;
+ async function priceTx(t){const serialized=serializeTransaction({type:t.type,chainId:8453,nonce:Number(t.nonce),gas:t.gas,maxFeePerGas:t.maxFeePerGas,maxPriorityFeePerGas:t.maxPriorityFeePerGas,to:t.to,data:t.data,value:t.value});const size=BigInt((serialized.length-2)/2);const [l1,operator]=await Promise.all([read(ORACLE,oracleAbi,'getL1FeeUpperBound',[size]),read(ORACLE,oracleAbi,'getOperatorFee',[t.gas])]);return {...t,unsignedSerializedForOracleOnly:serialized,unsignedByteLength:size,l2FeeHardCapWei:t.gas*maxFee,l1SnapshotUpperQuoteWei:l1,operatorSnapshotUpperQuoteWei:operator,l1ReservedWei:2n*l1,operatorReservedWei:2n*operator,totalGasReservedWei:t.gas*maxFee+2n*l1+2n*operator};}
+ stage='full_cycle_quote';let priced=[],borrowerGas=0n,lenderGas=0n,loanFee=0n,principal=0n;
+ const borrowerTarget=1_000_000_000n,lenderTarget=1_000_000_000n;report.pricing={maxPasses:3,passes:[],stable:false};
+ for(let pass=1;pass<=3;pass++){
+  priced=[];for(const t of txs)priced.push(await priceTx(t));borrowerGas=priced.slice(1).reduce((s,t)=>s+t.totalGasReservedWei,0n);lenderGas=priced[0].totalGasReservedWei;
+  const nextPrincipal=borrowerGas+borrowerGas/10n+1n,nextLoanFee=lenderGas+lenderTarget;
+  principal=txs[0].value;loanFee=txs[3].value-principal;
+  const stable=principal===nextPrincipal&&loanFee===nextLoanFee;
+  report.pricing.passes.push({pass,pricedPrincipalWei:principal,pricedLoanFeeWei:loanFee,borrowerGasReservedWei:borrowerGas,lenderGasReservedWei:lenderGas,recommendedPrincipalWei:nextPrincipal,recommendedLoanFeeWei:nextLoanFee,unsignedByteLengths:priced.map(t=>t.unsignedByteLength),stable});
+  if(stable){report.pricing.stable=true;break;}
+  if(pass<3){txs[0].value=nextPrincipal;txs[3].value=nextPrincipal+nextLoanFee;}
+ }
+ const requiredReward=borrowerGas+loanFee+workCost+borrowerTarget,allGas=borrowerGas+lenderGas,worstLoss=principal+lenderGas;
+ report.transactions=priced;report.directHarvestSimulation.estimatedGas=gasEstimate;report.directHarvestSimulation.gasLimitReserved=harvestGas;
+ report.terms={nativePrincipalWei:principal,loanFeeWei:loanFee,debtWei:principal+loanFee,workCostWei:workCost,borrowerGasReservedWei:borrowerGas,lenderGasReservedWei:lenderGas,totalGasReservedWei:allGas,requiredExternalRewardWei:requiredReward,expectedExternalRewardWei:reward,expectedRewardBasis:'fresh lens actual simulated WETH delta; direct EOA recipient delta requires stateful evidence',borrowerMarginAtReservedGasWei:reward-borrowerGas-loanFee-workCost,lenderMarginAtReservedGasWei:loanFee-lenderGas,targetBorrowerMarginWei:borrowerTarget,targetLenderMarginWei:lenderTarget,worstLossExposureWei:worstLoss,grossExposureWei:principal+allGas,principalUsdMicrosAtBufferedPrice:usdMicros(principal),grossExposureUsdMicrosAtBufferedPrice:usdMicros(principal+allGas),worstLossUsdMicrosAtBufferedPrice:usdMicros(worstLoss)};
+ report.qualification={vaultStillUsesSelectedStrategy:true,unpaused:true,canonicalWethNative:true,positiveActualSimulatedLensWethDelta:true,directBorrowerHarvestNonreverting:true,borrowerStartsAtZero:BigInt(borrowerEth)===0n&&borrowerWeth===0n&&Bnonce===0n,actorsHaveEmptyCode:borrowerCode==='0x'&&lenderCode==='0x',principalNativeCap:principal<=50_000_000_000_000n,principalUsdCap:usdMicros(principal)<=500_000n,grossExposureUsdCap:usdMicros(principal+allGas)<=1_000_000n,worstLossUsdCap:usdMicros(worstLoss)<=250_000n,principalCoversUpdatedBorrowerGas:principal>=borrowerGas,principalIncludesUpdatedTenPercentGasReserve:principal>=borrowerGas+borrowerGas/10n+1n,lensRewardCoversUpdatedReserves:reward>=requiredReward,lenderHasFundingAndGas:BigInt(lenderEth)>=principal+lenderGas,lenderPositiveMargin:loanFee>lenderGas,lenderMeetsDeclaredTarget:loanFee-lenderGas>=lenderTarget,pricingStable:report.pricing.stable,noPendingTransactions:Bnonce===BigInt(borrowerPendingNonce)&&Lnonce===BigInt(lenderPendingNonce),includesCurrentL1AndOperatorQuotes:true,noActualLensTransaction:true};
+ stage='optional_stateful_direct_cycle';
+ try{const calls=txs.map(t=>({from:t.from,to:t.to,nonce:hex(t.nonce),gas:hex(t.gas),maxFeePerGas:hex(t.maxFeePerGas),maxPriorityFeePerGas:hex(t.maxPriorityFeePerGas),value:hex(t.value),data:t.data}));const simulated=await rpc('eth_simulateV1',[{blockStateCalls:[{calls}],validation:true,traceTransfers:true},tag]);const results=simulated?.[0]?.calls;const success=Array.isArray(results)&&results.length===4&&results.every(c=>BigInt(c.status)===1n);const fees=[];
+  if(Array.isArray(results?.[1]?.logs))for(const log of results[1].logs){if(log.address?.toLowerCase()!==WETH)continue;try{const event=decodeEventLog({abi:wethAbi,data:log.data,topics:log.topics});if(event.eventName==='Transfer'&&event.args.from?.toLowerCase()===strategy&&event.args.to?.toLowerCase()===BORROWER)fees.push({emitter:WETH,from:strategy,to:BORROWER,valueWei:event.args.value,rawLog:log});}catch{}}
+  const directFee=fees.reduce((s,e)=>s+e.valueWei,0n);report.fullCycleSimulation={attempted:true,supported:true,rawResult:simulated,allFourCallsSuccessful:success,canonicalWethStrategyToBorrowerTransfers:fees,actualSimulatedDirectEoaWethRewardWei:directFee,directRewardCoversRequiredFloor:directFee>=requiredReward,includesL1AndOperatorFeeDebitsInState:false,caveat:'Stateful call execution may omit L1/operator native debits; separate oracle reservations cover snapshot costs.'};
+  report.lensSimulation.directEoaRewardIndependentlyVerified=success&&directFee>0n;
+ }catch(error){report.fullCycleSimulation={attempted:true,supported:false,errorKind:error.safeKind||error.name,allFourCallsSuccessful:false,directRewardCoversRequiredFloor:false};}
+ report.freshness.completed=freshness();report.qualification.blockStillWithinWallClockFreshnessBounds=report.freshness.completed.withinBounds;
+ report.qualifiedForExactTransactionReview=Object.values(report.qualification).every(v=>v===true);report.exactCycleStatefullyDemonstrated=report.fullCycleSimulation.allFourCallsSuccessful&&report.fullCycleSimulation.directRewardCoversRequiredFloor===true;
+ report.deployedSourceIndependentlyVerified=false;report.requiresIndependentSignerReviewAndFreshSimulation=true;report.signerMustNeverSignLensIntent=true;report.signerMustNeverPresignPreviewBundle=true;report.requiresActualHarvestReceiptBeforeUnwrapRebuild=true;
+ stage='complete';finish(report.qualifiedForExactTransactionReview?'QUALIFIED_READ_ONLY_PACKET_REQUIRES_SOURCE_AND_SIGNER_REVIEW':'NO_LOAN_CAP_OR_MARGIN_CHECK_FAILED');
+}catch(error){finish('STOPPED_WITHOUT_EXECUTION',error);process.exitCode=2;}finally{clearTimeout(timer);abort.abort();}

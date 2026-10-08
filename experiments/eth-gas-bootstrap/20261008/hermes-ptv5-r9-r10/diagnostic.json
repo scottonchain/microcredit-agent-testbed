@@ -1,0 +1,99 @@
+{
+  "schema": "codex.ptv5-read-only-revert-diagnostic/1",
+  "startedAt": "2026-10-08T01:01:40.490Z",
+  "readOnly": true,
+  "signing": false,
+  "spending": false,
+  "assumedEthCallSendersOnly": true,
+  "stage": "complete",
+  "calls": 17,
+  "vault": "0x7f5c2b379b88499ac2b997db583f8079503f25b9",
+  "pool": "0x45b2010d8a4f08b53c9fa7544c51dfd9733732cb",
+  "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+  "tier": 6,
+  "prizeIndex": 264,
+  "recipient": "0x62C4A163026feedB3eA1045d90bBa96d0C5d4F0B",
+  "caveat": "The from field only selects eth_call simulation context. No configured caller is impersonated onchain; no private key is used. Direct pool simulation isolates the inner failure but does not replace normal permitted claim execution.",
+  "results": {
+    "chainId": {
+      "ok": true,
+      "value": 8453
+    },
+    "block": {
+      "ok": true,
+      "value": {
+        "number": "52315976",
+        "hash": "0x78b3c50a0b5679fbdbe7b9f383f008949009cb0d132a6a5a8b71a9528d97212d",
+        "timestamp": "1791421299"
+      }
+    },
+    "actualVaultClaimer": {
+      "ok": true,
+      "value": "0xcdCE635b774DE77cdF791647601dba64a75547ba"
+    },
+    "vaultPool": {
+      "ok": true,
+      "value": "0x45b2010d8A4f08b53c9fa7544C51dFd9733732cb"
+    },
+    "drawId": {
+      "ok": true,
+      "value": 841
+    },
+    "currentSingleFee": {
+      "ok": true,
+      "value": "109312671627"
+    },
+    "drawFinalized": {
+      "ok": true,
+      "value": true
+    },
+    "drawClosesAt": {
+      "ok": true,
+      "value": 1788559200
+    },
+    "isWinner": {
+      "ok": true,
+      "value": true
+    },
+    "wasClaimed": {
+      "ok": true,
+      "value": false
+    },
+    "hooks": {
+      "ok": true,
+      "value": {
+        "useBeforeClaimPrize": false,
+        "useAfterClaimPrize": false,
+        "implementation": "0x0000000000000000000000000000000000000000"
+      }
+    },
+    "tierPrizeSize": {
+      "ok": true,
+      "value": "109312671627"
+    },
+    "tierRemainingLiquidity": {
+      "ok": true,
+      "value": "895489405973832"
+    },
+    "reserve": {
+      "ok": true,
+      "value": "5138"
+    },
+    "vaultClaimFromConfiguredClaimer": {
+      "ok": false,
+      "kind": "ContractFunctionExecutionError",
+      "errorName": "ClaimPeriodExpired"
+    },
+    "poolClaimFromVault": {
+      "ok": false,
+      "kind": "ContractFunctionExecutionError",
+      "errorName": "ClaimPeriodExpired"
+    },
+    "normalClaimerCall": {
+      "ok": true,
+      "value": "0"
+    }
+  },
+  "status": "COMPLETE_READ_ONLY_DIAGNOSTIC",
+  "finishedAt": "2026-10-08T01:01:41.647Z"
+}

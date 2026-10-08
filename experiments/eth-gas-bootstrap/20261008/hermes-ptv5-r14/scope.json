@@ -1,0 +1,251 @@
+{
+  "schema": "codex.beefy-usdc-aero-accrual-read-scope/1",
+  "readOnly": true,
+  "chainId": 8453,
+  "borrower": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+  "limits": {
+    "maxRpcRequests": 40,
+    "maxRuntimeMs": 300000,
+    "retries": 0
+  },
+  "staticReads": [
+    {
+      "target": "0xc005b9833debcf5fe6cc5bc9ba4fd74bb382ae55",
+      "signature": "function strategy() view returns(address)",
+      "args": [],
+      "data": "0xa8c62e76",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function vault() view returns(address)",
+      "args": [],
+      "data": "0xfbfa77cf",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function native() view returns(address)",
+      "args": [],
+      "data": "0x11b0b42d",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function paused() view returns(bool)",
+      "args": [],
+      "data": "0x5c975abb",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function lastHarvest() view returns(uint256)",
+      "args": [],
+      "data": "0xf1a392da",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function harvestOnDeposit() view returns(bool)",
+      "args": [],
+      "data": "0x8912cb8b",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function beefyFeeConfig() view returns(address)",
+      "args": [],
+      "data": "0x4746fb55",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function gauge() view returns(address)",
+      "args": [],
+      "data": "0xa6f19c84",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function rewardPool() view returns(address)",
+      "args": [],
+      "data": "0x66666aa9",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function output() view returns(address)",
+      "args": [],
+      "data": "0xf20eaeb8",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function rewards(uint256) view returns(address)",
+      "args": [
+        "0"
+      ],
+      "data": "0xf301af420000000000000000000000000000000000000000000000000000000000000000",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function unirouter() view returns(address)",
+      "args": [],
+      "data": "0x257ae0de",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function beefySwapper() view returns(address)",
+      "args": [],
+      "data": "0x9b94ae45",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function swapper() view returns(address)",
+      "args": [],
+      "data": "0x2b3297f9",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function factory() view returns(address)",
+      "args": [],
+      "data": "0xc45a0155",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function stratName() view returns(string)",
+      "args": [],
+      "data": "0x5064010a",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "signature": "function want() view returns(address)",
+      "args": [],
+      "data": "0x1f1fcd51",
+      "mode": "eth_call only, fixed source block"
+    }
+  ],
+  "dependentReads": [
+    {
+      "target": "successful beefyFeeConfig() output",
+      "signature": "function getFees(address strategy) view returns((uint256 total,uint256 beefy,uint256 call,uint256 strategist,string label,bool active))",
+      "args": [
+        "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c"
+      ],
+      "data": "0x9af608c9000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function earned(address) view returns(uint256)",
+      "args": [
+        "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c"
+      ],
+      "data": "0x008cc262000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function balanceOf(address) view returns(uint256)",
+      "args": [
+        "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c"
+      ],
+      "data": "0x70a08231000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function totalSupply() view returns(uint256)",
+      "args": [],
+      "data": "0x18160ddd",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function rewardRate() view returns(uint256)",
+      "args": [],
+      "data": "0x7b0a47ee",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function periodFinish() view returns(uint256)",
+      "args": [],
+      "data": "0xebe2b12b",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function lastUpdateTime() view returns(uint256)",
+      "args": [],
+      "data": "0xc8f33c91",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function rewardPerToken() view returns(uint256)",
+      "args": [],
+      "data": "0xcd3daf9d",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function rewards(address) view returns(uint256)",
+      "args": [
+        "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c"
+      ],
+      "data": "0x0700037d000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function userRewardPerTokenPaid(address) view returns(uint256)",
+      "args": [
+        "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c"
+      ],
+      "data": "0x8b876347000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function rewardToken() view returns(address)",
+      "args": [],
+      "data": "0xf7c618c1",
+      "mode": "eth_call only, fixed source block"
+    },
+    {
+      "target": "successful gauge()/rewardPool() output",
+      "signature": "function stakingToken() view returns(address)",
+      "args": [],
+      "data": "0x72f702f3",
+      "mode": "eth_call only, fixed source block"
+    }
+  ],
+  "additionalReadMethods": [
+    "eth_chainId() expected8453",
+    "eth_getBlockByNumber(latest,false) once; recordnumber/hash/timestamp andfix subsequentstatecalls",
+    "eth_getCode(strategy,fixedBlock)",
+    "eth_getCode(extractedcanonicalEIP1167implementation,fixedBlock) ifclone; recordcodehash",
+    "eth_gasPrice()"
+  ],
+  "stopRules": [
+    "No keys, signatures, approvals, deposits, harvest submission or spending.",
+    "Unknown getter failures are recorded. Use successful gauge()/rewardPool() only; abort ambiguous conflicting values.",
+    "Underlying staked token, reward token and fee token must be verified before projecting payout.",
+    "This is a single accrual/mechanism check, not a repeating scanner.",
+    "Fee/gas profitability hypotheses are not revenue.",
+    "Verified source or compiler-deployed-bytecode match is still required before actual execution."
+  ],
+  "sourceRefs": {
+    "priorEvidence": "https://github.com/scottonchain/microcredit-agent-testbed/blob/9489654b30662a0363e39b910dcaa2032ce676f1/evidence/ptv5-r12/beefy-ranked-r12.json",
+    "strategySourceCommit": "e33f868e2d995c2db9219029c26d31cd8e7d5cb2",
+    "gaugeSource": "https://github.com/aerodrome-finance/contracts/blob/1ba30815bba620f7e9faa34769ffd00c214c9b82/contracts/gauges/Gauge.sol",
+    "cowllectorSourceCommit": "00955cd894ba2605b0936688e3908e51ccb185ae"
+  }
+}

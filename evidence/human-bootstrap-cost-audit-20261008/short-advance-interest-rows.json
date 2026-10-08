@@ -1,0 +1,993 @@
+{
+  "artifact": "short-advance-interest-rows",
+  "prepared_date_utc": "2026-10-08",
+  "mode": "offline_read_only_source_arithmetic",
+  "chain_reads": 0,
+  "transactions": 0,
+  "source": {
+    "local_path": "/workspace/work/relayer-recheck/packages/foundry/contracts/DecentralizedMicrocredit.sol",
+    "checkout_commit": "460875c897241d6b9d09877ca36da9fb696f2bf9",
+    "git_blob": "d06ebd2d8397d62840269314e87710d3c43bb89b",
+    "sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360",
+    "canonical_source_url": "https://github.com/scottonchain/microcredit-contract/blob/30d7eeed83ea50cad9c103383865fbdb2c4a8959/packages/foundry/contracts/DecentralizedMicrocredit.sol",
+    "formulas_verified": {
+      "loan_rate": "effrRate + riskPremium, captured at origination",
+      "annual_micro_floor": "floor(principal_micro_usdc * loan_apr_bps / 10000)",
+      "interest": "0 if disbursedAt==0 or elapsed_seconds<86400; otherwise floor(annual_micro_floor * elapsed_seconds / 31536000)",
+      "outstanding": "max(principal + accrued_interest - previous_payments, 0) while open",
+      "repayment_allocation": "interest first, then principal",
+      "dues": "floor(actual_interest_allocation * reserveBps / 10000)",
+      "short_closure": "owed - paid < 10000; closes and writes off unpaid principal, consuming reserve first"
+    },
+    "source_lines": {
+      "constants": 36,
+      "rate": 1017,
+      "origination": 1255,
+      "repayment": 1300,
+      "closure": 1336,
+      "interest": 1412
+    }
+  },
+  "assumptions": [
+    "Active loan with nonzero disbursedAt and no previous payments",
+    "Loan interestRate equals selected scenario APR at origination",
+    "Reserve share4500bps and protocol fee0bps only for allocation columns",
+    "USDC uses six decimal base units; no cents rounding in core accrued-interest calculation",
+    "No compounding; original principal remains interest base until closure",
+    "Rows and principal-only demonstrations are arithmetic, not instructions to exploit CI30"
+  ],
+  "scenarios": [
+    {
+      "scenario": "documented_testnet_933_bps",
+      "effr_bps": 433,
+      "risk_premium_bps": 500,
+      "apr_bps": 933,
+      "apr_percent": "9.33",
+      "verification": "Historical deployment documentation; no fresh RPC read",
+      "rows": [
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 93300,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 1000000,
+          "full_outstanding_usdc": "1.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 1000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 93300,
+          "accrued_interest_micro_usdc": 255,
+          "accrued_interest_usdc": "0.000255",
+          "full_outstanding_micro_usdc": 1000255,
+          "full_outstanding_usdc": "1.000255",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1000255,
+            "interest_allocation_micro_usdc": 255,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 114,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 141,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 255,
+            "principal_allocation_micro_usdc": 999745,
+            "principal_remaining_before_closure_micro_usdc": 255,
+            "dues_credit_micro_usdc_at_45pct": 114,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 255,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 114,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 114,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 93300,
+          "accrued_interest_micro_usdc": 1789,
+          "accrued_interest_usdc": "0.001789",
+          "full_outstanding_micro_usdc": 1001789,
+          "full_outstanding_usdc": "1.001789",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1001789,
+            "interest_allocation_micro_usdc": 1789,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 805,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 984,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 1789,
+            "principal_allocation_micro_usdc": 998211,
+            "principal_remaining_before_closure_micro_usdc": 1789,
+            "dues_credit_micro_usdc_at_45pct": 805,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 1789,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 805,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 805,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 93300,
+          "accrued_interest_micro_usdc": 7668,
+          "accrued_interest_usdc": "0.007668",
+          "full_outstanding_micro_usdc": 1007668,
+          "full_outstanding_usdc": "1.007668",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1007668,
+            "interest_allocation_micro_usdc": 7668,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 3450,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 4218,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 7668,
+            "principal_allocation_micro_usdc": 992332,
+            "principal_remaining_before_closure_micro_usdc": 7668,
+            "dues_credit_micro_usdc_at_45pct": 3450,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 7668,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 3450,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 3450,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 466500,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 5000000,
+          "full_outstanding_usdc": "5.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 5000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 466500,
+          "accrued_interest_micro_usdc": 1278,
+          "accrued_interest_usdc": "0.001278",
+          "full_outstanding_micro_usdc": 5001278,
+          "full_outstanding_usdc": "5.001278",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5001278,
+            "interest_allocation_micro_usdc": 1278,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 575,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 703,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 1278,
+            "principal_allocation_micro_usdc": 4998722,
+            "principal_remaining_before_closure_micro_usdc": 1278,
+            "dues_credit_micro_usdc_at_45pct": 575,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 1278,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 575,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 575,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 466500,
+          "accrued_interest_micro_usdc": 8946,
+          "accrued_interest_usdc": "0.008946",
+          "full_outstanding_micro_usdc": 5008946,
+          "full_outstanding_usdc": "5.008946",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5008946,
+            "interest_allocation_micro_usdc": 8946,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 4025,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 4921,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 8946,
+            "principal_allocation_micro_usdc": 4991054,
+            "principal_remaining_before_closure_micro_usdc": 8946,
+            "dues_credit_micro_usdc_at_45pct": 4025,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 8946,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 4025,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 4025,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 466500,
+          "accrued_interest_micro_usdc": 38342,
+          "accrued_interest_usdc": "0.038342",
+          "full_outstanding_micro_usdc": 5038342,
+          "full_outstanding_usdc": "5.038342",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5038342,
+            "interest_allocation_micro_usdc": 38342,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 17253,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 21089,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 38342,
+            "principal_allocation_micro_usdc": 4961658,
+            "principal_remaining_before_closure_micro_usdc": 38342,
+            "dues_credit_micro_usdc_at_45pct": 17253,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 38342,
+            "reserve_added_before_closure_micro_usdc": 17253,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 17253,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 2332500,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 25000000,
+          "full_outstanding_usdc": "25.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 25000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 2332500,
+          "accrued_interest_micro_usdc": 6390,
+          "accrued_interest_usdc": "0.006390",
+          "full_outstanding_micro_usdc": 25006390,
+          "full_outstanding_usdc": "25.006390",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25006390,
+            "interest_allocation_micro_usdc": 6390,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 2875,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 3515,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 6390,
+            "principal_allocation_micro_usdc": 24993610,
+            "principal_remaining_before_closure_micro_usdc": 6390,
+            "dues_credit_micro_usdc_at_45pct": 2875,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 6390,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 2875,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 2875,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 2332500,
+          "accrued_interest_micro_usdc": 44732,
+          "accrued_interest_usdc": "0.044732",
+          "full_outstanding_micro_usdc": 25044732,
+          "full_outstanding_usdc": "25.044732",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25044732,
+            "interest_allocation_micro_usdc": 44732,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 20129,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 24603,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 44732,
+            "principal_allocation_micro_usdc": 24955268,
+            "principal_remaining_before_closure_micro_usdc": 44732,
+            "dues_credit_micro_usdc_at_45pct": 20129,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 44732,
+            "reserve_added_before_closure_micro_usdc": 20129,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 20129,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 2332500,
+          "accrued_interest_micro_usdc": 191712,
+          "accrued_interest_usdc": "0.191712",
+          "full_outstanding_micro_usdc": 25191712,
+          "full_outstanding_usdc": "25.191712",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25191712,
+            "interest_allocation_micro_usdc": 191712,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 86270,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 105442,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 191712,
+            "principal_allocation_micro_usdc": 24808288,
+            "principal_remaining_before_closure_micro_usdc": 191712,
+            "dues_credit_micro_usdc_at_45pct": 86270,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 191712,
+            "reserve_added_before_closure_micro_usdc": 86270,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 86270,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        }
+      ],
+      "cent_thresholds": [
+        {
+          "principal_usdc": "1.000000",
+          "target_interest_micro_usdc": 10000,
+          "unrounded_simple_interest_time_days": {
+            "numerator": "36500",
+            "denominator": "933",
+            "decimal": "39.121114683815648445873526259378349410503751339764"
+          },
+          "unrounded_simple_interest_time_seconds": {
+            "numerator": "1051200000",
+            "denominator": "311",
+            "decimal": "3380064.3086816720257234726688102893890675241157556"
+          },
+          "ceil_seconds_to_unrounded_cent": 3380065,
+          "first_source_second_with_accrued_interest_at_least_cent": 3380065,
+          "source_interest_one_second_before_micro_usdc": 9999,
+          "source_interest_at_threshold_micro_usdc": 10000
+        },
+        {
+          "principal_usdc": "5.000000",
+          "target_interest_micro_usdc": 10000,
+          "unrounded_simple_interest_time_days": {
+            "numerator": "7300",
+            "denominator": "933",
+            "decimal": "7.8242229367631296891747052518756698821007502679528"
+          },
+          "unrounded_simple_interest_time_seconds": {
+            "numerator": "210240000",
+            "denominator": "311",
+            "decimal": "676012.86173633440514469453376205787781350482315113"
+          },
+          "ceil_seconds_to_unrounded_cent": 676013,
+          "first_source_second_with_accrued_interest_at_least_cent": 676013,
+          "source_interest_one_second_before_micro_usdc": 9999,
+          "source_interest_at_threshold_micro_usdc": 10000
+        }
+      ]
+    },
+    {
+      "scenario": "calibrated_risk_case_1833_bps",
+      "effr_bps": 433,
+      "risk_premium_bps": 1400,
+      "apr_bps": 1833,
+      "apr_percent": "18.33",
+      "verification": "Calibration scenario; not asserted deployed/current",
+      "rows": [
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 183300,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 1000000,
+          "full_outstanding_usdc": "1.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 1000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 183300,
+          "accrued_interest_micro_usdc": 502,
+          "accrued_interest_usdc": "0.000502",
+          "full_outstanding_micro_usdc": 1000502,
+          "full_outstanding_usdc": "1.000502",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1000502,
+            "interest_allocation_micro_usdc": 502,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 225,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 277,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 502,
+            "principal_allocation_micro_usdc": 999498,
+            "principal_remaining_before_closure_micro_usdc": 502,
+            "dues_credit_micro_usdc_at_45pct": 225,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 502,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 225,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 225,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 183300,
+          "accrued_interest_micro_usdc": 3515,
+          "accrued_interest_usdc": "0.003515",
+          "full_outstanding_micro_usdc": 1003515,
+          "full_outstanding_usdc": "1.003515",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1003515,
+            "interest_allocation_micro_usdc": 3515,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 1581,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 1934,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 3515,
+            "principal_allocation_micro_usdc": 996485,
+            "principal_remaining_before_closure_micro_usdc": 3515,
+            "dues_credit_micro_usdc_at_45pct": 1581,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 3515,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 1581,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 1581,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "1.000000",
+          "principal_micro_usdc": 1000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 183300,
+          "accrued_interest_micro_usdc": 15065,
+          "accrued_interest_usdc": "0.015065",
+          "full_outstanding_micro_usdc": 1015065,
+          "full_outstanding_usdc": "1.015065",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 1015065,
+            "interest_allocation_micro_usdc": 15065,
+            "principal_allocation_micro_usdc": 1000000,
+            "dues_credit_micro_usdc_at_45pct": 6779,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 8286,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 1000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 15065,
+            "principal_allocation_micro_usdc": 984935,
+            "principal_remaining_before_closure_micro_usdc": 15065,
+            "dues_credit_micro_usdc_at_45pct": 6779,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 15065,
+            "reserve_added_before_closure_micro_usdc": 6779,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 6779,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 916500,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 5000000,
+          "full_outstanding_usdc": "5.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 5000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 916500,
+          "accrued_interest_micro_usdc": 2510,
+          "accrued_interest_usdc": "0.002510",
+          "full_outstanding_micro_usdc": 5002510,
+          "full_outstanding_usdc": "5.002510",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5002510,
+            "interest_allocation_micro_usdc": 2510,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 1129,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 1381,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 2510,
+            "principal_allocation_micro_usdc": 4997490,
+            "principal_remaining_before_closure_micro_usdc": 2510,
+            "dues_credit_micro_usdc_at_45pct": 1129,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 2510,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 1129,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 1129,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 916500,
+          "accrued_interest_micro_usdc": 17576,
+          "accrued_interest_usdc": "0.017576",
+          "full_outstanding_micro_usdc": 5017576,
+          "full_outstanding_usdc": "5.017576",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5017576,
+            "interest_allocation_micro_usdc": 17576,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 7909,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 9667,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 17576,
+            "principal_allocation_micro_usdc": 4982424,
+            "principal_remaining_before_closure_micro_usdc": 17576,
+            "dues_credit_micro_usdc_at_45pct": 7909,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 17576,
+            "reserve_added_before_closure_micro_usdc": 7909,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 7909,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "5.000000",
+          "principal_micro_usdc": 5000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 916500,
+          "accrued_interest_micro_usdc": 75328,
+          "accrued_interest_usdc": "0.075328",
+          "full_outstanding_micro_usdc": 5075328,
+          "full_outstanding_usdc": "5.075328",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 5075328,
+            "interest_allocation_micro_usdc": 75328,
+            "principal_allocation_micro_usdc": 5000000,
+            "dues_credit_micro_usdc_at_45pct": 33897,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 41431,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 5000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 75328,
+            "principal_allocation_micro_usdc": 4924672,
+            "principal_remaining_before_closure_micro_usdc": 75328,
+            "dues_credit_micro_usdc_at_45pct": 33897,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 75328,
+            "reserve_added_before_closure_micro_usdc": 33897,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 33897,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 0,
+          "elapsed_seconds": 0,
+          "annual_interest_micro_before_time_scaling": 4582500,
+          "accrued_interest_micro_usdc": 0,
+          "accrued_interest_usdc": "0.000000",
+          "full_outstanding_micro_usdc": 25000000,
+          "full_outstanding_usdc": "25.000000",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25000000,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 0,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 0,
+            "principal_allocation_micro_usdc": 25000000,
+            "principal_remaining_before_closure_micro_usdc": 0,
+            "dues_credit_micro_usdc_at_45pct": 0,
+            "closes_under_cent_rule": true,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 0,
+            "reserve_added_before_closure_micro_usdc": 0,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 1,
+          "elapsed_seconds": 86400,
+          "annual_interest_micro_before_time_scaling": 4582500,
+          "accrued_interest_micro_usdc": 12554,
+          "accrued_interest_usdc": "0.012554",
+          "full_outstanding_micro_usdc": 25012554,
+          "full_outstanding_usdc": "25.012554",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25012554,
+            "interest_allocation_micro_usdc": 12554,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 5649,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 6905,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 12554,
+            "principal_allocation_micro_usdc": 24987446,
+            "principal_remaining_before_closure_micro_usdc": 12554,
+            "dues_credit_micro_usdc_at_45pct": 5649,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 12554,
+            "reserve_added_before_closure_micro_usdc": 5649,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 5649,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 7,
+          "elapsed_seconds": 604800,
+          "annual_interest_micro_before_time_scaling": 4582500,
+          "accrued_interest_micro_usdc": 87883,
+          "accrued_interest_usdc": "0.087883",
+          "full_outstanding_micro_usdc": 25087883,
+          "full_outstanding_usdc": "25.087883",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25087883,
+            "interest_allocation_micro_usdc": 87883,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 39547,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 48336,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 87883,
+            "principal_allocation_micro_usdc": 24912117,
+            "principal_remaining_before_closure_micro_usdc": 87883,
+            "dues_credit_micro_usdc_at_45pct": 39547,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 87883,
+            "reserve_added_before_closure_micro_usdc": 39547,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 39547,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        },
+        {
+          "principal_usdc": "25.000000",
+          "principal_micro_usdc": 25000000,
+          "elapsed_days": 30,
+          "elapsed_seconds": 2592000,
+          "annual_interest_micro_before_time_scaling": 4582500,
+          "accrued_interest_micro_usdc": 376643,
+          "accrued_interest_usdc": "0.376643",
+          "full_outstanding_micro_usdc": 25376643,
+          "full_outstanding_usdc": "25.376643",
+          "full_repayment": {
+            "cash_paid_micro_usdc": 25376643,
+            "interest_allocation_micro_usdc": 376643,
+            "principal_allocation_micro_usdc": 25000000,
+            "dues_credit_micro_usdc_at_45pct": 169489,
+            "protocol_fee_micro_usdc_at_0pct": 0,
+            "lender_interest_micro_usdc_after_reserve_and_fee": 207154,
+            "forgiven_principal_micro_usdc": 0
+          },
+          "principal_only_repayment_current_source": {
+            "cash_paid_micro_usdc": 25000000,
+            "cash_paid_above_original_principal_micro_usdc": 0,
+            "interest_allocation_micro_usdc": 376643,
+            "principal_allocation_micro_usdc": 24623357,
+            "principal_remaining_before_closure_micro_usdc": 376643,
+            "dues_credit_micro_usdc_at_45pct": 169489,
+            "closes_under_cent_rule": false,
+            "forgiven_principal_micro_usdc": 0,
+            "outstanding_after_call_micro_usdc": 376643,
+            "reserve_added_before_closure_micro_usdc": 169489,
+            "reserve_burned_at_closure_micro_usdc_assuming_preexisting_reserve_zero": 0,
+            "reserve_remaining_micro_usdc_assuming_preexisting_reserve_zero": 169489,
+            "economic_interest_income_above_principal": "none; ledger allocates part of principal-sized cash payment to interest"
+          }
+        }
+      ],
+      "cent_thresholds": [
+        {
+          "principal_usdc": "1.000000",
+          "target_interest_micro_usdc": 10000,
+          "unrounded_simple_interest_time_days": {
+            "numerator": "36500",
+            "denominator": "1833",
+            "decimal": "19.912711402073104200763775231860338243316966721222"
+          },
+          "unrounded_simple_interest_time_seconds": {
+            "numerator": "1051200000",
+            "denominator": "611",
+            "decimal": "1720458.2651391162029459901800327332242225859247136"
+          },
+          "ceil_seconds_to_unrounded_cent": 1720459,
+          "first_source_second_with_accrued_interest_at_least_cent": 1720459,
+          "source_interest_one_second_before_micro_usdc": 9999,
+          "source_interest_at_threshold_micro_usdc": 10000
+        },
+        {
+          "principal_usdc": "5.000000",
+          "target_interest_micro_usdc": 10000,
+          "unrounded_simple_interest_time_days": {
+            "numerator": "7300",
+            "denominator": "1833",
+            "decimal": "3.9825422804146208401527550463720676486633933442444"
+          },
+          "unrounded_simple_interest_time_seconds": {
+            "numerator": "210240000",
+            "denominator": "611",
+            "decimal": "344091.65302782324058919803600654664484451718494272"
+          },
+          "ceil_seconds_to_unrounded_cent": 344092,
+          "first_source_second_with_accrued_interest_at_least_cent": 344092,
+          "source_interest_one_second_before_micro_usdc": 9999,
+          "source_interest_at_threshold_micro_usdc": 10000
+        }
+      ]
+    }
+  ],
+  "hypothetical_one_cent_flat_fee_on_one_usdc_for_one_day": {
+    "implemented_by_current_source": false,
+    "principal_usdc": "1.000000",
+    "fee_usdc": "0.010000",
+    "one_day_fee_as_principal_percent": "1",
+    "simple_nominal_365_day_annualized_fee_percent": "365",
+    "nominal_formula": "0.01 / 1 * 365 / 1 * 100",
+    "hypothetical_daily_compounded_effective_annual_rate_percent": "3678.3434332887158877616604796497605460271135491591",
+    "compounding_formula": "((1 + 0.01 / 1) ** 365 - 1) * 100",
+    "limitation": "Effective annual figure assumes365 consecutive identical daily rollovers and compounding; no such mechanism exists in this pool. Not a jurisdiction-specific legal APR disclosure."
+  },
+  "verification_checks": [
+    "Selected principal timesAPR exactly divisible by10000 before time scaling",
+    "Threshold-1second source interest<10000 and threshold source interest>=10000 for1/5USDC under both APRs",
+    "1833 and933 distinguished as calibration versus historical deployed documentation, not fresh live rate evidence"
+  ]
+}

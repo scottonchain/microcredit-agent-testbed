@@ -1,0 +1,163 @@
+{
+  "schema": "codex.group-loan-source-audit/v1",
+  "created_at": "2026-10-08T03:49:48.649334+00:00",
+  "reviewed_plan": {
+    "repo": "scottonchain/microcredit-agent-testbed",
+    "ref": "684a",
+    "git_blob": "6aafc0f8161aa1727eb94baf74fe566c5fc4ba72",
+    "sha256": "ba3952b2a5f388f4ba442ab6a0ca07bf439579b900f34f54496f6c8692db6c97",
+    "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/684a/docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md"
+  },
+  "retrieval_attempts": [
+    {
+      "id": "cgap_cost",
+      "url": "https://www.cgap.org/node/2079",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "cgap_digital",
+      "url": "https://www.cgap.org/node/3477",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "kiva",
+      "url": "https://www.kiva.org/about/due-diligence",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "gine_wb",
+      "url": "https://documents1.worldbank.org/curated/en/534771468171566283/pdf/WPS4371.pdf",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "gine_ipa",
+      "url": "https://poverty-action.org/sites/default/files/publications/Ending%20Joint%20Liability.pdf",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "evidence_status": "Connected web independently retrieved Kiva official page, canonical CGAP indexed primary blogs and published Gine/Karlan PDF mirror. Shell proxy blocks retained as historical attempts; no partner-specific cost/final-loss data established.",
+  "requested_primary_sources": [
+    {
+      "source": "Gine and Karlan2014",
+      "doi": "10.1016/j.jdeveco.2013.11.003",
+      "needed": [
+        "paper table/cohort default definition and follow-up",
+        "existing-client versus new-client first-cycle outcomes",
+        "principal recovery and costs if recorded"
+      ],
+      "doi_status": "Verified against published paper title page via connected web"
+    },
+    {
+      "source": "CGAP node3477",
+      "needed": [
+        "Kenyan intervention lender/product/sample",
+        "exact first-cycle default metric and observation horizon",
+        "principal recovery/writeoff not merely default incidence"
+      ]
+    },
+    {
+      "source": "CGAP node2079 / MIX underlying data",
+      "needed": [
+        "ratio definition fiscal year country/product",
+        "operating cost denominator average gross loan portfolio",
+        "loan/borrower size and allocation of origination versus servicing cost"
+      ]
+    },
+    {
+      "source": "Kiva due diligence",
+      "needed": [
+        "amount/count weighting and outstanding/matured denominator",
+        "repayment statistic definition and population dates"
+      ]
+    },
+    {
+      "source": "Actual Philippines/Kenya candidate partner",
+      "needed": [
+        "matured USD25-sized first-loan cohort export",
+        "principal-weighted final loss and recovery",
+        "time-sheet plus fully allocated first/repeat cost ledger"
+      ]
+    }
+  ],
+  "numerical_inputs": {
+    "principal_usd": "25",
+    "term_days": "30",
+    "apr_bps": 1833,
+    "unverified_cycle_incidence_sensitivities": [
+      "0.03",
+      "0.06"
+    ],
+    "gross_interest_usd": "0.376643835616438356164384",
+    "max_default_cycle_zero_LGD_recovery_zero_cost": "0.0150657534246575342465754",
+    "annual10_constant_hazard_30day_incidence": "0.008622380616821145782813",
+    "zero_recovery_cycle_losses_usd": [
+      "0.75",
+      "1.50"
+    ],
+    "zero_cost_required_recovery_fractions": [
+      "0.497808219178082191780821",
+      "0.748904109589041095890411"
+    ],
+    "annual_cost_illustration_usd": [
+      "0.390410958904109589041096",
+      "0.575342465753424657534247"
+    ],
+    "exact_micro_interest_usdc": "0.376643",
+    "interest_forfeited_default_threshold_zero_cost": "0.01484211288309489951054597726"
+  },
+  "no_keys_contacts_spend_or_transactions": true,
+  "verified_primary_observations": [
+    {
+      "url": "https://www.kiva.org/about/due-diligence",
+      "access": "connected web open",
+      "facts": [
+        "97.1% partner-facilitated",
+        "72.8% direct US loans",
+        "partner-facilitated network80+countries"
+      ],
+      "limitations": "No denominator/maturity methods on retrieved page; not causal comparison or local first-cycle loss"
+    },
+    {
+      "url": "https://www.cgap.org/blog/finding-win-win-in-digitally-delivered-consumer-credit",
+      "access": "connected web indexed canonical primary page",
+      "date": "2016-01-13",
+      "facts": [
+        "29.1% to20% is lab-game default after fee-disclosure change",
+        "separate field arm uses interest-free one-week mobile-money loans"
+      ]
+    },
+    {
+      "url": "https://www.cgap.org/blog/what-drives-mfi-efficiency",
+      "access": "connected web indexed canonical primary page",
+      "date": "2009-02-20",
+      "facts": [
+        "MIX median operating-expense/portfolio ratio declined28% to19% over preceding7years"
+      ],
+      "limitations": "Not2026 PH/Kenya range; actual partner cost unknown"
+    },
+    {
+      "url": "https://staff.tiiame.uz/storage/users/43/articles/cNNHc7augq9BPBgj237LY3EsbnXFRALVorw2tTrK.pdf",
+      "access": "connected web PDF text; screenshots requested pages5/8",
+      "type": "published primary paper on university mirror",
+      "doi": "10.1016/j.jdeveco.2013.11.003",
+      "table2B_panelC": {
+        "population": "new-area first cycles pooled treatment arms",
+        "late30_incidence_mean": "0.072",
+        "late30_balance_proportion_mean": "0.015",
+        "observations": 2112,
+        "loan_size_mean_php": "3685.998"
+      },
+      "table4_panelB": {
+        "unit": "officer minutes per center per week January2006",
+        "repayment_activity_mean": "108.273",
+        "individual_liability_coefficient": "90.086"
+      },
+      "limitations": [
+        "not group-only rate",
+        "not final unrecovered principal loss",
+        "not perloan wage cost",
+        "8-25week product with mandatory savings, not30day bullet loan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,656 @@
+{
+  "schema": "hermes.beefy-ranked-r12/1",
+  "startedAt": "2026-10-08T01:23:36.718Z",
+  "readOnly": true,
+  "ops": 115,
+  "vaults": [
+    {
+      "id": "aerodrome-usdc-mai",
+      "vault": "0x22F8ff24861a7F7e2ec9b19C5668b43bB69202E3",
+      "tvlUsd": 1336032.1329891537,
+      "strategy": {
+        "ok": true,
+        "v": "0xD73c6B7b020e8Dd6F9eD7097923f5Bf9fE176D81"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x22F8ff24861a7F7e2ec9b19C5668b43bB69202E3"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "7302467515552",
+          "lastHarvest": "1791366045",
+          "gasUsed": "1645016",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1705681",
+      "l2CostWei": "10234086000000",
+      "rewardOverL2Cost": 0.713543692670943
+    },
+    {
+      "id": "aerodrome-usdc-aero",
+      "vault": "0xc005B9833deBcF5fe6cc5bC9ba4fD74Bb382ae55",
+      "tvlUsd": 1138774.8716366314,
+      "strategy": {
+        "ok": true,
+        "v": "0xedE4Dd6758634007Eb1f4cF8A203bf237A44ea4C"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xc005B9833deBcF5fe6cc5bC9ba4fD74Bb382ae55"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "1422850717971",
+          "lastHarvest": "1791419083",
+          "gasUsed": "738410",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "784684",
+      "l2CostWei": "4708104000000",
+      "rewardOverL2Cost": 0.3022131027630231
+    },
+    {
+      "id": "aerodrome-weth-mseth",
+      "vault": "0x4187d53fa448dc18dA79acCd27112fF065216471",
+      "tvlUsd": 742029.029996561,
+      "strategy": {
+        "ok": true,
+        "v": "0x376F362373CFF80030ce9a065e79fdEa67282561"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x4187d53fa448dc18dA79acCd27112fF065216471"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "840832894562",
+          "lastHarvest": "1791416485",
+          "gasUsed": "1223261",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1277231",
+      "l2CostWei": "7663386000000",
+      "rewardOverL2Cost": 0.10972080677679553
+    },
+    {
+      "id": "aerodrome-weth-bsdeth",
+      "vault": "0xB614A6E6c21202De79DceB95AE2dd4817DD7e14b",
+      "tvlUsd": 378506.707135959,
+      "strategy": {
+        "ok": true,
+        "v": "0x143D4dC084270f397D350E7BfE0065aBa6A63a56"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xB614A6E6c21202De79DceB95AE2dd4817DD7e14b"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "1734861713628",
+          "lastHarvest": "1791353575",
+          "gasUsed": "1147201",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1199964",
+      "l2CostWei": "7199784000000",
+      "rewardOverL2Cost": 0.24096024458900434
+    },
+    {
+      "id": "aerodrome-weth-usdc",
+      "vault": "0x09139A80454609B69700836a9eE12Db4b5DBB15f",
+      "tvlUsd": 346872.3864483318,
+      "strategy": {
+        "ok": true,
+        "v": "0x9bd7A4b5D5Fe8C7dd39D085279306309fA6F1a15"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x09139A80454609B69700836a9eE12Db4b5DBB15f"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "892391500829",
+          "lastHarvest": "1791385827",
+          "gasUsed": "1166377",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1219444",
+      "l2CostWei": "7316664000000",
+      "rewardOverL2Cost": 0.1219669921741657
+    },
+    {
+      "id": "aerodrome-usdc-eusd",
+      "vault": "0x8bd6dF821513aECDbbaa29C1d5212b43fdCe7819",
+      "tvlUsd": 297538.3436382268,
+      "strategy": {
+        "ok": true,
+        "v": "0x5d823546463fD0Ac3b31DBA6AD38B56a39BFbf70"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x8bd6dF821513aECDbbaa29C1d5212b43fdCe7819"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "879886357857",
+          "lastHarvest": "1791402063",
+          "gasUsed": "1625717",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1686075",
+      "l2CostWei": "10116450000000",
+      "rewardOverL2Cost": 0.08697580256483252
+    },
+    {
+      "id": "aerodrome-weth-vvv",
+      "vault": "0x4794158d7587961B1C462c0774A06C95018a854B",
+      "tvlUsd": 233621.9453586039,
+      "strategy": {
+        "ok": true,
+        "v": "0xB6D144fCCE62547C870b4E231b01Ca2994Aa54f6"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x4794158d7587961B1C462c0774A06C95018a854B"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "5883030541872",
+          "lastHarvest": "1791367663",
+          "gasUsed": "1159374",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1212330",
+      "l2CostWei": "7273980000000",
+      "rewardOverL2Cost": 0.8087773876023855
+    },
+    {
+      "id": "aerodrome-dola-usdc",
+      "vault": "0x5A47993216fa6ACaf93418f9830cee485e82d0ba",
+      "tvlUsd": 228465.71996428794,
+      "strategy": {
+        "ok": true,
+        "v": "0xCEf9a522587F142F62777dAa79cf569199C2B9B3"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x5A47993216fa6ACaf93418f9830cee485e82d0ba"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "124713716288",
+          "lastHarvest": "1791391557",
+          "gasUsed": "1131240",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1183750",
+      "l2CostWei": "7102500000000",
+      "rewardOverL2Cost": 0.017559129361210842
+    },
+    {
+      "id": "aerodrome-lcap-usdc",
+      "vault": "0xd522B8C635625E4EC4ED80d147A07F27cEEa5547",
+      "tvlUsd": 199601.24023136668,
+      "strategy": {
+        "ok": true,
+        "v": "0x0A6cd5b3d1253A3bB03F70FDE9a8BFFd8483779A"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xd522B8C635625E4EC4ED80d147A07F27cEEa5547"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "774654769567",
+          "lastHarvest": "1791382599",
+          "gasUsed": "1236248",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1290424",
+      "l2CostWei": "7742544000000",
+      "rewardOverL2Cost": 0.1000517103379716
+    },
+    {
+      "id": "aerodrome-msusd-usdc",
+      "vault": "0x753Ff04FF5DD67e756405b2eDD9bba41aa63C5e9",
+      "tvlUsd": 180316.9258701549,
+      "strategy": {
+        "ok": true,
+        "v": "0x9aB2Bcb021ff1998340D252Bb9Cd55b04C725Bba"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x753Ff04FF5DD67e756405b2eDD9bba41aa63C5e9"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "727117199693",
+          "lastHarvest": "1791411569",
+          "gasUsed": "1065253",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1116715",
+      "l2CostWei": "6700290000000",
+      "rewardOverL2Cost": 0.10852025803256277
+    },
+    {
+      "id": "aerodrome-weth-lcap",
+      "vault": "0x028baCa249B33d24FC32ac01d6531F6be0061c8E",
+      "tvlUsd": 167977.29390941822,
+      "strategy": {
+        "ok": true,
+        "v": "0x16d722a0B394d8a402d64f7e43b5f75aCc445A59"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x028baCa249B33d24FC32ac01d6531F6be0061c8E"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "861585628495",
+          "lastHarvest": "1791405631",
+          "gasUsed": "1196832",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1250383",
+      "l2CostWei": "7502298000000",
+      "rewardOverL2Cost": 0.11484289593601854
+    },
+    {
+      "id": "aerodrome-ovn-usd+",
+      "vault": "0x98bEAa72230788572e3e3Be58D91C232dda315d4",
+      "tvlUsd": 144665.5347534779,
+      "strategy": {
+        "ok": true,
+        "v": "0x2913966e88490B5a65D67298801c0c51f377BB9C"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x98bEAa72230788572e3e3Be58D91C232dda315d4"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "189255820873",
+          "lastHarvest": "1791375161",
+          "gasUsed": "1497848",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1540101",
+      "l2CostWei": "9240606000000",
+      "rewardOverL2Cost": 0.020480888469111225
+    },
+    {
+      "id": "aerodrome-jeur-eurc",
+      "vault": "0xD8491D0F4339adB074fb85948ce5f8bAF23F09A2",
+      "tvlUsd": 124243.72358557563,
+      "strategy": {
+        "ok": true,
+        "v": "0x6C3Bd79f569d88dC4eEdD73AD0d7CD821bCe10e5"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xD8491D0F4339adB074fb85948ce5f8bAF23F09A2"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "348845505215",
+          "lastHarvest": "1791377133",
+          "gasUsed": "1360547",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1416696",
+      "l2CostWei": "8500176000000",
+      "rewardOverL2Cost": 0.04103979790712569
+    },
+    {
+      "id": "curve-base-4pool",
+      "vault": "0xC3718d05478Edab1C40F84E8a7A65ca49D039A9f",
+      "tvlUsd": 121209.90538843861,
+      "strategy": {
+        "ok": true,
+        "v": "0xD345B2a911317CeD3A8d7A116F5AcD34A2073646"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xC3718d05478Edab1C40F84E8a7A65ca49D039A9f"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "142591829888",
+          "lastHarvest": "1791402093",
+          "gasUsed": "1557579",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1616856",
+      "l2CostWei": "9701136000000",
+      "rewardOverL2Cost": 0.014698467260741423
+    },
+    {
+      "id": "aerodrome-cbbtc-edge",
+      "vault": "0xb0fbF668CDd01548973B74dA2001B2f78B6da99e",
+      "tvlUsd": 81755.93007992602,
+      "strategy": {
+        "ok": true,
+        "v": "0xD1E1cDc52BC290F9bd3d50fc2D363B76eC0Dd0ee"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xb0fbF668CDd01548973B74dA2001B2f78B6da99e"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "2943121455469",
+          "lastHarvest": "1791398623",
+          "gasUsed": "1399936",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1456711",
+      "l2CostWei": "8740266000000",
+      "rewardOverL2Cost": 0.33673133694889834
+    },
+    {
+      "id": "aerodrome-dola-usdbc",
+      "vault": "0xbE3F14312B08E9c6AEe6AeB27B37c08B661A7F83",
+      "tvlUsd": 78050.54474508422,
+      "strategy": {
+        "ok": true,
+        "v": "0xbe3809838D4aD70d1A57E9d4D8FAF974E35e7caA"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xbE3F14312B08E9c6AEe6AeB27B37c08B661A7F83"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "17455719736",
+          "lastHarvest": "1791382567",
+          "gasUsed": "1205696",
+          "blockNumber": "52316634",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      },
+      "estimateGas": "1259387",
+      "l2CostWei": "7556322000000",
+      "rewardOverL2Cost": 0.002310081510025645
+    }
+  ],
+  "chainId": 8453,
+  "block": {
+    "number": "52316634",
+    "hash": "0x2a1f519bd19a4c789e38eeb437c9601717a1f952d84c5ec9f4f2c7831e3e63ab",
+    "timestamp": "1791422615"
+  },
+  "gasPriceWei": "6000000",
+  "finishedAt": "2026-10-08T01:23:43.259Z"
+}

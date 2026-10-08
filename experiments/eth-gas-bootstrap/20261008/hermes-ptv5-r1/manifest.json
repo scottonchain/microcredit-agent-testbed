@@ -1,0 +1,10 @@
+{
+ "raw.json": {
+  "bytes": 79858,
+  "sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e"
+ },
+ "README.md": {
+  "bytes": 2312,
+  "sha256": "34585553b2bebc9216f4fa6f0015c2afc4dcd4697d1c495171fc31ec2560eb88"
+ }
+}

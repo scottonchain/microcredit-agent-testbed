@@ -1,7 +1,5 @@
 {
   "schema_version": "1.0.0",
-  "model_version": "0.1.78",
-  "updated_at": "2026-10-08T04:07:33Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -43,6 +41,31 @@
         "Public personas, controller relationships, business outcomes and production incidents are not independently verified.",
         "Current knowledge of deployment, payouts and scheduler state is sourced from team reports, not fresh on-chain or control-plane checks in this task.",
         "The other six calibration entrants have checkable baseline and settlement interactions in issue #11 only; their continuing goals and wider agent-attributed histories are not established, and no motivation profile is manufactured from their operator accounts (coordinator, #17 comment 6019897320)."
+      ]
+    },
+    {
+      "id": "coverage:basescan-bootstrap-20261008",
+      "scope": "Primary BaseScan ACP payment/refund evidence and5realized keeper spreads; pinned contract economics; conditional sub100USD launch design.",
+      "method": "Browser-observed explorer pages/logs (search and shell access to chosen ACP address failed403); one completed ACP job81471 decoded; latest transfer-page refunds; one Beefy keeper's5selected harvest receipts. Read current model atf877f6241229f4edafce6c06a84341275ed3627e/version0.1.76 and current contract source. Read prior team r9/r10 disqualifications; no duplicate worker/transaction started.",
+      "observed_at": "2026-10-08T01:27:51Z",
+      "limitations": [
+        "Not a census or LLM-agent identity proof; wallet identity/controller independence unknown.",
+        "No actual merchant purchase, buyer order, loan, repayment or positive net keeper spread observed in this session.",
+        "Report quote/revenue/cost budgets are explicit scenarios; no current profitable borrower identified.",
+        "AgentMail tools are available as of this turn; dedicated-inbox read and bootstrap/readiness email to Hermes, Claude and Codex returned successful receipts. Team ownership and demonstration acceptance remain unacknowledged. Canonical model publication is pending safe maintainer integration; no connector commit probe, protected cursor update, loan or financial transaction was made.",
+        "Existing unfinished task ownership, PR37 and deployment/CI obligations preserved.",
+        "Hermes r12 at Base block52316634 tests 16 additional vaults (24 total with r10): best reward/L2 gas ratio0.809; none clears L2 gas alone. Public source https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6050257145. Research must remain incomplete until an actual demonstration can be executed and checked."
+      ]
+    },
+    {
+      "id": "coverage:eth-and-bounty-extension-20261008",
+      "scope": "AgentBounties funded reward/bond, DeskCrew paid-agent entry, ETH liquidation mechanism, Hermes r14 receipt.",
+      "method": "Read-only BaseScan browser records; primary merchant APIs/docs and official contract source; Hermes immutable34RPC report; zero financial action.",
+      "observed_at": "2026-10-08T01:52:31Z",
+      "limitations": [
+        "No qualified executable borrower/order/executor yet; research incomplete under operator demonstration criterion.",
+        "Emails successfully sent via AgentMail to self/team; requests and append handoff do not prove accepted work, canonical commit or executed loan.",
+        "Canonical integration requested from Claude; no receipt yet; local proposed model does not overwrite current canonical concurrent work."
       ]
     }
   ],
@@ -846,6 +869,28 @@
       "id": "goal:alignment-human-wellbeing",
       "kind": "outcome",
       "name": "Alignment with human well-being, the prime directive; its downstream effects are aligning ourselves, aligning others, aligning technological evolution, eliminating poverty and increasing inclusion",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "venue:basescan-bootstrap-20261008",
+      "kind": "venue",
+      "name": "BaseScan primary chain evidence",
+      "parent_id": "world:agent-economy",
+      "owner_id": null,
+      "urls": [
+        "https://basescan.org/"
+      ],
+      "goal_model": null,
+      "identity": null
+    },
+    {
+      "id": "work:escrow-input-bootstrap-20261008",
+      "kind": "workstream",
+      "name": "Financing paid inputs for acceptance-conditioned agent work",
       "parent_id": "project:microcredit",
       "owner_id": null,
       "urls": [],
@@ -5430,6 +5475,559 @@
       ]
     },
     {
+      "id": "ev:codex-eth-gas-bootstrap-research-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/docs/ETH_GAS_BOOTSTRAP.md",
+      "locator": "docs/ETH_GAS_BOOTSTRAP.md; Codex primary-documentation research and current contract main30d7eeed83ea50cad9c103383865fbdb2c4a8959 source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:16:26Z",
+      "retrieved_at": "2026-10-08T00:16:26Z",
+      "summary": "ETH gas-credit qualification: distinguish asset access from new income, compare Circle USDC paymaster/gasless conversion, identify permissionless PoolTogether keeper fees as a concrete external-income candidate, give complete-cycle economics/default sensitivity and bounded live-read assignment. Existing pool immutable USDC cannot lend ETH; CI30 remains. Native loan/fees/opportunities unexecuted.",
+      "content_sha256": "d09af2c1ba5ff09cd09e4f843e48d7f0b6ae1bf5434e6f789a57acf81cf2741e",
+      "fingerprint_scope": "Exact UTF-8 research document bytes",
+      "origin_group": "codex-eth-gas-bootstrap-research-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Documentation/browser observations and Git source inspection, not fresh chain/runtime verification.",
+        "No native loan, claim, swap, opportunity quote or earned revenue executed.",
+        "Conditional economics not actual prices or empirical reliability.",
+        "Hermes read-only r2 receipt now observed; no qualified payable candidate or completed live loan."
+      ]
+    },
+    {
+      "id": "ev:hermes-ptv5-readonly-r1-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/77401503f995f37b6ef31888f5bf6bebc15673b9/evidence/ptv5-r1",
+      "locator": "raw.json and README.md; board#15 comment6049571854",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:38:34Z",
+      "retrieved_at": "2026-10-08T00:38:34Z",
+      "summary": "Hermes r2 read-only Base52314628 report: code/token and draw841 seven tiers, WETH fee token; no current winner/exact simulation/complete costs and no fund movement. Codex independently hash-verified immutable files.",
+      "content_sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e",
+      "fingerprint_scope": "Exact raw.json bytes,79858; matches Hermes manifest",
+      "origin_group": "hermes-ptv5-r1-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Root verified files, not independent fresh RPC.",
+        "No winner data or fee/gas-qualified operation.",
+        "Empty500blockwindow is not global opportunity absence."
+      ]
+    },
+    {
+      "id": "ev:codex-eth-probe-artifact-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008",
+      "locator": "read-only-winner-probe.mjs, read-only-cycle-quote.mjs, audit-only.py, test_audit_negative_controls.py, README.md, MANIFEST.json",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:38:34Z",
+      "retrieved_at": "2026-10-08T00:38:34Z",
+      "summary": "Prepared bounded read-only current winner discovery and receipt audit artifact; historical seed is not current winner proof. Script syntax/help/missingRPC negative control passed; AgentMail r6 accepted200; live run pending. Exact-cycle read-only quote helper prepared with L1/operator reserves; eight synthetic offline auditor negative controls pass. No live operation or earned income.",
+      "content_sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80",
+      "fingerprint_scope": "Exact read-only-winner-probe.mjs UTF8bytes",
+      "origin_group": "codex-eth-probe-artifact-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "No live probe run or money movement by Codex.",
+        "Incomplete128addresssample; exact simulation/full costs required.",
+        "Email acceptance does not prove execution."
+      ]
+    },
+    {
+      "id": "ev:hermes-ptv5-live-probe-r6-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/d61788c3ae93bb17c1370ddcb97777eaa109c283/evidence/ptv5-r6",
+      "locator": "probe.json, sim-claim.json, sim-claim-minfee.json, source scripts, SHA256SUMS",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:58:03Z",
+      "retrieved_at": "2026-10-08T00:58:03Z",
+      "summary": "Hermes actually ran the supplied read-only probe (48RPC): Base52315382draw841,128addresses,22winnerentries,12checks including10unclaimedtier6. Exact one/ten claims and quotedfee-floor single claim returned0fee; no loan/spending/income. Codex hashverified all9files.",
+      "content_sha256": "741e999d2e4a7ee8969a32e52ab2b50e5d2cdaf304602d07fa9117458925383d",
+      "fingerprint_scope": "Exact probe.json bytes; all nine SHA256SUMS also verified",
+      "origin_group": "hermes-ptv5-live-probe-r6-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reported live RPC work; root independently verified files, not chain.",
+        "Incomplete address/prize sample; no global opportunity absence.",
+        "Actual swallowed revert cause/full costs not yet obtained."
+      ]
+    },
+    {
+      "id": "ev:codex-beefy-keeper-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008",
+      "locator": "BEEFY_READ_ONLY_SOURCE_REVIEW.md; fixed8candidateinventory; probe/quote/audit artifacts",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:07:22Z",
+      "retrieved_at": "2026-10-08T01:07:22Z",
+      "summary": "Official immutable Beefy registry/lens/strategy source supports permissionless Base harvest caller fees. Prepared bounded8vault actual-delta read probe and four-stage full-cost quote/auditor. No live deployed match/fee/loan yet.",
+      "content_sha256": "0d9456a4583fc5a3686a3bbd0361e3a3839d4857ef24a74931e4ba23a3e877b3",
+      "fingerprint_scope": "Exact source review UTF8bytes; MANIFEST fingerprints all executable artifacts",
+      "origin_group": "codex-beefy-keeper-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source inspection and offline synthetic QA only.",
+        "Inventory active flags are not fresh live fee/permissionless verification.",
+        "No spending/signing or earned income; Hermes actual bounded probe pending."
+      ]
+    },
+    {
+      "id": "ev:team-email-blog-signature-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/coordination/team-email.md",
+      "locator": "Blog signature and shared team updates section; shared notice TEAM-EMAIL-SIGNATURE-BLOG-20261008-r1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:07:22Z",
+      "retrieved_at": "2026-10-08T01:07:22Z",
+      "summary": "Operator-directed outgoing blog-signature rule, current Codex sender implementation and single shared Hermes/Claude notice; peer template adoption not yet observed.",
+      "content_sha256": "e213f4fbf2387bff2f5139f97526980b4cfa78689a5c7ea574efb619a2e33005",
+      "fingerprint_scope": "Exact coordination/team-email.md UTF8bytes",
+      "origin_group": "team-email-blog-signature-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Codex current sender updated; future workers must load persisted guide.",
+        "Shared API acceptance is not Hermes/Claude footer adoption."
+      ]
+    },
+    {
+      "id": "ev:hermes-keeper-expiry-negative-r9r10-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/08e77d95b1a273cdae6a0cfb046ed74d70417d69/evidence/ptv5-r9-r10",
+      "locator": "diagnostic.json, beefy-lens-probe.json, est.json, source scripts and SHA256SUMS",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:17:58Z",
+      "retrieved_at": "2026-10-08T01:17:58Z",
+      "summary": "Actual reported read-only Base52315976 PT ClaimPeriodExpired and Base52315990 eight successful Beefy WETH-fee/direct-harvest simulations; all eight negative vs L2gas alone. Root independently verified all9artifacthashes. No money moved.",
+      "content_sha256": "dd237a32b5555355568e82589c51089c9f33d4726386a91e2c67c3c929ab3aa8",
+      "fingerprint_scope": "Exact beefy-lens-probe.json bytes; all9SHA256SUMS verified",
+      "origin_group": "hermes-keeper-expiry-negative-r9r10-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reported chain reads; root verified immutable files, not fresh RPC.",
+        "Eight selected vaults, not global market absence.",
+        "No profitable fullcycle or actual loan; lens delta is simulated."
+      ]
+    },
+    {
+      "id": "ev:hermes-keeper-ranked-negative-r12-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/9489654b30662a0363e39b910dcaa2032ce676f1/evidence/ptv5-r12",
+      "locator": "beefy-ranked-r12.json, input TVL/registry, selected.json, source and SHA256SUMS",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:37:56Z",
+      "retrieved_at": "2026-10-08T01:37:56Z",
+      "summary": "Actual Hermes115readops Base52316634: all16new topTVL active standard vaults simulated harvest positive WETH but all below L2gas alone. Root verified all8hashes and16arithmetic/token/vault/block matches. No loan/signing/spend.",
+      "content_sha256": "72ed30f3f9b1f16ea2393c0901b0b6cd63ced7f2e6dbaebb46717b320239da97",
+      "fingerprint_scope": "Exact beefy-ranked-r12.json bytes; all8SHA256SUMS verified",
+      "origin_group": "hermes-keeper-ranked-r12-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Root verified reported immutable reads, not fresh RPC.",
+        "Snapshot16newvaults, not global market absence or future profitability.",
+        "Hermes used own published implementation, not Codex r13helper.",
+        "No source-verification/full-cycle quote or actual earned revenue."
+      ]
+    },
+    {
+      "id": "ev:team-email-blog-signature-observation-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/f95dac644eb1386d21b4790585aad8a30f5834c1/experiments/eth-gas-bootstrap/20261008/reviews/team-blog-signature-verification.md",
+      "locator": "Safe Codex operational verification note; private correspondence not published",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:37:56Z",
+      "retrieved_at": "2026-10-08T01:37:56Z",
+      "summary": "Codex sender footer active; actual Hermes01:25:14Z necessary reply includesAIidentity+blog; Claude nextfooterpending. Existing carry/research/daily-sync prompts updated/read-backverified, schedules/enabledstates/priorinstructions retained; no duplicateautomation.",
+      "content_sha256": "3088ebe830ae41ebfb06f25963dcd14cc42d8b865caa3a05c09edd8cbf7daec4",
+      "fingerprint_scope": "Exact safe verification note, not private email contents",
+      "origin_group": "codex-team-blog-signature-observation-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Private inbox observation reported by Codex, not public raw correspondence.",
+        "One Hermes footer observed; universal future compliance not proved.",
+        "Claude adoption not yet observed."
+      ]
+    },
+    {
+      "id": "ev:acp-paid-job-81471-basescan-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0xe106a94e8864bcaff399e1294da41954e4d5f6657d2331cce2565ff15a251af1",
+      "locator": "Browser-observed BaseScan page",
+      "author_id": "venue:basescan-bootstrap-20261008",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:27:51Z",
+      "summary": "Base block 52181863, 2026-10-04T22:31:13Z, Success. ACP 0x238E541BfefD82238730D00a2208E5497F1832E0 logs JobCompleted and PaymentReleased for job81471; provider0x436f324eFf0B32A405c5B9102E1A6eF85451ceC1 received90000 units/0.09 canonical USDC. Evaluator0x60Ff03d376F862415AAAA06bD51c5109F51FA2dc received5000 units; treasury0x3F833Be7447F82E8654Bc634981899db0ee8042E received5000 units. Total0.10USDC. Bundle transaction gas0.000001283385242593ETH; paymaster0x2cc0c7981D846b9F2a16276556f6e8cb52BfB633.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:acp-paid-job-81471-basescan-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Provider gross revenue is not net profit",
+        "no input invoices, controller independence, AI implementation, delivery content or loan need established. Bundle gas is not full job cost. getJob query through BaseScan showed no result",
+        "no description inferred."
+      ]
+    },
+    {
+      "id": "ev:acp-refunds-basescan-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/address/0x238E541BfefD82238730D00a2208E5497F1832E0#tokentxns",
+      "locator": "Browser-observed BaseScan page",
+      "author_id": "venue:basescan-bootstrap-20261008",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:27:51Z",
+      "summary": "BaseScan latest transfer table showed 1USDC refunds via ClaimRefund transactions0x1e4414778b238e4ee447a194fb0269f356e3fd74f075e27e4571a9a9445009cb,0x6ba2cb21f9faefd4804497bcf4d0eef9a12e70b374e35c3338c10e182d195bb2,0xe443776d952472f05b2e726b2fc0a4785cfb18edcb70b50daaf77f455ab4ff1e at block52207572, and0.05USDC refund0x44db4588300a97fee778ddfb868adfaecf542b6982b2e8c88ddd02e12c70b7a2 at block52177422. Proxy current implementation displayed0x8e86FbEf4a4c927561cb6447cEd77ffFbf3B77BC. Transactions through AA are omitted from direct-call transaction table; use token/log receipts.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:acp-refunds-basescan-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Purposive latest-page sample",
+        "no denominator or refund rate estimated. Funded escrow does not guarantee provider acceptance or lender recovery."
+      ]
+    },
+    {
+      "id": "ev:beefy-negative-basescan-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0x1604f4b6c7d871193d1fa10daa50b6acbd37af9e3e4dfa0d86c20465806e74a8",
+      "locator": "Browser-observed BaseScan page",
+      "author_id": "venue:basescan-bootstrap-20261008",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:27:51Z",
+      "summary": "2026-10-08T01:14:15Z block52316354: keeper0x03d9964f4D93a24B58c0Fc3a8Df3474b59Ba8557 called harvest on0x7420527Bb758D293C2720B6fC375f7f9116E24b9, received0.000000640870679132WETH; transaction fee0.000003785269537395ETH. Caller spread=-0.000003144398858263ETH before unwrap/borrowing/repayment/hosting. Other inspected txs: c6b71930d2ea570a200dc459348530ae7f1503894657a424b2e86501a61c0b9b reward0.000000106336929529WETH vs0.000019290524376824ETHfee; fda802efe111a6d28322bf9f19d9cccb8b130f1724106985c430d7947433c281 reward0.000000006266152732 vs0.000004786967984098;028e7d0424b29058368adc3cb29d1954fd657f894c054ba87fb9acaf69764f94 reward0.000000064784097729 vs0.000013862508845907;f122e01b77fab196daadf87473b77e13f96a2a3fe03a5c24bc0bacefe8beef5c reward0.000000005740428951 vs0.000015385453842428. All5caller spreads negative.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:beefy-negative-basescan-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "One keeper and5purposively selected transactions",
+        "excludes protocol-wide or strategist benefits. Existing keeper may be subsidized",
+        "do not claim LLM autonomy or absence of profitable opportunities elsewhere."
+      ]
+    },
+    {
+      "id": "ev:microcredit-source-mismatch-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/30d7eeed83ea50cad9c103383865fbdb2c4a8959/packages/foundry/contracts/DecentralizedMicrocredit.sol",
+      "locator": "Full source read plus cited functions/constants",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:27:51Z",
+      "summary": "Pinned source blob d06ebd2d8397d62840269314e87710d3c43bb89b: USDC-only pool;GRACE_PERIOD1day;MIN_LOAN_TERM1day;MIN_BACKING1USDC;_repay closes and writes off remaining debt<0.01USDC;repayLoan can pull payment from a third-party payer for an active loan. Received backing does not become onward free credit. No job/proceeds assignment or per-job finance fee. LP interest is recognized on repayment, and fast grace-period loans pay zero interest.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:microcredit-source-mismatch-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source review, no fresh bytecode comparison or production deployment. Exact accounting and explicit job assignment are proposed changes, not implemented. Third-party repayment already exists",
+        "do not request redundant repay-for API."
+      ]
+    },
+    {
+      "id": "ev:prior-merchant-cost-receipt-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/e9e10c048a651b5db1830e53f49d3c2a0665553f/evidence/bootstrap-reality-001/README.md",
+      "locator": "Reality anchors2–4 and economics; preserve original Hermes attribution",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:27:51Z",
+      "summary": "Existing grounded packet reports Hermes unpaid merchant quotes: Exa0.010000USDC/search andFirecrawl0.012600USDC/scrape; ten pairs0.226USDC. Existing modeled0.50job and0.20loan are not actual sales or input purchases; actual cached accepted report had zero incrementalUSDCcost and should take no loan.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:prior-merchant-cost-receipt-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Hermes-origin reported quote",
+        "expires300seconds",
+        "not a current bill, paid delivery or BaseScan-verified payment. Public catalog counts are not independently verified onchain."
+      ]
+    },
+    {
+      "id": "ev:agentbounties-funded-parent-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0x53aac65f9e41a01430851290ef634b4ee9c8b933511cc8f8b6abbc2ead82a54d",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:52:31Z",
+      "summary": "BaseScan child contract 0xbf99f1c2c690c8bcd45e341006bf7b7dd6c41cdc token history shows21.3canonical USDC received from creator 0x29F3aFeAF22bB574bf22BAAe62eE884C7A3A7738, block51928047. Live agentbounties.app read-only opportunity inspection2026-10-08:20.3USDC reward,1USDC refundable claim bond, claim24h/review48h, deadline2026-10-29. Requires established outside repo>=100stars,>=5contributors, createdbefore2025-09-28; solver3merged contributions before2026-09-28; preexisting issue; maintainer consent and separately funded>=2USDC child bounty. Own testbed created2026-10-03 and0stars is ineligible.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:agentbounties-funded-parent-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Explorer proves funding, not commercial acceptance or solver independence.",
+        "Reward/bond/eligibility read from merchant protocol inspection; recheck onchain and exact spec before claim.",
+        "No verified eligible Hermes contribution history or consent; no transaction made."
+      ]
+    },
+    {
+      "id": "ev:deskcrew-payout-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0x9c0ccbe8a9cb9ce66b37ec5a6df95da5a184e8a8a046e762785fad6ab5af37c9",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:52:31Z",
+      "summary": "BaseScan success block50290649 at2026-08-22T03:50:45Z:0.85canonical USDC from DeskCrew0xd073306E9b749a91c9B41D682e6F97B2ad64323d to0x6e19C5A629cc9e0e31bb22f2024ba481688729c0. Gas0.000000272722821093ETH paid by sender. DeskCrew primary answer45 links accepted payout; current docs draft_reply0.06USDC/context0.02,85%winning share, EIP3009 facilitated gasless entry. Current arena only1USD directory-listing job,5existing entries,30+verified live listings workload. No fresh complete profitable job packet.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:deskcrew-payout-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "One historical accepted payout does not prove matched entry debit, compute cost, loan need or net profit.",
+        "Current prices and listing from primary merchant pages, not BaseScan cost receipts.",
+        "API free GET403; browser current page readable. Terms about failed-entry refunds need exact current quote confirmation."
+      ]
+    },
+    {
+      "id": "ev:agentbounties-timeout-routing-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/NSPG13/agent-bounties/blob/main/docs/autonomous-protocol.md",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:52:31Z",
+      "summary": "Official autonomous protocol: timed-out solver bond funds next accepted solver bonus; cancellation/refund pays contributors; withdrawRefundFor pays rightful contributor, not caller. V2 supports signed relayed actions. Therefore permissionless timeout/refund execution alone supplies no caller-fee income. AtomicClaimSponsor first-bond grants and relayers may remove the borrowing gap.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:agentbounties-timeout-routing-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Official source is mechanism evidence; verify actual deployed implementation and relayer availability before reliance."
+      ]
+    },
+    {
+      "id": "ev:hermes-r14-readonly-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/ad0f4117bc7a2164a4099bbf2eec209bad7f70c5/evidence/ptv5-r14/README.md",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:52:31Z",
+      "summary": "Hermes completed34RPC atBase52317212: usdc-aero strategy earned61.4758AERO, estimated47.21AERO/hour,harvestOnDeposit=true,caller0.01%ofrewardvalue. Source verification not established. Conditional L2-only break-even153.3AERO,3x459.8AERO from older lens calibration. Report NO_LOAN and NO_READY_DEMO. 21h illustrative spread0.06–0.09USD assumedETH2500–3500, not fresh executable quote or maximum guarantee.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:hermes-r14-readonly-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Preserve Hermes attribution.",
+        "RPC source reported by Hermes; no current BaseScan profit receipt.",
+        "Rate/price/stake may change; deposits/competitors reset reward; full loan-cycle quote not run."
+      ]
+    },
+    {
+      "id": "ev:morpho-gas-callback-mechanism-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/morpho-org/morpho-blue/blob/main/src/Morpho.sol",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:52:31Z",
+      "summary": "Official MorphoBlue liquidation source transfers seized collateral before onMorphoLiquidate callback and then pulls repaid loan assets. A reviewed callback executor can swap collateral to repay without prior loan-asset capital, leaving native ETH gas as external input. Base Blue address0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb. Archived morpho-liquidation-flash uses legacy integrations and is not proof of Blue/Base compatibility.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:morpho-gas-callback-mechanism-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "No currently liquidatable position, source-matched deployed executor, swap quote, or positive full-cycle receipt identified.",
+        "Local public RPC returned403 and BaseScan tx listing stayed at Cloudflare; stopped rather than bypassed.",
+        "Hermes bounded<=40RPC<=5minutes zero-spend qualification emailed; delivery is not execution."
+      ]
+    },
+    {
+      "id": "ev:basescan-beefy-impl-source-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/address/0x13ad51a6664973ebd0749a7c84939d973f247921#code",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:57:40Z",
+      "summary": "Direct BaseScan browser inspection: implementation source labeled Verified/Exact Match, StrategyVelodromeGaugeV2,Solidity0.8.19+commit.7dd6d404,200optimizationruns,MIT. Gauge0x4f09bab2f0e15e2a078a227fe1537665f55b8360 code page instead says Similar Match to0xcea0a2228145d0fd25de083e3786ddb1ea184296 with Constructor warning. R14 source-access gap partly resolved; no independent recompilation done.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:basescan-beefy-impl-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Explorer source-verification labels are observed; independent clone/immutable/runtime compilation comparison still requires exact artifact."
+      ]
+    },
+    {
+      "id": "ev:morpho-historical-basescan-20261008",
+      "kind": "primary_public",
+      "url": "https://basescan.org/tx/0xaeb7de3024456a2891c04bc35f78c333b44c3f988e4c49af7d89726894c08d77",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:57:40Z",
+      "summary": "BaseScan verifies Success block45452301,2026-05-02T03:52:29Z. EOA0xccc974196d4b7c67f88a7b1dac7717090554eddd directly calls Blue: receives2.8wrseth, sends2.94549301455297593WETH toMorpho, gas0.000000914647539243ETH. No swap/callback profit receipt. Present explorer USD valuations cannot establish historical liquidation profit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:morpho-historical-basescan-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Historical EOA trade is not a ready gas-only executor or current position.",
+        "No pre-funded WETH cash gap, same-tx swap or loan-return proof observed."
+      ]
+    },
+    {
+      "id": "ev:blue-community-executor-source-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/kameron222/liquidation-bot/blob/main/contracts/MorphoLiquidator.sol",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T01:57:40Z",
+      "summary": "Read creator primary code: Blue self-funding callback swaps seized collateral via V3 or Aerodrome, approves exact repayment and sweeps loan-token balance to owner. Source availability is not an audit, deployment match, current eligibility or net profit; previous balances must be excluded from earned surplus.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:blue-community-executor-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Do not deploy/run unreviewed bot or import its configured private keys.",
+        "No exact deployed Base executor controlled by borrower identified."
+      ]
+    },
+    {
+      "id": "ev:harvest-only-signer-readiness-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/f95dac644eb1386d21b4790585aad8a30f5834c1/experiments/eth-gas-bootstrap/20261008/sign-exact-harvest-phase-review.md",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T02:11:00Z",
+      "summary": "Pinned project review explicitly supports offline harvest signing only. Unwrap and repayment signing remain unsupported pending separate phase-bound actual-receipt implementations. Synthetic controls use a public dummy key; no real wallet opened, transaction signed or broadcast. Quote previews are not executable proof.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:harvest-only-signer-readiness-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Project-authored implementation review; not an independent production audit.",
+        "Actual complete cycle, positive profit and earned loan repayment remain unproved."
+      ]
+    },
+    {
+      "id": "ev:hermes-r15-full-cycle-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/c573f434ee98f2e1bf625b16b7da97ede9b6a4da/evidence/ptv5-r15/full-cost-negative-quote.json",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T02:15:00Z",
+      "summary": "Hermes r15 at Base52317986 (02:08:39Z),47 RPC: current NO_LOAN. Full fund/harvest/unwrap/repay reserved costs11787172931592wei; required reward11789172931592wei; lens WETH reward2510707389920wei; borrower margin -9277465541672wei. Principal12707276393564wei,fee236103482898wei,debt12943379876462wei. Feed2579.63USD/ETH; principal~0.0328USD. Stateful eth_simulateV1 unsupported RpcError_-38014. Conditional underlying reward threshold~384AERO vs~82now, assuming unchanged conversion/rate,no competitor/reset. No execution or earned repayment. Zero work-cost allowance and tiny1e9wei profit targets measure transaction contribution, not sustainable agent/business profit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:hermes-r15-full-cycle-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only historical snapshot; refresh before any financing or transaction.",
+        "No positive complete cycle, real loan or earned repayment proved."
+      ]
+    },
+    {
+      "id": "ev:hermes-r15-morpho-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/c573f434ee98f2e1bf625b16b7da97ede9b6a4da/evidence/ptv5-r15/morpho_callers_raw.json",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T02:15:00Z",
+      "summary": "Hermes Morpho read-only head52318007,18RPC: zero Liquidate logs last1000blocks;16 in10000,6transactions,3markets,5 contract callers. No current eligible borrower, reviewed controlled executor or positive quote. Raw RPC responses for all6 eth_getTransactionReceipt calls are errors -32602: Archive requests require a personal token. Summary normalizes missing result into no receipt; these were not genuine JSON null transaction receipts. This is an access failure, not absence of transaction or chain history. Net profit not established. BaseScan receipt confirmation for these6 hashes remains pending.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:hermes-r15-morpho-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only historical snapshot; refresh before any financing or transaction.",
+        "No positive complete cycle, real loan or earned repayment proved."
+      ]
+    },
+    {
+      "id": "ev:hermes-r15-source-matches-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/c573f434ee98f2e1bf625b16b7da97ede9b6a4da/evidence/ptv5-r15/README.md",
+      "locator": "Current primary-source inspection",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T02:15:00Z",
+      "summary": "Hermes corrected Sourcify fields=all requests return200: impl metadata match/runtime match (not exact_match),gauge exact_match, runtime pins consistent withr14. BaseScan previously labels implementation Exact Match and gauge Similar Match. Record differing verifier labels without treating independent source recompilation as completed. No source-label alone proves repayment/profit.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ev:hermes-r15-source-matches-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read-only historical snapshot; refresh before any financing or transaction.",
+        "No positive complete cycle, real loan or earned repayment proved."
+      ]
+    },
+    {
+      "id": "ev:team-email-blog-signature-followthrough-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/202e3952839170230dd7a01486613db7e787c3e2/experiments/eth-gas-bootstrap/20261008/reviews/team-blog-signature-verification.md",
+      "locator": "Safe operational verification note; no private correspondence",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T02:24:36Z",
+      "retrieved_at": "2026-10-08T02:24:36Z",
+      "summary": "Multiple actual Codex/Hermes necessary emails include blog footer. Claude02:08:50Z mail lacks it; corrective shared notice APIaccepted, adoption still unverified. Four existing email-producing task prompts read-backverified; schedules/enabledstates retained, no duplicateautomation.",
+      "content_sha256": "cc664ddda764dcf0edd94504320497eaec706da2c1302af2abbcdb363a01f4e4",
+      "fingerprint_scope": "Exact safe note bytes, not private emails",
+      "origin_group": "codex-team-blog-signature-observation-20261008",
+      "derived_from_ids": [
+        "ev:team-email-blog-signature-observation-20261008"
+      ],
+      "limitations": [
+        "Codex private inbox observation is reported, not public raw correspondence.",
+        "Universal future compliance is unproved; Claude footer must be observed."
+      ]
+    },
+    {
+      "id": "ev:codex-r14-r15-independent-counterreview-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008/reviews/r15-full-cycle-counterreview.md",
+      "locator": "Offline cost/source counterreview with immutable raw copies and root manifests",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T02:24:36Z",
+      "retrieved_at": "2026-10-08T02:24:36Z",
+      "summary": "Root/subagent independently checked r15 debt/gas/margin identities and supplied source transformations against r14/r15; current economics fail, no stateful direct-recipient proof or independently fresh compilation. Conditional384AERO floor is precheck only, not demonstrated income.",
+      "content_sha256": "b1be381f1c42a6b76ad43eb56113aa854fa48fa66e3cc8ef7cf38f990a5de96a",
+      "fingerprint_scope": "Exact review bytes; source packets root-fingerprinted separately",
+      "origin_group": "ev:hermes-r15-full-cycle-20261008",
+      "derived_from_ids": [
+        "ev:hermes-r15-full-cycle-20261008",
+        "ev:hermes-r15-source-matches-20261008"
+      ],
+      "limitations": [
+        "Independent arithmetic review uses the same Hermes original event, not independent chain reads.",
+        "Source-byte normalization uses supplied Sourcify output, not fresh solc recompilation.",
+        "Future accrual and profitability are conditional; work costs remain unpriced."
+      ]
+    },
+    {
       "id": "ev:operator-human-borrowing-direction-20261008",
       "kind": "operator_direction",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6051609186",
@@ -5739,6 +6337,49 @@
       ]
     },
     {
+      "id": "ev:codex-human-cost-country-audit-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/PH_KENYA_COMPARISON.md",
+      "locator": "Country primary-source audits, corrected definitions and integer 25 USDC sensitivity",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:02:18Z",
+      "retrieved_at": "2026-10-08T04:02:18Z",
+      "summary": "Claude accepted complementary Codex research and requested a country/partner audit. Philippines/Kenya Base USDC support is documented; current full cost and licensed partner remain unqualified. Interest is 376643 micro-USDC. At 3–6% cycle default and full principal loss, external support is needed before other costs, even allocating all collectible gross interest to losses. This is an ecosystem lower bound, not proof of reserve sufficiency. CGAP 29.1% to 20% is a lab game, Kiva 72.8% is direct U.S. lending, and MIX is a historical trend. No local final LGD or per-loan cost observed. Fourteen invariants and stake/settlement constraints are recorded.",
+      "content_sha256": "677881370796c9f11bfb135ba74d49a2e188d3dbddda97be09bac00152194f31",
+      "fingerprint_scope": "Exact comparison bytes; source and calculator hashes are in SHA256SUMS",
+      "origin_group": "codex-human-cost-country-audit-20261008",
+      "derived_from_ids": [
+        "ev:human-borrowing-plan-doc-20261008"
+      ],
+      "limitations": [
+        "Current publicdocument observations andderivedmath, not executableproductionquotes or legal sign-off.",
+        "SEC MC20 and final NDTCP full-text access gaps recorded; no cohort-size exemption inferred.",
+        "Sponsor-funded recovery moves losses; customer, provider and human eligibility are unestablished.",
+        "No independent commercial income, human loan, spending or mainnet readiness."
+      ]
+    },
+    {
+      "id": "ev:claude-blog-footer-observed-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008/reviews/team-blog-signature-verification.md",
+      "locator": "Safe operational observation note, no private email bodies/IDs",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:02:18Z",
+      "retrieved_at": "2026-10-08T04:02:18Z",
+      "summary": "Claude's actual 03:39:41Z necessary research reply contains its AI identity and exact blog URL after JSON. All three agents have demonstrated use. Claude reports adopting its internal helper; universal future external compliance is unproved.",
+      "content_sha256": "0ee602d0d76f33ef22a5f8f354a75cde3c4e9257e14b074f4ab9f98d186ce49d",
+      "fingerprint_scope": "Exact public-safe note bytes, not private correspondence",
+      "origin_group": "codex-team-blog-signature-observation-20261008",
+      "derived_from_ids": [
+        "ev:team-email-blog-signature-followthrough-20261008"
+      ],
+      "limitations": [
+        "Reported inbox observation; no private correspondence published or universal future compliance claim."
+      ]
+    },
+    {
       "id": "ev:operator-bot-economy-direction-20261008",
       "kind": "operator_direction",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6051809348",
@@ -5957,6 +6598,81 @@
       "derived_from_ids": [],
       "limitations": [
         "Arithmetic by script on the formula in CLAUDE.md and AdvanceFacts, not a Forge test; the first-day rule (no interest under 24 hours) applies on top."
+      ]
+    },
+    {
+      "id": "ev:codex-guatemala-rail-audit-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/guatemala-source-audit.md",
+      "locator": "guatemala-source-audit.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Official Tigo-hosted notice announces all operations end June30,2026. Decree25 nonprofit restrictions verified in gazette copy; Decree15 full law/IVE rules and current authorized BaseUSDC exit unverified. Friendship Bridge2025 files indexed but inaccessible.",
+      "content_sha256": "83bc58419a8470e1b1cd842e426aa1b0be7b0bb2cf8acc6aa02293a9ead98d1b",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Closure announcement verified, not independent shutdown witness.",
+        "No current operational quote, authorized pool-funded partner or published2025 loss/cost data verified."
+      ]
+    },
+    {
+      "id": "ev:codex-ethiopia-source-status-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/ethiopia-notice-status-review.md",
+      "locator": "ethiopia-notice-status-review.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "February NBE primary indexed notice restricts unauthorized Birr-paired crypto/P2P. July notice exact primary artifact remains unverified. Official payments strategy is a draft; no enacted standalone digital-lender route established.",
+      "content_sha256": "f159fc98c787eeed78dcf01fdd21971ddec1ba0e74cfd360c570ffe8b1988c2d",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Index observations and secondary reports distinguished; no legal clearance or current authorized USDC corridor."
+      ]
+    },
+    {
+      "id": "ev:codex-bot-board-admission-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/bot-job-board.json",
+      "locator": "bot-job-board.json; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Three useful verification jobs, with hypothetical unfunded prices1/.5/.25USDC. Current free/team-supplied inputs yield zero required principal. Created team demand explicitly labelled; no accepted order, paid job or external revenue.",
+      "content_sha256": "f5e7767dd99395e2f998355fb3064c6fa44ac123af1575370fcc0ee2fd861725",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Donated labor/runtime costs unmeasured; zero incremental cash is not zero business cost.",
+        "Draft only; no treasury funding commitment or actual customer."
+      ]
+    },
+    {
+      "id": "ev:codex-short-advance-accounting-review-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/short-advance-pricing-review.md",
+      "locator": "short-advance-pricing-review.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Source blob d06ebd2d8397d62840269314e87710d3c43bb89b settles interest first. Documented933bps5USDC/7days accrues8946micro; principal-sized payment pays interest then forgives principal. Full payment already collects sub-cent interest. Twenty-four integer rows and threshold checks reproduced.",
+      "content_sha256": "763e4c313be2dc3284c21fac8ff19afc3977d1e9a4b7b540eca2d59b28063d8f",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Documented parameters and source arithmetic, not new live transaction/state.",
+        "CI30 fix, secured-edge state and actual paymaster first-transaction route remain execution gates."
       ]
     }
   ],
@@ -9095,6 +9811,922 @@
       "derived_from_claim_ids": []
     },
     {
+      "id": "claim:eth-gas-research-source-observations-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_gas_primary_sources_read",
+      "statement": "Codex primary-documentation research read Circle Base USDC paymaster support and upfront prefund requirement, EIP7702 sponsorship, gasless-swap alternatives, PoolTogether Base keeper fee/withdrawal mechanisms and Base complete-fee estimation. Fresh contract main30d7eeed83ea50cad9c103383865fbdb2c4a8959 source inspection confirms immutable ERC20 USDC and meta-borrow/permit-repayment relayer paths. These are source observations, not live service, opportunity or earned-income verification.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "The linked report distinguishes primary source/code reads from unexecuted live work and records exact source URLs and contract commit.",
+        "supporting_evidence_ids": [
+          "ev:codex-eth-gas-bootstrap-research-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:16:26Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Source/code/deployment changes",
+          "Live quote or runtime verification"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-gas-credit-bootstrap-candidate-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_execution_credit_candidate",
+      "statement": "A tiny native ETH advance may bootstrap useful execution when an agent cannot pay gas before accessing assets or earning an external protocol fee. Existing-USDC conversion creates liquidity access, not new borrower income, and USDC paymasters/gasless routes may remove credit need. PoolTogether Base prize-claiming service fees are a source-grounded income candidate, not a currently qualified opportunity. Existing app remains immutable USDC/one-hop with CI30 open; no redesign/deployment or completed ETH income claimed.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary docs establish gas timing and payment mechanisms, but no fresh net-positive claim or actual borrower repayment has been observed.",
+        "supporting_evidence_ids": [
+          "ev:codex-eth-gas-bootstrap-research-20261008"
+        ],
+        "counterevidence_ids": [
+          "ev:hermes-ptv5-live-probe-r6-20261008",
+          "ev:hermes-keeper-expiry-negative-r9r10-20261008",
+          "ev:hermes-keeper-ranked-negative-r12-20261008"
+        ],
+        "falsifier": "Available zero-ETH alternatives dominate, or no repeatable external execution fees exceed all gas/finance/provider costs and bounded loss exposure."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:16:26Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Hermes bounded live-read receipt",
+          "Paymaster/keeper deployment or quote changes",
+          "Actual customer/protocol settlement or loss"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:eth-gas-research-source-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:hermes-ptv5-readonly-gap-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_keeper_live_read_reported",
+      "statement": "Hermes reports actual read-only Base52314628 contract/WETH/draw841 observations, but no winner data or full-fee-qualified claim. Codex verified immutable packet hashes; no ETH loan, claim transaction or revenue executed. Exact bounded source-grounded current-winner probe supplied to Hermes, result pending. This is an access gap, not evidence that no profitable opportunities exist.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Actual Hermes reply and hashverified immutable read packet; root has not independently read live RPC.",
+        "supporting_evidence_ids": [
+          "ev:hermes-ptv5-readonly-r1-20261008",
+          "ev:codex-eth-probe-artifact-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:38:34Z",
+        "recheck_by": "2026-10-08T01:00:00Z",
+        "recheck_on": [
+          "Hermes current-winner probe receipt",
+          "Qualified complete-cycle quote or actual execution/loss"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-keeper-actual-zero-fee-sim-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_keeper_exact_simulation_zero_income",
+      "statement": "Hermes completed live winner discovery and found ten unclaimed tier6 prizes, but exact one/ten claim simulations returned zero fees despite no revert. Correct configured claimer used; no loan/spending/earned income. Initial data access gap resolved for the sample; exact internal error/expiry and higher-fee remaining candidates are being checked. No global absence or profitable bootstrap inferred.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Received actual Hermes r6 reply and immutable raw/code packet; all nine hashes independently verified.",
+        "supporting_evidence_ids": [
+          "ev:hermes-ptv5-live-probe-r6-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:58:03Z",
+        "recheck_by": "2026-10-08T01:15:00Z",
+        "recheck_on": [
+          "Actual draw-expiry/inner-revert diagnostic",
+          "Positive external fee candidate and full costs"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:hermes-ptv5-readonly-gap-20261008"
+      ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:beefy-base-keeper-source-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "beefy_permissionless_keeper_source_support",
+      "statement": "Official current Beefy Base registry and Cowllector/strategy source provide a narrowly executable alternative keeper-fee candidate: permissionless direct harvest with caller WETH payment. Bounded eight-vault lens actual-delta probe and four-stage quote tools prepared and assigned read-only to Hermes. No fresh deployed match, fee quote, profitable loan or repeatability yet.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Immutable official registry/ABI/strategy code and exact artifact/source hashes are preserved; observation is source support only.",
+        "supporting_evidence_ids": [
+          "ev:codex-beefy-keeper-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:07:22Z",
+        "recheck_by": "2026-10-08T01:15:00Z",
+        "recheck_on": [
+          "Actual bounded Beefy probe/fee quote",
+          "Source/deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:team-email-blog-signature-20261008",
+      "subject_id": "agent:codex",
+      "predicate": "team_email_blog_signature_required",
+      "statement": "Every outgoing team email must include actual AI identity and https://github.com/scottonchain/microcredit-vision in its signature after the machineJSON. Multiple actual Codex/Hermes footers observed. Claude02:08:50Z message lacks the link; corrective shared notice accepted, adoption still unverified. Four existing email-producing task prompts persist the rule with schedules/enabledstates retained; no duplicate automation. Verify next necessary message, not acknowledgment alone. Claude's actual 03:39:41Z reply verifies its AI identity and blog footer. All three agents have demonstrated use; universal future compliance remains unproved.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator request implemented in current sender and persisted team email guide; adoption kept separate from instruction.",
+        "supporting_evidence_ids": [
+          "ev:team-email-blog-signature-20261008",
+          "ev:team-email-blog-signature-observation-20261008",
+          "ev:team-email-blog-signature-followthrough-20261008",
+          "ev:claude-blog-footer-observed-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:02:18Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Next necessary team outgoing message",
+          "New sender/worker template"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-keeper-expired-and-negative-sample-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "keeper_live_qualification_negative",
+      "statement": "Hermes actual diagnostic confirms old PT draw841 finalized/ClaimPeriodExpired; stop all its claim attempts. Eight Beefy active-vault harvest simulations yield positive WETH but all fees are below L2gas alone (best2603052208659fee vs10484940000000L2gaswei), so no loan/signing/spend/income qualified. One smarter bounded16newvault TVL-ranked read is assigned; no repeated sameeight poll or global opportunity absence inferred.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Actual Hermes reply and immutable RPC/source packet; Codex independently verified all nine hashes and fee/gas arithmetic.",
+        "supporting_evidence_ids": [
+          "ev:hermes-keeper-expiry-negative-r9r10-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:17:58Z",
+        "recheck_by": "2026-10-08T01:30:00Z",
+        "recheck_on": [
+          "Actual ranked16vault fee/wholecycle result",
+          "Different active protocol/job with fresh source and economics"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:eth-keeper-actual-zero-fee-sim-20261008"
+      ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-keeper-ranked-negative-r12-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "keeper_ranked_fee_sample_negative",
+      "statement": "Actual Hermes r12 Base52316634 16newtopTVL standardvaults allsimulatedpositiveWETHharvests butallnetnegativevsL2gasalone; bestfee5883030541872/cost7273980000000wei. Combined24sample snapshots do notproveglobalabsence. No fullquote/funding/earnedrevenue. SpecificUSDC-AERO age0.982h motivates one actualgauge/fee/accrual/harvestreset/source check; any laterqualification mustfollowverifiedearnedthreshold/fullcycleeconomics through existingcontinuation, notblindpoll/linearforecast.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Actual Hermes reply and immutable source/read inputs; root verified8hashes and all16reward/cost arithmetic.",
+        "supporting_evidence_ids": [
+          "ev:hermes-keeper-ranked-negative-r12-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:37:56Z",
+        "recheck_by": "2026-10-08T03:00:00Z",
+        "recheck_on": [
+          "Actual USDC-AERO gauge/accrual/source receipt",
+          "Verified earned-reward threshold or candidate reset",
+          "Real accepted funded service order"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:eth-keeper-expired-and-negative-sample-20261008"
+      ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:acp-payment-real-not-profit-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "acp-payment-real-not-profit-20261008",
+      "statement": "BaseScan proves actual accepted-work USDC payment at ACP job81471:0.09provider revenue out of0.10total settlement. It does not establish provider net profit, independent agent controls, a financing gap, or a loan-funded delivery.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the cited observed page/source.",
+        "supporting_evidence_ids": [
+          "ev:acp-paid-job-81471-basescan-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:keeper-reject-realized-spread-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "keeper-reject-realized-spread-20261008",
+      "statement": "All5directly inspected Base keeper harvest receipts paid this caller less WETH than its transaction cost in ETH; first receipt loses0.000003144398858263ETH before financing overhead. Reject these examples as bootstrap income. Do not infer that every keeper opportunity is unprofitable or that activity means profit.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the cited observed page/source.",
+        "supporting_evidence_ids": [
+          "ev:beefy-negative-basescan-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:escrow-refund-risk-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "escrow-refund-risk-20261008",
+      "statement": "Recent BaseScan ACP transfer receipts include actual customer refunds. Funded escrow is conditional payment, not guaranteed provider/lender proceeds; direct-call counts miss AA settlement.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the cited observed page/source.",
+        "supporting_evidence_ids": [
+          "ev:acp-refunds-basescan-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:fast-loan-accounting-gap-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "fast-loan-accounting-gap-20261008",
+      "statement": "Current source mismatches machine-speed microcredit economics: sub-day loans earn zero interest; remaining debt below1cent can be forgiven; min backing is1USDC and received backing is nontransitive. Exact debt settlement and an explicitly priced capped short-job fee are needed if fast loans should earn LP return. Native ETH keeper lending additionally needs a separately reviewed ETH/WETH or conversion route. Existing third-party repayment is reusable; customer proceeds assignment and purpose limits are absent.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the cited observed page/source.",
+        "supporting_evidence_ids": [
+          "ev:microcredit-source-mismatch-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:paid-input-closest-microcredit-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "paid-input-closest-microcredit-20261008",
+      "statement": "The closest productive agent analogue is short working-capital credit for externally funded acceptance-conditioned jobs, purchasing paid inputs before the provider can receive its earned USDC. Unlike a human shop, inventory is paid data/inference/subcontract work, collateral can be a bounded sponsor guarantee and cashflow can be a verified escrow payout. An agent can retain surplus and graduate to self-financing. Qualification requires actual cash gap, price/margin, buyer order and borrower/backer consent; this research identifies the mechanism, not an already qualified profitable borrower.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Mechanism supported; economics and demand remain conditional, not a witnessed profitable loan.",
+        "supporting_evidence_ids": [
+          "ev:acp-paid-job-81471-basescan-20261008",
+          "ev:prior-merchant-cost-receipt-20261008",
+          "ev:acp-refunds-basescan-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Real provider costs or refund risk exhaust the margin; customers prepay inputs; providers have sufficient cash; no independently funded order arrives."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:acp-payment-real-not-profit-20261008",
+        "claim:escrow-refund-risk-20261008"
+      ]
+    },
+    {
+      "id": "claim:under100-bootstrap-plan-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "under100-bootstrap-plan-20261008",
+      "statement": "Proposed all-in seed75USD:40canonical Base-mainnet USDC LP liquidity,20USDC separate sponsor stake,10USDC uncommitted loss/operating reserve, at most5USD native ETH including deployment and every pilot gas cost. They are four separately accounted pots, not multiplied credit or customer revenue. First advance<=0.40USDC, sequential only, against a separately funded >=1USDC public-source report order; candidate10search+scrape inputs0.226USDC based on expired reported quotes, inference cap0.10, gas allowance0.02, contingent loan fee0.005. If10%marketplace fees hold, illustrative provider receipt0.90 minus0.226inputs minus0.10inference minus0.02gas minus0.005finance =0.549USDC before unpriced labor/hosting/retries/rejection. This is a screening scenario, not an observed listing/order/profit. Requote every component; fund only if quote fits, workload is useful and real margins pass. Buyer funds escrow independently beyond seed; no return minted, no mocked payment or self-funded customer counted. No reserve is counted twice, no loan needed if prepayment/free inputs suffice.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Mechanism supported; economics and demand remain conditional, not a witnessed profitable loan.",
+        "supporting_evidence_ids": [
+          "ev:prior-merchant-cost-receipt-20261008",
+          "ev:acp-paid-job-81471-basescan-20261008",
+          "ev:microcredit-source-mismatch-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "No actual >=1USDC customer order; refreshed cost/refund budget does not fit; assignment unsupported; deployment+gas exceed5USD; operator/backer funds/consent unavailable."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:27:51Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before financing; re-read chain state, escrow, quotes, contract implementation and current terms",
+          "New independent customer or actual input/payment/default receipt"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:paid-input-closest-microcredit-20261008",
+        "claim:fast-loan-accounting-gap-20261008"
+      ]
+    },
+    {
+      "id": "claim:bond-credit-qualified-eligibility-missing-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "bond-credit-qualified-eligibility-missing-20261008",
+      "statement": "Performance-bond microcredit is a plausible agentic analogue: a1USDC refundable claim bond can unlock20.3USDC acceptance-conditioned reward for an already eligible agent. The funded AgentBounties listing is real, but own team project is ineligible and outside solver qualification absent. Do not fund child bounty with operator seed then label it independent demand; no ready Hermes demo.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:agentbounties-funded-parent-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-agentbounties-funded-parent-20261008"
+      ]
+    },
+    {
+      "id": "claim:deskcrew-entry-credit-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "deskcrew-entry-credit-20261008",
+      "statement": "A small USDC entry/input loan can finance competing paid agent work. Historical0.85USDC reward minus current documented0.06entry =0.79USDC gross spread only; matched historical debit and full compute/retry cost absent. Current1USD directory job has competitive and substantial workload risks. Facilitator gas sponsorship removes ETH requirement for marketplace entry and payout. No proven executable profitable borrowing case.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:deskcrew-payout-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-deskcrew-payout-20261008"
+      ]
+    },
+    {
+      "id": "claim:timeout-no-caller-income-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "timeout-no-caller-income-20261008",
+      "statement": "Funding an agent with ETH to finalize AgentBounties timeout or contributor refunds does not alone earn money: recipient is next solver or contributor, not permissionless caller. Monetary value onchain does not imply a revenue right for any gas-paying agent.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:agentbounties-timeout-routing-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-agentbounties-timeout-routing-20261008"
+      ]
+    },
+    {
+      "id": "claim:r14-eth-gas-loan-not-ready-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "r14-eth-gas-loan-not-ready-20261008",
+      "statement": "Hermes fresh reward-accrual mechanism is internally consistent, but no current full-cycle positive net profit or source match; r14 NO_LOAN/NO_READY_DEMO accepted for current snapshot. An accumulated reward trigger remains conditional; no timer, no renewed broad scan, no financial execution.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r14-readonly-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-hermes-r14-readonly-20261008"
+      ]
+    },
+    {
+      "id": "claim:eth-gas-callback-credit-hypothesis-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "eth-gas-callback-credit-hypothesis-20261008",
+      "statement": "Native ETH credit could finance one atomic Morpho Blue callback liquidation: seized collateral swapped in callback repays protocol debt; residual swapped into ETH repays gas lender principal+explicit fee. This is structurally stronger than fronting liquidation USDC because protocol supplies transient collateral. Qualification requires a live liquidatable position, reviewed source-matched executor, full loan-transfer/liquidate/swap/repay costs, slippage floor, competition/revert budget and positive retained borrower surplus. No such ready packet yet.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:morpho-gas-callback-mechanism-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-morpho-gas-callback-mechanism-20261008"
+      ]
+    },
+    {
+      "id": "claim:eth-native-accounting-amendment-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "eth-native-accounting-amendment-20261008",
+      "statement": "Current project contract USDC-only. An ETH gas-loan bootstrap requires reviewed native-ETH/WETH principal, backing, fee and exact-repayment accounting or an explicit USDC-to-ETH loan route charging conversion/slippage and both transaction costs. A plain ETH grant is not an ETH loan or measured loan return. Fast-job interest and dust-settlement amendments already proposed remain applicable. Gasless/paymaster routes must be compared before asserting credit demand.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Primary contract/receipt facts separated from merchant terms and conditional income; demonstration not complete.",
+        "supporting_evidence_ids": [
+          "ev:morpho-gas-callback-mechanism-20261008",
+          "ev:microcredit-source-mismatch-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-morpho-gas-callback-mechanism-20261008"
+      ]
+    },
+    {
+      "id": "claim:observed-agentbounties-funded-parent-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "BaseScan child contract 0xbf99f1c2c690c8bcd45e341006bf7b7dd6c41cdc token history shows21.3canonical USDC received from creator 0x29F3aFeAF22bB574bf22BAAe62eE884C7A3A7738, block51928047. Live agentbounties.app read-only opportunity inspection2026-10-08:20.3USDC reward,1USDC refundable claim bond, claim24h/review48h, deadline2026-10-29. Requires established outside repo>=100stars,>=5contributors, createdbefore2025-09-28; solver3merged contributions before2026-09-28; preexisting issue; maintainer consent and separately funded>=2USDC child bounty. Own testbed created2026-10-03 and0stars is ineligible.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly observed source content; source limits retained, merchant terms not represented as onchain receipts.",
+        "supporting_evidence_ids": [
+          "ev:agentbounties-funded-parent-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-deskcrew-payout-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "BaseScan success block50290649 at2026-08-22T03:50:45Z:0.85canonical USDC from DeskCrew0xd073306E9b749a91c9B41D682e6F97B2ad64323d to0x6e19C5A629cc9e0e31bb22f2024ba481688729c0. Gas0.000000272722821093ETH paid by sender. DeskCrew primary answer45 links accepted payout; current docs draft_reply0.06USDC/context0.02,85%winning share, EIP3009 facilitated gasless entry. Current arena only1USD directory-listing job,5existing entries,30+verified live listings workload. No fresh complete profitable job packet.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly observed source content; source limits retained, merchant terms not represented as onchain receipts.",
+        "supporting_evidence_ids": [
+          "ev:deskcrew-payout-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-agentbounties-timeout-routing-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Official autonomous protocol: timed-out solver bond funds next accepted solver bonus; cancellation/refund pays contributors; withdrawRefundFor pays rightful contributor, not caller. V2 supports signed relayed actions. Therefore permissionless timeout/refund execution alone supplies no caller-fee income. AtomicClaimSponsor first-bond grants and relayers may remove the borrowing gap.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly observed source content; source limits retained, merchant terms not represented as onchain receipts.",
+        "supporting_evidence_ids": [
+          "ev:agentbounties-timeout-routing-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-hermes-r14-readonly-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Hermes completed34RPC atBase52317212: usdc-aero strategy earned61.4758AERO, estimated47.21AERO/hour,harvestOnDeposit=true,caller0.01%ofrewardvalue. Source verification not established. Conditional L2-only break-even153.3AERO,3x459.8AERO from older lens calibration. Report NO_LOAN and NO_READY_DEMO. 21h illustrative spread0.06–0.09USD assumedETH2500–3500, not fresh executable quote or maximum guarantee.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly observed source content; source limits retained, merchant terms not represented as onchain receipts.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r14-readonly-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-morpho-gas-callback-mechanism-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Official MorphoBlue liquidation source transfers seized collateral before onMorphoLiquidate callback and then pulls repaid loan assets. A reviewed callback executor can swap collateral to repay without prior loan-asset capital, leaving native ETH gas as external input. Base Blue address0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb. Archived morpho-liquidation-flash uses legacy integrations and is not proof of Blue/Base compatibility.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly observed source content; source limits retained, merchant terms not represented as onchain receipts.",
+        "supporting_evidence_ids": [
+          "ev:morpho-gas-callback-mechanism-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:52:31Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-basescan-beefy-impl-source-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Direct BaseScan browser inspection: implementation source labeled Verified/Exact Match, StrategyVelodromeGaugeV2,Solidity0.8.19+commit.7dd6d404,200optimizationruns,MIT. Gauge0x4f09bab2f0e15e2a078a227fe1537665f55b8360 code page instead says Similar Match to0xcea0a2228145d0fd25de083e3786ddb1ea184296 with Constructor warning. R14 source-access gap partly resolved; no independent recompilation done.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observed public primary page with explicit limits.",
+        "supporting_evidence_ids": [
+          "ev:basescan-beefy-impl-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:57:40Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-morpho-historical-basescan-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "BaseScan verifies Success block45452301,2026-05-02T03:52:29Z. EOA0xccc974196d4b7c67f88a7b1dac7717090554eddd directly calls Blue: receives2.8wrseth, sends2.94549301455297593WETH toMorpho, gas0.000000914647539243ETH. No swap/callback profit receipt. Present explorer USD valuations cannot establish historical liquidation profit.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observed public primary page with explicit limits.",
+        "supporting_evidence_ids": [
+          "ev:morpho-historical-basescan-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:57:40Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-blue-community-executor-source-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Read creator primary code: Blue self-funding callback swaps seized collateral via V3 or Aerodrome, approves exact repayment and sweeps loan-token balance to owner. Source availability is not an audit, deployment match, current eligibility or net profit; previous balances must be excluded from earned surplus.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Observed public primary page with explicit limits.",
+        "supporting_evidence_ids": [
+          "ev:blue-community-executor-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:57:40Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:gas-loan-profit-accounting-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Unused loan principal remains repayable. For native advance L, borrower total consumed gas/conversion G, external earned reward R and lender fee F: final borrower surplus after repaying L+F is R-G-F. Count lender-side gas separately in all-in economics; do not subtract principal again or assume0.06USD cannot cover costs before actual quote. Permissionless keeper income needs no ACP job/invoice/provider adapter; those gate service-commerce bootstrap separately. Offprotocol ETH-loan proof requires no USDC-app change; using the project pool for native ETH does require an adapter or asset-accounting changes. Research still incomplete until actual earned principal+fee repayment.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Conservation identity; distinguish pilot offprotocol experiment from project smart-contract deployment.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r14-readonly-20261008",
+          "ev:basescan-beefy-impl-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:57:40Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:observed-hermes-r14-readonly-20261008",
+        "claim:observed-basescan-beefy-impl-source-20261008"
+      ]
+    },
+    {
+      "id": "claim:observed-harvest-only-signer-readiness-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Pinned project review explicitly supports offline harvest signing only. Unwrap and repayment signing remain unsupported pending separate phase-bound actual-receipt implementations. Synthetic controls use a public dummy key; no real wallet opened, transaction signed or broadcast. Quote previews are not executable proof.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly fetched pinned primary implementation review.",
+        "supporting_evidence_ids": [
+          "ev:harvest-only-signer-readiness-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T02:11:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-hermes-r15-full-cycle-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Hermes r15 at Base52317986 (02:08:39Z),47 RPC: current NO_LOAN. Full fund/harvest/unwrap/repay reserved costs11787172931592wei; required reward11789172931592wei; lens WETH reward2510707389920wei; borrower margin -9277465541672wei. Principal12707276393564wei,fee236103482898wei,debt12943379876462wei. Feed2579.63USD/ETH; principal~0.0328USD. Stateful eth_simulateV1 unsupported RpcError_-38014. Conditional underlying reward threshold~384AERO vs~82now, assuming unchanged conversion/rate,no competitor/reset. No execution or earned repayment. Zero work-cost allowance and tiny1e9wei profit targets measure transaction contribution, not sustainable agent/business profit.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly fetched pinned primary implementation review.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r15-full-cycle-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T02:15:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-hermes-r15-morpho-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Hermes Morpho read-only head52318007,18RPC: zero Liquidate logs last1000blocks;16 in10000,6transactions,3markets,5 contract callers. No current eligible borrower, reviewed controlled executor or positive quote. Raw RPC responses for all6 eth_getTransactionReceipt calls are errors -32602: Archive requests require a personal token. Summary normalizes missing result into no receipt; these were not genuine JSON null transaction receipts. This is an access failure, not absence of transaction or chain history. Net profit not established. BaseScan receipt confirmation for these6 hashes remains pending.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly fetched pinned primary implementation review.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r15-morpho-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T02:15:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:observed-hermes-r15-source-matches-20261008",
+      "subject_id": "work:escrow-input-bootstrap-20261008",
+      "predicate": "source-observation",
+      "statement": "Hermes corrected Sourcify fields=all requests return200: impl metadata match/runtime match (not exact_match),gauge exact_match, runtime pins consistent withr14. BaseScan previously labels implementation Exact Match and gauge Similar Match. Record differing verifier labels without treating independent source recompilation as completed. No source-label alone proves repayment/profit.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Directly fetched pinned primary implementation review.",
+        "supporting_evidence_ids": [
+          "ev:hermes-r15-source-matches-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh state/quotes contradict eligibility, caller cashflow, cost or source compatibility."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T02:15:00Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Before any financing or transaction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:keeper-full-cycle-not-qualified-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "keeper_full_cycle_and_source_gate_open",
+      "statement": "Actual r15 full-cycle reward2510707389920wei fails required11789172931592wei; borrower margin -9277465541672wei, no loan/income. Correct unused-principal algebra accepted. Conditional384AERO floor uses modeled conversion; ~82currentAERO is inferred, not fresh r15earned. Metadata/immutable transformations reconcile reported source bytes but no independent compiler run. Clone signer remains disabled, directEOAreceipt/unwrap/repay gaps open. Existing hourly carry can only use finite actualearned/residual/reset read and conservativefreshquote; no global absence or reliableprofit proved. OriginalprimaryUSDC0/3 and exactrecovery preserved.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Offline audit of actual pinned r15 and source artifacts; attributed contemporaneous proposals integrated without overwriting.",
+        "supporting_evidence_ids": [
+          "ev:codex-r14-r15-independent-counterreview-20261008",
+          "ev:hermes-r15-full-cycle-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Fresh source-reviewed direct-recipient positive full-cycle and actual earned repayment."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T02:24:36Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Actual earned threshold with unchanged gauge/lastHarvest and rates",
+          "Direct-recipient/stateful supported evidence and independent source compilation",
+          "Actual primary USDC fresh full-state snapshot"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:eth-keeper-ranked-negative-r12-20261008"
+      ],
+      "derived_from_claim_ids": [
+        "claim:observed-hermes-r15-full-cycle-20261008"
+      ]
+    },
+    {
       "id": "claim:human-borrowing-requirement-20261008",
       "subject_id": "work:bootstrap",
       "predicate": "required_outcome",
@@ -9136,7 +10768,9 @@
           "ev:kiva-repayment-by-channel",
           "ev:human-loan-sizes-and-prices"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-human-cost-country-audit-20261008"
+        ],
         "falsifier": "A pilot cohort with measured first-cycle default outside 3% to 20% under either channel."
       },
       "freshness": {
@@ -9271,7 +10905,9 @@
           "ev:audit-and-chain-costs-2026",
           "ev:cgap-digital-credit-defaults"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-human-cost-country-audit-20261008"
+        ],
         "falsifier": "A pilot cycle in which interest plus reserve plus sponsor capital do not cover measured losses and operating cost."
       },
       "freshness": {
@@ -9316,6 +10952,36 @@
         "claim:first-loan-default-benchmarks",
         "claim:lender-of-record-required",
         "claim:cash-out-rail-required"
+      ]
+    },
+    {
+      "id": "claim:human-cost-loss-unqualified-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "human_price_loss_and_country_gates_unqualified",
+      "statement": "Primary country/source audit supports possible Base USDC rails, not qualified human lending. 25 USDC over 30 days at 1400 premium + 433 benchmark = 1833 APR bps earns 376643 micro-USDC. With no recovery and full principal loss, 3–6% cycle default exceeds interest before operating costs. Calculated external support assumes all gross interest can absorb losses; configured reserve sufficiency needs a separate check. Borrower-paid cashout raises the price; lender-paid fees consume the budget. CGAP lab defaults, Kiva direct U.S. rates, MIX historical ratios and Philippine past-due balances cannot calibrate local 3–6% final losses or actual 25 USDC servicing costs. Unknown paired quotes, partner cost, licensing, losses and human benefit prevent a self-sustaining claim. Preserve parallel phases and an explicitly funded, finite sponsored pilot alternative. No human loan executed.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Audited primary documents/definitions and exact integer contract arithmetic; assumptions and access limits separated.",
+        "supporting_evidence_ids": [
+          "ev:codex-human-cost-country-audit-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Actual licensed partner, paired quotes and matured cohort evidence yielding a sustainable all-party budget at the chosen price."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:02:18Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "Missing regulator text",
+          "Actual productionfee andpartnerprice evidence",
+          "Correctly defined matured cohort/PD/LGD/cost data"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:human-price-gap",
+        "claim:first-loan-default-benchmarks"
       ]
     },
     {
@@ -9413,7 +11079,9 @@
           "ev:guatemala-decree-15-2026",
           "ev:guatemala-tigo-money"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008"
+        ],
         "falsifier": "Counsel or the IVE's rules showing that a USDC-funded microfinance partner cannot operate under Decree 15-2026 and Decree 25-2016."
       },
       "freshness": {
@@ -9440,7 +11108,9 @@
           "ev:ethiopia-nbe-virtual-assets-notice-2026",
           "ev:ethiopia-mobile-money-2026"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-ethiopia-source-status-20261008"
+        ],
         "falsifier": "The NBE authorising a stablecoin-funded lender, or counsel reading the notice as not covering a partner's offshore USDC settlement."
       },
       "freshness": {
@@ -9523,7 +11193,9 @@
         "supporting_evidence_ids": [
           "ev:bot-advance-arithmetic-20261008"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
         "falsifier": "A Forge test at the live parameters in which a 25 USDC, 7-day loan accrues other than 44,732 units, or a 5 USDC, 7-day loan repaid at principal pays lenders any interest."
       },
       "freshness": {
@@ -9553,7 +11225,9 @@
           "ev:circle-paymaster-usdc-gas",
           "ev:bot-advance-arithmetic-20261008"
         ],
-        "counterevidence_ids": [],
+        "counterevidence_ids": [
+          "ev:codex-bot-board-admission-20261008"
+        ],
         "falsifier": "The phase 0b gate unmet by 2026-11-15, or a paymaster route that cannot be run on the testnet or on Base."
       },
       "freshness": {
@@ -9570,6 +11244,117 @@
         "claim:ci30-cash-take-20261007",
         "claim:sponsored-claim-conditions-20261007"
       ]
+    },
+    {
+      "id": "claim:target-human-routes-unqualified-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "target_country_route_not_operationally_qualified",
+      "statement": "Guatemala remains research priority, but Tigo closure announcement contradicts a ready Tigo exit. AML supervision alone does not establish an authorized executable corridor; nonprofit funding restrictions need review. Ethiopia primary-law/source gaps and all countries actual partner/cashout/cost gaps remain. No human route qualified.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008",
+          "ev:codex-ethiopia-source-status-20261008",
+          "ev:codex-human-cost-country-audit-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:bot-verification-jobs-no-loan-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "first_created_verification_jobs_have_no_cash_gap",
+      "statement": "The first three useful team verification jobs presently use free or supplied inputs. Draft prices are hypothetical and unfunded. Their zero principal outputs do not justify a5USDC advance; a routing experiment must be labelled product mechanics. Paid mandatory inputs, signed accepted price, prepayment/cash alternatives and all-party budget must qualify any economic loan.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-bot-board-admission-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:short-advance-interest-first-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "subcent_close_forgives_principal_after_paid_interest",
+      "statement": "At documented933bps,5USDC/7days interest8946micro is paid first from a5USDC payment, with4025dues and4991054principal. Closing forgives8946 unpaid principal; reserve covers up to that loss. This is zero net financing charge through principal loss, not unpaid-interest dues. Exact full payment already collects interest below a cent. FixCI30 before price changes; minimum term cannot prevent early repayment. Paymaster first USDC funding/relayer subsidy and secured-edge classification require actual checks.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:codex-human-bot-audit-observations-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "primary_document_and_offline_calculation_observations",
+      "statement": "The opened official Tigo notice announces operations ending June30,2026. The published first agent board labels all prices hypothetical/unfunded; its supplied/free-input fixtures return zero principal. The inspected contract source blob d06ebd2d8397d62840269314e87710d3c43bb89b allocates interest first and writes off residual principal below a cent. Exact integer rows reproduce. NBE primary-indexed and secondary-only source statuses are recorded. These are documentary and offline observations, not witnessed shutdown, operational quote, actual job or executed loan.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Primary notice observed by delegated researcher; root reviewed evidence files, inspected identical source blob and reproduced integer outputs.",
+        "supporting_evidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008",
+          "ev:codex-ethiopia-source-status-20261008",
+          "ev:codex-bot-board-admission-20261008",
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:29:01Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "Source changes, current operating corridor, paid input order or new deployed code"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -10083,6 +11868,36 @@
       "confidence_scope": "An untested bridge to be challenged in the next daily sync, not evidence of Techne demand, poverty reach or an agreed partnership."
     },
     {
+      "id": "hyp:escrow-input-sustainable-credit-20261008",
+      "subject_ids": [
+        "work:escrow-input-bootstrap-20261008"
+      ],
+      "theory": "A shared pool can help cash-poor agents deliver profitable funded services when the customer locks payment until acceptance and paid inputs cannot be obtained free or prepaid. Borrower profit comes from useful work sold to an independent buyer; lender fee must be explicit and smaller than verified surplus.",
+      "claim_ids": [
+        "claim:paid-input-closest-microcredit-20261008",
+        "claim:under100-bootstrap-plan-20261008"
+      ],
+      "alternative_explanations": [
+        "Buyers can pay input advances directly and eliminate credit demand.",
+        "Providers are operator-funded and do not need loans.",
+        "Observed agent commerce is shared-controller/testing/subsidized activity rather than independent profitable demand."
+      ],
+      "predictions": [
+        {
+          "observable": "A funded independent order, real paid input invoices, accepted useful work, loan repayment from buyer proceeds and positive provider net cash margin.",
+          "disconfirming_observation": "Only team-funded jobs/repayment grants; no cash gap or net surplus after all costs.",
+          "check_by": null
+        },
+        {
+          "observable": "A repeat provider self-finances once earnings exceed its working-capital gap.",
+          "disconfirming_observation": "Repeated borrowing required only to generate reputation or subsidized loan counts.",
+          "check_by": null
+        }
+      ],
+      "confidence": "medium",
+      "confidence_scope": "Conditional structural analogy; no success probability or measured commercial loan profitability."
+    },
+    {
       "id": "hyp:agent-officers-cut-cost",
       "subject_ids": [
         "project:microcredit",
@@ -10093,7 +11908,8 @@
         "claim:human-price-gap",
         "claim:first-loan-default-benchmarks",
         "claim:intermediary-and-ties-cut-default",
-        "claim:start-inside-existing-trust-structure"
+        "claim:start-inside-existing-trust-structure",
+        "claim:human-cost-loss-unqualified-20261008"
       ],
       "alternative_explanations": [
         "The partner's own cost (KYC, collection, cash handling, ramps) dominates and is unchanged by agents.",
@@ -10118,7 +11934,7 @@
         }
       ],
       "confidence": "low",
-      "confidence_scope": "Untested; depends on a country, a partner and a measured ramp that do not exist yet."
+      "confidence_scope": "Untested; depends on a country, a partner and a measured ramp that do not exist yet. Codex audit identifies cycle/annual denominator and source-classification gaps. Actual partner cost is unknown. A 3–6% full-loss cycle needs disclosed external capital at the proposed price."
     },
     {
       "id": "hyp:bot-working-capital-demand",
@@ -11068,7 +12884,7 @@
         "claim:sepolia-prototype-escalation"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique. Resolve COLD-START-TRUST-001 with Claude: decide whether Hermes's faucet-funded stake/backing -> first borrower -> repayment -> second-hop borrower is the expected cold-start mechanism. Verify every credit/reputation transition against the deployed contract, choose a concrete alternative where the scenario fails, and record bounded first-borrow, repayment and two-hop milestones plus a liberal-to-selective trust policy. Operator requests email protocol and unresolved issues, particularly cold start, at this evening sync. Codex revised response 6037766965 accepts all six Claude technical corrections and both trust corrections; seek actual final mechanism assent, then close only milestones with verified receipts. Local M4 checker: 28 tests run, 26 passed, 2 skipped; no live chain execution. Dedicated inbox protocol now agreed between Codex and Claude; domain resolved to .to. Carry pinned readiness recheck receipt ev:codex-relayer-unit-recheck-20261007 into final mapping, leaving crash/service gaps open.",
+      "deliverable": "At the next existing daily sync, review the accepted wallet-direct/static route, build checkpoint, actual host/live test evidence and next actions; preserve real assents and unresolved implementation limits. Operator additions (ev:sepolia-demo-alert-bottom): discuss populating the test pool using Hermes's existing faucet and how addresses obtain credit (faucet network, assets and limits; pool deposits versus wallet balances; initial grants and issuer authority; backing routes and amounts; an actionable fresh-address onboarding procedure); faucet tokens and gas alone are not credit. Record concrete owner actions and Claude's critique. Resolve COLD-START-TRUST-001 with Claude: decide whether Hermes's faucet-funded stake/backing -> first borrower -> repayment -> second-hop borrower is the expected cold-start mechanism. Verify every credit/reputation transition against the deployed contract, choose a concrete alternative where the scenario fails, and record bounded first-borrow, repayment and two-hop milestones plus a liberal-to-selective trust policy. Operator requests email protocol and unresolved issues, particularly cold start, at this evening sync. Codex revised response 6037766965 accepts all six Claude technical corrections and both trust corrections; seek actual final mechanism assent, then close only milestones with verified receipts. Local M4 checker: 28 tests run, 26 passed, 2 skipped; no live chain execution. Dedicated inbox protocol now agreed between Codex and Claude; domain resolved to .to. Carry pinned readiness recheck receipt ev:codex-relayer-unit-recheck-20261007 into final mapping, leaving crash/service gaps open. Verify Claude blog footer on nextnecessarysyncemail; Codex/Hermes observed adoption and unchanged existing04Denver schedule recorded.",
       "acceptance_criteria": [
         "Read decision:sepolia-prototype-v1 and actual newer implementation evidence; do not reopen custody as an operator gate.",
         "Track source/build/publication and fresh-wallet execution receipts separately.",
@@ -12047,7 +13863,7 @@
         "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation.",
+      "deliverable": "Three measured communities (worker bootstrap, cash-poor borrower with voluntary peer support, and bounded collusion/refusal controls) using the same live Base Sepolia public-app pool and intended deployed credit model; separate subagent role decisions, wallet/transaction/state receipts, natural full teardown and an exact aggregate-USDC ledger. Current temporary baseline is 20 USDC, consisting of the original root 15 plus Hermes's source 5. Return/redeposit that source allocation after teardown to restore Hermes's original 20-USDC lender position and leave root 15; distinguish gas ETH. Primary live execution is currently blocked on channels. Hermes reports all three ordinary supplemental fork communities passed at pinned source block 47820167, with 59 local mined transactions, exact 20-USDC fork recovery and financial cleanup; Codex internal artifact audit passed without material discrepancy; execution/source provenance remain supplied by Hermes. Fork execution and its node teardown do not complete the live task or return the live source allocation. Current next step: staged read-only 13wallet/pool/provider/source snapshot and exact s1-funder5USDC approval simulation on84532; no nonce/balance inference. Primary0/3; recovery/source5redeposit obligations retained, same-day zero-dues run is mechanics only.",
       "acceptance_criteria": [
         "Pin chain 84532, canonical token, deployed pool/provider/lens, block/hash and actual pre-run state; use the deployed credit model without replacement contracts or inferred deposit credit.",
         "Root retains every scenario wallet key; role agents choose actions without signing authority. Record conditional choices separately from actual transactions and distinguish internal subsidy from outside income.",
@@ -12293,27 +14109,34 @@
     },
     {
       "id": "action:qualify-paid-api-escrow-bootstrap-case",
-      "title": "Qualify a real funded paid-input service order for the grounded bootstrap pilot",
+      "title": "Qualify real funded service work or external execution fees for the bootstrap pilot",
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:claude",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:productive-commerce"
       ],
       "rationale_claim_ids": [
-        "claim:codex-grounded-bootstrap-reference-progress-20261007"
+        "claim:codex-grounded-bootstrap-reference-progress-20261007",
+        "claim:eth-gas-credit-bootstrap-candidate-20261008",
+        "claim:hermes-ptv5-readonly-gap-20261008",
+        "claim:eth-keeper-actual-zero-fee-sim-20261008",
+        "claim:beefy-base-keeper-source-20261008",
+        "claim:eth-keeper-expired-and-negative-sample-20261008",
+        "claim:eth-keeper-ranked-negative-r12-20261008",
+        "claim:keeper-full-cycle-not-qualified-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A qualification record for an existing/inbound accepted funded customer order: actual mandatory paid inputs, current chain/token quote and inference/gas/retry costs, independent payer/operator, assigned settlement and acceptance/refund terms. Compare no-loan/free inputs, buyer prepayment and direct sponsor advance. Record STOP if any required gate is unmet; this is qualification, not actual loan completion.",
+      "deliverable": "Qualify an actual accepted funded service order or presently payable external execution fee with necessary working-capital/native-gas gap, independent settlement, deployedsource/directrecipient proof, exact fresh successful operation/full borrower+lender costs and finite loss controls. PTdraw841 expired;24Beefyvault snapshots negative evenbeforeL1/4tx overhead, no loan or earnedincome. Next bounded specificUSDC-AERO actualgauge/earned/fee/reset/source check; only mechanism-supported earnedthreshold can trigger finitefullcyclequalification viaexistinghourlycarry task. No blanketrepeatedscan, forecastprofit or fabricatedcustomer. ExistingTSKX/commerceleads remain unqualified; existingfollowuponly. Preserve original3primaryliveUSDC/source5recovery andCI30. Prepared offlineharvestsigner/quote gates are notexecution; rawsignedbytesEMAILONLY, sequentialactualreceipts/unwrapamount/freshnonces required. Actual r15 full-cycle NO_LOAN floor11789172931592wei versus2510707389920wei; source normalization reviewed but independent compilation/directrecipient/stateful/unwrap/repay gaps persist. Use conditional384AERO only as candidate precheck; fresh earned and residual tokens required before model or conservative threshold qualification. Concurrent Morpho residual-position check already assigned by other Codex lane; no duplicate scan. Original13wallet approval5USDC read-only full signing preflight now published; root custody addresses rederived, no signing, primary0/3.",
       "acceptance_criteria": [
-        "Real accepted funded order and payer/operator evidence, not modeled0.50 bid or catalog demand.",
-        "Current raw merchant402 terms and actual necessary input budget; testnet tokens cannot buy mainnet resource.",
-        "Consent, loss budget, settlement repayment and quantified advantage over free inputs/prepayment/direct funding; otherwise STOP.",
-        "No purchase or deployment is implied by qualification; preserve original live/source commitments."
+        "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
+        "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
+        "Document consent/controller provenance or permissionless protocol eligibility, finite loss budget and advantage over free work, prepayment, USDC-paid gas/direct funding; otherwise STOP.",
+        "Preserve original controlled-key live scenarios/source recovery and CI30 gate. Qualification does not authorize a new lending contract or mainnet deployment."
       ],
       "not_before": null,
       "due_at": "2026-10-08T12:00:00Z",
@@ -12329,8 +14152,98 @@
       "outcome_evidence_ids": [],
       "triggers": [
         "Hermes raw merchant quote receipt or existing/inbound funded customer order",
-        "Before due_at"
+        "Before due_at",
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt",
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt",
+        "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote",
+        "Hermes Beefy r10 actual-delta candidate/full-cost receipt",
+        "Hermes r12 TVL-ranked16vault full-cost candidate/negative receipt",
+        "Hermes actual USDC-AERO mechanism/earned-threshold receipt or harvest reset"
       ]
+    },
+    {
+      "id": "action:escrow-input-order-qualification-20261008",
+      "title": "Qualify one funded paid-input job against BaseScan and actual costs",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "blocked",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:productive-commerce",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:paid-input-closest-microcredit-20261008",
+        "claim:fast-loan-accounting-gap-20261008",
+        "claim:under100-bootstrap-plan-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Within existing commerce lane, obtain consented externally funded order and current input quotes. Verify job client/provider/evaluator, budget/status/token/network/expiry in BaseScan; need a job>=1USDC only if the real paid-input bundle and margin justify it. Exact current demand is unknown.",
+      "acceptance_criteria": [
+        "Actual independent buyer/borrower/backer consent, no substituted team spend.",
+        "Verify actual incremental cash gap; prefer prepayment/free inputs when adequate.",
+        "Record payer source, gross/net receipts, all gas/platform/inference/hosting/retry costs, rejection/expiry outcomes and loss allocation.",
+        "No lending until an executable signed settlement/control route is reviewed."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "triggers": [
+        "Explicit operator request2026-10-08; integrate into existing bootstrap/PR37/sync lanes, do not create a duplicate scheduler"
+      ],
+      "external_consent": "pending",
+      "permission_basis": "Current operator authorizes research, world-model publication and email explanation of a below100USD bootstrap. This action is qualification/design only; no financial transfer or binding customer offer asserted.",
+      "spending": "none",
+      "stop_conditions": [
+        "No independently funded order or cash gap; quotes or fees exceed profitable price.",
+        "Keep expired PoolTogether draw841 and five negative keeper receipts NO_LOAN.",
+        "No contact expansion or signing request based merely on this hypothesis."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:fast-microloan-design-review-20261008",
+      "title": "Review exact settlement, short-job pricing and assigned-proceeds adapter",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:productive-commerce",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:paid-input-closest-microcredit-20261008",
+        "claim:fast-loan-accounting-gap-20261008",
+        "claim:under100-bootstrap-plan-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Integrate accounting/risk findings with current graph and bootstrap work/PR37 rather than overwrite ongoing work. Existing repayLoan accepts third-party payers; adapter may receive provider payout and repay that loan. Validate whether ACP supports the required provider smart-account/payout routing; do not assume an arbitrary hook is whitelisted or guaranteed automatic payout.",
+      "acceptance_criteria": [
+        "Exact six-decimal principal/fee conservation and full repayment, especially below1cent; dust cannot generate reputation or release backing early.",
+        "Explicit fee disclosure/cap and tested LP/reserve/sponsor allocation for sub-day work; no delay merely to charge interest.",
+        "Bind chain8453/token/ACP implementation/jobId/loanId/payer/payee/amount/nonce/expiry; forbid duplicate/stale settlement and unrelated withdrawal of committed proceeds.",
+        "Acceptance/refund/default tests, preserve sponsor consent and finite backing; no transitive double count.",
+        "Retain Sepolia/mainnet separation; measure full deployment+pilot gas within5USD before funds."
+      ],
+      "not_before": null,
+      "due_at": null,
+      "triggers": [
+        "Explicit operator request2026-10-08; integrate into existing bootstrap/PR37/sync lanes, do not create a duplicate scheduler"
+      ],
+      "external_consent": "not_required",
+      "permission_basis": "Current operator authorizes research, world-model publication and email explanation of a below100USD bootstrap. This action is qualification/design only; no financial transfer or binding customer offer asserted.",
+      "spending": "none",
+      "stop_conditions": [
+        "No mainnet deployment or financial action from this research handoff.",
+        "Unsupported ACP assignment or loss model; any capital/fee conservation failure."
+      ],
+      "outcome_evidence_ids": []
     },
     {
       "id": "action:contract-v2-transitive-and-guards",
@@ -12431,7 +14344,7 @@
         "agent:claude"
       ],
       "status": "proposed",
-      "owner_acceptance": "requested",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:poverty",
         "goal:aligned-human-agent-collaboration"
@@ -12443,10 +14356,12 @@
         "claim:friendship-bridge-model-partner",
         "claim:start-inside-existing-trust-structure",
         "claim:lender-of-record-required",
-        "claim:cash-out-rail-required"
+        "claim:cash-out-rail-required",
+        "claim:human-cost-loss-unqualified-20261008",
+        "claim:target-human-routes-unqualified-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A comparison, for the operator's decision, of Guatemala (first: need, reach, a lawful route through a registered microfinance partner and an IVE-supervised ramp, and Friendship Bridge's Trust Banks as the model partner type), Ethiopia (deepest need and widest mobile money; no lawful USDC route under the NBE's 2026-07-23 notice until a partner is authorised or lends birr from its own balance sheet) and similar countries screened on mobile-money reach, extreme poverty and a lawful stablecoin route through a licensed partner (Kenya and the Philippines stay as the two already evidenced), on licence route with the regulator's text, partner types by field, the USDC-to-mobile-money rail and its cost, and group-backed default data; then, under the existing contact rules (first contact only to organisations whose published work bears on ours, one question, logged by field on issue 15), one partner conversation after the operator chooses the country.",
+      "deliverable": "A comparison, for the operator's decision, of Guatemala (first: need, reach, a lawful route through a registered microfinance partner and an IVE-supervised ramp, and Friendship Bridge's Trust Banks as the model partner type), Ethiopia (deepest need and widest mobile money; no lawful USDC route under the NBE's 2026-07-23 notice until a partner is authorised or lends birr from its own balance sheet) and similar countries screened on mobile-money reach, extreme poverty and a lawful stablecoin route through a licensed partner (Kenya and the Philippines stay as the two already evidenced), on licence route with the regulator's text, partner types by field, the USDC-to-mobile-money rail and its cost, and group-backed default data; then, under the existing contact rules (first contact only to organisations whose published work bears on ours, one question, logged by field on issue 15), one partner conversation after the operator chooses the country. Initial Philippines/Kenya source and cost audit is published. Codex accepts the redirected Guatemala/Ethiopia scope; targeted comparison and source-status checks follow. No country, partner, quote or borrower promise is qualified.",
       "acceptance_criteria": [
         "Every claim about a country's rules cites the regulator's text.",
         "No person's name or address on GitHub.",
@@ -12465,7 +14380,11 @@
         "No outreach to individuals.",
         "No promise of loans to anyone."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:codex-human-cost-country-audit-20261008",
+        "ev:codex-guatemala-rail-audit-20261008",
+        "ev:codex-ethiopia-source-status-20261008"
+      ]
     },
     {
       "id": "action:human-pilot-first-people",
@@ -12601,18 +14520,19 @@
         "agent:claude",
         "agent:hermes"
       ],
-      "status": "proposed",
-      "owner_acceptance": "requested",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
         "goal:poverty"
       ],
       "rationale_claim_ids": [
         "claim:bot-economy-first-direction-20261008",
-        "claim:bot-poverty-is-usdc-working-capital"
+        "claim:bot-poverty-is-usdc-working-capital",
+        "claim:bot-verification-jobs-no-loan-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A posted list of jobs the project pays for in USDC (two_hop_check.py runs at new blocks, reproduction of theory results, fork test runs, VERIFY.md rows), each with its price, the inputs it costs the agent and whether the demand is created by the team or comes from outside; the admission calculator gains a created-versus-outside column and a human column; the keeper, Beefy and Morpho NO_LOAN results stay on the record as what was not found.",
+      "deliverable": "A posted list of jobs the project pays for in USDC (two_hop_check.py runs at new blocks, reproduction of theory results, fork test runs, VERIFY.md rows), each with its price, the inputs it costs the agent and whether the demand is created by the team or comes from outside; the admission calculator gains a created-versus-outside column and a human column; the keeper, Beefy and Morpho NO_LOAN results stay on the record as what was not found. First board and created-demand/admission columns published; prices are hypothetical and unfunded, and current jobs have no required cash advance. Actual funded price and mandatory paid input remain separate gates.",
       "acceptance_criteria": [
         "Every price live-quoted or labelled hypothetical.",
         "Created demand labelled as such in every report.",
@@ -12629,7 +14549,9 @@
       "stop_conditions": [
         "No job that requires contact with people outside the team."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:codex-bot-board-admission-20261008"
+      ]
     },
     {
       "id": "action:bot-employer-seat",
@@ -12670,6 +14592,51 @@
         "No backing of an agent without a posted job."
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:codex-human-bot-public-audit-20261008",
+      "title": "Deliver the first complementary public-source, economics and agent-job audit to Claude",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "done",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-cost-loss-unqualified-20261008",
+        "claim:target-human-routes-unqualified-20261008",
+        "claim:bot-verification-jobs-no-loan-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "First country screen, source-status audits, exact admission/human/short-advance calculators and hypothetical unfunded job-board draft. Research-only portion completed; full partner/operating-quote and funded-order assignments remain open.",
+      "acceptance_criteria": [
+        "Source claims distinguish observed, indexed, reported and unknown.",
+        "Calculations reproduce with conservation checks and explicit subsidy accounting.",
+        "No contact, funding, transaction, signature or independent revenue claimed."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Claude research coordination of2026-10-08"
+      ],
+      "due_at": "2026-10-09T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "User authorized autonomous team research and repo coordination; public documentary research only.",
+      "spending": "none",
+      "stop_conditions": [
+        "Actual partner contact and funded orders belong to separately scoped actions."
+      ],
+      "outcome_evidence_ids": [
+        "ev:codex-human-cost-country-audit-20261008",
+        "ev:codex-guatemala-rail-audit-20261008",
+        "ev:codex-ethiopia-source-status-20261008",
+        "ev:codex-bot-board-admission-20261008",
+        "ev:codex-short-advance-accounting-review-20261008"
+      ]
     }
   ],
   "decisions": [
@@ -13197,6 +15164,52 @@
       "blocks_action_ids": []
     },
     {
+      "id": "question:eth-gas-bootstrap-income-20261008",
+      "owner_id": "agent:codex",
+      "question": "Does a presently payable external execution fee make a tiny native ETH advance necessary and net-profitable after full gas/finance costs, compared with USDC-paid gas or atomic sponsorship; can retained profit fund a repeat without manufactured demand?",
+      "related_ids": [
+        "claim:eth-gas-credit-bootstrap-candidate-20261008",
+        "action:qualify-paid-api-escrow-bootstrap-case",
+        "goal:productive-commerce"
+      ],
+      "resolution_evidence_needed": "Fresh code/token/current-draw and real unclaimed-job data, exact successful-call/reward-accrual simulation, complete fee quote; then external earned reward, native-debt repayment and repeat/loss records. Asset conversion alone resolves access, not income.",
+      "blocks_action_ids": []
+    },
+    {
+      "id": "q:actual-profitable-funded-job-20261008",
+      "owner_id": "agent:hermes",
+      "question": "Which actual independently funded order requires paid inputs and leaves a positive provider margin, and why cannot buyer/provider prepay instead?",
+      "related_ids": [
+        "hyp:escrow-input-sustainable-credit-20261008"
+      ],
+      "resolution_evidence_needed": "BaseScan funding and settlement, fresh provider input invoices/quotes, scoped buyer acceptance and consent, all-in cost ledger; a hypothetical1USDCquote is insufficient.",
+      "blocks_action_ids": [
+        "action:escrow-input-order-qualification-20261008"
+      ]
+    },
+    {
+      "id": "q:acp-payment-assignment-supported-20261008",
+      "owner_id": "agent:claude",
+      "question": "Can actual ACP provider payout be bound to a loan-repaying adapter or approved smart account without custody ambiguity or bypass?",
+      "related_ids": [
+        "claim:fast-loan-accounting-gap-20261008"
+      ],
+      "resolution_evidence_needed": "Verified actual implementation/ABI and SDK wallet rules, funded test job, exact acceptance/refund routing; third-party repayLoan support alone does not prove ACP assignment.",
+      "blocks_action_ids": [
+        "action:fast-microloan-design-review-20261008"
+      ]
+    },
+    {
+      "id": "q:morpho-live-executor-packet-20261008",
+      "owner_id": "agent:hermes",
+      "question": "Can one currently liquidatable Base Blue position plus reviewed executor yield positive ETH-denominated net after the complete financed transaction cycle?",
+      "related_ids": [
+        "claim:eth-gas-callback-credit-hypothesis-20261008"
+      ],
+      "resolution_evidence_needed": "Exact source/bytecode, current block eligibility, swap min-output, all-cycle ETH costs, borrower consent and actual earned loan repayment; historical protocol bonus is insufficient.",
+      "blocks_action_ids": []
+    },
+    {
       "id": "question:pilot-country-and-partner",
       "owner_id": "agent:codex",
       "question": "Which country and which kind of licensed partner host the first 20 to 50 human borrowers: Guatemala first (a registered microfinance partner with Trust Banks, an IVE-supervised ramp, a USDC-to-Tigo Money rail still to be found), Ethiopia when a lawful route exists, or a similar country passing the same screen; and which partner type (microfinance institution, licensed digital lender, cooperative, savings-group or Trust Bank facilitator)?",
@@ -13270,5 +15283,7 @@
       "resolution_evidence_needed": "The NBE's text and counsel's reading, cited by the Codex lane in its country comparison.",
       "blocks_action_ids": []
     }
-  ]
+  ],
+  "model_version": "0.1.80",
+  "updated_at": "2026-10-08T04:29:01Z"
 }

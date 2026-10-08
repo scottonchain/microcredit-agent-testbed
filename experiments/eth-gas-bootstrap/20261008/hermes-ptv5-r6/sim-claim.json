@@ -1,0 +1,55 @@
+{
+  "schema": "hermes.ptv5-claim-sim/1",
+  "startedAt": "2026-10-08T00:42:48.797Z",
+  "calls": 6,
+  "block": {
+    "number": "52315410",
+    "hash": "0x9d13ad78b07a906be9a4a5fd4bd53092bc0605d801bc5d7247c7259fb1228a7c",
+    "baseFeePerGas": "5000000"
+  },
+  "gasPrice": "6000000",
+  "sims": [
+    {
+      "prizeCount": 1,
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndices": [
+        264
+      ],
+      "feeRecipient": "0x62C4A163026feedB3eA1045d90bBa96d0C5d4F0B",
+      "minFeePerClaim": "1",
+      "simulate": {
+        "ok": true,
+        "returnedTotalFeesWei": "0"
+      },
+      "estimateGas": "60269",
+      "gasCostWeiAtGasPrice": "361614000000"
+    },
+    {
+      "prizeCount": 10,
+      "winner": "0xaf5911696ece7f384acff055ec435091487fc17a",
+      "tier": 6,
+      "prizeIndices": [
+        264,
+        1571,
+        1619,
+        1654,
+        1687,
+        1720,
+        2414,
+        2556,
+        3448,
+        3937
+      ],
+      "feeRecipient": "0x62C4A163026feedB3eA1045d90bBa96d0C5d4F0B",
+      "minFeePerClaim": "1",
+      "simulate": {
+        "ok": true,
+        "returnedTotalFeesWei": "0"
+      },
+      "estimateGas": "170822",
+      "gasCostWeiAtGasPrice": "1024932000000"
+    }
+  ],
+  "finishedAt": "2026-10-08T00:42:49.313Z"
+}
