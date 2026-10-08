@@ -1,0 +1,76 @@
+{
+ "block": {
+  "number": 52317212,
+  "hash": "0x9c77cf74a2f4a36c05dd7b15e98729ae310fa431532eb107a519225dc655fac7",
+  "timestamp": 1791423771
+ },
+ "strategy_share_pct": 2.617242891005783,
+ "rewardRate_AERO_per_s_total": 0.501033750384029,
+ "strategy_AERO_per_h": 47.207772768476374,
+ "earned_AERO_now": 61.47579418300558,
+ "implied_earned_check_AERO_at_age": 61.47501076072701,
+ "age_since_lastHarvest_h": 1.3022222222222222,
+ "periodFinish_utc": "2026-10-15T00:00:00Z",
+ "periodFinish_remaining_h": 166.28583333333333,
+ "fees": {
+  "total": 0.095,
+  "beefy_of_total": 0.9463157894736842,
+  "call_of_total": 0.001052631578947368,
+  "strategist_of_total": 0.052631578947368425,
+  "call_frac_of_reward_value": 9.999999999999996e-05
+ },
+ "harvestOnDeposit": true,
+ "paused": false,
+ "r12_age_h_model": 0.9811111111111112,
+ "r12_earned_AERO_model": 46.316070393960715,
+ "call_reward_wei_per_AERO": 30720454172.133945,
+ "implied_AERO_value_wei": 307204541721339.56,
+ "callReward_now_wei_model": 1888564317894.5618,
+ "l2_cost_harvest_only_wei_at_6e6": 4708104000000,
+ "estimateGas": 784684,
+ "thresholds": [
+  {
+   "cost_multiple": 1.0,
+   "C_wei": 4708104000000.0,
+   "E_min_AERO": 153.2563279702632,
+   "age_h_from_lastHarvest_at_constant_rate": 3.2464214891451553,
+   "reachable_before_periodFinish": true
+  },
+  {
+   "cost_multiple": 1.5,
+   "C_wei": 7062156000000.0,
+   "E_min_AERO": 229.8844919553948,
+   "age_h_from_lastHarvest_at_constant_rate": 4.869632233717733,
+   "reachable_before_periodFinish": true
+  },
+  {
+   "cost_multiple": 2.0,
+   "C_wei": 9416208000000.0,
+   "E_min_AERO": 306.5126559405264,
+   "age_h_from_lastHarvest_at_constant_rate": 6.4928429782903105,
+   "reachable_before_periodFinish": true
+  },
+  {
+   "cost_multiple": 3.0,
+   "C_wei": 14124312000000.0,
+   "E_min_AERO": 459.7689839107896,
+   "age_h_from_lastHarvest_at_constant_rate": 9.739264467435467,
+   "reachable_before_periodFinish": true
+  }
+ ],
+ "spread_at_age_3.25h_wei_L2only": 5189714683.09668,
+ "spread_at_age_6h_wei_L2only": 3993361319414.9473,
+ "spread_at_age_12h_wei_L2only": 12694826638829.895,
+ "spread_at_age_21h_wei_L2only": 25747024617952.316,
+ "max_spread_wei_L2only_21h": 25747024617952.316,
+ "spread_21h_usd_at_eth_2500": 0.06436756154488078,
+ "spread_21h_usd_at_eth_3500": 0.0901145861628331,
+ "sourcify": {
+  "strategy_impl": {
+   "error": "HTTP Error 400: Bad Request"
+  },
+  "gauge": {
+   "error": "HTTP Error 400: Bad Request"
+  }
+ }
+}
