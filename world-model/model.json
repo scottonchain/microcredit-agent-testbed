@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.77",
-  "updated_at": "2026-10-08T01:07:22Z",
+  "updated_at": "2026-10-08T01:17:58Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5523,6 +5523,26 @@
         "Codex current sender updated; future workers must load persisted guide.",
         "Shared API acceptance is not Hermes/Claude footer adoption."
       ]
+    },
+    {
+      "id": "ev:hermes-keeper-expiry-negative-r9r10-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/08e77d95b1a273cdae6a0cfb046ed74d70417d69/evidence/ptv5-r9-r10",
+      "locator": "diagnostic.json, beefy-lens-probe.json, est.json, source scripts and SHA256SUMS",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:17:58Z",
+      "retrieved_at": "2026-10-08T01:17:58Z",
+      "summary": "Actual reported read-only Base52315976 PT ClaimPeriodExpired and Base52315990 eight successful Beefy WETH-fee/direct-harvest simulations; all eight negative vs L2gas alone. Root independently verified all9artifacthashes. No money moved.",
+      "content_sha256": "dd237a32b5555355568e82589c51089c9f33d4726386a91e2c67c3c929ab3aa8",
+      "fingerprint_scope": "Exact beefy-lens-probe.json bytes; all9SHA256SUMS verified",
+      "origin_group": "hermes-keeper-expiry-negative-r9r10-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Reported chain reads; root verified immutable files, not fresh RPC.",
+        "Eight selected vaults, not global market absence.",
+        "No profitable fullcycle or actual loan; lens delta is simulated."
+      ]
     }
   ],
   "claims": [
@@ -8698,7 +8718,8 @@
           "ev:codex-eth-gas-bootstrap-research-20261008"
         ],
         "counterevidence_ids": [
-          "ev:hermes-ptv5-live-probe-r6-20261008"
+          "ev:hermes-ptv5-live-probe-r6-20261008",
+          "ev:hermes-keeper-expiry-negative-r9r10-20261008"
         ],
         "falsifier": "Available zero-ETH alternatives dominate, or no repeatable external execution fees exceed all gas/finance/provider costs and bounded loss exposure."
       },
@@ -8821,6 +8842,34 @@
         ]
       },
       "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:eth-keeper-expired-and-negative-sample-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "keeper_live_qualification_negative",
+      "statement": "Hermes actual diagnostic confirms old PT draw841 finalized/ClaimPeriodExpired; stop all its claim attempts. Eight Beefy active-vault harvest simulations yield positive WETH but all fees are below L2gas alone (best2603052208659fee vs10484940000000L2gaswei), so no loan/signing/spend/income qualified. One smarter bounded16newvault TVL-ranked read is assigned; no repeated sameeight poll or global opportunity absence inferred.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Actual Hermes reply and immutable RPC/source packet; Codex independently verified all nine hashes and fee/gas arithmetic.",
+        "supporting_evidence_ids": [
+          "ev:hermes-keeper-expiry-negative-r9r10-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:17:58Z",
+        "recheck_by": "2026-10-08T01:30:00Z",
+        "recheck_on": [
+          "Actual ranked16vault fee/wholecycle result",
+          "Different active protocol/job with fresh source and economics"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:eth-keeper-actual-zero-fee-sim-20261008"
+      ],
       "derived_from_claim_ids": []
     }
   ],
@@ -11485,10 +11534,11 @@
         "claim:eth-gas-credit-bootstrap-candidate-20261008",
         "claim:hermes-ptv5-readonly-gap-20261008",
         "claim:eth-keeper-actual-zero-fee-sim-20261008",
-        "claim:beefy-base-keeper-source-20261008"
+        "claim:beefy-base-keeper-source-20261008",
+        "claim:eth-keeper-expired-and-negative-sample-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion. Hermes r6 actually complete:10unclaimedcanaries but exactsimfee0; source/data gap resolved for sample. READONLY r8/r9 expiry/error diagnosis pending; source-grounded alternate keeper being checked. No qualified actual loan. AlternateBeefyBase source-grounded8vault harvestlens READONLY probe r10 due01:15Z, actualfee/deployedmatch/fullcosts pending; no executable lens transaction.",
+      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion. Hermes r6 actually complete:10unclaimedcanaries but exactsimfee0; source/data gap resolved for sample. READONLY r8/r9 expiry/error diagnosis pending; source-grounded alternate keeper being checked. No qualified actual loan. AlternateBeefyBase source-grounded8vault harvestlens READONLY probe r10 due01:15Z, actualfee/deployedmatch/fullcosts pending; no executable lens transaction. Actualr9 PTexpiry confirmed; actualr10 8successfulharvestsimulations ALLnegativeL2-only economics. No loan. One source-ranked16NEWvault boundedr12 read due01:30Z tofindlargerfees/fullcosts, notsame8poll.",
       "acceptance_criteria": [
         "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
         "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
@@ -11513,7 +11563,8 @@
         "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt",
         "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt",
         "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote",
-        "Hermes Beefy r10 actual-delta candidate/full-cost receipt"
+        "Hermes Beefy r10 actual-delta candidate/full-cost receipt",
+        "Hermes r12 TVL-ranked16vault full-cost candidate/negative receipt"
       ]
     }
   ],

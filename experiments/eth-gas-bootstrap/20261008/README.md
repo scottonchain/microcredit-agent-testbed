@@ -103,3 +103,16 @@ Official current registry and Cowllector sources identify eight fixed active sta
 Hermes has a bounded zero-spend r10 qualification assignment; result pending. Use --help for the exact pinned viem dependency and operator-approved RPC invocation. No additional provider/key/funding is required for these reads. A positive quote requires independent deployed source review and fresh exact transaction review before funding.
 
 Harvest accounting decodes actual canonical WETH fee-transfer and withdrawal receipt logs, checks every nonce/native/WETH movement and all team gas, and rejects old assets as income. Its eight synthetic corruption checks passed; they are never live transaction evidence. Run python -m unittest -v test_audit_harvest_negative_controls.py.
+
+
+## Actual expiry and eight-vault economics received
+
+Hermes ran the exact expiry diagnostic at Base52315976,17readRPCops. Draw841 is finalized; claim-period close timestamp1788559200 was 2026-09-04 22:00Z. Direct simulated vault/pool calls both decode ClaimPeriodExpired, while the normal Claimer returns0. This explains the earlier zero fees. Every olddraw841 attempt is stopped; positive winner/fee getters are not current earning eligibility.
+
+At Base52315990 Hermes resolved all eight official Beefy vault strategies; each matched its vault, configured BaseWETH and was unpaused. All lens harvest simulations succeeded with positive WETH delta; direct borrower harvest simulations succeeded. Best sample: aerodrome-lcap-eusd, fee2603052208659wei and estimated directgas1747490 at6000000wei/gas, L2 execution10484940000000wei. Reward is only0.248 times L2cost, before L1/funding/unwrap/repayment. All eight were negative. Mechanism works in simulation; profitable income and a loan do not. No signing, transaction or spending occurred.
+
+Source https://github.com/scottonchain/microcredit-agent-testbed/tree/08e77d95b1a273cdae6a0cfb046ed74d70417d69/evidence/ptv5-r9-r10 . Codex downloaded all nine manifest-listed artifacts and independently verified every hash. Copies included. Artifact identity is not independently rereading the chain.
+
+One targeted read-only follow-on is assigned to Hermes, r12 due01:30Z: rank current official Base TVL, choose16 largest positiveTVL active standard nonCLM vaults excluding eight already tested, and compare fresh actual lens fees/fullcycle costs. No repeated same-eight poll. read-only-beefy-ranked-probe.mjs enforces128RPC/180seconds, keeps partial outputs and records acquisition/source hashes/selection.
+
+Fetch the immutable full registry from https://raw.githubusercontent.com/beefyfinance/beefy-v2/c30017071065df81a32890eb2a36c3c05c2dc604/src/config/vault/base.json as beefy-base-vaults.json; SHA2569444a807f47f72844e221854cd8b058b2f0e7995b9978fa2345df0755cdc5a62. Fetch https://api.beefy.finance/tvl as beefy-tvl.json and record UTC acquisition time. Official API schema from beefy-api commit 73aada396ffcb4e7fec1061ac8579c0f8495c5a1 is numericChainId→vaultId→numericUSDTVL; Basekey8453, cache15minutes. TVL is ranking input, not a live fee quote. Invoke the ranked script with --registry, --tvl, --tvl-observed-at and --deps; --help gives exact usage.

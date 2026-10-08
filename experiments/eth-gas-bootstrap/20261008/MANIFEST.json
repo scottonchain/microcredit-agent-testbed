@@ -12,8 +12,8 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 8284,
-    "sha256": "a50d728f6c16bce4459d2ecc57848b54e81d9faa3d0c14bd2c984dd64465e929"
+    "bytes": 10691,
+    "sha256": "5197d680cda2781b7d8fa9e7bdf4ebe83f1f26df1a36f1e49b1249062dbbdd9b"
   },
   "audit-harvest-only.py": {
     "bytes": 12795,
@@ -79,6 +79,46 @@
     "bytes": 2602,
     "sha256": "097b917eb840312ac298ad09129b4cf074cacdc748ad865137245dd4066428c9"
   },
+  "hermes-ptv5-r9-r10/README.md": {
+    "bytes": 3845,
+    "sha256": "3368151bb01008848cb94cca9b0324a0f439a816e8c01c974a7177c21c04ad8f"
+  },
+  "hermes-ptv5-r9-r10/SHA256SUMS": {
+    "bytes": 742,
+    "sha256": "8b6130f936e63464d6e11a9bd9032eb2eaed5410473ef2650debd4b178c9be4a"
+  },
+  "hermes-ptv5-r9-r10/beefy-lens-probe.json": {
+    "bytes": 9035,
+    "sha256": "dd237a32b5555355568e82589c51089c9f33d4726386a91e2c67c3c929ab3aa8"
+  },
+  "hermes-ptv5-r9-r10/beefy-lens-probe.mjs": {
+    "bytes": 4185,
+    "sha256": "34e9c68f36c7dba516c8f0323f708a7b7b3b9b533de3e581ec163ae294ed31af"
+  },
+  "hermes-ptv5-r9-r10/diagnostic.json": {
+    "bytes": 2575,
+    "sha256": "cb195cb83ff8b11aba0f28edb3076f686575453111c082a2c9d747c8073fcfd0"
+  },
+  "hermes-ptv5-r9-r10/est.json": {
+    "bytes": 139,
+    "sha256": "1f85fdf867582242141a7f3896aa8b83b62aaf6ea2ff621a39f48a847b8d3ac0"
+  },
+  "hermes-ptv5-r9-r10/est.mjs": {
+    "bytes": 1004,
+    "sha256": "cbae5d5a33b27db85d7d76e46b6280c98b4cc68caacc70891b543e3b66efc815"
+  },
+  "hermes-ptv5-r9-r10/package-lock.json": {
+    "bytes": 5751,
+    "sha256": "eeaecf525b79e2bcb90d131d319cadc61fdd4ba92ed25ceca2fa110ab2c4f645"
+  },
+  "hermes-ptv5-r9-r10/package.json": {
+    "bytes": 346,
+    "sha256": "9d3dc8ac1cf0b7982f604018984f377b10f9cfedee875c03d421cc95001b8255"
+  },
+  "hermes-ptv5-r9-r10/read-only-claim-diagnostic.mjs": {
+    "bytes": 7610,
+    "sha256": "ae1fded1519fb8f4d48018d946520cd5ef1088a2d4687bc29e011e845dc869b4"
+  },
   "historical-draw735-vault-seed.json": {
     "bytes": 79152,
     "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c"
@@ -86,6 +126,10 @@
   "read-only-beefy-probe.mjs": {
     "bytes": 13176,
     "sha256": "d7c66e8d5037d65e42fc59ec0e35297b1120669f28ff579a8b0c91fd9f293c5a"
+  },
+  "read-only-beefy-ranked-probe.mjs": {
+    "bytes": 16993,
+    "sha256": "35a230e928859451e2d3e74c1d11b7d81a4a20ee01538826f8f07c19c1bcc10b"
   },
   "read-only-candidate-reread.mjs": {
     "bytes": 12495,

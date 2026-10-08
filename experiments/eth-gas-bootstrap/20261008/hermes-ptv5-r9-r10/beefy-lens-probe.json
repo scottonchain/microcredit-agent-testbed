@@ -1,0 +1,368 @@
+{
+  "schema": "hermes.beefy-lens-probe/1",
+  "startedAt": "2026-10-08T01:02:08.395Z",
+  "readOnly": true,
+  "ops": 67,
+  "vaults": [
+    {
+      "id": "aerodrome-usdc-alusdb",
+      "vault": "0xfCa983Ea00D87DE9BB7eAF5561cC1ec4050Ad1ba",
+      "strategy": {
+        "ok": true,
+        "v": "0x9645e3254eF3E7Cf65d540B938CB73006B5f3f0C"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xfCa983Ea00D87DE9BB7eAF5561cC1ec4050Ad1ba"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791410865"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "154637820674",
+          "lastHarvest": "1791410865",
+          "gasUsed": "1365018",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-bd-usdc",
+      "vault": "0x15f91999e54452139258079355f057aa66c9f196",
+      "strategy": {
+        "ok": true,
+        "v": "0x2014BC461243C9535d65F08EdEcb9700853Cc444"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x15f91999e54452139258079355f057aa66c9f196"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791351619"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "329069384498",
+          "lastHarvest": "1791351619",
+          "gasUsed": "1364866",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-virtual-aero",
+      "vault": "0x81336F242caa6Cf779D56a775AC1f642e3AC3b84",
+      "strategy": {
+        "ok": true,
+        "v": "0x62548F8a2661A399417ADe11Ac0A0c9B9Fe8641b"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x81336F242caa6Cf779D56a775AC1f642e3AC3b84"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1782725183"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "2584680898",
+          "lastHarvest": "1782725183",
+          "gasUsed": "1325442",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-msusd-frxusd",
+      "vault": "0x65D3107cf955cA222321C6d016667E037b3d6FE2",
+      "strategy": {
+        "ok": true,
+        "v": "0x308B1d59BC2f1985bb44Fb64F67c1ddA99d19656"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x65D3107cf955cA222321C6d016667E037b3d6FE2"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791387793"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "13358611230",
+          "lastHarvest": "1791387793",
+          "gasUsed": "1596552",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-weth-edel",
+      "vault": "0x9f66dc0E9E164F6c1605d43a0cDff8153D77B46F",
+      "strategy": {
+        "ok": true,
+        "v": "0xa69FF9C3e57b8385b1a786c4e40cf1c35601de79"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x9f66dc0E9E164F6c1605d43a0cDff8153D77B46F"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791409415"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "28069122395",
+          "lastHarvest": "1791409415",
+          "gasUsed": "1187194",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-lcap-eusd",
+      "vault": "0x4fcBCEC8f9da4026CF9431d43C632632540B0FF7",
+      "strategy": {
+        "ok": true,
+        "v": "0x87C032C1BCb19Bcf99c2DeA040Ef7fccfbd4C04A"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0x4fcBCEC8f9da4026CF9431d43C632632540B0FF7"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791373289"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "2603052208659",
+          "lastHarvest": "1791373289",
+          "gasUsed": "1672971",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-usdc-send",
+      "vault": "0xA8c718CdFD58B3A33e7d29Cff8aa459A4aBd8472",
+      "strategy": {
+        "ok": true,
+        "v": "0x3428c46716cb248001d9f05Ccfff4EDa4153DBE7"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xA8c718CdFD58B3A33e7d29Cff8aa459A4aBd8472"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1789674965"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "38948888",
+          "lastHarvest": "1789674965",
+          "gasUsed": "1237026",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    },
+    {
+      "id": "aerodrome-synd-weth",
+      "vault": "0xeE9DE934e0273556A3b4585abf6fCc29fE365dd6",
+      "strategy": {
+        "ok": true,
+        "v": "0xD0544cD2b5B16CD23DBd1AB83710b82c46D059c0"
+      },
+      "native": {
+        "ok": true,
+        "v": "0x4200000000000000000000000000000000000006"
+      },
+      "stratVault": {
+        "ok": true,
+        "v": "0xeE9DE934e0273556A3b4585abf6fCc29fE365dd6"
+      },
+      "paused": {
+        "ok": true,
+        "v": false
+      },
+      "lastHarvest": {
+        "ok": true,
+        "v": "1791382659"
+      },
+      "callFee": {
+        "ok": false,
+        "err": "The contract function \"callFee\" reverted."
+      },
+      "lens": {
+        "ok": true,
+        "res": {
+          "callReward": "54822887895",
+          "lastHarvest": "1791382659",
+          "gasUsed": "1184952",
+          "blockNumber": "52315990",
+          "isCalmBeforeHarvest": -1,
+          "paused": false,
+          "success": true,
+          "harvestResult": "0x"
+        }
+      },
+      "directHarvestSim": {
+        "ok": true
+      }
+    }
+  ],
+  "chainId": 8453,
+  "block": {
+    "number": "52315990",
+    "hash": "0x21d0276a94d3397ebee6a7a5dc06a51ecbe17195de359245708022ef2a54b9d0",
+    "timestamp": "1791421327"
+  },
+  "lensCodeBytes": 3731,
+  "finishedAt": "2026-10-08T01:02:12.552Z"
+}
