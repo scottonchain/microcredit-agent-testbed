@@ -7466,6 +7466,45 @@
         "Hermes's own report. Claude read the post status and 11 comments on the public Moltbook API at about 17:40Z: one on-topic question from an agent that sells x402-paid inference, which Hermes answered; the rest were spam later deleted.",
         "An A2A receipt is not an accepted task."
       ]
+    },
+    {
+      "id": "ev:operator-podcast-direction-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-vision/issues/12",
+      "locator": "vision issue 12 (brief v2 and comment 6065770194); CLAUDE.md \"Team audio\" at vision main",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T18:10:00Z",
+      "retrieved_at": "2026-10-08T18:07:21Z",
+      "summary": "Operator directions of 2026-10-08 as recorded by Claude Code: a daily 3 to 5 minute audio discussion between Claude and Codex in synthetic voices, with transcripts, saying where the work stands and the most exciting thing ahead for each; Codex does the audio generation, theme music, research and drafts to save tokens; Claude writes the commentary, Codex edits in a pull request; the first episode goes out as soon as it is ready and the second follows the next daily sync; the measure of success is engagement with the podcast and short, light, fun, shareable content usually earns more; consistent accents, one male-presenting and one female-presenting voice, characters from how each agent really works, light disagreement and laughter; a short consistent theme; a public podcast feed; a show name. Standing rule: heavy runs go to Codex, then Hermes, then Claude.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-podcast-direction-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given to Claude Code in its session and relayed in its own words."
+      ]
+    },
+    {
+      "id": "ev:claude-officer-delta-and-sizes-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/28",
+      "locator": "contract PR 28 head 0c4459e (officer gate in BootstrapOrderRouter); size measurement in testbed issue 17 comment 6066051346",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T18:05:00Z",
+      "retrieved_at": "2026-10-08T18:07:21Z",
+      "summary": "Officer gate on the order router: approveOrder / JobApproval (order, intent hash, max amount, expiry, policy version, officer epoch), fail closed with no officer, officerAdmin and epoch, outage stops new admissions only; 36 unit tests in the router suite pass locally, the invariant campaign O1 to O7 passes with officer rotation, seven deliberate bugs are caught. Router 18,444 bytes. Pool unchanged at 24,538 (38 spare). Prototype of a pool-wide immutable originator measured in a scratch copy: 24,399 bytes when always required (177 spare), 24,439 when zero means open (137 spare), both with the per-borrower manager gate removed. Not implemented in the pool.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-officer-delta-20261008",
+      "derived_from_ids": [
+        "ev:claude-pr28-repair-4484e04-20261008"
+      ],
+      "limitations": [
+        "Same-lane, local EVM; heavy runs (full suite, forks, deep invariants, rehearsals) requested from Hermes, not yet reported.",
+        "Not reviewed by Codex; the size figures are from a scratch prototype, not a tested pool change."
+      ]
     }
   ],
   "claims": [
@@ -13085,6 +13124,114 @@
       "derived_from_claim_ids": [
         "claim:northstar-composition-gap-20261008"
       ]
+    },
+    {
+      "id": "claim:podcast-evaluation-measure-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "directive",
+      "statement": "The measure of success for the Claude and Codex audio series \"Two Agents, No Collateral\" is engagement with the podcast; short, light, fun, shareable content usually earns more than heavy technical content, so format decisions default to shorter and lighter, one variable at a time, within the facts the record shows. Plays cannot be counted on the static host (no tracking will be added); engagement is counted from traced replies, reactions on the talk-back path, Moltbook comments and upvotes on the companion post, and stars, forks and watchers, per episode.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator direction recorded in the evidence; the counting method is Claude's implementation and has not run on an episode yet.",
+        "supporting_evidence_ids": [
+          "ev:operator-podcast-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T18:07:21Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Operator changes the measure",
+          "First episode published"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:podcast-feed-live-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "integration_state",
+      "statement": "A public podcast feed for \"Two Agents, No Collateral\" exists at https://scottonchain.github.io/listen/feed.xml (RSS 2.0 with iTunes and Podcasting 2.0 tags, cover art, a show page and per-episode player pages), generated by tools/podcast_feed.py in the vision repository and published on the site repository (main f84cf94). It has no episodes yet. It is not submitted to any directory; it works by URL in any podcast app. The build refuses an episode shorter than 3:00 or longer than 5:00.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Claude generated and published it and ran the feed tests; no podcast app has been observed loading it.",
+        "supporting_evidence_ids": [
+          "ev:operator-podcast-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A podcast app or validator that rejects the feed, or the URL not serving the file."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T18:07:21Z",
+        "recheck_by": "2026-10-09T18:00:00Z",
+        "recheck_on": [
+          "First episode published",
+          "A podcast app loads the feed"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:pool-wide-originator-fits-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_state",
+      "statement": "A pool-wide immutable origination authority fits in the pool with more room than the current per-borrower manager gate: 24,399 bytes (177 spare) when always required, 24,439 (137 spare) when zero means an open pool, against 24,538 (38 spare) today, measured in a scratch copy at the same compiler settings. It would close the three bypasses of the router-bound officer gate (an unmanaged borrower, setManager(0), and an owner or oracle granted line used directly). Not implemented: it touches about 77 references across the escrow adapter, the unbound router, the tests and the generated front-end ABI, and needs Codex's choice first.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Measured by Claude with forge build --sizes on a prototype; the prototype is not a tested change.",
+        "supporting_evidence_ids": [
+          "ev:claude-officer-delta-and-sizes-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A tested pool change whose runtime exceeds 24,576 bytes, or a bypass that survives it."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T18:07:21Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex choice on testbed issue 17",
+          "Implementation"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:manager-gate-closes-origination-bypass-20261008"
+      ]
+    },
+    {
+      "id": "claim:officer-gate-router-scope-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_state",
+      "statement": "The credit officer's one-order approval is enforced by BootstrapOrderRouter for every worker that names the router as its only pool manager before any backing exists: no approval, an approval below the order amount, a stale epoch or policy version, an approval for another order, or no officer at all means no origination; the officer's approval is read as no capacity (the roots' consents and balances are re-derived at execution); an officer outage stops new admissions only. It does not bind a borrower with no manager, one that clears its manager while debt-free and backing-free, or an owner or oracle granted line used directly (ledger row CI-32). Dual gate as reconciled by Codex in testbed issue 17 comment 6065169803.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Ten named tests, an invariant campaign with officer rotation, seven caught mutants; same-lane and not yet independently reviewed.",
+        "supporting_evidence_ids": [
+          "ev:claude-officer-delta-and-sizes-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A test or run in which a routed worker's loan originates without a live approval, or an approval changes a root's balance or consent."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T18:07:21Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex re-review of 0c4459e",
+          "Hermes heavy runs"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:order-router-composition-20261008"
+      ]
     }
   ],
   "edges": [
@@ -16745,6 +16892,48 @@
         "Do not displace current commitments or claim colleague ownership without assent."
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:daily-audio-discussion-post",
+      "title": "Daily audio discussion \"Two Agents, No Collateral\": a new episode each day, first as soon as ready, second after the 2026-10-09 daily sync",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:podcast-evaluation-measure-20261008",
+        "claim:podcast-feed-live-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Episode 1: Codex researches and generates the audio, theme, script polish and drafts from the brief in vision issue 12 and delivers a package (text patch plus base64 chunks of the mp3); Claude checks hash and length, writes or edits the commentary, signs the post, merges, regenerates the feed and publishes at the first free tick (queue item audio-episode-1, priority P0). Standing: each day the 10:00 UTC Claude and Codex sync ends by choosing the next episode from that day's record; Hermes posts a Moltbook companion for agents per episode; engagement per episode is tallied and the next format decision follows it (lighter and shorter by default). Daily sync agenda email copy follows the quota reset.",
+      "not_before": "2026-10-08T17:44:00Z",
+      "triggers": [
+        "Operator instruction 2026-10-08",
+        "Each daily sync"
+      ],
+      "due_at": "2026-10-09T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction 2026-10-08 in the evidence; synthetic voices disclosed in the first lines and on every page.",
+      "spending": "none",
+      "stop_conditions": [
+        "No customer, revenue, outside repayment or human-benefit claim the record does not show.",
+        "No real person's voice, no voice cloning.",
+        "Length outside 3:00 to 5:00 is refused by the build."
+      ],
+      "outcome_evidence_ids": [
+        "ev:operator-podcast-direction-20261008"
+      ],
+      "acceptance_criteria": [
+        "An episode between 3:00 and 5:00 with transcript, captions and provenance is published to the blog and the feed with the voices disclosed as synthetic in the first lines.",
+        "Every claim and figure in it matches the public record (VERIFY rows exist for spoken figures).",
+        "The episode's engagement counts are tallied and read at the next sync."
+      ]
     }
   ],
   "decisions": [
@@ -17492,6 +17681,6 @@
       ]
     }
   ],
-  "model_version": "0.1.85",
-  "updated_at": "2026-10-08T17:40:13Z"
+  "model_version": "0.1.86",
+  "updated_at": "2026-10-08T18:07:21Z"
 }
