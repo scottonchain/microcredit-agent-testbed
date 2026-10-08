@@ -1,0 +1,102 @@
+{
+  "audit_id": "kenya-mpesa-fx-primary-20261008",
+  "observed_at_utc": "2026-10-08T03:50:30Z",
+  "mode": "read_only_web",
+  "executed_transactions": 0,
+  "sources": [
+    {
+      "id": "cbk-weekly-20261002",
+      "publisher": "Central Bank of Kenya",
+      "url": "https://www.centralbank.go.ke/uploads/weekly_bulletin/1967256963_Weekly%20CBK%20Bulletin%202%20October%202026.pdf",
+      "source_date": "2026-10-02",
+      "data_date": "2026-10-01",
+      "access": "direct_pdf_fetch_success",
+      "location": "page1 Exchange Rates; page2 Table1",
+      "excerpt": "It exchanged at KSh 129.71 per U.S. dollar on October 1",
+      "facts": {"kes_per_usd": 129.71},
+      "limitations": ["Dated observation, not executable FX quote", "Does not establish USDC/USD price"]
+    },
+    {
+      "id": "safaricom-b2c",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/images/Downloads/B2C-Tariff-Form.pdf",
+      "source_date": null,
+      "date_note": "No effective date verified; search metadata is not a publication-date guarantee",
+      "access": "official_url_search_index_content; direct_open_failed_403_or_internal_error",
+      "excerpt": "B2C PAYMENTS TO REGISTERED USERS - WITHDRAWAL CHARGES PAID",
+      "facts": {
+        "band_kes": [2501, 3500],
+        "registered_b2c_customer_fee_kes": 0,
+        "registered_b2c_business_fee_kes": 9,
+        "prepaid_withdrawal_component_kes": 52,
+        "prepaid_withdrawal_total_business_kes": 61
+      },
+      "limitations": ["Account-specific validity not checked", "Prepaid-withdrawal component is not a fresh consumer withdrawal quote", "No Eversend/Kotani charges established", "Non-M-PESA table has inconsistent displayed totals; excluded"]
+    },
+    {
+      "id": "safaricom-paybill",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/images/Downloads/M-Pesa-Paybill-Tariff-guide.pdf",
+      "source_date": null,
+      "access": "official_url_search_index_content; direct_open_failed_403",
+      "excerpt": "PAYBILL STANDARD TARIFF",
+      "facts": {
+        "band_kes": [2501, 3500],
+        "mgao_customer_business_total_kes": [16, 9, 25],
+        "business_bouquet_customer_business_total_kes": [0, 25, 25],
+        "customer_bouquet_customer_business_total_kes": [25, 0, 25]
+      },
+      "limitations": ["Actual repayment Paybill and selected tariff unknown", "Not consumer P2P pricing", "Effective date not verified"]
+    },
+    {
+      "id": "safaricom-limits-20230921",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/media-center-landing/press-releases/safaricom-gets-approval-to-increase-m-pesa-transaction-limits-to-ksh-250-000",
+      "source_date": "2023-09-21",
+      "date_note": "Announcement body and displayed last update; displayed original publication stamp is inconsistent",
+      "access": "official_url_search_index_content; direct_open_failed_403",
+      "excerpt": "Customers Can Now Send Money and Make Payments of Up To KSh. 250,000 Per Transaction",
+      "facts": {"per_transaction_kes": 250000, "daily_limit_kes": 500000, "account_limit_kes": 500000},
+      "limitations": ["Historical source; fresh current-account limits not obtained"]
+    },
+    {
+      "id": "safaricom-transaction-instructions",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/main-m-pesa/m-pesa-services/transactions/deposit-at-agent",
+      "source_date": "2024-05-28",
+      "date_note": "Displayed last update; original publication22-Apr-2021",
+      "access": "official_url_search_index_content",
+      "excerpt": "Go to an authorized M-PESA agent with your phone and original ID",
+      "facts": {"id_required": true, "check_agent_funds_availability": true},
+      "limitations": ["Cashout human identity and physical access needed", "No autonomous account eligibility demonstrated"]
+    }
+  ],
+  "illustrative_calculations": {
+    "assumptions": ["1USDC=1USD for calculation only", "CBK129.71KES/USD dated1-Oct-2026", "Disbursement and repayment both remain KES2501-3500", "Repayment uses specified Paybill tariff, not P2P", "No provider spread or fee known"],
+    "principal_usdc": 25,
+    "gross_kes": 3242.75,
+    "wallet_round_trip_aggregate_rail_kes": 34,
+    "cash_round_trip_aggregate_rail_kes": 86,
+    "illustrative_interest_pct": 1,
+    "interest_kes": 32.4275,
+    "wallet_rail_plus_interest_kes": 66.4275,
+    "cash_rail_plus_interest_kes": 118.4275,
+    "status": "conditional_cost_components_only_not_executable_quote"
+  },
+  "unverified": {
+    "consumer_p2p_fee_2501_3500_kes": null,
+    "current_consumer_agent_cashout_quote": null,
+    "cash_redeposit_fee": null,
+    "eversend_fees": null,
+    "kotani_fees": null,
+    "provider_exchange_rates_and_spreads": null,
+    "base_usdc_supported_route": null,
+    "recipient_eligibility_and_account": null,
+    "repayment_paybill_and_tariff": null
+  },
+  "failed_primary_tariff_fetches": [
+    {"url": "https://www.safaricom.co.ke/personal/m-pesa/getting-started/m-pesa-rates", "status": 403},
+    {"url": "https://www.safaricom.co.ke/personal/m-pesa/mpesa-charges", "status": 403},
+    {"url": "https://www.safaricom.co.ke/index.php?id=227", "status": 403}
+  ]
+}

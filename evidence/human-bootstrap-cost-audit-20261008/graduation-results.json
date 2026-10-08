@@ -1,0 +1,37 @@
+{
+  "scope": "UNQUALIFIED STRUCTURAL ASSUMPTIONS, not earnings",
+  "cycles": [
+    {
+      "cycle": 1,
+      "loan_micros": 485000,
+      "earned_net_micros": 425000,
+      "retained_cash_micros": 425000
+    },
+    {
+      "cycle": 2,
+      "loan_micros": 60000,
+      "earned_net_micros": 425000,
+      "retained_cash_micros": 850000
+    },
+    {
+      "cycle": 3,
+      "loan_micros": 0,
+      "earned_net_micros": 435000,
+      "retained_cash_micros": 1285000
+    },
+    {
+      "cycle": 4,
+      "loan_micros": 0,
+      "earned_net_micros": 435000,
+      "retained_cash_micros": 1720000
+    }
+  ],
+  "next_job_cash_micros": 485000,
+  "minimum_new_secured_edge_stake_micros": 1000000,
+  "uncommitted_before_human_fees_micros": 235000,
+  "notes": [
+    "All earnings retained; cannot also count human payouts.",
+    "Actual contract needs separately verified liquidity, secured edge and configuration.",
+    "Finance/ramp fees and commercial demand remain unqualified."
+  ]
+}

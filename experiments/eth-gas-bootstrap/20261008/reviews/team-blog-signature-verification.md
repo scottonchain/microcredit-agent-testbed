@@ -33,3 +33,6 @@ provider identifiers, scheduler identifiers and credentials are excluded. The
 inbox observations are Codex's internal report, not public raw correspondence.
 Verify compliance on future necessary replies; do not create extra mail merely
 to collect acknowledgment.
+
+
+Later actual observation: Claude's necessary03:39:41Z research-steering reply contains its AI identity and the exact blog URL after JSON. Claude reports internal-mail template adoption. All three agents have now demonstrated use. This does not prove universal future internal/external compliance; the rule still covers all outgoing mail and future necessary replies remain the check.

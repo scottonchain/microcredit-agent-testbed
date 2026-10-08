@@ -1,0 +1,151 @@
+{
+  "observed_date_utc": "2026-10-08",
+  "method": "Available search_service_web_run tool only; no shell network/proxy bypass; primary official/provider sources",
+  "sources": [
+    {
+      "id": "gcrypto_networks",
+      "url": "https://help.gcash.com/hc/en-us/articles/9781218166041-GCrypto-coins-and-networks",
+      "status": "opened primary help; undated",
+      "short_excerpt": "USDCBASE USD Coin (Base) Ethereum on Base (ETHBASE)",
+      "findings": {
+        "base_usdc_supported": true,
+        "contract_address_confirmed": false
+      }
+    },
+    {
+      "id": "gcrypto_fees",
+      "url": "https://help.gcash.com/hc/en-us/articles/22747167650201-GCrypto-fees",
+      "status": "opened primary help; undated",
+      "short_excerpt": "Top Up or Withdraw | None",
+      "findings": {
+        "receive_fee": "None, sender pays network",
+        "send_fee": "coin-specific, exact amount in app",
+        "base_send_usdc": null
+      }
+    },
+    {
+      "id": "gcash_fee_schedule",
+      "url": "https://gcash.com/terms-and-conditions/fees",
+      "status": "opened primary; Updated as of Sept 10, 2026",
+      "short_excerpt": "For other partners, 2% of transaction amount",
+      "findings": {
+        "offline_cashout_bps": 200,
+        "pera_outlet_cashout_bps": 200,
+        "bank_transfer_php": 10,
+        "rcbc_scan_withdraw_php": 18,
+        "generic_usdc_send": 9.9,
+        "usdcsol_send": 1,
+        "base_specific_send": null,
+        "buy_sell_explicit_fee": "None",
+        "fx_spread": null,
+        "current_php_per_usdc": null
+      }
+    },
+    {
+      "id": "gcrypto_limits",
+      "url": "https://help.gcash.com/hc/en-us/articles/31303981320473-GCrypto-transaction-limits",
+      "status": "opened primary; undated",
+      "short_excerpt": "Monthly Limits | PHP 100,000 | PHP 500,000",
+      "findings": {
+        "topup_daily_php": 100000,
+        "withdraw_monthly_fully_verified_php": 100000,
+        "withdraw_monthly_plus_php": 500000,
+        "remaining_user_limits": null
+      }
+    },
+    {
+      "id": "gcrypto_eligibility",
+      "url": "https://help.gcash.com/hc/en-us/articles/9781079085081-How-to-create-a-GCrypto-account",
+      "status": "opened primary; undated",
+      "short_excerpt": "You are at least 18 years old",
+      "findings": {
+        "fully_verified_required": true,
+        "profile_updated_within_years": 3,
+        "verified_email_required": true,
+        "actual_person_eligibility": null
+      }
+    },
+    {
+      "id": "gcrypto_provider",
+      "url": "https://help.gcash.com/hc/en-us/articles/47624429776025-What-is-GCrypto",
+      "status": "opened primary; undated",
+      "short_excerpt": "GCrypto is powered by PDAX.",
+      "findings": {
+        "provider": "PDAX",
+        "lending_license_proven": false
+      }
+    },
+    {
+      "id": "bsp_directory",
+      "url": "https://www.bsp.gov.ph/Lists/Directories/Attachments/19/VASP.pdf",
+      "status": "opened primary; As of 15 July 2026",
+      "short_excerpt": "Philippine Digital Asset Exchange (PDAX)",
+      "findings": {
+        "pdax_listed": true,
+        "lending_authority_proven": false
+      }
+    },
+    {
+      "id": "sec_mc20",
+      "url": "https://www.sec.gov.ph/mc-2026/sec-mc-no-20-series-of-2026/",
+      "status": "official indexed title/date July7,2026; direct fetch403",
+      "short_excerpt": null,
+      "findings": {
+        "title": "Prudential disclosure market conduct financing/lending requirements and lifting online lending moratorium",
+        "full_document_verified": false,
+        "effectivity": null,
+        "new_capital_requirements": null
+      }
+    },
+    {
+      "id": "sec_ca",
+      "url": "https://appointment.sec.gov.ph/lending-companies-and-financing-companies-2/frequently-asked-questions/",
+      "status": "opened official FAQ; older guidance may be superseded",
+      "short_excerpt": "Obtaining a Certificate of Authority to engage in lending business activities",
+      "findings": {
+        "stock_corporation_registered_and_licensed": true,
+        "new_mc20_capital_and_ceiling_not_verified": true
+      }
+    },
+    {
+      "id": "bsp_vasp1108",
+      "url": "https://www.bsp.gov.ph/Regulations/Issuances/2021/1108.pdf",
+      "status": "opened primary2021PDF; historical baseline",
+      "short_excerpt": "A VASP shall secure a COA to operate as an MSB",
+      "findings": {
+        "covers_fiat_va_exchange_transfer_custody": true,
+        "current_consolidated_rule_crosscheck_needed": true
+      }
+    },
+    {
+      "id": "bsp_moratorium",
+      "url": "https://www.bsp.gov.ph/Regulations/Issuances/2025/M-2025-031.pdf",
+      "status": "opened primary2025PDF",
+      "short_excerpt": "continue starting 01 September 2025, subject to reassessment",
+      "findings": {
+        "continued_new_vasp_license_moratorium": true,
+        "all_existing_vasp_operations_banned": false
+      }
+    },
+    {
+      "id": "bsp_2026counterparties",
+      "url": "https://www.bsp.gov.ph/Regulations/Issuances/2026/M-2026-003.pdf",
+      "status": "opened official2026PDF; OCR unsigned placeholders for number/day",
+      "short_excerpt": "unless these are registered with the BSP or the SEC, is not allowed.",
+      "findings": {
+        "offshore_retail_access_restriction_in_text": true,
+        "licensed_counterparty_and_independent_validation_required": true,
+        "exact_signed_date_verified": false
+      }
+    }
+  ],
+  "unknowns": [
+    "Actual partner agreement and fee",
+    "Current roundtrip PHP/USDC execution quotes and spread",
+    "Base USDC repayment send fee/minimum",
+    "Licensed lender default/recovery data for25USDC/30days cohort",
+    "Consenting borrower identity and eligibility",
+    "MC20 full text/effectivity/new prudential conditions",
+    "Current BSP/SEC scope interpretation of proposed operation"
+  ]
+}

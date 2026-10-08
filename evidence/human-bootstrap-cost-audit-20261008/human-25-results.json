@@ -1,0 +1,58 @@
+{
+  "scope": "Structural sensitivity; no human loan, quotes or spendable payout",
+  "loss_support_scope": "Optimistic ecosystem lower bound: all collectible gross interest allocated to losses; not proof of configured reserve sufficiency",
+  "principal_micros": 25000000,
+  "elapsed_days": 30,
+  "premium_bps": 1400,
+  "benchmark_bps": 433,
+  "total_apr_bps": 1833,
+  "contract_interest_micros": 376643,
+  "recorded_reserve_bps_example": 4500,
+  "successful_interest_to_reserve_micros": 169489,
+  "successful_interest_remainder_micros": 207154,
+  "no_cost_no_recovery_cycle_default_break_even_percent": "1.4842112883094899510545977259482",
+  "loss_rows": [
+    {
+      "cycle_default_bps_assumption": 0,
+      "lgd_bps_assumption": 10000,
+      "collectible_interest_micros_floor": 376643,
+      "expected_principal_loss_micros": 0,
+      "minimum_external_loss_support_micros_ceiling": 0,
+      "servicing_and_other_costs": "UNKNOWN, excluded from this lower bound"
+    },
+    {
+      "cycle_default_bps_assumption": 300,
+      "lgd_bps_assumption": 10000,
+      "collectible_interest_micros_floor": 365343,
+      "expected_principal_loss_micros": 750000,
+      "minimum_external_loss_support_micros_ceiling": 384657,
+      "servicing_and_other_costs": "UNKNOWN, excluded from this lower bound"
+    },
+    {
+      "cycle_default_bps_assumption": 600,
+      "lgd_bps_assumption": 10000,
+      "collectible_interest_micros_floor": 354044,
+      "expected_principal_loss_micros": 1500000,
+      "minimum_external_loss_support_micros_ceiling": 1145956,
+      "servicing_and_other_costs": "UNKNOWN, excluded from this lower bound"
+    },
+    {
+      "cycle_default_bps_assumption": 1000,
+      "lgd_bps_assumption": 10000,
+      "collectible_interest_micros_floor": 338978,
+      "expected_principal_loss_micros": 2500000,
+      "minimum_external_loss_support_micros_ceiling": 2161022,
+      "servicing_and_other_costs": "UNKNOWN, excluded from this lower bound"
+    }
+  ],
+  "borrower_paid_2pct_cashout_example": {
+    "exit_fee_micros": 500000,
+    "net_received_micros": 24500000,
+    "repayment_micros": 25376643,
+    "simple_annualized_all_in_cost_percent": "43.533972108843537414965986394557",
+    "not_legal_apr_or_quote": true,
+    "repayment_spread_network_servicing_costs": "UNKNOWN and not included"
+  },
+  "partner_servicing_cashout_repayment_costs": "UNKNOWN, never zero",
+  "human_eligible_or_launch_qualified": false
+}

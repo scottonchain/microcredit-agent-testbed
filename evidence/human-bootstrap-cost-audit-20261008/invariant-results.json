@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": [
+    "exact sixdecimal precision",
+    "prepayment removes necessity",
+    "operating cost monotonicity",
+    "default probability/recovery monotonicity",
+    "native cycle conservation excludes principal",
+    "human quoted fee conservation",
+    "retained earnings exit",
+    "grant exclusion from earnings",
+    "success/default party conservation",
+    "sponsor-funded recovery and stake capacity",
+    "human eligibility unverified",
+    "mixed cash/prepayment/grant default conservation",
+    "prepayment bounded by total price",
+    "negative human surplus rejects payout route"
+  ]
+}

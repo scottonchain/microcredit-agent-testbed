@@ -1,0 +1,93 @@
+{
+  "observed_date_utc": "2026-10-08",
+  "plan_commit": "044ff9ba59180acb3c8ebc518fdf3f7b9e24269d",
+  "method": "Connected web search/open; no shellproxybypass/outreach",
+  "sources": [
+    {
+      "id": "tigo_closure",
+      "url": "https://tigo-chat-gt-prod.tigocloud.net/hc/centro-de-ayuda/articles/991178103694511-cierre-de-operaciones-_-tigo-money",
+      "status": "OPENED primary provider notice; page undated",
+      "short_excerpt": "Tigo Money finalizar\u00e1 sus operaciones el 30 de junio de 2026.",
+      "finding": "Announced final closure and postclosure residual reimbursement; execution not independently witnessed"
+    },
+    {
+      "id": "tigo_registration",
+      "url": "https://ayuda.tigo.com.gt/hc/centro-de-ayuda/articles/505174793205611-como-me-registro-y-obtengo-una-billetera-tigo-money",
+      "status": "INDEXED primary; not fully opened",
+      "short_excerpt": "a partir del 1 de febrero de 2026",
+      "finding": "New wallet registration disabled; no stablecoin compatibility proved"
+    },
+    {
+      "id": "tigo_remittances",
+      "url": "https://ayuda.tigo.com.gt/hc/centro-de-ayuda/articles/492174793203911-aviso-importante-suspension-de-remesas",
+      "status": "INDEXED primary",
+      "short_excerpt": "dejar\u00e1 de funcionar definitivamente el 31 de marzo de 2026",
+      "finding": "International remittance service announced discontinued"
+    },
+    {
+      "id": "decree15_entry",
+      "url": "https://www.congreso.gob.gt/detalle_pdf/decretos/13705",
+      "status": "INDEXED primary entry; direct502",
+      "short_excerpt": "entrar\u00e1 en vigor el 17 de septiembre de 2026",
+      "finding": "Full legal text not retrieved"
+    },
+    {
+      "id": "decree15_implementation",
+      "url": "https://www.congreso.gob.gt/noticias_congreso/17000/2025/",
+      "status": "INDEXED primary legislative implementation report; direct inaccessible",
+      "short_excerpt": "contin\u00faa el proceso para completar su reglamentaci\u00f3n",
+      "finding": "Virtual asset providers obligated sector; IVE registration/full rules not retrieved, no blanket ramp authorization"
+    },
+    {
+      "id": "decree25",
+      "url": "https://sice.oas.org/SME_CH/GTM/Decreto_25_2016_s.pdf",
+      "status": "OPENED officialgazette scan hosted by OAS; May10,2016",
+      "short_excerpt": "no pueden captar dep\u00f3sitos de terceros ni emitir deuda",
+      "finding": "Art3 nonprofit restrictions; Arts6 authorization and81\u201384 nonprofit registry/risk/disclosure differ"
+    },
+    {
+      "id": "fb_financial_index",
+      "url": "https://www.friendshipbridge.org/helping-women-in-guatemala/financials/",
+      "status": "INDEXED primary; direct403",
+      "short_excerpt": "2025 Audited Financial Statements",
+      "finding": "Reports indexed but auditedPDF/content not obtained"
+    },
+    {
+      "id": "fb_2025_annual",
+      "url": "https://www.friendshipbridge.org/2025-annual-report/",
+      "status": "INDEXED own report announcement Sept4,2026; direct403",
+      "short_excerpt": "2025 Annual Report",
+      "finding": "Not primaryverified financial figures"
+    },
+    {
+      "id": "fb_2025_achievements",
+      "url": "https://www.friendshipbridge.org/wp-content/uploads/2026/03/ENG_AchievementsOf2025.pdf",
+      "status": "INDEXED ownPDF; direct403",
+      "short_excerpt": "2025 ACHIEVEMENTS",
+      "finding": "2025 precisemetrics/costs/loss not verified"
+    },
+    {
+      "id": "fb_2025_spanish",
+      "url": "https://www.friendshipbridge.org/wp-content/uploads/2026/03/ESP_LogrosDe2025.pdf",
+      "status": "INDEXED ownPDF; contextincomplete",
+      "short_excerpt": "$33.7 M",
+      "finding": "Context insufficient to promote as verified disbursement"
+    },
+    {
+      "id": "fb_price",
+      "url": "https://www.friendshipbridge.org/what-sets-friendship-bridge-apart-from-other-microfinance-organizations/",
+      "status": "INDEXED own explanation October20,2025",
+      "short_excerpt": "between 2% and 3% interest per month",
+      "finding": "4\u201312month stated terms; flat/reducing basis and allfees unknown; no actual APR calculation or25loanoffer"
+    }
+  ],
+  "unknowns": [
+    "Current authorized BaseUSDC local payout/repayment route",
+    "Fees/spreads/limits/tokencontract",
+    "Full Decree15/IVE implementation/registration",
+    "Partner nonprofit funding legality/current registry",
+    "FriendshipBridge2025 audited loss/expense/repayment figures",
+    "Partner consent and25USDC30day terms",
+    "Borrower consent/productive cashflow"
+  ]
+}

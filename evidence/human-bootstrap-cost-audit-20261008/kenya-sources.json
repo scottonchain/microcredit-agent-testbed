@@ -1,0 +1,535 @@
+{
+  "schema": "codex.kenya-primary-source-audit/1",
+  "author": "Codex",
+  "observed_at_utc": "2026-10-08T03:54:00Z",
+  "mode": "read_only_public_web_research",
+  "transactions": 0,
+  "external_contact": false,
+  "account_access": false,
+  "scope": "Kenya lender permissions, final-versus-draft instruments, Base-USDC ramps and dated M-PESA cost components.",
+  "supporting_ledgers": [
+    "kenya-regulator-sources.json",
+    "kenya-mpesa-sources.json"
+  ],
+  "sources": [
+    {
+      "id": "regulator-S0",
+      "title": "Central Bank of Kenya Act, Cap.491",
+      "authority": "CBK hosting Kenya Law consolidation",
+      "url": "https://www.centralbank.go.ke/wp-content/uploads/2026/03/Central-Bank-of-Kenya-Act.pdf",
+      "document_date": "Law as at 2025-11-04",
+      "publication_date": "March2026 URL upload directory; original Act1966",
+      "effective_date": "Consolidated amendments through2025-11-04; later current amendments not exhaustively audited",
+      "locator": "PDF pp.8–10 definitions; section33S PDF p.29 approx; search excerpt section33S",
+      "excerpt": "A person shall not carry on any non-deposit-taking",
+      "status": "enacted_parent_statute",
+      "scope": "Public or section thereof; digital or offline, interest or interest-free. Authorization rule; other-law route. No participant-count exemption evidenced.",
+      "unknowns": [
+        "Later amendments",
+        "Specific proposed lender/category and licence conditions"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S1",
+      "title": "Draft CBK Non-Deposit Taking Credit Providers Regulations,2025",
+      "authority": "CBK",
+      "url": "https://www.centralbank.go.ke/wp-content/uploads/2025/08/Draft-Central-Bank-of-Kenya-Non-Deposit-Taking-Credit-Providers-Regulations-2025.pdf",
+      "document_date": "2025 draft; consultation notice2025-08-07",
+      "publication_date": "August2025 URL upload; consultation publication2025-08-07",
+      "effective_date": null,
+      "locator": "PDF p.1 blank legal-notice number; pp.4,7 initial-capital proposal",
+      "excerpt": "LEGAL NOTICE NO. ……………..",
+      "status": "consultation_draft",
+      "scope": "Proposed licensed/registered NDTCP regime and separate-regime exclusions. KES20million proposal cannot be relied on as final2026 threshold.",
+      "unknowns": [
+        "Final2026 differences",
+        "Final transition and product approval rules"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S1a",
+      "title": "Invitation for comments on draft NDTCP rules",
+      "authority": "CBK",
+      "url": "https://www.centralbank.go.ke/uploads/press_releases/166389007_Invitation%20for%20Comments%20on%20the%20Draft%20Central%20Bank%20of%20Kenya%20%28Non-Deposit%20Taking%20Credit%20Providers%29%20Regulations%2C%202025.pdf",
+      "document_date": "2025-08-07",
+      "publication_date": "2025-08-07",
+      "effective_date": null,
+      "excerpt": "by Friday, September 5, 2025",
+      "status": "consultation_notice",
+      "scope": "Establishes invitation and draft status on stated date, not current finality.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S2",
+      "title": "Regulatory impact statement: NDTCP Regulations,2026",
+      "authority": "CBK",
+      "url": "https://www.centralbank.go.ke/wp-content/uploads/2026/06/Regulatory-Impact-Assessment-Central-Bank-of-Kenya-Non-Deposit-Taking-Credit-Providers-Regulations-2025.pdf",
+      "document_date": "May2026",
+      "publication_date": "June2026 URL upload directory",
+      "effective_date": null,
+      "locator": "PDF cover, p.2–3 and conclusion",
+      "excerpt": "Once published, the CBK (Digital Credit Providers) Regulations,",
+      "status": "preparatory_impact_statement",
+      "scope": "Calls rules draft, recommends adoption/publication. Title2026 differs from filename2025; not final issued rules.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S3",
+      "title": "Joint public notice: commencement of VASP Act",
+      "authority": "CBK/CMA",
+      "url": "https://www.centralbank.go.ke/uploads/press_releases/665231223_Public%20Notice%20on%20the%20Virtual%20Assets%20Service%20Providers%20Act%202025.pdf",
+      "document_date": "2025-11-18",
+      "publication_date": "Notice2025-11-18",
+      "effective_date": "Act2025-11-04",
+      "excerpt": "became effective on November 4, 2025",
+      "status": "official_commencement_notice_historical",
+      "scope": "Licensing/no-licensed-provider statement applies to November2025, before July2026 regulations.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S4",
+      "title": "Virtual Asset Service Providers Regulations,2026, Legal Notice134",
+      "authority": "Government Gazette hosted by CMA",
+      "url": "https://www.cma.or.ke/download/34/regulations/6377/the-virtual-asset-service-providers-regulations-2026.pdf",
+      "landing_page": "https://www.cma.or.ke/wpfd_file/the-virtual-asset-service-providers-regulations-2026/",
+      "made_date": "2026-07-03",
+      "publication_date": "2026-07-22 GazetteSupplement185, LegislativeSupplement103",
+      "regulator_upload_date": "2026-07-27",
+      "effective_date": "2026-07-22 ordinary-operation inference under Cap2 section27; no express delay identified; not definitive current-effect opinion",
+      "locator": "PDF p.1 masthead; reg4 p.9; reg14 p.14; final page making date",
+      "excerpt": "Kenya Gazette Supplement No. 185 22nd July, 2026",
+      "status": "issued_gazette_text_verified",
+      "scope": "Reg4 in/fromKenya targeting/economicbenefit; reg14 conversion authorization; current licences and later annulment/amendments unverified.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S5",
+      "title": "Invitation for comments on draft VASP Regulations,2026",
+      "authority": "CBK",
+      "url": "https://www.centralbank.go.ke/2026/03/18/public-notice-invitation-for-comments-from-the-public-on-the-draft-virtual-asset-service-providers-regulations-2026/",
+      "document_date": "2026-03-18",
+      "publication_date": "2026-03-18",
+      "effective_date": null,
+      "excerpt": "has developed the draft Virtual Asset Service Providers",
+      "status": "historical_consultation",
+      "scope": "March consultation; cannot override actual July Gazette instrument.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S6",
+      "title": "Virtual Asset Service Providers Act,No.20 of2025",
+      "authority": "Government Gazette hosted by CMA",
+      "url": "https://www.cma.or.ke/download/18/acts/5882/virtual-asset-service-providers-act-2025.pdf",
+      "landing_page": "https://www.cma.or.ke/wpfd_file/virtual-asset-service-providers-act-2025/",
+      "assent_date": "2025-10-15",
+      "publication_date": "2025-10-21 GazetteSupplement173",
+      "effective_date": "2025-11-04",
+      "regulator_upload_date": "2025-11-18",
+      "locator": "PDF p.2 dates; sections8–10; section47 PDFp.36; FirstSchedulepp.39–40",
+      "excerpt": "Date of Commencement: 4th November, 2025",
+      "status": "enacted_and_commenced",
+      "scope": "CBK/CMA distinct activity categories; licensed business; one-year compliance for incumbent providers at commencement, not blanket new-entrant exemption.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S7",
+      "title": "Interpretation and General Provisions Act,Cap.2, section27",
+      "authority": "KenyaLaw",
+      "url": "https://new.kenyalaw.org/akn/ke/act/1956/38/eng%402022-12-31/source",
+      "alternate_url": "https://kenyalaw.org/kl/fileadmin/pdfdownloads/Acts/InterpretationandGeneralProvisionsAct_Cap2.pdf",
+      "document_date": "Consolidation2022-12-31 / alternateRev2012",
+      "publication_date": "Original1956; consolidation not new commencement",
+      "effective_date": "Current section27 later amendments not exhaustively checked",
+      "excerpt": "shall come into operation on the day of",
+      "status": "enacted_general_rule_primary_index_excerpt",
+      "scope": "Subsidiary-legislation default commencement unless otherwise written; subject to annulment. Inference distinct from Gazette publication verification.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "regulator-S8",
+      "title": "Directory of Licensed Money Remittance Providers,June2026",
+      "authority": "CBK",
+      "url": "https://www.centralbank.go.ke/wp-content/uploads/2026/06/Directory-of-Licenced-Money-Remittance-Providers-June-2026.pdf",
+      "document_date": "June2026 filename; directory has licences through June17,2026",
+      "publication_date": "June2026 URL upload directory",
+      "effective_date": "Directory is register snapshot, not a grant/effective-date instrument for Cogni",
+      "locator": "5-page PDF; full-text search for Cogni and Eversend returned no matches",
+      "excerpt": "DIRECTORY OF LICENCED MONEY REMITTANCE PROVIDERS (MRPs)",
+      "status": "official_register_snapshot_read",
+      "scope": "Neither exact searched name found; does not prove no later authorization or no partner authorization.",
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "mpesa-cbk-weekly-20261002",
+      "publisher": "Central Bank of Kenya",
+      "url": "https://www.centralbank.go.ke/uploads/weekly_bulletin/1967256963_Weekly%20CBK%20Bulletin%202%20October%202026.pdf",
+      "source_date": "2026-10-02",
+      "data_date": "2026-10-01",
+      "access": "direct_pdf_fetch_success",
+      "location": "page1 Exchange Rates; page2 Table1",
+      "excerpt": "It exchanged at KSh 129.71 per U.S. dollar",
+      "facts": {
+        "kes_per_usd": 129.71
+      },
+      "limitations": [
+        "Dated observation, not executable FX quote",
+        "Does not establish USDC/USD price"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "mpesa-safaricom-b2c",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/images/Downloads/B2C-Tariff-Form.pdf",
+      "source_date": null,
+      "date_note": "No effective date verified; search metadata is not a publication-date guarantee",
+      "access": "official_url_search_index_content; direct_open_failed_403_or_internal_error",
+      "excerpt": "B2C PAYMENTS TO REGISTERED USERS - WITHDRAWAL CHARGES",
+      "facts": {
+        "band_kes": [
+          2501,
+          3500
+        ],
+        "registered_b2c_customer_fee_kes": 0,
+        "registered_b2c_business_fee_kes": 9,
+        "prepaid_withdrawal_component_kes": 52,
+        "prepaid_withdrawal_total_business_kes": 61
+      },
+      "limitations": [
+        "Account-specific validity not checked",
+        "Prepaid-withdrawal component is not a fresh consumer withdrawal quote",
+        "No Eversend/Kotani charges established",
+        "Non-M-PESA table has inconsistent displayed totals; excluded"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "mpesa-safaricom-paybill",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/images/Downloads/M-Pesa-Paybill-Tariff-guide.pdf",
+      "source_date": null,
+      "access": "official_url_search_index_content; direct_open_failed_403",
+      "excerpt": "PAYBILL STANDARD TARIFF",
+      "facts": {
+        "band_kes": [
+          2501,
+          3500
+        ],
+        "mgao_customer_business_total_kes": [
+          16,
+          9,
+          25
+        ],
+        "business_bouquet_customer_business_total_kes": [
+          0,
+          25,
+          25
+        ],
+        "customer_bouquet_customer_business_total_kes": [
+          25,
+          0,
+          25
+        ]
+      },
+      "limitations": [
+        "Actual repayment Paybill and selected tariff unknown",
+        "Not consumer P2P pricing",
+        "Effective date not verified"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "mpesa-safaricom-limits-20230921",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/media-center-landing/press-releases/safaricom-gets-approval-to-increase-m-pesa-transaction-limits-to-ksh-250-000",
+      "source_date": "2023-09-21",
+      "date_note": "Announcement body and displayed last update; displayed original publication stamp is inconsistent",
+      "access": "official_url_search_index_content; direct_open_failed_403",
+      "excerpt": "Customers Can Now Send Money and Make Payments",
+      "facts": {
+        "per_transaction_kes": 250000,
+        "daily_limit_kes": 500000,
+        "account_limit_kes": 500000
+      },
+      "limitations": [
+        "Historical source; fresh current-account limits not obtained"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "mpesa-safaricom-transaction-instructions",
+      "publisher": "Safaricom",
+      "url": "https://www.safaricom.co.ke/main-m-pesa/m-pesa-services/transactions/deposit-at-agent",
+      "source_date": "2024-05-28",
+      "date_note": "Displayed last update; original publication22-Apr-2021",
+      "access": "official_url_search_index_content",
+      "excerpt": "Go to an authorized M-PESA agent with your",
+      "facts": {
+        "id_required": true,
+        "check_agent_funds_availability": true
+      },
+      "limitations": [
+        "Cashout human identity and physical access needed",
+        "No autonomous account eligibility demonstrated"
+      ],
+      "excerpt_note": "Short verbatim fragment; full short excerpt and access detail also in supporting ledger."
+    },
+    {
+      "id": "eversend-usdc-offramp",
+      "publisher": "Eversend",
+      "url": "https://eversend.co/platform/apis/usdc-off-ramp",
+      "source_date": null,
+      "access": "direct_public_web_fetch",
+      "excerpt": "The conversion rate and fee are returned on every quote before you commit.",
+      "facts": {
+        "base_usdc_listed": true,
+        "kes_mpesa_example": true,
+        "base_network_fee_usd": 0.1,
+        "production_compliance_review": true
+      },
+      "unknowns": [
+        "Executed production route",
+        "Approved lending use",
+        "Current quote",
+        "Canonical token contract accepted",
+        "Current Kenyan authorization"
+      ]
+    },
+    {
+      "id": "eversend-pricing",
+      "publisher": "Eversend",
+      "url": "https://eversend.co/pricing",
+      "source_date": null,
+      "access": "direct_public_web_fetch",
+      "excerpt": "From 0.9%, built into the rate.",
+      "facts": {
+        "base_usdc_in_usd": 0.1,
+        "base_usdc_out_usd": 0.1,
+        "kes_mobile_payout": 70,
+        "kes_mobile_topup_pct": 0.6,
+        "fx_margin_from_pct": 0.9
+      },
+      "unknowns": [
+        "Account selector applicability",
+        "API commercial terms",
+        "Bid/ask quote",
+        "Minimums",
+        "Bundled underlying rail charges"
+      ]
+    },
+    {
+      "id": "eversend-kenya-personal-terms",
+      "publisher": "Eversend",
+      "url": "https://eversend.co/terms-of-service/ke",
+      "source_date": "2024-07-12",
+      "access": "direct_public_web_fetch",
+      "excerpt": "Others. You may not submit or receive a Transaction on behalf of any other person.",
+      "facts": {
+        "entity": "Cogni Systems Limited",
+        "minimum_age": 18,
+        "business_account_required_for_business_use": true,
+        "account_limits_in_app": true
+      },
+      "unknowns": [
+        "Current production borrower/business eligibility",
+        "Permitted pooled lending model",
+        "Regulator-confirmed license"
+      ]
+    },
+    {
+      "id": "kotani-v3-crypto-deposit",
+      "publisher": "Kotani Pay",
+      "url": "https://docs.kotanipay.com/reference/depositcryptointegratorcontroller_createcryptodeposit",
+      "source_date": null,
+      "date_note": "Page says updated 11 months ago; exact date not verified.",
+      "access": "direct_public_web_fetch",
+      "excerpt": "BASE: USDC, USDT",
+      "facts": {
+        "base_usdc_listed": true,
+        "example_environment": "sandbox",
+        "chain_specific_wallet_required": true,
+        "customer_name_phone_required": true
+      },
+      "unknowns": [
+        "Production chain/token contract",
+        "Recipient eligibility",
+        "Fees and limits",
+        "Execution result"
+      ]
+    },
+    {
+      "id": "kotani-v3-offramp-rate",
+      "publisher": "Kotani Pay",
+      "url": "https://docs.kotanipay.com/reference/ratecontroller_getofframprates",
+      "source_date": null,
+      "date_note": "Relative update about one year; exact date unknown.",
+      "access": "direct_public_web_fetch",
+      "excerpt": "Get Offramp Exchange rate",
+      "facts": {
+        "jwt_required": true,
+        "usdc_input_listed": true,
+        "example_environment": "sandbox"
+      },
+      "unknowns": [
+        "Executable KES exchange rate",
+        "All-in fee",
+        "Production access",
+        "Minimums and maximums"
+      ]
+    },
+    {
+      "id": "kotani-v3-offramp",
+      "publisher": "Kotani Pay",
+      "url": "https://docs.kotanipay.com/reference/offrampcontroller_createofframp",
+      "source_date": null,
+      "date_note": "Relative update about one year; exact date unknown.",
+      "access": "direct_public_web_fetch",
+      "excerpt": "If the fiat transfer fails after successful crypto receipt, an automatic refund will be initiated after 5 minutes.",
+      "facts": {
+        "mobile_money_receiver_schema": true,
+        "chain_token_fields": true,
+        "refund_initiation_minutes_after_failed_fiat": 5,
+        "example_environment": "sandbox"
+      },
+      "unknowns": [
+        "Completed payout or refund",
+        "Production terms",
+        "Customer/beneficiary eligibility"
+      ]
+    },
+    {
+      "id": "kotani-product",
+      "publisher": "Kotani Pay",
+      "url": "https://www.kotanipay.com/on-off-ramp",
+      "source_date": null,
+      "access": "direct_public_web_fetch",
+      "excerpt": "Cash In/Cash Out",
+      "facts": {
+        "usdc_product_listed": true,
+        "stk_push_listed": true,
+        "status_link_destination": "home page"
+      },
+      "unknowns": [
+        "Numerical current corridor tariff",
+        "Current Kenya authorizations",
+        "Production uptime"
+      ]
+    },
+    {
+      "id": "mercy-corps-historical-pilot",
+      "publisher": "Mercy Corps Ventures",
+      "url": "https://www.mercycorps.org/sites/default/files/2022-02/MCV-Pilot-Insights-Report_Stablecoin-and-Digital-Microwork-in-Kenya-Web.pdf",
+      "source_date": null,
+      "data_date": "2021",
+      "date_note": "2022-02 file path; exact publication day unknown; do not use search crawl age as document date.",
+      "access": "official_search_index; direct_pdf_failed_400_content_length_27304938",
+      "location": "page29 Figure12 and payment-flow text; page2 describes three-month early2021 pilot",
+      "excerpt": "Kotani Pay charges a two percent off-ramp fee, essentially serving as the currency conversion fee.",
+      "facts": {
+        "pilot_asset": "Celo cUSD",
+        "kotani_pilot_fee_pct": 2,
+        "wallet_fee_pct": 0.02,
+        "total_pilot_withdrawal_fee_pct": 2.02
+      },
+      "unknowns": [
+        "2026 Base-USDC tariff",
+        "Current pilot platform/task availability"
+      ]
+    },
+    {
+      "id": "circle-base-usdc",
+      "publisher": "Circle",
+      "url": "https://developers.circle.com/stablecoins/usdc-contract-addresses",
+      "source_date": null,
+      "access": "direct_public_web_fetch",
+      "excerpt": "Base",
+      "facts": {
+        "mainnet_token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+      },
+      "unknowns": [
+        "Provider acceptance of this exact token"
+      ]
+    }
+  ],
+  "unresolved_fetches": [
+    {
+      "id": "U1",
+      "title": "Alleged NDTCP Regulations2026 LN191",
+      "candidate_url": "https://new.kenyalaw.org/akn/ke/act/ln/2026/191/eng@2026-09-29/source.pdf",
+      "candidate_page": "https://new.kenyalaw.org/akn/ke/act/ln/2026/191/eng@2026-09-29",
+      "reported_publication_date": "2026-09-29",
+      "reported_gazette": "Supplement234, LegalNotice191",
+      "status": "primary_bytes_not_retrieved_HTTP403",
+      "excerpt": null,
+      "caution": "Date/identity reported by search results outside primary-source scope, not independently authenticated. Do not infer absence, draft status, or continuing2022regime from fetch failure."
+    },
+    {
+      "id": "U2",
+      "landing_page": "https://www.centralbank.go.ke/bank-supervision/cbk-directory-of-licenced-money-remittance-providers/",
+      "linked_pdf": "https://www.centralbank.go.ke/wp-content/uploads/2016/06/CBK-Directory-of-Licenced-Money-Remittance-Providers.pdf",
+      "status": "linked_PDF_timeout",
+      "caution": "2016URLpath and daily-ratePostedOn are not register content date."
+    },
+    {
+      "id": "U3",
+      "landing_page": "https://www.centralbank.go.ke/bank-supervision/directory-of-licenced-money-remittance-providers-5/",
+      "linked_pdf": "https://www.centralbank.go.ke/wp-content/uploads/2016/06/Directory-of-Licenced-Money-Remittance-Providers-1-1.pdf",
+      "status": "linked_PDF_timeout",
+      "caution": "Current Cogni/Eversend licence unverified, not disproved."
+    },
+    {
+      "url": "https://www.safaricom.co.ke/personal/m-pesa/getting-started/m-pesa-rates",
+      "status": 403
+    },
+    {
+      "url": "https://www.safaricom.co.ke/personal/m-pesa/mpesa-charges",
+      "status": 403
+    },
+    {
+      "url": "https://www.safaricom.co.ke/index.php?id=227",
+      "status": 403
+    }
+  ],
+  "fees_and_operational_unknowns": {
+    "executable_eversend_base_usdc_kes_two_way_quote": null,
+    "eversend_account_tier_and_production_pricing": null,
+    "eversend_base_usdc_minimum_and_maximum": null,
+    "eversend_canonical_token_contract_acceptance": null,
+    "kotani_current_all_in_fee_spread_minimum_maximum": null,
+    "kotani_production_base_usdc_mpesa_status": null,
+    "provider_lender_payment_vasp_authorization": null,
+    "recipient_name_and_wallet_controls": null,
+    "permitted_third_party_payer_and_loan_use": null,
+    "exact_paybill_tariff_and_bundled_rail_fees": null,
+    "current_consumer_p2p_and_cashout_tariffs": null,
+    "refund_settlement_and_reconciliation_proof": null
+  },
+  "illustrative_calculations": {
+    "status": "conditional_arithmetic_not_quote_or_demonstrated_bootstrap",
+    "usd_usdc_assumption": 1,
+    "principal_usdc": 25,
+    "reference_fx_kes_per_usd": 129.71,
+    "fx_observation_date": "2026-10-01",
+    "fx_bulletin_date": "2026-10-02",
+    "gross_kes": 3242.75,
+    "standalone_safaricom_registered_b2c_plus_paybill_aggregate_kes": 34,
+    "standalone_safaricom_prepaid_cash_b2c_plus_paybill_aggregate_kes": 86,
+    "eversend_if_displayed_rows_apply_two_base_transfers_payout_and_topup_usd": 0.8896654074473825,
+    "eversend_assumed_two_0_9pct_margins_additional_usd": 0.44999999999999996,
+    "caveats": [
+      "Provider quote may differ; account applicability unverified.",
+      "Safaricom components may already be bundled in provider pricing.",
+      "USD/USDC parity and FX are illustrative; actual rate has two directions.",
+      "Do not treat conditional arithmetic as an executable route, profit or current tariff guarantee."
+    ]
+  },
+  "unverified_legal_inputs": [
+    "Final NDTCP2026 terms and commencement",
+    "CogniSystemsLimited/Eversend current CBK MRP licence",
+    "Any selected lender licence/product fit",
+    "Actual current VASP licences",
+    "Later judicial orders/annulments/amendments"
+  ]
+}
