@@ -16,6 +16,8 @@ Required packet:
   kind, native_flows:[{from,to,wei,proof}], claim_events:[{emitter,winner,
   claimRewardRecipient,claimReward}], withdrawal_events:[{emitter,account,
   to,amount}], repayment_principal_wei, repayment_fee_wei}].
+  For fully costed proof, offchain_costs={borrower,lender}, each
+  {wei_equivalent,evidence}; explicitly justify zero incremental cost.
   kinds are funding,claim,withdraw,unwrap,repay,sweep; optional extras may fail.
   Native flows include top-level value AND traced internal ETH, such as WETH
   withdrawals; do not include gas or WETH token transfers as native flows.
@@ -107,7 +109,9 @@ def audit(packet):
         operator = number(record["operator_fee_wei"])
         check(bool(record["operator_fee_evidence"]), "operator fee assumption unproved")
         gas[sender] += l2 + l1 + operator
-        succeeded = number(receipt["status"]) == 1
+        status = number(receipt["status"])
+        check(status in {0, 1}, "invalid receipt status")
+        succeeded = status == 1
         if not succeeded:
             failed_txs += 1
             check(not record.get("native_flows"), "reverted native movement recorded")
@@ -181,9 +185,25 @@ def audit(packet):
     # Strict cold-start proof: no prior borrower assets/receivables are counted.
     cold = all(initial[borrower][k] == 0 for k in ["native_wei", "weth_wei", "reward_wei"])
     settled = final[borrower]["reward_wei"] == 0
+    # WETH at par is part of conservation, but is not spendable native cash.
+    # Existing lender WETH may remain; all newly acquired WETH must be unwrapped.
+    no_new_weth = all(final[a]["weth_wei"] == initial[a]["weth_wei"]
+                      for a in [borrower, lender])
     borrower_profit = rewards - gas[borrower] - fee
     lender_margin = fee - gas[lender]
-    positive = rewards > 0 and delta > 0 and success_claims > 0 and borrower_profit > 0
+    positive = (rewards > 0 and delta > 0 and success_claims > 0 and
+                borrower_profit > 0 and lender_margin >= 0)
+    costs = packet.get("offchain_costs")
+    costs_known = (isinstance(costs, dict) and
+                   all(isinstance(costs.get(role), dict) and
+                       "wei_equivalent" in costs[role] and
+                       bool(costs[role].get("evidence"))
+                       for role in ["borrower", "lender"]))
+    borrower_total_profit = lender_total_margin = None
+    if costs_known:
+        borrower_total_profit = borrower_profit - number(costs["borrower"]["wei_equivalent"])
+        lender_total_margin = lender_margin - number(costs["lender"]["wei_equivalent"])
+    onchain_proof = not errors and cold and settled and no_new_weth and positive
     return {"accounting_checks_pass": not errors, "errors": errors,
             "cold_start_empty_borrower": cold, "new_reward_wei": rewards,
             "withdrawn_wei": withdrawn, "unsettled_reward_wei": final[borrower]["reward_wei"],
@@ -192,7 +212,13 @@ def audit(packet):
             "borrower_onchain_economic_profit_wei": borrower_profit,
             "lender_loan_margin_before_nonloan_sweeps_wei": lender_margin,
             "loan_funding_gas_covered_by_fee": lender_margin >= 0,
-            "positive_settled_cold_start_onchain_proof": not errors and cold and settled and positive,
+            "no_new_weth_remaining": no_new_weth,
+            "offchain_costs_evidenced": costs_known,
+            "borrower_fully_costed_profit_wei_equivalent": borrower_total_profit,
+            "lender_fully_costed_margin_wei_equivalent": lender_total_margin,
+            "positive_settled_cold_start_onchain_proof": onchain_proof,
+            "fully_costed_cash_settled_bootstrap_proof": bool(onchain_proof and costs_known and
+                   borrower_total_profit > 0 and lender_total_margin >= 0),
             "limitation": "Offline consistency only. Refetch raw evidence; additionally price all provider, computation and coordination costs. One result does not establish repeatability or reliable income."}
 
 

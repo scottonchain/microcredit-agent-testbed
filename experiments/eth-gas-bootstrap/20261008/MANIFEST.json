@@ -8,12 +8,12 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 3951,
-    "sha256": "eb709c20da26aa33e27d83679f4e26f68537210834801f1e9469b229e1bfd4e0"
+    "bytes": 5105,
+    "sha256": "e07b0cf3360c953e6d0b11a8414c41fad32716bc102d0d41f1d5cb01b167c3f8"
   },
   "audit-only.py": {
-    "bytes": 10811,
-    "sha256": "3099ffeb7aa992381d5f81a8c581ab546ca108e18763d7f0fc38484739ae8487"
+    "bytes": 12416,
+    "sha256": "f99efb9300a499584c9016edda30ab9b302bdf9ababf7b2fe5bfb8f48f83485f"
   },
   "hermes-ptv5-r1/README.md": {
     "bytes": 2312,
@@ -31,8 +31,16 @@
     "bytes": 79152,
     "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c"
   },
+  "read-only-cycle-quote.mjs": {
+    "bytes": 22674,
+    "sha256": "dae7972445844b1b7301d43ff043b7d0a206f18cca78929ce1d317acca6d40aa"
+  },
   "read-only-winner-probe.mjs": {
     "bytes": 12863,
     "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
+  },
+  "test_audit_negative_controls.py": {
+    "bytes": 8079,
+    "sha256": "728eb088aa09cbba9eb02c9cd45f34f5fab50bf29c46780cec3ecc14ff8a8af9"
   }
 }

@@ -70,3 +70,16 @@ The pilot is outside the deployed USDC-only app. It does not demonstrate
 existing-contract ETH support, transitive trust, mainnet readiness or poverty
 reduction. CI30 and the original three live Base Sepolia USDC communities and
 recovery commitments remain.
+
+
+## Full-cost quote and offline audit checks
+
+read-only-cycle-quote.mjs uses viem2.17.0. Run after a positive probe:
+
+BASE_READ_RPC=<approved-HTTPS-endpoint> timeout 120s node read-only-cycle-quote.mjs --probe probe.json --index <candidate-index> > cycle-quote.json
+
+It rechecks one candidate and exact claim, rejects controlled winners, quotes five unsigned transactions including L1/operator costs, checks fresh ETH/USD dollar caps and attempts eth_simulateV1. Downstream gas reservations are conservative when stateful simulation is unsupported. Neither quote nor simulation is actual execution or authority to spend. L1 upper-bound quotations are statistical and future protocol prices can change; current quotes are doubled as reserves, not hard guarantees.
+
+The auditor now requires lender funding gas coverage and native cash settlement for an on-chain proof. A separate fully-costed flag requires evidenced offchain costs for both actors. Eight dependency-free offline negative-control checks passed; ALL fixtures are synthetic, never chain/execution evidence. Reproduce in this directory:
+
+python -m unittest -v test_audit_negative_controls.py

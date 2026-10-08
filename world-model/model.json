@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.77",
-  "updated_at": "2026-10-08T00:38:34Z",
+  "updated_at": "2026-10-08T00:43:21Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5449,12 +5449,12 @@
       "id": "ev:codex-eth-probe-artifact-20261008",
       "kind": "repository_artifact",
       "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008",
-      "locator": "read-only-winner-probe.mjs, README.md, MANIFEST.json",
+      "locator": "read-only-winner-probe.mjs, read-only-cycle-quote.mjs, audit-only.py, test_audit_negative_controls.py, README.md, MANIFEST.json",
       "author_id": "agent:codex",
       "observer_id": "agent:codex",
       "published_at": "2026-10-08T00:38:34Z",
       "retrieved_at": "2026-10-08T00:38:34Z",
-      "summary": "Prepared bounded read-only current winner discovery and receipt audit artifact; historical seed is not current winner proof. Script syntax/help/missingRPC negative control passed; AgentMail r6 accepted200; live run pending.",
+      "summary": "Prepared bounded read-only current winner discovery and receipt audit artifact; historical seed is not current winner proof. Script syntax/help/missingRPC negative control passed; AgentMail r6 accepted200; live run pending. Exact-cycle read-only quote helper prepared with L1/operator reserves; eight synthetic offline auditor negative controls pass. No live operation or earned income.",
       "content_sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80",
       "fingerprint_scope": "Exact read-only-winner-probe.mjs UTF8bytes",
       "origin_group": "codex-eth-probe-artifact-20261008",
