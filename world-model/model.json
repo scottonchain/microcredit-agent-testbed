@@ -67,6 +67,17 @@
         "Emails successfully sent via AgentMail to self/team; requests and append handoff do not prove accepted work, canonical commit or executed loan.",
         "Canonical integration requested from Claude; no receipt yet; local proposed model does not overwrite current canonical concurrent work."
       ]
+    },
+    {
+      "id": "coverage:mandatory-officer-comparison-20261008",
+      "scope": "Mandatory officer guest alternative, current issuer policy, manager gap and required code boundaries",
+      "method": "Pinned source/spec inspection and explicit direction; no live-chain experiment",
+      "observed_at": "2026-10-08T17:05:00Z",
+      "limitations": [
+        "Claude response not yet observed.",
+        "No adopted replacement of officer-free milestone.",
+        "No field-calibrated scores, loan, deployment or independent code test execution."
+      ]
     }
   ],
   "entities": [
@@ -7083,6 +7094,78 @@
         "Proofs are on paper for the router as coded; no machine-checked proof; pool facts P1 to P6 are cited, not re-proved.",
         "Nothing about repayment, incentives or welfare."
       ]
+    },
+    {
+      "id": "ev:mandatory-officer-direction-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064905275",
+      "locator": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064905275",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T17:05:00Z",
+      "summary": "Codex publicly relays the operator request: guest alternative with every credit request through an agentic officer; describe trust scoring, existing-contract help/alternatives, single officer versus team, contract delta and world-model update; discuss with Claude before publication.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "mandatory-officer-direction-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public paraphrase of current direction, not Claude assent or deployment authority."
+      ]
+    },
+    {
+      "id": "ev:mandatory-officer-main-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/tree/9f5c1434a1fa99bec7939bbf458f86ddee55bec9",
+      "locator": "https://github.com/scottonchain/microcredit-contract/tree/9f5c1434a1fa99bec7939bbf458f86ddee55bec9",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T17:05:00Z",
+      "summary": "Pinned main source: _originateLoan has no mandatory per-request officer approval. OracleScoreProvider publishes allocation fractions with epoch/freshness/held-budget caps; owner overrides/stake/dues are separate. Reference issuer policy is weighted Beta bad-event estimation with assumed late/default ratio, identity cost and simulated population, not field-calibrated agent creditworthiness.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "mandatory-officer-main-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source/spec review, not executed tests or observed chain state."
+      ]
+    },
+    {
+      "id": "ev:mandatory-officer-manager-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/tree/6fe6f4106b9594fdd0de7bbe2a51f7f6152bc538",
+      "locator": "https://github.com/scottonchain/microcredit-contract/tree/6fe6f4106b9594fdd0de7bbe2a51f7f6152bc538",
+      "author_id": "agent:claude",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T17:05:00Z",
+      "summary": "PR28 setManager is optional and borrower-resettable when debt/backing-free; zero restores capacity-based origination. Escrow/router require competing exclusive managers. Pinned head remains blocked by the independent source review.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "mandatory-officer-manager-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source/spec review, not executed tests; candidate is not deployed."
+      ]
+    },
+    {
+      "id": "ev:mandatory-officer-review-request-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064905275",
+      "locator": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064905275",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T17:05:00Z",
+      "summary": "Codex requests Claude substantive review; email send failed due daily quota, GitHub fallback succeeded and vision PR11 is draft. No substantive reply observed yet.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "mandatory-officer-review-request-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Request is not acknowledgment or agreement."
+      ]
     }
   ],
   "claims": [
@@ -12222,6 +12305,91 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:mandatory-officer-comparison-direction-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "mandatory_officer_comparison",
+      "statement": "Prepare the requested alternative in which every new loan needs officer approval, including stake/dues/override capacity. Compare scoring, alternatives, officer/team and contract changes; discuss with Claude before publication. This comparison is not an adopted replacement of prior officer-free requirements or deployment authority.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit direction or pinned source inspection.",
+        "supporting_evidence_ids": [
+          "ev:mandatory-officer-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:05:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Claude substantive reply",
+          "Changed candidate",
+          "Before guest publication or adoption"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:mandatory-officer-existing-policy-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "mandatory_officer_comparison",
+      "statement": "Existing issuer-policy reference already provides weighted repayment-risk estimation and budgeted capacity scores, with assumed identity costs and in-population simulated calibration. Provider score is an allocation fraction, not PD. Main does not mandate per-request officer approval; candidate gate is voluntary/resettable and escrow/router do not compose for one loan.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Explicit direction or pinned source inspection.",
+        "supporting_evidence_ids": [
+          "ev:mandatory-officer-main-source-20261008",
+          "ev:mandatory-officer-manager-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:05:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Claude substantive reply",
+          "Changed candidate",
+          "Before guest publication or adoption"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:mandatory-officer-bounded-hybrid-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "mandatory_officer_comparison",
+      "statement": "Prefer one accountable office with independent evidence challenge and deterministic bounded execution, shadow-scored and compared on the same accepted job with prepayment/direct sponsorship/current pool. Hard eligibility gates precede task/term-specific uncertainty-aware PD/LGD assessment; preserve provenance, actual exposure and cumulative-loss budgets. Mandatory approval sacrifices officer-free fresh origination during outages; preserve that baseline and explicitly reconcile the target. Repayment/default/recovery/runoff exits must remain possible. Committee expansion depends on genuinely independent control and measured review benefit.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Design inference pending Claude review and measured comparison.",
+        "supporting_evidence_ids": [
+          "ev:mandatory-officer-review-request-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Matched-job evidence supports a simpler or existing system with better full-cost access, recovery and human earnings at comparable bounded risk."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T17:05:00Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Claude substantive reply",
+          "Changed candidate",
+          "Before guest publication or adoption"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:mandatory-officer-comparison-direction-20261008",
+        "claim:mandatory-officer-existing-policy-20261008"
+      ]
     }
   ],
   "edges": [
@@ -14512,10 +14680,11 @@
         "claim:codex-sync-amendments-20261008",
         "claim:credit-officer-cold-start-sync",
         "claim:m1-two-hop-live-20261007",
-        "claim:sync-agenda-email-rule"
+        "claim:sync-agenda-email-rule",
+        "claim:mandatory-officer-comparison-direction-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule. Followed up by email at each Claude check-in until the Codex lane replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Opening6057507721 accepts cure/appeal before human loans, preserves current testnet rules, and redirects temporary officers under required transitive/staking end state. Do not require an issuer for zero-grant secured entry. Actual Claude response to amendments pending.",
+      "deliverable": "The 2026-10-08 daily strategy opening carries the credit-officer hybrid as an agenda item with the questions in claim:credit-officer-cold-start-sync and the contract mapping; Claude answers it in the round as the contract and manuscript lane. Emailed to the Codex lane on 2026-10-07 at 15:24 UTC under claim:sync-agenda-email-rule. Followed up by email at each Claude check-in until the Codex lane replies. Accepted by the Codex lane for the 2026-10-08 sync on issue 15 (ev:codex-sync-items-ack-20261007); the follow-up by email closes with that reply. Opening6057507721 accepts cure/appeal before human loans, preserves current testnet rules, and redirects temporary officers under required transitive/staking end state. Do not require an issuer for zero-grant secured entry. Actual Claude response to amendments pending. Additional October8 comparison: vision PR11 mandatory-officer alternative in action:mandatory-officer-guest-reconcile-20261008. Preserve issuer-free secured-entry as an explicit baseline; reconcile the availability conflict before adopting a mandatory gate. No duplicate timer.",
       "acceptance_criteria": [
         "The opening links the operator-direction source and the contract mapping.",
         "The round answers each question or records it as open: officer and lane; what the assessment reads; loss path and budget; appeal; first test-network pilot and its evidence.",
@@ -15752,6 +15921,50 @@
         "Original pool and root-held signatures untouched; protected reserve and rounding accounted.",
         "Custodian supplies actual completion or concrete blocker; no inferred execution."
       ]
+    },
+    {
+      "id": "action:mandatory-officer-guest-reconcile-20261008",
+      "title": "Reconcile mandatory-officer guest comparison and contract delta with Claude before publication",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:risk-research",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:mandatory-officer-comparison-direction-20261008",
+        "claim:mandatory-officer-existing-policy-20261008",
+        "claim:mandatory-officer-bounded-hybrid-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Revised draft in vision PR11; trust-scoring/committee/contract-delta note; actual Claude response and Codex reconciliation; additive canonical-model PR. Hold publication until discussion is incorporated. No new timer or transaction authority.",
+      "acceptance_criteria": [
+        "Post explains mandatory officer, evidence/uncertainty, allocation-score distinction and alternatives.",
+        "Pinned-source delta covers unavoidable origination, exact-intent/replay/expiry, atomic backing/disbursement/settlement, privilege boundaries, live and cumulative loss budgets and recovery.",
+        "Actually read and reconcile Claude substantive amendments/assent before publication; silence is not consensus.",
+        "Pass model schema/reference tests and public-content scans; reconcile concurrent main additions at integration."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Operator guest revision October8",
+        "Claude response at existing capable check-in",
+        "Before publication"
+      ],
+      "due_at": null,
+      "external_consent": "not_required",
+      "permission_basis": "Explicit request to revise guest post, discuss with Claude, update model and determine code changes; no deployment or lending authority.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not publish before substantive Claude discussion and reconciliation.",
+        "No spending/deployment under this comparison.",
+        "Preserve existing commitments and officer-free baseline until explicitly superseded."
+      ],
+      "outcome_evidence_ids": []
     }
   ],
   "decisions": [
@@ -16117,6 +16330,25 @@
         }
       ],
       "supersedes_ids": []
+    },
+    {
+      "id": "decision:mandatory-officer-comparison-20261008-v1",
+      "status": "provisional",
+      "owner_id": "agent:codex",
+      "recommendation": "Shadow-test one accountable mandatory officer with independent challenge and deterministic limits against prepayment/direct sponsorship/current pool; code switch remains unadopted. Hold guest publication pending Claude's actual substantive response and reconcile the officer-free target explicitly.",
+      "claim_ids": [
+        "claim:mandatory-officer-comparison-direction-20261008",
+        "claim:mandatory-officer-bounded-hybrid-20261008"
+      ],
+      "action_ids": [
+        "action:mandatory-officer-guest-reconcile-20261008",
+        "action:credit-officer-sync"
+      ],
+      "discussion_evidence_ids": [
+        "ev:mandatory-officer-review-request-20261008"
+      ],
+      "assents": [],
+      "supersedes_ids": []
     }
   ],
   "open_questions": [
@@ -16449,8 +16681,20 @@
       ],
       "resolution_evidence_needed": "Claude explicit semantics, code and negative race/unrelated-loan fixtures; Hermes reviewed-candidate rehearsal. No new author assignment is inferred from this question.",
       "blocks_action_ids": []
+    },
+    {
+      "id": "question:mandatory-officer-boundary-and-review-20261008",
+      "owner_id": "agent:claude",
+      "question": "What minimal mandatory officer/coordinator and review/signature/recovery design should be compared against current officer-free capacity borrowing, and is a later switch intended or only a competing experiment?",
+      "related_ids": [
+        "claim:mandatory-officer-existing-policy-20261008",
+        "claim:mandatory-officer-bounded-hybrid-20261008",
+        "decision:mandatory-officer-comparison-20261008-v1"
+      ],
+      "resolution_evidence_needed": "Claude substantive response; reconciled target; pinned code delta with bypass, budget and recovery tests; matched-job economic evidence; explicit adoption before switching.",
+      "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.84",
-  "updated_at": "2026-10-08T15:10:35Z"
+  "model_version": "0.1.85",
+  "updated_at": "2026-10-08T17:05:00Z"
 }
