@@ -1,0 +1,122 @@
+{
+ "block": 52318705,
+ "hash": "0x5a082edc1a089bd7c3553f76cbfc7438ff527e8315df6ca68ceeaa12f1c78dff",
+ "timestamp": 1791426757,
+ "observedAt": "2026-10-08T02:32:38Z",
+ "pairs": 10,
+ "markets": {
+  "0x4457d35bf7f6746a5a39c1ec42d451f12707c0fee263571cbe0ff6dda261529e": {
+   "loan": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+   "coll": "0x4200000000000000000000000000000000000006",
+   "oracle": "0x79ba9768e2f2fb4921f1d6db3bb2699fd27c2800",
+   "lltv": 860000000000000000,
+   "totalBorrowAssets": 0,
+   "totalBorrowShares": 0,
+   "lastUpdate": 1791415285,
+   "price": 2575267358363507156779753107
+  },
+  "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109": {
+   "loan": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+   "coll": "0xcb585250f852c6c6bf90434ab21a00f02833a4af",
+   "oracle": "0x031b2efc8d70042ac8d9f5c793c4149ec4b60fde",
+   "lltv": 625000000000000000,
+   "totalBorrowAssets": 57442939993367,
+   "totalBorrowShares": 54891602775702572008,
+   "lastUpdate": 1791426455,
+   "price": 1425700000000000000000000000000000000
+  }
+ },
+ "positions": [
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0xd81a0faddd64a14dcab08145f83fe7ec7dfe55e1",
+   "borrowShares": 0,
+   "collateral": 0,
+   "empty": true
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x375382f35d4bdfea975f641d9724719d1bde1cae",
+   "borrowShares": 2328094,
+   "collateral": 31640629,
+   "debtAssetsStoredRoundUp": 3,
+   "maxBorrow": 28193777,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0xebdbc598a179afe83d5059c28e26a54bcd8aaba8",
+   "borrowShares": 1491115,
+   "collateral": 28416556,
+   "debtAssetsStoredRoundUp": 2,
+   "maxBorrow": 25320926,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x35ab537e60a54e828901d8f0b2f5024d77546ee3",
+   "borrowShares": 1055924,
+   "collateral": 20650848,
+   "debtAssetsStoredRoundUp": 2,
+   "maxBorrow": 18401195,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x9fceebc2abaec536639c4a89f2ba3b4523c31f58",
+   "borrowShares": 1346263,
+   "collateral": 17375678,
+   "debtAssetsStoredRoundUp": 2,
+   "maxBorrow": 15482815,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0xcbfd2c0835ba07eefe33400d34cdecd3dced893c",
+   "borrowShares": 821133,
+   "collateral": 17112035,
+   "debtAssetsStoredRoundUp": 1,
+   "maxBorrow": 15247892,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x1b9e75e7e5da386952bf107abe6acbf220254da0",
+   "borrowShares": 0,
+   "collateral": 0,
+   "empty": true
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x774d533c91e91d9d0468e315660ad32164965275",
+   "borrowShares": 1894541,
+   "collateral": 14979468,
+   "debtAssetsStoredRoundUp": 2,
+   "maxBorrow": 13347641,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+   "borrower": "0x4efe648497016dc2265498a07993f9cc0e9b3679",
+   "borrowShares": 10268318577759,
+   "collateral": 12646618,
+   "debtAssetsStoredRoundUp": 10745586,
+   "maxBorrow": 11268926,
+   "unhealthyStored": false
+  },
+  {
+   "market": "0x4457d35bf7f6746a5a39c1ec42d451f12707c0fee263571cbe0ff6dda261529e",
+   "borrower": "0xb230d1b3d3b0efa8487db96c6593e84d6ff3516a",
+   "borrowShares": 0,
+   "collateral": 0,
+   "empty": true
+  }
+ ],
+ "rpcCount": 17,
+ "summary": {
+  "checked": 10,
+  "empty": 3,
+  "healthy": 7,
+  "unhealthy": 0
+ }
+}
