@@ -1,0 +1,255 @@
+{
+ "chain_id": 84532,
+ "block_number": 47852940,
+ "block_hash": "0xe00aa8a1b753c167d1c6f5e90ab7be38cd1d95ebc99d4d5120144066342b488d",
+ "block_time": 1791474168,
+ "code": {
+  "pool": {
+   "address": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+   "bytes": 24377,
+   "sha256": "4f27a59927df4f7dcecc8a2e121d3f17d1b6dbeb3a5b1781a323ae00464881bd",
+   "keccak256": "0xcbec266adbac00e2db7af5c2ce5b68316ca8a42877bb2fb93c475681b7ba9dc8"
+  },
+  "provider": {
+   "address": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
+   "bytes": 4916,
+   "sha256": "a4dd1a8ea697deaf3a268d283fd4a9b66e4c8b5bf7c5cb25e4f21051c5a17a8f",
+   "keccak256": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3"
+  },
+  "usdc": {
+   "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+   "bytes": 1798,
+   "sha256": "e878b99fc0c17354c86c7edeb999c70c18cfd925abb0958496f027cbad996d28",
+   "keccak256": "0xedc5281a85c0efecd49999a1ef668390c59b88702f2d4a07029d7f5d63059d6c"
+  }
+ },
+ "manifest_template_sha256": "edd3b3ebd0cd9985b3c7e60ac6471832ac540575dbca6dcb89ad8d784f0694d1",
+ "onchain_with_immutables_zeroed_sha256": "edd3b3ebd0cd9985b3c7e60ac6471832ac540575dbca6dcb89ad8d784f0694d1",
+ "manifest_source_commit": "1812e7d2b67e159e341bbff33d6d604409eebb67",
+ "pool": {
+  "totalAssets": "15000000",
+  "totalShares": "15000000000000",
+  "totalLentOut": "0",
+  "reservedLiquidity": "0",
+  "totalStaked": "0",
+  "totalDuesPaid": "0",
+  "firstLossReserve": "0",
+  "lenderCash": "15000000",
+  "totalQueuedShares": "0",
+  "totalImpaired": "0",
+  "totalUnclaimedPayouts": "0",
+  "protocolFees": "0",
+  "paused": "false",
+  "maxLoanAmount": "100000000",
+  "reserveBps": "4500",
+  "protocolFeeBps": "0",
+  "effrRate": "433",
+  "riskPremium": "500",
+  "lendingUtilizationCap": "9000",
+  "liquidityBuffer": "500",
+  "liquidityThreshold": "0",
+  "relayerWhitelistEnabled": "false",
+  "lenderCount": "5",
+  "usdc_balance": "15000000"
+ },
+ "provider": {
+  "epoch": "3",
+  "totalHeld": "920000",
+  "isFresh": "true",
+  "lastReportAt": "1791382038",
+  "maxScoreAge": "604800"
+ },
+ "lenders": {
+  "0x5e4dC7639D2b94006c51aD5373173f5e01c248F9": {
+   "sharesOf": "15000000000000",
+   "lenderBalance": "15000000",
+   "queuedShares": "0",
+   "usdc": "0"
+  },
+  "0x108450c748EEF7AeF23e64739bC508f56E596247": {
+   "sharesOf": "0",
+   "lenderBalance": "0",
+   "queuedShares": "0",
+   "usdc": "25000000"
+  },
+  "0x9Da4D8D544aAe656fE7ebA4A526828B511FcB1E5": {
+   "sharesOf": "0",
+   "lenderBalance": "0",
+   "queuedShares": "0",
+   "usdc": "0"
+  },
+  "0x75c91Cee867F0a479BbDD2d6aD32e3F04F06CF61": {
+   "sharesOf": "0",
+   "lenderBalance": "0",
+   "queuedShares": "0",
+   "usdc": "0"
+  },
+  "0xB20dE1dD4529010a75C076e792fF3f85F5d0140c": {
+   "sharesOf": "0",
+   "lenderBalance": "0",
+   "queuedShares": "0",
+   "usdc": "0"
+  }
+ },
+ "loan_ids": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]",
+ "original_13": [
+  {
+   "role": "treasury",
+   "address": "0x5225C44C41566d2c8785cFaDfC712a21c0b51575",
+   "eth_wei": 98999579999999906,
+   "usdc": "15000000",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 1
+  },
+  {
+   "role": "s1-funder",
+   "address": "0xab7a7EE666b83607Cb9d11B5D54f49C1085f980c",
+   "eth_wei": 1000000000000000,
+   "usdc": "5000000",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s1-borrower-a",
+   "address": "0x62C4A163026feedB3eA1045d90bBa96d0C5d4F0B",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s1-borrower-b",
+   "address": "0xE2a2fd6c6b1e2DdF70B3EDc84B10e7D6E1039F2f",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s1-sink",
+   "address": "0x421adA122cf9823ee129179354a461013e0156e4",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s2-funder",
+   "address": "0x711E15425326Fe01B958Ea97Ff37aa6336a7CEc3",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s2-borrower-a",
+   "address": "0x56214AE2CFcd5eD76cb79126a595010Cb831C407",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s2-borrower-b",
+   "address": "0x43bD2B18CAAf9eF7cEfAdbcedB392D378469f118",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s2-sink",
+   "address": "0xB96c4E7C0cc25aF24795097B6D8EAC17B8519866",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s3-funder",
+   "address": "0x4D05B8b4fE3D90C15F54dC041ef29A1bc7C59633",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s3-borrower-a",
+   "address": "0xB07f3b50d91E584F05817d367a12fab1E7bFaD6f",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s3-borrower-b",
+   "address": "0x9E6bb5e66138666A69e366f7Bb0BD6489c347E9f",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  },
+  {
+   "role": "s3-sink",
+   "address": "0x59b2c48fdeda316D4A442627e4b4a2E1aD81D2B1",
+   "eth_wei": 0,
+   "usdc": "0",
+   "poolShares": "0",
+   "stake": "0",
+   "activeLoans": "0",
+   "completedLoans": "0",
+   "nonce": 0
+  }
+ ],
+ "funds_wallet_0x1084": {
+  "address": "0x108450c748EEF7AeF23e64739bC508f56E596247",
+  "eth_wei": 2296626642161968,
+  "usdc": "25000000",
+  "poolShares": "0",
+  "nonce": 147
+ },
+ "deployer_0x5e4d": {
+  "address": "0x5e4dC7639D2b94006c51aD5373173f5e01c248F9",
+  "eth_wei": 21733873822726231,
+  "usdc": "0",
+  "poolShares": "15000000000000",
+  "nonce": 115
+ },
+ "gas_price_wei": 6000000
+}
