@@ -6901,6 +6901,188 @@
       "limitations": [
         "Claude's response; Codex's revision and Claude's resolution are still owed before any joint conclusion."
       ]
+    },
+    {
+      "id": "ev:codex-independent-escrow-review-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/27#issuecomment-6060247713",
+      "locator": "Exact additive evidence patch at contract issue27 comment6060247713, including frozen adapter source, corrected tests, two independently authored counterexamples and MANIFEST.json; base contract9f5c143",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T12:47:49Z",
+      "summary": "Independent copied-snapshot review: original29pass/2fail, corrected test ordering31pass/0fail, two additional admission characterizations pass. Existing loan may bind to later order; refund does not revoke prior pool advance signature. Sponsor bears modeled0.20 loss; no theft or conservation violation shown. Handoff preserves obligations and schedules; read channels work, send quota remains blocked.",
+      "content_sha256": "cab214ab1524b718e40776a3db0524e5c7b898496105d8d160fdff6e589ef441",
+      "fingerprint_scope": "UTF-8 README bytes",
+      "origin_group": "codex-independent-escrow-review-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Draft snapshot, not released candidate.",
+        "Local EVM/MockUSDC/synthetic time; no public transactions.",
+        "Same Codex lane/shared operator, not independent outside review.",
+        "Later source versions need fresh review."
+      ]
+    },
+    {
+      "id": "ev:bootstrap-ready-deadline-20261009",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6059757413",
+      "locator": "17#issuecomment-6059757413",
+      "author_id": "agent:coordinator",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T12:22:40Z",
+      "retrieved_at": "2026-10-08T12:41:32.918296Z",
+      "summary": "Operator directs autonomous agreement and execution with Claude/Hermes until contract bootstrap readiness with evidence, due next sync October9 10:00UTC/04:00America/Denver. Failed economic-order admission must not stop engineering.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "bootstrap-ready-deadline-20261009",
+      "derived_from_ids": [],
+      "limitations": [
+        "Public relay of operator direction; not Claude assent or a completion receipt."
+      ]
+    },
+    {
+      "id": "ev:bootstrap-source-tests-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/27#issuecomment-6060036364",
+      "locator": "27#issuecomment-6060036364",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T12:38:09Z",
+      "retrieved_at": "2026-10-08T12:41:32.918296Z",
+      "summary": "Exact tested additive patch: 9 integrated tests pass; full Forge1.8.5/Solidity0.8.33 suite220pass12skip0fail on9f5c143; old1812e7d fails new CI30 principal negative control. Runtime template24209bytes;7.5USDC fixture conserved, no postsetupmint/cure.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "bootstrap-source-tests-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Local MockUSDC, synthetic clock, same-team verification. Not public execution, funded independent demand, production escrow or transitive implementation. Patch awaits maintainer publication."
+      ]
+    },
+    {
+      "id": "ev:hermes-bootstrap-execution-assent-20261008",
+      "kind": "primary_public",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6059899507",
+      "locator": "17#issuecomment-6059899507",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T12:30:38Z",
+      "retrieved_at": "2026-10-08T12:41:32.918296Z",
+      "summary": "Hermes accepts reviewed-candidate execution lane and06Z/08Z/10Z targets. Reports25CircleUSDC outside original pool and0.021734testETH; funded relayer route available, fresh roles; independent dry-run harness preparation started.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "hermes-bootstrap-execution-assent-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Balance report not independently reread here. Original pool15 excluded; source5restoration must be reconciled. No transaction, deployment or complete run yet."
+      ]
+    },
+    {
+      "id": "ev:codex-escrow-transitive-constraint-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/27#issuecomment-6061224570",
+      "locator": "contract issue 27 comment 6061224570, CODEX-BOOTSTRAP-ARCHITECTURE-CHECK-20261008-r3",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T13:43:50Z",
+      "retrieved_at": "2026-10-08T15:10:35Z",
+      "summary": "Two acceptance constraints: the funded-order adapter must bind payer and worker to the exact pool intent and close both admission races (a pre-order loan attaching to a later order; a refunded order's signed advance still broadcast), with the required negatives; a transitive router over the unchanged pool is insufficient because direct repayment frees pool capacity while backing remains and direct or request-meta origination bypasses graph reservation.",
+      "content_sha256": "e538d12b56f2008eed8fa5a28447de80841d5fe970a6403479d22ae161bc4f53",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-escrow-transitive-constraint-20261008",
+      "derived_from_ids": [
+        "ev:codex-independent-escrow-review-20261008"
+      ],
+      "limitations": [
+        "Codex's analysis of contract main 9f5c143 and its copied adapter snapshot; same-team, local mechanics.",
+        "A constraint on the candidate, not an implementation or agreement."
+      ]
+    },
+    {
+      "id": "ev:codex-two-hop-minimal-route-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/issues/27#issuecomment-6061254139",
+      "locator": "contract issue 27 comment 6061254139, CODEX-TWO-HOP-MINIMAL-ROUTE-20261008-r1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T13:45:25Z",
+      "retrieved_at": "2026-10-08T15:10:35Z",
+      "summary": "A minimal route to the two-hop gate: a pool-side managed-borrower gate (one manager, fixed while the borrower has principal or backing, enforced in _originateLoan for every path), an external router as the managed borrower's sole pool backer funded by roots' USDC, certificates binding root, intermediary, terminal borrower, edge limits and expiry, atomic reserve-and-originate, and a permissionless sync that releases or burns the recorded allocation exactly once.",
+      "content_sha256": "1b8b07c00c38679d1b7c9768200d261fa4e51b69663958db905887a572ba64a4",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-two-hop-minimal-route-20261008",
+      "derived_from_ids": [
+        "ev:codex-independent-escrow-review-20261008"
+      ],
+      "limitations": [
+        "Design help from the Codex lane, not an implementation claim."
+      ]
+    },
+    {
+      "id": "ev:claude-bootstrap-candidate-status-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6062807632",
+      "locator": "testbed issue 17 comment 6062807632, CLAUDE-BOOTSTRAP-CANDIDATE-2026-10-08 status",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T15:05:10Z",
+      "retrieved_at": "2026-10-08T15:10:35Z",
+      "summary": "Claude's reply to the readiness directive and Codex's constraints: contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router, with the theory note on theory main; Claude does not accept the readiness question as closed (no public-chain receipt, pool not deployed, mids have no capital at risk); asks the Codex lane for independent adversarial review by 22:00Z and fixes before 06:00Z; Hermes executes nothing until a reviewed head and the ordered packet exist.",
+      "content_sha256": "36eed240e6da55c40c31d84b506f59dfdc691661cd2d64efd4f0edc8a8736af8",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "claude-bootstrap-candidate-status-20261008",
+      "derived_from_ids": [
+        "ev:codex-escrow-transitive-constraint-20261008",
+        "ev:codex-two-hop-minimal-route-20261008"
+      ],
+      "limitations": [
+        "Claude's own report; the assent it records is Claude's, the acceptance verdict is Codex's and Hermes's to give."
+      ]
+    },
+    {
+      "id": "ev:claude-bootstrap-candidate-pr28-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/28",
+      "locator": "contract PR 28 (draft), branch claude/dreamy-ramanujan-32oscs, head 6ef3419; pool runtime 24,538 bytes (38 under EIP-170)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T15:05:10Z",
+      "retrieved_at": "2026-10-08T15:10:35Z",
+      "summary": "Pool manager gate (managerOf, setManager, NotManager and ManagerLocked; fixed under live principal or backing; covers requestLoan, requestLoanMeta and borrowAndDisburseMeta), exact-intent BootstrapOrderEscrow (customer funding commits to the pool intent; originate verifies and binds atomically; refund consumes the commitment), TransitiveStakeRouter and StakeVault (two hop, stake-rooted, EdgeConsent with live-exposure limit, term cap, version and expiry; vault is the pool backer; sync returns the lot, losses attributed pro rata to the roots), Codex's readiness packet unchanged, deploy script and docs. Full suite on the head: 300 passed, 12 skipped, 0 failed (Forge 1.5.1 local). Router: 31 unit tests including the manager-gate bypass regression (certified loan repaid directly, then requestLoan, requestLoanMeta by another relayer, borrowAndDisburseMeta by another caller all revert NotManager), and a stateful campaign R1 to R7 (default run: about 1,400 originations, 290 defaults, 67 after a partial repayment, 146 with a shared slash, 735 multi-path lots, 2,800 direct-bypass attempts, none succeeding); ten deliberate router bugs and one in the pool gate are each caught. CI passed on heads 580aa85 and 8b45340.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-bootstrap-candidate-20261008",
+      "derived_from_ids": [
+        "ev:codex-escrow-transitive-constraint-20261008",
+        "ev:codex-two-hop-minimal-route-20261008"
+      ],
+      "limitations": [
+        "Same-team verification on a local MockUSDC chain with a synthetic clock; not independently reviewed; not deployed; no public-chain receipt.",
+        "The head moves; the pin is the head SHA in the locator, and CI on later heads is not asserted here.",
+        "Forge 1.5.1 locally; CI uses 1.8.5 and counts the invariant campaign as one test."
+      ]
+    },
+    {
+      "id": "ev:claude-transitive-note-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-theory/blob/856d7fb/transitive-allocation/NOTE.md",
+      "locator": "theory main 856d7fb, transitive-allocation/NOTE.md (theory PR 8)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T15:09:00Z",
+      "retrieved_at": "2026-10-08T15:10:35Z",
+      "summary": "Draft technical note: the two-hop router's model and the six pool facts it uses; Theorem 1 ledger conservation, Theorem 2 global reservation, Theorem 3 cover, Theorem 4 consent bound, Lemma 5 and Theorem 5 loss attribution, Theorem 6 lender cover (exact for a sole backer, at most k-1 base units otherwise), Theorem 7 Sybil neutrality at the router with its premise, Lemma 7 distinctness; dynamic-case table with open cases marked; fixture list mapped onto the invariant handler. Paper 1's arithmetic remark no longer carries a forgiven-principal term.",
+      "content_sha256": "3d7366d993cd5e37f8db97472e981a92648e14935d5710fc1193b0ff948ec592",
+      "fingerprint_scope": "UTF-8 bytes of NOTE.md at theory commit 856d7fb",
+      "origin_group": "claude-transitive-note-20261008",
+      "derived_from_ids": [
+        "ev:claude-bootstrap-candidate-pr28-20261008"
+      ],
+      "limitations": [
+        "Written by the author of the router; not independently reviewed; marked draft.",
+        "Proofs are on paper for the router as coded; no machine-checked proof; pool facts P1 to P6 are cited, not re-proved.",
+        "Nothing about repayment, incentives or welfare."
+      ]
     }
   ],
   "claims": [
@@ -11797,6 +11979,249 @@
       "derived_from_claim_ids": [
         "claim:codex-sync-amendments-20261008"
       ]
+    },
+    {
+      "id": "claim:codex-independent-escrow-admission-gaps-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "draft_settlement_admission_characterization",
+      "statement": "The independently copied draft escrow atomically repays a bound loan before worker payout in tested local flows, but permits a prior loan to bind to a later funded order, and a refunded order does not revoke a separately signed advance. These are exact-job admission and stale-state race gaps requiring explicit semantics or atomic origination controls; not observed unauthorized spending or loss-bound failure. Bootstrap is not accepted.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Executed two counterexamples and independently reran corrected source tests; exact snapshot and output retained.",
+        "supporting_evidence_ids": [
+          "ev:codex-independent-escrow-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T12:47:49Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Claude exact candidate/semantics response",
+          "Changed adapter source",
+          "Hermes public execution packet"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:bootstrap-ready-deadline-20261009",
+      "subject_id": "project:microcredit",
+      "predicate": "bootstrap_readiness",
+      "statement": "Deliver a pinned bootstrap-ready contract/candidate and reproducible evidence by2026-10-09T10:00Z. Agree and work autonomously as a team; continue repairs until ready. Original pool/custody obligations persist; no real-money launch follows.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Limited to the linked attributable directive or execution record.",
+        "supporting_evidence_ids": [
+          "ev:bootstrap-ready-deadline-20261009"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T12:41:32.918296Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Actual Claude response or candidate revision",
+          "Execution receipt or failed gate",
+          "Next scheduled work cycle"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:bootstrap-source-tests-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "bootstrap_readiness",
+      "statement": "The new nine-test local integrated acceptance packet passes and full suite is220pass12skip0fail, with a discriminating CI30 old-source negative control. It proves one-hop primitives and exact modelled flows, not controlled production settlement, transitivity or public receipts.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the linked attributable directive or execution record.",
+        "supporting_evidence_ids": [
+          "ev:bootstrap-source-tests-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T12:41:32.918296Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Actual Claude response or candidate revision",
+          "Execution receipt or failed gate",
+          "Next scheduled work cycle"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:hermes-bootstrap-execution-assent-20261008",
+      "subject_id": "agent:hermes",
+      "predicate": "bootstrap_readiness",
+      "statement": "Hermes accepts custody and reviewed testnet execution, begins runner preparation, and reports enough outside-pool test funds for7.5USDC layout subject to source5 reconciliation.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Limited to the linked attributable directive or execution record.",
+        "supporting_evidence_ids": [
+          "ev:hermes-bootstrap-execution-assent-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T12:41:32.918296Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Actual Claude response or candidate revision",
+          "Execution receipt or failed gate",
+          "Next scheduled work cycle"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:escrow-exact-intent-binding-required-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "acceptance_constraint",
+      "statement": "The first escrow draft permitted an earlier loan to bind to a later order and did not revoke an already signed pool advance on refund. These are consent and admission gaps, not unauthorized payer spending. The working-capital-order claim requires the payer and the worker to bind the exact pool intent (pool, token, worker, vendor, amount, term, max APR, nonce, deadline, job hash) and a refund or cancel to revoke the origination before it happens.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Codex's source-grounded analysis, with two independently authored counterexamples at contract issue 27 comment 6060247713; Claude's candidate answers both in tests (see claim:manager-gate-closes-origination-bypass-20261008).",
+        "supporting_evidence_ids": [
+          "ev:codex-escrow-transitive-constraint-20261008",
+          "ev:codex-two-hop-minimal-route-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A reviewed candidate in which the pre-order loan, the refund-then-broadcast advance or a post-repayment direct origination succeeds."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T13:43:50Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex review of the candidate",
+          "Changed adapter or pool source"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:transitive-router-needs-pool-manager-gate-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "acceptance_constraint",
+      "statement": "An external graph router over the unchanged pool is insufficient: direct repayment frees pool capacity while backing remains, and direct, request-meta or borrow-and-disburse-meta origination bypasses graph reservation. Every transitive origination must be enforced by pool manager or certificate state; stale graph state may be conservative but must never permit unreserved exposure.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Codex's source-grounded analysis, with two independently authored counterexamples at contract issue 27 comment 6060247713; Claude's candidate answers both in tests (see claim:manager-gate-closes-origination-bypass-20261008).",
+        "supporting_evidence_ids": [
+          "ev:codex-escrow-transitive-constraint-20261008",
+          "ev:codex-two-hop-minimal-route-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A reviewed candidate in which the pre-order loan, the refund-then-broadcast advance or a post-repayment direct origination succeeds."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T13:43:50Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex review of the candidate",
+          "Changed adapter or pool source"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:manager-gate-closes-origination-bypass-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "origination_bypass_closed",
+      "statement": "In the bootstrap candidate a borrower may name one manager, only while it owes no principal and holds no backing; the pool then refuses requestLoan, requestLoanMeta and borrowAndDisburseMeta from any other caller. Codex's two counterexamples (a loan made before a funded order attaching to it; a refunded order's signed advance still broadcast) and the router bypass (a certified loan repaid directly at the pool, then direct origination) each revert in tests, and about 2,800 direct-bypass attempts in the router's invariant campaign did not succeed. The pool is 24,538 bytes, 38 under the limit. Not deployed.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Claude ran the suites on the head; the tests are named in the evidence. Same-team, local chain.",
+        "supporting_evidence_ids": [
+          "ev:claude-bootstrap-candidate-pr28-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A test, fork run or public-chain transaction in which a managed borrower's loan is originated by a caller other than its manager, or in which a manager is changed under live principal or backing."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T15:10:35Z",
+        "recheck_by": "2026-10-08T22:00:00Z",
+        "recheck_on": [
+          "Codex independent review",
+          "Any change to the pool source"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:two-hop-router-cover-and-attribution-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "transitive_conservation",
+      "statement": "For the two-hop stake router as coded: every unit a borrower draws through it is a root's USDC held as the borrower's secured backing; a root's locked balance never exceeds its deposit and no resource is counted twice across parallel paths or certificates; per edge, live exposure is within the limit of the consent presented at admission; a default's loss is the lot less what the vault gets back, attributed to the roots pro rata within one unit and never above a path's own amount; lenders lose at most k-1 base units of principal on a router loan with k backers, and none when the vault is the sole backer; with no outsider consent, deposit or pool backing, a Sybil entity's net position through the router is at most zero.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "medium",
+        "rationale": "Claude's own proofs on paper plus tests and a stateful campaign; the author of the router is the author of the proofs; no independent review yet.",
+        "supporting_evidence_ids": [
+          "ev:claude-transitive-note-20261008",
+          "ev:claude-bootstrap-candidate-pr28-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A case found in Codex's adversarial review or in a campaign run in which a party loses more than it put at risk by a consent it signed, USDC is counted twice, or lenders lose more than k-1 base units on a router loan."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T15:10:35Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Codex adversarial review",
+          "Any change to the router, the vault or the pool backing rules"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:manager-gate-closes-origination-bypass-20261008"
+      ]
+    },
+    {
+      "id": "claim:two-hop-router-open-limits-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "stated_limits",
+      "statement": "Open for the two-hop router: a mid has no capital at risk, so a mid's incentive to vouch for a bad borrower is not bounded on chain (the roots bear the cost, within their consents); distinct addresses of one person are not detected; the submitter of a certificate picks the paths among the consents it holds; the borrower chooses term and vendor inside the consents; the pool owner, guardian and oracle can change parameters or set a score override; a griefer can fill a managed borrower's 32 backer slots and block the vault (liveness, not safety); token blacklisting or pausing could trap a withdrawal; stake earns nothing at the current parameters, so a root is a sponsor, not an investor; depth above two is not implemented; the pool bytecode is not deployed and no public receipt exists.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Claude's own statement of the limits in the router specification and the theory note.",
+        "supporting_evidence_ids": [
+          "ev:claude-transitive-note-20261008",
+          "ev:claude-bootstrap-candidate-pr28-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A limit the review shows is understated, or one the code closes."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T15:10:35Z",
+        "recheck_by": "2026-10-09T10:00:00Z",
+        "recheck_on": [
+          "Codex adversarial review"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -14685,7 +15110,8 @@
         "Explicit fee disclosure/cap and tested LP/reserve/sponsor allocation for sub-day work; no delay merely to charge interest.",
         "Bind chain8453/token/ACP implementation/jobId/loanId/payer/payee/amount/nonce/expiry; forbid duplicate/stale settlement and unrelated withdrawal of committed proceeds.",
         "Acceptance/refund/default tests, preserve sponsor consent and finite backing; no transitive double count.",
-        "Retain Sepolia/mainnet separation; measure full deployment+pilot gas within5USD before funds."
+        "Retain Sepolia/mainnet separation; measure full deployment+pilot gas within5USD before funds.",
+        "The pre-order loan cannot attach to a later order and a refunded order's signed advance cannot be broadcast (negative fixtures: testNoLoanCanExistBeforeTheOrderSoNoneCanBeBoundToIt, testRefundThenBroadcastTheSignedAdvanceFails), with wrong vendor, amount, term, max APR, nonce, deadline and job hash each rejected."
       ],
       "not_before": null,
       "due_at": null,
@@ -15111,21 +15537,24 @@
         "agent:codex",
         "agent:hermes"
       ],
-      "status": "ready",
+      "status": "in_progress",
       "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:risk-research",
         "goal:deployment-readiness"
       ],
       "rationale_claim_ids": [
-        "claim:transitive-trust-endstate-20261007",
         "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
-        "claim:transitive-trust-sybil-limit",
+        "claim:claude-sync-response-20261008",
         "claim:codex-sync-amendments-20261008",
-        "claim:claude-sync-response-20261008"
+        "claim:transitive-router-needs-pool-manager-gate-20261008",
+        "claim:transitive-trust-endstate-20261007",
+        "claim:transitive-trust-sybil-limit",
+        "claim:two-hop-router-cover-and-attribution-20261008",
+        "claim:two-hop-router-open-limits-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "In the theory repository by 2026-10-09 10:00Z: a theorem statement for consented, stake-rooted, bounded-depth allocation certificates with global reservation (each root's live allocations never exceed its eligible stake; every edge within its consent; no resource counted twice across parallel paths, cycles or aliases) with the proof of the static bound; the dynamic cases (partial repayment, cancellation, simultaneous reservations, stake exit, rounding residuals, legacy grants, default charged along the path) each as a lemma with its proof where it holds or marked open where it does not; and the fixture list mapped onto the existing invariant handler. No pool code before the proof.",
+      "deliverable": "In the theory repository by 2026-10-09 10:00Z: a theorem statement for consented, stake-rooted, bounded-depth allocation certificates with global reservation (each root's live allocations never exceed its eligible stake; every edge within its consent; no resource counted twice across parallel paths, cycles or aliases) with the proof of the static bound; the dynamic cases (partial repayment, cancellation, simultaneous reservations, stake exit, rounding residuals, legacy grants, default charged along the path) each as a lemma with its proof where it holds or marked open where it does not; and the fixture list mapped onto the existing invariant handler. No pool code before the proof. Fixtures added by the Codex lane (2026-10-08 13:46Z): post-direct-repayment direct, request-meta and borrow-and-disburse bypass attempts, and the equality between managed pool exposure and router-recorded active principal. Delivered as a draft at theory main 856d7fb (transitive-allocation/NOTE.md): the bypass attempts are a handler action and a unit test; the equality is invariant R7. Acceptance still waits for the Codex lane's adversarial review.",
       "acceptance_criteria": [
         "Codex's adversarial review finds no case in which a party loses more than it put at risk directly, or names the case and it is marked open.",
         "Every fixture named maps to an existing handler action or a named new one."
@@ -15141,7 +15570,188 @@
       "stop_conditions": [
         "No pool code before the proof."
       ],
-      "outcome_evidence_ids": []
+      "outcome_evidence_ids": [
+        "ev:claude-transitive-note-20261008"
+      ]
+    },
+    {
+      "id": "action:codex-independent-bootstrap-candidate-review",
+      "title": "Independently reproduce the exact candidate and reconcile every bootstrap acceptance gate",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:codex-independent-escrow-admission-gaps-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "Pinned source/ABI/build review, adversarial settlement/admission/loss fixtures, public candidate receipt and subsidy reconciliation; return exact failed gates and owners. Initial frozen escrow characterization is delivered, not overall acceptance.",
+      "acceptance_criteria": [
+        "Independent source and public receipt reproduction for the exact reviewed candidate.",
+        "Officer-free implemented continuation, useful necessary-financing economics and practical human route assessed separately; no mechanics-only approval.",
+        "Every failed check has an owner and next experiment."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Operator role handoff and strategy6059757413 readiness directive",
+        "Claude candidate and Hermes receipts"
+      ],
+      "due_at": "2026-10-08T22:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator autonomous team/repository research authorization; original funds and testnet scope preserved.",
+      "spending": "none",
+      "stop_conditions": [
+        "Do not approve bootstrap from local tests alone.",
+        "Do not mutate another active author checkout or sign from stale state."
+      ],
+      "outcome_evidence_ids": [
+        "ev:codex-independent-escrow-review-20261008"
+      ]
+    },
+    {
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bootstrap-ready-deadline-20261009",
+        "claim:escrow-exact-intent-binding-required-20261008",
+        "claim:manager-gate-closes-origination-bypass-20261008",
+        "claim:transitive-router-needs-pool-manager-gate-20261008",
+        "claim:two-hop-router-cover-and-attribution-20261008"
+      ],
+      "dependency_action_ids": [
+        "action:ci30-fix"
+      ],
+      "not_before": "2026-10-08T12:19:47Z",
+      "triggers": [
+        "Operator next-sync delivery direction",
+        "Candidate/code/review/receipt change at existing hourly follow-through",
+        "Claude's candidate status and PR 28 (2026-10-08 15:05Z)"
+      ],
+      "due_at": "2026-10-09T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator autonomous readiness directive, existing testnet implementation authority. Preserve custody, original pool/source5, noreply Git lease and maintainer review.",
+      "spending": "none",
+      "stop_conditions": [
+        "Never mark readiness on missing evidence; repair continues after deadline if necessary.",
+        "No mainnet or real-value transaction.",
+        "Preserve original pool and source5 restoration; failed actual-order admission does not stop engineering."
+      ],
+      "outcome_evidence_ids": [
+        "ev:claude-bootstrap-candidate-status-20261008",
+        "ev:claude-bootstrap-candidate-pr28-20261008",
+        "ev:claude-transitive-note-20261008"
+      ],
+      "id": "action:bootstrap-candidate-by-next-sync",
+      "title": "Implement and integrate bootstrap candidate by October9 sync",
+      "owner_id": "agent:claude",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "deliverable": "Resolve the two settlement/resource clauses; candidate architecture and task split14Z Oct8, reviewable contract/adapter/proof18Z. Apply/reproduce Codex exact patch contract27 comment6060036364 via noreply-safe checkout. Provide consenting test-order debt-first settlement/failure/refund route, exact commit/build/ABI/deployment packet, and required transitive proof/fixtures plus honest implementation status. Readiness-critical Oct9/10 internal deadlines accelerated; original human-rail roadmap remains separately scoped. Claude's assent and status (2026-10-08 15:05Z): contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router with tests; reviewable at head 6ef3419; the Codex lane's independent review is due 22:00Z, fixes before 06:00Z, then the ordered packet for Hermes. Not accepted as complete: no public-chain receipt, pool not deployed, mids have no capital at risk.",
+      "acceptance_criteria": [
+        "Actual Claude assent/amendment and branch required; no silence-based agreement.",
+        "Exact candidate passes relevant suite and independent Codex review.",
+        "Controlled settlement binds consenting payer,order,worker,pool/loan and recipient; repeat/replay/failure/insufficient-funding tests pass.",
+        "Officer-free transitive target remains explicit; one-hop evidence cannot silently satisfy two-hop implementation."
+      ]
+    },
+    {
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bootstrap-ready-deadline-20261009"
+      ],
+      "dependency_action_ids": [
+        "action:ci30-fix"
+      ],
+      "not_before": "2026-10-08T12:19:47Z",
+      "triggers": [
+        "Operator next-sync delivery direction",
+        "Candidate/code/review/receipt change at existing hourly follow-through"
+      ],
+      "due_at": "2026-10-09T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator autonomous readiness directive, existing testnet implementation authority. Preserve custody, original pool/source5, noreply Git lease and maintainer review.",
+      "spending": "none",
+      "stop_conditions": [
+        "Never mark readiness on missing evidence; repair continues after deadline if necessary.",
+        "No mainnet or real-value transaction.",
+        "Preserve original pool and source5 restoration; failed actual-order admission does not stop engineering."
+      ],
+      "outcome_evidence_ids": [],
+      "id": "action:bootstrap-acceptance-by-next-sync",
+      "title": "Verify bootstrap candidate and reconcile release evidence",
+      "owner_id": "agent:codex",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "deliverable": "Codex nine-test source packet already executed and handed to Claude; continue candidate adversarial review, independent reproduction and measured cost/accounting comparisons. Review22Z Oct8, receipts reconcile08Z Oct9; final readiness verdict10Z. Exact patch durable at contract27, source publication not yet observed.",
+      "acceptance_criteria": [
+        "Full suite result and CI30 negative control preserved, skipped public tests explicit.",
+        "Consent, replay, cancellation, partial/rounding, default and shared-resource cases checked.",
+        "Code/ABI/runtime/tx and before-after balances tied to exact candidate.",
+        "No economic bootstrap claim without independent order/borrower/positive all-in economics."
+      ]
+    },
+    {
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bootstrap-ready-deadline-20261009"
+      ],
+      "dependency_action_ids": [
+        "action:ci30-fix"
+      ],
+      "not_before": "2026-10-08T12:19:47Z",
+      "triggers": [
+        "Operator next-sync delivery direction",
+        "Candidate/code/review/receipt change at existing hourly follow-through"
+      ],
+      "due_at": "2026-10-09T10:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator autonomous readiness directive, existing testnet implementation authority. Preserve custody, original pool/source5, noreply Git lease and maintainer review.",
+      "spending": "existing_authorized_commitment",
+      "stop_conditions": [
+        "Never mark readiness on missing evidence; repair continues after deadline if necessary.",
+        "No mainnet or real-value transaction.",
+        "Preserve original pool and source5 restoration; failed actual-order admission does not stop engineering."
+      ],
+      "outcome_evidence_ids": [],
+      "id": "action:bootstrap-candidate-testnet-execution",
+      "title": "Prepare and execute reviewed isolated candidate on Base Sepolia",
+      "owner_id": "agent:hermes",
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "deliverable": "Accepted custody/runner lane receipt6059899507. Prepare fresh roles and funded relayer now, execute only reviewed packet byOct9 06Z, reconciliation08Z, repair buffer10Z.7.5USDC layout(5liquidity+1stake+1.5testpayer), outside-pool funding only after source5 reconciliation. Originalpool15 never candidate capital. Fresh zero-ETH borrower, vendor-directed advance, controlled settlement, safe restart/exits; label fork time travel separately.",
+      "acceptance_criteria": [
+        "Reviewed exact commit, constructor args, script, ABI and runtime fingerprint received.",
+        "Public candidate receipts and gas/USDC ledgers plus retry/no-double-settlement proof.",
+        "Original pool and root-held signatures untouched; protected reserve and rounding accounted.",
+        "Custodian supplies actual completion or concrete blocker; no inferred execution."
+      ]
     }
   ],
   "decisions": [
@@ -15825,8 +16435,22 @@
       ],
       "resolution_evidence_needed": "The NBE's text and counsel's reading, cited by the Codex lane in its country comparison.",
       "blocks_action_ids": []
+    },
+    {
+      "id": "question:escrow-funded-order-or-refinancing-20261008",
+      "owner_id": "agent:claude",
+      "question": "Does the funded-order adapter intentionally authorize existing worker debt and post-refund origination, or must payer/worker consent atomically bind the exact job/input/request before vendor disbursement? Answered by Claude (2026-10-08): the adapter does not authorize existing debt or post-refund origination. Payer and worker bind the exact pool intent, originate verifies it and binds the loan atomically, a loan cannot exist for a managed worker outside the adapter, and a refund consumes the commitment; a refund after origination leaves the worker's debt and the sponsor's exposure in place. Code and negative fixtures at contract PR 28; Hermes's rehearsal and the Codex review remain.",
+      "related_ids": [
+        "action:codex-independent-bootstrap-candidate-review",
+        "action:contract-v2-transitive-and-guards",
+        "claim:codex-independent-escrow-admission-gaps-20261008",
+        "claim:escrow-exact-intent-binding-required-20261008",
+        "claim:manager-gate-closes-origination-bypass-20261008"
+      ],
+      "resolution_evidence_needed": "Claude explicit semantics, code and negative race/unrelated-loan fixtures; Hermes reviewed-candidate rehearsal. No new author assignment is inferred from this question.",
+      "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.83",
-  "updated_at": "2026-10-08T10:45:23Z"
+  "model_version": "0.1.84",
+  "updated_at": "2026-10-08T15:10:35Z"
 }
