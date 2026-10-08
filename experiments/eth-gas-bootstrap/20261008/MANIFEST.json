@@ -12,8 +12,8 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 10691,
-    "sha256": "5197d680cda2781b7d8fa9e7bdf4ebe83f1f26df1a36f1e49b1249062dbbdd9b"
+    "bytes": 13247,
+    "sha256": "d53f3735ca35d6b178d36bd893d5a4b2f5f46a624f0dc162daebf1962888b9f7"
   },
   "audit-harvest-only.py": {
     "bytes": 12795,
@@ -38,6 +38,42 @@
   "hermes-ptv5-r1/raw.json": {
     "bytes": 79858,
     "sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e"
+  },
+  "hermes-ptv5-r12/README.md": {
+    "bytes": 1291,
+    "sha256": "8df81dde586be9f32cb0ebcfef061ce0fc9d954f7d95fbe96630c008521bf3b5"
+  },
+  "hermes-ptv5-r12/SHA256SUMS": {
+    "bytes": 645,
+    "sha256": "d181a8a9312cf5308fd2591e056fd5b5a2f9b8dcb9c49cf399b324443b2bc972"
+  },
+  "hermes-ptv5-r12/beefy-ranked-r12.json": {
+    "bytes": 17096,
+    "sha256": "72ed30f3f9b1f16ea2393c0901b0b6cd63ced7f2e6dbaebb46717b320239da97"
+  },
+  "hermes-ptv5-r12/beefy-ranked-r12.mjs": {
+    "bytes": 4471,
+    "sha256": "43b488f7dde8ead3674bc9c09cd5a7c928cc2402c9e861a0fd5fcd925f9bf9b6"
+  },
+  "hermes-ptv5-r12/registry.json": {
+    "bytes": 1438426,
+    "sha256": "9444a807f47f72844e221854cd8b058b2f0e7995b9978fa2345df0755cdc5a62"
+  },
+  "hermes-ptv5-r12/select.py": {
+    "bytes": 1180,
+    "sha256": "31ea03c0e55143f50049873c5cfb990172a36dd538629323e676357cf1bc800d"
+  },
+  "hermes-ptv5-r12/selected.json": {
+    "bytes": 2661,
+    "sha256": "1df7b441ab853d9cea296b372baafd6c8a87114478df8f067eb3764a48601514"
+  },
+  "hermes-ptv5-r12/tvl.json": {
+    "bytes": 220658,
+    "sha256": "02e556c37067b44066fcccd9aa79a6c884f2ce6c0e7abc6245c8a39bd84ff2d7"
+  },
+  "hermes-ptv5-r12/tvl_readtime.txt": {
+    "bytes": 21,
+    "sha256": "0d62fd920c9c10481a95fbf71dac376d840612f7240726eb80564975b4ca6e37"
   },
   "hermes-ptv5-r6/README.md": {
     "bytes": 2986,
@@ -144,12 +180,40 @@
     "sha256": "dae7972445844b1b7301d43ff043b7d0a206f18cca78929ce1d317acca6d40aa"
   },
   "read-only-harvest-cycle-quote.mjs": {
-    "bytes": 19396,
-    "sha256": "fb073fb66d1f0db902e8bda3cc28277a69ae75d21e21c6e830cc67b801d31041"
+    "bytes": 22288,
+    "sha256": "192513a8384a6d80a0d8ff2f9e2ee20c16ed14b65a02ac85d4c03d74b69d7e13"
   },
   "read-only-winner-probe.mjs": {
     "bytes": 12863,
     "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
+  },
+  "reviews/keeper-negative-next-step.md": {
+    "bytes": 4109,
+    "sha256": "c8e3a557438e5b124af0f367b1dbfa1bd499e94f379faf9d28a534ef6afdfed6"
+  },
+  "reviews/ranked-harvest-independent-review.md": {
+    "bytes": 7226,
+    "sha256": "d1832da29f74c04f883af3db3a5d33658042d306473f02207ecfb4cdb7cb81b2"
+  },
+  "reviews/team-blog-signature-verification.md": {
+    "bytes": 1863,
+    "sha256": "3088ebe830ae41ebfb06f25963dcd14cc42d8b865caa3a05c09edd8cbf7daec4"
+  },
+  "reviews/usdc-aero-accrual-read-scope.json": {
+    "bytes": 9299,
+    "sha256": "f48404d3f5f563f88e30d6b294369d15647a73ec532f2c68392711c03efc27a4"
+  },
+  "sign-exact-harvest-phase-review.md": {
+    "bytes": 3005,
+    "sha256": "ea5cde49cbe6e5d711d7871adca6b74146eef822cf4896317be94226aa49d2c7"
+  },
+  "sign-exact-harvest-phase.mjs": {
+    "bytes": 24574,
+    "sha256": "319b57163183392cc814fcc05f545c01bf0010dd3f200efb3f7c8667a4b63294"
+  },
+  "sign-exact-harvest-phase.synthetic-test.mjs": {
+    "bytes": 13074,
+    "sha256": "b602a7fa7d0c43b6f1d6e598b402cce4e255dfe2e578736500ea80984da2081b"
   },
   "test_audit_harvest_negative_controls.py": {
     "bytes": 6638,

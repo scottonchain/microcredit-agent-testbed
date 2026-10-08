@@ -1,0 +1,102 @@
+{
+ "rule": "status=active,type=standard,not cow (id/token/type contains cow), tvl>0, not tested8, top16 by tvl",
+ "eligible": 71,
+ "candidates": [
+  {
+   "id": "aerodrome-usdc-mai",
+   "vault": "0x22F8ff24861a7F7e2ec9b19C5668b43bB69202E3",
+   "tvl": 1336032.1329891537,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-usdc-aero",
+   "vault": "0xc005B9833deBcF5fe6cc5bC9ba4fD74Bb382ae55",
+   "tvl": 1138774.8716366314,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-weth-mseth",
+   "vault": "0x4187d53fa448dc18dA79acCd27112fF065216471",
+   "tvl": 742029.029996561,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-weth-bsdeth",
+   "vault": "0xB614A6E6c21202De79DceB95AE2dd4817DD7e14b",
+   "tvl": 378506.707135959,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-weth-usdc",
+   "vault": "0x09139A80454609B69700836a9eE12Db4b5DBB15f",
+   "tvl": 346872.3864483318,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-usdc-eusd",
+   "vault": "0x8bd6dF821513aECDbbaa29C1d5212b43fdCe7819",
+   "tvl": 297538.3436382268,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-weth-vvv",
+   "vault": "0x4794158d7587961B1C462c0774A06C95018a854B",
+   "tvl": 233621.9453586039,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-dola-usdc",
+   "vault": "0x5A47993216fa6ACaf93418f9830cee485e82d0ba",
+   "tvl": 228465.71996428794,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-lcap-usdc",
+   "vault": "0xd522B8C635625E4EC4ED80d147A07F27cEEa5547",
+   "tvl": 199601.24023136668,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-msusd-usdc",
+   "vault": "0x753Ff04FF5DD67e756405b2eDD9bba41aa63C5e9",
+   "tvl": 180316.9258701549,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-weth-lcap",
+   "vault": "0x028baCa249B33d24FC32ac01d6531F6be0061c8E",
+   "tvl": 167977.29390941822,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-ovn-usd+",
+   "vault": "0x98bEAa72230788572e3e3Be58D91C232dda315d4",
+   "tvl": 144665.5347534779,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-jeur-eurc",
+   "vault": "0xD8491D0F4339adB074fb85948ce5f8bAF23F09A2",
+   "tvl": 124243.72358557563,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "curve-base-4pool",
+   "vault": "0xC3718d05478Edab1C40F84E8a7A65ca49D039A9f",
+   "tvl": 121209.90538843861,
+   "strategyTypeId": "multi-lp"
+  },
+  {
+   "id": "aerodrome-cbbtc-edge",
+   "vault": "0xb0fbF668CDd01548973B74dA2001B2f78B6da99e",
+   "tvl": 81755.93007992602,
+   "strategyTypeId": "lp"
+  },
+  {
+   "id": "aerodrome-dola-usdbc",
+   "vault": "0xbE3F14312B08E9c6AEe6AeB27B37c08B661A7F83",
+   "tvl": 78050.54474508422,
+   "strategyTypeId": "lp"
+  }
+ ]
+}
