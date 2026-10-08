@@ -6674,6 +6674,117 @@
         "Documented parameters and source arithmetic, not new live transaction/state.",
         "CI30 fix, secured-edge state and actual paymaster first-transaction route remain execution gates."
       ]
+    },
+    {
+      "id": "ev:tigo-money-closure-secondary-2026",
+      "kind": "primary_public",
+      "url": "https://livinginguatemala.com/blog/tigo-money-remesas-suspension-2026/",
+      "locator": "Living in Guatemala, 'Tigo Money deja de recibir remesas internacionales' (verified May 2026 per the page), read through a search excerpt",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "Citing an official Tigo Guatemala notice, the page states that Tigo Money stops receiving international remittances permanently on 2026-03-31, that transfers sent to Tigo Money wallets are rejected at the sending end from 2026-04-01, that the Tigo Money app (Android and iOS) and web access close on 2026-04-01 with the USSD menu *789# remaining, and that Remitly, Western Union, Intermex and MoneyGram deliveries are affected. The Codex lane separately cites Tigo's hosted help-centre notice announcing the end of all Tigo Money operations on 2026-06-30 (ev:codex-guatemala-rail-audit-20261008).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "tigo-money-closure-secondary-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Secondary page; neither it nor Tigo's notice is reachable from Claude's host (DNS); dates are as the excerpt states them.",
+        "The page's claim that Claro users lose access entirely is not understood and not relied on."
+      ]
+    },
+    {
+      "id": "ev:contract-repay-interest-first",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/blob/30d7eeed83ea50cad9c103383865fbdb2c4a8959/packages/foundry/contracts/DecentralizedMicrocredit.sol#L1300-L1348",
+      "locator": "DecentralizedMicrocredit.sol at contract main 30d7eee, _repay (lines 1300 to 1330) and _closeLoan (1336 to 1348)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "_repay pulls min(amount, outstanding), books interest = min(paid, interestDue) first and the rest as principal, credits duesPaid with the reserve share of the interest booked, and closes the loan when owed minus paid is under CENT (10,000 units); _closeLoan on a repaid loan writes off the unpaid principal (totalLentOut reduced) and debits the first-loss reserve by min(unpaid, reserve). So a payment equal to the principal on a loan whose accrued interest is under a cent pays the interest in full and leaves sub-cent principal, which is forgiven and charged to the reserve.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "contract-repay-interest-first",
+      "derived_from_ids": [],
+      "limitations": [
+        "Read of the source, not a Forge trace; the Codex lane's 24-row reproduction (ev:codex-short-advance-accounting-review-20261008) is the executed check."
+      ]
+    },
+    {
+      "id": "ev:hermes-employer-seat-acceptance-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6052077734",
+      "locator": "testbed issue 15 comment 6052077734 (and Hermes's email of 2026-10-08 04:14Z, thread e96e752a)",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T04:15:09Z",
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "Hermes accepts action:bot-employer-seat (due 2026-10-31 12:00Z, testnet only) on four conditions: a fresh stake and backing snapshot of the live pool before any signing; no start until question:paymaster-on-base-sepolia and the CI-30 status are reported; created demand labelled in every receipt; a default run only after the loss order is written down in advance. Acknowledges the three sync agenda items. Arithmetic on the Friendship Bridge price: if a 2.6% a month flat loan amortises in equal monthly instalments (assumed; schedule not seen), the IRR is about 4.45% a month, 53% nominal a year at 12 months and 4.08% a month, 49% nominal at 4 months, so the gap to the pool's 9.33% to 18.33% is three- to five-fold; confirms 25 USDC x 9.33% x 7/365 = 44,732 units. No transaction, no money moved, nobody contacted.",
+      "content_sha256": "95c4f1d40f9e2c79874e81f9817322cac845a3906523782607e5166e48d05741",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "hermes-employer-seat-acceptance-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Hermes took the 2.6% figure and terms from Claude's mail, unverified by it."
+      ]
+    },
+    {
+      "id": "ev:codex-acceptance-gate-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6052330378",
+      "locator": "testbed issue 15 comment 6052330378, BOOTSTRAP-CODEX-ACCEPTANCE-GATE-20261008-r1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T04:35:34Z",
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "Codex relays a new operator direction, quoted: 'Don't let Claude stop until you are convinced its solution will work.' Codex owns independent acceptance of the bootstrap solution; the task stays open; acceptance requires (1) useful economic work with a genuine necessary funding gap and positive borrower and lender economics after measured costs, created demand separated from external revenue and subsidy; (2) repeatable execution receipts, the original three live scenarios included; (3) failure bounds with loss charged to the predicted party and CI-30 fixed and reviewed; (4) a new borrower receiving bounded, consented, stake-rooted capacity with officers offline and issuance zero on the implemented contract; (5) an operating authorised local payment route, lender or group, complete round-trip costs and an affordable all-party budget; (6) independent Codex reproduction. The current solution is not accepted: initial jobs need zero advance, prices are hypothetical, keeper economics are negative, CI-30 is unfixed, transitivity is proposed, the Guatemala payout route is unqualified.",
+      "content_sha256": "47a61b96a1e73e3248d3f35de90440c529b0788f738d36ec5f085bc2799d98e5",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-acceptance-gate-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "The operator's words are as Codex quotes them; the direction was given to Codex, and Claude did not see the original."
+      ]
+    },
+    {
+      "id": "ev:codex-independent-review-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6053186712",
+      "locator": "testbed issue 15 comment 6053186712, BOOTSTRAP-CODEX-INDEPENDENT-REVIEW-20261008-r1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T05:41:15Z",
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "Codex's closure-gate review of main 044ff9b (model 0.1.78), PR 37 head ecad00f (proposed 0.1.80) and contract main 30d7eee: NOT ACCEPTED as a complete bootstrap solution. Reproduced: 36 package checksums; admission.py keeps keeper r15 NO_LOAN; 14 invariant families, 15 model tests, schema and content checks; graduation.py's 0.485 then 0.06 USDC advances then two zero-loan cycles; human_25.py's 376,643 units of interest on 25 USDC for 30 days at 1,833 bps, a 1.4842% full-loss break-even before servicing, and external support of 384,657 / 1,145,956 / 2,161,022 units at 3% / 6% / 10% loss; the 24-row CI-30 arithmetic bit-for-bit against the public source. Defect: reproduce-short-advance-interest.py hard-codes a local path (Codex owns the correction). Gates: useful paid work FAIL; repeatable execution FAIL (live communities 0 of 3; Hermes's fork runner late); failure bounds and CI-30 FAIL (Claude owns a CI-30 branch or PR with regression tests at the 10:00Z sync); officer-free transitive trust FAIL; lawful human payment route FAIL (Tigo closed; no replacement rail); independent review PARTIAL PASS. The 12:00Z checkpoint must produce a funded order with a necessary gap or stop.",
+      "content_sha256": "00e3dbf9eca9b14c82a49846a4de3853965bcb314b4445d907262eab23ceed4e",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "codex-independent-review-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Codex's own reproduction of Codex's package; Claude reproduced the record-level model diff and the validator, not the 36 files."
+      ]
+    },
+    {
+      "id": "ev:pr37-merge-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/commit/0bb4cc0",
+      "locator": "testbed main merge commit 0bb4cc0 (PR 37 head ecad00f onto 044ff9b)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T06:15:42Z",
+      "retrieved_at": "2026-10-08T06:15:42Z",
+      "summary": "Claude merged PR 37 from the checkout with --no-ff after reviewing it: the model gained 2 entities, 34 evidence, 39 claims, 1 hypothesis, 3 actions and 4 questions; six existing claims gained counterevidence links and five actions gained appended text and status changes; no record was removed; schema valid, 15 tests, public-content check clean on the range; authorship noreply. The three append-only handoffs of 2026-10-08 01:40Z to 01:58Z (comments 6050413845, 6050551777, 6050602043) are carried by their ids in this PR. Open item for the Codex lane: the hard-coded path in reproduce-short-advance-interest.py.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "pr37-merge-20261008",
+      "derived_from_ids": [
+        "ev:codex-independent-review-20261008"
+      ],
+      "limitations": [
+        "Record-level review; the 36-file evidence package was not re-executed by Claude."
+      ]
     }
   ],
   "claims": [
@@ -9761,7 +9872,7 @@
       "id": "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
       "subject_id": "work:bootstrap",
       "predicate": "required_post_bootstrap_architecture",
-      "statement": "After cold start, algorithmic creditworthiness is based on the trust graph and staking with transitive trust, without discretionary credit-officer grants required for continued operation. Officers are redirected to productive work/evidence/participant/security roles. This is the operator-required target; existing received backing is nontransitive, so contract and migration work must conserve shared backing and state default liability.",
+      "statement": "After cold start, algorithmic creditworthiness is based on the trust graph and staking with transitive trust, without discretionary credit-officer grants required for continued operation. Officers are redirected to productive work/evidence/participant/security roles. This is the operator-required target; existing received backing is nontransitive, so contract and migration work must conserve shared backing and state default liability. This restates, from the operator's further clarification to Codex, the direction recorded to Claude in claim:transitive-trust-endstate-20261007; the two records are one direction, and action:transitive-trust-sync carries both.",
       "epistemics": {
         "status": "directive",
         "confidence": "high",
@@ -9781,7 +9892,9 @@
         ]
       },
       "supersedes_ids": [],
-      "derived_from_claim_ids": []
+      "derived_from_claim_ids": [
+        "claim:transitive-trust-endstate-20261007"
+      ]
     },
     {
       "id": "claim:codex-grounded-bootstrap-reference-progress-20261007",
@@ -11042,13 +11155,14 @@
       "id": "claim:friendship-bridge-model-partner",
       "subject_id": "venue:friendship-bridge",
       "predicate": "partner_type_evidence",
-      "statement": "Friendship Bridge lends to more than 34,000 women in Guatemala (2022) through Trust Banks of 7 to 25 women who co-guarantee one another, in four- to twelve-month cycles averaging about $400 to $501 at a flat 2.6% a month including fees (about 31% a year on the original principal, by arithmetic), with classes at the repayment meeting, and reports repayment above 99% in 2022: a working group-liability lender whose Trust Bank is the backing graph the contract models and whose price is what the pool's 9.33% to 18.33% must be measured against.",
+      "statement": "Friendship Bridge lends to more than 34,000 women in Guatemala (2022) through Trust Banks of 7 to 25 women who co-guarantee one another, in four- to twelve-month cycles averaging about $400 to $501 at a flat 2.6% a month including fees (about 31% a year on the original principal, by arithmetic), with classes at the repayment meeting, and reports repayment above 99% in 2022: a working group-liability lender whose Trust Bank is the backing graph the contract models and whose price is what the pool's 9.33% to 18.33% must be measured against. If the loan amortises in equal monthly instalments (schedule not seen), the effective rate is about 4.45% a month, 53% nominal a year over twelve months (Hermes's arithmetic), so the gap to the pool's price is three- to five-fold rather than two- to three-fold.",
       "epistemics": {
         "status": "observed",
         "confidence": "medium",
         "rationale": "Kiva's partner profile and older secondary sheets; the organisation's own site was unreachable from Claude's host.",
         "supporting_evidence_ids": [
-          "ev:friendship-bridge-kiva-profile"
+          "ev:friendship-bridge-kiva-profile",
+          "ev:hermes-employer-seat-acceptance-20261008"
         ],
         "counterevidence_ids": [],
         "falsifier": "The organisation's current annual report giving materially different scale, price or repayment figures."
@@ -11070,7 +11184,7 @@
       "predicate": "country_assessment",
       "statement": "Guatemala meets the operator's criterion and has a lawful route: 11.4 million unique mobile subscribers and 20.6 million connections, 89% on smartphones, 95% mobile internet coverage with a 49% usage gap; 56% national poverty, 16.2% extreme, 9.5% below $2.15 a day; Tigo Money across 92% of the territory; Decree 15-2026 (in force from about 2026-09-17) puts virtual-asset providers under the IVE, and microfinance lenders are regulated under Decree 25-2016 with a non-profit registry; so a registered microfinance partner as lender of record plus an IVE-supervised ramp is the likely structure, with the Tigo Money USDC rail and the IVE's registration rules still to be found.",
       "epistemics": {
-        "status": "observed",
+        "status": "superseded",
         "confidence": "medium",
         "rationale": "Several independent sources on reach, poverty and the new law; the legal structure is the project's reading pending counsel.",
         "supporting_evidence_ids": [
@@ -11187,7 +11301,7 @@
       "predicate": "pricing_fact",
       "statement": "At the live parameters a 25 USDC advance for 7 days accrues 44,732 units of interest (20,129 dues), 25 USDC for 2 days 12,780, 10 USDC for 4 days 10,224; below about 39 USDC-days the interest is under one cent and is forgiven at closing when the principal is repaid (5 USDC for 7 days: 8,946 units), and a loan repaid within 24 hours pays nothing; at 25 USDC for 7 days it takes 50 repaid cycles to earn the 1 USDC of dues that is the smallest backing. So short bot advances earn lenders nothing at 9.33% unless the contract gains a one-cent minimum interest or a term floor, and a bot's own credit grows from backing, not history.",
       "epistemics": {
-        "status": "inferred",
+        "status": "superseded",
         "confidence": "high",
         "rationale": "Arithmetic on the contract's formula and the closing rule that CI-30 and AdvanceFacts pin; not yet a Forge test at these exact values.",
         "supporting_evidence_ids": [
@@ -11355,6 +11469,130 @@
       },
       "supersedes_ids": [],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:guatemala-payout-route-unqualified-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "country_assessment",
+      "statement": "Guatemala keeps the need (56% national poverty, 16.2% extreme, 9.5% below $2.15 a day) and the reach (11.4 million unique subscribers, 89% of connections on smartphones), and a plausible legal structure (a supervised microfinance partner under Decree 25-2016 as lender of record, since the non-profit route forbids third-party deposits and debt issuance, plus a VASP supervised by the IVE under Decree 15-2026 as the ramp, counsel to confirm), but no operating authorised payout route: Tigo Money stopped receiving international remittances on 2026-03-31 and closed its app and web access on 2026-04-01, and Tigo's hosted notice as read by the Codex lane ends all Tigo Money operations on 2026-06-30; so Guatemala is first for research only until a licensed bank or e-money exit is found and quoted with its fees, limits and delay.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Reach and poverty from the same sources as the superseded claim; the closure from a secondary page citing Tigo's notice and from Codex's reading of the notice itself; the legal structure is the project's reading pending counsel.",
+        "supporting_evidence_ids": [
+          "ev:tigo-money-closure-secondary-2026",
+          "ev:codex-guatemala-rail-audit-20261008",
+          "ev:guatemala-mobile-reach-2026",
+          "ev:guatemala-poverty-encovi-2023",
+          "ev:guatemala-decree-15-2026",
+          "ev:guatemala-tigo-money"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Tigo's current pages showing Tigo Money operating with inbound transfers after 2026-06-30, or a licensed replacement exit quoted end to end."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T06:15:42Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The Codex lane's country comparison due 2026-10-09 12:00Z",
+          "Counsel's reading (deployment gate 1)"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:guatemala-reach-poverty-and-route"
+      ],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:short-advance-accounting-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "pricing_fact",
+      "statement": "At the live parameters a 25 USDC advance for 7 days accrues 44,732 units of interest (20,129 dues), 25 USDC for 2 days 12,780, 10 USDC for 4 days 10,224, and below about 39 USDC-days the interest is under one cent. The contract settles interest first, so a payment equal to the principal pays the interest in full (and its dues) and leaves a sub-cent principal remainder that the closing rule forgives and charges to the first-loss reserve: on 5 USDC for 7 days the lenders receive 8,946 units of interest and write off 8,946 units of principal, a net financing charge of zero paid for by the reserve (CI-30). A payment of the full outstanding amount collects the interest however small; a loan repaid within 24 hours owes nothing. So the CI-30 fix comes before any pricing change (with it, the sub-cent principal stays owed), a term floor cannot help because repayment is allowed at any time, and a floor for lenders on short advances can only be a minimum interest per loan. At 25 USDC for 7 days it still takes 50 repaid cycles to earn 1 USDC of dues, so a bot's own credit grows from backing, not history.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "The contract source read directly, Codex's 24-row reproduction against the public blob, and the arithmetic record; corrects the superseded claim, which called the forgiven remainder interest.",
+        "supporting_evidence_ids": [
+          "ev:contract-repay-interest-first",
+          "ev:codex-short-advance-accounting-review-20261008",
+          "ev:bot-advance-arithmetic-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A Forge trace at the live parameters in which a principal-sized payment on a 5 USDC, 7-day loan leaves interest unpaid rather than principal forgiven, or accrues other than 8,946 units."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T06:15:42Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The CI-30 fix",
+          "Any change to the live rates or the closing rule"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:short-advance-price-at-live-parameters"
+      ],
+      "derived_from_claim_ids": [
+        "claim:ci30-cash-take-20261007"
+      ]
+    },
+    {
+      "id": "claim:codex-acceptance-gate-direction-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_acceptance",
+      "statement": "The operator told Codex not to let Claude stop until Codex is convinced the solution will work; Codex therefore owns independent acceptance of the bootstrap solution against six gates (useful economic work with a necessary funding gap; repeatable execution receipts; failure bounds with CI-30 fixed and reviewed; officer-free stake-rooted capacity on the implemented contract; an operating authorised human payment route with an all-party budget; independent reproduction), and the current solution is not accepted.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Relayed by Codex on the board with the operator's words quoted; consistent with the operator's direction to Claude to keep Codex honest and not let it stop.",
+        "supporting_evidence_ids": [
+          "ev:codex-acceptance-gate-20261008",
+          "ev:codex-independent-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:35:34Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any revised operator instruction",
+          "Each Codex review"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:human-borrowing-requirement-20261008"
+      ]
+    },
+    {
+      "id": "claim:bot-first-run-mechanics-only-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "milestone_definition",
+      "statement": "The first three verification jobs the project needs can be done with free or team-supplied inputs, so their necessary advance is zero; the phase 0b first run therefore tests the product's mechanics (advance, gas paid in USDC through a paymaster, third-party repayment from proceeds, dues, backing release, the loss order on one default) with an advance labelled unnecessary, and the economic milestone is separate: an advance that buys a paid input the job cannot start without, with price, payer and proceeds on record. The relayer that disburses the advance pays that transaction's gas, a subsidy counted in the cost per loan; the paymaster then spends USDC the agent already holds, so zero ETH is never zero USDC.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Follows from Codex's job-board admission result and the paymaster's funding rule; adopted into the plan's phase 0b gate.",
+        "supporting_evidence_ids": [
+          "ev:codex-independent-review-20261008",
+          "ev:circle-paymaster-usdc-gas",
+          "ev:codex-acceptance-gate-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A verification job the project needs whose paid input cannot be supplied by the team and must be bought before the job pays, found before the first run."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T06:15:42Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The job board",
+          "The first run"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:paymaster-meets-gas-need"
+      ]
     }
   ],
   "edges": [
@@ -14000,7 +14238,7 @@
         "claim:codex-grounded-bootstrap-reference-progress-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md.",
+      "deliverable": "A reviewed contract change: close short only when the rest is unpaid interest (rest < CENT and rest <= interest due) and book only the paid part of the interest at closing; the seven tests that encode today's forgiveness rewritten (five CI-30 facts, testForgivenSubCentCannotBrickThePool, the invariant ledger model); CI-30 closed in docs/CREDIT_INTEGRITY_ISSUES.md. Codex's acceptance gate 3 (2026-10-08): the 10:00Z sync must produce the reviewed CI-30 artifact; Claude opens the fix as a pull request on the contract repository with the rewritten tests, on the designated branch, for review at the sync.",
       "acceptance_criteria": [
         "Full Forge suite and invariants pass.",
         "The pool stays under EIP-170 (prototype: 170 bytes of margin).",
@@ -14008,9 +14246,10 @@
       ],
       "not_before": "2026-10-08T10:00:00Z",
       "triggers": [
-        "After the 2026-10-08 sync"
+        "After the 2026-10-08 sync",
+        "Codex acceptance gate 3 (ev:codex-acceptance-gate-20261008)"
       ],
-      "due_at": null,
+      "due_at": "2026-10-08T16:00:00Z",
       "external_consent": "not_required",
       "permission_basis": "Maintainer fix of a tracked credit-integrity issue; no deployment.",
       "spending": "none",
@@ -14080,12 +14319,12 @@
         "goal:deployment-readiness"
       ],
       "rationale_claim_ids": [
-        "claim:transitive-trust-endstate-20261007",
+        "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
+        "claim:codex-grounded-bootstrap-reference-progress-20261007",
+        "claim:codex-realistic-cold-start-results-20261007",
         "claim:credit-officer-cold-start-sync",
         "claim:sponsored-claim-conditions-20261007",
-        "claim:codex-realistic-cold-start-results-20261007",
-        "claim:algorithmic-transitive-staking-post-bootstrap-20261007",
-        "claim:codex-grounded-bootstrap-reference-progress-20261007"
+        "claim:transitive-trust-endstate-20261007"
       ],
       "dependency_action_ids": [],
       "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing.",
@@ -14350,14 +14589,15 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
-        "claim:target-countries-direction-20261008",
-        "claim:guatemala-reach-poverty-and-route",
+        "claim:cash-out-rail-required",
         "claim:ethiopia-no-lawful-usdc-route-20261008",
         "claim:friendship-bridge-model-partner",
-        "claim:start-inside-existing-trust-structure",
-        "claim:lender-of-record-required",
-        "claim:cash-out-rail-required",
+        "claim:guatemala-payout-route-unqualified-20261008",
+        "claim:guatemala-reach-poverty-and-route",
         "claim:human-cost-loss-unqualified-20261008",
+        "claim:lender-of-record-required",
+        "claim:start-inside-existing-trust-structure",
+        "claim:target-countries-direction-20261008",
         "claim:target-human-routes-unqualified-20261008"
       ],
       "dependency_action_ids": [],
@@ -14485,13 +14725,15 @@
         "goal:poverty"
       ],
       "rationale_claim_ids": [
-        "claim:bot-economy-first-direction-20261008",
         "claim:bot-advance-product-design-20261008",
+        "claim:bot-economy-first-direction-20261008",
+        "claim:bot-first-run-mechanics-only-20261008",
         "claim:paymaster-meets-gas-need",
+        "claim:short-advance-accounting-20261008",
         "claim:short-advance-price-at-live-parameters"
       ],
       "dependency_action_ids": [],
-      "deliverable": "On Base Sepolia: one agent wallet holding no ETH takes a 5 USDC advance (backed by an employer's stake or an officer line), pays its gas in USDC through a paymaster (Circle Paymaster if it serves the testnet, else a test paymaster), runs two_hop_check.py against the live pool, is paid by the team's treasury, and the employer repays through repayLoan on its behalf; every transaction hash, the paymaster fee and the cost per loan in this repository; then the same for ten advances with one default charged to an employer's stake.",
+      "deliverable": "On Base Sepolia: one agent wallet holding no ETH takes a 5 USDC advance (backed by an employer's stake or an officer line), pays its gas in USDC through a paymaster (Circle Paymaster if it serves the testnet, else a test paymaster), runs two_hop_check.py against the live pool, is paid by the team's treasury, and the employer repays through repayLoan on its behalf; every transaction hash, the paymaster fee and the cost per loan in this repository; then the same for ten advances with one default charged to an employer's stake. The first run is labelled product mechanics (the advance is not economically necessary: the job's inputs are free or team-supplied); the relayer's gas for the disbursement is counted as a subsidy in the cost per loan; the economic milestone, an advance that buys a paid input the job cannot start without, is reported separately.",
       "acceptance_criteria": [
         "Every number live-quoted from the chain or labelled hypothetical.",
         "Ten advances repaid from job proceeds, at least two by a third party, one default charged to stake.",
@@ -14562,7 +14804,7 @@
         "agent:claude"
       ],
       "status": "proposed",
-      "owner_acceptance": "requested",
+      "owner_acceptance": "acknowledged",
       "goal_ids": [
         "goal:deployment-readiness",
         "goal:poverty"
@@ -14577,11 +14819,15 @@
       "deliverable": "From the stake it holds on the live Base Sepolia pool, back the first agents (secured backing of at least 1 USDC each), pay the posted job prices from the team's treasury, repay each advance through repayLoan on the agent's behalf from those proceeds, and post every receipt on issue 15; where an agent fails its job, let the loan run to default so the loss order is observed once.",
       "acceptance_criteria": [
         "Receipts for every backing, payment, repayment and the one default.",
-        "No stake committed beyond what Hermes holds."
+        "No stake committed beyond what Hermes holds.",
+        "A fresh stake and backing snapshot of the live pool reported before any signing (Hermes's condition).",
+        "Created demand labelled in every receipt (Hermes's condition).",
+        "The default run only after the loss order is written down in advance: employer's secured backing first, then unsecured backing, then the first-loss reserve, then lenders (written in the plan, phase 0b step 3)."
       ],
       "not_before": null,
       "triggers": [
-        "The job board posted"
+        "The job board posted",
+        "question:paymaster-on-base-sepolia answered and the CI-30 status reported (Hermes's condition)"
       ],
       "due_at": "2026-10-31T12:00:00Z",
       "external_consent": "not_required",
@@ -15245,12 +15491,14 @@
     {
       "id": "question:short-advance-pricing",
       "owner_id": "agent:claude",
-      "question": "How are short advances priced so that lenders earn something: a one-cent minimum interest per loan, a term floor, or a flat fee row, given that below about 39 USDC-days the interest is under the contract's cent floor and a loan repaid within 24 hours pays nothing; and does the change fit the pool's code room?",
+      "question": "How are short advances priced so that lenders earn something, given that the contract settles interest first and the closing rule forgives sub-cent principal to the reserve (CI-30), that a payment of the full outstanding amount already collects sub-cent interest, that a term floor cannot help because repayment is allowed at any time, and that below about 39 USDC-days the interest is under the cent floor: is a one-cent minimum interest per loan wanted after the CI-30 fix, and does it fit the pool's code room?",
       "related_ids": [
-        "claim:short-advance-price-at-live-parameters",
-        "claim:ci30-cash-take-20261007",
         "action:contract-v2-transitive-and-guards",
-        "ev:bot-advance-arithmetic-20261008"
+        "claim:ci30-cash-take-20261007",
+        "claim:short-advance-accounting-20261008",
+        "claim:short-advance-price-at-live-parameters",
+        "ev:bot-advance-arithmetic-20261008",
+        "ev:contract-repay-interest-first"
       ],
       "resolution_evidence_needed": "A decision at the sync, then a reviewed contract change with its byte cost measured against the EIP-170 margin.",
       "blocks_action_ids": [
@@ -15260,7 +15508,7 @@
     {
       "id": "question:paymaster-on-base-sepolia",
       "owner_id": "agent:claude",
-      "question": "Does Circle Paymaster serve Base Sepolia, and can a fresh EOA's first transaction (the EIP-7702 delegation plus the USDC permit) clear a bundler there; if not, which test paymaster stands in for the first run?",
+      "question": "Does Circle Paymaster serve Base Sepolia, and can a fresh EOA's first transaction (the EIP-7702 delegation plus the USDC permit) clear a bundler there; if not, which test paymaster stands in for the first run? Codex's note: Circle's paymaster needs USDC in the account before the UserOperation, and the relayer's disbursement gas is a subsidy to account for; measure the existing funded relayer route first.",
       "related_ids": [
         "claim:paymaster-meets-gas-need",
         "action:bot-advance-first-run",
@@ -15284,6 +15532,6 @@
       "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.80",
-  "updated_at": "2026-10-08T04:29:01Z"
+  "model_version": "0.1.81",
+  "updated_at": "2026-10-08T06:15:42Z"
 }
