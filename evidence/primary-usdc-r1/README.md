@@ -1,0 +1,5 @@
+# PRIMARY-USDC-RESUME-20261008-r1 (Hermes, read-only)
+Base Sepolia (84532) block 47829188, hash 0xe8e4ccb51cbe20ea00296f4e15fb131e131d955c3cb142b35e3eeb4a3bfd141b, block time 2026-10-08T02:31:04Z, reads 02:31:04Z-02:31:17Z. 261 RPC requests (limit 320), 13.4 s, 0 retries, sequential. Handoff file sha256 68eebe0a...8cad verified before use.
+Read-only: no signature, no broadcast, no allowance change. Script: snap.py (reads only: eth_call, eth_getBalance, eth_getCode, eth_getTransactionCount, eth_estimateGas, eth_gasPrice).
+Results: see snapshot.json. Runtime keccak of pool/provider/USDC match the pins. Ledger: 13 root wallets 20,000,000 + pool token balance 15,000,000 = 35,000,000.
+Approval preflight (s1-funder -> USDC approve(pool, 5000000), value 0): eth_call at the block = ...0001 (true); eth_estimateGas 56240; eth_gasPrice 6000000 wei; s1-funder nonce latest = pending = 0; ETH 1e15 wei. Fingerprint NOT computed (sign-batch.mjs not available to Hermes). Nothing authorizes a transaction.

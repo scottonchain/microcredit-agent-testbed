@@ -1,0 +1,458 @@
+{
+ "actors": {
+  "s1-borrower-a": {
+   "activeLoanCount": "0",
+   "address": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s1-borrower-b": {
+   "activeLoanCount": "0",
+   "address": "0xe2a2fd6c6b1e2ddf70b3edc84b10e7d6e1039f2f",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s1-funder": {
+   "activeLoanCount": "0",
+   "address": "0xab7a7ee666b83607cb9d11b5d54f49c1085f980c",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "1000000000000000",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "5000000"
+  },
+  "s1-sink": {
+   "activeLoanCount": "0",
+   "address": "0x421ada122cf9823ee129179354a461013e0156e4",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s2-borrower-a": {
+   "activeLoanCount": "0",
+   "address": "0x56214ae2cfcd5ed76cb79126a595010cb831c407",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s2-borrower-b": {
+   "activeLoanCount": "0",
+   "address": "0x43bd2b18caaf9ef7cefadbcedb392d378469f118",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s2-funder": {
+   "activeLoanCount": "0",
+   "address": "0x711e15425326fe01b958ea97ff37aa6336a7cec3",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s2-sink": {
+   "activeLoanCount": "0",
+   "address": "0xb96c4e7c0cc25af24795097b6d8eac17b8519866",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s3-borrower-a": {
+   "activeLoanCount": "0",
+   "address": "0xb07f3b50d91e584f05817d367a12fab1e7bfad6f",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s3-borrower-b": {
+   "activeLoanCount": "0",
+   "address": "0x9e6bb5e66138666a69e366f7bb0bd6489c347e9f",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s3-funder": {
+   "activeLoanCount": "0",
+   "address": "0x4d05b8b4fe3d90c15f54dc041ef29a1bc7c59633",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "s3-sink": {
+   "activeLoanCount": "0",
+   "address": "0x59b2c48fdeda316d4a442627e4b4a2e1ad81d2b1",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "0",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 0,
+   "noncePending": 0,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "0"
+  },
+  "treasury": {
+   "activeLoanCount": "0",
+   "address": "0x5225c44c41566d2c8785cfadfc712a21c0b51575",
+   "allowanceUnits": "0",
+   "availableCreditUnits": "0",
+   "creditCommittedUnits": "0",
+   "duesPaidUnits": "0",
+   "ethWei": "98999579999999906",
+   "getBorrowLimit_raw": [
+    "0",
+    "0"
+   ],
+   "grantedCreditUnits": "0",
+   "lenderBalanceUnits": "0",
+   "nonceLatest": 1,
+   "noncePending": 1,
+   "poolShares": "0",
+   "providerBudgetHeldScore": "0",
+   "providerScore": "0",
+   "usdcUnits": "15000000"
+  }
+ },
+ "approval": {
+  "estimateGas": 56240,
+  "ethWei": "1000000000000000",
+  "eth_call": "0x0000000000000000000000000000000000000000000000000000000000000001",
+  "eth_call_required": "0x0000000000000000000000000000000000000000000000000000000000000001",
+  "gasPriceWei": 6000000,
+  "pendingNonce": 0,
+  "tx": {
+   "data": "0x095ea7b300000000000000000000000073872b8fb7f1771c67911f03edc75abdc951497300000000000000000000000000000000000000000000000000000000004c4b40",
+   "from": "0xab7a7ee666b83607cb9d11b5d54f49c1085f980c",
+   "to": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+   "value": "0x0"
+  }
+ },
+ "avery": {
+  "address": "0xc5e42b0fb0c109e55f4a40cccfcf3fed1fc39009",
+  "budgetHeld": "920000",
+  "creditScore": "0x00000000000000000000000000000000000000000000000000000000000e09c0",
+  "rawScore": "920000"
+ },
+ "block": {
+  "baseFeePerGas": 5000000,
+  "hash": "0xe8e4ccb51cbe20ea00296f4e15fb131e131d955c3cb142b35e3eeb4a3bfd141b",
+  "number": 47829188,
+  "timestamp": 1791426664,
+  "timestampIso": "2026-10-08T02:31:04Z"
+ },
+ "chainId": 84532,
+ "elapsedSeconds": 13.4,
+ "hermes": {
+  "address": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "ethWei": "21733873822726231",
+  "lenderBalanceUnits": "15000000",
+  "nonceLatest": 115,
+  "noncePending": 115,
+  "poolShares": "15000000000000",
+  "usdcUnits": "0"
+ },
+ "ledger": {
+  "aggregateUnits": "35000000",
+  "expectedAggregate": "35000000",
+  "poolTokenBalanceUnits": "15000000",
+  "rootWalletUsdcUnits": "20000000"
+ },
+ "observedAtEnd": "2026-10-08T02:31:17Z",
+ "observedAtStart": "2026-10-08T02:31:04Z",
+ "pool": {
+  "aprBps": "933",
+  "assetsUnits": "15000000",
+  "cashUnits": "15000000",
+  "creditLoss": {
+   "s1-borrower-a": "0",
+   "s1-borrower-b": "0",
+   "s1-funder": "0",
+   "s1-sink": "0",
+   "s2-borrower-a": "0",
+   "s2-borrower-b": "0",
+   "s2-funder": "0",
+   "s2-sink": "0",
+   "s3-borrower-a": "0",
+   "s3-borrower-b": "0",
+   "s3-funder": "0",
+   "s3-sink": "0",
+   "treasury": "0"
+  },
+  "duesPaidUnits": "0",
+  "feesUnits": "0",
+  "firstLossReserveUnits": "0",
+  "getAllLoanIds": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "9",
+   "10",
+   "11",
+   "12",
+   "13",
+   "14",
+   "15",
+   "16",
+   "17"
+  ],
+  "getLenders": [
+   "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+   "0x108450c748eef7aef23e64739bc508f56e596247"
+  ],
+  "guardian": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "impairedUnits": "0",
+  "lentUnits": "0",
+  "maxLoanUnits": "100000000",
+  "oracle": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "owner": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "paused": "0",
+  "protocolFeeBps": "0",
+  "queueUnits": "0",
+  "reserveBps": "4500",
+  "reservedUnits": "0",
+  "scoreProvider": "0x554c6bb61edf0cafb90ff31813540369cb0105e4",
+  "stakeCommitted": {
+   "s1-borrower-a": "0",
+   "s1-borrower-b": "0",
+   "s1-funder": "0",
+   "s1-sink": "0",
+   "s2-borrower-a": "0",
+   "s2-borrower-b": "0",
+   "s2-funder": "0",
+   "s2-sink": "0",
+   "s3-borrower-a": "0",
+   "s3-borrower-b": "0",
+   "s3-funder": "0",
+   "s3-sink": "0",
+   "treasury": "0"
+  },
+  "stakeOf": {
+   "s1-borrower-a": "0",
+   "s1-borrower-b": "0",
+   "s1-funder": "0",
+   "s1-sink": "0",
+   "s2-borrower-a": "0",
+   "s2-borrower-b": "0",
+   "s2-funder": "0",
+   "s2-sink": "0",
+   "s3-borrower-a": "0",
+   "s3-borrower-b": "0",
+   "s3-funder": "0",
+   "s3-sink": "0",
+   "treasury": "0"
+  },
+  "token": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+  "tokenBalanceUnits": "15000000",
+  "totalQueuedShares": "0",
+  "totalShares": "15000000000000",
+  "totalUnclaimedPayouts": "0"
+ },
+ "providerScoresRaw": {
+  "0x7954dfb0ca137a6a95291e1b392268ad2e93c96e": 0,
+  "0xc5e42b0fb0c109e55f4a40cccfcf3fed1fc39009": 920000
+ },
+ "providerState": {
+  "epoch": "3",
+  "fresh": "1",
+  "lastReportAt": "1791382038",
+  "lending": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+  "maxIncreasePerReport": "50000000",
+  "maxScoreAge": "604800",
+  "maxTotalScore": "50000000",
+  "owner": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "reporter": "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+  "totalHeld": "920000",
+  "totalScore": "920000"
+ },
+ "rpc": "https://sepolia.base.org",
+ "rpcRequests": 261,
+ "runtime": {
+  "pool": {
+   "address": "0x73872b8fb7f1771c67911f03edc75abdc9514973",
+   "codeBytes": 24377,
+   "expected": "0xcbec266adbac00e2db7af5c2ce5b68316ca8a42877bb2fb93c475681b7ba9dc8",
+   "keccak": "0xcbec266adbac00e2db7af5c2ce5b68316ca8a42877bb2fb93c475681b7ba9dc8",
+   "match": true
+  },
+  "provider": {
+   "address": "0x554c6bb61edf0cafb90ff31813540369cb0105e4",
+   "codeBytes": 4916,
+   "expected": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3",
+   "keccak": "0x4002d1cc0a95cdc54bc874a352c07bc8b5328f56b5975f7141f663f5eba0c3a3",
+   "match": true
+  },
+  "usdc": {
+   "address": "0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+   "codeBytes": 1798,
+   "expected": "0xedc5281a85c0efecd49999a1ef668390c59b88702f2d4a07029d7f5d63059d6c",
+   "keccak": "0xedc5281a85c0efecd49999a1ef668390c59b88702f2d4a07029d7f5d63059d6c",
+   "match": true
+  }
+ }
+}
