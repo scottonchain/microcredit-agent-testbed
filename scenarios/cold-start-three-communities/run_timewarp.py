@@ -26,7 +26,7 @@ DAY = 86_400
 CLOCK_METHODS = {"anvil_setNextBlockTimestamp", "evm_mine"}
 FORBIDDEN = {"anvil_setBalance", "anvil_setStorageAt", "anvil_setCode", "anvil_setNonce",
              "evm_setAccountBalance", "evm_setAccountCode", "evm_setAccountStorageAt", "hardhat_setBalance"}
-OUT_SIGS = {"impairLoan(uint256)", "markDefaulted(uint256)", "repayLoan(uint256,uint256)"}
+OUT_SIGS = {"impairLoan(uint256)", "markDefaulted(uint256)", "repayLoan(uint256,uint256)", "stake(uint256)"}
 
 
 class ClockRPC(base.RPC):
@@ -80,6 +80,12 @@ class TimeRunner(base.Runner):
         s["funder_lenderBalance"] = u(base.POOL, "lenderBalance(address)", funder)
         s["funder_creditLoss"] = u(base.POOL, "creditLoss(address)", funder)
         s["funder_stakeOf"] = u(base.POOL, "stakeOf(address)", funder)
+        s["funder_stakeCommitted"] = u(base.POOL, "stakeCommitted(address)", funder)
+        s["funder_creditCommitted"] = u(base.POOL, "creditCommitted(address)", funder)
+        s["funder_grantedCredit"] = u(base.POOL, "grantedCredit(address)", funder)
+        s["funder_creditScore"] = u(base.POOL, "getCreditScore(address)", funder)
+        s["totalStaked"] = u(base.POOL, "totalStaked()")
+        s["backing"] = base.decode_words(self.view(base.POOL, "getBacking(address,address)", funder, borrower))
         s["borrower_defaultedLoans"] = u(base.POOL, "defaultedLoans(address)", borrower)
         s["borrower_completedLoans"] = u(base.POOL, "completedLoans(address)", borrower)
         s["outstanding"] = u(base.POOL, "getCurrentOutstandingAmount(uint256)", loan_id)
@@ -88,9 +94,40 @@ class TimeRunner(base.Runner):
         return s
 
     # ---- scenarios ---------------------------------------------------------------------
+    def setup_staked(self, i, borrower_role):
+        """Sponsor path: 5 USDC lender deposit + SEPARATE 1 USDC stake(); NO score published (no granted credit)."""
+        funder, borrower = self.roles["s%d-funder" % i], self.roles[borrower_role]
+        base.require(self.uint(base.USDC, "balanceOf(address)", funder) == 0, "Unexpected fresh funder balance")
+        self.fund(funder, base.DEPOSIT + base.UNIT, "six-USDC sponsor endowment (5 deposit + 1 explicit stake)")
+        assets, shares = self.uint(base.POOL, "totalAssets()"), self.uint(base.POOL, "totalShares()")
+        quote = base.exact_quote(assets, shares, base.DEPOSIT)
+        base.require(quote["exact"] and self.uint(base.POOL, "convertToShares(uint256)", base.DEPOSIT) == quote["shares"],
+                     "Five-USDC deposit is not exactly redeemable at this source state")
+        self.journal.append("deposit_quote", quote)
+        self.execute(funder, base.USDC, "approve(address,uint256)", (base.POOL, base.DEPOSIT), label="exact five-USDC deposit approval")
+        self.execute(funder, base.POOL, "depositFunds(uint256)", (base.DEPOSIT,), label="five-USDC existing pool deposit")
+        base.require(self.uint(base.POOL, "lenderBalance(address)", funder) == base.DEPOSIT, "Deposit effects differ")
+        self.execute(funder, base.USDC, "approve(address,uint256)", (base.POOL, base.UNIT), label="exact one-USDC stake approval")
+        self.send(funder, "stake(uint256)", (base.UNIT,), "explicit one-USDC sponsor stake")
+        u = self.uint
+        base.require(u(base.POOL, "stakeOf(address)", funder) == base.UNIT and u(base.POOL, "totalStaked()") == base.UNIT,
+                     "stakeOf/totalStaked != 1 USDC after stake")
+        base.require(u(base.POOL, "grantedCredit(address)", funder) == 0 and u(base.POOL, "creditCommitted(address)", funder) == 0
+                     and u(base.POOL, "getCreditScore(address)", funder) == 0,
+                     "Score/granted credit/creditCommitted must be zero (no score published)")
+        self.execute(funder, base.POOL, "back(address,uint256)", (borrower, base.UNIT), label="one-USDC backing from stake")
+        base.require(u(base.POOL, "stakeCommitted(address)", funder) == base.UNIT and u(base.POOL, "stakeOf(address)", funder) == base.UNIT,
+                     "stakeOf == stakeCommitted == 1 USDC required before borrowing")
+        base.require(base.decode_words(self.view(base.POOL, "getBacking(address,address)", funder, borrower)) == [base.UNIT, 0],
+                     "Backing must be [secured=1 USDC, unsecured=0] before borrowing")
+        base.require(base.decode_words(self.view(base.POOL, "getBorrowLimit(address)", borrower))[0] == base.UNIT,
+                     "Borrow limit must be 1 USDC")
+        return funder, borrower
+
     def t2(self):
-        """Failed job: borrower never repays; impair at term+1, default at term+LATE+1."""
-        funder, borrower = self.setup(2, "s2-borrower-a")
+        """Sponsor-first-loss failed job: stake-backed (secured) line, borrower never repays; impair at term+1, default at term+LATE+1.
+        Expectations are declared here BEFORE any fork run and checked, not tuned, afterwards. No score is published or refreshed."""
+        funder, borrower = self.setup_staked(2, "s2-borrower-a")
         loan_id = self.request(borrower)
         self.disburse(loan_id, borrower)
         states = {"disbursed": self.pool_state(loan_id, funder, borrower)}
@@ -100,19 +137,27 @@ class TimeRunner(base.Runner):
         states["impaired"] = self.pool_state(loan_id, funder, borrower)
         self.warp(30 * DAY + 1, "LATE_PERIOD elapsed (30 days + 1 s)")
         states["late_elapsed"] = self.pool_state(loan_id, funder, borrower)
-        refreshed = None
-        if states["late_elapsed"]["provider_isFresh"] != 1:
-            try:
-                self.issue(funder, 10_000)
-                refreshed = True
-            except base.Halt as exc:
-                refreshed = "refresh rejected: " + str(exc)[:120]
-        self.journal.append("provider_refresh_attempt", {"stale_before": states["late_elapsed"]["provider_isFresh"] != 1,
-                                                        "result": refreshed})
+        # No provider refresh / no score publish. If markDefaulted needs a fresh provider the tx reverts and the run halts (a finding).
         self.send(self.treasury, "markDefaulted(uint256)", (loan_id,), "permissionless markDefaulted")
         states["defaulted"] = self.pool_state(loan_id, funder, borrower)
-        return {"loan_id": loan_id, "funder": funder, "borrower": borrower, "provider_refresh": refreshed,
-                "states": states}
+        d, pre = states["defaulted"], states["late_elapsed"]
+        U = base.UNIT
+        checks = {
+            "sponsor stake fell by exactly 1 USDC": d["funder_stakeOf"] == pre["funder_stakeOf"] - U,
+            "totalStaked fell by exactly 1 USDC": d["totalStaked"] == pre["totalStaked"] - U,
+            "sponsor stake is zero": d["funder_stakeOf"] == 0,
+            "creditLoss == 0": d["funder_creditLoss"] == 0,
+            "firstLossReserve unchanged": d["firstLossReserve"] == states["disbursed"]["firstLossReserve"],
+            "totalAssets unchanged vs disbursed": d["totalAssets"] == states["disbursed"]["totalAssets"],
+            "totalShares unchanged vs disbursed": d["totalShares"] == states["disbursed"]["totalShares"],
+            "sponsor lenderBalance unchanged vs disbursed": d["funder_lenderBalance"] == states["disbursed"]["funder_lenderBalance"],
+            "backing edge released/consumed (== [0,0])": d["backing"] == [0, 0],
+            "borrower defaultedLoans == 1": d["borrower_defaultedLoans"] == 1,
+            "loan outstanding == 0": d["outstanding"] == 0,
+            "no score ever published for sponsor": d["funder_creditScore"] == 0 and d["funder_grantedCredit"] == 0,
+        }
+        return {"loan_id": loan_id, "funder": funder, "borrower": borrower, "provider_refresh": "none (by design)",
+                "predeclared_checks": checks, "all_predeclared_checks_passed": all(checks.values()), "states": states}
 
     def run_scenario(self, which):
         version = self.rpc.guard()
