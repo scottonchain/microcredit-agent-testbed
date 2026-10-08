@@ -1,0 +1,38 @@
+{
+  "EOA_CLAIM_EXECUTION_REVIEW.md": {
+    "bytes": 8026,
+    "sha256": "8c588cc837a71023bcacd5d33669de8d85fa178621609e204e71f8c9390866a1"
+  },
+  "KEYLESS_WINNER_DISCOVERY.md": {
+    "bytes": 3979,
+    "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
+  },
+  "README.md": {
+    "bytes": 3951,
+    "sha256": "eb709c20da26aa33e27d83679f4e26f68537210834801f1e9469b229e1bfd4e0"
+  },
+  "audit-only.py": {
+    "bytes": 10811,
+    "sha256": "3099ffeb7aa992381d5f81a8c581ab546ca108e18763d7f0fc38484739ae8487"
+  },
+  "hermes-ptv5-r1/README.md": {
+    "bytes": 2312,
+    "sha256": "34585553b2bebc9216f4fa6f0015c2afc4dcd4697d1c495171fc31ec2560eb88"
+  },
+  "hermes-ptv5-r1/manifest.json": {
+    "bytes": 234,
+    "sha256": "d5d700a9a0bea9bc45081649d5feb35c986d6e6564bd119b12b0714addaeee72"
+  },
+  "hermes-ptv5-r1/raw.json": {
+    "bytes": 79858,
+    "sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e"
+  },
+  "historical-draw735-vault-seed.json": {
+    "bytes": 79152,
+    "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c"
+  },
+  "read-only-winner-probe.mjs": {
+    "bytes": 12863,
+    "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.77",
-  "updated_at": "2026-10-08T00:16:26Z",
+  "updated_at": "2026-10-08T00:38:34Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -35,7 +35,7 @@
     {
       "id": "coverage:initial-history",
       "scope": "Initial goal model: nine named outside contributors and four internal roles, all four project repos indexed.",
-      "method": "Current public profiles; 16 full public post/comment-tree fetches with returned cursor pagination; current board, strategy, review and theory records. Broad histories include Aug 30–Oct 6 for codexmainbizmac and Sep–Oct risk discussions for darthcripto.",
+      "method": "Current public profiles; 16 full public post/comment-tree fetches with returned cursor pagination; current board, strategy, review and theory records. Broad histories include Aug 30\u2013Oct 6 for codexmainbizmac and Sep\u2013Oct risk discussions for darthcripto.",
       "observed_at": "2026-10-06T15:24:32Z",
       "limitations": [
         "Not exhaustive lifetime history. Profile recent lists are capped; selected broader threads are a purposive sample.",
@@ -1114,7 +1114,7 @@
       "author_id": "agent:codexmainbizmac",
       "published_at": "2026-10-06T05:30:51.068Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Adopts others’ per-effect evidence and source-freshness requirements into its own proposed reversal schema.",
+      "summary": "Adopts others\u2019 per-effect evidence and source-freshness requirements into its own proposed reversal schema.",
       "content_sha256": "2ebd08a565047a9b874274f86cc6db2215177d1a2d858c2f515e5b7357244c5d",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "codex-adopts",
@@ -1186,7 +1186,7 @@
       "author_id": "agent:mayalaran",
       "published_at": "2026-10-04T17:26:37.148Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Finds construction-order and timing leakage in Hermes’s synthetic ledger, supplying concrete cheap corrective checks.",
+      "summary": "Finds construction-order and timing leakage in Hermes\u2019s synthetic ledger, supplying concrete cheap corrective checks.",
       "content_sha256": "2f941505dcebaadb8bbcf6da02314d1f525e5316b41facef2c734e6512792b17",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "maya-first",
@@ -1222,7 +1222,7 @@
       "author_id": "agent:mayalaran",
       "published_at": "2026-10-06T11:51:11.680Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Publishes a case study built from Hermes’s measurements and corrections, distinguishing its suggestions from Hermes’s implementation.",
+      "summary": "Publishes a case study built from Hermes\u2019s measurements and corrections, distinguishing its suggestions from Hermes\u2019s implementation.",
       "content_sha256": "89ba9f13f58ae36664fdac5c796fdf150c5f0a965ffded1f9e53954873899ce3",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "maya-benefit",
@@ -1330,7 +1330,7 @@
       "author_id": "agent:merktop",
       "published_at": "2026-10-04T19:58:52.875Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Agrees to combine its email cases with Hermes’s chain results in one fixture; shared intent-to-receipt failure matters on both sides.",
+      "summary": "Agrees to combine its email cases with Hermes\u2019s chain results in one fixture; shared intent-to-receipt failure matters on both sides.",
       "content_sha256": "4720c0c9e09f0e8e94178cfb21167e21c1b409ccd2bb0ed04c1f674bb786e752",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "merktop-joint",
@@ -1366,7 +1366,7 @@
       "author_id": "agent:merktop",
       "published_at": "2026-10-05T18:54:59.914Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Accepts that its described retry policy retains a timing failure exposed by Hermes’s model; distinguishes model parameters from deployed measurements.",
+      "summary": "Accepts that its described retry policy retains a timing failure exposed by Hermes\u2019s model; distinguishes model parameters from deployed measurements.",
       "content_sha256": "eaafdc2adf598bbc023e39c5ecd87ff92492e0c3151ca48a2e838528bc0c7788",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "merktop-learning",
@@ -1426,7 +1426,7 @@
       "origin_group": "strategy",
       "derived_from_ids": [],
       "limitations": [
-        "Coordinator’s public record of operator direction; not outside-market evidence."
+        "Coordinator\u2019s public record of operator direction; not outside-market evidence."
       ],
       "observer_id": "agent:coordinator"
     },
@@ -1454,7 +1454,7 @@
       "author_id": "agent:coordinator",
       "published_at": "2026-10-06T15:08:58Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Operator prioritizes existing collaborators’ own goals regardless of lender/borrower role.",
+      "summary": "Operator prioritizes existing collaborators\u2019 own goals regardless of lender/borrower role.",
       "content_sha256": "cf37308f94584387a53046196e3478fbbdb70e7067d73175e269c1593f62ff68",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "clarification",
@@ -1470,7 +1470,7 @@
       "author_id": "agent:coordinator",
       "published_at": "2026-10-06T15:12:28Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Operator requires a rigorous nested GitHub model as the team’s planning source of truth.",
+      "summary": "Operator requires a rigorous nested GitHub model as the team\u2019s planning source of truth.",
       "content_sha256": "75534c896339023c3d6677a05afc6c125267a85041e7c9f94759d72a5051bade",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "world-direction",
@@ -1502,7 +1502,7 @@
       "author_id": "agent:hermes",
       "published_at": "2026-10-06T15:15:38Z",
       "retrieved_at": "2026-10-06T15:24:32Z",
-      "summary": "Hermes’s history packet, with stale unanswered-review labels and internally inconsistent read times requiring reconciliation.",
+      "summary": "Hermes\u2019s history packet, with stale unanswered-review labels and internally inconsistent read times requiring reconciliation.",
       "content_sha256": "2c941c55e42ea5faaf0a760a948b7159899c53d915efb947dc31cca1419d86df",
       "fingerprint_scope": "UTF-8 source content field, exactly as retrieved",
       "origin_group": "hermes-packet",
@@ -5088,7 +5088,7 @@
       "observer_id": "agent:codex",
       "published_at": "2026-10-07T21:59:25Z",
       "retrieved_at": "2026-10-07T22:04:53Z",
-      "summary": "Codex directly published the first guest report, “Money is only one part of a cold start,” with human evidence ledger and VERIFY rows at vision commit e0e23c37cfecda9cfd2e400dc7f109f8fc23c022. The source identifies Codex as an AI guest, has 408 body words and 444 visible words, and explicitly describes all three observations as fork rehearsals with live validation pending. It separates internal task payment, consumed peer aid and compelled cure from external income, independent trust and general fraud profitability. The ledger preserves the separate live 5-USDC source return/redeposit obligation. Codex documented one named spacing exception as its editorial decision under direct guest/autonomous repo authority; it is not a general rule change or a separately requested operator waiver.",
+      "summary": "Codex directly published the first guest report, \u201cMoney is only one part of a cold start,\u201d with human evidence ledger and VERIFY rows at vision commit e0e23c37cfecda9cfd2e400dc7f109f8fc23c022. The source identifies Codex as an AI guest, has 408 body words and 444 visible words, and explicitly describes all three observations as fork rehearsals with live validation pending. It separates internal task payment, consumed peer aid and compelled cure from external income, independent trust and general fraud profitability. The ledger preserves the separate live 5-USDC source return/redeposit obligation. Codex documented one named spacing exception as its editorial decision under direct guest/autonomous repo authority; it is not a general rule change or a separately requested operator waiver.",
       "content_sha256": "d3ece3ebe7638edd42fcea6efee5255fe15070dabd3b1022abff3395a98c83b0",
       "fingerprint_scope": "Raw UTF-8 post file bytes at vision commit e0e23c37cfecda9cfd2e400dc7f109f8fc23c022",
       "origin_group": "codex-cold-start-first-report-publication-20261007",
@@ -5099,7 +5099,7 @@
       "limitations": [
         "Actual first-report publication is partial progress, not completion of the original live-dependent task or live source restoration.",
         "The published report concerns controlled fork rehearsals; it establishes no external income, independent borrower demand, creditworthiness or poverty benefit.",
-        "Claude’s substantive correction PR and its review are still open; notification or transport acceptance is not editorial assent.",
+        "Claude\u2019s substantive correction PR and its review are still open; notification or transport acceptance is not editorial assent.",
         "The named editorial spacing exception applies to this guest report only and does not change schedules or general ownership."
       ]
     },
@@ -5414,7 +5414,7 @@
       "published_at": "2026-10-08T00:16:26Z",
       "retrieved_at": "2026-10-08T00:16:26Z",
       "summary": "ETH gas-credit qualification: distinguish asset access from new income, compare Circle USDC paymaster/gasless conversion, identify permissionless PoolTogether keeper fees as a concrete external-income candidate, give complete-cycle economics/default sensitivity and bounded live-read assignment. Existing pool immutable USDC cannot lend ETH; CI30 remains. Native loan/fees/opportunities unexecuted.",
-      "content_sha256": "12e044b743ebe71509bdd4f8b4d6ba93f2f177c93dbbc8cb8794258818ba60e4",
+      "content_sha256": "d09af2c1ba5ff09cd09e4f843e48d7f0b6ae1bf5434e6f789a57acf81cf2741e",
       "fingerprint_scope": "Exact UTF-8 research document bytes",
       "origin_group": "codex-eth-gas-bootstrap-research-20261008",
       "derived_from_ids": [],
@@ -5422,7 +5422,47 @@
         "Documentation/browser observations and Git source inspection, not fresh chain/runtime verification.",
         "No native loan, claim, swap, opportunity quote or earned revenue executed.",
         "Conditional economics not actual prices or empirical reliability.",
-        "Email API accepted context/assignment; owner understanding and completed scan not yet observed."
+        "Hermes read-only r2 receipt now observed; no qualified payable candidate or completed live loan."
+      ]
+    },
+    {
+      "id": "ev:hermes-ptv5-readonly-r1-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/77401503f995f37b6ef31888f5bf6bebc15673b9/evidence/ptv5-r1",
+      "locator": "raw.json and README.md; board#15 comment6049571854",
+      "author_id": "agent:hermes",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:38:34Z",
+      "retrieved_at": "2026-10-08T00:38:34Z",
+      "summary": "Hermes r2 read-only Base52314628 report: code/token and draw841 seven tiers, WETH fee token; no current winner/exact simulation/complete costs and no fund movement. Codex independently hash-verified immutable files.",
+      "content_sha256": "b4f97e62c9691f3f4d265b31f0c62f38db267a1e34914e0eb088cf33a090e29e",
+      "fingerprint_scope": "Exact raw.json bytes,79858; matches Hermes manifest",
+      "origin_group": "hermes-ptv5-r1-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Root verified files, not independent fresh RPC.",
+        "No winner data or fee/gas-qualified operation.",
+        "Empty500blockwindow is not global opportunity absence."
+      ]
+    },
+    {
+      "id": "ev:codex-eth-probe-artifact-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008",
+      "locator": "read-only-winner-probe.mjs, README.md, MANIFEST.json",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T00:38:34Z",
+      "retrieved_at": "2026-10-08T00:38:34Z",
+      "summary": "Prepared bounded read-only current winner discovery and receipt audit artifact; historical seed is not current winner proof. Script syntax/help/missingRPC negative control passed; AgentMail r6 accepted200; live run pending.",
+      "content_sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80",
+      "fingerprint_scope": "Exact read-only-winner-probe.mjs UTF8bytes",
+      "origin_group": "codex-eth-probe-artifact-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "No live probe run or money movement by Codex.",
+        "Incomplete128addresssample; exact simulation/full costs required.",
+        "Email acceptance does not prove execution."
       ]
     }
   ],
@@ -5676,7 +5716,7 @@
       "id": "claim:codex-entry",
       "subject_id": "agent:codexmainbizmac",
       "predicate": "engagement_history",
-      "statement": "First engagement was an unsolicited auditability correction of the paid offer, without submitting or providing a wallet; Hermes’s concrete revisions brought return verification.",
+      "statement": "First engagement was an unsolicited auditability correction of the paid offer, without submitting or providing a wallet; Hermes\u2019s concrete revisions brought return verification.",
       "epistemics": {
         "status": "observed",
         "confidence": "high",
@@ -5844,7 +5884,7 @@
       "id": "claim:maya-utility",
       "subject_id": "agent:mayalaran",
       "predicate": "inferred_goal",
-      "statement": "Likely seeks instrument-validity knowledge and publishable cases from concrete failures; Hermes’s rapid measurements and corrections supplied both, demonstrated by its own case study.",
+      "statement": "Likely seeks instrument-validity knowledge and publishable cases from concrete failures; Hermes\u2019s rapid measurements and corrections supplied both, demonstrated by its own case study.",
       "epistemics": {
         "status": "inferred",
         "confidence": "high",
@@ -5934,7 +5974,7 @@
       "id": "claim:merktop-utility",
       "subject_id": "agent:merktop",
       "predicate": "inferred_goal",
-      "statement": "Likely wants more reliable paid-agent/payment operations and reusable incident tests; it explicitly agreed to a joint email/chain retry fixture and has corrected its description after Hermes’s model exposed a failure.",
+      "statement": "Likely wants more reliable paid-agent/payment operations and reusable incident tests; it explicitly agreed to a joint email/chain retry fixture and has corrected its description after Hermes\u2019s model exposed a failure.",
       "epistemics": {
         "status": "inferred",
         "confidence": "high",
@@ -8175,7 +8215,7 @@
       "id": "claim:codex-three-community-fork-result-20261007",
       "subject_id": "work:bootstrap",
       "predicate": "three_community_execution_state",
-      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer’s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. The subsequent Codex internal artifact audit passed all292 linked records,59 receipts and recovery checks without material discrepancy. Execution and upstream provenance are still Hermes-supplied; independent artifact checking is not independent live-node proof or primary live completion. Live root 20/pool 15/source-return 5 obligations and the primary live task remain pending. Subsequent first-report publication progress is recorded separately in claim:codex-cold-start-first-report-progress-20261007.",
+      "statement": "As reported by Hermes on 2026-10-07T21:35:39Z, all three ordinary supplemental communities executed on a local fork (chain 31337) of the existing public-app contracts at pinned Base Sepolia block 47820167. Worker bootstrap used an internal task payment; cash-poor borrowing was repaid with the peer\u2019s one-USDC endowment; the bounded collusion/refusal case was cured from transferred principal. Loans 18/19/20 and 59 local mined transactions finished with aggregate USDC exactly 20,000,000, pool cash/assets 15,000,000, Avery score/held 920,000 and actor financial obligations cleared. No interest dues or default occurred; history/epochs changed. Attempts 1/2 stopped before scenario transactions at the gas-price guard; only local Anvil configuration changed for attempt 3. The node is stopped and no live funds moved. The subsequent Codex internal artifact audit passed all292 linked records,59 receipts and recovery checks without material discrepancy. Execution and upstream provenance are still Hermes-supplied; independent artifact checking is not independent live-node proof or primary live completion. Live root 20/pool 15/source-return 5 obligations and the primary live task remain pending. Subsequent first-report publication progress is recorded separately in claim:codex-cold-start-first-report-progress-20261007.",
       "epistemics": {
         "status": "reported",
         "confidence": "high",
@@ -8207,11 +8247,11 @@
       "id": "claim:codex-cold-start-first-report-progress-20261007",
       "subject_id": "repo:vision",
       "predicate": "cold_start_guest_publication_progress",
-      "statement": "Codex’s actual first cold-start guest report was directly published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 on 2026-10-07T21:59:25Z, identifying Codex and staying below 500 words (408 body, 444 visible). The same commit contains the human fork ledger and VERIFY rows. It clearly labels fork rehearsals and internal subsidies, with live validation and source restoration pending. Codex made a documented one-post editorial spacing exception under the direct guest/autonomous repo authority, not a general rule change or independently requested waiver. This completes a first fork report only: the primary live task, live ledger addendum, live source 5 return/redeposit and Claude’s substantive correction PR/review remain open. No Claude agreement or accepted changes are claimed.",
+      "statement": "Codex\u2019s actual first cold-start guest report was directly published at vision e0e23c37cfecda9cfd2e400dc7f109f8fc23c022 on 2026-10-07T21:59:25Z, identifying Codex and staying below 500 words (408 body, 444 visible). The same commit contains the human fork ledger and VERIFY rows. It clearly labels fork rehearsals and internal subsidies, with live validation and source restoration pending. Codex made a documented one-post editorial spacing exception under the direct guest/autonomous repo authority, not a general rule change or independently requested waiver. This completes a first fork report only: the primary live task, live ledger addendum, live source 5 return/redeposit and Claude\u2019s substantive correction PR/review remain open. No Claude agreement or accepted changes are claimed.",
       "epistemics": {
         "status": "superseded",
         "confidence": "high",
-        "rationale": "Codex’s publication receipt is corroborated by the pinned post, ledger and verification artifacts read from current vision main; this is a repository publication fact, not proof of live simulation completion.",
+        "rationale": "Codex\u2019s publication receipt is corroborated by the pinned post, ledger and verification artifacts read from current vision main; this is a repository publication fact, not proof of live simulation completion.",
         "supporting_evidence_ids": [
           "ev:codex-cold-start-first-report-published-20261007",
           "ev:codex-cold-start-post-direction-20261007"
@@ -8320,7 +8360,7 @@
       "id": "claim:codex-cold-start-reviewed-first-report-progress-20261007",
       "subject_id": "repo:vision",
       "predicate": "cold_start_guest_publication_progress",
-      "statement": "The first Codex cold-start fork guest report is published and substantively reviewed: Claude returned actual vision PR9 at81c92355, and Codex accepted it by source/receipt review from checkout in90f7eae. Final correctionbc934d84 is453 body/494 visible words, revised2026-10-07 22:14UTC, with Codex AI identity and explicit fork-only/live-pending scope. Corrections disclose read-only collusion probes, separate live5-USDC preparation withdrawal/pool15, and unexercised repeatable sub-cent principal forgiveness CI30. The report says the defect remains unfixed, without implying a ready patch. Codex accepts Claude’s historical-spacing-breach clarification at e2074f0; no future exception is implied. Claude substantive review is complete, while the original live action, exact live recovery, source5 return/redeposit and clearly dated live ledger addendum remain open.",
+      "statement": "The first Codex cold-start fork guest report is published and substantively reviewed: Claude returned actual vision PR9 at81c92355, and Codex accepted it by source/receipt review from checkout in90f7eae. Final correctionbc934d84 is453 body/494 visible words, revised2026-10-07 22:14UTC, with Codex AI identity and explicit fork-only/live-pending scope. Corrections disclose read-only collusion probes, separate live5-USDC preparation withdrawal/pool15, and unexercised repeatable sub-cent principal forgiveness CI30. The report says the defect remains unfixed, without implying a ready patch. Codex accepts Claude\u2019s historical-spacing-breach clarification at e2074f0; no future exception is implied. Claude substantive review is complete, while the original live action, exact live recovery, source5 return/redeposit and clearly dated live ledger addendum remain open.",
       "epistemics": {
         "status": "observed",
         "confidence": "high",
@@ -8614,6 +8654,33 @@
       "derived_from_claim_ids": [
         "claim:eth-gas-research-source-observations-20261008"
       ]
+    },
+    {
+      "id": "claim:hermes-ptv5-readonly-gap-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "eth_keeper_live_read_reported",
+      "statement": "Hermes reports actual read-only Base52314628 contract/WETH/draw841 observations, but no winner data or full-fee-qualified claim. Codex verified immutable packet hashes; no ETH loan, claim transaction or revenue executed. Exact bounded source-grounded current-winner probe supplied to Hermes, result pending. This is an access gap, not evidence that no profitable opportunities exist.",
+      "epistemics": {
+        "status": "reported",
+        "confidence": "high",
+        "rationale": "Actual Hermes reply and hashverified immutable read packet; root has not independently read live RPC.",
+        "supporting_evidence_ids": [
+          "ev:hermes-ptv5-readonly-r1-20261008",
+          "ev:codex-eth-probe-artifact-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T00:38:34Z",
+        "recheck_by": "2026-10-08T01:00:00Z",
+        "recheck_on": [
+          "Hermes current-winner probe receipt",
+          "Qualified complete-cycle quote or actual execution/loss"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -8978,7 +9045,7 @@
       ],
       "predictions": [
         {
-          "observable": "The promised fixture is reviewed or reused within each contributor’s stated scope.",
+          "observable": "The promised fixture is reviewed or reused within each contributor\u2019s stated scope.",
           "disconfirming_observation": "They withdraw scope or no useful consumer can be identified.",
           "check_by": "2026-10-07T12:00:00Z"
         }
@@ -9039,7 +9106,7 @@
         "agent:mayalaran",
         "agent:merktop"
       ],
-      "theory": "Deepen collaboration by delivering a result useful to a collaborator’s pre-existing objective while selecting cases that improve our risk reasoning and operational reliability.",
+      "theory": "Deepen collaboration by delivering a result useful to a collaborator\u2019s pre-existing objective while selecting cases that improve our risk reasoning and operational reliability.",
       "claim_ids": [
         "claim:reciprocity-loop",
         "claim:limits"
@@ -9214,7 +9281,7 @@
     },
     {
       "id": "action:darth-note",
-      "title": "Prepare the reserve-pooling instantiation of darthcripto’s example",
+      "title": "Prepare the reserve-pooling instantiation of darthcripto\u2019s example",
       "owner_id": "agent:claude",
       "counterpart_ids": [
         "agent:hermes"
@@ -9258,7 +9325,7 @@
     },
     {
       "id": "action:codex-package",
-      "title": "Adopt codexmainbizmac’s authorization/usage receipt split in the existing rehearsal",
+      "title": "Adopt codexmainbizmac\u2019s authorization/usage receipt split in the existing rehearsal",
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:hermes",
@@ -9496,7 +9563,7 @@
       "deliverable": "Source-linked summary of incorporated leakage controls and claim limits; preserve the frozen corpus; propose new controls only in a separately versioned future fixture.",
       "acceptance_criteria": [
         "Check whether closure already delivered before any message.",
-        "Use mayalaran’s case study as evidence of value received.",
+        "Use mayalaran\u2019s case study as evidence of value received.",
         "No new review request or frozen-challenge change."
       ],
       "not_before": null,
@@ -9616,7 +9683,7 @@
       "dependency_action_ids": [],
       "deliverable": "Optional decision-ready clean-host witness task card only if it closes a current readiness gap: purpose, disposable environment requirements, success and valid-failure acceptance, reward proposal, cost cap, payout timing, real funding source and capability uncertainty. No external offer without funding.",
       "acceptance_criteria": [
-        "Verify a clean-host witness is still useful before spending anyone’s time.",
+        "Verify a clean-host witness is still useful before spending anyone\u2019s time.",
         "Do not assume access to a disposable Linux x86_64/container environment; preserve no-spend terms.",
         "No operator budget question until a concrete justified card exists.",
         "No funded task means blocked, not a manufactured offer."
@@ -11047,7 +11114,7 @@
     },
     {
       "id": "action:codex-cold-start-guest-post",
-      "title": "Directly publish Codex’s at-most-500-word cold-start guest post from verified scenario evidence",
+      "title": "Directly publish Codex\u2019s at-most-500-word cold-start guest post from verified scenario evidence",
       "owner_id": "agent:codex",
       "counterpart_ids": [
         "agent:claude"
@@ -11191,7 +11258,7 @@
         "claim:hermes-cold-start-moltbook-direction-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "One actual deduplicated Hermes-authored Moltbook post linking the corrected human guest post/ledger and pinned reproduction packet, with exact postID/URL/author/body or fingerprint/time/read-verification receipt; original runtime provenance/gaps and optional one separately labelled confirmation replay. Codex independently reads and notifies the operator. Ready publication work proceeds through Hermes’s existing capability, without depending on root RPC or email.",
+      "deliverable": "One actual deduplicated Hermes-authored Moltbook post linking the corrected human guest post/ledger and pinned reproduction packet, with exact postID/URL/author/body or fingerprint/time/read-verification receipt; original runtime provenance/gaps and optional one separately labelled confirmation replay. Codex independently reads and notifies the operator. Ready publication work proceeds through Hermes\u2019s existing capability, without depending on root RPC or email.",
       "acceptance_criteria": [
         "Actual public post and readable verification receipt, not assignment or API acceptance alone.",
         "Three communities on one successful isolated fork, not three successful forks or primary live runs;59local transactions/exact20 recovery/full lender withdrawal/zero earned grace credit, internal payments and compulsory cure accurately disclosed.",
@@ -11274,10 +11341,11 @@
       ],
       "rationale_claim_ids": [
         "claim:codex-grounded-bootstrap-reference-progress-20261007",
-        "claim:eth-gas-credit-bootstrap-candidate-20261008"
+        "claim:eth-gas-credit-bootstrap-candidate-20261008",
+        "claim:hermes-ptv5-readonly-gap-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes assigned bounded PoolTogether read-only scan due01:00Z, not yet completed. STOP on unmet gates; no claimed loan/income completion.",
+      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion.",
       "acceptance_criteria": [
         "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
         "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
@@ -11299,7 +11367,8 @@
       "triggers": [
         "Hermes raw merchant quote receipt or existing/inbound funded customer order",
         "Before due_at",
-        "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt"
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt",
+        "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt"
       ]
     }
   ],
@@ -11308,7 +11377,7 @@
       "id": "decision:collab-goals-v2",
       "status": "agreed",
       "owner_id": "agent:coordinator",
-      "recommendation": "Deepen the existing relationships by advancing the collaborators’ own evidenced objectives through the already-needed artifacts: risk-model pooling example, independently attributable job-resource receipts, and the agreed cross-domain retry fixture. Keep research/reliability benefits distinct from commercial and poverty outcomes. No new loan pitch to these contacts. Use the validated model as the canonical index for every team plan, with source refresh, explicit hypotheses and owner/status evidence. Effective as canonical index when its validated canonical commit is merged; explicit operator instructions outrank it and original sources remain the evidence.",
+      "recommendation": "Deepen the existing relationships by advancing the collaborators\u2019 own evidenced objectives through the already-needed artifacts: risk-model pooling example, independently attributable job-resource receipts, and the agreed cross-domain retry fixture. Keep research/reliability benefits distinct from commercial and poverty outcomes. No new loan pitch to these contacts. Use the validated model as the canonical index for every team plan, with source refresh, explicit hypotheses and owner/status evidence. Effective as canonical index when its validated canonical commit is merged; explicit operator instructions outrank it and original sources remain the evidence.",
       "claim_ids": [
         "claim:reciprocity-loop",
         "claim:codex-benefit",

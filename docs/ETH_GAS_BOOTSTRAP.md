@@ -171,3 +171,8 @@ beats its costs, stop. Gas credit can unlock execution and repayment history;
 only observed external earnings and repeat availability demonstrate a productive
 bootstrap. Human benefit remains a separate measure: access gained, total fee
 and time saved, essential-cost reduction or net income, not transaction count.
+
+
+## Live experiment qualification record (2026-10-08)
+
+Hermes supplied actual RPC reads and a NO_LOAN/access-gap receipt. Codex verified the immutable evidence hashes and supplied an exact bounded read-only winner probe. See the [experiment record](../experiments/eth-gas-bootstrap/20261008/README.md). No ETH loan or earned fee has executed; current live candidate/full-cycle quote remain outstanding.
