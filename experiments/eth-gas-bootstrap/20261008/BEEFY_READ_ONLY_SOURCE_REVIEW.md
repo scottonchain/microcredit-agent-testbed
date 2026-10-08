@@ -1,0 +1,29 @@
+# Beefy Base keeper candidate: source review
+
+Prepared by Codex on 2026-10-08. This is a bounded, read-only rescue candidate for the ETH gas-credit experiment, not a completed loan or profit demonstration.
+
+The official [Beefy strategy documentation](https://docs.beefy.finance/developer-documentation/strategy-contract) describes permissionless harvest calls and a fee for the caller. The [official Cowllector repository](https://github.com/beefyfinance/beefy-cowllector-v2/blob/00955cd894ba2605b0936688e3908e51ccb185ae/README.md) explains that its own keeper prioritizes regular harvesting over profitability. That competition can erase an outside keeper's margin; it does not prove every opportunity is unavailable.
+
+## Immutable inventory and code references
+
+The Base vault registry is [beefy-v2 production configuration](https://github.com/beefyfinance/beefy-v2/blob/c30017071065df81a32890eb2a36c3c05c2dc604/src/config/vault/base.json), Git blob `2554ccd2949e5a138f0950d66e5aca49c18d402a`, SHA256 `9444a807f47f72844e221854cd8b058b2f0e7995b9978fa2345df0755cdc5a62`. The production branch and immutable commit downloads matched byte for byte. It lists 1,192 vault records, including 225 active standard records. Source metadata alone does not verify live rewards or deployed implementation safety.
+
+Eight active standard Aerodrome vaults without `cow` in their identifiers were selected in registry order and saved as `beefy-eight-candidates.json`, SHA256 `f2b7d26112187b917bbe6270f5273562f7348476838e3e4d3d899b249122315a`. This excludes explicitly identified CLM products from the initial sample, but is not a representative market survey.
+
+The current [official Base Cowllector configuration](https://github.com/beefyfinance/beefy-cowllector-v2/blob/00955cd894ba2605b0936688e3908e51ccb185ae/apps/cowllector/src/lib/config.ts) specifies V2 harvest lens `0x71e4DF2Bdc7ce0b2dc7CDB9EaC983B251F8A0B58`. The [exact V2 ABI](https://github.com/beefyfinance/beefy-cowllector-v2/blob/00955cd894ba2605b0936688e3908e51ccb185ae/apps/cowllector/src/abi/BeefyHarvestLensV2ABI.ts) is frozen in the helper. Lens simulation measures the change in the specified reward token's balance caused by an attempted harvest and returns success, errors and gas used. The helper passes canonical Base WETH `0x4200000000000000000000000000000000000006`, rather than inferring token units from a strategy quote.
+
+Candidate strategy families are [StrategyVelodromeGaugeV2](https://github.com/beefyfinance/beefy-contracts/blob/e33f868e2d995c2db9219029c26d31cd8e7d5cb2/contracts/BIFI/strategies/Velodrome/StrategyVelodromeGaugeV2.sol), Git blob `70bf13bf39a37b817b10498050ca923b41ecf9cf`, and [BaseAllToNativeFactoryStrat](https://github.com/beefyfinance/beefy-contracts/blob/e33f868e2d995c2db9219029c26d31cd8e7d5cb2/contracts/BIFI/strategies/Common/BaseAllToNativeFactoryStrat.sol), Git blob `ffb79bd828a66c12fb2765298ce9241b9f917378`. Both expose `harvest(address callFeeRecipient)` without a privileged-caller restriction; successful fee collection transfers the configured native ERC20 directly from the strategy to that recipient. The factory variant's generic `callReward()` can return zero even when harvesting can pay a fee. The probe therefore simulates the lens even if that preliminary quote is zero.
+
+Actual vault `strategy()` and its deployed implementation have not yet been verified against these source families. A positive simulation must not silently substitute for that check. Source-reviewed methods can succeed with no harvest fee if rewards are below thresholds. The eventual receipt must show actual canonical WETH transfer from the verified strategy to the controlled borrower.
+
+## Read-only probe and remaining qualification
+
+`read-only-beefy-probe.mjs` uses pinned `viem@2.17.0` for ABI encoding and decoding. Its method allowlist excludes submission and signing; it reads at one recorded chain block, checks at most eight fixed candidates, caps requests at 60 and runtime at 90 seconds, uses no retries, and never loads wallet keys. Syntax, help output and ABI tuple decoding were checked offline. No live read was performed by this source review.
+
+For each vault the helper resolves the strategy, records its code hash, reads pause state, configured native token, estimated call reward and last harvest, then performs an **eth_call only** to the lens. Positive actual simulated WETH deltas receive a separate direct EOA `harvest(borrower)` simulation and diagnostic gas estimate. The supplied RPC must already be approved in the executing environment; the script grants no network access and prints no endpoint credentials.
+
+The lens call must never be submitted as a real transaction. Its simulated caller and recipient differ from the intended direct borrower call. Before spending, verify the implementation's fee routing and caller conditions, refresh the opportunity, and include funding, direct harvest, WETH unwrap, repayment, Base L1 data fees, gas ceilings, loan fee and computation/provider costs. A competitor's intervening harvest can turn positive preflight into a gas loss. No root funding is external income, and no simulated fee is earned revenue.
+
+## PoolTogether route status
+
+The current [Cabana Lite Base configuration](https://github.com/GenerationSoftware/cabana-lite/blob/2a8109b9369bac3581b5f957ca2e82688f39c652/src/lib/constants.ts) still points to `0x45b2010d8A4f08b53c9fa7544C51dFd9733732cb`; no successor Base prize pool was found there. The frontend includes shutdown and pro-rata withdrawal handling. That source alone does not establish this pool's live shutdown state. The decisive read-only checks are `isShutdown()`, `shutdownAt()`, `drawTimeoutAt()`, `lastAwardedDrawAwardedAt()` and `drawClosesAt(841)`. No official announcement of a global protocol shutdown was found during this narrow search.

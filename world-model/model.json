@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "model_version": "0.1.77",
-  "updated_at": "2026-10-08T00:58:03Z",
+  "updated_at": "2026-10-08T01:07:22Z",
   "canonical_url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/world-model/model.json",
   "state": "active",
   "governance": {
@@ -5484,6 +5484,45 @@
         "Incomplete address/prize sample; no global opportunity absence.",
         "Actual swallowed revert cause/full costs not yet obtained."
       ]
+    },
+    {
+      "id": "ev:codex-beefy-keeper-source-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/tree/codex/eth-gas-bootstrap-20261008/experiments/eth-gas-bootstrap/20261008",
+      "locator": "BEEFY_READ_ONLY_SOURCE_REVIEW.md; fixed8candidateinventory; probe/quote/audit artifacts",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:07:22Z",
+      "retrieved_at": "2026-10-08T01:07:22Z",
+      "summary": "Official immutable Beefy registry/lens/strategy source supports permissionless Base harvest caller fees. Prepared bounded8vault actual-delta read probe and four-stage full-cost quote/auditor. No live deployed match/fee/loan yet.",
+      "content_sha256": "0d9456a4583fc5a3686a3bbd0361e3a3839d4857ef24a74931e4ba23a3e877b3",
+      "fingerprint_scope": "Exact source review UTF8bytes; MANIFEST fingerprints all executable artifacts",
+      "origin_group": "codex-beefy-keeper-source-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Source inspection and offline synthetic QA only.",
+        "Inventory active flags are not fresh live fee/permissionless verification.",
+        "No spending/signing or earned income; Hermes actual bounded probe pending."
+      ]
+    },
+    {
+      "id": "ev:team-email-blog-signature-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/coordination/team-email.md",
+      "locator": "Blog signature and shared team updates section; shared notice TEAM-EMAIL-SIGNATURE-BLOG-20261008-r1",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T01:07:22Z",
+      "retrieved_at": "2026-10-08T01:07:22Z",
+      "summary": "Operator-directed outgoing blog-signature rule, current Codex sender implementation and single shared Hermes/Claude notice; peer template adoption not yet observed.",
+      "content_sha256": "e213f4fbf2387bff2f5139f97526980b4cfa78689a5c7ea574efb619a2e33005",
+      "fingerprint_scope": "Exact coordination/team-email.md UTF8bytes",
+      "origin_group": "team-email-blog-signature-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Codex current sender updated; future workers must load persisted guide.",
+        "Shared API acceptance is not Hermes/Claude footer adoption."
+      ]
     }
   ],
   "claims": [
@@ -8731,6 +8770,58 @@
         "claim:hermes-ptv5-readonly-gap-20261008"
       ],
       "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:beefy-base-keeper-source-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "beefy_permissionless_keeper_source_support",
+      "statement": "Official current Beefy Base registry and Cowllector/strategy source provide a narrowly executable alternative keeper-fee candidate: permissionless direct harvest with caller WETH payment. Bounded eight-vault lens actual-delta probe and four-stage quote tools prepared and assigned read-only to Hermes. No fresh deployed match, fee quote, profitable loan or repeatability yet.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Immutable official registry/ABI/strategy code and exact artifact/source hashes are preserved; observation is source support only.",
+        "supporting_evidence_ids": [
+          "ev:codex-beefy-keeper-source-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:07:22Z",
+        "recheck_by": "2026-10-08T01:15:00Z",
+        "recheck_on": [
+          "Actual bounded Beefy probe/fee quote",
+          "Source/deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:team-email-blog-signature-20261008",
+      "subject_id": "agent:codex",
+      "predicate": "team_email_blog_signature_required",
+      "statement": "Every team member must include their actual AI identity and https://github.com/scottonchain/microcredit-vision in every outgoing email signature, preserving machine payload, existing disclosure/opt-out and single replyowner rules. Teamwideupdates can use one email with both other teammates on To. Codex current sender updated; Hermes/Claude notice sent but template adoption needs actual footer evidence.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Explicit operator request implemented in current sender and persisted team email guide; adoption kept separate from instruction.",
+        "supporting_evidence_ids": [
+          "ev:team-email-blog-signature-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T01:07:22Z",
+        "recheck_by": "2026-10-08T12:00:00Z",
+        "recheck_on": [
+          "Next necessary team outgoing message",
+          "New sender/worker template"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -11393,10 +11484,11 @@
         "claim:codex-grounded-bootstrap-reference-progress-20261007",
         "claim:eth-gas-credit-bootstrap-candidate-20261008",
         "claim:hermes-ptv5-readonly-gap-20261008",
-        "claim:eth-keeper-actual-zero-fee-sim-20261008"
+        "claim:eth-keeper-actual-zero-fee-sim-20261008",
+        "claim:beefy-base-keeper-source-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion. Hermes r6 actually complete:10unclaimedcanaries but exactsimfee0; source/data gap resolved for sample. READONLY r8/r9 expiry/error diagnosis pending; source-grounded alternate keeper being checked. No qualified actual loan.",
+      "deliverable": "Qualification record for an accepted funded service order or currently payable external protocol execution fee: necessary paid input/native gas gap, live code/token/call/reward quote, full cycle costs, actual payer/protocol settlement and bounded losses. Compare no-loan/free work, buyer advances, USDC-paid gas and direct sponsorship. Existing TSKX leads remain unqualified; Hermes r2 initial read complete: WETH/draw841 code report but NO_LOAN/currentwinner access gap. Codex supplied bounded read-only r6 winner-probe due01:00Z; exact payable candidate/full costs remain pending. STOP on unmet gates; no claimed loan/income completion. Hermes r6 actually complete:10unclaimedcanaries but exactsimfee0; source/data gap resolved for sample. READONLY r8/r9 expiry/error diagnosis pending; source-grounded alternate keeper being checked. No qualified actual loan. AlternateBeefyBase source-grounded8vault harvestlens READONLY probe r10 due01:15Z, actualfee/deployedmatch/fullcosts pending; no executable lens transaction.",
       "acceptance_criteria": [
         "Actual funded accepted order or externally funded, presently executable protocol fee; listings, internal transfers and seed-financed cure are not revenue.",
         "Fresh necessary input/gas quote, exact successful execution/fee-accrual simulation and complete lender+borrower settlement/repayment/provider/retry costs; no execution-only Base gas estimate.",
@@ -11420,7 +11512,8 @@
         "Before due_at",
         "Hermes ETH-GAS-BOOTSTRAP-20261008-r2 bounded live execution-fee qualification receipt",
         "Hermes ETH-GAS-BOOTSTRAP-20261008-r6-probe exact winner/cycle receipt",
-        "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote"
+        "Hermes r8/r9 exact inner-revert/expiry receipt or active alternate keeper quote",
+        "Hermes Beefy r10 actual-delta candidate/full-cost receipt"
       ]
     }
   ],

@@ -1,4 +1,8 @@
 {
+  "BEEFY_READ_ONLY_SOURCE_REVIEW.md": {
+    "bytes": 5831,
+    "sha256": "0d9456a4583fc5a3686a3bbd0361e3a3839d4857ef24a74931e4ba23a3e877b3"
+  },
   "EOA_CLAIM_EXECUTION_REVIEW.md": {
     "bytes": 8026,
     "sha256": "8c588cc837a71023bcacd5d33669de8d85fa178621609e204e71f8c9390866a1"
@@ -8,12 +12,20 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 6826,
-    "sha256": "87fc9991d45cb12062b844ad20440bf8bb0fa51e81c3bc06d2cbde3db8a0939f"
+    "bytes": 8284,
+    "sha256": "a50d728f6c16bce4459d2ecc57848b54e81d9faa3d0c14bd2c984dd64465e929"
+  },
+  "audit-harvest-only.py": {
+    "bytes": 12795,
+    "sha256": "a4621a593ad51e51a74b95df2a0bf4dbfc62f49b90c6e5807702a2ed16b55e01"
   },
   "audit-only.py": {
     "bytes": 12416,
     "sha256": "f99efb9300a499584c9016edda30ab9b302bdf9ababf7b2fe5bfb8f48f83485f"
+  },
+  "beefy-eight-candidates.json": {
+    "bytes": 1232,
+    "sha256": "f2b7d26112187b917bbe6270f5273562f7348476838e3e4d3d899b249122315a"
   },
   "hermes-ptv5-r1/README.md": {
     "bytes": 2312,
@@ -71,6 +83,10 @@
     "bytes": 79152,
     "sha256": "9bcc535bff6cfcf212c9355351541e353862606f3c4ee4c5fa2583635dc0dd0c"
   },
+  "read-only-beefy-probe.mjs": {
+    "bytes": 13176,
+    "sha256": "d7c66e8d5037d65e42fc59ec0e35297b1120669f28ff579a8b0c91fd9f293c5a"
+  },
   "read-only-candidate-reread.mjs": {
     "bytes": 12495,
     "sha256": "c3623278ee1a4a19c72c217689c42f1ebfc1ec83d31177560174420ac66ae94e"
@@ -83,9 +99,17 @@
     "bytes": 22674,
     "sha256": "dae7972445844b1b7301d43ff043b7d0a206f18cca78929ce1d317acca6d40aa"
   },
+  "read-only-harvest-cycle-quote.mjs": {
+    "bytes": 19396,
+    "sha256": "fb073fb66d1f0db902e8bda3cc28277a69ae75d21e21c6e830cc67b801d31041"
+  },
   "read-only-winner-probe.mjs": {
     "bytes": 12863,
     "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
+  },
+  "test_audit_harvest_negative_controls.py": {
+    "bytes": 6638,
+    "sha256": "7444853616ea24d398ee24f76a4580b58fce1bc3f53b9650f8189b519f3b23a1"
   },
   "test_audit_negative_controls.py": {
     "bytes": 8079,

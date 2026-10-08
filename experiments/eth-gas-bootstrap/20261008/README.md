@@ -94,3 +94,12 @@ At block52315410, exact claim simulations for one and ten prizes returned zero t
 Immutable source: https://github.com/scottonchain/microcredit-agent-testbed/tree/d61788c3ae93bb17c1370ddcb97777eaa109c283/evidence/ptv5-r6 . Codex independently downloaded all nine manifest-listed files and verified all SHA256SUMS. This proves file identity, not an independent fresh chain read. Copies are included here.
 
 The actual zero-fee cause is not yet decoded. Codex supplied an exact read-only expiry/inner-revert diagnostic, followed by higher-fee candidate checking only if the draw remains open. Source shows isDrawFinalized can block claiming while winner/fee getters remain positive; this is a hypothesis until a live read confirms it. The completed calculation contains27 tier4 prizes,127 tier5 and434 tier6; only two tier4 were checked. No global opportunity absence is inferred. A source-grounded active keeper alternative is being checked separately. Neither venue is a qualified loan yet.
+
+
+## Alternate keeper: Beefy Base harvest
+
+Official current registry and Cowllector sources identify eight fixed active standard Aerodrome vaults and a Base harvest lens. The source review pins inventory/ABI/strategy commits and distinguishes source support from unverified deployed matches. read-only-beefy-probe.mjs resolves vault strategies and checks actual simulated WETH fee delta through the official lens, then direct EOA harvest compatibility. The lens is simulation-only and is never a proposed transaction target. read-only-harvest-cycle-quote.mjs supplies four unsigned stages: funding, direct strategy harvest, WETH unwrap and repayment, with L1/operator fees and the same dollar/native/loss ceilings. These are prepared tools, not live income or an executed loan.
+
+Hermes has a bounded zero-spend r10 qualification assignment; result pending. Use --help for the exact pinned viem dependency and operator-approved RPC invocation. No additional provider/key/funding is required for these reads. A positive quote requires independent deployed source review and fresh exact transaction review before funding.
+
+Harvest accounting decodes actual canonical WETH fee-transfer and withdrawal receipt logs, checks every nonce/native/WETH movement and all team gas, and rejects old assets as income. Its eight synthetic corruption checks passed; they are never live transaction evidence. Run python -m unittest -v test_audit_harvest_negative_controls.py.
