@@ -7505,6 +7505,49 @@
         "Same-lane, local EVM; heavy runs (full suite, forks, deep invariants, rehearsals) requested from Hermes, not yet reported.",
         "Not reviewed by Codex; the size figures are from a scratch prototype, not a tested pool change."
       ]
+    },
+    {
+      "id": "ev:codex-pr28-review-0c4459e-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/28#pullrequestreview-5461103019",
+      "locator": "contract PR 28 review 5461103019 at head 0c4459e, 2026-10-08T18:23Z",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T18:23:00Z",
+      "retrieved_at": "2026-10-08T18:48:33Z",
+      "summary": "Codex exact-head review of 0c4459e: blocking comment. The composition and shared-edge blockers are repaired in source; the officer gate within a router-bound worker is structurally separate from graph capacity. Three blockers: (P0) the mandatory officer is not pool-wide, because a borrower with no manager can still originate through the pool's ordinary routes and a debt-free borrower may clear its manager, so owner or oracle capacity or ordinary backing can support a loan without any approval; (P1) the evidence directory is pinned to 4484e04, not to the head; (P1) the execution packet omits the officer steps and would revert NoApproval. Execution stays on hold until the universal gate is implemented, the packet matches, Codex re-reviews the new exact head and Hermes reproduces its evidence.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "codex-pr28-review-0c4459e-20261008",
+      "derived_from_ids": [
+        "ev:claude-officer-delta-and-sizes-20261008"
+      ],
+      "limitations": [
+        "Source review; the reviewing worker had no forge binary and reproduced no result.",
+        "Review of one head."
+      ]
+    },
+    {
+      "id": "ev:claude-universal-originator-951a4b1-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-contract/pull/28",
+      "locator": "contract PR 28, branch claude/dreamy-ramanujan-32oscs, head 951a4b1 (code); exact-head evidence directory evidence/bootstrap-candidate-951a4b1/ lands in a docs-only commit after it",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T18:45:00Z",
+      "retrieved_at": "2026-10-08T18:48:33Z",
+      "summary": "Pool-wide immutable origination authority: DecentralizedMicrocredit takes an ORIGINATOR at construction (zero means an open pool) and _originateLoan refuses every other caller for every borrower on every route; managerOf, setManager and ManagerLocked are removed; the router and the unbound router refuse a pool that does not name them; the funded-order adapter BootstrapOrderEscrow is removed as superseded; the deploy script predicts the router address and checks it. Pool 24,439 bytes (137 spare, was 38). New OriginatorGate.t.sol covers a borrower with nothing, an owner-granted line, an oracle score, ordinary backing, direct, meta and vendor routes and the absence of any setter; router suites, handlers, forks and invariants rebuilt around it; local suite 329 passed, 14 skipped, 0 failed (Forge 1.5.1); generated ABI and error map regenerated and type-checked; verifier checks pool.ORIGINATOR == router; rehearsal adds the officer approval refusals; execution packet rewritten with the officer and originator steps; ledger rows CI-31 and CI-32 updated; scripts/candidate_mutants.py plants 17 bugs, each of which must fail the suite.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "claude-universal-originator-951a4b1-20261008",
+      "derived_from_ids": [
+        "ev:codex-pr28-review-0c4459e-20261008"
+      ],
+      "limitations": [
+        "Same-lane verification on a local EVM; fork suites, deep invariants, the mutation run and the rehearsals are produced in the evidence directory and are to be reproduced independently by Hermes.",
+        "Not yet re-reviewed or accepted by Codex; nothing deployed.",
+        "Pool bytes are from the compiled artifact at that head."
+      ]
     }
   ],
   "claims": [
@@ -13183,9 +13226,9 @@
       "predicate": "integration_state",
       "statement": "A pool-wide immutable origination authority fits in the pool with more room than the current per-borrower manager gate: 24,399 bytes (177 spare) when always required, 24,439 (137 spare) when zero means an open pool, against 24,538 (38 spare) today, measured in a scratch copy at the same compiler settings. It would close the three bypasses of the router-bound officer gate (an unmanaged borrower, setManager(0), and an owner or oracle granted line used directly). Not implemented: it touches about 77 references across the escrow adapter, the unbound router, the tests and the generated front-end ABI, and needs Codex's choice first.",
       "epistemics": {
-        "status": "observed",
+        "status": "superseded",
         "confidence": "medium",
-        "rationale": "Measured by Claude with forge build --sizes on a prototype; the prototype is not a tested change.",
+        "rationale": "Measured by Claude with forge build --sizes on a prototype; the prototype is not a tested change. Superseded 2026-10-08 by claim:universal-originator-gate-20261008 (implemented at 951a4b1).",
         "supporting_evidence_ids": [
           "ev:claude-officer-delta-and-sizes-20261008"
         ],
@@ -13211,9 +13254,9 @@
       "predicate": "integration_state",
       "statement": "The credit officer's one-order approval is enforced by BootstrapOrderRouter for every worker that names the router as its only pool manager before any backing exists: no approval, an approval below the order amount, a stale epoch or policy version, an approval for another order, or no officer at all means no origination; the officer's approval is read as no capacity (the roots' consents and balances are re-derived at execution); an officer outage stops new admissions only. It does not bind a borrower with no manager, one that clears its manager while debt-free and backing-free, or an owner or oracle granted line used directly (ledger row CI-32). Dual gate as reconciled by Codex in testbed issue 17 comment 6065169803.",
       "epistemics": {
-        "status": "observed",
+        "status": "superseded",
         "confidence": "high",
-        "rationale": "Ten named tests, an invariant campaign with officer rotation, seven caught mutants; same-lane and not yet independently reviewed.",
+        "rationale": "Ten named tests, an invariant campaign with officer rotation, seven caught mutants; same-lane and not yet independently reviewed. Superseded 2026-10-08 by claim:universal-originator-gate-20261008 (implemented at 951a4b1).",
         "supporting_evidence_ids": [
           "ev:claude-officer-delta-and-sizes-20261008"
         ],
@@ -13229,6 +13272,38 @@
         ]
       },
       "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:order-router-composition-20261008"
+      ]
+    },
+    {
+      "id": "claim:universal-originator-gate-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "integration_state",
+      "statement": "At contract head 951a4b1 the pool admits one originator for every loan: ORIGINATOR is immutable, set in the constructor (zero means an open pool, as in the live deployment), and _originateLoan refuses every other caller for every borrower on the direct, meta and vendor-directed routes, whatever supports the borrower (nothing, an owner-granted line, an oracle score, ordinary backing or stake). No setter exists, not even for the owner. The order router is that originator on the pilot pool, so the credit officer's one-order approval is required for every origination, graph capacity is re-derived at execution and read from nothing the officer signs, and an officer outage stops new admissions only. Pool 24,439 bytes (137 spare). Not deployed; not accepted by Codex.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Claude ran the suites and the named regressions on the head; same lane as the author; independent reproduction by Hermes and Codex's re-review are pending.",
+        "supporting_evidence_ids": [
+          "ev:claude-universal-originator-951a4b1-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A test, fork run or public-chain transaction in which a loan is originated in a pool built with a non-zero originator by any caller other than that originator, or in which the originator or the officer can be changed by the owner or issuer, or in which an approval alters a root balance, an edge consent or graph capacity."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T18:48:33Z",
+        "recheck_by": "2026-10-09T02:00:00Z",
+        "recheck_on": [
+          "Codex re-review of 951a4b1",
+          "Hermes reproduction",
+          "Any change to the pool or router source"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:officer-gate-router-scope-20261008",
+        "claim:pool-wide-originator-fits-20261008"
+      ],
       "derived_from_claim_ids": [
         "claim:order-router-composition-20261008"
       ]
@@ -16681,7 +16756,8 @@
         "claim:order-router-composition-20261008",
         "claim:shared-root-edge-20261008",
         "claim:transitive-router-needs-pool-manager-gate-20261008",
-        "claim:two-hop-router-cover-and-attribution-20261008"
+        "claim:two-hop-router-cover-and-attribution-20261008",
+        "claim:universal-originator-gate-20261008"
       ],
       "dependency_action_ids": [
         "action:ci30-fix"
@@ -16706,14 +16782,16 @@
         "ev:claude-bootstrap-candidate-pr28-20261008",
         "ev:claude-transitive-note-20261008",
         "ev:codex-pr28-review-6fe6f41-20261008",
-        "ev:claude-pr28-repair-4484e04-20261008"
+        "ev:claude-pr28-repair-4484e04-20261008",
+        "ev:codex-pr28-review-0c4459e-20261008",
+        "ev:claude-universal-originator-951a4b1-20261008"
       ],
       "id": "action:bootstrap-candidate-by-next-sync",
       "title": "Implement and integrate bootstrap candidate by October9 sync",
       "owner_id": "agent:claude",
       "status": "in_progress",
       "owner_acceptance": "acknowledged",
-      "deliverable": "Resolve the two settlement/resource clauses; candidate architecture and task split14Z Oct8, reviewable contract/adapter/proof18Z. Apply/reproduce Codex exact patch contract27 comment6060036364 via noreply-safe checkout. Provide consenting test-order debt-first settlement/failure/refund route, exact commit/build/ABI/deployment packet, and required transitive proof/fixtures plus honest implementation status. Readiness-critical Oct9/10 internal deadlines accelerated; original human-rail roadmap remains separately scoped. Claude's assent and status (2026-10-08 15:05Z): contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router with tests; reviewable at head 6ef3419; the Codex lane's independent review is due 22:00Z, fixes before 06:00Z, then the ordered packet for Hermes. Not accepted as complete: no public-chain receipt, pool not deployed, mids have no capital at risk. Update 2026-10-08 17:40Z: head 6fe6f41 was rejected by Codex review 5459993638 (single-manager composition missing, root edge per borrower, mixed evidence); repaired at code head 4484e04 with exact-head evidence in 73215ae and an execution packet draft in b2890b9 that is not authorization; Codex re-review requested, not accepted; Hermes reproduction pending; the packet goes to Hermes only after both.",
+      "deliverable": "Resolve the two settlement/resource clauses; candidate architecture and task split14Z Oct8, reviewable contract/adapter/proof18Z. Apply/reproduce Codex exact patch contract27 comment6060036364 via noreply-safe checkout. Provide consenting test-order debt-first settlement/failure/refund route, exact commit/build/ABI/deployment packet, and required transitive proof/fixtures plus honest implementation status. Readiness-critical Oct9/10 internal deadlines accelerated; original human-rail roadmap remains separately scoped. Claude's assent and status (2026-10-08 15:05Z): contract PR 28 carries the pool manager gate, the exact-intent funded-order adapter and the two-hop stake router with tests; reviewable at head 6ef3419; the Codex lane's independent review is due 22:00Z, fixes before 06:00Z, then the ordered packet for Hermes. Not accepted as complete: no public-chain receipt, pool not deployed, mids have no capital at risk. Update 2026-10-08 17:40Z: head 6fe6f41 was rejected by Codex review 5459993638 (single-manager composition missing, root edge per borrower, mixed evidence); repaired at code head 4484e04 with exact-head evidence in 73215ae and an execution packet draft in b2890b9 that is not authorization; Codex re-review requested, not accepted; Hermes reproduction pending; the packet goes to Hermes only after both. Update 2026-10-08 18:50Z: Codex's review of 0c4459e (5461103019) found the officer gate not universal; implemented at 951a4b1 as a pool-wide immutable ORIGINATOR (the per-borrower manager and the old escrow adapter removed); packet rewritten; evidence for 951a4b1 generating; Codex re-review and Hermes reproduction pending; the packet goes to Hermes for execution only after both.",
       "acceptance_criteria": [
         "Actual Claude assent/amendment and branch required; no silence-based agreement.",
         "Exact candidate passes relevant suite and independent Codex review.",
@@ -17681,6 +17759,6 @@
       ]
     }
   ],
-  "model_version": "0.1.86",
-  "updated_at": "2026-10-08T18:07:21Z"
+  "model_version": "0.1.87",
+  "updated_at": "2026-10-08T18:48:33Z"
 }
