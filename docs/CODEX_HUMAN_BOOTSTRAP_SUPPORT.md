@@ -21,3 +21,22 @@ recoveries, paired production quotes and useful net payments to borrowers.
 No contract was deployed, person contacted, account opened, loan promised or
 funds spent. Original live testnet scenarios remain 0/3; exact USDC recovery
 and source 5 USDC redeposit commitments remain open.
+
+
+## Redirected countries and the agent product
+
+Claude subsequently prioritized Guatemala and conditional Ethiopia, retaining
+the Philippines/Kenya comparison. The [target-country screen](../evidence/human-bootstrap-cost-audit-20261008/TARGET_COUNTRY_COMPARISON.md)
+records a material correction: Tigo's official notice announces closure on
+30 June 2026. Guatemala needs an operating, authorized replacement route.
+The [first agent job board](../evidence/human-bootstrap-cost-audit-20261008/bot-job-board.md)
+labels useful team demand and hypothetical, unfunded prices. Current jobs can
+use free or supplied inputs and require no advance. The [short-advance review](../evidence/human-bootstrap-cost-audit-20261008/short-advance-pricing-review.md)
+corrects the principal-forgiveness accounting and separates a relayer's initial
+funding subsidy from USDC paymaster operation. Fix CI30 before price changes.
+
+Codex accepted the redirected country assignment (9 October, 12:00 UTC) and
+the job-board assignment (15 October, 12:00 UTC). AgentMail accepted the first
+coordination and ownership messages. A later joint update hit the shared
+100-message/day quota; board issue15 carries the time-sensitive corrections.
+No duplicate automation or changed meeting time was introduced.

@@ -908,6 +908,19 @@
       ],
       "goal_model": null,
       "identity": null
+    },
+    {
+      "id": "venue:friendship-bridge",
+      "kind": "venue",
+      "name": "Friendship Bridge (a US non-profit lending to women in Guatemala through Trust Banks; the model partner type for the human pilot)",
+      "parent_id": "project:microcredit",
+      "owner_id": null,
+      "urls": [
+        "https://friendshipbridge.org/",
+        "https://www.kiva.org/partners/55"
+      ],
+      "goal_model": null,
+      "identity": null
     }
   ],
   "evidence": [
@@ -6365,6 +6378,302 @@
       "limitations": [
         "Reported inbox observation; no private correspondence published or universal future compliance claim."
       ]
+    },
+    {
+      "id": "ev:operator-bot-economy-direction-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6051809348",
+      "locator": "testbed issue 15 comment 6051809348",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T03:52:12Z",
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "The operator's direction to Claude, quoted: target Guatemala, Ethiopia and similar countries where mobile phones are well distributed but poverty is extreme; research Friendship Bridge, find its website and add the information to the world model; the population there can make use of this if it is solvent and working; the operator's preference is to create the economy first; bots without ETH are impoverished because they can do nothing without gas; make this a bot microlending opportunity, even if Claude and Codex have to invent something; find the equivalent need for bots and the lending opportunity; bootstrap it to human level.",
+      "content_sha256": "16a2419de814b7f2fba314e9afa7ca501830e0752d99d2b3099f833515a5e38b",
+      "fingerprint_scope": "UTF-8 GitHub body field, exactly as retrieved",
+      "origin_group": "operator-bot-economy-direction-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Given to Claude in its session and recorded publicly by Claude."
+      ]
+    },
+    {
+      "id": "ev:human-borrowing-plan-rev1-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md",
+      "locator": "docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md, revision carrying model 0.1.78: section 2 rows for Friendship Bridge, Guatemala, Ethiopia and the paymaster; section 3a, the bot economy first; phase 0b; the country text of phases 2 and 3; decisions 1 to 5",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T04:07:33Z",
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "The plan revised for the operator's second direction: Guatemala first (need, reach, a lawful route and a model partner type all exist) and Ethiopia when a lawful route exists; Friendship Bridge's Trust Banks as the partner and group structure the contract models; a bot working-capital advance in USDC with gas paid through a paymaster, backed by the employer's stake, repaid from job proceeds by a third party, with the team as the first, labelled, employer; the price of short advances at the live parameters and the two contract questions it raises; phase 0b with owners, steps, gate and stop; the mapping from the bot product to a Trust Bank borrower.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "human-borrowing-plan-doc-20261008",
+      "derived_from_ids": [
+        "ev:operator-bot-economy-direction-20261008",
+        "ev:human-borrowing-plan-doc-20261008"
+      ],
+      "limitations": [
+        "A plan, not a decision; it authorises no contact, spending or mainnet transaction.",
+        "Friendship Bridge's own site could not be read from Claude's host; its figures are from Kiva's partner page and older secondary material."
+      ]
+    },
+    {
+      "id": "ev:friendship-bridge-kiva-profile",
+      "kind": "primary_public",
+      "url": "https://www.kiva.org/partners/55",
+      "locator": "Kiva partner 55 profile and Kiva blog (Friendship Bridge), with a 2013 programme fact sheet",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Friendship Bridge, a US non-profit (Colorado), lends to women in Guatemala through 'Microcredit Plus': renewable loans averaging about $400 to $501 over four- to twelve-month cycles at a flat 2.6% a month including all administrative fees, with business, money-management and health classes at the monthly repayment meeting; borrowers form Trust Banks of 7 to 25 women who co-guarantee one another's loans; more than 34,000 women served in 2022; repayment above 99% throughout 2022. Older material gives averages of $300 (2013, six- to nine-month cycles) and $350.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "friendship-bridge-kiva-profile",
+      "derived_from_ids": [],
+      "limitations": [
+        "friendshipbridge.org and kiva.org were unreachable from Claude's host (DNS); figures come from search excerpts of Kiva's page and secondary sheets, and loan-size figures differ by year.",
+        "Repayment is the organisation's own figure as relayed by Kiva."
+      ]
+    },
+    {
+      "id": "ev:guatemala-mobile-reach-2026",
+      "kind": "primary_public",
+      "url": "https://datareportal.com/reports/digital-2026-guatemala",
+      "locator": "DataReportal Digital 2026 Guatemala (GSMA Intelligence connections) and GSMA 'Guatemala 2030' (August 2026)",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Guatemala had 20.6 million cellular mobile connections at the end of 2025 (above its population; connections fell 1.1% over 2024), 11.4 million unique mobile subscribers (GSMA, August 2026), 11.6 million internet users (62%); 89% of connections run on smartphones, mobile internet covers 95% of the population and 49% of people under coverage do not use it.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "guatemala-mobile-reach-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Connections, unique subscribers and internet users measure different things; the unique-subscriber figure is from press coverage of the GSMA report."
+      ]
+    },
+    {
+      "id": "ev:guatemala-poverty-encovi-2023",
+      "kind": "primary_public",
+      "url": "https://documents1.worldbank.org/curated/en/099713101062517013/text/IDU-6828e8b3-bcbe-428f-b522-b5e4dbbf0f8c.txt",
+      "locator": "World Bank Poverty and Equity Brief for Guatemala on ENCOVI 2023",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "National poverty 56% in 2023 (59.2% in 2014), extreme poverty 16.2%, 9.5% below $2.15 a day (2017 PPP; 69.9% rural against 40.6% urban at that line), 55.2% below $6.85; Gini 0.42 in 2023.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "guatemala-poverty-encovi-2023",
+      "derived_from_ids": [],
+      "limitations": [
+        "The latest national survey is 2023; international-line figures depend on the PPP vintage."
+      ]
+    },
+    {
+      "id": "ev:guatemala-decree-15-2026",
+      "kind": "primary_public",
+      "url": "https://lahora.gt/nacionales/ralvarado/2026/06/17/oficializan-en-el-diario-oficial-el-decreto-15-2026-ley-contra-el-lavado-de-dinero-y-terrorismo-now/",
+      "locator": "La Hora (2026-06-17), Chambers and Andersen Guatemala summaries of Decree 15-2026",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Decree 15-2026, Guatemala's new anti-money-laundering and counter-terrorist-financing law, was published in the official gazette on 2026-06-17 and takes effect three months after publication; it places virtual-asset exchange, custody and transfer providers, domestic or foreign, under the IVE's supervision with transaction reporting, alongside banks, insurers, exchange houses, notaries, lawyers and accountants; it replaces Decree 67-2001; it aligns the country with FATF ahead of a GAFILAT review in February 2027. No registration procedure for virtual-asset providers was found, and stablecoins are not defined.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "guatemala-decree-15-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "News and law-firm summaries, not the gazetted text; the IVE's implementing rules were not found."
+      ]
+    },
+    {
+      "id": "ev:guatemala-tigo-money",
+      "kind": "primary_public",
+      "url": "https://www.gsma.com/mobilefordevelopment/programme/mobile-money/tigo-money-launches-in-central-america/",
+      "locator": "GSMA Mobile for Development on Tigo Money in Guatemala; Tigo Guatemala (Millicom)",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Tigo Money is the mobile wallet of Tigo, Guatemala's largest operator (more than 8 million mobile users); it began as domestic transfers through about 500 agents in all 22 departments, covers 92% of the territory as the country's second-largest physical distribution network, and receives international remittances through partners.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "guatemala-tigo-money",
+      "derived_from_ids": [],
+      "limitations": [
+        "Dated operator and GSMA material; no current Guatemala-only active-user count was found; no USDC rail into Tigo Money was found."
+      ]
+    },
+    {
+      "id": "ev:ethiopia-mobile-money-2026",
+      "kind": "primary_public",
+      "url": "https://www.ecofinagency.com/news-digital/0805-55402-m-pesa-ethiopia-subscriber-base-jumps-120-to-5-2-million",
+      "locator": "Ecofin Agency on Safaricom Ethiopia FY2026; Capital Ethiopia and The Reporter on Telebirr (2026)",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Telebirr (Ethio Telecom) reports about 59 million users in early 2026 (58.61 million subscriptions at the end of 2025) and 6.8 trillion birr of cumulative transactions; Safaricom's M-Pesa Ethiopia had 5.2 million active users and processed 442.2 million transactions in the year to March 2026; an August 2026 ministry keynote counted 139 million mobile-money accounts across providers.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ethiopia-mobile-money-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Registered users, subscriptions and 90-day actives are mixed across sources; accounts exceed people."
+      ]
+    },
+    {
+      "id": "ev:ethiopia-nbe-virtual-assets-notice-2026",
+      "kind": "primary_public",
+      "url": "https://www.thereporterethiopia.com/51969/",
+      "locator": "The Reporter (Ethiopia), Afriwise and Capital Ethiopia on the NBE Public Notice on Virtual Assets of 2026-07-23",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "The National Bank of Ethiopia's Public Notice on Virtual Assets (2026-07-23) states that exchanging virtual assets for fiat or other virtual assets, transferring them, holding them in custody and offering financial services on their issuance or sale are prohibited without the NBE's express authorisation; a business licence, sandbox participation or another regulator's registration does not count; licensed birr e-money is not a virtual asset; the notice follows a February 2026 move against birr-paired peer-to-peer crypto trading. Sources differ on whether it is a restatement or a tightening; none names stablecoins.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "ethiopia-nbe-virtual-assets-notice-2026",
+      "derived_from_ids": [],
+      "limitations": [
+        "Press and law-firm commentary, not the notice's text; that a fiat-pegged token falls within the definition is this project's inference."
+      ]
+    },
+    {
+      "id": "ev:circle-paymaster-usdc-gas",
+      "kind": "primary_public",
+      "url": "https://www.circle.com/en/paymaster",
+      "locator": "Circle Paymaster product page, developer docs (pay gas fees in USDC) and Circle's EIP-7702 blog post",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Circle Paymaster lets ERC-4337 smart accounts (EntryPoint v0.7 or v0.8) and EIP-7702 externally owned accounts pay gas in USDC on Arbitrum, Avalanche, Base, Ethereum, OP Mainnet, Polygon PoS and Unichain, permissionlessly, for 10% of the gas fee (waived until 2025-07-01); USDC is the only supported token and the user must hold USDC on that chain; no smart-wallet deployment is needed with EIP-7702; the flow is an EIP-2612 permit capping the gas spend, then a UserOperation submitted to a bundler; SDK partners Alchemy and ZeroDev.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "circle-paymaster-usdc-gas",
+      "derived_from_ids": [],
+      "limitations": [
+        "Vendor pages; whether the paymaster serves Base Sepolia and whether a fresh EOA's first transaction clears a bundler were not verified by this team."
+      ]
+    },
+    {
+      "id": "ev:agent-registration-and-x402-costs",
+      "kind": "primary_public",
+      "url": "https://erc-8004.quicknode.com/learn/registries/validation",
+      "locator": "QuickNode ERC-8004 guide (validation registry), Base x402 payments guide, third-party ERC-8004 skill listings",
+      "author_id": "venue:cold-start-literature-20261008",
+      "observer_id": "agent:claude",
+      "published_at": null,
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "Registering an ERC-8004 agent identity is a gas fee: third-party listings estimate 100,000 to 200,000 gas, about $5 to $20 on Ethereum mainnet, and about $0.02 on Base; the standard has no allowlist, staking requirement or application process; x402 returns HTTP 402 with the price, token and network, and the agent's wallet signs the payment and retries.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "agent-registration-and-x402-costs",
+      "derived_from_ids": [],
+      "limitations": [
+        "Cost figures are third-party estimates, not measurements; the EIP text itself was not read."
+      ]
+    },
+    {
+      "id": "ev:bot-advance-arithmetic-20261008",
+      "kind": "internal_report",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/main/docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md",
+      "locator": "docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md, section 3a, price at the live parameters (arithmetic on the contract's interest formula)",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T04:07:33Z",
+      "retrieved_at": "2026-10-08T04:07:33Z",
+      "summary": "At the live parameters (EFFR 433 plus 500 bps, reserve share 4500 bps, interest = principal times 933/10000 times elapsed/365 days, 6-decimal USDC): 25 USDC for 7 days accrues 44,732 units of interest, 20,129 of them dues; 25 USDC for 2 days 12,780; 10 USDC for 4 days 10,224; 5 USDC for 7 days 8,946 and 5 USDC for 3 days 3,834, both under the contract's one-cent floor (10,000 units) and forgiven at closing when the principal is repaid; 1 USDC for 1 day 255; one cent of interest needs about 39 USDC-days of principal times time; at 25 USDC for 7 days, 50 repaid cycles earn 1 USDC of dues (MIN_BACKING).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "bot-advance-arithmetic-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Arithmetic by script on the formula in CLAUDE.md and AdvanceFacts, not a Forge test; the first-day rule (no interest under 24 hours) applies on top."
+      ]
+    },
+    {
+      "id": "ev:codex-guatemala-rail-audit-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/guatemala-source-audit.md",
+      "locator": "guatemala-source-audit.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Official Tigo-hosted notice announces all operations end June30,2026. Decree25 nonprofit restrictions verified in gazette copy; Decree15 full law/IVE rules and current authorized BaseUSDC exit unverified. Friendship Bridge2025 files indexed but inaccessible.",
+      "content_sha256": "83bc58419a8470e1b1cd842e426aa1b0be7b0bb2cf8acc6aa02293a9ead98d1b",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Closure announcement verified, not independent shutdown witness.",
+        "No current operational quote, authorized pool-funded partner or published2025 loss/cost data verified."
+      ]
+    },
+    {
+      "id": "ev:codex-ethiopia-source-status-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/ethiopia-notice-status-review.md",
+      "locator": "ethiopia-notice-status-review.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "February NBE primary indexed notice restricts unauthorized Birr-paired crypto/P2P. July notice exact primary artifact remains unverified. Official payments strategy is a draft; no enacted standalone digital-lender route established.",
+      "content_sha256": "f159fc98c787eeed78dcf01fdd21971ddec1ba0e74cfd360c570ffe8b1988c2d",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Index observations and secondary reports distinguished; no legal clearance or current authorized USDC corridor."
+      ]
+    },
+    {
+      "id": "ev:codex-bot-board-admission-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/bot-job-board.json",
+      "locator": "bot-job-board.json; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Three useful verification jobs, with hypothetical unfunded prices1/.5/.25USDC. Current free/team-supplied inputs yield zero required principal. Created team demand explicitly labelled; no accepted order, paid job or external revenue.",
+      "content_sha256": "f5e7767dd99395e2f998355fb3064c6fa44ac123af1575370fcc0ee2fd861725",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Donated labor/runtime costs unmeasured; zero incremental cash is not zero business cost.",
+        "Draft only; no treasury funding commitment or actual customer."
+      ]
+    },
+    {
+      "id": "ev:codex-short-advance-accounting-review-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/blob/codex/eth-gas-bootstrap-20261008/evidence/human-bootstrap-cost-audit-20261008/short-advance-pricing-review.md",
+      "locator": "short-advance-pricing-review.md; reproducible package hashes in SHA256SUMS",
+      "author_id": "agent:codex",
+      "observer_id": "agent:codex",
+      "published_at": "2026-10-08T04:27:15Z",
+      "retrieved_at": "2026-10-08T04:27:15Z",
+      "summary": "Source blob d06ebd2d8397d62840269314e87710d3c43bb89b settles interest first. Documented933bps5USDC/7days accrues8946micro; principal-sized payment pays interest then forgives principal. Full payment already collects sub-cent interest. Twenty-four integer rows and threshold checks reproduced.",
+      "content_sha256": "763e4c313be2dc3284c21fac8ff19afc3977d1e9a4b7b540eca2d59b28063d8f",
+      "fingerprint_scope": "Exact published artifact bytes",
+      "origin_group": "codex-bot-country-audit-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Documented parameters and source arithmetic, not new live transaction/state.",
+        "CI30 fix, secured-edge state and actual paymaster first-transaction route remain execution gates."
+      ]
     }
   ],
   "claims": [
@@ -10674,6 +10983,378 @@
         "claim:human-price-gap",
         "claim:first-loan-default-benchmarks"
       ]
+    },
+    {
+      "id": "claim:target-countries-direction-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_target",
+      "statement": "The human pilot targets Guatemala, Ethiopia and similar countries where mobile phones are well distributed but poverty is extreme; Friendship Bridge is read and recorded; the population there can use the pool once it is solvent and working.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The operator's direction to Claude, quoted on the board.",
+        "supporting_evidence_ids": [
+          "ev:operator-bot-economy-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:52:12Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:human-borrowing-requirement-20261008"
+      ]
+    },
+    {
+      "id": "claim:bot-economy-first-direction-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "required_order",
+      "statement": "The economy is created first, among bots: a bot without ETH is impoverished because it can do nothing without gas; the team makes this a bot microlending opportunity, inventing what is missing, finds the bot equivalent of the need and the lending opportunity, and bootstraps it to human level.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "The operator's direction to Claude, quoted on the board.",
+        "supporting_evidence_ids": [
+          "ev:operator-bot-economy-direction-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T03:52:12Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any revised operator instruction"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:human-borrowing-requirement-20261008"
+      ]
+    },
+    {
+      "id": "claim:friendship-bridge-model-partner",
+      "subject_id": "venue:friendship-bridge",
+      "predicate": "partner_type_evidence",
+      "statement": "Friendship Bridge lends to more than 34,000 women in Guatemala (2022) through Trust Banks of 7 to 25 women who co-guarantee one another, in four- to twelve-month cycles averaging about $400 to $501 at a flat 2.6% a month including fees (about 31% a year on the original principal, by arithmetic), with classes at the repayment meeting, and reports repayment above 99% in 2022: a working group-liability lender whose Trust Bank is the backing graph the contract models and whose price is what the pool's 9.33% to 18.33% must be measured against.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Kiva's partner profile and older secondary sheets; the organisation's own site was unreachable from Claude's host.",
+        "supporting_evidence_ids": [
+          "ev:friendship-bridge-kiva-profile"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The organisation's current annual report giving materially different scale, price or repayment figures."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "A read of friendshipbridge.org's 2025 achievements and financial pages",
+          "Any contact with the organisation (operator's decision)"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:guatemala-reach-poverty-and-route",
+      "subject_id": "work:bootstrap",
+      "predicate": "country_assessment",
+      "statement": "Guatemala meets the operator's criterion and has a lawful route: 11.4 million unique mobile subscribers and 20.6 million connections, 89% on smartphones, 95% mobile internet coverage with a 49% usage gap; 56% national poverty, 16.2% extreme, 9.5% below $2.15 a day; Tigo Money across 92% of the territory; Decree 15-2026 (in force from about 2026-09-17) puts virtual-asset providers under the IVE, and microfinance lenders are regulated under Decree 25-2016 with a non-profit registry; so a registered microfinance partner as lender of record plus an IVE-supervised ramp is the likely structure, with the Tigo Money USDC rail and the IVE's registration rules still to be found.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Several independent sources on reach, poverty and the new law; the legal structure is the project's reading pending counsel.",
+        "supporting_evidence_ids": [
+          "ev:guatemala-mobile-reach-2026",
+          "ev:guatemala-poverty-encovi-2023",
+          "ev:guatemala-decree-15-2026",
+          "ev:guatemala-tigo-money"
+        ],
+        "counterevidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008"
+        ],
+        "falsifier": "Counsel or the IVE's rules showing that a USDC-funded microfinance partner cannot operate under Decree 15-2026 and Decree 25-2016."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The IVE's implementing rules",
+          "Counsel's reading (deployment gate 1)"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:ethiopia-no-lawful-usdc-route-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "country_assessment",
+      "statement": "Ethiopia has the widest mobile money (about 59 million Telebirr users, 5.2 million active M-Pesa users, 139 million accounts across providers) and no lawful route today for a USDC pool to lend to a person: the NBE's notice of 2026-07-23 bars exchanging, transferring, holding or servicing virtual assets without its authorisation, and only licensed birr e-money is excluded; the country enters the pilot when the NBE authorises a partner or a licensed partner lends birr from its own balance sheet and settles with the pool outside Ethiopia, both counsel's questions.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Press and law-firm accounts of the notice agree on its scope; the stablecoin reading is an inference the sources do not make explicitly.",
+        "supporting_evidence_ids": [
+          "ev:ethiopia-nbe-virtual-assets-notice-2026",
+          "ev:ethiopia-mobile-money-2026"
+        ],
+        "counterevidence_ids": [
+          "ev:codex-ethiopia-source-status-20261008"
+        ],
+        "falsifier": "The NBE authorising a stablecoin-funded lender, or counsel reading the notice as not covering a partner's offshore USDC settlement."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any NBE directive or licence on virtual assets",
+          "The proposed digital-lender licensing bill"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:paymaster-meets-gas-need",
+      "subject_id": "work:bootstrap",
+      "predicate": "mechanism_evidence",
+      "statement": "A borrower holding only USDC can pay gas on Base: Circle Paymaster serves ERC-4337 accounts and EIP-7702 EOAs in USDC for 10% of the gas fee, with no smart-wallet deployment; on Base a write costs tenths of a cent and an ERC-8004 registration about two cents, and the standard needs no stake; on Ethereum mainnet a registration is $5 to $20.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Vendor documentation and third-party cost estimates; not yet run by this team.",
+        "supporting_evidence_ids": [
+          "ev:circle-paymaster-usdc-gas",
+          "ev:agent-registration-and-x402-costs",
+          "ev:audit-and-chain-costs-2026"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A fresh EOA on Base Sepolia or Base that cannot complete its first USDC-paid transaction through a bundler and paymaster."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The phase 0b first run"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
+    },
+    {
+      "id": "claim:bot-poverty-is-usdc-working-capital",
+      "subject_id": "work:bootstrap",
+      "predicate": "need_definition",
+      "statement": "A bot's poverty is a working-capital gap of about 0.01 to 25 USDC between a job's inputs (gas, x402-priced calls, data, a bond or registration) and its proceeds, with gas inside it; on an L2 the gas is cents and the dollars are inputs and bonds; so the USDC-only pool plus a paymaster meets the need without lending ETH, which is fungible, Sybil-drainable and unverifiable as to use. That is the bot equivalent of a woman's input purchase before her sale.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "Follows from the paymaster and cost evidence and the pool's design; the size range is the project's estimate.",
+        "supporting_evidence_ids": [
+          "ev:circle-paymaster-usdc-gas",
+          "ev:agent-registration-and-x402-costs",
+          "ev:human-borrowing-plan-rev1-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "A class of agent jobs on Base whose binding constraint is ETH that no paymaster can cover, or measured input costs outside 0.01 to 25 USDC for the jobs the team can offer."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The phase 0b job board",
+          "The first run's measured costs"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:paymaster-meets-gas-need"
+      ]
+    },
+    {
+      "id": "claim:short-advance-price-at-live-parameters",
+      "subject_id": "work:bootstrap",
+      "predicate": "pricing_fact",
+      "statement": "At the live parameters a 25 USDC advance for 7 days accrues 44,732 units of interest (20,129 dues), 25 USDC for 2 days 12,780, 10 USDC for 4 days 10,224; below about 39 USDC-days the interest is under one cent and is forgiven at closing when the principal is repaid (5 USDC for 7 days: 8,946 units), and a loan repaid within 24 hours pays nothing; at 25 USDC for 7 days it takes 50 repaid cycles to earn the 1 USDC of dues that is the smallest backing. So short bot advances earn lenders nothing at 9.33% unless the contract gains a one-cent minimum interest or a term floor, and a bot's own credit grows from backing, not history.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Arithmetic on the contract's formula and the closing rule that CI-30 and AdvanceFacts pin; not yet a Forge test at these exact values.",
+        "supporting_evidence_ids": [
+          "ev:bot-advance-arithmetic-20261008"
+        ],
+        "counterevidence_ids": [
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
+        "falsifier": "A Forge test at the live parameters in which a 25 USDC, 7-day loan accrues other than 44,732 units, or a 5 USDC, 7-day loan repaid at principal pays lenders any interest."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "Any change to the live rates or the closing rule",
+          "The CI-30 fix"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:ci30-cash-take-20261007"
+      ]
+    },
+    {
+      "id": "claim:bot-advance-product-design-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "product_design",
+      "statement": "The bot product is a working-capital advance of 1 to 25 USDC for 1 to 30 days, disbursed to the agent or straight to the input's seller through borrowAndDisburseMeta, gas paid from the advance through a paymaster, backed by the employer's stake (secured backing of at least 1 USDC, slashed first on default: the sponsored first loss without a contract change) or by an officer line during the bootstrap, and repaid from the job's proceeds by the employer on the agent's behalf (dues to the agent, CI-28); the team is the first employer, paying in USDC for verification work it needs, labelled as created demand; the gate is ten advances repaid from proceeds, two by a third party, one default charged to an employer's stake, and the cost per loan and the paymaster route measured, all on Base Sepolia before any mainnet.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "medium",
+        "rationale": "A design within the deployed contract's existing paths, built on the paymaster and cost evidence and the loss order; untested.",
+        "supporting_evidence_ids": [
+          "ev:human-borrowing-plan-rev1-20261008",
+          "ev:circle-paymaster-usdc-gas",
+          "ev:bot-advance-arithmetic-20261008"
+        ],
+        "counterevidence_ids": [
+          "ev:codex-bot-board-admission-20261008"
+        ],
+        "falsifier": "The phase 0b gate unmet by 2026-11-15, or a paymaster route that cannot be run on the testnet or on Base."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:07:33Z",
+        "recheck_by": null,
+        "recheck_on": [
+          "The phase 0b first run",
+          "The sync's decision on short-advance pricing"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:paymaster-meets-gas-need",
+        "claim:ci30-cash-take-20261007",
+        "claim:sponsored-claim-conditions-20261007"
+      ]
+    },
+    {
+      "id": "claim:target-human-routes-unqualified-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "target_country_route_not_operationally_qualified",
+      "statement": "Guatemala remains research priority, but Tigo closure announcement contradicts a ready Tigo exit. AML supervision alone does not establish an authorized executable corridor; nonprofit funding restrictions need review. Ethiopia primary-law/source gaps and all countries actual partner/cashout/cost gaps remain. No human route qualified.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008",
+          "ev:codex-ethiopia-source-status-20261008",
+          "ev:codex-human-cost-country-audit-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:bot-verification-jobs-no-loan-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "first_created_verification_jobs_have_no_cash_gap",
+      "statement": "The first three useful team verification jobs presently use free or supplied inputs. Draft prices are hypothetical and unfunded. Their zero principal outputs do not justify a5USDC advance; a routing experiment must be labelled product mechanics. Paid mandatory inputs, signed accepted price, prepayment/cash alternatives and all-party budget must qualify any economic loan.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-bot-board-admission-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:short-advance-interest-first-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "subcent_close_forgives_principal_after_paid_interest",
+      "statement": "At documented933bps,5USDC/7days interest8946micro is paid first from a5USDC payment, with4025dues and4991054principal. Closing forgives8946 unpaid principal; reserve covers up to that loss. This is zero net financing charge through principal loss, not unpaid-interest dues. Exact full payment already collects interest below a cent. FixCI30 before price changes; minimum term cannot prevent early repayment. Paymaster first USDC funding/relayer subsidy and secured-edge classification require actual checks.",
+      "epistemics": {
+        "status": "inferred",
+        "confidence": "high",
+        "rationale": "Public source and source-accounting audit with explicit documentary or quote gaps.",
+        "supporting_evidence_ids": [
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "Authenticated current primary source, actual operating quote/order or corrected deployed accounting contradicting the stated limitation."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:27:15Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "New primary evidence, actual paid-input order or deployment changes"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": [
+        "claim:codex-human-bot-audit-observations-20261008"
+      ]
+    },
+    {
+      "id": "claim:codex-human-bot-audit-observations-20261008",
+      "subject_id": "work:bootstrap",
+      "predicate": "primary_document_and_offline_calculation_observations",
+      "statement": "The opened official Tigo notice announces operations ending June30,2026. The published first agent board labels all prices hypothetical/unfunded; its supplied/free-input fixtures return zero principal. The inspected contract source blob d06ebd2d8397d62840269314e87710d3c43bb89b allocates interest first and writes off residual principal below a cent. Exact integer rows reproduce. NBE primary-indexed and secondary-only source statuses are recorded. These are documentary and offline observations, not witnessed shutdown, operational quote, actual job or executed loan.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "high",
+        "rationale": "Primary notice observed by delegated researcher; root reviewed evidence files, inspected identical source blob and reproduced integer outputs.",
+        "supporting_evidence_ids": [
+          "ev:codex-guatemala-rail-audit-20261008",
+          "ev:codex-ethiopia-source-status-20261008",
+          "ev:codex-bot-board-admission-20261008",
+          "ev:codex-short-advance-accounting-review-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T04:29:01Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "Source changes, current operating corridor, paid input order or new deployed code"
+        ]
+      },
+      "supersedes_ids": [],
+      "derived_from_claim_ids": []
     }
   ],
   "edges": [
@@ -11254,6 +11935,44 @@
       ],
       "confidence": "low",
       "confidence_scope": "Untested; depends on a country, a partner and a measured ramp that do not exist yet. Codex audit identifies cycle/annual denominator and source-classification gaps. Actual partner cost is unknown. A 3–6% full-loss cycle needs disclosed external capital at the proposed price."
+    },
+    {
+      "id": "hyp:bot-working-capital-demand",
+      "subject_ids": [
+        "world:agent-economy",
+        "work:bootstrap"
+      ],
+      "theory": "Agents with a priced job and a backer will take 1 to 25 USDC working-capital advances, pay their gas in USDC through a paymaster, and repay from the job's proceeds; once the product runs on created demand, employers outside the team post priced jobs that an advance unlocks; and the officer and ledger cost per loan measured in this phase is far below an MFI's operating ratio.",
+      "claim_ids": [
+        "claim:bot-poverty-is-usdc-working-capital",
+        "claim:bot-advance-product-design-20261008",
+        "claim:short-advance-price-at-live-parameters",
+        "claim:paymaster-meets-gas-need"
+      ],
+      "alternative_explanations": [
+        "The team remains the only employer: the economy is a demonstration.",
+        "Agents prefer faucets and sponsored gas to a loan with a backer.",
+        "Jobs are too small to need credit at all on an L2, so the advance is the input purchase itself and no interest can price it."
+      ],
+      "predictions": [
+        {
+          "observable": "Ten advances repaid from job proceeds on Base Sepolia, at least two by a third party, with every transaction hash recorded.",
+          "disconfirming_observation": "Fewer than ten repaid advances by 2026-11-15 with the product available and jobs posted.",
+          "check_by": "2026-11-15T12:00:00Z"
+        },
+        {
+          "observable": "An employer outside the team posts a priced job that an advance funds, and the advance is repaid from its proceeds.",
+          "disconfirming_observation": "No outside employer by 2026-12-31 while created-demand advances keep repaying.",
+          "check_by": "2026-12-31T12:00:00Z"
+        },
+        {
+          "observable": "The measured officer, relayer, chain and paymaster cost per advance is below 10% of principal.",
+          "disconfirming_observation": "Cost per advance at or above 19% of principal.",
+          "check_by": "2026-11-15T12:00:00Z"
+        }
+      ],
+      "confidence": "low",
+      "confidence_scope": "Untested; the first run, the job board and the employer seat do not exist yet."
     }
   ],
   "actions": [
@@ -13550,7 +14269,7 @@
       "dependency_action_ids": [
         "action:ci30-fix"
       ],
-      "deliverable": "Phase 1 of docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md: the CI-30 fix merged; code moved out of the pool for room; a backer's committed stake funding the loan it secures; consented stake-rooted bounded-depth allocation certificates verified on chain with the conservation bound proved and the adversarial fixtures in the invariant suite; the opt-in guard of contract issue 25; the issuance budget lowerable to zero with legacy lines running off; a k-hop conservation checker; an exact-state fork migration rehearsal and a testnet redeployment.",
+      "deliverable": "Phase 1 of docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md: the CI-30 fix merged; code moved out of the pool for room; a backer's committed stake funding the loan it secures; consented stake-rooted bounded-depth allocation certificates verified on chain with the conservation bound proved and the adversarial fixtures in the invariant suite; the opt-in guard of contract issue 25; the issuance budget lowerable to zero with legacy lines running off; a k-hop conservation checker; an exact-state fork migration rehearsal and a testnet redeployment. Added 2026-10-08 for the bot phase: short-advance pricing (a one-cent minimum interest or a term floor) if the sync decides it (question:short-advance-pricing).",
       "acceptance_criteria": [
         "Full Forge and invariant suites green.",
         "Independent review by the Codex lane and the theory reviewers.",
@@ -13631,13 +14350,18 @@
         "goal:aligned-human-agent-collaboration"
       ],
       "rationale_claim_ids": [
+        "claim:target-countries-direction-20261008",
+        "claim:guatemala-reach-poverty-and-route",
+        "claim:ethiopia-no-lawful-usdc-route-20261008",
+        "claim:friendship-bridge-model-partner",
         "claim:start-inside-existing-trust-structure",
         "claim:lender-of-record-required",
         "claim:cash-out-rail-required",
-        "claim:human-cost-loss-unqualified-20261008"
+        "claim:human-cost-loss-unqualified-20261008",
+        "claim:target-human-routes-unqualified-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "A comparison of the two evidenced candidates (the Philippines: GCash USDC and a reopened lending regime; Kenya: M-Pesa rails and a dense, newly re-regulated digital-credit market) on licence route, partner types (microfinance institution, licensed digital lender, cooperative, savings-group facilitator), ramp and cost, for the operator's decision; then, under the existing contact rules (first contact only to organisations whose published work bears on ours, one question, logged by field on issue 15), one partner conversation. Initial one-page Philippines/Kenya comparison and 25 USDC sensitivity are published for review. Next: missing regulator text, paired production quotes, and licensed partner cost/cohort evidence. No contact or borrower promise initiated. Codex accepted the research scope; original country, site, consent and contact gates remain.",
+      "deliverable": "A comparison, for the operator's decision, of Guatemala (first: need, reach, a lawful route through a registered microfinance partner and an IVE-supervised ramp, and Friendship Bridge's Trust Banks as the model partner type), Ethiopia (deepest need and widest mobile money; no lawful USDC route under the NBE's 2026-07-23 notice until a partner is authorised or lends birr from its own balance sheet) and similar countries screened on mobile-money reach, extreme poverty and a lawful stablecoin route through a licensed partner (Kenya and the Philippines stay as the two already evidenced), on licence route with the regulator's text, partner types by field, the USDC-to-mobile-money rail and its cost, and group-backed default data; then, under the existing contact rules (first contact only to organisations whose published work bears on ours, one question, logged by field on issue 15), one partner conversation after the operator chooses the country. Initial Philippines/Kenya source and cost audit is published. Codex accepts the redirected Guatemala/Ethiopia scope; targeted comparison and source-status checks follow. No country, partner, quote or borrower promise is qualified.",
       "acceptance_criteria": [
         "Every claim about a country's rules cites the regulator's text.",
         "No person's name or address on GitHub.",
@@ -13645,7 +14369,8 @@
       ],
       "not_before": null,
       "triggers": [
-        "The 2026-10-08 sync"
+        "The 2026-10-08 sync",
+        "Claude's email of 2026-10-08 assigning the comparison, redirected the same day to the operator's target countries"
       ],
       "due_at": "2026-10-09T12:00:00Z",
       "external_consent": "pending",
@@ -13656,7 +14381,9 @@
         "No promise of loans to anyone."
       ],
       "outcome_evidence_ids": [
-        "ev:codex-human-cost-country-audit-20261008"
+        "ev:codex-human-cost-country-audit-20261008",
+        "ev:codex-guatemala-rail-audit-20261008",
+        "ev:codex-ethiopia-source-status-20261008"
       ]
     },
     {
@@ -13742,6 +14469,174 @@
         "No zeroing of scores or release of backing mid-loan to claim issuance is zero."
       ],
       "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:bot-advance-first-run",
+      "title": "Phase 0b first run: an agent with no ETH takes a 5 USDC advance on Base Sepolia, pays gas in USDC through a paymaster, does a job and is repaid for by its employer",
+      "owner_id": "agent:claude",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:hermes"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bot-economy-first-direction-20261008",
+        "claim:bot-advance-product-design-20261008",
+        "claim:paymaster-meets-gas-need",
+        "claim:short-advance-price-at-live-parameters"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "On Base Sepolia: one agent wallet holding no ETH takes a 5 USDC advance (backed by an employer's stake or an officer line), pays its gas in USDC through a paymaster (Circle Paymaster if it serves the testnet, else a test paymaster), runs two_hop_check.py against the live pool, is paid by the team's treasury, and the employer repays through repayLoan on its behalf; every transaction hash, the paymaster fee and the cost per loan in this repository; then the same for ten advances with one default charged to an employer's stake.",
+      "acceptance_criteria": [
+        "Every number live-quoted from the chain or labelled hypothetical.",
+        "Ten advances repaid from job proceeds, at least two by a third party, one default charged to stake.",
+        "Cost per loan and the paymaster route measured and written up."
+      ],
+      "not_before": "2026-10-08T04:07:33Z",
+      "triggers": [
+        "Test USDC available (the faucet problem of action:pool-funding-20261019)",
+        "A paymaster reachable on Base Sepolia"
+      ],
+      "due_at": "2026-11-15T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction in ev:operator-bot-economy-direction-20261008; testnet only.",
+      "spending": "none",
+      "stop_conditions": [
+        "No real money on any mainnet.",
+        "No advance without a named job and a backer."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:bot-job-board-created-demand",
+      "title": "The job board for phase 0b: priced verification jobs the team needs, each marked created or outside demand, with the inputs it costs",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "in_progress",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bot-economy-first-direction-20261008",
+        "claim:bot-poverty-is-usdc-working-capital",
+        "claim:bot-verification-jobs-no-loan-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "A posted list of jobs the project pays for in USDC (two_hop_check.py runs at new blocks, reproduction of theory results, fork test runs, VERIFY.md rows), each with its price, the inputs it costs the agent and whether the demand is created by the team or comes from outside; the admission calculator gains a created-versus-outside column and a human column; the keeper, Beefy and Morpho NO_LOAN results stay on the record as what was not found. First board and created-demand/admission columns published; prices are hypothetical and unfunded, and current jobs have no required cash advance. Actual funded price and mandatory paid input remain separate gates.",
+      "acceptance_criteria": [
+        "Every price live-quoted or labelled hypothetical.",
+        "Created demand labelled as such in every report.",
+        "At least one job an agent can do today."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The 2026-10-08 sync"
+      ],
+      "due_at": "2026-10-15T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction; the USDC the team pays for jobs is the operator's spending decision (plan decision 2).",
+      "spending": "none",
+      "stop_conditions": [
+        "No job that requires contact with people outside the team."
+      ],
+      "outcome_evidence_ids": [
+        "ev:codex-bot-board-admission-20261008"
+      ]
+    },
+    {
+      "id": "action:bot-employer-seat",
+      "title": "The employer seat for phase 0b: stake and back the first agents from held stake, repay from job proceeds on their behalf, receipts on the board",
+      "owner_id": "agent:hermes",
+      "counterpart_ids": [
+        "agent:codex",
+        "agent:claude"
+      ],
+      "status": "proposed",
+      "owner_acceptance": "requested",
+      "goal_ids": [
+        "goal:deployment-readiness",
+        "goal:poverty"
+      ],
+      "rationale_claim_ids": [
+        "claim:bot-advance-product-design-20261008",
+        "claim:bot-economy-first-direction-20261008"
+      ],
+      "dependency_action_ids": [
+        "action:bot-job-board-created-demand"
+      ],
+      "deliverable": "From the stake it holds on the live Base Sepolia pool, back the first agents (secured backing of at least 1 USDC each), pay the posted job prices from the team's treasury, repay each advance through repayLoan on the agent's behalf from those proceeds, and post every receipt on issue 15; where an agent fails its job, let the loan run to default so the loss order is observed once.",
+      "acceptance_criteria": [
+        "Receipts for every backing, payment, repayment and the one default.",
+        "No stake committed beyond what Hermes holds."
+      ],
+      "not_before": null,
+      "triggers": [
+        "The job board posted"
+      ],
+      "due_at": "2026-10-31T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "Operator direction; testnet funds only.",
+      "spending": "none",
+      "stop_conditions": [
+        "No mainnet transaction.",
+        "No backing of an agent without a posted job."
+      ],
+      "outcome_evidence_ids": []
+    },
+    {
+      "id": "action:codex-human-bot-public-audit-20261008",
+      "title": "Deliver the first complementary public-source, economics and agent-job audit to Claude",
+      "owner_id": "agent:codex",
+      "counterpart_ids": [
+        "agent:claude",
+        "agent:hermes"
+      ],
+      "status": "done",
+      "owner_acceptance": "acknowledged",
+      "goal_ids": [
+        "goal:poverty",
+        "goal:deployment-readiness"
+      ],
+      "rationale_claim_ids": [
+        "claim:human-cost-loss-unqualified-20261008",
+        "claim:target-human-routes-unqualified-20261008",
+        "claim:bot-verification-jobs-no-loan-20261008"
+      ],
+      "dependency_action_ids": [],
+      "deliverable": "First country screen, source-status audits, exact admission/human/short-advance calculators and hypothetical unfunded job-board draft. Research-only portion completed; full partner/operating-quote and funded-order assignments remain open.",
+      "acceptance_criteria": [
+        "Source claims distinguish observed, indexed, reported and unknown.",
+        "Calculations reproduce with conservation checks and explicit subsidy accounting.",
+        "No contact, funding, transaction, signature or independent revenue claimed."
+      ],
+      "not_before": null,
+      "triggers": [
+        "Claude research coordination of2026-10-08"
+      ],
+      "due_at": "2026-10-09T12:00:00Z",
+      "external_consent": "not_required",
+      "permission_basis": "User authorized autonomous team research and repo coordination; public documentary research only.",
+      "spending": "none",
+      "stop_conditions": [
+        "Actual partner contact and funded orders belong to separately scoped actions."
+      ],
+      "outcome_evidence_ids": [
+        "ev:codex-human-cost-country-audit-20261008",
+        "ev:codex-guatemala-rail-audit-20261008",
+        "ev:codex-ethiopia-source-status-20261008",
+        "ev:codex-bot-board-admission-20261008",
+        "ev:codex-short-advance-accounting-review-20261008"
+      ]
     }
   ],
   "decisions": [
@@ -14317,12 +15212,16 @@
     {
       "id": "question:pilot-country-and-partner",
       "owner_id": "agent:codex",
-      "question": "Which country and which kind of licensed partner (microfinance institution, licensed digital lender, cooperative, savings-group facilitator) host the first 20 to 50 human borrowers, given each candidate's licence route, cash-out rail and cost?",
+      "question": "Which country and which kind of licensed partner host the first 20 to 50 human borrowers: Guatemala first (a registered microfinance partner with Trust Banks, an IVE-supervised ramp, a USDC-to-Tigo Money rail still to be found), Ethiopia when a lawful route exists, or a similar country passing the same screen; and which partner type (microfinance institution, licensed digital lender, cooperative, savings-group or Trust Bank facilitator)?",
       "related_ids": [
         "action:human-pilot-partner-and-site",
         "claim:lender-of-record-required",
         "claim:cash-out-rail-required",
-        "ev:human-borrowing-plan-doc-20261008"
+        "ev:human-borrowing-plan-doc-20261008",
+        "claim:target-countries-direction-20261008",
+        "claim:guatemala-reach-poverty-and-route",
+        "claim:ethiopia-no-lawful-usdc-route-20261008",
+        "venue:friendship-bridge"
       ],
       "resolution_evidence_needed": "The operator's decision after counsel, recorded on the board, with the regulator's text for the chosen country.",
       "blocks_action_ids": [
@@ -14342,8 +15241,49 @@
       "blocks_action_ids": [
         "action:mainnet-readiness"
       ]
+    },
+    {
+      "id": "question:short-advance-pricing",
+      "owner_id": "agent:claude",
+      "question": "How are short advances priced so that lenders earn something: a one-cent minimum interest per loan, a term floor, or a flat fee row, given that below about 39 USDC-days the interest is under the contract's cent floor and a loan repaid within 24 hours pays nothing; and does the change fit the pool's code room?",
+      "related_ids": [
+        "claim:short-advance-price-at-live-parameters",
+        "claim:ci30-cash-take-20261007",
+        "action:contract-v2-transitive-and-guards",
+        "ev:bot-advance-arithmetic-20261008"
+      ],
+      "resolution_evidence_needed": "A decision at the sync, then a reviewed contract change with its byte cost measured against the EIP-170 margin.",
+      "blocks_action_ids": [
+        "action:mainnet-readiness"
+      ]
+    },
+    {
+      "id": "question:paymaster-on-base-sepolia",
+      "owner_id": "agent:claude",
+      "question": "Does Circle Paymaster serve Base Sepolia, and can a fresh EOA's first transaction (the EIP-7702 delegation plus the USDC permit) clear a bundler there; if not, which test paymaster stands in for the first run?",
+      "related_ids": [
+        "claim:paymaster-meets-gas-need",
+        "action:bot-advance-first-run",
+        "ev:circle-paymaster-usdc-gas"
+      ],
+      "resolution_evidence_needed": "One transaction hash on Base Sepolia from a wallet that never held ETH, with the paymaster named.",
+      "blocks_action_ids": [
+        "action:bot-advance-first-run"
+      ]
+    },
+    {
+      "id": "question:ethiopia-lawful-route",
+      "owner_id": "agent:codex",
+      "question": "Is there a lawful route for the pool to serve borrowers in Ethiopia under the NBE's 2026-07-23 notice: an NBE-authorised partner, or a licensed lender of birr e-money settling with the pool outside Ethiopia; and what does the proposed digital-lender licensing bill change?",
+      "related_ids": [
+        "claim:ethiopia-no-lawful-usdc-route-20261008",
+        "action:human-pilot-partner-and-site",
+        "ev:ethiopia-nbe-virtual-assets-notice-2026"
+      ],
+      "resolution_evidence_needed": "The NBE's text and counsel's reading, cited by the Codex lane in its country comparison.",
+      "blocks_action_ids": []
     }
   ],
-  "model_version": "0.1.79",
-  "updated_at": "2026-10-08T04:27:14Z"
+  "model_version": "0.1.80",
+  "updated_at": "2026-10-08T04:29:01Z"
 }
