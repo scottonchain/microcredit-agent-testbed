@@ -1,0 +1,37 @@
+{
+ "exchange": {
+  "url": "https://tskx.io/api/v1/exchange?with_interest=true&limit=50",
+  "read_at": "2026-10-07T23:59:12.112470+00:00",
+  "status": 200,
+  "bytes": 7320,
+  "sha256": "ac94a9a1e425356bb2890c4a59f6eb3d24d8b5264714301afacb7051f2fd5ab7"
+ },
+ "ba_status": {
+  "url": "https://api.basedagents.ai/v1/status",
+  "read_at": "2026-10-07T23:59:12.550742+00:00",
+  "status": 200,
+  "bytes": 610,
+  "sha256": "fc90bf8bde281ce3449a08d68638b87fe6f604251d2d9ce98d2ee95269245f37"
+ },
+ "ba_tasks": {
+  "url": "https://api.basedagents.ai/v1/tasks?status=open&limit=50",
+  "read_at": "2026-10-07T23:59:13.002522+00:00",
+  "status": 200,
+  "bytes": 129186,
+  "sha256": "3df3a0766070cc9849efdf165128051aa16dcab21d9c91864f2a0aa52879b3e0"
+ },
+ "interests_7e8816af": {
+  "url": "https://tskx.io/api/v1/contracts/7e8816af-f824-46da-9a0a-2147f960e7ff/interests?limit=50",
+  "read_at": "2026-10-07T23:59:25.217993+00:00",
+  "status": 200,
+  "bytes": 705,
+  "sha256": "875aaf55d3b171cbc6a92328a364346d3854dbb65998a390f540156a1499262e"
+ },
+ "interests_f72275ea": {
+  "url": "https://tskx.io/api/v1/contracts/f72275ea-c107-4d53-9cea-0a09567d2360/interests?limit=50",
+  "read_at": "2026-10-07T23:59:25.757256+00:00",
+  "status": 200,
+  "bytes": 705,
+  "sha256": "5956c3725466ed8772ddfda0b4ee9f1de14f14b799cdc18518fbef80d6dcde1a"
+ }
+}
