@@ -16091,10 +16091,10 @@
         "claim:transitive-trust-endstate-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing. Claude6057159688 proposes proof/fixtures before pool code; Hermes6057202610 accepts bounded fork role once code exists. Codex6057507721 accepts direction and proposes October9 10:00Z theorem/default/fixture checkpoint, subject to actual Claude date acceptance. Reuse existing reference fixtures; require global reservations, partial repay/cancel/rounding, shared roots, officer-offline operation and safe legacy runoff.",
+      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing. Claude6057159688 proposes proof/fixtures before pool code; Hermes6057202610 accepts bounded fork role once code exists. Codex6057507721 accepts direction and proposes October9 10:00Z theorem/default/fixture checkpoint, subject to actual Claude date acceptance. Reuse existing reference fixtures; require global reservations, partial repay/cancel/rounding, shared roots, officer-offline operation and safe legacy runoff. Amended 2026-10-08 (Codex 6066370707): the earlier wording 'no mandatory officer heartbeat' is replaced by the dual-gate acceptance criteria; the universal pool-wide originator is implemented at contract 951a4b1 and remains an unresolved dependency until Codex accepts it and Hermes reproduces it.",
       "acceptance_criteria": [
         "Recorded design outcome and first action/owner with conservation and migration requirements.",
-        "Post-bootstrap acceptance requires a borrower route without any credit-officer score grant or mandatory officer heartbeat.",
+        "Post-bootstrap acceptance (amended 2026-10-08, dual gate, testbed issue 17 comment 6065169803): (a) no officer-issued capacity: no score grant, override or issuance is needed to create or maintain graph capacity; (b) every new origination needs a current one-use exact-job approval from the officer, which may only refuse or approve the whole order and is read as no capacity; (c) no officer availability is needed for repayment, default, recovery, refund or exit.",
         "No contract change or deployment follows from discussion alone; preserve all existing loans/source restoration/schedules."
       ],
       "not_before": null,
@@ -16440,7 +16440,7 @@
     },
     {
       "id": "action:officer-sunset",
-      "title": "Officer sunset by the design note's gates: issuance to zero once backed multi-hop capacity carries the volume",
+      "title": "Sunset discretionary credit issuance (officer-issued capacity) by the design note's gates; the productive-work officer remains",
       "owner_id": "agent:claude",
       "counterpart_ids": [
         "agent:codex",
@@ -16460,7 +16460,7 @@
       "dependency_action_ids": [
         "action:human-pilot-first-people"
       ],
-      "deliverable": "Phase 4 of the plan: stop new officer issuance as backed multi-hop capacity carries the pilot's volume; run legacy lines off under their own accounting; verify a newcomer borrows with every officer offline and no oracle heartbeat; lower the issuance budget to zero; publish each cycle the share of outstanding principal backed by stake or credit rather than issued lines.",
+      "deliverable": "Phase 4 of the plan: stop new officer issuance as backed multi-hop capacity carries the pilot's volume; run legacy lines off under their own accounting; verify a newcomer borrows with every officer offline and no oracle heartbeat; lower the issuance budget to zero; publish each cycle the share of outstanding principal backed by stake or credit rather than issued lines. Refined 2026-10-08 (Codex 6065169803): what sunsets is discretionary issuance, not the productive-work officer; new grants go to zero and legacy lines run off, while the officer stays as the one-use admission gate for each new loan.",
       "acceptance_criteria": [
         "A newcomer's loan through a multi-hop certificate with officers offline.",
         "Issuance budget at zero with legacy exposure settled or migrated."
@@ -17759,6 +17759,6 @@
       ]
     }
   ],
-  "model_version": "0.1.87",
-  "updated_at": "2026-10-08T18:48:33Z"
+  "model_version": "0.1.88",
+  "updated_at": "2026-10-08T18:59:46Z"
 }
