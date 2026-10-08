@@ -1,0 +1,37 @@
+{
+ "recon_time_utc": "2026-10-08T16:16:03Z",
+ "passes": {
+  "pass1": {
+   "n_tx": 66,
+   "all_status_1": true,
+   "final_block": 47852920,
+   "funded_wei": 600000000000000,
+   "scenario_wallet_balance_at_final_block_sum": 567946703995892,
+   "scenario_fee_total_with_l1fee": 32053296004108,
+   "scenario_fee_recorded_l2_only": 32053296007218,
+   "recorded_vs_l2_recomputed_diff": 7218,
+   "sum_l1Fee_scenario": 4108,
+   "controller_fee_total_with_l1fee": 4495978648786,
+   "scenario_value_sent_out_wei": 0,
+   "identity_funded_minus_balance_minus_fees_minus_valueout": 0,
+   "all_senders_fee_total_with_l1fee": 36549274652894,
+   "recorded_gas_cost_field": 36549274657154
+  },
+  "pass2": {
+   "n_tx": 66,
+   "all_status_1": true,
+   "final_block": 47853636,
+   "funded_wei": 600000000000000,
+   "scenario_wallet_balance_at_final_block_sum": 567946703995768,
+   "scenario_fee_total_with_l1fee": 32053296004232,
+   "scenario_fee_recorded_l2_only": 32053296006673,
+   "recorded_vs_l2_recomputed_diff": 6673,
+   "sum_l1Fee_scenario": 4232,
+   "controller_fee_total_with_l1fee": 4495632001840,
+   "scenario_value_sent_out_wei": 0,
+   "identity_funded_minus_balance_minus_fees_minus_valueout": 0,
+   "all_senders_fee_total_with_l1fee": 36548928006072,
+   "recorded_gas_cost_field": 36548928009567
+  }
+ }
+}

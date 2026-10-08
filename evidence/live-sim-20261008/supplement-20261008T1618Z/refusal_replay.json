@@ -1,0 +1,473 @@
+{
+ "reconstruction_time_utc": "2026-10-08T16:17:03Z",
+ "passes": {
+  "pass1": [
+   {
+    "case": "2",
+    "label": "borrower cannot back peer with received backing (onward)",
+    "sender": "0x05fDa08765e884eaDf17fE4A37ac181Ca9dcB193",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f6130000000000000000000000008e72ae99f78ee312fae407a18c168d065c70bd5d00000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x8ac4bc73",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852825,
+     "revert_data": "0x8ac4bc73",
+     "match": true,
+     "log_line": "15:39:02Z REFUSAL borrower cannot back peer with received ba"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852825,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852825,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "2",
+    "label": "closed history + removed backing grants no own credit",
+    "sender": "0x05fDa08765e884eaDf17fE4A37ac181Ca9dcB193",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852852,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "15:39:55Z REFUSAL closed history + removed backing grants no"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852852,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852852,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "borrower cannot onward-back colluder with received backing",
+    "sender": "0x329218eAA9bF0eDf1aF280F15B783BB42133F438",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f61300000000000000000000000021a53057c79cacb97edf674294e5549885110ce700000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x8ac4bc73",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852892,
+     "revert_data": "0x8ac4bc73",
+     "match": true,
+     "log_line": "15:41:14Z REFUSAL borrower cannot onward-back colluder with "
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "borrower overlimit request 1.01 USDC",
+    "sender": "0x329218eAA9bF0eDf1aF280F15B783BB42133F438",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f6950",
+    "expected_selector": "0x5d615d32",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852892,
+     "revert_data": "0x5d615d32",
+     "match": true,
+     "log_line": "15:41:14Z REFUSAL borrower overlimit request 1.01 USDC rever"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "colluder without credit cannot request",
+    "sender": "0x21A53057c79CacB97EdF674294e5549885110ce7",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852892,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "15:41:14Z REFUSAL colluder without credit cannot request rev"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852892,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "repeat request refused while reservation open",
+    "sender": "0x329218eAA9bF0eDf1aF280F15B783BB42133F438",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x5d615d32",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852894,
+     "revert_data": "0x5d615d32",
+     "match": true,
+     "log_line": "15:41:20Z REFUSAL repeat request refused while reservation o"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852894,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852894,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "sponsor cannot cut backing while reservation open",
+    "sender": "0x8F6331327f176424D13F90714bD880C54494Ab09",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f613000000000000000000000000329218eaa9bf0edf1af280f15b783bb42133f4380000000000000000000000000000000000000000000000000000000000000000",
+    "expected_selector": "0x9917947d",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852894,
+     "revert_data": "0x9917947d",
+     "match": true,
+     "log_line": "15:41:20Z REFUSAL sponsor cannot cut backing while reservati"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852894,
+      "result": "revert",
+      "data": "0x9917947d",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852894,
+      "result": "revert",
+      "data": "0x9917947d",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "colluder still has no credit after receiving cash",
+    "sender": "0x21A53057c79CacB97EdF674294e5549885110ce7",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47852902,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "15:41:33Z REFUSAL colluder still has no credit after receivi"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47852902,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47852902,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   }
+  ],
+  "pass2": [
+   {
+    "case": "2",
+    "label": "borrower cannot back peer with received backing (onward)",
+    "sender": "0x7E56cCFC4AEBCbE2AaFc37cCB3E19567446e9AA2",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f6130000000000000000000000006e412f3aa95341bb22c898c9caed714c95d3fae300000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x8ac4bc73",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853540,
+     "revert_data": "0x8ac4bc73",
+     "match": true,
+     "log_line": "16:02:52Z REFUSAL borrower cannot back peer with received ba"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853540,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853540,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "2",
+    "label": "closed history + removed backing grants no own credit",
+    "sender": "0x7E56cCFC4AEBCbE2AaFc37cCB3E19567446e9AA2",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853567,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "16:03:47Z REFUSAL closed history + removed backing grants no"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853567,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853567,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "borrower cannot onward-back colluder with received backing",
+    "sender": "0x86e2C1666d382C89D3F41EC00577B659DEfEE74E",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f6130000000000000000000000008e66201d6a01560cac33357c99f5157777fb2bd700000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x8ac4bc73",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853606,
+     "revert_data": "0x8ac4bc73",
+     "match": true,
+     "log_line": "16:05:05Z REFUSAL borrower cannot onward-back colluder with "
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x8ac4bc73",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "borrower overlimit request 1.01 USDC",
+    "sender": "0x86e2C1666d382C89D3F41EC00577B659DEfEE74E",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f6950",
+    "expected_selector": "0x5d615d32",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853606,
+     "revert_data": "0x5d615d32",
+     "match": true,
+     "log_line": "16:05:05Z REFUSAL borrower overlimit request 1.01 USDC rever"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "colluder without credit cannot request",
+    "sender": "0x8E66201d6a01560CAc33357C99F5157777Fb2bD7",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853606,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "16:05:05Z REFUSAL colluder without credit cannot request rev"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853606,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "repeat request refused while reservation open",
+    "sender": "0x86e2C1666d382C89D3F41EC00577B659DEfEE74E",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x5d615d32",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853610,
+     "revert_data": "0x5d615d32",
+     "match": true,
+     "log_line": "16:05:11Z REFUSAL repeat request refused while reservation o"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853610,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853610,
+      "result": "revert",
+      "data": "0x5d615d32",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "sponsor cannot cut backing while reservation open",
+    "sender": "0x3b0e5871d7A046492af3a1630794B43A323F901a",
+    "call": "back(address,uint256)",
+    "calldata": "0xb870f61300000000000000000000000086e2c1666d382c89d3f41ec00577b659defee74e0000000000000000000000000000000000000000000000000000000000000000",
+    "expected_selector": "0x9917947d",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853610,
+     "revert_data": "0x9917947d",
+     "match": true,
+     "log_line": "16:05:11Z REFUSAL sponsor cannot cut backing while reservati"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853610,
+      "result": "revert",
+      "data": "0x9917947d",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853610,
+      "result": "revert",
+      "data": "0x9917947d",
+      "selector_match": true
+     }
+    }
+   },
+   {
+    "case": "3",
+    "label": "colluder still has no credit after receiving cash",
+    "sender": "0x8E66201d6a01560CAc33357C99F5157777Fb2bD7",
+    "call": "requestLoan(uint256)",
+    "calldata": "0x8d5d342900000000000000000000000000000000000000000000000000000000000f4240",
+    "expected_selector": "0x315b0e14",
+    "original_observation": {
+     "call_block_tag": "latest (unpinned)",
+     "stored_block_field": 47853618,
+     "revert_data": "0x315b0e14",
+     "match": true,
+     "log_line": "16:05:24Z REFUSAL colluder still has no credit after receivi"
+    },
+    "replay": {
+     "stored_case_start_block": {
+      "block": 47853618,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     },
+     "last_tx_block_before_log_line": {
+      "block": 47853618,
+      "result": "revert",
+      "data": "0x315b0e14",
+      "selector_match": true
+     }
+    }
+   }
+  ]
+ }
+}
