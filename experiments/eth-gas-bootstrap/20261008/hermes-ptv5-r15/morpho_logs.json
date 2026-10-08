@@ -1,0 +1,150 @@
+{
+  "started": "2026-10-08T02:09:20.977Z",
+  "rpc": "base-rpc.publicnode.com",
+  "blue": "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb",
+  "event": "Liquidate(bytes32,address,address,uint256,uint256,uint256,uint256,uint256)",
+  "topic0": "0xa4946ede45d0c6f06a0f5ce92c9ad3b4751452d2fe0e25010783bcab57a67e41",
+  "chainId": "0x2105",
+  "head": {
+    "number": 52318007,
+    "hash": "0x4b870559c5ca0f0466df62b3aeb3f5d1ad02711efb0ebaaa1faf43e27ffbfe82",
+    "timestamp": 1791425361
+  },
+  "windows": [
+    {
+      "blocks": 1000,
+      "count": 0,
+      "error": null
+    },
+    {
+      "blocks": 10000,
+      "count": 16,
+      "error": null
+    }
+  ],
+  "logs": [
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0xd81a0faddd64a14dcab08145f83fe7ec7dfe55e1",
+      "repaidAssets": "154513334",
+      "repaidShares": "147655493121727",
+      "seizedAssets": "123395956",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0x375382f35d4bdfea975f641d9724719d1bde1cae",
+      "repaidAssets": "96071080",
+      "repaidShares": "91807109904759",
+      "seizedAssets": "76723363",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0xebdbc598a179afe83d5059c28e26a54bcd8aaba8",
+      "repaidAssets": "85661486",
+      "repaidShares": "81859529942409",
+      "seizedAssets": "68410153",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0x35ab537e60a54e828901d8f0b2f5024d77546ee3",
+      "repaidAssets": "62165560",
+      "repaidShares": "59406434973048",
+      "seizedAssets": "49646062",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0x9fceebc2abaec536639c4a89f2ba3b4523c31f58",
+      "repaidAssets": "52779726",
+      "repaidShares": "50437176976208",
+      "seizedAssets": "42150437",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "borrower": "0xcbfd2c0835ba07eefe33400d34cdecd3dced893c",
+      "repaidAssets": "51108336",
+      "repaidShares": "48839969085750",
+      "seizedAssets": "40815648",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0x99c86d5a41187cb1276fd90090b7d6a27507aec6066df31c7c44d404fe6c544b",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xc4bfb65f09174569eac5d849fec32431d0d0fc51",
+      "borrower": "0x1b9e75e7e5da386952bf107abe6acbf220254da0",
+      "repaidAssets": "50846278",
+      "repaidShares": "48589542132521",
+      "seizedAssets": "40606365",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0xa7f9fd82c07f62e3f4084786420c6f2ddcab9b1fb6c0ed2a0dfaf7efab06fb37",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xd8413bf7e7782b536abdeebbcb9e7c4fc481e2e7",
+      "borrower": "0x774d533c91e91d9d0468e315660ad32164965275",
+      "repaidAssets": "44829799",
+      "repaidShares": "42840095425540",
+      "seizedAssets": "35801543",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52310057,
+      "tx": "0xb7d6b1c0444c071002e33dc603f6707690585044867f1c0141e3d56e6f22578a",
+      "marketId": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "caller": "0xd8413bf7e7782b536abdeebbcb9e7c4fc481e2e7",
+      "borrower": "0x4efe648497016dc2265498a07993f9cc0e9b3679",
+      "repaidAssets": "1535035",
+      "repaidShares": "1466903844659",
+      "seizedAssets": "1225893",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    },
+    {
+      "block": 52312966,
+      "tx": "0x8bc897a13ecf7bed075690e607b492a874ee24682b57c5d73c4b066d16581542",
+      "marketId": "0x4457d35bf7f6746a5a39c1ec42d451f12707c0fee263571cbe0ff6dda261529e",
+      "caller": "0x1423364e55d3e19ec3e627d91606f91445a4b105",
+      "borrower": "0xb230d1b3d3b0efa8487db96c6593e84d6ff3516a",
+      "repaidAssets": "584608",
+      "repaidShares": "584608000000",
+      "seizedAssets": "356359962191165",
+      "badDebtAssets": "0",
+      "badDebtShares": "0"
+    }
+  ],
+  "totalLogsInWindow": 16,
+  "rpcCount": 4,
+  "finished": "2026-10-08T02:09:21.508Z"
+}

@@ -1,0 +1,390 @@
+{
+  "schema": "codex.eth-gas-read-only-harvest-cycle-quote/1",
+  "venue": "beefy-harvest",
+  "mode": "READ_ONLY_DIRECT_HARVEST_CONSERVATIVE_CYCLE",
+  "chainId": 8453,
+  "startedAt": "2026-10-08T02:08:38.660Z",
+  "borrower": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+  "lender": "0xdb3de88e9dba1b07a06d186dfbd86fae309043ad",
+  "weth": "0x4200000000000000000000000000000000000006",
+  "lens": "0x71e4df2bdc7ce0b2dc7cdb9eac983b251f8a0b58",
+  "counters": {
+    "httpRequests": 47,
+    "rpcOperations": 47
+  },
+  "caps": {
+    "nativePrincipalWei": "50000000000000",
+    "principalUsdMicros": "500000",
+    "grossExposureUsdMicros": "1000000",
+    "worstLossUsdMicros": "250000"
+  },
+  "spendAuthorized": false,
+  "loanDisbursed": false,
+  "liveExecution": false,
+  "earnedRevenue": false,
+  "executionPolicy": {
+    "allIntents": "UNSIGNED_PREVIEW_ONLY",
+    "neverPresignBundle": true,
+    "requireSeparateFreshNonceGasAndSignaturePerPhase": true,
+    "requireAuthenticatedPrecedingReceipt": true,
+    "unwrapAmount": "PREVIEW_ONLY_REBUILD_FROM_ACTUAL_CANONICAL_WETH_HARVEST_RECEIPT",
+    "repayIntent": "REPRICE_FROM_ACTUAL_PHASE_BALANCES_GAS_AND_RECORDED_DEBT"
+  },
+  "caveats": [
+    "Lens token delta is simulated revenue, not earned revenue. Lens caller differs from direct EOA caller.",
+    "A nonreverting direct harvest with empty returndata alone does not independently establish WETH receipt.",
+    "No atomic EOA profit guard exists; competitors can consume rewards and one bounded attempt can lose gas.",
+    "Unwrap100000gas is a conservative reservation unless a stateful cycle simulation succeeds.",
+    "GasPriceOracle L1 upper bound covers99.99% of transactions, not a mathematical worst-case guarantee.",
+    "Snapshot L1/operator quotes are doubled, but future protocol prices have no transaction-level cap.",
+    "Dollar limits use fresh Chainlink ETH/USD with a20% price buffer.",
+    "Zero work cost means on-chain contribution margin only.",
+    "Recorded runtime hashes are fingerprints, not source-verification certificates.",
+    "The lens is only eth_call; never submit the lens calldata or assign it borrower funds."
+  ],
+  "sources": {
+    "lensAbi": "https://github.com/beefyfinance/beefy-cowllector-v2/blob/00955cd894ba2605b0936688e3908e51ccb185ae/apps/cowllector/src/abi/BeefyHarvestLensV2ABI.ts",
+    "lensAbiFileBlobSha": "5b85a7572cdf823f652490f5d552f28b565340c2",
+    "vaultRegistry": "https://github.com/beefyfinance/beefy-v2/blob/c30017071065df81a32890eb2a36c3c05c2dc604/src/config/vault/base.json",
+    "gasOracleFileBlobSha": "ab6cdcf80c4fe4336aa0711d91982bc282c96f77",
+    "ethUsdFeed": "https://data.chain.link/feeds/base/mainnet/eth-usd"
+  },
+  "input": {
+    "sha256": "79944d2456e18811292f6613186921f64707d19c6f434d830ad9ba30b4f665b4",
+    "candidateIndex": 0,
+    "vaultId": "aerodrome-usdc-aero",
+    "vault": "0xc005b9833debcf5fe6cc5bc9ba4fd74bb382ae55",
+    "strategy": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+    "priorBlock": {
+      "number": "52317212",
+      "hash": "0x9c77cf74a2f4a36c05dd7b15e98729ae310fa431532eb107a519225dc655fac7"
+    }
+  },
+  "block": {
+    "number": "52317986",
+    "hash": "0xf2fa561df0703e15ebe39a5ee3f7d4a076ec8bec6d53404aeeab064ee9bfb0df",
+    "timestamp": "1791425319",
+    "baseFeePerGas": "5000000",
+    "fixedRpcCallTag": "0x31e4f22"
+  },
+  "freshness": {
+    "initial": {
+      "wallClockUnixSeconds": "1791425319",
+      "blockTimestamp": "1791425319",
+      "ageSeconds": "0",
+      "maxAgeSeconds": 120,
+      "maxFutureSeconds": 5,
+      "withinBounds": true
+    },
+    "completed": {
+      "wallClockUnixSeconds": "1791425320",
+      "blockTimestamp": "1791425319",
+      "ageSeconds": "1",
+      "maxAgeSeconds": 120,
+      "maxFutureSeconds": 5,
+      "withinBounds": true
+    }
+  },
+  "contracts": {
+    "vault": "0xc005b9833debcf5fe6cc5bc9ba4fd74bb382ae55",
+    "strategy": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+    "freshVaultStrategy": "0xedE4Dd6758634007Eb1f4cF8A203bf237A44ea4C",
+    "nativeRewardToken": "0x4200000000000000000000000000000000000006",
+    "paused": false,
+    "lastHarvest": "1791419083",
+    "weth": "0x4200000000000000000000000000000000000006",
+    "lens": "0x71e4df2bdc7ce0b2dc7cdb9eac983b251f8a0b58",
+    "gasOracle": "0x420000000000000000000000000000000000000f"
+  },
+  "before": {
+    "borrower": {
+      "nativeWei": "0",
+      "wethWei": "0",
+      "nonce": "0"
+    },
+    "lender": {
+      "nativeWei": "740354259168462",
+      "wethWei": "0",
+      "nonce": "6"
+    }
+  },
+  "pendingNonces": {
+    "borrower": "0",
+    "lender": "6"
+  },
+  "actorCode": {
+    "borrower": "0x",
+    "lender": "0x",
+    "borrowerHasEmptyCode": true,
+    "lenderHasEmptyCode": true,
+    "nativeTransfer21000GasAssumptionsVerified": true
+  },
+  "fingerprints": {
+    "vault": {
+      "address": "0xc005b9833debcf5fe6cc5bc9ba4fd74bb382ae55",
+      "runtimeCodeKeccak256": "0x93313a46817426185350b6adad18bac374c6939e9a8254f6bfaf801d6ea37193"
+    },
+    "strategy": {
+      "address": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "runtimeCodeKeccak256": "0x70ed04742bbca955e80825c56b98ba53a69231015ac72c415465258c454bb39b"
+    },
+    "weth": {
+      "address": "0x4200000000000000000000000000000000000006",
+      "runtimeCodeKeccak256": "0x8a3a1f6a9f9dce633117adee5b458245835a8645a8c8726a26382a4622508b1c"
+    },
+    "oracle": {
+      "address": "0x420000000000000000000000000000000000000f",
+      "runtimeCodeKeccak256": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35"
+    },
+    "lens": {
+      "address": "0x71e4df2bdc7ce0b2dc7cdb9eac983b251f8a0b58",
+      "runtimeCodeKeccak256": "0x2ee2f00afb1d7d69032e2059210dc58186df92c90562067846308458110de973"
+    },
+    "priceFeed": {
+      "address": "0x71041dddad3595f9ced3dccfbe3d1f4b0a16bb70",
+      "runtimeCodeKeccak256": "0xbd6f524cdc4268b6bd1bb6f77a8821faeea9c52ee9e0afa0b6d948ce82c966c2"
+    }
+  },
+  "ethUsd": {
+    "feed": "0x71041dddad3595f9ced3dccfbe3d1f4b0a16bb70",
+    "description": "ETH / USD",
+    "decimals": 8,
+    "roundId": "55340232221128661921",
+    "answer": "257962922352",
+    "updatedAt": "1791424443",
+    "ageSeconds": "876",
+    "capPriceAnswerWith20PercentBuffer": "309555506823"
+  },
+  "lensSimulation": {
+    "to": "0x71e4df2bdc7ce0b2dc7cdb9eac983b251f8a0b58",
+    "mode": "ETH_CALL_ONLY_NEVER_SUBMIT",
+    "data": "0x66cc1857000000000000000000000000ede4dd6758634007eb1f4cf8a203bf237a44ea4c0000000000000000000000004200000000000000000000000000000000000006",
+    "rawReturnData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000024891d275e0000000000000000000000000000000000000000000000000000000006ac6e2cb00000000000000000000000000000000000000000000000000000000000a343b00000000000000000000000000000000000000000000000000000000031e4f22ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000",
+    "decoded": {
+      "callReward": "2510707389920",
+      "lastHarvest": "1791419083",
+      "gasUsed": "668731",
+      "blockNumber": "52317986",
+      "isCalmBeforeHarvest": -1,
+      "paused": false,
+      "success": true,
+      "harvestResult": "0x"
+    },
+    "actualSimulatedLensWethDeltaWei": "2510707389920",
+    "directEoaRewardIndependentlyVerified": false
+  },
+  "directHarvestSimulation": {
+    "from": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+    "to": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+    "feeRecipient": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+    "data": "0x0e5c011e00000000000000000000000062c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+    "valueWei": "0",
+    "rawReturnData": "0x",
+    "nonreverting": true,
+    "rewardAmountProvenByEmptyReturnData": false,
+    "estimatedGas": "713899",
+    "gasLimitReserved": "928069"
+  },
+  "gasEstimateUsesNativeBalanceOverride": true,
+  "pricing": {
+    "maxPasses": 3,
+    "passes": [
+      {
+        "pass": 1,
+        "pricedPrincipalWei": "0",
+        "pricedLoanFeeWei": "0",
+        "borrowerGasReservedWei": "11552069448694",
+        "lenderGasReservedWei": "235103482898",
+        "recommendedPrincipalWei": "12707276393564",
+        "recommendedLoanFeeWei": "236103482898",
+        "unsignedByteLengths": [
+          "41",
+          "79",
+          "79",
+          "41"
+        ],
+        "stable": false
+      },
+      {
+        "pass": 2,
+        "pricedPrincipalWei": "12707276393564",
+        "pricedLoanFeeWei": "236103482898",
+        "borrowerGasReservedWei": "11552069448694",
+        "lenderGasReservedWei": "235103482898",
+        "recommendedPrincipalWei": "12707276393564",
+        "recommendedLoanFeeWei": "236103482898",
+        "unsignedByteLengths": [
+          "47",
+          "79",
+          "79",
+          "47"
+        ],
+        "stable": true
+      }
+    ],
+    "stable": true
+  },
+  "transactions": [
+    {
+      "name": "fund",
+      "from": "0xdb3de88e9dba1b07a06d186dfbd86fae309043ad",
+      "to": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "chainId": 8453,
+      "nonce": "6",
+      "gas": "21000",
+      "maxFeePerGas": "11000000",
+      "maxPriorityFeePerGas": "1000000",
+      "data": "0x",
+      "value": "12707276393564",
+      "type": "eip1559",
+      "intentState": "UNSIGNED_PREVIEW_ONLY",
+      "mustRebuildFromActualPhaseState": true,
+      "mustRefreshNonceAndGasBeforeSeparateSignature": true,
+      "unsignedSerializedForOracleOnly": "0x02ed82210506830f424083a7d8c08252089462c4a163026feedb3ea1045d90bba96d0c5d4f0b860b8ea4b20c5c80c0",
+      "unsignedByteLength": "47",
+      "l2FeeHardCapWei": "231000000000",
+      "l1SnapshotUpperQuoteWei": "2051741449",
+      "operatorSnapshotUpperQuoteWei": "0",
+      "l1ReservedWei": "4103482898",
+      "operatorReservedWei": "0",
+      "totalGasReservedWei": "235103482898"
+    },
+    {
+      "name": "harvest",
+      "from": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "to": "0xede4dd6758634007eb1f4cf8a203bf237a44ea4c",
+      "chainId": 8453,
+      "nonce": "0",
+      "gas": "928069",
+      "maxFeePerGas": "11000000",
+      "maxPriorityFeePerGas": "1000000",
+      "data": "0x0e5c011e00000000000000000000000062c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "value": "0",
+      "type": "eip1559",
+      "intentState": "UNSIGNED_PREVIEW_ONLY",
+      "mustRebuildFromActualPhaseState": true,
+      "mustRefreshNonceAndGasBeforeSeparateSignature": true,
+      "unsignedSerializedForOracleOnly": "0x02f84c82210580830f424083a7d8c0830e294594ede4dd6758634007eb1f4cf8a203bf237a44ea4c80a40e5c011e00000000000000000000000062c4a163026feedb3ea1045d90bba96d0c5d4f0bc0",
+      "unsignedByteLength": "79",
+      "l2FeeHardCapWei": "10208759000000",
+      "l1SnapshotUpperQuoteWei": "2051741449",
+      "operatorSnapshotUpperQuoteWei": "0",
+      "l1ReservedWei": "4103482898",
+      "operatorReservedWei": "0",
+      "totalGasReservedWei": "10212862482898"
+    },
+    {
+      "name": "unwrap",
+      "from": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "to": "0x4200000000000000000000000000000000000006",
+      "chainId": 8453,
+      "nonce": "1",
+      "gas": "100000",
+      "maxFeePerGas": "11000000",
+      "maxPriorityFeePerGas": "1000000",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000000000024891d275e0",
+      "value": "0",
+      "type": "eip1559",
+      "intentState": "UNSIGNED_PREVIEW_ONLY",
+      "mustRebuildFromActualPhaseState": true,
+      "mustRefreshNonceAndGasBeforeSeparateSignature": true,
+      "amountBasis": "PREVIEW_ONLY_REBUILD_FROM_ACTUAL_CANONICAL_WETH_HARVEST_RECEIPT",
+      "previewLensRewardWei": "2510707389920",
+      "unsignedSerializedForOracleOnly": "0x02f84c82210501830f424083a7d8c0830186a094420000000000000000000000000000000000000680a42e1a7d4d0000000000000000000000000000000000000000000000000000024891d275e0c0",
+      "unsignedByteLength": "79",
+      "l2FeeHardCapWei": "1100000000000",
+      "l1SnapshotUpperQuoteWei": "2051741449",
+      "operatorSnapshotUpperQuoteWei": "0",
+      "l1ReservedWei": "4103482898",
+      "operatorReservedWei": "0",
+      "totalGasReservedWei": "1104103482898"
+    },
+    {
+      "name": "repay",
+      "from": "0x62c4a163026feedb3ea1045d90bba96d0c5d4f0b",
+      "to": "0xdb3de88e9dba1b07a06d186dfbd86fae309043ad",
+      "chainId": 8453,
+      "nonce": "2",
+      "gas": "21000",
+      "maxFeePerGas": "11000000",
+      "maxPriorityFeePerGas": "1000000",
+      "data": "0x",
+      "value": "12943379876462",
+      "type": "eip1559",
+      "intentState": "UNSIGNED_PREVIEW_ONLY",
+      "mustRebuildFromActualPhaseState": true,
+      "mustRefreshNonceAndGasBeforeSeparateSignature": true,
+      "unsignedSerializedForOracleOnly": "0x02ed82210502830f424083a7d8c082520894db3de88e9dba1b07a06d186dfbd86fae309043ad860bc59d8f4a6e80c0",
+      "unsignedByteLength": "47",
+      "l2FeeHardCapWei": "231000000000",
+      "l1SnapshotUpperQuoteWei": "2051741449",
+      "operatorSnapshotUpperQuoteWei": "0",
+      "l1ReservedWei": "4103482898",
+      "operatorReservedWei": "0",
+      "totalGasReservedWei": "235103482898"
+    }
+  ],
+  "terms": {
+    "nativePrincipalWei": "12707276393564",
+    "loanFeeWei": "236103482898",
+    "debtWei": "12943379876462",
+    "workCostWei": "0",
+    "borrowerGasReservedWei": "11552069448694",
+    "lenderGasReservedWei": "235103482898",
+    "totalGasReservedWei": "11787172931592",
+    "requiredExternalRewardWei": "11789172931592",
+    "expectedExternalRewardWei": "2510707389920",
+    "expectedRewardBasis": "fresh lens actual simulated WETH delta; direct EOA recipient delta requires stateful evidence",
+    "borrowerMarginAtReservedGasWei": "-9277465541672",
+    "lenderMarginAtReservedGasWei": "1000000000",
+    "targetBorrowerMarginWei": "1000000000",
+    "targetLenderMarginWei": "1000000000",
+    "worstLossExposureWei": "12942379876462",
+    "grossExposureWei": "24494449325156",
+    "principalUsdMicrosAtBufferedPrice": "39337",
+    "grossExposureUsdMicrosAtBufferedPrice": "75824",
+    "worstLossUsdMicrosAtBufferedPrice": "40064"
+  },
+  "qualification": {
+    "vaultStillUsesSelectedStrategy": true,
+    "unpaused": true,
+    "canonicalWethNative": true,
+    "positiveActualSimulatedLensWethDelta": true,
+    "directBorrowerHarvestNonreverting": true,
+    "borrowerStartsAtZero": true,
+    "actorsHaveEmptyCode": true,
+    "principalNativeCap": true,
+    "principalUsdCap": true,
+    "grossExposureUsdCap": true,
+    "worstLossUsdCap": true,
+    "principalCoversUpdatedBorrowerGas": true,
+    "principalIncludesUpdatedTenPercentGasReserve": true,
+    "lensRewardCoversUpdatedReserves": false,
+    "lenderHasFundingAndGas": true,
+    "lenderPositiveMargin": true,
+    "lenderMeetsDeclaredTarget": true,
+    "pricingStable": true,
+    "noPendingTransactions": true,
+    "includesCurrentL1AndOperatorQuotes": true,
+    "noActualLensTransaction": true,
+    "blockStillWithinWallClockFreshnessBounds": true
+  },
+  "fullCycleSimulation": {
+    "attempted": true,
+    "supported": false,
+    "errorKind": "RpcError_-38014",
+    "allFourCallsSuccessful": false,
+    "directRewardCoversRequiredFloor": false
+  },
+  "qualifiedForExactTransactionReview": false,
+  "exactCycleStatefullyDemonstrated": false,
+  "deployedSourceIndependentlyVerified": false,
+  "requiresIndependentSignerReviewAndFreshSimulation": true,
+  "signerMustNeverSignLensIntent": true,
+  "signerMustNeverPresignPreviewBundle": true,
+  "requiresActualHarvestReceiptBeforeUnwrapRebuild": true,
+  "status": "NO_LOAN_CAP_OR_MARGIN_CHECK_FAILED",
+  "stage": "complete",
+  "finishedAt": "2026-10-08T02:08:40.482Z",
+  "elapsedMs": 1822
+}

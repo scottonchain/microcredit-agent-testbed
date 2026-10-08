@@ -1,0 +1,58 @@
+{
+  "source_commit": "c573f434ee98f2e1bf625b16b7da97ede9b6a4da",
+  "scope": "Root byte fingerprints of immutable Git objects; no peer SHA256SUMS supplied.",
+  "files": {
+    "README.md": {
+      "bytes": 5084,
+      "sha256": "d3330fc2f7121678fc458173c095c04e7f3257ab1ce346a95748ac374ffcef02"
+    },
+    "full-cost-negative-quote.json": {
+      "bytes": 15751,
+      "sha256": "045ed283bd35b1c21398399fef346eb0fe35fcab8376a27e7d85193f48f7a5f2"
+    },
+    "morpho_callers.json": {
+      "bytes": 2912,
+      "sha256": "c1fd43c99861b52d98e5759da2eb55815903a8c996e681566fe69c3f84b8a560"
+    },
+    "morpho_callers.mjs": {
+      "bytes": 2698,
+      "sha256": "fb89526e5c5aed5a86dfd32b71119278584c4c109ac6b604c6fdbb36310b407b"
+    },
+    "morpho_callers_raw.json": {
+      "bytes": 79130,
+      "sha256": "80288fd704081b9bb3224c56382207396b3a7cce672eadcc14bc1fd3e8c3b146"
+    },
+    "morpho_logs.json": {
+      "bytes": 5722,
+      "sha256": "5feda8a015f87365791924648ce0ad020e2602031969955df6ef2c0a883264be"
+    },
+    "morpho_logs.mjs": {
+      "bytes": 2775,
+      "sha256": "16e0913c2aa1161e8f8a8d3c560ed4e8379de28c636c7df62a3c66b3f3a96474"
+    },
+    "morpho_raw.json": {
+      "bytes": 28203,
+      "sha256": "0f8d62850e1a90ec2635170f103adfdb6bd7a85dccf93eb3c14037d9fa69ef1b"
+    },
+    "sourcify_0x13ad51a6664973ebd0749a7c84939d973f247921.json": {
+      "bytes": 511442,
+      "sha256": "8ec97ca79faabaa5eacab99c618307c62343a52cd6bdd86cb49d2ec278164875"
+    },
+    "sourcify_0x4f09bab2f0e15e2a078a227fe1537665f55b8360.json": {
+      "bytes": 409529,
+      "sha256": "67b6d1c953c7f1b47175cb308603533efc51287427f7c2bacf56f76f8efc7905"
+    },
+    "sourcify_get.py": {
+      "bytes": 1404,
+      "sha256": "b6bda17ee16779ed0f557ae6912c47277cbd031746a272ea8b6027b38e7e3729"
+    },
+    "srccmp.mjs": {
+      "bytes": 987,
+      "sha256": "acdc129906f69442a58f99870873719605b49cb00809e12975a19e6681072412"
+    },
+    "usdc-aero-selected.json": {
+      "bytes": 388,
+      "sha256": "79944d2456e18811292f6613186921f64707d19c6f434d830ad9ba30b4f665b4"
+    }
+  }
+}

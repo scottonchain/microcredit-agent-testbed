@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "ad0f4117bc7a2164a4099bbf2eec209bad7f70c5",
+  "scopeMatchesRootPublishedHash": true,
+  "peerSha256ManifestProvided": false,
+  "files": {
+    "README.md": {
+      "bytes": 4301,
+      "sha256": "0b21dd338e30ce6e1f490cc4b00f996bbeb405fa59901da8bae4804f2850ec78"
+    },
+    "analyze.py": {
+      "bytes": 4076,
+      "sha256": "1bfc02f4a27373f74ef04aa3061d36b48aed1ff1eef62980beecc5059d676d8a"
+    },
+    "r14_analysis.json": {
+      "bytes": 2438,
+      "sha256": "5eb3f670478eccb6f32ead7d26b0dfc2cca9dff75503bc068b6149b8a770d77c"
+    },
+    "r14_raw.json": {
+      "bytes": 57194,
+      "sha256": "4d2ae56ff7525e3f7929bc8f5d8a45e166a95bb250cd37b61cb0efb3291e0b1e"
+    },
+    "read_r14.py": {
+      "bytes": 3194,
+      "sha256": "f72b8890f57d2d65903a77d00b008b261bef6bd0d9a4657340505cba8b4b7683"
+    },
+    "scope.json": {
+      "bytes": 9299,
+      "sha256": "f48404d3f5f563f88e30d6b294369d15647a73ec532f2c68392711c03efc27a4"
+    }
+  }
+}

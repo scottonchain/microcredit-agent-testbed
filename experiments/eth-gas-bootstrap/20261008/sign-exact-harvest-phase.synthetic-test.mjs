@@ -2,7 +2,8 @@
 // Synthetic/offline only. Public dummy key; no real wallet file is opened.
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {validateHarvest,BORROWER,LENDER,WETH,LENS,QUOTE_HELPER_SHA256,AUDITOR_SHA256} from './sign-exact-harvest-phase.mjs';
+import {readFileSync} from 'node:fs';
+import {validateHarvest,validateHarvestPreparation,BORROWER,LENDER,WETH,LENS,QUOTE_HELPER_SHA256,AUDITOR_SHA256,CLONE_STRATEGY,CLONE_VAULT,CLONE_IMPLEMENTATION,CLONE_RUNTIME,CLONE_RUNTIME_HASH,CLONE_IMPLEMENTATION_RUNTIME_HASH,CLONE_VERIFIED_SOURCE_SHA256} from './sign-exact-harvest-phase.mjs';
 const require=createRequire('/tmp/codex-eth-audit-deps/package.json');
 const {parseAbi,encodeFunctionData,encodeFunctionResult,serializeTransaction,parseTransaction,keccak256,recoverTransactionAddress}=require('viem');
 const {privateKeyToAccount}=require('viem/accounts');
@@ -49,4 +50,44 @@ const checks=[
 ];
 for(const [label,mutate]of checks){const x=clone(q),y=clone(e),z=clone(r);mutate(x,y,z);assert.throws(()=>validateHarvest(x,y,z,hashes,now),undefined,label);}
 const dummy=privateKeyToAccount('0x'+'0'.repeat(63)+'1'),raw=await dummy.signTransaction(valid.transaction),parsed=parseTransaction(raw);assert.equal((await recoverTransactionAddress({serializedTransaction:raw})).toLowerCase(),dummy.address.toLowerCase());assert.equal(serializeTransaction(valid.transaction),serializeTransaction({...parsed,r:undefined,s:undefined,v:undefined,yParity:undefined}));
-console.log(JSON.stringify({synthetic:true,offline:true,realWalletKeyRead:false,realTransactionsSigned:false,negativeChecksPassed:checks.length,positiveValidationPassed:true,dummyEip1559RoundTripPassed:true}));
+// Public runtime fixture from the read-only r14 record, not a source certificate.
+// Every source/fee/independence assertion below is SYNTHETIC and must never enable execution.
+const runtime=JSON.parse(readFileSync(new URL('./sign-exact-harvest-clone-runtime.fixture.json',import.meta.url)));
+assert.equal(keccak256(runtime.strategy_runtime),CLONE_RUNTIME_HASH);assert.equal(keccak256(runtime.implementation_runtime),CLONE_IMPLEMENTATION_RUNTIME_HASH);assert.equal(runtime.source.source_verification_status,'NOT_VERIFIED');
+const cq=clone(q),ce=clone(e),cr=clone(r),testSourceSha='f'.repeat(64);
+cq.input.vault=CLONE_VAULT;cq.input.strategy=CLONE_STRATEGY;cr.vault=CLONE_VAULT;cr.strategy=CLONE_STRATEGY;
+for(const c of [cq.contracts,ce.fresh.contracts]){c.vault=CLONE_VAULT;c.strategy=CLONE_STRATEGY;c.freshVaultStrategy=CLONE_STRATEGY;}
+for(const f of [cq.fingerprints,ce.fresh.fingerprints]){f.vault.address=CLONE_VAULT;f.strategy.address=CLONE_STRATEGY;f.strategy.runtimeCodeKeccak256=CLONE_RUNTIME_HASH;}
+cr.runtimeCodeKeccak256.strategy=CLONE_RUNTIME_HASH;
+const ct=cq.transactions[1];ct.to=CLONE_STRATEGY;ct.unsignedSerializedForOracleOnly=serializeTransaction({...valid.transaction,to:CLONE_STRATEGY});ct.unsignedByteLength=s((ct.unsignedSerializedForOracleOnly.length-2)/2);
+cq.directHarvestSimulation.to=CLONE_STRATEGY;ce.fresh.directHarvestSimulation.to=CLONE_STRATEGY;
+cq.lensSimulation.data=encodeFunctionData({abi:la,functionName:'harvest',args:[CLONE_STRATEGY,WETH]});
+ce.fresh.directRewardEvidence.simulationInput.blockStateCalls[0].calls[0].to=CLONE_STRATEGY;
+ce.fresh.directRewardEvidence.rawResult[0].calls[0].logs[0].topics[1]=topicAddress(CLONE_STRATEGY);
+cr.unsignedHarvestKeccak256=keccak256(ct.unsignedSerializedForOracleOnly);
+Object.assign(cr.strategyReview,{proxyDetected:true,proxyKind:'EIP1167_IMMUTABLE_CLONE',runtimeCodeKeccak256:CLONE_RUNTIME_HASH,immutableCloneRuntimeIndependentlyVerified:true,implementationSourceIndependentlyVerified:true,implementationFeeRoutingIndependentlyVerified:true,implementationUpgradeRoutesExcluded:true,cloneStorageInitializationReviewed:true,implementationAddress:CLONE_IMPLEMENTATION,cloneRuntimeCode:CLONE_RUNTIME,implementationRuntimeCodeKeccak256:CLONE_IMPLEMENTATION_RUNTIME_HASH,implementationSourceEvidence:'SYNTHETIC SOURCE EVIDENCE ONLY',implementationSourceSha256:testSourceSha});
+cr.verifiedImplementationSourceSha256=testSourceSha;
+ce.fresh.immutableCloneEvidence={strategyAddress:CLONE_STRATEGY,strategyRuntimeCode:runtime.strategy_runtime,implementationAddress:CLONE_IMPLEMENTATION,implementationRuntimeCode:runtime.implementation_runtime,implementationRuntimeCodeKeccak256:CLONE_IMPLEMENTATION_RUNTIME_HASH,implementationSourceSha256:testSourceSha};
+const prepared=validateHarvestPreparation(cq,ce,cr,hashes,now);
+assert.equal(prepared.public.immutableCloneBranch,true);assert.equal(prepared.public.cloneExecutionEnabled,false);assert.equal(CLONE_VERIFIED_SOURCE_SHA256,null);
+assert.throws(()=>validateHarvest(cq,ce,cr,hashes,now),/CloneBranchPreparationOnly/);
+const cloneChecks=[
+ ['wrong clone byte suffix',(_q,e)=>{e.fresh.immutableCloneEvidence.strategyRuntimeCode=CLONE_RUNTIME.slice(0,-2)+'00';}],
+ ['clone runtime extra bytes',(_q,e)=>{e.fresh.immutableCloneEvidence.strategyRuntimeCode=CLONE_RUNTIME+'00';}],
+ ['wrong hardcoded implementation',(_q,_e,r)=>{r.strategyReview.implementationAddress=LENDER;}],
+ ['fresh wrong implementation',(_q,e)=>{e.fresh.immutableCloneEvidence.implementationAddress=LENS;}],
+ ['implementation runtime changed',(_q,e)=>{const c=e.fresh.immutableCloneEvidence.implementationRuntimeCode;e.fresh.immutableCloneEvidence.implementationRuntimeCode=c.slice(0,-2)+(c.slice(-2)==='00'?'01':'00');}],
+ ['fresh implementation hash changed',(_q,e)=>{e.fresh.immutableCloneEvidence.implementationRuntimeCodeKeccak256=h(999);} ],
+ ['source hash differs from review',(_q,_e,r)=>{r.verifiedImplementationSourceSha256='e'.repeat(64);}],
+ ['fresh source hash differs',(_q,e)=>{e.fresh.immutableCloneEvidence.implementationSourceSha256='e'.repeat(64);}],
+ ['missing source verification',(_q,_e,r)=>{r.strategyReview.implementationSourceIndependentlyVerified=false;}],
+ ['upgrade route not excluded',(_q,_e,r)=>{r.strategyReview.implementationUpgradeRoutesExcluded=false;}],
+ ['missing fee-routing verification',(_q,_e,r)=>{r.strategyReview.implementationFeeRoutingIndependentlyVerified=false;}],
+ ['unreviewed clone storage',(_q,_e,r)=>{r.strategyReview.cloneStorageInitializationReviewed=false;}],
+ ['other proxy type',(_q,_e,r)=>{r.strategyReview.proxyKind='ERC1967';}],
+ ['clone disguised as nonproxy',(_q,_e,r)=>{r.strategyReview.proxyDetected=false;r.strategyReview.proxyKind='NONE';}],
+ ['other clone strategy',q=>{q.input.strategy=strategy;}],
+ ['other clone vault',q=>{q.input.vault=vault;}],
+];
+for(const [label,mutate]of cloneChecks){const x=clone(cq),y=clone(ce),z=clone(cr);mutate(x,y,z);assert.throws(()=>validateHarvestPreparation(x,y,z,hashes,now),undefined,label);}
+console.log(JSON.stringify({synthetic:true,offline:true,realWalletKeyRead:false,realTransactionsSigned:false,negativeChecksPassed:checks.length,cloneNegativeChecksPassed:cloneChecks.length,positiveValidationPassed:true,clonePreparationPassed:true,realCloneExecutionStaticallyDisabled:true,dummyEip1559RoundTripPassed:true}));

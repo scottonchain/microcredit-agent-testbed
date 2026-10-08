@@ -12,8 +12,8 @@
     "sha256": "d913f916d74ffa941c9122c610d09c34fa2127a72bc4013576e0d6a6e1186b99"
   },
   "README.md": {
-    "bytes": 13247,
-    "sha256": "d53f3735ca35d6b178d36bd893d5a4b2f5f46a624f0dc162daebf1962888b9f7"
+    "bytes": 17051,
+    "sha256": "3373b1dd6e33fb5c5ba92a348074aa0decb59096bb8b2b040288737648e71ef9"
   },
   "audit-harvest-only.py": {
     "bytes": 12795,
@@ -74,6 +74,90 @@
   "hermes-ptv5-r12/tvl_readtime.txt": {
     "bytes": 21,
     "sha256": "0d62fd920c9c10481a95fbf71dac376d840612f7240726eb80564975b4ca6e37"
+  },
+  "hermes-ptv5-r14/README.md": {
+    "bytes": 4301,
+    "sha256": "0b21dd338e30ce6e1f490cc4b00f996bbeb405fa59901da8bae4804f2850ec78"
+  },
+  "hermes-ptv5-r14/ROOT_FETCH_MANIFEST.json": {
+    "bytes": 958,
+    "sha256": "685b90381ada1d0adbaffaae44f67412596e0fe4f5ded26132cc7e86208495a6"
+  },
+  "hermes-ptv5-r14/analyze.py": {
+    "bytes": 4076,
+    "sha256": "1bfc02f4a27373f74ef04aa3061d36b48aed1ff1eef62980beecc5059d676d8a"
+  },
+  "hermes-ptv5-r14/r14_analysis.json": {
+    "bytes": 2438,
+    "sha256": "5eb3f670478eccb6f32ead7d26b0dfc2cca9dff75503bc068b6149b8a770d77c"
+  },
+  "hermes-ptv5-r14/r14_raw.json": {
+    "bytes": 57194,
+    "sha256": "4d2ae56ff7525e3f7929bc8f5d8a45e166a95bb250cd37b61cb0efb3291e0b1e"
+  },
+  "hermes-ptv5-r14/read_r14.py": {
+    "bytes": 3194,
+    "sha256": "f72b8890f57d2d65903a77d00b008b261bef6bd0d9a4657340505cba8b4b7683"
+  },
+  "hermes-ptv5-r14/scope.json": {
+    "bytes": 9299,
+    "sha256": "f48404d3f5f563f88e30d6b294369d15647a73ec532f2c68392711c03efc27a4"
+  },
+  "hermes-ptv5-r15/README.md": {
+    "bytes": 5084,
+    "sha256": "d3330fc2f7121678fc458173c095c04e7f3257ab1ce346a95748ac374ffcef02"
+  },
+  "hermes-ptv5-r15/ROOT_FETCH_MANIFEST.json": {
+    "bytes": 2057,
+    "sha256": "522283f8a0d6969293c255f99526c6f37780e4635eb84fdc6c944b39d0a73624"
+  },
+  "hermes-ptv5-r15/full-cost-negative-quote.json": {
+    "bytes": 15751,
+    "sha256": "045ed283bd35b1c21398399fef346eb0fe35fcab8376a27e7d85193f48f7a5f2"
+  },
+  "hermes-ptv5-r15/morpho_callers.json": {
+    "bytes": 2912,
+    "sha256": "c1fd43c99861b52d98e5759da2eb55815903a8c996e681566fe69c3f84b8a560"
+  },
+  "hermes-ptv5-r15/morpho_callers.mjs": {
+    "bytes": 2698,
+    "sha256": "fb89526e5c5aed5a86dfd32b71119278584c4c109ac6b604c6fdbb36310b407b"
+  },
+  "hermes-ptv5-r15/morpho_callers_raw.json": {
+    "bytes": 79130,
+    "sha256": "80288fd704081b9bb3224c56382207396b3a7cce672eadcc14bc1fd3e8c3b146"
+  },
+  "hermes-ptv5-r15/morpho_logs.json": {
+    "bytes": 5722,
+    "sha256": "5feda8a015f87365791924648ce0ad020e2602031969955df6ef2c0a883264be"
+  },
+  "hermes-ptv5-r15/morpho_logs.mjs": {
+    "bytes": 2775,
+    "sha256": "16e0913c2aa1161e8f8a8d3c560ed4e8379de28c636c7df62a3c66b3f3a96474"
+  },
+  "hermes-ptv5-r15/morpho_raw.json": {
+    "bytes": 28203,
+    "sha256": "0f8d62850e1a90ec2635170f103adfdb6bd7a85dccf93eb3c14037d9fa69ef1b"
+  },
+  "hermes-ptv5-r15/sourcify_0x13ad51a6664973ebd0749a7c84939d973f247921.json": {
+    "bytes": 511442,
+    "sha256": "8ec97ca79faabaa5eacab99c618307c62343a52cd6bdd86cb49d2ec278164875"
+  },
+  "hermes-ptv5-r15/sourcify_0x4f09bab2f0e15e2a078a227fe1537665f55b8360.json": {
+    "bytes": 409529,
+    "sha256": "67b6d1c953c7f1b47175cb308603533efc51287427f7c2bacf56f76f8efc7905"
+  },
+  "hermes-ptv5-r15/sourcify_get.py": {
+    "bytes": 1404,
+    "sha256": "b6bda17ee16779ed0f557ae6912c47277cbd031746a272ea8b6027b38e7e3729"
+  },
+  "hermes-ptv5-r15/srccmp.mjs": {
+    "bytes": 987,
+    "sha256": "acdc129906f69442a58f99870873719605b49cb00809e12975a19e6681072412"
+  },
+  "hermes-ptv5-r15/usdc-aero-selected.json": {
+    "bytes": 388,
+    "sha256": "79944d2456e18811292f6613186921f64707d19c6f434d830ad9ba30b4f665b4"
   },
   "hermes-ptv5-r6/README.md": {
     "bytes": 2986,
@@ -187,33 +271,61 @@
     "bytes": 12863,
     "sha256": "447f0cc110e552f9a3c16da9cf57f14dbe8c24576abf33589e2aea4853e83b80"
   },
+  "reviews/concurrent-codex-model-appends-review.json": {
+    "bytes": 20892,
+    "sha256": "ee10397837f7d18d7cdc65687bd3740791df91e2046fb73e151418dd34170f44"
+  },
+  "reviews/concurrent-codex-model-appends.json": {
+    "bytes": 70041,
+    "sha256": "adf04571193f4fe2bc68f8cf76fd975e904a848ccc31e7318a95e5607aef456f"
+  },
   "reviews/keeper-negative-next-step.md": {
     "bytes": 4109,
     "sha256": "c8e3a557438e5b124af0f367b1dbfa1bd499e94f379faf9d28a534ef6afdfed6"
+  },
+  "reviews/primary-usdc-preflight-handoff.json": {
+    "bytes": 31324,
+    "sha256": "68eebe0a47bab79889cf1181ec14d591a424cb33c774320b3102489d54908cad"
+  },
+  "reviews/primary-usdc-resume-readiness.md": {
+    "bytes": 12283,
+    "sha256": "1f487c01f893f2490ac351eae9d7ae97e115f30eefc4e6eab34b7405b63201cb"
+  },
+  "reviews/r14-accrual-counterreview.md": {
+    "bytes": 5417,
+    "sha256": "05b8f66646ec09d7eda776908c2c72dac132c927781064c0a59a39d3b1377a52"
+  },
+  "reviews/r15-full-cycle-counterreview.md": {
+    "bytes": 5615,
+    "sha256": "b1be381f1c42a6b76ad43eb56113aa854fa48fa66e3cc8ef7cf38f990a5de96a"
   },
   "reviews/ranked-harvest-independent-review.md": {
     "bytes": 7226,
     "sha256": "d1832da29f74c04f883af3db3a5d33658042d306473f02207ecfb4cdb7cb81b2"
   },
   "reviews/team-blog-signature-verification.md": {
-    "bytes": 1863,
-    "sha256": "3088ebe830ae41ebfb06f25963dcd14cc42d8b865caa3a05c09edd8cbf7daec4"
+    "bytes": 2287,
+    "sha256": "cc664ddda764dcf0edd94504320497eaec706da2c1302af2abbcdb363a01f4e4"
   },
   "reviews/usdc-aero-accrual-read-scope.json": {
     "bytes": 9299,
     "sha256": "f48404d3f5f563f88e30d6b294369d15647a73ec532f2c68392711c03efc27a4"
   },
+  "sign-exact-harvest-clone-runtime.fixture.json": {
+    "bytes": 30864,
+    "sha256": "4b88a18b08ca2c9940ea25060eb8eab85173430c8d488119fced8c5f44c9de22"
+  },
   "sign-exact-harvest-phase-review.md": {
-    "bytes": 3005,
-    "sha256": "ea5cde49cbe6e5d711d7871adca6b74146eef822cf4896317be94226aa49d2c7"
+    "bytes": 4753,
+    "sha256": "75af614bd131d67313d8f6c3944e395d836e8f0d24fa77bfeff57bde61cb42c4"
   },
   "sign-exact-harvest-phase.mjs": {
-    "bytes": 24574,
-    "sha256": "319b57163183392cc814fcc05f545c01bf0010dd3f200efb3f7c8667a4b63294"
+    "bytes": 29748,
+    "sha256": "5779e5e153a4ba4429a6794153d16689c8daa499752741d2bd54a3a199a24e4e"
   },
   "sign-exact-harvest-phase.synthetic-test.mjs": {
-    "bytes": 13074,
-    "sha256": "b602a7fa7d0c43b6f1d6e598b402cce4e255dfe2e578736500ea80984da2081b"
+    "bytes": 18384,
+    "sha256": "f127e4acab6cf754a35e7d171db9d5ec9ea0867c36c01bfdf40a50e53a5d8153"
   },
   "test_audit_harvest_negative_controls.py": {
     "bytes": 6638,
