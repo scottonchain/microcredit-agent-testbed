@@ -1,0 +1,95 @@
+{
+  "started": "2026-10-08T02:09:54.816Z",
+  "callers": [
+    {
+      "caller": "0x3a2f1627d39b7d683bf7464c7429e4177a77da24",
+      "isContract": true,
+      "codeBytes": 5734,
+      "err": null
+    },
+    {
+      "caller": "0xbd0dd817c608e552d5f1ae701ab6c4da4fb00005",
+      "isContract": true,
+      "codeBytes": 10624,
+      "err": null
+    },
+    {
+      "caller": "0xc4bfb65f09174569eac5d849fec32431d0d0fc51",
+      "isContract": true,
+      "codeBytes": 17413,
+      "err": null
+    },
+    {
+      "caller": "0xd8413bf7e7782b536abdeebbcb9e7c4fc481e2e7",
+      "isContract": true,
+      "codeBytes": 72,
+      "err": null
+    },
+    {
+      "caller": "0x1423364e55d3e19ec3e627d91606f91445a4b105",
+      "isContract": true,
+      "codeBytes": 3727,
+      "err": null
+    }
+  ],
+  "txs": [
+    {
+      "tx": "0x29c56eee815240ebf785ab1bc8da5b424635eb056455ed6c48079daf817fc10f",
+      "err": "no receipt"
+    },
+    {
+      "tx": "0x049327359c7be3409a6f0d2f2f0d1d41b32ba7d109d583be0bfe6c696932c0aa",
+      "err": "no receipt"
+    },
+    {
+      "tx": "0x99c86d5a41187cb1276fd90090b7d6a27507aec6066df31c7c44d404fe6c544b",
+      "err": "no receipt"
+    },
+    {
+      "tx": "0xa7f9fd82c07f62e3f4084786420c6f2ddcab9b1fb6c0ed2a0dfaf7efab06fb37",
+      "err": "no receipt"
+    },
+    {
+      "tx": "0xb7d6b1c0444c071002e33dc603f6707690585044867f1c0141e3d56e6f22578a",
+      "err": "no receipt"
+    },
+    {
+      "tx": "0x8bc897a13ecf7bed075690e607b492a874ee24682b57c5d73c4b066d16581542",
+      "err": "no receipt"
+    }
+  ],
+  "markets": [
+    {
+      "id": "0x51aaa099691db8140cc2610b45af4d42d4853bd66edc59a54546165d5d0e8777",
+      "loanToken": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "collateralToken": "0x4200000000000000000000000000000000000006",
+      "oracle": "0xdb45c254233d0ac0c2da371f384fbed63eb0698e",
+      "irm": "0x0000000000000000000000000000000000000000",
+      "lltv": "860000000000000000",
+      "err": null,
+      "logsInWindow": 1
+    },
+    {
+      "id": "0xd4a903dc6d949519060c7707f9604fdc9772c046e05c2e3a8fce0bd7196e4109",
+      "loanToken": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "collateralToken": "0xcb585250f852c6c6bf90434ab21a00f02833a4af",
+      "oracle": "0x031b2efc8d70042ac8d9f5c793c4149ec4b60fde",
+      "irm": "0x46415998764c29ab2a25cbea6254146d50d22687",
+      "lltv": "625000000000000000",
+      "err": null,
+      "logsInWindow": 14
+    },
+    {
+      "id": "0x4457d35bf7f6746a5a39c1ec42d451f12707c0fee263571cbe0ff6dda261529e",
+      "loanToken": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "collateralToken": "0x4200000000000000000000000000000000000006",
+      "oracle": "0x79ba9768e2f2fb4921f1d6db3bb2699fd27c2800",
+      "irm": "0x0000000000000000000000000000000000000000",
+      "lltv": "860000000000000000",
+      "err": null,
+      "logsInWindow": 1
+    }
+  ],
+  "rpcTotalIncludingLogScan": 18,
+  "finished": "2026-10-08T02:09:55.800Z"
+}

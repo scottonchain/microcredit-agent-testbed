@@ -1,0 +1,25 @@
+# ETH-GAS-BOOTSTRAP-20261008-r15-cost-source + morpho-readonly (Hermes AI, read-only)
+
+Zero spend, no keys, no signatures, no transactions, no paid data. RPC: base-rpc.publicnode.com (no key).
+
+## r15 full-cycle cost quote (Codex helper f95dac6, sha256 192513a8...7e13 verified identical)
+Command: BASE_READ_RPC=<publicnode> node read-only-harvest-cycle-quote.mjs --probe usdc-aero-selected.json --index 0 --deps /root/work/ptv5_probe_r6 (viem 2.17.0). Input sha256 79944d24...65b4. Output: full-cost-negative-quote.json. 47 RPC, 1.8 s, exit 0.
+- Base block 52317986 (ts 1791425319 = 2026-10-08T02:08:39Z), freshness within bounds.
+- status NO_LOAN_CAP_OR_MARGIN_CHECK_FAILED. lensRewardCoversUpdatedReserves=false. All caps true. fullCycleSimulation supported=false (eth_simulateV1 RpcError_-38014): cycle not stateful-demonstrated.
+- requiredExternalRewardWei C = 11,789,172,931,592 (~1.179e13). expectedExternalRewardWei (lens simulated WETH delta) = 2,510,707,389,920 (~2.51e12). Ratio C/E = 4.70; borrowerMarginAtReservedGasWei = -9,277,465,541,672.
+- Terms: principal 12,707,276,393,564 wei; lender fee 236,103,482,898; debt 12,943,379,876,462; borrower gas reserved 11,552,069,448,694; lender gas reserved 235,103,482,898. ETH/USD feed 2579.63 (age 876 s). Principal ~USD 0.033 at feed; exposure caps pass.
+- Conditional threshold (calibration 3.072e10 wei callReward per AERO earned, from r12/r14, a lens simulation not a quote): required about 384 AERO earned (vs ~82 AERO now); at 47.21 AERO/h that is about 8.1 h after lastHarvest (lastHarvest 1791419083), if nobody harvests first and rate/price/gauge unchanged. Conversion uncertainty: lens simulation is not the direct-EOA recipient delta (directEoaRewardIndependentlyVerified=false). r14's 3x harvest-only estimate (459.8 AERO) was harvest-only; full-cycle C here is 11.79e12 vs harvest-only 4.71e12 (r12), i.e. 2.5x.
+- Result: NO_LOAN at current reward. Nothing executed.
+
+## Source lookup (Sourcify v2 ?fields=all, 2 GETs, no retry)
+- impl 0x13ad51a6...7921: HTTP 200, 511,442 B, sha256 8ec97ca7...4875. match/creationMatch/runtimeMatch = "match" (not exact_match: metadata differs), StrategyVelodromeGaugeV2, solc 0.8.19+commit.7dd6d404, verifiedAt 2024-11-25. runtimeBytecode.onchainBytecode keccak 0x7dafca48...b2bf = r14 pinned impl fingerprint (15088 B). recompiledBytecode keccak 0x3dff26bf... differs (expected where immutables/auxdata differ; "match" status, not an independent byte-equality claim by me). Deployment tx 0xf0e7f972...9ce0 (block 3303797, deployer 0x982F264c...15ad): same tx Codex cites.
+- gauge 0x4f09bab2...8360: HTTP 200, 409,529 B, sha256 67b6d1c9...7905. exact_match (creation+runtime), Gauge, solc 0.8.19, verifiedAt 2024-08-08. onchain keccak 0x353fa735...c093 (6236 B), recompiled keccak 0xf5058f36... differs (immutables in the on-chain code). Note: Sourcify says exact_match for the gauge while BaseScan labels it Similar Match; I record both and do not reconcile them.
+- The earlier 400s were from my `fields=match,compilation` query (Codex's correction accepted). Not independently recompiled by me.
+
+## Morpho Blue read-only qualification (morpho-readonly request)
+Blue 0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb, topic0 0xa4946ede...7e41 (keccak of the stated event signature). 18 RPC total (4 scan + 14 follow-up; budget 40), no retries.
+- head 52318007 (2026-10-08T02:09:21Z). Last 1000 blocks: 0 Liquidate logs. One widening to 10000 blocks: 16 logs in blocks 52309615..52312966 (~4-5 h before head), 3 markets, 6 txs: 14 on market 0xd4a903dc (loan USDC, collateral 0xcb585250..., lltv 62.5%), 1 each on two WETH/USDC lltv 86% markets (0x51aaa099, 0x4457d35b). 11 of 16 logs are ONE tx (0x04932735...c0aa, block 52310057, caller contract 0xbd0dd817...0005): batch liquidation of 11 borrowers by a single contract.
+- All 5 distinct callers are contracts (code sizes 72 B to 17,413 B), i.e. existing executors/bots, competitors, not an executor we can review or use. Source/deployment match for them NOT checked (outside the budget and not authorized to rely on).
+- Receipts: eth_getTransactionReceipt returned null for all 6 txs on this public RPC (pruned/unsupported), so gross vs net caller profit is NOT established. Seized vs repaid assets (raw units, from logs): e.g. borrower 0xd81a0fad...: repaid 154,513,334, seized 123,395,956 (different tokens/decimals; the log alone does not give a net swap profit).
+- Current liquidatable position: NOT identified (no market position scan, no oracle reads, no position enumeration within budget). Reviewed Blue-compatible executor available to us: NONE identified (kameron222/liquidation-bot source is a creator-code lead only, per Codex). BaseScan receipts not fetched (Cloudflare was Codex's blocker; I did not try to bypass).
+- Result: NO_READY_DEMO for Morpho: recent liquidations exist (competitive, executed by contract bots, last at block 52312966, ~1.4 h before head), no current eligible position, no reviewed executor, no quote. Competition evidence: the 11-in-one-tx batch and 5 distinct bot contracts in 10,000 blocks.
