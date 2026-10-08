@@ -7548,6 +7548,46 @@
         "Not yet re-reviewed or accepted by Codex; nothing deployed.",
         "Pool bytes are from the compiled artifact at that head."
       ]
+    },
+    {
+      "id": "ev:operator-political-exclusion-20261008",
+      "kind": "operator_direction",
+      "url": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6068195748",
+      "locator": "testbed issue 15 comment 6068195748 (Codex, BLOG-POLITICS-20261008); vision main b32bd6b, CLAUDE.md 'Political-content exclusion'",
+      "author_id": "agent:codex",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T20:12:53Z",
+      "retrieved_at": "2026-10-08T22:30:00Z",
+      "summary": "Relayed by Codex at the operator's explicit direction: all political content is excluded from future blog publication, including government political events, legislation and domestic or foreign political leaders; this supersedes the earlier allowance for commentary that was merely apolitical in the party sense. It covers topic selection and publication for regular, guest, news and YouTube posts, podcast scripts and commentary, press posts and Moltbook companions; published posts stay as history.",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "operator-political-exclusion-20261008",
+      "derived_from_ids": [],
+      "limitations": [
+        "Relayed by Codex; the vision rules file at b32bd6b is the operative text."
+      ]
+    },
+    {
+      "id": "ev:podcast-ep1-published-20261008",
+      "kind": "repository_artifact",
+      "url": "https://github.com/scottonchain/microcredit-vision/blob/5543124/posts/2026-10-08-show-me-the-receipt.md",
+      "locator": "vision main 5543124 (post, VERIFY.md section 'Claims in the episode'); site repository bcdc040 (listen/feed.xml, player page); Pages run 37851662447",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-08T22:08:00Z",
+      "retrieved_at": "2026-10-08T22:30:00Z",
+      "summary": "Episode 1, 'Show me the receipt' (192.72 s, mp3 sha256 79ae225dea73402840c2f1e9e7a9462ccb9a2076af402c18907ea9df0c7d7597), delivered by Codex in vision pull request 14 and published by Claude after checks of the file hash, duration, package checksums, caption text against the script (23 of 23 turns), cue boundaries against pauses in the audio, speech rate per turn, the build and tool tests, and each claim against the public record. The outside-borrower claim was rechecked on chain at Base Sepolia block 47864502 (8 borrower accounts, all in the team's records; an outside newcomer's 5 test-USDC line undrawn).",
+      "content_sha256": "79ae225dea73402840c2f1e9e7a9462ccb9a2076af402c18907ea9df0c7d7597",
+      "fingerprint_scope": "mp3 file",
+      "origin_group": "podcast-ep1-20261008",
+      "derived_from_ids": [
+        "ev:operator-podcast-direction-20261008"
+      ],
+      "limitations": [
+        "No human or speech-recognition listening check was possible on Claude's side.",
+        "The sandbox cannot fetch scottonchain.github.io; the live URLs are confirmed only by the successful Pages deployment until Codex or Hermes fetches them.",
+        "The no-outside-borrower claim ends when the newcomer's line is drawn."
+      ]
     }
   ],
   "claims": [
@@ -13307,6 +13347,70 @@
       "derived_from_claim_ids": [
         "claim:order-router-composition-20261008"
       ]
+    },
+    {
+      "id": "claim:vision-blog-3",
+      "subject_id": "repo:vision",
+      "predicate": "authorship",
+      "statement": "The blog's operating rules as of 2026-10-08 22:30 UTC: posts of 250 to 500 words on one subject; selection in three ranks (project developments outsiders will find extremely interesting, then important AI news of the last 12 to 24 hours, then the ranked backlog in editorial/BACKLOG.md); a 4-hourly tick with at most one regular post per tick, at least 3 hours between regular posts, 18 hours between posts in one category, one guest post per rolling 24 hours, replies to current events exempt, and a daily team-audio episode and an hourly news-watch Routine, both writing as Claude Code; a watch list of named writers answered within 24 hours of publication and only for complete content; no political content at all (operator, 2026-10-08: no government political events, legislation or domestic or foreign political leaders; this replaces the earlier party-apolitical allowance), with the primary source quoted for commentary; human-only outlinks; guest posts that open by naming the poster; the operator adds topics and Claude Code ranks them.",
+      "epistemics": {
+        "status": "directive",
+        "confidence": "high",
+        "rationale": "Operator directions of 2026-10-06 to 2026-10-08, written into the vision rules file (CLAUDE.md at vision main, political exclusion at b32bd6b); supersedes claim:vision-blog-2, whose party-apolitical clause the operator replaced.",
+        "supporting_evidence_ids": [
+          "ev:operator-political-exclusion-20261008",
+          "ev:operator-podcast-direction-20261008",
+          "ev:vision-rules-v2",
+          "ev:vision-blog-rules"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": null
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T22:30:00Z",
+        "recheck_by": "2026-10-10T22:00:00Z",
+        "recheck_on": [
+          "The operator changes the cadence, the rule or the watch list",
+          "A scheduled firing posts outside the rule"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:vision-blog-2"
+      ],
+      "derived_from_claim_ids": [
+        "claim:vision-authorship-2"
+      ]
+    },
+    {
+      "id": "claim:podcast-ep1-published-20261008",
+      "subject_id": "project:microcredit",
+      "predicate": "integration_state",
+      "statement": "Episode 1 of \"Two Agents, No Collateral\", \"Show me the receipt\" (3:13, two synthetic voices), is published on the blog (vision main 5543124) and in the podcast feed at https://scottonchain.github.io/listen/feed.xml (site repository bcdc040; the Pages deployment succeeded at 22:09:55Z). Plays are not countable. A live fetch of the feed, player page and mp3 by an agent that can reach the host is pending.",
+      "epistemics": {
+        "status": "observed",
+        "confidence": "medium",
+        "rationale": "Claude published it and checked the file, captions and claims; the live URLs are confirmed by the deployment record only, and no listening check was possible.",
+        "supporting_evidence_ids": [
+          "ev:podcast-ep1-published-20261008"
+        ],
+        "counterevidence_ids": [],
+        "falsifier": "The feed or player URL not serving the files, a hash mismatch against 79ae225d, or a listener report that the audio differs from the transcript."
+      },
+      "freshness": {
+        "observed_at": "2026-10-08T22:30:00Z",
+        "recheck_by": "2026-10-09T12:00:00Z",
+        "recheck_on": [
+          "Codex or Hermes fetches the live URLs",
+          "Episode 2 published",
+          "A podcast app loads the feed"
+        ]
+      },
+      "supersedes_ids": [
+        "claim:podcast-feed-live-20261008"
+      ],
+      "derived_from_claim_ids": [
+        "claim:podcast-feed-live-20261008"
+      ]
     }
   ],
   "edges": [
@@ -16091,7 +16195,7 @@
         "claim:transitive-trust-endstate-20261007"
       ],
       "dependency_action_ids": [],
-      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-free operation. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether officers stay permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing. Claude6057159688 proposes proof/fixtures before pool code; Hermes6057202610 accepts bounded fork role once code exists. Codex6057507721 accepts direction and proposes October9 10:00Z theorem/default/fixture checkpoint, subject to actual Claude date acceptance. Reuse existing reference fixtures; require global reservations, partial repay/cancel/rounding, shared roots, officer-offline operation and safe legacy runoff. Amended 2026-10-08 (Codex 6066370707): the earlier wording 'no mandatory officer heartbeat' is replaced by the dual-gate acceptance criteria; the universal pool-wide originator is implemented at contract 951a4b1 and remains an unresolved dependency until Codex accepts it and Hermes reproduces it.",
+      "deliverable": "At the existing sync, select or revise the conserving mechanism for the REQUIRED transitive-trust/staking/algorithmic post-bootstrap target; compare globally reserved stake-rooted path allocations with alternatives, consent and default liability, ranking/Sybil/shared-root/concurrent origination/rounding bounds, liquidity/capital/gas and officer-independent capacity and officer-free exits. Specify implementation owner and migration milestones that stop new discretionary issuance while preserving legacy obligations. Discuss mechanism and milestones, not whether discretionary issuance stays permanently. Codex candidate docs/TRANSITIVE_TRUST_TARGET.md is a proposal, not existing team assent or deployment. Input for the sync: docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md (Claude, 2026-10-08) places the transitive design as phase 1 and the officer sunset as phase 4 of the route to human borrowing. Claude6057159688 proposes proof/fixtures before pool code; Hermes6057202610 accepts bounded fork role once code exists. Codex6057507721 accepts direction and proposes October9 10:00Z theorem/default/fixture checkpoint, subject to actual Claude date acceptance. Reuse existing reference fixtures; require global reservations, partial repay/cancel/rounding, shared roots, officer-offline exits (new origination needs a live one-use approval) and safe legacy runoff. Amended 2026-10-08 (Codex 6066370707): the earlier wording 'no mandatory officer heartbeat' is replaced by the dual-gate acceptance criteria; the universal pool-wide originator is implemented at contract 951a4b1 and remains an unresolved dependency until Codex accepts it and Hermes reproduces it.",
       "acceptance_criteria": [
         "Recorded design outcome and first action/owner with conservation and migration requirements.",
         "Post-bootstrap acceptance (amended 2026-10-08, dual gate, testbed issue 17 comment 6065169803): (a) no officer-issued capacity: no score grant, override or issuance is needed to create or maintain graph capacity; (b) every new origination needs a current one-use exact-job approval from the officer, which may only refuse or approve the whole order and is read as no capacity; (c) no officer availability is needed for repayment, default, recovery, refund or exit.",
@@ -16460,9 +16564,9 @@
       "dependency_action_ids": [
         "action:human-pilot-first-people"
       ],
-      "deliverable": "Phase 4 of the plan: stop new officer issuance as backed multi-hop capacity carries the pilot's volume; run legacy lines off under their own accounting; verify a newcomer borrows with every officer offline and no oracle heartbeat; lower the issuance budget to zero; publish each cycle the share of outstanding principal backed by stake or credit rather than issued lines. Refined 2026-10-08 (Codex 6065169803): what sunsets is discretionary issuance, not the productive-work officer; new grants go to zero and legacy lines run off, while the officer stays as the one-use admission gate for each new loan.",
+      "deliverable": "Phase 4 of the plan: stop new officer issuance as backed multi-hop capacity carries the pilot's volume; run legacy lines off under their own accounting; verify graph capacity needs zero discretionary officer-issued capacity and no oracle heartbeat while a live one-use exact-job approval stays mandatory for each new origination (an officer outage blocks new origination only); lower the issuance budget to zero; publish each cycle the share of outstanding principal backed by stake or credit rather than issued lines. Refined 2026-10-08 (Codex 6065169803): what sunsets is discretionary issuance, not the productive-work officer; new grants go to zero and legacy lines run off, while the officer stays as the one-use admission gate for each new loan.",
       "acceptance_criteria": [
-        "A newcomer's loan through a multi-hop certificate with officers offline.",
+        "A newcomer's loan through a multi-hop certificate that needs zero discretionary officer-issued capacity and no oracle heartbeat, with a live one-use exact-job approval; an officer outage blocks only new origination, and repayment, default, recovery, refund and exit stay available.",
         "Issuance budget at zero with legacy exposure settled or migrated."
       ],
       "not_before": null,
@@ -16985,11 +17089,12 @@
         "goal:poverty"
       ],
       "rationale_claim_ids": [
+        "claim:podcast-ep1-published-20261008",
         "claim:podcast-evaluation-measure-20261008",
         "claim:podcast-feed-live-20261008"
       ],
       "dependency_action_ids": [],
-      "deliverable": "Episode 1: Codex researches and generates the audio, theme, script polish and drafts from the brief in vision issue 12 and delivers a package (text patch plus base64 chunks of the mp3); Claude checks hash and length, writes or edits the commentary, signs the post, merges, regenerates the feed and publishes at the first free tick (queue item audio-episode-1, priority P0). Standing: each day the 10:00 UTC Claude and Codex sync ends by choosing the next episode from that day's record; Hermes posts a Moltbook companion for agents per episode; engagement per episode is tallied and the next format decision follows it (lighter and shorter by default). Daily sync agenda email copy follows the quota reset.",
+      "deliverable": "Episode 1: Codex researches and generates the audio, theme, script polish and drafts from the brief in vision issue 12 and delivers a package (text patch plus base64 chunks of the mp3); Claude checks hash and length, writes or edits the commentary, signs the post, merges, regenerates the feed and publishes at the first free tick (queue item audio-episode-1, priority P0). Standing: each day the 10:00 UTC Claude and Codex sync ends by choosing the next episode from that day's record; Hermes posts a Moltbook companion for agents per episode; engagement per episode is tallied and the next format decision follows it (lighter and shorter by default). Daily sync agenda email copy follows the quota reset. Episode 1 published 2026-10-08T22:08Z (vision 5543124, site bcdc040); the live-URL fetch by Codex or Hermes and the Moltbook companion are pending; episode 2 follows the 2026-10-09 10:00Z sync (self-reminder set for 10:07Z).",
       "not_before": "2026-10-08T17:44:00Z",
       "triggers": [
         "Operator instruction 2026-10-08",
@@ -17005,7 +17110,8 @@
         "Length outside 3:00 to 5:00 is refused by the build."
       ],
       "outcome_evidence_ids": [
-        "ev:operator-podcast-direction-20261008"
+        "ev:operator-podcast-direction-20261008",
+        "ev:podcast-ep1-published-20261008"
       ],
       "acceptance_criteria": [
         "An episode between 3:00 and 5:00 with transcript, captions and provenance is published to the blog and the feed with the voices disclosed as synthetic in the first lines.",
@@ -17759,6 +17865,6 @@
       ]
     }
   ],
-  "model_version": "0.1.88",
-  "updated_at": "2026-10-08T18:59:46Z"
+  "model_version": "0.1.89",
+  "updated_at": "2026-10-08T22:30:00Z"
 }
