@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Chain helpers for the live run (Base Sepolia only). Keys are read from the files named by RETRY_FIXTURE_RELAYER_KEY_FILE /
 RETRY_FIXTURE_BORROWER_KEY_FILE and passed to `cast`; never printed. Requires foundry's cast on PATH.
-Pool and token come from RETRY_FIXTURE_POOL / RETRY_FIXTURE_USDC (defaults: the live Base Sepolia pool named by the contract
-maintainers and the MockUSDC it was deployed with). The first run (EVIDENCE.json) used the pre-redesign pool
+Pool and token come from RETRY_FIXTURE_POOL / RETRY_FIXTURE_USDC. Defaults reproduce the historical October 3 MockUSDC
+run, not the current public pool. Current public tooling uses deployments/current.json. The first run (EVIDENCE.json) used the pre-redesign pool
 0x09d9D1fd4Ed5EC5d9e8ceB9275D864D9c8d99A1f with token 0xa12a5c8C8605945d5e07E4Ea4A95de45d6a9807C."""
-import json, os, subprocess, time, urllib.request
+import json, os, re, subprocess, time, urllib.request
 
 RPC = os.environ.get("RETRY_FIXTURE_RPC", "https://sepolia.base.org")
 CHAIN_ID = 84532
@@ -22,10 +22,17 @@ DOMAIN_TYPE = "EIP712Domain(string name,string version,uint256 chainId,address v
 
 
 def cast(*args, timeout=90):
-    r = subprocess.run(["cast", *map(str, args)], capture_output=True, text=True, timeout=timeout)
-    if r.returncode:
-        raise RuntimeError("cast %s failed: %s" % (args[0], (r.stdout + r.stderr).strip()[:400]))
-    return r.stdout.strip()
+    argv = ["cast", *map(str, args)]
+    try:
+        result = subprocess.run(argv, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("cast %s timed out" % args[0]) from None
+    if result.returncode:
+        detail = (result.stdout + result.stderr).strip()
+        if "--private-key" in argv:
+            detail = detail.replace(argv[argv.index("--private-key") + 1], "<redacted>")
+        raise RuntimeError("cast %s failed: %s" % (args[0], detail[:400]))
+    return result.stdout.strip()
 
 
 def rpc(method, params):
@@ -77,8 +84,17 @@ JOURNAL = os.environ.get("RETRY_FIXTURE_JOURNAL", os.path.join(os.path.dirname(o
 def journal(entry):
     """Append-only intent journal written BEFORE broadcast (the fixture's own rule), then updated with the tx hash."""
     entry = dict(entry, t=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+    created = not os.path.exists(JOURNAL)
     with open(JOURNAL, "a") as f:
         f.write(json.dumps(entry) + "\n")
+        f.flush()
+        os.fsync(f.fileno())
+    if created:
+        directory = os.open(os.path.dirname(os.path.abspath(JOURNAL)), os.O_RDONLY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
     return entry
 
 
@@ -151,26 +167,39 @@ def wait_receipt(txhash):
     raise RuntimeError("no receipt for " + txhash)
 
 
+class BroadcastOutcomeUnknown(RuntimeError):
+    """The command may have broadcast. Reconcile the intent before another send."""
+
+
 def _send_async(args):
-    """cast send --async: returns the tx hash; the receipt is fetched separately so a reverting tx is still recorded."""
-    for attempt in range(4):
-        r = subprocess.run(["cast", args[0], "--async", *args[1:]], capture_output=True, text=True, timeout=180)
-        out = (r.stdout + r.stderr).strip()
-        if r.returncode == 0:
-            h = [t for t in out.split() if t.startswith("0x") and len(t) == 66]
-            if h:
-                return h[-1]
-            raise RuntimeError("no tx hash in: " + out[:300])
-        if any(k in out.lower() for k in ("underpriced", "rate limit", "429", "timeout", "temporarily", "already known")):
-            time.sleep(6)
-            continue
-        if "estimate gas" in out.lower() and attempt < 3:
-            # a load-balanced node without the previous step's block estimates against stale state; re-check and retry
-            journal({"state": "estimate_gas_failed", "attempt": attempt, "text": out[:200]})
-            time.sleep(8)
-            continue
-        raise RuntimeError("send failed: " + out[:500])
-    raise RuntimeError("send failed after retries")
+    """One broadcast attempt. Never recreate a transaction after a lost response.
+
+    Even `already known`, a timeout, 429 or a gas-estimation diagnostic does not
+    authorize another cast send: a fresh invocation could use a fresh nonce.
+    The persisted intent is the starting point for explicit reconciliation.
+    Error text and TimeoutExpired.cmd may contain a key, so neither is exposed.
+    """
+    try:
+        result = subprocess.run(["cast", args[0], "--async", *args[1:]],
+                                capture_output=True, text=True, timeout=180)
+    except subprocess.TimeoutExpired:
+        raise BroadcastOutcomeUnknown("broadcast response timed out; reconcile the journal before retrying") from None
+    if result.returncode == 0:
+        hashes = [value for value in result.stdout.split() if re.fullmatch(r"0x[0-9a-fA-F]{64}", value)]
+        if len(hashes) == 1:
+            return hashes[0]
+    raise BroadcastOutcomeUnknown("broadcast response did not establish one transaction hash; reconcile the journal before retrying")
+
+
+def broadcast(args, intent):
+    journal(dict(intent, state="intent"))
+    try:
+        tx_hash = _send_async(args)
+    except BroadcastOutcomeUnknown:
+        journal({"step": intent.get("step"), "state": "broadcast_unknown", "to": intent.get("to")})
+        raise
+    journal({"step": intent.get("step"), "state": "broadcast", "to": intent.get("to"), "tx": tx_hash})
+    return wait_receipt(tx_hash)
 
 
 def send_data(key_file, to, data, gas_limit=None, value=None, step=None):
@@ -181,18 +210,12 @@ def send_data(key_file, to, data, gas_limit=None, value=None, step=None):
         args += ["--gas-limit", str(gas_limit)]
     if value:
         args += ["--value", str(value)]
-    journal({"step": step, "state": "intent", "to": to, "data": data, "gas_limit": gas_limit})
-    h = _send_async(args)
-    journal({"step": step, "state": "broadcast", "to": to, "tx": h})
-    return wait_receipt(h)
+    return broadcast(args, {"step": step, "to": to, "data": data, "gas_limit": gas_limit})
 
 
 def create(key_file, bytecode, step=None):
     args = ["send", "--rpc-url", RPC, "--private-key", key(key_file), "--create", bytecode]
-    journal({"step": step, "state": "intent", "to": None, "data_sha256": __import__("hashlib").sha256(bytes.fromhex(bytecode[2:])).hexdigest()})
-    h = _send_async(args)
-    journal({"step": step, "state": "broadcast", "to": None, "tx": h})
-    return wait_receipt(h)
+    return broadcast(args, {"step": step, "to": None, "data_sha256": __import__("hashlib").sha256(bytes.fromhex(bytecode[2:])).hexdigest()})
 
 
 def send_sig(key_file, to, sig, *args, gas_limit=None, step=None):

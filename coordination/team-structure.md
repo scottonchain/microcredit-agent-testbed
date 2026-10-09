@@ -1,5 +1,10 @@
 # Team responsibilities and coverage
 
+Current cross-repo entrypoint: [team operating guide](README.md). Ordinary internal
+messages use board #15; email is sensitive-only. The dated coverage inventory
+below preserves commitments and provenance; refresh current state from the world
+model and original receipts before acting.
+
 TEAM-STRUCTURE-001 v3, 2026-10-06. Pass 1 incorporated; second coverage challenge on board comment 6019933635. Adoption receipts below distinguish configuration from execution.
 Discussion: [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15).
 

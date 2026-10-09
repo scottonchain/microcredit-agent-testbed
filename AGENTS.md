@@ -1,42 +1,21 @@
-# Entry point for AI agents
+# Microcredit agent entrypoint
 
-This file is the agents' door into the microcredit project, the counterpart of the human-facing blog, [Credit Among Strangers](https://github.com/scottonchain/microcredit-vision). The blog links only to documents written for people; this file links to the documents written for agents. Maintained by Claude Code (an AI agent working with the project's human operator), 2026-10-06.
+The shared [team operating guide](coordination/README.md) contains the repository
+map, source ownership, communication, privacy and write rules. Read it once before
+cross-repo work, then read the current [world model](world-model/model.json) at a
+named `main` commit and follow its [update protocol](world-model/README.md).
 
-## What the project is
+This repo owns agent onboarding, test scenarios, operational checks, experiment
+evidence and the team's planning index. Start with `README.md` for the code map,
+`ONBOARDING.md` for a first testnet interaction, and `python tools/check.py` for
+local verification. `deployments/current.json` records the live configuration;
+query the chain to establish current state.
 
-A lending pool, written as a smart contract, that lends without collateral to people who lack it. Credit is conserved: the sum of all borrowing limits never exceeds the credit issued, plus the interest borrowers have paid into the reserve, plus the stake committed, so fake accounts cannot manufacture it. The pool runs on the Base Sepolia test network with test tokens. No person has borrowed yet. Eliminating human poverty is the goal; microcredit remains a proposed means whose usefulness must be tested against human outcomes.
+Coordinate material changes on board #15; use issue #17 for strategy. Ordinary
+team communication uses TM2 on that board. Sensitive correspondence follows
+`coordination/team-email.md`. Preserve frozen calibration terms, evidence and
+outside commitments. Human poverty alleviation is the objective; agent activity
+and testnet repayment are not evidence that it has been achieved.
 
-## Start here
-
-1. [ONBOARDING.md](ONBOARDING.md): how to get test tokens, a line of credit or a backer, and make a first loan or attack on the live pool.
-2. [quickstart.sh](quickstart.sh): the five-minute technical path (`try-borrow`, the health check).
-3. [metrics/pool_health.py](metrics/pool_health.py): reads the live pool and recomputes the credit-conservation count.
-4. [docs/TESTNET.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/TESTNET.md) in the contract repository: the live addresses, every scenario and its transaction hashes.
-
-## Where the work is coordinated
-
-- [Issue 17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17): strategy and the next experiments.
-- [Issue 15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15): the team board, where handoffs between the project's agents are posted.
-- [Issue 12](https://github.com/scottonchain/microcredit-agent-testbed/issues/12): outside review of the calibration and its limits.
-- [Issue 11](https://github.com/scottonchain/microcredit-agent-testbed/issues/11): the detection challenge and its entries; the ledger is [calibration-v1/SLOTS.md](calibration-v1/SLOTS.md).
-- [Contract issue 7](https://github.com/scottonchain/microcredit-contract/issues/7): the thread where Hermes is reached (`@HermesCRBot`), and where notes for the blog are posted.
-- [world-model/model.json](world-model/model.json) and its [protocol](world-model/README.md): the team's planning index. Read it at a named `main` commit before planning work, follow its update protocol, and cite relevant stable IDs and the model commit in material handoffs.
-- [coordination/team-structure.md](coordination/team-structure.md): who owns what.
-
-## Rules that bind every agent here
-
-- Disclose that you are an AI agent wherever you post, and say nothing about the person who runs you beyond what they have published.
-- No session links, keys, private identifiers or private transcripts in any commit, comment or file. The contract repository's `scripts/check-public-content.sh` screens for them.
-- Say what you executed and what you only read from code. A plan is not a result; an invitation is not a review.
-- Findings go in issues with the commit, the addresses and the transactions, so anyone can recompute them.
-
-## Talking to people
-
-The humans' side of the project is the blog and its [working group](https://github.com/scottonchain/microcredit-vision/discussions/7). Agents are welcome there too, but write for people when you post there.
-
-Keep world-model planning requirements in agent instructions. Human-facing documentation
-should not require readers to read or update the world model or cite its IDs or commit.
-
-## Team email
-
-Use [dedicated member inboxes and correspondence rules](coordination/team-email.md). Read the canonical email and prototype-sync actions before contacting anyone; preserve thread ownership, cross-channel claims, private correspondence and actual send/acknowledgment evidence.
+The human-facing entrypoint is the [project blog](https://github.com/scottonchain/microcredit-vision).
+Keep agent planning instructions out of human onboarding and public articles.

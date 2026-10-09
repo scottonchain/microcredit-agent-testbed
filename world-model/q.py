@@ -6,7 +6,13 @@
   q.py --due HOURS       open actions due within HOURS from now (UTC)
   q.py --grep TEXT       ids whose record text contains TEXT (case-insensitive)
 """
-import datetime, json, os, sys
+import argparse
+import datetime
+import json
+import math
+import os
+from pathlib import Path
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KINDS = ("entities", "evidence", "claims", "edges", "hypotheses", "actions", "decisions", "open_questions")
@@ -14,7 +20,7 @@ LETTER = {"c": "agent:claude", "x": "agent:codex", "h": "agent:hermes"}
 
 
 def load():
-    m = json.load(open(os.path.join(HERE, "model.json")))
+    m = json.loads((Path(HERE) / "model.json").read_text(encoding="utf-8"))
     return m, {r["id"]: (k, r) for k in KINDS for r in m[k]}
 
 
@@ -26,32 +32,51 @@ def line(k, r):
     return f"{r['id']} [{k[:3]} {status} {owner} {due}] {title[:110]}"
 
 
-def main(a):
+def main(a=None):
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("prefix", nargs="?")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("-f", dest="full", metavar="ID")
+    mode.add_argument("--open", nargs="?", const="", metavar="OWNER")
+    mode.add_argument("--due", type=float, metavar="HOURS")
+    mode.add_argument("--grep", metavar="TEXT")
+    args = parser.parse_args(a)
+    if args.prefix and any(value is not None for value in (args.full, args.open, args.due, args.grep)):
+        parser.error("choose a prefix or one query option")
+    if args.due is not None and (not math.isfinite(args.due) or args.due < 0):
+        parser.error("HOURS must be finite and nonnegative")
+    if all(value is None for value in (args.prefix, args.full, args.open, args.due, args.grep)):
+        parser.print_help()
+        return 0
     m, idx = load()
-    if not a:
-        print(__doc__); return 0
-    if a[0] == "-f":
-        print(json.dumps(idx[a[1]][1], indent=1, ensure_ascii=False)); return 0
-    if a[0] in ("--open", "--due"):
-        now = datetime.datetime.now(datetime.timezone.utc)
+    if args.full is not None:
+        if args.full not in idx:
+            parser.error("unknown model ID: " + args.full)
+        print(json.dumps(idx[args.full][1], indent=1, ensure_ascii=False))
+        return 0
+    if args.open is not None or args.due is not None:
+        deadline = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=args.due)) if args.due is not None else None
         rows = []
-        for r in m["actions"]:
-            if r["status"] in ("done", "cancelled"): continue
-            if a[0] == "--open" and len(a) > 1 and r["owner_id"] != LETTER.get(a[1], a[1]): continue
-            if a[0] == "--due":
-                d = r.get("due_at")
-                if not d or datetime.datetime.fromisoformat(d.replace("Z", "+00:00")) > now + datetime.timedelta(hours=float(a[1])): continue
-            rows.append(r)
-        for r in sorted(rows, key=lambda r: r.get("due_at") or "9"): print(line("actions", r))
-        return 0
-    if a[0] == "--grep":
-        t = a[1].lower()
-        for k in KINDS:
-            for r in m[k]:
-                if t in json.dumps(r, ensure_ascii=False).lower(): print(line(k, r))
-        return 0
-    for i, (k, r) in idx.items():
-        if i.startswith(a[0]) or (a[0].startswith("contains:") and a[0][9:] in i): print(line(k, r))
+        for record in m["actions"]:
+            if record["status"] in ("done", "cancelled"):
+                continue
+            if args.open and record["owner_id"] != LETTER.get(args.open, args.open):
+                continue
+            due = record.get("due_at")
+            if deadline is not None and (not due or datetime.datetime.fromisoformat(due.replace("Z", "+00:00")) > deadline):
+                continue
+            rows.append(record)
+        for record in sorted(rows, key=lambda record: record.get("due_at") or "9"):
+            print(line("actions", record))
+    elif args.grep is not None:
+        query = args.grep.lower()
+        for kind, record in idx.values():
+            if query in json.dumps(record, ensure_ascii=False).lower():
+                print(line(kind, record))
+    else:
+        for ident, (kind, record) in idx.items():
+            if ident.startswith(args.prefix) or (args.prefix.startswith("contains:") and args.prefix[9:] in ident):
+                print(line(kind, record))
     return 0
 
 

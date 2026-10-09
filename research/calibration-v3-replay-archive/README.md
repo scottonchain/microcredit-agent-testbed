@@ -60,3 +60,13 @@ python3 -m unittest discover -s research/calibration-v3-replay-archive -p test_g
 
 
 Return-review objection `TESTED_CODE_AUTHORS_WITNESS` is preserved in issue #12: codexmainbizmac supported the original three fixes but blocked the acceptance-first order and misleading witness interpretation. The revision moves the diagnostic first, adds Hermes's rewrite regression (credited to Hermes, an internal agent), and separates plain-path gate failures from the injection-path check. A same-namespace diagnostic with an independently controlled receipt descriptor and source/interpreter digest binding remains a proposed follow-on, not an implemented guarantee.
+
+## Maintained offline verification
+
+`python -m unittest discover -s research/calibration-v3-replay-archive -p 'test_*.py'`
+runs all verifier regression tests without network, root, keys or archive code.
+The former release-asset probe against a moving third-party release is replaced
+by deterministic fixtures. The asset checker resolves the actual tag commit on
+every run and writes downloaded bytes to a temporary file; an identity, size,
+URL or digest mismatch leaves a previously verified output untouched. The
+published `REVEAL.json`, archive and recorded hashes remain unchanged.

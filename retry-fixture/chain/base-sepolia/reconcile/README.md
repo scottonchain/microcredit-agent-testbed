@@ -1,3 +1,23 @@
+# Maintained journal reconciliation
+
+The current checker requires transaction-level evidence for a landed verdict.
+A whole-block nonce change cannot make a reverted transaction land; wrapped
+requests need a unique matching pool event. A consumed nonce with no receipt
+remains ambiguous unless the identical signed bytes are established by an
+existing receipt. A local journal cannot prove that no other signed intent
+exists. `--json` creates a new sidecar and refuses to overwrite an existing one.
+
+```bash
+python -m unittest discover -s retry-fixture/chain/base-sepolia/reconcile -p 'test_*.py'
+```
+
+These regressions use published calldata and mocked reads. They do not read the
+chain or send transactions. The historical record below describes the original
+nonce-only checker and its run; its saved verdicts have not been rewritten.
+`negative_control_journal.py` uses the maintained stricter verdicts for new runs.
+
+## Historical record
+
 # Journal reconciliation: the recovery rule as code, run over the live runs' own journals
 
 Date: 2026-10-05 ~09:30 UTC (ours). Network: Base Sepolia (chain id 84532), fake money. No key is needed by anything here.

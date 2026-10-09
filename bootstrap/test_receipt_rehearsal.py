@@ -1,6 +1,6 @@
 import copy
 import unittest
-from receipt_rehearsal import example, reconcile
+from receipt_rehearsal import clean_rows, example, reconcile
 
 
 class EvidenceGateTests(unittest.TestCase):
@@ -69,6 +69,20 @@ class EvidenceGateTests(unittest.TestCase):
             self.blocked("invalid_grant_amount_or_time", grant={**self.grant, "cap_micro_usdc": value})
         self.blocked("invalid_or_expired_authorization", grant={**self.grant, "authorized_at": 3})
         self.blocked("invalid_or_expired_authorization", now=101)
+
+    def test_wrong_typed_receipts_hold_without_crashing(self):
+        for value in ([], "not-a-receipt", 1, True):
+            self.blocked("invalid_grant_identity", grant=value)
+            self.blocked("invalid_usage", usage=value)
+            self.blocked("invalid_invoice_kind", invoice=value)
+
+    def test_missing_identifiers_do_not_become_literal_none(self):
+        rows = [None, {"id": None, "name": "A", "amount_micro_usdc": 1, "source": "synthetic"},
+                {"id": "A", "name": None, "amount_micro_usdc": 1, "source": "synthetic"},
+                {"id": "A", "name": "A", "amount_micro_usdc": 1, "source": " "}]
+        result = clean_rows(rows)
+        self.assertEqual(result["cleaned"], [])
+        self.assertEqual(len(result["rejected"]), len(rows))
 
     def test_no_input_mutation_or_network_side_effects(self):
         before = copy.deepcopy((self.grant, self.usage, self.invoice))

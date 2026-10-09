@@ -8,7 +8,11 @@ This is a TESTNET experiment. Tokens have no value. We are building an on-chain 
 
 Operator: Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code agent, for scottonchain. Contract: [scottonchain/microcredit-contract](https://github.com/scottonchain/microcredit-contract); the redesign was merged in [PR #5](https://github.com/scottonchain/microcredit-contract/pull/5). The design and its proofs are in [docs/CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md), and every known issue is tracked in [docs/CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md).
 
-## Addresses (Base Sepolia, chain id 84532, RPC https://sepolia.base.org)
+## Recorded deployment (Base Sepolia, chain id 84532)
+
+[`deployments/current.json`](deployments/current.json) is the shared machine-readable
+record used by the quickstart and health report. RPC and addresses below are a
+human-readable view of that deployment; the runtime checks chain and wiring.
 Deployed 2026-10-06 from contract `main` `1812e7d` by Hermes, which holds every admin role (owner, oracle, score reporter, guardian: `0x5e4dC7639D2b94006c51aD5373173f5e01c248F9`), on Circle's Base Sepolia test USDC. Broadcast log: [deployments/base-sepolia-1812e7d-usdc001](deployments/base-sepolia-1812e7d-usdc001); the full record is in the contract repository's `docs/TESTNET.md`.
 - Pool (`DecentralizedMicrocredit`): 0x73872B8fB7F1771C67911f03edc75aBdc9514973
 - Lens (read-only views): 0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4
@@ -22,7 +26,7 @@ Two earlier pools are history: `0xa49B9352B2e8C2B79b58cb4C60dB43342e08Afa8` (con
 You need a little Base Sepolia ETH for gas (a public faucet; none is verified by us; make sure it pays out on **Base** Sepolia, chain id 84532, not Ethereum Sepolia, or bridge from Sepolia with the L1StandardBridge `depositETH`, about 5 minutes, per hheskihoran's newcomer run on issue #2) and test USDC from https://faucet.circle.com (Base Sepolia). The pool's token cannot be minted.
 
 ## Quickstart (five minutes, with Foundry's `cast`)
-[`quickstart.sh`](quickstart.sh) wraps the calls below. Set `PRIVATE_KEY` to a throwaway testnet key that holds a little Base Sepolia ETH.
+[`quickstart.sh`](quickstart.sh) wraps the calls below; `./quickstart.sh --help` lists them. Amounts accept up to six decimal places. For read-only status and `try-borrow`, set `ACCOUNT` to an address; no key is needed. Writes require `PRIVATE_KEY` for a throwaway testnet key that holds a little Base Sepolia ETH. A failed or timed-out send stops the sequence; reconcile the printed transaction receipt or unresolved outcome before retrying.
 
 ```bash
 export PRIVATE_KEY=0x...
@@ -44,7 +48,7 @@ This exact sequence was run on a fork of the live pool. The backed account could
 - **Where credit comes from:**
   - *An issued line.* The score provider publishes a score, and the line is score × 100 USDC (`grantedCredit`). The issuer's total is capped by a budget (`maxTotalScore`), charged on the highest line each account has held since it was last unused. Scores go stale after 7 days, and a stale score issues nothing.
   - *Stake.* Lock test USDC with `stake(amount)`.
-  - *Dues.* 30% of the interest you pay on your own loans goes into the first-loss reserve and comes back to you as earned credit (`duesPaid`). Repayment history earns nothing else, because any larger rule can be farmed with free accounts ([Theorem 3](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md)).
+  - *Dues.* 45% of the interest you pay on your own loans goes into the first-loss reserve and comes back to you as earned credit (`duesPaid`). Repayment history earns nothing else, because any larger rule can be farmed with free accounts ([Theorem 3](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md)).
 - **Backing.** `back(borrower, amount)` commits your free credit to a borrower: your issued line and dues first, then your stake. Your limit falls by exactly what theirs rises. Received backing cannot be passed on. A backing is 0 or at least 1 USDC, and a borrower can have at most 32 backers.
 - **Default.** Anyone can call `markDefaulted(loanId)` 30 days after the due date. Secured backing is charged first, by slashing the backer's stake into the pool. Unsecured backing is charged next, by burning the backer's credit. The first-loss reserve and then the lenders cover the rest. A defaulter can never borrow or back again. Anyone can call `impairLoan(loanId)` once a loan is past due, so lenders cannot exit ahead of a visible loss.
 

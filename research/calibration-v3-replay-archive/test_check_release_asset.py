@@ -1,38 +1,85 @@
-"""Exercise check_release_asset.py against a real public GitHub release (smallest asset of ripgrep's latest release):
-expect OK with the true values, RELEASE_ASSET_REPLACED with a wrong digest, RELEASE_ASSET_MISSING with a wrong name."""
-import hashlib, json, os, subprocess, sys, urllib.request
+"""Offline release verification regressions; importing this file performs no I/O."""
+import hashlib
+import io
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = "/root/.hermes/cache/scratch/run18_release_test"
-os.makedirs(OUT, exist_ok=True)
-UA = {"User-Agent": "calibration-v3-reveal-check", "Accept": "application/vnd.github+json"}
+import check_release_asset as check
 
-def gj(u):
-    return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=60).read().decode())
+DATA = b"synthetic release asset"
+COMMIT = "a" * 40
+URL = "https://github.com/example/replay/releases/download/v1/fixture.tar.gz"
 
-repo = "BurntSushi/ripgrep"
-rel = gj("https://api.github.com/repos/%s/releases/latest" % repo)
-tag = rel["tag_name"]
-asset = min(rel["assets"], key=lambda a: a["size"])
-ref = gj("https://api.github.com/repos/%s/git/ref/tags/%s" % (repo, tag))
-obj = ref["object"]
-commit = obj["sha"] if obj["type"] == "commit" else gj(obj["url"])["object"]["sha"]
-data = urllib.request.urlopen(urllib.request.Request(asset["browser_download_url"], headers={"User-Agent": UA["User-Agent"]}), timeout=120).read()
-reveal = {"repo": repo, "release_tag": tag, "release_commit": commit, "asset_id": asset["id"], "asset_name": asset["name"],
-          "byte_count": len(data), "sha256": hashlib.sha256(data).hexdigest(), "url": asset["browser_download_url"]}
-print("fixture:", json.dumps(reveal))
-assert len(data) == asset["size"]
 
-def run(rv, label):
-    p = os.path.join(OUT, label + ".json")
-    json.dump(rv, open(p, "w"))
-    r = subprocess.run([sys.executable, os.path.join(HERE, "check_release_asset.py"), p, OUT], capture_output=True, text=True, timeout=300)
-    print("[%s] rc=%d %s %s" % (label, r.returncode, r.stdout.strip()[:300], r.stderr.strip()[-300:]))
-    return r.returncode, r.stdout
+class ReleaseAssetTests(unittest.TestCase):
+    def setUp(self):
+        self.reveal = {"repo": "example/replay", "release_tag": "v1", "release_commit": COMMIT,
+                       "asset_id": 12, "asset_name": "fixture.tar.gz", "byte_count": len(DATA),
+                       "sha256": hashlib.sha256(DATA).hexdigest(), "url": URL}
+        self.asset = {"id": 12, "name": "fixture.tar.gz", "size": len(DATA), "browser_download_url": URL}
+        self.release = {"target_commitish": COMMIT, "assets": [self.asset]}
 
-rc0, out0 = run(reveal, "true")
-rc1, out1 = run({**reveal, "sha256": "00" * 32}, "wrong_digest")
-rc2, out2 = run({**reveal, "asset_name": "no-such-asset.bin"}, "wrong_name")
-rc3, out3 = run({**reveal, "asset_id": reveal["asset_id"] + 1}, "wrong_id")
-ok = rc0 == 0 and out0.startswith("OK") and rc1 == 1 and "RELEASE_ASSET_REPLACED" in out1 and rc2 == 1 and "RELEASE_ASSET_MISSING" in out2 and rc3 == 1 and "RELEASE_ASSET_REPLACED" in out3
-print("ALL EXPECTED:", ok)
+    def run_check(self, *, reveal=None, release=None, objects=None, data=DATA):
+        responses = [release or self.release, *(objects or [{"object": {"type": "commit", "sha": COMMIT}}])]
+        with tempfile.TemporaryDirectory() as directory, patch.object(check, "get_json", side_effect=responses), patch.object(check.urllib.request, "urlopen", return_value=io.BytesIO(data)):
+            message = check.verify(reveal or self.reveal, directory)
+            self.assertEqual((Path(directory) / "fixture.tar.gz").read_bytes(), DATA)
+            self.assertEqual(len(list(Path(directory).iterdir())), 1)
+            return message
+
+    def test_matching_identity_tag_and_bytes(self):
+        self.assertTrue(self.run_check().startswith("OK"))
+
+    def test_moved_tag_rejected_even_when_release_target_matches(self):
+        with self.assertRaisesRegex(check.VerificationError, "RELEASE_COMMIT_MISMATCH"):
+            self.run_check(objects=[{"object": {"type": "commit", "sha": "b" * 40}}])
+
+    def test_annotated_tag_resolves_to_commit(self):
+        self.assertTrue(self.run_check(objects=[{"object": {"type": "tag", "sha": "b" * 40}},
+                                               {"object": {"type": "commit", "sha": COMMIT}}]).startswith("OK"))
+
+    def test_cyclic_tag_rejected(self):
+        with self.assertRaisesRegex(check.VerificationError, "cyclic tag"):
+            self.run_check(objects=[{"object": {"type": "tag", "sha": "b" * 40}}] * 2)
+
+    def test_wrong_id_size_or_name_rejected(self):
+        for key, value, expected in (("asset_id", 13, "REPLACED"), ("byte_count", 0, "REPLACED"), ("asset_name", "missing.zip", "MISSING")):
+            with self.subTest(key=key), self.assertRaisesRegex(check.VerificationError, expected):
+                self.run_check(reveal={**self.reveal, key: value})
+
+    def test_wrong_digest_rejected(self):
+        with self.assertRaisesRegex(check.VerificationError, "RELEASE_ASSET_REPLACED"):
+            self.run_check(reveal={**self.reveal, "sha256": "0" * 64})
+
+    def test_wrong_url_rejected(self):
+        with self.assertRaisesRegex(check.VerificationError, "download URL"):
+            self.run_check(reveal={**self.reveal, "url": URL + ".changed"})
+
+    def test_path_escape_rejected_before_network(self):
+        with patch.object(check, "get_json") as get:
+            for filename in ("../escape", "/absolute", "..\\escape", ".."):
+                with self.subTest(filename=filename), self.assertRaisesRegex(check.VerificationError, "filename"):
+                    check.verify({**self.reveal, "asset_name": filename}, ".")
+        get.assert_not_called()
+
+    def test_corrupt_download_preserves_existing_verified_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / self.reveal["asset_name"]
+            destination.write_bytes(b"previous verified bytes")
+            with patch.object(check, "get_json", side_effect=[self.release, {"object": {"type": "commit", "sha": COMMIT}}]), patch.object(check.urllib.request, "urlopen", return_value=io.BytesIO(b"bad")):
+                with self.assertRaises(check.VerificationError):
+                    check.verify(self.reveal, directory)
+            self.assertEqual(destination.read_bytes(), b"previous verified bytes")
+            self.assertEqual(list(Path(directory).iterdir()), [destination])
+
+    def test_transport_error_cleans_partial_download(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(check, "get_json", side_effect=[self.release, {"object": {"type": "commit", "sha": COMMIT}}]), patch.object(check.urllib.request, "urlopen", side_effect=OSError("connection lost")):
+            with self.assertRaises(OSError):
+                check.verify(self.reveal, directory)
+            self.assertEqual(list(Path(directory).iterdir()), [])
+
+
+if __name__ == "__main__":
+    unittest.main()

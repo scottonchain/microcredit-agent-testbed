@@ -1,89 +1,89 @@
 #!/usr/bin/env python3
-"""
-Pool health and credit-integrity metrics, read from the live pool's state with Foundry's `cast`.
-Nothing is sent; every value is a view call at the latest block, so anyone can recompute it.
+"""Read pool health and credit conservation at one block, using Foundry's cast.
 
-    python3 metrics/pool_health.py            # human-readable report
-    python3 metrics/pool_health.py --json     # machine-readable
-
-Covers METRICS.md 6 (issuer and backer concentration) and 9 (credit manufactured: the Theorem 1
-check, sum of borrow limits <= sum of granted credit + committed stake), plus the pool's balance
-sheet and loan outcomes. Metrics that need events over time (cohorts, first-time share) or an
-off-chain attestation (human vs bot) are not here; see issue #7.
-Override the deployment with RPC, POOL, LENS, SCORES.
+No transaction is sent. Defaults come from deployments/current.json; RPC, POOL,
+LENS, SCORES and USDC can override it. The chain and contract wiring are checked.
+Exit 0 means a complete snapshot with the conservation check holding, 1 means
+failure or a violated invariant. A report includes its block and hash; a changed
+block hash during collection invalidates the report.
 """
+import argparse
 import json
-import os
-import subprocess
+from pathlib import Path
 import sys
 
-RPC = os.environ.get("RPC", "https://sepolia.base.org")
-POOL = os.environ.get("POOL", "0x73872B8fB7F1771C67911f03edc75aBdc9514973")
-LENS = os.environ.get("LENS", "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4")
-SCORES = os.environ.get("SCORES", "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4")
-USDC = 1e6
-STATUS = ["None", "Requested", "Active", "Repaid", "Defaulted", "Cancelled"]  # LoanStatus
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.deployment import Cast, CastError, as_int, format_units, load_deployment
+
+STATUS = ("None", "Requested", "Active", "Repaid", "Defaulted", "Cancelled")
+POOL_FIELDS = (
+    "totalAssets", "lenderCash", "totalLentOut", "reservedLiquidity", "firstLossReserve",
+    "totalImpaired", "totalDuesPaid", "protocolFees", "totalStaked", "lenderCount", "getLoanRate",
+)
+ACCOUNT_FIELDS = ("getBorrowers", "getBackers", "getBackedBorrowers", "getLenders")
 
 
-def call(to, sig, *args):
-    """Decoded return values of a view call, as a list (cast's --json output)."""
-    out = subprocess.run(["cast", "call", "--json", "--rpc-url", RPC, to, sig, *map(str, args)],
-                         capture_output=True, text=True, check=True).stdout
-    return json.loads(out)
+def top_share(values):
+    total = sum(values.values())
+    return max(values.values()) / total if total else 0.0
 
 
-def num(to, sig, *args):
-    return int(call(to, sig, *args)[0])
+def read_report(deployment, client, block="latest"):
+    client.check_chain()
+    header = client.block(block)
+    number = as_int(header["number"])
+    client.check_wiring(block=number)
+    pool_address, lens, scores = deployment["pool"], deployment["lens"], deployment["scores"]
 
+    def call(contract, signature, *args):
+        return client.call(contract, signature, *args, block=number)
 
-def addresses(to, sig):
-    return list(call(to, sig)[0])
+    def num(contract, signature, *args):
+        return as_int(call(contract, signature, *args)[0])
 
-
-def main():
-    pool = {name: num(POOL, f"{name}()(uint256)") for name in [
-        "totalAssets", "lenderCash", "totalLentOut", "reservedLiquidity", "firstLossReserve",
-        "totalImpaired", "totalDuesPaid", "protocolFees", "totalStaked", "lenderCount", "getLoanRate"]}
-    pool["utilisationBps"] = num(LENS, "getUtilisation()(uint256)")
-    pool["sharePrice"] = num(LENS, "sharePrice()(uint256)")
-
-    scored = addresses(SCORES, "getScores()(address[],uint256[])")
-    accounts = sorted({a.lower() for sig in ["getBorrowers()(address[])", "getBackers()(address[])",
-                                            "getBackedBorrowers()(address[])", "getLenders()(address[])"]
-                       for a in addresses(POOL, sig)} | {a.lower() for a in scored})
+    pool = {name: num(pool_address, f"{name}()(uint256)") for name in POOL_FIELDS}
+    pool["utilisationBps"] = num(lens, "getUtilisation()(uint256)")
+    pool["sharePrice"] = num(lens, "sharePrice()(uint256)")
+    scored = call(scores, "getScores()(address[],uint256[])")[0]
+    groups = {name: call(pool_address, f"{name}()(address[])")[0] for name in ACCOUNT_FIELDS}
+    accounts = sorted({account.lower() for group in [scored, *groups.values()] for account in group})
 
     limits = granted = committed_stake = 0
     lines = {}
-    for a in accounts:
-        limits += num(POOL, "getBorrowLimit(address)(uint256,uint256)", a)
-        g = num(POOL, "grantedCredit(address)(uint256)", a)
-        granted += g
-        committed_stake += num(POOL, "stakeCommitted(address)(uint256)", a)
-        if g:
-            lines[a] = g
+    for account in accounts:
+        limits += num(pool_address, "getBorrowLimit(address)(uint256,uint256)", account)
+        amount = num(pool_address, "grantedCredit(address)(uint256)", account)
+        granted += amount
+        committed_stake += num(pool_address, "stakeCommitted(address)(uint256)", account)
+        if amount:
+            lines[account] = amount
 
     backers = {}
     secured = unsecured = edges = 0
-    for b in addresses(POOL, "getBackedBorrowers()(address[])"):
-        for backer, s_amt, u_amt in call(POOL, "getBackings(address)((address,uint256,uint256)[])", b)[0]:
+    for borrower in groups["getBackedBorrowers"]:
+        for backer, secured_amount, unsecured_amount in call(pool_address, "getBackings(address)((address,uint256,uint256)[])", borrower)[0]:
+            secured_amount, unsecured_amount = as_int(secured_amount), as_int(unsecured_amount)
             edges += 1
-            secured += int(s_amt)
-            unsecured += int(u_amt)
-            backers[backer.lower()] = backers.get(backer.lower(), 0) + int(s_amt) + int(u_amt)
+            secured += secured_amount
+            unsecured += unsecured_amount
+            name = backer.lower()
+            backers[name] = backers.get(name, 0) + secured_amount + unsecured_amount
 
     loans = {}
-    for i in call(POOL, "getAllLoanIds()(uint256[])")[0]:
-        status = STATUS[num(POOL, "getLoanTerms(uint256)(uint8,uint256,uint256,uint256,uint256)", i)]
-        loans[status] = loans.get(status, 0) + 1
+    for ident in call(pool_address, "getAllLoanIds()(uint256[])")[0]:
+        state = num(pool_address, "getLoanTerms(uint256)(uint8,uint256,uint256,uint256,uint256)", ident)
+        if not 0 <= state < len(STATUS):
+            raise CastError(f"unrecognized loan status {state}; update the ABI before interpreting the report")
+        loans[STATUS[state]] = loans.get(STATUS[state], 0) + 1
 
-    issuance = {"totalHeld": num(SCORES, "totalHeld()(uint256)"), "maxTotalScore": num(SCORES, "maxTotalScore()(uint256)"),
-                "totalScore": num(SCORES, "totalScore()(uint256)"), "scoredAccounts": len(scored)}
-
-    def top_share(d):
-        total = sum(d.values())
-        return (max(d.values()) / total) if total else 0.0
-
-    report = {
+    issuance = {name: num(scores, f"{name}()(uint256)") for name in ("totalHeld", "maxTotalScore", "totalScore")}
+    issuance["scoredAccounts"] = len(scored)
+    if client.block(number)["hash"].lower() != header["hash"].lower():
+        raise CastError("block changed during collection; discard this snapshot and read again")
+    return {
+        "snapshot": {"chainId": deployment["chain_id"], "blockNumber": number, "blockHash": header["hash"],
+                     "blockTimestamp": as_int(header["timestamp"]), "pool": pool_address,
+                     "lens": lens, "scores": scores, "token": deployment["token"]["address"]},
         "pool": pool,
         "integrity": {"accounts": len(accounts), "sumLimits": limits, "sumGrantedCredit": granted,
                       "sumCommittedStake": committed_stake, "slack": granted + committed_stake - limits,
@@ -93,24 +93,39 @@ def main():
                           "backingEdges": edges, "securedBacking": secured, "unsecuredBacking": unsecured},
         "loans": loans,
     }
-    if "--json" in sys.argv:
-        print(json.dumps(report, indent=2))
-        return
-    p, i, c, q = pool, report["integrity"], report["concentration"], issuance
-    print(f"Pool {POOL} on {RPC}")
-    print(f"  assets {p['totalAssets']/USDC:,.2f}  cash {p['lenderCash']/USDC:,.2f}  lent {p['totalLentOut']/USDC:,.2f}  "
-          f"reserved {p['reservedLiquidity']/USDC:,.2f}  utilisation {p['utilisationBps']/100:.2f}%  share price {p['sharePrice']/USDC:.4f}")
-    print(f"  first-loss reserve {p['firstLossReserve']/USDC:,.2f} (dues {p['totalDuesPaid']/USDC:,.2f})  impaired {p['totalImpaired']/USDC:,.2f}  "
-          f"staked {p['totalStaked']/USDC:,.2f}  fees {p['protocolFees']/USDC:,.2f}  lenders {p['lenderCount']}  APR {p['getLoanRate']} bps")
+
+
+def print_report(report):
+    p, i, c, q, snapshot = (report[key] for key in ("pool", "integrity", "concentration", "issuance", "snapshot"))
+    print(f"Pool {snapshot['pool']} on chain {snapshot['chainId']} at block {snapshot['blockNumber']} ({snapshot['blockHash']})")
+    print(f"  assets {format_units(p['totalAssets'])}  cash {format_units(p['lenderCash'])}  lent {format_units(p['totalLentOut'])}  "
+          f"reserved {format_units(p['reservedLiquidity'])}  utilisation {p['utilisationBps']/100:.2f}%  share price {format_units(p['sharePrice'], 4)}")
+    print(f"  first-loss reserve {format_units(p['firstLossReserve'])} (dues {format_units(p['totalDuesPaid'])})  impaired {format_units(p['totalImpaired'])}  "
+          f"staked {format_units(p['totalStaked'])}  fees {format_units(p['protocolFees'])}  lenders {p['lenderCount']}  APR {p['getLoanRate']} bps")
     print(f"Credit integrity (METRICS 9, Theorem 1) over {i['accounts']} accounts:")
-    print(f"  sum of limits {i['sumLimits']/USDC:,.2f} <= granted {i['sumGrantedCredit']/USDC:,.2f} + committed stake "
-          f"{i['sumCommittedStake']/USDC:,.2f}: {'holds' if i['holds'] else 'VIOLATED'} (slack {i['slack']/USDC:,.2f})")
-    print(f"Issuance: held {q['totalHeld']/1e6:.2f} of {q['maxTotalScore']/1e6:.2f} lines, {q['scoredAccounts']} scored accounts")
+    print(f"  sum of limits {format_units(i['sumLimits'])} <= granted {format_units(i['sumGrantedCredit'])} + committed stake "
+          f"{format_units(i['sumCommittedStake'])}: {'holds' if i['holds'] else 'VIOLATED'} (slack {format_units(i['slack'])})")
+    print(f"Issuance: held {format_units(q['totalHeld'])} of {format_units(q['maxTotalScore'])} lines, {q['scoredAccounts']} scored accounts")
     print(f"Concentration (METRICS 6): largest line {c['largestLineShare']:.0%} of granted credit, largest backer "
-          f"{c['largestBackerShare']:.0%} of backing; {c['backingEdges']} edges, secured {c['securedBacking']/USDC:,.2f}, "
-          f"unsecured {c['unsecuredBacking']/USDC:,.2f}")
-    print(f"Loans: {', '.join(f'{k} {v}' for k, v in sorted(report['loans'].items())) or 'none'}")
+          f"{c['largestBackerShare']:.0%} of backing; {c['backingEdges']} edges, secured {format_units(c['securedBacking'])}, "
+          f"unsecured {format_units(c['unsecuredBacking'])}")
+    print(f"Loans: {', '.join(f'{key} {value}' for key, value in sorted(report['loans'].items())) or 'none'}")
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="machine-readable report with integer base-unit amounts")
+    parser.add_argument("--block", default="latest", help="read a specific historical block instead of latest")
+    args = parser.parse_args(argv)
+    try:
+        deployment = load_deployment()
+        report = read_report(deployment, Cast(deployment), args.block)
+    except (CastError, ValueError, OSError, KeyError) as error:
+        print(f"ERROR: {error}", file=sys.stderr)
+        return 1
+    print(json.dumps(report, indent=2)) if args.json else print_report(report)
+    return 0 if report["integrity"]["holds"] else 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

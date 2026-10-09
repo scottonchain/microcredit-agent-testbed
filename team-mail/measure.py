@@ -2,6 +2,7 @@
 """Compare TM1 originals with their TM2 conversions: size, approximate tokens, and which facts (ids, numbers,
 dates, urls, hashes, comment ids) of the original are absent from the conversion. Usage: measure.py [examples-dir]"""
 import json, os, re, sys
+from pathlib import Path
 
 FACT = re.compile(r"https?://[^\s\"',)]+|0x[0-9a-fA-F]{6,}|\b[0-9a-f]{7,40}\b|\b\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}(?::\d{2})?Z?)?|(?:action|claim|ev|hyp|question|decision|venue):[A-Za-z0-9._-]+|\$?\d[\d,]*(?:\.\d+)?%?")
 
@@ -35,8 +36,8 @@ def norm_time(f):  # 2026-10-09T12:00:00Z and 2026-10-09T12:00Z are the same fac
 def main(d):
     tot1 = tot2 = tt1 = tt2 = 0
     for name in sorted(os.listdir(os.path.join(d, "tm1"))):
-        a = gh_refs(open(os.path.join(d, "tm1", name)).read())
-        b = gh_refs(open(os.path.join(d, "tm2", name)).read())
+        a = gh_refs((Path(d) / "tm1" / name).read_text(encoding="utf-8"))
+        b = gh_refs((Path(d) / "tm2" / name).read_text(encoding="utf-8"))
         fa = {norm_time(f) for f in facts(a)}
         fb = {norm_time(f) for f in facts(b)}
         miss = sorted(f for f in fa - fb if not any(f in g for g in fb))
@@ -48,4 +49,4 @@ def main(d):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "examples")
+    main(sys.argv[1] if len(sys.argv) > 1 else str(Path(__file__).with_name("examples")))

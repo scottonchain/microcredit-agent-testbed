@@ -8,15 +8,12 @@ receipt, input, log, nonce and loan state is read again from the chain; the file
 Exit 0 = no FAIL. SKIP = the RPC would not serve the historical state the check needs (public nodes prune); rerun against an
 archive node to turn SKIPs into PASS/FAIL.
 """
-import json, sys, time, urllib.error, urllib.request
+import json, sys
+from chain_read import (SEL_REPAY, SEL_BORROW, SEL_FORWARD, SEL_BATCH, SEL_NONCES,
+                        read_rpc, word, uint, addr, dyn_bytes, decode_repay, decode_borrow, decode_forward, decode_batch, pad_addr)
 
 RPC = "https://sepolia.base.org"
 UA = "retry-fixture verify_live_run.py"
-SEL_REPAY = "0x1d169fa9"       # repayLoanMeta((address,uint256,uint256,uint256,uint256),bytes,(uint256,uint256,uint8,bytes32,bytes32))
-SEL_BORROW = "0x0d29380a"      # borrowAndDisburseMeta((address,uint256,address,uint256,uint256,uint256,uint256),bytes)
-SEL_FORWARD = "0x6fadcf72"     # forward(address,bytes)
-SEL_BATCH = "0xb9d096b2"       # batch(address,bytes[])
-SEL_NONCES = "0x7ecebe00"      # nonces(address)
 SEL_GETLOAN = "0x504006ca"     # getLoan(uint256) -> (principal, outstanding, borrower, interestRate, isActive)
 SEL_BALANCE = "0x70a08231"     # balanceOf(address)
 TOPIC_META_REPAID = "0x6a98ca468ea5d9147722dfafae51433ca117e982700440582a1b3d3aebffc16e"   # MetaLoanRepaid(address,uint256,uint256)
@@ -34,91 +31,21 @@ def skip(case, name, detail):
 
 
 def rpc(method, params):
-    req = urllib.request.Request(RPC, data=json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode(),
-                                 headers={"Content-Type": "application/json", "User-Agent": UA})
-    for attempt in range(8):   # public RPCs rate-limit (HTTP 429) and drop connections; back off, do not fail the check on transport
-        try:
-            r = json.loads(urllib.request.urlopen(req, timeout=60).read().decode())
-            break
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ConnectionError) as e:
-            if isinstance(e, urllib.error.HTTPError) and e.code not in (429, 502, 503, 504):
-                raise
-            time.sleep(3 * (attempt + 1))
-    else:
-        raise RuntimeError("rpc transport failed after retries: " + method)
-    if "error" in r:
-        raise RuntimeError(json.dumps(r["error"]))
-    return r["result"]
-
-
-def word(args_hex, i):
-    return args_hex[64 * i:64 * (i + 1)]
-
-
-def uint(w):
-    return int(w, 16)
-
-
-def addr(w):
-    return "0x" + w[-40:]
-
-
-def dyn_bytes(args_hex, offset_bytes):
-    o = offset_bytes * 2
-    n = uint(args_hex[o:o + 64])
-    return "0x" + args_hex[o + 64:o + 64 + 2 * n]
-
-
-def decode_repay(input_hex):
-    assert input_hex[:10].lower() == SEL_REPAY, "not repayLoanMeta: " + input_hex[:10]
-    a = input_hex[10:]
-    req = {"borrower": addr(word(a, 0)), "loanId": uint(word(a, 1)), "amount": uint(word(a, 2)), "nonce": uint(word(a, 3)), "deadline": uint(word(a, 4))}
-    sig = dyn_bytes(a, uint(word(a, 5)))
-    permit = {"value": uint(word(a, 6)), "deadline": uint(word(a, 7)), "v": uint(word(a, 8)), "r": "0x" + word(a, 9), "s": "0x" + word(a, 10)}
-    return req, sig, permit
-
-
-def decode_borrow(input_hex):
-    assert input_hex[:10].lower() == SEL_BORROW, "not borrowAndDisburseMeta: " + input_hex[:10]
-    a = input_hex[10:]
-    return {"borrower": addr(word(a, 0)), "amount": uint(word(a, 1)), "to": addr(word(a, 2)), "repaymentPeriod": uint(word(a, 3)),
-            "maxAprBps": uint(word(a, 4)), "nonce": uint(word(a, 5)), "deadline": uint(word(a, 6))}, dyn_bytes(a, uint(word(a, 7)))
-
-
-def decode_forward(input_hex):
-    assert input_hex[:10].lower() == SEL_FORWARD, "not forward: " + input_hex[:10]
-    a = input_hex[10:]
-    return addr(word(a, 0)), dyn_bytes(a, uint(word(a, 1)))
-
-
-def decode_batch(input_hex):
-    assert input_hex[:10].lower() == SEL_BATCH, "not batch: " + input_hex[:10]
-    a = input_hex[10:]
-    target = addr(word(a, 0))
-    arr = uint(word(a, 1)) * 2
-    n = uint(a[arr:arr + 64])
-    base = arr + 64
-    calls = []
-    for i in range(n):
-        rel = uint(a[base + 64 * i:base + 64 * (i + 1)]) * 2
-        ln = uint(a[base + rel:base + rel + 64])
-        calls.append("0x" + a[base + rel + 64:base + rel + 64 + 2 * ln])
-    return target, calls
+    return read_rpc(RPC, method, params, UA)
 
 
 def call(to, data, block):
     try:
         return rpc("eth_call", [{"to": to, "data": data}, hex(block) if isinstance(block, int) else block])
     except RuntimeError as e:
-        raise HistoricalUnavailable(str(e))
+        if any(marker in str(e).lower() for marker in ("missing trie node", "historical state", "state is not available", "header not found", "block not found", "pruned")):
+            raise HistoricalUnavailable(str(e)) from e
+        raise
 
 
 class HistoricalUnavailable(Exception):
     pass
 
-
-def pad_addr(a):
-    return a[2:].lower().rjust(64, "0")
 
 
 def nonces(pool, who, block):

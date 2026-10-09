@@ -33,7 +33,8 @@ def lint(doc):
             problems.append(tag + ": id missing or not email-N / chain-N / api-N")
         elif cid in seen:
             problems.append(tag + ": duplicate id")
-        seen.add(cid)
+        if isinstance(cid, str):
+            seen.add(cid)
         for k in ("setup", "expected"):
             if not isinstance(c.get(k), str) or not c.get(k).strip():
                 problems.append(tag + ": %r missing or empty" % k)
@@ -41,7 +42,7 @@ def lint(doc):
         if not isinstance(tbu, bool):
             problems.append(tag + ": tested_by_us must be true/false"); continue
         st = c.get("status")
-        if st not in STATUS_VOCAB:
+        if not isinstance(st, str) or st not in STATUS_VOCAB:
             problems.append(tag + ": status %r not in %s" % (st, sorted(STATUS_VOCAB)))
         if tbu:
             if st != "tested by us":

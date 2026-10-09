@@ -3,23 +3,25 @@
 
     python3 negative_control_journal.py [JOURNAL_live_pool.jsonl] [RESULT.txt]
 
+Without RESULT, the report is printed only. An explicit RESULT must be a new file.
 Each control is a journal the live run could have left behind (a crash between the intent row and the hash row; a lost row; a
 row whose bytes the chain contradicts) and the verdict the fixture's rule assigns to it. The reconciler must print exactly that
 verdict for the affected intent and exit as stated; everything else must stay as in the untampered run.
 """
-import json, os, subprocess, sys
+import json, os, subprocess, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 JOURNAL = sys.argv[1] if len(sys.argv) > 1 else "JOURNAL_live_pool.jsonl"
-RESULT = sys.argv[2] if len(sys.argv) > 2 else "NEGATIVE_CONTROL_journal.txt"
+RESULT = sys.argv[2] if len(sys.argv) > 2 else None
 rows = [json.loads(l) for l in open(os.path.join(HERE, JOURNAL)) if l.strip()]
 out = []
 
 
 def run(label, rows2, want_exit, want_lines):
-    p = os.path.join(HERE, "tampered_%s.jsonl" % label)
-    open(p, "w").write("".join(json.dumps(r) + "\n" for r in rows2))
-    r = subprocess.run([sys.executable, os.path.join(HERE, "reconcile_journal.py"), p], capture_output=True, text=True, timeout=600)
-    os.remove(p)
+    with tempfile.TemporaryDirectory(prefix="retry-journal-control-") as directory:
+        p = os.path.join(directory, "tampered_%s.jsonl" % label)
+        with open(p, "w", encoding="utf-8") as output:
+            output.write("".join(json.dumps(row) + "\n" for row in rows2))
+        r = subprocess.run([sys.executable, os.path.join(HERE, "reconcile_journal.py"), p], capture_output=True, text=True, timeout=600)
     lines = r.stdout.splitlines()
     hits = []
     for want in want_lines:
@@ -38,16 +40,16 @@ def drop(rows_, pred):
 
 oks = []
 # 1. crash after broadcast of s3 (first repay, nonce 1) before its hash row was written: the intent landed on chain (nonce 1 consumed),
-#    and s4 (the identical bytes, receipted, unmoved) does not explain the consumption -> LANDED by journal + nonces(signer), exit 0
-oks.append(run("s3_hash_row_lost", drop(rows, lambda r: r.get("step") == "s3" and r["state"] == "broadcast"), 0,
-               [["LANDED", "s3", "nonce 1", "(no hash)", "only unreceipted journal row carrying it"]]))
-# 2. both s3 and s4 (same bytes, nonce 1) lost their hash rows: two unreceipted rows, byte-identical -> one intent resubmitted -> LANDED, exit 0
-oks.append(run("s3_and_s4_hash_rows_lost", drop(rows, lambda r: r.get("step") in ("s3", "s4") and r["state"] == "broadcast"), 0,
-               [["LANDED", "s3", "nonce 1", "byte-identical (one intent, resubmitted)"], ["LANDED", "s4", "nonce 1", "byte-identical (one intent, resubmitted)"]]))
+#    and s4 (the identical bytes, receipted, unmoved) does not explain the consumption -> AMBIGUOUS: a local journal alone cannot establish the exact signed bytes that consumed a nonce, exit 1
+oks.append(run("s3_hash_row_lost", drop(rows, lambda r: r.get("step") == "s3" and r["state"] == "broadcast"), 1,
+               [["AMBIGUOUS", "s3", "nonce 1", "(no hash)", "local journal row(s)"]]))
+# 2. both s3 and s4 (same bytes, nonce 1) lost their hash rows: two unreceipted rows, byte-identical -> possibly one intent resubmitted; without its receipt this remains AMBIGUOUS, exit 1
+oks.append(run("s3_and_s4_hash_rows_lost", drop(rows, lambda r: r.get("step") in ("s3", "s4") and r["state"] == "broadcast"), 1,
+               [["AMBIGUOUS", "s3", "nonce 1", "local journal row(s)"], ["AMBIGUOUS", "s4", "nonce 1", "local journal row(s)"]]))
 # 3. s5 (re-signed repay, nonce 2, reverted) and s7 (borrow, nonce 2, landed) both lost their hash rows: same nonce, different bytes ->
 #    AMBIGUOUS (nonces(signer) cannot say which of the two landed), exit 1
 oks.append(run("s5_and_s7_hash_rows_lost", drop(rows, lambda r: r.get("step") in ("s5", "s7_borrow_loan_b") and r["state"] == "broadcast"), 1,
-               [["AMBIGUOUS", "s5", "nonce 2", "2 unreceipted journal rows with different bytes"], ["AMBIGUOUS", "s7_borrow_loan_b", "nonce 2"]]))
+               [["AMBIGUOUS", "s5", "nonce 2", "2 local journal row(s)"], ["AMBIGUOUS", "s7_borrow_loan_b", "nonce 2"]]))
 # 4. the missing-journal-row case: s7's rows never written (intent and hash) while nonce 2 is consumed on chain and the only other row
 #    carrying nonce 2 (s5) is receipted as unmoved -> UNKNOWN for nonce 2, exit 1
 oks.append(run("s7_rows_missing", drop(rows, lambda r: r.get("step") == "s7_borrow_loan_b"), 1,
@@ -76,5 +78,7 @@ oks.append(run("s13_intent_row_only_nonce_unconsumed", rows6, 0, [["NOT LANDED",
 
 hdr = "$ python3 negative_control_journal.py %s   (six journals the live run could have left behind; verdict and exit code per the fixture's rule)\n" % JOURNAL
 print(hdr + "\n".join(out))
-open(os.path.join(HERE, RESULT), "w").write(hdr + "\n".join(out) + "\n")
+if RESULT:
+    with open(RESULT, "x", encoding="utf-8") as output:
+        output.write(hdr + "\n".join(out) + "\n")
 sys.exit(0 if all(oks) else 1)

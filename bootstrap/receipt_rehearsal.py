@@ -24,6 +24,9 @@ def reconcile(grant, usage, invoice, *, payload, now, acceptance, payment):
               "decision": "hold", "reasons": [], "meter_is_payee": None}
     reasons = result["reasons"]
     needed = ("grant_id", "payload_sha256", "authorizer_id", "provider_id", "meter_id")
+    if not isinstance(grant, dict):
+        reasons.append("invalid_grant_identity")
+        return result
     if not all(isinstance(grant.get(k), str) and grant[k] for k in needed):
         reasons.append("invalid_grant_identity")
     if not all(natural(grant.get(k)) for k in ("cap_micro_usdc", "unit_price_micro_usdc",
@@ -43,6 +46,9 @@ def reconcile(grant, usage, invoice, *, payload, now, acceptance, payment):
         reasons.append("usage_unknown")
         return result
     # An invoice alone is never consumption evidence, even if it has unit fields.
+    if not isinstance(usage, dict):
+        reasons.append("invalid_usage")
+        return result
     if usage.get("kind") != "usage":
         reasons.append("not_usage_evidence")
     for key in ("grant_id", "payload_sha256", "provider_id", "meter_id"):
@@ -65,6 +71,9 @@ def reconcile(grant, usage, invoice, *, payload, now, acceptance, payment):
         reasons.append("authorizer_provider_usage_conflict")
     if invoice is None:
         reasons.append("invoice_missing")
+        return result
+    if not isinstance(invoice, dict):
+        reasons.append("invalid_invoice_kind")
         return result
     if invoice.get("kind") != "invoice":
         reasons.append("invalid_invoice_kind")
@@ -98,11 +107,16 @@ def clean_rows(rows):
     """Synthetic public-data-shaped example: retain sources, reject ambiguous rows."""
     cleaned, rejected, seen = [], [], set()
     for line, row in enumerate(rows, 1):
-        key = str(row.get("id", "")).strip()
-        name = str(row.get("name", "")).strip()
+        if not isinstance(row, dict):
+            rejected.append({"line": line, "reason": "missing_or_invalid_field"})
+            continue
+        key = row.get("id")
+        name = row.get("name")
+        key = key.strip() if isinstance(key, str) else ""
+        name = name.strip() if isinstance(name, str) else ""
         source = row.get("source")
         amount = row.get("amount_micro_usdc")
-        if not key or not name or not isinstance(source, str) or not source or not natural(amount):
+        if not key or not name or not isinstance(source, str) or not source.strip() or not natural(amount):
             rejected.append({"line": line, "reason": "missing_or_invalid_field"})
         elif key in seen:
             rejected.append({"line": line, "reason": "duplicate_id"})

@@ -1,10 +1,8 @@
-name: World model integrity
+name: Testbed verification
 on:
   pull_request:
-    paths: ['world-model/**', 'CLAUDE.md', '.github/workflows/world-model.yml']
   push:
     branches: [main]
-    paths: ['world-model/**', 'CLAUDE.md', '.github/workflows/world-model.yml']
 permissions:
   contents: read
 jobs:
@@ -19,8 +17,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r world-model/requirements.txt
-      - run: python world-model/validate.py --check-schema
-      - run: python -m unittest discover -s world-model -p 'test_*.py'
+      - run: python tools/check.py
       - name: Public-content check
         env:
           PR_BASE: ${{ github.event.pull_request.base.sha }}

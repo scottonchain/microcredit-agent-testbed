@@ -27,6 +27,12 @@ class QTest(unittest.TestCase):
             self.assertIn(" claude ", l)
             self.assertNotIn(" done ", l)
 
+    def test_missing_arguments_unknown_ids_and_invalid_hours_have_usage_errors(self):
+        for arguments in (("-f",), ("-f", "action:missing"), ("--grep",), ("--due", "nan"), ("--due", "-1"), ("--due", "inf")):
+            with self.subTest(arguments=arguments), contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as result:
+                run(*arguments)
+            self.assertEqual(result.exception.code, 2)
+
     def test_grep_and_contains(self):
         _, out = run("--grep", "manager gate")
         self.assertIn("ev:claude-bootstrap-candidate-pr28-20261008", out)

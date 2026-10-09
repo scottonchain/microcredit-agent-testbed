@@ -1,4 +1,5 @@
 import copy, glob, json, os, unittest
+from pathlib import Path
 import tm2
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -8,10 +9,10 @@ MODEL = os.path.join(HERE, "..", "world-model", "model.json")
 class Tm2Test(unittest.TestCase):
     def examples(self, sub="tm2"):
         for f in sorted(glob.glob(os.path.join(HERE, "examples", sub, "*.json"))):
-            yield f, json.load(open(f))
+            yield f, json.loads(Path(f).read_text(encoding="utf-8"))
 
     def test_examples_validate_against_model(self):
-        m = json.load(open(MODEL))
+        m = json.loads(Path(MODEL).read_text(encoding="utf-8"))
         ids = {x["id"] for k in ("entities", "evidence", "claims", "edges", "hypotheses", "actions", "decisions", "open_questions") for x in m[k]}
         for sub in ("tm2", "native"):
             for f, msg in self.examples(sub):
@@ -24,7 +25,7 @@ class Tm2Test(unittest.TestCase):
             self.assertLess(os.path.getsize(f), os.path.getsize(o), f)
 
     def base(self):
-        return copy.deepcopy(json.load(open(os.path.join(HERE, "examples", "tm2", "pool-funding.json"))))
+        return copy.deepcopy(json.loads((Path(HERE) / "examples/tm2/pool-funding.json").read_text(encoding="utf-8")))
 
     def bad(self, mutate, needle):
         m = self.base(); mutate(m)
@@ -55,6 +56,33 @@ class Tm2Test(unittest.TestCase):
     def test_unknown_model_id_is_flagged(self):
         m = self.base(); m["i"][0]["w"] = "action:no-such-action-xyz"
         self.assertTrue(any("not in model" in e for e in tm2.validate(m, {"action:pool-funding-20261019"})))
+
+    def test_malformed_json_types_return_errors_not_exceptions(self):
+        for field in ("f", "k", "rs", "t", "cc"):
+            for value in ([], {}, [[], {}]):
+                with self.subTest(field=field, value=value):
+                    message = self.base()
+                    message[field] = value
+                    self.assertTrue(tm2.validate(message))
+        for field in ("w", "op", "st", "o", "oa"):
+            for value in ([], {}):
+                with self.subTest(field=field, value=value):
+                    message = self.base()
+                    message["i"][0][field] = value
+                    self.assertTrue(tm2.validate(message, set()))
+        self.bad(lambda m: m.update(nd=[{"o": [], "a": "ask"}]), "o in c|x|h")
+
+    def test_invalid_calendar_dates_and_empty_reply_lists(self):
+        for date in ("2026-02-30T12:00Z", "2026-13-01T12:00Z", "2026-10-01T24:00Z"):
+            self.bad(lambda m: m.update(by=date), "bad by")
+        self.bad(lambda m: m.update(re=[]), "bad re")
+        self.bad(lambda m: m.update(v=2.0), "v must be 2")
+        self.bad(lambda m: m.update(t=["h", "h"]), "bad t")
+
+    def test_nonfinite_json_is_rejected(self):
+        message = self.base()
+        message["i"][0]["n"] = {"hyp": float("nan")}
+        self.assertIn("not a finite JSON value", tm2.validate(message))
 
     def test_dump_is_compact_ascii(self):
         s = tm2.dump(self.base())

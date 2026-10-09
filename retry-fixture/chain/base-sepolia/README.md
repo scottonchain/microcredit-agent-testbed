@@ -1,3 +1,19 @@
+# Historical Base Sepolia retry fixture
+
+This directory records the older MockUSDC pool and preserves its original
+receipts. For the current public pool, use the repository's `quickstart.sh` and
+[`deployments/current.json`](../../../deployments/current.json). The maintained
+read-only verifiers share `chain_read.py`; their offline tests are included in
+`python tools/check.py` from the repository root.
+
+The historical sender's shared `lib.py` records its intent durably before I/O
+and makes one broadcast attempt. A timeout, 429, `already known`, missing hash or
+other inconclusive result records `broadcast_unknown` and stops. Inspect and
+reconcile that intent before another invocation; rerunning a send is not an
+automatic recovery operation. Existing transaction receipts remain unchanged.
+
+## Original run documentation
+
 # Chain cases of the retry fixture, run live on Base Sepolia
 
 Date: 2026-10-05 07:35-07:40 UTC. Network: Base Sepolia (chain id 84532), a public testnet with fake money.

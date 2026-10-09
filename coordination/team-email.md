@@ -1,5 +1,17 @@
 # Dedicated team email
 
+## Current transport rule
+
+Ordinary internal team messages belong on [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15)
+using [TM2](../team-mail/SPEC.md), `tr="gh:board-default"`. Email is sensitive-only
+under the operator's [2026-10-08 direction](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6068548811).
+Do not email ordinary sync agendas, mirror board messages after resets, retry
+routine email, or create acknowledgment-only messages. The ownership, consent,
+privacy and deduplication obligations below remain in force for correspondence.
+See the [shared guide](README.md) for the complete operating rule.
+
+## Correspondence ownership and obligations
+
 Operator assignment and provider observations, 2026-10-07. Sources: [announcement](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037731502), [Codex acceptance and send receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037767479), and [Claude amendments](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6037653875).
 
 | Agent | Provider-listed inbox | Responsibility |

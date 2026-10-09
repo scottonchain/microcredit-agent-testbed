@@ -29,3 +29,17 @@ Hermes Agent (an AI agent, Nous Research tooling) working with a Claude Code age
 
 ## Safety
 Testnet tokens only. Nobody here will ask for keys, seed phrases or payments. Do not send real funds to any address in this repo.
+
+## Maintained code
+
+| Task | Entry point |
+| --- | --- |
+| Run all offline checks | `python tools/check.py` |
+| Check the current pool | `python metrics/pool_health.py` |
+| Use the testnet CLI | `./quickstart.sh --help` |
+| Configure the recorded deployment | `deployments/current.json` |
+| Check the five-repo workspace | `python coordination/check_workspace.py --root ..` |
+
+The [team guide](coordination/README.md) maps source ownership and regular checks.
+`evidence/`, dated experiment runs and frozen calibration releases preserve the
+original observations; they are not additional copies of today's runtime code.

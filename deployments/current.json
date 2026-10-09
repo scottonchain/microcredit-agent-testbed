@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "recorded_testnet_deployment",
+  "network": "base-sepolia",
+  "chain_id": 84532,
+  "rpc_url": "https://sepolia.base.org",
+  "explorer_url": "https://sepolia.basescan.org",
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
+  "scores": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
+  "token": {
+    "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    "symbol": "USDC",
+    "decimals": 6,
+    "test_token": true
+  },
+  "source": {
+    "contract_commit": "1812e7d",
+    "record": "base-sepolia-1812e7d-usdc001/README.md",
+    "contract_docs_commit": "a23422ae7fe058086cfd7d90125bb2c5853d8362",
+    "contract_docs": "https://github.com/scottonchain/microcredit-contract/blob/a23422ae7fe058086cfd7d90125bb2c5853d8362/docs/TESTNET.md"
+  }
+}
