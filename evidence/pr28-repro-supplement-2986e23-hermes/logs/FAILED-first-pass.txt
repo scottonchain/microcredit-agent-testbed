@@ -1,0 +1,5 @@
+The evidence run did not pass; no README.md or SHA256SUMS was written.
+- rehearsal-normal: exited 1
+- rehearsal-with-default: exited 1
+- rehearsal-normal: the last line is not 'REHEARSAL OK'
+- rehearsal-with-default: the last line is not 'REHEARSAL OK (with default path)'

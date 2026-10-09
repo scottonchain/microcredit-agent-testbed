@@ -1,0 +1,1836 @@
+Missing dependencies found. Installing now...
+Submodule 'lib/openzeppelin-contracts' (https://github.com/OpenZeppelin/openzeppelin-contracts) registered for path '../../lib/openzeppelin-contracts'
+Cloning into '<CHECKOUT>/lib/openzeppelin-contracts'...
+remote: Enumerating objects: 58630, done.        
+remote: Counting objects:   0% (1/1039)        
+remote: Counting objects:   1% (11/1039)        
+remote: Counting objects:   2% (21/1039)        
+remote: Counting objects:   3% (32/1039)        
+remote: Counting objects:   4% (42/1039)        
+remote: Counting objects:   5% (52/1039)        
+remote: Counting objects:   6% (63/1039)        
+remote: Counting objects:   7% (73/1039)        
+remote: Counting objects:   8% (84/1039)        
+remote: Counting objects:   9% (94/1039)        
+remote: Counting objects:  10% (104/1039)        
+remote: Counting objects:  11% (115/1039)        
+remote: Counting objects:  12% (125/1039)        
+remote: Counting objects:  13% (136/1039)        
+remote: Counting objects:  14% (146/1039)        
+remote: Counting objects:  15% (156/1039)        
+remote: Counting objects:  16% (167/1039)        
+remote: Counting objects:  17% (177/1039)        
+remote: Counting objects:  18% (188/1039)        
+remote: Counting objects:  19% (198/1039)        
+remote: Counting objects:  20% (208/1039)        
+remote: Counting objects:  21% (219/1039)        
+remote: Counting objects:  22% (229/1039)        
+remote: Counting objects:  23% (239/1039)        
+remote: Counting objects:  24% (250/1039)        
+remote: Counting objects:  25% (260/1039)        
+remote: Counting objects:  26% (271/1039)        
+remote: Counting objects:  27% (281/1039)        
+remote: Counting objects:  28% (291/1039)        
+remote: Counting objects:  29% (302/1039)        
+remote: Counting objects:  30% (312/1039)        
+remote: Counting objects:  31% (323/1039)        
+remote: Counting objects:  32% (333/1039)        
+remote: Counting objects:  33% (343/1039)        
+remote: Counting objects:  34% (354/1039)        
+remote: Counting objects:  35% (364/1039)        
+remote: Counting objects:  36% (375/1039)        
+remote: Counting objects:  37% (385/1039)        
+remote: Counting objects:  38% (395/1039)        
+remote: Counting objects:  39% (406/1039)        
+remote: Counting objects:  40% (416/1039)        
+remote: Counting objects:  41% (426/1039)        
+remote: Counting objects:  42% (437/1039)        
+remote: Counting objects:  43% (447/1039)        
+remote: Counting objects:  44% (458/1039)        
+remote: Counting objects:  45% (468/1039)        
+remote: Counting objects:  46% (478/1039)        
+remote: Counting objects:  47% (489/1039)        
+remote: Counting objects:  48% (499/1039)        
+remote: Counting objects:  49% (510/1039)        
+remote: Counting objects:  50% (520/1039)        
+remote: Counting objects:  51% (530/1039)        
+remote: Counting objects:  52% (541/1039)        
+remote: Counting objects:  53% (551/1039)        
+remote: Counting objects:  54% (562/1039)        
+remote: Counting objects:  55% (572/1039)        
+remote: Counting objects:  56% (582/1039)        
+remote: Counting objects:  57% (593/1039)        
+remote: Counting objects:  58% (603/1039)        
+remote: Counting objects:  59% (614/1039)        
+remote: Counting objects:  60% (624/1039)        
+remote: Counting objects:  61% (634/1039)        
+remote: Counting objects:  62% (645/1039)        
+remote: Counting objects:  63% (655/1039)        
+remote: Counting objects:  64% (665/1039)        
+remote: Counting objects:  65% (676/1039)        
+remote: Counting objects:  66% (686/1039)        
+remote: Counting objects:  67% (697/1039)        
+remote: Counting objects:  68% (707/1039)        
+remote: Counting objects:  69% (717/1039)        
+remote: Counting objects:  70% (728/1039)        
+remote: Counting objects:  71% (738/1039)        
+remote: Counting objects:  72% (749/1039)        
+remote: Counting objects:  73% (759/1039)        
+remote: Counting objects:  74% (769/1039)        
+remote: Counting objects:  75% (780/1039)        
+remote: Counting objects:  76% (790/1039)        
+remote: Counting objects:  77% (801/1039)        
+remote: Counting objects:  78% (811/1039)        
+remote: Counting objects:  79% (821/1039)        
+remote: Counting objects:  80% (832/1039)        
+remote: Counting objects:  81% (842/1039)        
+remote: Counting objects:  82% (852/1039)        
+remote: Counting objects:  83% (863/1039)        
+remote: Counting objects:  84% (873/1039)        
+remote: Counting objects:  85% (884/1039)        
+remote: Counting objects:  86% (894/1039)        
+remote: Counting objects:  87% (904/1039)        
+remote: Counting objects:  88% (915/1039)        
+remote: Counting objects:  89% (925/1039)        
+remote: Counting objects:  90% (936/1039)        
+remote: Counting objects:  91% (946/1039)        
+remote: Counting objects:  92% (956/1039)        
+remote: Counting objects:  93% (967/1039)        
+remote: Counting objects:  94% (977/1039)        
+remote: Counting objects:  95% (988/1039)        
+remote: Counting objects:  96% (998/1039)        
+remote: Counting objects:  97% (1008/1039)        
+remote: Counting objects:  98% (1019/1039)        
+remote: Counting objects:  99% (1029/1039)        
+remote: Counting objects: 100% (1039/1039)        
+remote: Counting objects: 100% (1039/1039), done.        
+remote: Compressing objects:   0% (1/677)        
+remote: Compressing objects:   1% (7/677)        
+remote: Compressing objects:   2% (14/677)        
+remote: Compressing objects:   3% (21/677)        
+remote: Compressing objects:   4% (28/677)        
+remote: Compressing objects:   5% (34/677)        
+remote: Compressing objects:   6% (41/677)        
+remote: Compressing objects:   7% (48/677)        
+remote: Compressing objects:   8% (55/677)        
+remote: Compressing objects:   9% (61/677)        
+remote: Compressing objects:  10% (68/677)        
+remote: Compressing objects:  11% (75/677)        
+remote: Compressing objects:  12% (82/677)        
+remote: Compressing objects:  13% (89/677)        
+remote: Compressing objects:  14% (95/677)        
+remote: Compressing objects:  15% (102/677)        
+remote: Compressing objects:  16% (109/677)        
+remote: Compressing objects:  17% (116/677)        
+remote: Compressing objects:  18% (122/677)        
+remote: Compressing objects:  19% (129/677)        
+remote: Compressing objects:  20% (136/677)        
+remote: Compressing objects:  21% (143/677)        
+remote: Compressing objects:  22% (149/677)        
+remote: Compressing objects:  23% (156/677)        
+remote: Compressing objects:  24% (163/677)        
+remote: Compressing objects:  25% (170/677)        
+remote: Compressing objects:  26% (177/677)        
+remote: Compressing objects:  27% (183/677)        
+remote: Compressing objects:  28% (190/677)        
+remote: Compressing objects:  29% (197/677)        
+remote: Compressing objects:  30% (204/677)        
+remote: Compressing objects:  31% (210/677)        
+remote: Compressing objects:  32% (217/677)        
+remote: Compressing objects:  33% (224/677)        
+remote: Compressing objects:  34% (231/677)        
+remote: Compressing objects:  35% (237/677)        
+remote: Compressing objects:  36% (244/677)        
+remote: Compressing objects:  37% (251/677)        
+remote: Compressing objects:  38% (258/677)        
+remote: Compressing objects:  39% (265/677)        
+remote: Compressing objects:  40% (271/677)        
+remote: Compressing objects:  41% (278/677)        
+remote: Compressing objects:  42% (285/677)        
+remote: Compressing objects:  43% (292/677)        
+remote: Compressing objects:  44% (298/677)        
+remote: Compressing objects:  45% (305/677)        
+remote: Compressing objects:  46% (312/677)        
+remote: Compressing objects:  47% (319/677)        
+remote: Compressing objects:  48% (325/677)        
+remote: Compressing objects:  49% (332/677)        
+remote: Compressing objects:  50% (339/677)        
+remote: Compressing objects:  51% (346/677)        
+remote: Compressing objects:  52% (353/677)        
+remote: Compressing objects:  53% (359/677)        
+remote: Compressing objects:  54% (366/677)        
+remote: Compressing objects:  55% (373/677)        
+remote: Compressing objects:  56% (380/677)        
+remote: Compressing objects:  57% (386/677)        
+remote: Compressing objects:  58% (393/677)        
+remote: Compressing objects:  59% (400/677)        
+remote: Compressing objects:  60% (407/677)        
+remote: Compressing objects:  61% (413/677)        
+remote: Compressing objects:  62% (420/677)        
+remote: Compressing objects:  63% (427/677)        
+remote: Compressing objects:  64% (434/677)        
+remote: Compressing objects:  65% (441/677)        
+remote: Compressing objects:  66% (447/677)        
+remote: Compressing objects:  67% (454/677)        
+remote: Compressing objects:  68% (461/677)        
+remote: Compressing objects:  69% (468/677)        
+remote: Compressing objects:  70% (474/677)        
+remote: Compressing objects:  71% (481/677)        
+remote: Compressing objects:  72% (488/677)        
+remote: Compressing objects:  73% (495/677)        
+remote: Compressing objects:  74% (501/677)        
+remote: Compressing objects:  75% (508/677)        
+remote: Compressing objects:  76% (515/677)        
+remote: Compressing objects:  77% (522/677)        
+remote: Compressing objects:  78% (529/677)        
+remote: Compressing objects:  79% (535/677)        
+remote: Compressing objects:  80% (542/677)        
+remote: Compressing objects:  81% (549/677)        
+remote: Compressing objects:  82% (556/677)        
+remote: Compressing objects:  83% (562/677)        
+remote: Compressing objects:  84% (569/677)        
+remote: Compressing objects:  85% (576/677)        
+remote: Compressing objects:  86% (583/677)        
+remote: Compressing objects:  87% (589/677)        
+remote: Compressing objects:  88% (596/677)        
+remote: Compressing objects:  89% (603/677)        
+remote: Compressing objects:  90% (610/677)        
+remote: Compressing objects:  91% (617/677)        
+remote: Compressing objects:  92% (623/677)        
+remote: Compressing objects:  93% (630/677)        
+remote: Compressing objects:  94% (637/677)        
+remote: Compressing objects:  95% (644/677)        
+remote: Compressing objects:  96% (650/677)        
+remote: Compressing objects:  97% (657/677)        
+remote: Compressing objects:  98% (664/677)        
+remote: Compressing objects:  99% (671/677)        
+remote: Compressing objects: 100% (677/677)        
+remote: Compressing objects: 100% (677/677), done.        
+Receiving objects:   0% (1/58630)
+Receiving objects:   1% (587/58630)
+Receiving objects:   2% (1173/58630)
+Receiving objects:   3% (1759/58630)
+Receiving objects:   4% (2346/58630)
+Receiving objects:   5% (2932/58630)
+Receiving objects:   6% (3518/58630)
+Receiving objects:   7% (4105/58630)
+Receiving objects:   8% (4691/58630)
+Receiving objects:   9% (5277/58630)
+Receiving objects:  10% (5863/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  11% (6450/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  12% (7036/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  13% (7622/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  14% (8209/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  15% (8795/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  16% (9381/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  17% (9968/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  18% (10554/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  19% (11140/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  20% (11726/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  21% (12313/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  22% (12899/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  23% (13485/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  24% (14072/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  24% (14539/58630), 2.65 MiB | 5.28 MiB/s
+Receiving objects:  25% (14658/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  26% (15244/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  27% (15831/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  28% (16417/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  29% (17003/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  30% (17589/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  31% (18176/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  32% (18762/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  33% (19348/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  34% (19935/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  35% (20521/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  36% (21107/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  37% (21694/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  38% (22280/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  39% (22866/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  40% (23452/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  41% (24039/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  42% (24625/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  43% (25211/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  44% (25798/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  45% (26384/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  46% (26970/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  47% (27557/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  48% (28143/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  49% (28729/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  50% (29315/58630), 14.96 MiB | 14.95 MiB/s
+Receiving objects:  51% (29902/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  52% (30488/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  53% (31074/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  54% (31661/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  55% (32247/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  56% (32833/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  57% (33420/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  58% (34006/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  59% (34592/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  60% (35178/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  61% (35765/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  62% (36351/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  63% (36937/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  64% (37524/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  65% (38110/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  66% (38696/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  67% (39283/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  68% (39869/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  69% (40455/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  70% (41041/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  71% (41628/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  72% (42214/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  73% (42800/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  74% (43387/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  74% (43814/58630), 26.92 MiB | 17.94 MiB/s
+Receiving objects:  75% (43973/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  76% (44559/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  77% (45146/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  78% (45732/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  79% (46318/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  80% (46904/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  81% (47491/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  82% (48077/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  83% (48663/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  84% (49250/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  85% (49836/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  86% (50422/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  87% (51009/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  88% (51595/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  89% (52181/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  90% (52767/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  91% (53354/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  92% (53940/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  93% (54526/58630), 40.74 MiB | 20.37 MiB/s
+Receiving objects:  94% (55113/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects:  95% (55699/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects:  96% (56285/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects:  97% (56872/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects:  98% (57458/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects:  99% (58044/58630), 50.91 MiB | 20.36 MiB/s
+remote: Total 58630 (delta 680), reused 362 (delta 362), pack-reused 57591 (from 3)        
+Receiving objects: 100% (58630/58630), 50.91 MiB | 20.36 MiB/s
+Receiving objects: 100% (58630/58630), 52.48 MiB | 20.24 MiB/s, done.
+Resolving deltas:   0% (0/37437)
+Resolving deltas:   1% (375/37437)
+Resolving deltas:   2% (749/37437)
+Resolving deltas:   3% (1124/37437)
+Resolving deltas:   4% (1498/37437)
+Resolving deltas:   5% (1872/37437)
+Resolving deltas:   6% (2247/37437)
+Resolving deltas:   7% (2621/37437)
+Resolving deltas:   8% (2995/37437)
+Resolving deltas:   9% (3370/37437)
+Resolving deltas:  10% (3744/37437)
+Resolving deltas:  11% (4119/37437)
+Resolving deltas:  12% (4493/37437)
+Resolving deltas:  13% (4867/37437)
+Resolving deltas:  14% (5242/37437)
+Resolving deltas:  15% (5616/37437)
+Resolving deltas:  16% (5990/37437)
+Resolving deltas:  17% (6365/37437)
+Resolving deltas:  18% (6739/37437)
+Resolving deltas:  19% (7114/37437)
+Resolving deltas:  20% (7488/37437)
+Resolving deltas:  21% (7862/37437)
+Resolving deltas:  22% (8237/37437)
+Resolving deltas:  23% (8611/37437)
+Resolving deltas:  24% (8985/37437)
+Resolving deltas:  25% (9360/37437)
+Resolving deltas:  26% (9734/37437)
+Resolving deltas:  27% (10108/37437)
+Resolving deltas:  28% (10483/37437)
+Resolving deltas:  28% (10508/37437)
+Resolving deltas:  29% (10857/37437)
+Resolving deltas:  30% (11232/37437)
+Resolving deltas:  31% (11606/37437)
+Resolving deltas:  32% (11980/37437)
+Resolving deltas:  33% (12355/37437)
+Resolving deltas:  34% (12729/37437)
+Resolving deltas:  35% (13103/37437)
+Resolving deltas:  36% (13478/37437)
+Resolving deltas:  37% (13852/37437)
+Resolving deltas:  38% (14227/37437)
+Resolving deltas:  39% (14601/37437)
+Resolving deltas:  40% (14975/37437)
+Resolving deltas:  41% (15350/37437)
+Resolving deltas:  42% (15724/37437)
+Resolving deltas:  43% (16098/37437)
+Resolving deltas:  44% (16473/37437)
+Resolving deltas:  45% (16847/37437)
+Resolving deltas:  45% (17118/37437)
+Resolving deltas:  46% (17222/37437)
+Resolving deltas:  47% (17596/37437)
+Resolving deltas:  48% (17970/37437)
+Resolving deltas:  49% (18345/37437)
+Resolving deltas:  50% (18719/37437)
+Resolving deltas:  51% (19093/37437)
+Resolving deltas:  52% (19468/37437)
+Resolving deltas:  53% (19842/37437)
+Resolving deltas:  53% (20200/37437)
+Resolving deltas:  54% (20216/37437)
+Resolving deltas:  55% (20591/37437)
+Resolving deltas:  56% (20965/37437)
+Resolving deltas:  57% (21340/37437)
+Resolving deltas:  58% (21714/37437)
+Resolving deltas:  59% (22088/37437)
+Resolving deltas:  60% (22463/37437)
+Resolving deltas:  61% (22837/37437)
+Resolving deltas:  61% (23118/37437)
+Resolving deltas:  62% (23211/37437)
+Resolving deltas:  63% (23586/37437)
+Resolving deltas:  64% (23960/37437)
+Resolving deltas:  65% (24335/37437)
+Resolving deltas:  66% (24709/37437)
+Resolving deltas:  67% (25083/37437)
+Resolving deltas:  68% (25458/37437)
+Resolving deltas:  69% (25832/37437)
+Resolving deltas:  70% (26206/37437)
+Resolving deltas:  71% (26581/37437)
+Resolving deltas:  72% (26955/37437)
+Resolving deltas:  73% (27330/37437)
+Resolving deltas:  74% (27704/37437)
+Resolving deltas:  75% (28078/37437)
+Resolving deltas:  76% (28453/37437)
+Resolving deltas:  77% (28827/37437)
+Resolving deltas:  78% (29201/37437)
+Resolving deltas:  79% (29576/37437)
+Resolving deltas:  80% (29950/37437)
+Resolving deltas:  81% (30324/37437)
+Resolving deltas:  82% (30699/37437)
+Resolving deltas:  83% (31073/37437)
+Resolving deltas:  83% (31424/37437)
+Resolving deltas:  84% (31448/37437)
+Resolving deltas:  85% (31822/37437)
+Resolving deltas:  86% (32196/37437)
+Resolving deltas:  87% (32571/37437)
+Resolving deltas:  88% (32945/37437)
+Resolving deltas:  89% (33319/37437)
+Resolving deltas:  90% (33694/37437)
+Resolving deltas:  91% (34068/37437)
+Resolving deltas:  92% (34443/37437)
+Resolving deltas:  93% (34817/37437)
+Resolving deltas:  94% (35191/37437)
+Resolving deltas:  95% (35566/37437)
+Resolving deltas:  96% (35940/37437)
+Resolving deltas:  97% (36314/37437)
+Resolving deltas:  98% (36689/37437)
+Resolving deltas:  99% (37063/37437)
+Resolving deltas: 100% (37437/37437)
+Resolving deltas: 100% (37437/37437), done.
+Submodule 'lib/erc4626-tests' (https://github.com/a16z/erc4626-tests.git) registered for path '../../lib/openzeppelin-contracts/lib/erc4626-tests'
+Submodule 'lib/forge-std' (https://github.com/foundry-rs/forge-std) registered for path '../../lib/openzeppelin-contracts/lib/forge-std'
+Submodule 'lib/halmos-cheatcodes' (https://github.com/a16z/halmos-cheatcodes) registered for path '../../lib/openzeppelin-contracts/lib/halmos-cheatcodes'
+Cloning into '<CHECKOUT>/lib/openzeppelin-contracts/lib/erc4626-tests'...
+remote: Enumerating objects: 32, done.        
+remote: Counting objects:   3% (1/26)        
+remote: Counting objects:   7% (2/26)        
+remote: Counting objects:  11% (3/26)        
+remote: Counting objects:  15% (4/26)        
+remote: Counting objects:  19% (5/26)        
+remote: Counting objects:  23% (6/26)        
+remote: Counting objects:  26% (7/26)        
+remote: Counting objects:  30% (8/26)        
+remote: Counting objects:  34% (9/26)        
+remote: Counting objects:  38% (10/26)        
+remote: Counting objects:  42% (11/26)        
+remote: Counting objects:  46% (12/26)        
+remote: Counting objects:  50% (13/26)        
+remote: Counting objects:  53% (14/26)        
+remote: Counting objects:  57% (15/26)        
+remote: Counting objects:  61% (16/26)        
+remote: Counting objects:  65% (17/26)        
+remote: Counting objects:  69% (18/26)        
+remote: Counting objects:  73% (19/26)        
+remote: Counting objects:  76% (20/26)        
+remote: Counting objects:  80% (21/26)        
+remote: Counting objects:  84% (22/26)        
+remote: Counting objects:  88% (23/26)        
+remote: Counting objects:  92% (24/26)        
+remote: Counting objects:  96% (25/26)        
+remote: Counting objects: 100% (26/26)        
+remote: Counting objects: 100% (26/26), done.        
+remote: Compressing objects:   5% (1/20)        
+remote: Compressing objects:  10% (2/20)        
+remote: Compressing objects:  15% (3/20)        
+remote: Compressing objects:  20% (4/20)        
+remote: Compressing objects:  25% (5/20)        
+remote: Compressing objects:  30% (6/20)        
+remote: Compressing objects:  35% (7/20)        
+remote: Compressing objects:  40% (8/20)        
+remote: Compressing objects:  45% (9/20)        
+remote: Compressing objects:  50% (10/20)        
+remote: Compressing objects:  55% (11/20)        
+remote: Compressing objects:  60% (12/20)        
+remote: Compressing objects:  65% (13/20)        
+remote: Compressing objects:  70% (14/20)        
+remote: Compressing objects:  75% (15/20)        
+remote: Compressing objects:  80% (16/20)        
+remote: Compressing objects:  85% (17/20)        
+remote: Compressing objects:  90% (18/20)        
+remote: Compressing objects:  95% (19/20)        
+remote: Compressing objects: 100% (20/20)        
+remote: Compressing objects: 100% (20/20), done.        
+Receiving objects:   3% (1/32)
+remote: Total 32 (delta 15), reused 9 (delta 4), pack-reused 6 (from 1)        
+Receiving objects:   6% (2/32)
+Receiving objects:   9% (3/32)
+Receiving objects:  12% (4/32)
+Receiving objects:  15% (5/32)
+Receiving objects:  18% (6/32)
+Receiving objects:  21% (7/32)
+Receiving objects:  25% (8/32)
+Receiving objects:  28% (9/32)
+Receiving objects:  31% (10/32)
+Receiving objects:  34% (11/32)
+Receiving objects:  37% (12/32)
+Receiving objects:  40% (13/32)
+Receiving objects:  43% (14/32)
+Receiving objects:  46% (15/32)
+Receiving objects:  50% (16/32)
+Receiving objects:  53% (17/32)
+Receiving objects:  56% (18/32)
+Receiving objects:  59% (19/32)
+Receiving objects:  62% (20/32)
+Receiving objects:  65% (21/32)
+Receiving objects:  68% (22/32)
+Receiving objects:  71% (23/32)
+Receiving objects:  75% (24/32)
+Receiving objects:  78% (25/32)
+Receiving objects:  81% (26/32)
+Receiving objects:  84% (27/32)
+Receiving objects:  87% (28/32)
+Receiving objects:  90% (29/32)
+Receiving objects:  93% (30/32)
+Receiving objects:  96% (31/32)
+Receiving objects: 100% (32/32)
+Receiving objects: 100% (32/32), 29.84 KiB | 898.00 KiB/s, done.
+Resolving deltas:   0% (0/15)
+Resolving deltas:   6% (1/15)
+Resolving deltas:  13% (2/15)
+Resolving deltas:  20% (3/15)
+Resolving deltas:  26% (4/15)
+Resolving deltas:  33% (5/15)
+Resolving deltas:  40% (6/15)
+Resolving deltas:  46% (7/15)
+Resolving deltas:  53% (8/15)
+Resolving deltas:  60% (9/15)
+Resolving deltas:  66% (10/15)
+Resolving deltas:  73% (11/15)
+Resolving deltas:  80% (12/15)
+Resolving deltas:  86% (13/15)
+Resolving deltas:  93% (14/15)
+Resolving deltas: 100% (15/15)
+Resolving deltas: 100% (15/15), done.
+Cloning into '<CHECKOUT>/lib/openzeppelin-contracts/lib/forge-std'...
+remote: Enumerating objects: 3250, done.        
+remote: Counting objects:   0% (1/473)        
+remote: Counting objects:   1% (5/473)        
+remote: Counting objects:   2% (10/473)        
+remote: Counting objects:   3% (15/473)        
+remote: Counting objects:   4% (19/473)        
+remote: Counting objects:   5% (24/473)        
+remote: Counting objects:   6% (29/473)        
+remote: Counting objects:   7% (34/473)        
+remote: Counting objects:   8% (38/473)        
+remote: Counting objects:   9% (43/473)        
+remote: Counting objects:  10% (48/473)        
+remote: Counting objects:  11% (53/473)        
+remote: Counting objects:  12% (57/473)        
+remote: Counting objects:  13% (62/473)        
+remote: Counting objects:  14% (67/473)        
+remote: Counting objects:  15% (71/473)        
+remote: Counting objects:  16% (76/473)        
+remote: Counting objects:  17% (81/473)        
+remote: Counting objects:  18% (86/473)        
+remote: Counting objects:  19% (90/473)        
+remote: Counting objects:  20% (95/473)        
+remote: Counting objects:  21% (100/473)        
+remote: Counting objects:  22% (105/473)        
+remote: Counting objects:  23% (109/473)        
+remote: Counting objects:  24% (114/473)        
+remote: Counting objects:  25% (119/473)        
+remote: Counting objects:  26% (123/473)        
+remote: Counting objects:  27% (128/473)        
+remote: Counting objects:  28% (133/473)        
+remote: Counting objects:  29% (138/473)        
+remote: Counting objects:  30% (142/473)        
+remote: Counting objects:  31% (147/473)        
+remote: Counting objects:  32% (152/473)        
+remote: Counting objects:  33% (157/473)        
+remote: Counting objects:  34% (161/473)        
+remote: Counting objects:  35% (166/473)        
+remote: Counting objects:  36% (171/473)        
+remote: Counting objects:  37% (176/473)        
+remote: Counting objects:  38% (180/473)        
+remote: Counting objects:  39% (185/473)        
+remote: Counting objects:  40% (190/473)        
+remote: Counting objects:  41% (194/473)        
+remote: Counting objects:  42% (199/473)        
+remote: Counting objects:  43% (204/473)        
+remote: Counting objects:  44% (209/473)        
+remote: Counting objects:  45% (213/473)        
+remote: Counting objects:  46% (218/473)        
+remote: Counting objects:  47% (223/473)        
+remote: Counting objects:  48% (228/473)        
+remote: Counting objects:  49% (232/473)        
+remote: Counting objects:  50% (237/473)        
+remote: Counting objects:  51% (242/473)        
+remote: Counting objects:  52% (246/473)        
+remote: Counting objects:  53% (251/473)        
+remote: Counting objects:  54% (256/473)        
+remote: Counting objects:  55% (261/473)        
+remote: Counting objects:  56% (265/473)        
+remote: Counting objects:  57% (270/473)        
+remote: Counting objects:  58% (275/473)        
+remote: Counting objects:  59% (280/473)        
+remote: Counting objects:  60% (284/473)        
+remote: Counting objects:  61% (289/473)        
+remote: Counting objects:  62% (294/473)        
+remote: Counting objects:  63% (298/473)        
+remote: Counting objects:  64% (303/473)        
+remote: Counting objects:  65% (308/473)        
+remote: Counting objects:  66% (313/473)        
+remote: Counting objects:  67% (317/473)        
+remote: Counting objects:  68% (322/473)        
+remote: Counting objects:  69% (327/473)        
+remote: Counting objects:  70% (332/473)        
+remote: Counting objects:  71% (336/473)        
+remote: Counting objects:  72% (341/473)        
+remote: Counting objects:  73% (346/473)        
+remote: Counting objects:  74% (351/473)        
+remote: Counting objects:  75% (355/473)        
+remote: Counting objects:  76% (360/473)        
+remote: Counting objects:  77% (365/473)        
+remote: Counting objects:  78% (369/473)        
+remote: Counting objects:  79% (374/473)        
+remote: Counting objects:  80% (379/473)        
+remote: Counting objects:  81% (384/473)        
+remote: Counting objects:  82% (388/473)        
+remote: Counting objects:  83% (393/473)        
+remote: Counting objects:  84% (398/473)        
+remote: Counting objects:  85% (403/473)        
+remote: Counting objects:  86% (407/473)        
+remote: Counting objects:  87% (412/473)        
+remote: Counting objects:  88% (417/473)        
+remote: Counting objects:  89% (421/473)        
+remote: Counting objects:  90% (426/473)        
+remote: Counting objects:  91% (431/473)        
+remote: Counting objects:  92% (436/473)        
+remote: Counting objects:  93% (440/473)        
+remote: Counting objects:  94% (445/473)        
+remote: Counting objects:  95% (450/473)        
+remote: Counting objects:  96% (455/473)        
+remote: Counting objects:  97% (459/473)        
+remote: Counting objects:  98% (464/473)        
+remote: Counting objects:  99% (469/473)        
+remote: Counting objects: 100% (473/473)        
+remote: Counting objects: 100% (473/473), done.        
+remote: Compressing objects:   0% (1/211)        
+remote: Compressing objects:   1% (3/211)        
+remote: Compressing objects:   2% (5/211)        
+remote: Compressing objects:   3% (7/211)        
+remote: Compressing objects:   4% (9/211)        
+remote: Compressing objects:   5% (11/211)        
+remote: Compressing objects:   6% (13/211)        
+remote: Compressing objects:   7% (15/211)        
+remote: Compressing objects:   8% (17/211)        
+remote: Compressing objects:   9% (19/211)        
+remote: Compressing objects:  10% (22/211)        
+remote: Compressing objects:  11% (24/211)        
+remote: Compressing objects:  12% (26/211)        
+remote: Compressing objects:  13% (28/211)        
+remote: Compressing objects:  14% (30/211)        
+remote: Compressing objects:  15% (32/211)        
+remote: Compressing objects:  16% (34/211)        
+remote: Compressing objects:  17% (36/211)        
+remote: Compressing objects:  18% (38/211)        
+remote: Compressing objects:  19% (41/211)        
+remote: Compressing objects:  20% (43/211)        
+remote: Compressing objects:  21% (45/211)        
+remote: Compressing objects:  22% (47/211)        
+remote: Compressing objects:  23% (49/211)        
+remote: Compressing objects:  24% (51/211)        
+remote: Compressing objects:  25% (53/211)        
+remote: Compressing objects:  26% (55/211)        
+remote: Compressing objects:  27% (57/211)        
+remote: Compressing objects:  28% (60/211)        
+remote: Compressing objects:  29% (62/211)        
+remote: Compressing objects:  30% (64/211)        
+remote: Compressing objects:  31% (66/211)        
+remote: Compressing objects:  32% (68/211)        
+remote: Compressing objects:  33% (70/211)        
+remote: Compressing objects:  34% (72/211)        
+remote: Compressing objects:  35% (74/211)        
+remote: Compressing objects:  36% (76/211)        
+remote: Compressing objects:  37% (79/211)        
+remote: Compressing objects:  38% (81/211)        
+remote: Compressing objects:  39% (83/211)        
+remote: Compressing objects:  40% (85/211)        
+remote: Compressing objects:  41% (87/211)        
+remote: Compressing objects:  42% (89/211)        
+remote: Compressing objects:  43% (91/211)        
+remote: Compressing objects:  44% (93/211)        
+remote: Compressing objects:  45% (95/211)        
+remote: Compressing objects:  46% (98/211)        
+remote: Compressing objects:  47% (100/211)        
+remote: Compressing objects:  48% (102/211)        
+remote: Compressing objects:  49% (104/211)        
+remote: Compressing objects:  50% (106/211)        
+remote: Compressing objects:  51% (108/211)        
+remote: Compressing objects:  52% (110/211)        
+remote: Compressing objects:  53% (112/211)        
+remote: Compressing objects:  54% (114/211)        
+remote: Compressing objects:  55% (117/211)        
+remote: Compressing objects:  56% (119/211)        
+remote: Compressing objects:  57% (121/211)        
+remote: Compressing objects:  58% (123/211)        
+remote: Compressing objects:  59% (125/211)        
+remote: Compressing objects:  60% (127/211)        
+remote: Compressing objects:  61% (129/211)        
+remote: Compressing objects:  62% (131/211)        
+remote: Compressing objects:  63% (133/211)        
+remote: Compressing objects:  64% (136/211)        
+remote: Compressing objects:  65% (138/211)        
+remote: Compressing objects:  66% (140/211)        
+remote: Compressing objects:  67% (142/211)        
+remote: Compressing objects:  68% (144/211)        
+remote: Compressing objects:  69% (146/211)        
+remote: Compressing objects:  70% (148/211)        
+remote: Compressing objects:  71% (150/211)        
+remote: Compressing objects:  72% (152/211)        
+remote: Compressing objects:  73% (155/211)        
+remote: Compressing objects:  74% (157/211)        
+remote: Compressing objects:  75% (159/211)        
+remote: Compressing objects:  76% (161/211)        
+remote: Compressing objects:  77% (163/211)        
+remote: Compressing objects:  78% (165/211)        
+remote: Compressing objects:  79% (167/211)        
+remote: Compressing objects:  80% (169/211)        
+remote: Compressing objects:  81% (171/211)        
+remote: Compressing objects:  82% (174/211)        
+remote: Compressing objects:  83% (176/211)        
+remote: Compressing objects:  84% (178/211)        
+remote: Compressing objects:  85% (180/211)        
+remote: Compressing objects:  86% (182/211)        
+remote: Compressing objects:  87% (184/211)        
+remote: Compressing objects:  88% (186/211)        
+remote: Compressing objects:  89% (188/211)        
+remote: Compressing objects:  90% (190/211)        
+remote: Compressing objects:  91% (193/211)        
+remote: Compressing objects:  92% (195/211)        
+remote: Compressing objects:  93% (197/211)        
+remote: Compressing objects:  94% (199/211)        
+remote: Compressing objects:  95% (201/211)        
+remote: Compressing objects:  96% (203/211)        
+remote: Compressing objects:  97% (205/211)        
+remote: Compressing objects:  98% (207/211)        
+remote: Compressing objects:  99% (209/211)        
+remote: Compressing objects: 100% (211/211)        
+remote: Compressing objects: 100% (211/211), done.        
+Receiving objects:   0% (1/3250)
+Receiving objects:   1% (33/3250)
+Receiving objects:   2% (65/3250)
+Receiving objects:   3% (98/3250)
+Receiving objects:   4% (130/3250)
+Receiving objects:   5% (163/3250)
+Receiving objects:   6% (195/3250)
+Receiving objects:   7% (228/3250)
+Receiving objects:   8% (260/3250)
+Receiving objects:   9% (293/3250)
+Receiving objects:  10% (325/3250)
+Receiving objects:  11% (358/3250)
+Receiving objects:  12% (390/3250)
+Receiving objects:  13% (423/3250)
+Receiving objects:  14% (455/3250)
+Receiving objects:  15% (488/3250)
+Receiving objects:  16% (520/3250)
+Receiving objects:  17% (553/3250)
+Receiving objects:  18% (585/3250)
+Receiving objects:  19% (618/3250)
+Receiving objects:  20% (650/3250)
+Receiving objects:  21% (683/3250)
+Receiving objects:  22% (715/3250)
+Receiving objects:  23% (748/3250)
+Receiving objects:  24% (780/3250)
+Receiving objects:  25% (813/3250)
+Receiving objects:  26% (845/3250)
+Receiving objects:  27% (878/3250)
+Receiving objects:  28% (910/3250)
+Receiving objects:  29% (943/3250)
+Receiving objects:  30% (975/3250)
+Receiving objects:  31% (1008/3250)
+Receiving objects:  32% (1040/3250)
+Receiving objects:  33% (1073/3250)
+Receiving objects:  34% (1105/3250)
+Receiving objects:  35% (1138/3250)
+Receiving objects:  36% (1170/3250)
+Receiving objects:  37% (1203/3250)
+Receiving objects:  38% (1235/3250)
+Receiving objects:  39% (1268/3250)
+Receiving objects:  40% (1300/3250)
+Receiving objects:  41% (1333/3250)
+Receiving objects:  42% (1365/3250)
+Receiving objects:  43% (1398/3250)
+Receiving objects:  44% (1430/3250)
+Receiving objects:  45% (1463/3250)
+Receiving objects:  46% (1495/3250)
+Receiving objects:  47% (1528/3250)
+Receiving objects:  48% (1560/3250)
+Receiving objects:  49% (1593/3250)
+Receiving objects:  50% (1625/3250)
+Receiving objects:  51% (1658/3250)
+Receiving objects:  52% (1690/3250)
+Receiving objects:  53% (1723/3250)
+Receiving objects:  54% (1755/3250)
+Receiving objects:  55% (1788/3250)
+Receiving objects:  56% (1820/3250)
+Receiving objects:  57% (1853/3250)
+Receiving objects:  58% (1885/3250)
+Receiving objects:  59% (1918/3250)
+Receiving objects:  60% (1950/3250)
+Receiving objects:  61% (1983/3250)
+Receiving objects:  62% (2015/3250)
+Receiving objects:  63% (2048/3250)
+Receiving objects:  64% (2080/3250)
+Receiving objects:  65% (2113/3250)
+Receiving objects:  66% (2145/3250)
+Receiving objects:  67% (2178/3250)
+Receiving objects:  68% (2210/3250)
+Receiving objects:  69% (2243/3250)
+Receiving objects:  70% (2275/3250)
+Receiving objects:  71% (2308/3250)
+Receiving objects:  72% (2340/3250)
+Receiving objects:  73% (2373/3250)
+Receiving objects:  74% (2405/3250)
+Receiving objects:  75% (2438/3250)
+Receiving objects:  76% (2470/3250)
+Receiving objects:  77% (2503/3250)
+Receiving objects:  78% (2535/3250)
+Receiving objects:  79% (2568/3250)
+Receiving objects:  80% (2600/3250)
+Receiving objects:  81% (2633/3250)
+Receiving objects:  82% (2665/3250)
+Receiving objects:  83% (2698/3250)
+Receiving objects:  84% (2730/3250)
+Receiving objects:  85% (2763/3250)
+Receiving objects:  86% (2795/3250)
+Receiving objects:  87% (2828/3250)
+Receiving objects:  88% (2860/3250)
+Receiving objects:  89% (2893/3250)
+Receiving objects:  90% (2925/3250)
+Receiving objects:  91% (2958/3250)
+Receiving objects:  92% (2990/3250)
+Receiving objects:  93% (3023/3250)
+Receiving objects:  94% (3055/3250)
+Receiving objects:  95% (3088/3250)
+Receiving objects:  96% (3120/3250)
+remote: Total 3250 (delta 420), reused 262 (delta 262), pack-reused 2777 (from 4)        
+Receiving objects:  97% (3153/3250)
+Receiving objects:  98% (3185/3250)
+Receiving objects:  99% (3218/3250)
+Receiving objects: 100% (3250/3250)
+Receiving objects: 100% (3250/3250), 1.29 MiB | 4.94 MiB/s, done.
+Resolving deltas:   0% (0/2178)
+Resolving deltas:   1% (22/2178)
+Resolving deltas:   2% (44/2178)
+Resolving deltas:   3% (66/2178)
+Resolving deltas:   4% (88/2178)
+Resolving deltas:   5% (109/2178)
+Resolving deltas:   6% (131/2178)
+Resolving deltas:   7% (153/2178)
+Resolving deltas:   8% (175/2178)
+Resolving deltas:   9% (197/2178)
+Resolving deltas:  10% (218/2178)
+Resolving deltas:  11% (240/2178)
+Resolving deltas:  12% (262/2178)
+Resolving deltas:  13% (284/2178)
+Resolving deltas:  14% (305/2178)
+Resolving deltas:  15% (327/2178)
+Resolving deltas:  16% (349/2178)
+Resolving deltas:  17% (371/2178)
+Resolving deltas:  18% (393/2178)
+Resolving deltas:  19% (414/2178)
+Resolving deltas:  20% (436/2178)
+Resolving deltas:  21% (458/2178)
+Resolving deltas:  22% (480/2178)
+Resolving deltas:  23% (501/2178)
+Resolving deltas:  24% (523/2178)
+Resolving deltas:  25% (545/2178)
+Resolving deltas:  26% (567/2178)
+Resolving deltas:  27% (589/2178)
+Resolving deltas:  28% (610/2178)
+Resolving deltas:  29% (632/2178)
+Resolving deltas:  30% (654/2178)
+Resolving deltas:  31% (676/2178)
+Resolving deltas:  32% (697/2178)
+Resolving deltas:  33% (719/2178)
+Resolving deltas:  34% (741/2178)
+Resolving deltas:  35% (763/2178)
+Resolving deltas:  36% (785/2178)
+Resolving deltas:  37% (806/2178)
+Resolving deltas:  38% (828/2178)
+Resolving deltas:  39% (850/2178)
+Resolving deltas:  40% (872/2178)
+Resolving deltas:  41% (893/2178)
+Resolving deltas:  42% (915/2178)
+Resolving deltas:  43% (937/2178)
+Resolving deltas:  44% (959/2178)
+Resolving deltas:  45% (981/2178)
+Resolving deltas:  46% (1002/2178)
+Resolving deltas:  47% (1024/2178)
+Resolving deltas:  48% (1046/2178)
+Resolving deltas:  49% (1068/2178)
+Resolving deltas:  50% (1089/2178)
+Resolving deltas:  51% (1111/2178)
+Resolving deltas:  52% (1133/2178)
+Resolving deltas:  53% (1155/2178)
+Resolving deltas:  54% (1177/2178)
+Resolving deltas:  55% (1198/2178)
+Resolving deltas:  56% (1220/2178)
+Resolving deltas:  57% (1242/2178)
+Resolving deltas:  58% (1264/2178)
+Resolving deltas:  59% (1286/2178)
+Resolving deltas:  60% (1307/2178)
+Resolving deltas:  61% (1329/2178)
+Resolving deltas:  62% (1351/2178)
+Resolving deltas:  63% (1373/2178)
+Resolving deltas:  64% (1394/2178)
+Resolving deltas:  65% (1416/2178)
+Resolving deltas:  66% (1438/2178)
+Resolving deltas:  67% (1460/2178)
+Resolving deltas:  68% (1482/2178)
+Resolving deltas:  69% (1503/2178)
+Resolving deltas:  70% (1525/2178)
+Resolving deltas:  71% (1547/2178)
+Resolving deltas:  72% (1569/2178)
+Resolving deltas:  73% (1590/2178)
+Resolving deltas:  74% (1612/2178)
+Resolving deltas:  75% (1634/2178)
+Resolving deltas:  76% (1656/2178)
+Resolving deltas:  77% (1678/2178)
+Resolving deltas:  78% (1699/2178)
+Resolving deltas:  79% (1721/2178)
+Resolving deltas:  80% (1743/2178)
+Resolving deltas:  81% (1765/2178)
+Resolving deltas:  82% (1786/2178)
+Resolving deltas:  83% (1808/2178)
+Resolving deltas:  84% (1830/2178)
+Resolving deltas:  85% (1852/2178)
+Resolving deltas:  86% (1874/2178)
+Resolving deltas:  87% (1895/2178)
+Resolving deltas:  88% (1917/2178)
+Resolving deltas:  89% (1939/2178)
+Resolving deltas:  90% (1961/2178)
+Resolving deltas:  91% (1982/2178)
+Resolving deltas:  92% (2004/2178)
+Resolving deltas:  93% (2026/2178)
+Resolving deltas:  94% (2048/2178)
+Resolving deltas:  95% (2070/2178)
+Resolving deltas:  96% (2091/2178)
+Resolving deltas:  97% (2113/2178)
+Resolving deltas:  98% (2135/2178)
+Resolving deltas:  99% (2157/2178)
+Resolving deltas: 100% (2178/2178)
+Resolving deltas: 100% (2178/2178), done.
+Cloning into '<CHECKOUT>/lib/openzeppelin-contracts/lib/halmos-cheatcodes'...
+remote: Enumerating objects: 47, done.        
+remote: Counting objects:   2% (1/47)        
+remote: Counting objects:   4% (2/47)        
+remote: Counting objects:   6% (3/47)        
+remote: Counting objects:   8% (4/47)        
+remote: Counting objects:  10% (5/47)        
+remote: Counting objects:  12% (6/47)        
+remote: Counting objects:  14% (7/47)        
+remote: Counting objects:  17% (8/47)        
+remote: Counting objects:  19% (9/47)        
+remote: Counting objects:  21% (10/47)        
+remote: Counting objects:  23% (11/47)        
+remote: Counting objects:  25% (12/47)        
+remote: Counting objects:  27% (13/47)        
+remote: Counting objects:  29% (14/47)        
+remote: Counting objects:  31% (15/47)        
+remote: Counting objects:  34% (16/47)        
+remote: Counting objects:  36% (17/47)        
+remote: Counting objects:  38% (18/47)        
+remote: Counting objects:  40% (19/47)        
+remote: Counting objects:  42% (20/47)        
+remote: Counting objects:  44% (21/47)        
+remote: Counting objects:  46% (22/47)        
+remote: Counting objects:  48% (23/47)        
+remote: Counting objects:  51% (24/47)        
+remote: Counting objects:  53% (25/47)        
+remote: Counting objects:  55% (26/47)        
+remote: Counting objects:  57% (27/47)        
+remote: Counting objects:  59% (28/47)        
+remote: Counting objects:  61% (29/47)        
+remote: Counting objects:  63% (30/47)        
+remote: Counting objects:  65% (31/47)        
+remote: Counting objects:  68% (32/47)        
+remote: Counting objects:  70% (33/47)        
+remote: Counting objects:  72% (34/47)        
+remote: Counting objects:  74% (35/47)        
+remote: Counting objects:  76% (36/47)        
+remote: Counting objects:  78% (37/47)        
+remote: Counting objects:  80% (38/47)        
+remote: Counting objects:  82% (39/47)        
+remote: Counting objects:  85% (40/47)        
+remote: Counting objects:  87% (41/47)        
+remote: Counting objects:  89% (42/47)        
+remote: Counting objects:  91% (43/47)        
+remote: Counting objects:  93% (44/47)        
+remote: Counting objects:  95% (45/47)        
+remote: Counting objects:  97% (46/47)        
+remote: Counting objects: 100% (47/47)        
+remote: Counting objects: 100% (47/47), done.        
+remote: Compressing objects:   2% (1/37)        
+remote: Compressing objects:   5% (2/37)        
+remote: Compressing objects:   8% (3/37)        
+remote: Compressing objects:  10% (4/37)        
+remote: Compressing objects:  13% (5/37)        
+remote: Compressing objects:  16% (6/37)        
+remote: Compressing objects:  18% (7/37)        
+remote: Compressing objects:  21% (8/37)        
+remote: Compressing objects:  24% (9/37)        
+remote: Compressing objects:  27% (10/37)        
+remote: Compressing objects:  29% (11/37)        
+remote: Compressing objects:  32% (12/37)        
+remote: Compressing objects:  35% (13/37)        
+remote: Compressing objects:  37% (14/37)        
+remote: Compressing objects:  40% (15/37)        
+remote: Compressing objects:  43% (16/37)        
+remote: Compressing objects:  45% (17/37)        
+remote: Compressing objects:  48% (18/37)        
+remote: Compressing objects:  51% (19/37)        
+remote: Compressing objects:  54% (20/37)        
+remote: Compressing objects:  56% (21/37)        
+remote: Compressing objects:  59% (22/37)        
+remote: Compressing objects:  62% (23/37)        
+remote: Compressing objects:  64% (24/37)        
+remote: Compressing objects:  67% (25/37)        
+remote: Compressing objects:  70% (26/37)        
+remote: Compressing objects:  72% (27/37)        
+remote: Compressing objects:  75% (28/37)        
+remote: Compressing objects:  78% (29/37)        
+remote: Compressing objects:  81% (30/37)        
+remote: Compressing objects:  83% (31/37)        
+remote: Compressing objects:  86% (32/37)        
+remote: Compressing objects:  89% (33/37)        
+remote: Compressing objects:  91% (34/37)        
+remote: Compressing objects:  94% (35/37)        
+remote: Compressing objects:  97% (36/37)        
+remote: Compressing objects: 100% (37/37)        
+remote: Compressing objects: 100% (37/37), done.        
+remote: Total 47 (delta 19), reused 25 (delta 10), pack-reused 0 (from 0)        
+Receiving objects:   2% (1/47)
+Receiving objects:   4% (2/47)
+Receiving objects:   6% (3/47)
+Receiving objects:   8% (4/47)
+Receiving objects:  10% (5/47)
+Receiving objects:  12% (6/47)
+Receiving objects:  14% (7/47)
+Receiving objects:  17% (8/47)
+Receiving objects:  19% (9/47)
+Receiving objects:  21% (10/47)
+Receiving objects:  23% (11/47)
+Receiving objects:  25% (12/47)
+Receiving objects:  27% (13/47)
+Receiving objects:  29% (14/47)
+Receiving objects:  31% (15/47)
+Receiving objects:  34% (16/47)
+Receiving objects:  36% (17/47)
+Receiving objects:  38% (18/47)
+Receiving objects:  40% (19/47)
+Receiving objects:  42% (20/47)
+Receiving objects:  44% (21/47)
+Receiving objects:  46% (22/47)
+Receiving objects:  48% (23/47)
+Receiving objects:  51% (24/47)
+Receiving objects:  53% (25/47)
+Receiving objects:  55% (26/47)
+Receiving objects:  57% (27/47)
+Receiving objects:  59% (28/47)
+Receiving objects:  61% (29/47)
+Receiving objects:  63% (30/47)
+Receiving objects:  65% (31/47)
+Receiving objects:  68% (32/47)
+Receiving objects:  70% (33/47)
+Receiving objects:  72% (34/47)
+Receiving objects:  74% (35/47)
+Receiving objects:  76% (36/47)
+Receiving objects:  78% (37/47)
+Receiving objects:  80% (38/47)
+Receiving objects:  82% (39/47)
+Receiving objects:  85% (40/47)
+Receiving objects:  87% (41/47)
+Receiving objects:  89% (42/47)
+Receiving objects:  91% (43/47)
+Receiving objects:  93% (44/47)
+Receiving objects:  95% (45/47)
+Receiving objects:  97% (46/47)
+Receiving objects: 100% (47/47)
+Receiving objects: 100% (47/47), 24.40 KiB | 8.13 MiB/s, done.
+Resolving deltas:   0% (0/19)
+Resolving deltas:   5% (1/19)
+Resolving deltas:  10% (2/19)
+Resolving deltas:  15% (3/19)
+Resolving deltas:  21% (4/19)
+Resolving deltas:  26% (5/19)
+Resolving deltas:  31% (6/19)
+Resolving deltas:  36% (7/19)
+Resolving deltas:  42% (8/19)
+Resolving deltas:  47% (9/19)
+Resolving deltas:  52% (10/19)
+Resolving deltas:  57% (11/19)
+Resolving deltas:  63% (12/19)
+Resolving deltas:  68% (13/19)
+Resolving deltas:  73% (14/19)
+Resolving deltas:  78% (15/19)
+Resolving deltas:  84% (16/19)
+Resolving deltas:  89% (17/19)
+Resolving deltas:  94% (18/19)
+Resolving deltas: 100% (19/19)
+Resolving deltas: 100% (19/19), done.
+Updating dependencies in <CHECKOUT>/lib
+warning[divide-before-multiply]: division before multiplication may lose precision
+   ╭▸ contracts/MicrocreditLens.sol:29:16
+   │
+29 │         return (grossBp * (bps - credit.protocolFeeBps() - credit.reserveBps())) / bps;
+   │                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/divide-before-multiply
+
+warning[divide-before-multiply]: division before multiplication may lose precision
+   ╭▸ contracts/MicrocreditLens.sol:95:16
+   │
+95 │         return ((credit.getCurrentOutstandingAmount(loanId) + CENT - 1) / CENT) * CENT;
+   │                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/divide-before-multiply
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+   ╭▸ contracts/OracleScoreProvider.sol:85:39
+   │
+85 │     constructor(address initialOwner, address initialReporter, uint256 initialMaxScoreAge, uint256 initialMaxTotalScore)
+   │                                       ━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[calls-loop]: external call inside a loop
+    ╭▸ contracts/OracleScoreProvider.sol:123:34
+    │
+123 │             if (held <= score || lending.activeLoanCount(user) != 0 || lending.creditCommitted(user) != 0) continue;
+    │                                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/calls-loop
+
+warning[calls-loop]: external call inside a loop
+    ╭▸ contracts/OracleScoreProvider.sol:123:72
+    │
+123 │             if (held <= score || lending.activeLoanCount(user) != 0 || lending.creditCommitted(user) != 0) continue;
+    │                                                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/calls-loop
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/OracleScoreProvider.sol:139:37
+    │
+139 │         return lastReportAt != 0 && block.timestamp <= lastReportAt + maxScoreAge;
+    │                                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/OracleScoreProvider.sol:159:49
+    │
+159 │     function setForwarder(address newForwarder, address workflowOwner, bytes32 workflowId) external onlyOwner {
+    │                                                 ━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/OracleScoreProvider.sol:159:27
+    │
+159 │     function setForwarder(address newForwarder, address workflowOwner, bytes32 workflowId) external onlyOwner {
+    │                           ━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/OracleScoreProvider.sol:166:26
+    │
+166 │     function setReporter(address newReporter) external onlyOwner {
+    │                          ━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/OracleScoreProvider.sol:200:36
+    │
+200 │             if (scores[i] > SCALE) revert ScoreTooHigh();
+    │                                    ━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/BootstrapOrderRouter.sol:143:25
+    │
+143 │     function setOfficer(address newOfficer, uint256 newPolicyVersion) external onlyOfficerAdmin {
+    │                         ━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/BootstrapOrderRouter.sol:162:30
+    │
+162 │     function setOfficerAdmin(address newAdmin) external onlyOfficerAdmin {
+    │                              ━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:184:56
+    │
+184 │                 || a.policyVersion != policyVersion || a.expiry <= block.timestamp || a.maxAmount == 0
+    │                                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/BootstrapOrderRouter.sol:188:9
+    │
+188 │         emit OrderApproved(a.orderId, a.maxAmount, a.expiry);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:218:92
+    │
+218 │                 || i.amount == 0 || price == 0 || maxDebt < i.amount || maxDebt > price || settleBy <= block.timestamp
+    │                                                                                            ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:219:20
+    │
+219 │                 || i.deadline <= block.timestamp
+    │                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[incorrect-strict-equality]: dangerous strict equality check on an externally-influenced value
+    ╭▸ contracts/BootstrapOrderRouter.sol:227:13
+    │
+227 │         if (token.balanceOf(address(this)) - beforeBalance != price) revert WrongFunding();
+    │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/incorrect-strict-equality
+
+warning[reentrancy-no-eth]: external call can be reentered before `_lots` is updated
+    ╭▸ contracts/TransitiveStakeRouter.sol:302:37
+    │
+302 │         uint256 returned = Math.min(vaultOf[borrower].release(borrower), amount);
+    │                                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-no-eth
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:262:40
+    │
+262 │         if (o.state != State.Funded || block.timestamp > o.settleBy || block.timestamp > i.deadline) {
+    │                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:262:72
+    │
+262 │         if (o.state != State.Funded || block.timestamp > o.settleBy || block.timestamp > i.deadline) {
+    │                                                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:275:24
+    │
+275 │                     || ap.expiry < block.timestamp
+    │                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/TransitiveStakeRouter.sol:314:32
+    │
+314 │             if (share[i] != 0) emit RootLoss(p.root, borrower, loanId, share[i]);
+    │                                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/TransitiveStakeRouter.sol:319:9
+    │
+319 │         emit Released(borrower, loanId, returned, loss);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/TransitiveStakeRouter.sol:241:9
+    │
+241 │         emit Allocated(borrower, loanId, total, paths.length);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/BootstrapOrderRouter.sol:286:9
+    │
+286 │         emit Originated(id, loanId);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-no-eth]: external call can be reentered before `_status` is updated
+    ╭▸ contracts/BootstrapOrderRouter.sol:305:13
+    │
+305 │             pool.repayLoan(o.loanId, debt);
+    │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-no-eth
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:294:39
+    │
+294 │         if (o.state != State.Bound || block.timestamp > o.settleBy) revert InvalidOrder();
+    │                                       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/BootstrapOrderRouter.sol:312:9
+    │
+312 │         emit Settled(id, debt, o.price - debt);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[unused-return]: return value of an external call is not used
+    ╭▸ contracts/BootstrapOrderRouter.sol:295:60
+    │
+295 │         (DecentralizedMicrocredit.LoanStatus status,,,,) = pool.getLoanTerms(o.loanId);
+    │                                                            ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/unused-return
+
+warning[unused-return]: return value of an external call is not used
+    ╭▸ contracts/BootstrapOrderRouter.sol:308:30
+    │
+308 │         (,,,, bool active) = pool.getLoan(o.loanId);
+    │                              ━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/unused-return
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/BootstrapOrderRouter.sol:323:38
+    │
+323 │         if (msg.sender != o.payer && block.timestamp <= o.settleBy) revert Unauthorized();
+    │                                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[missing-events-access-control]: `owner` is changed without an event but is used for access control
+    ╭▸ contracts/DecentralizedMicrocredit.sol:435:9
+    │
+435 │         owner = msg.sender;
+    │         ━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `pendingOwner` is changed without an event but is used for access control
+    ╭▸ contracts/DecentralizedMicrocredit.sol:436:9
+    │
+436 │         pendingOwner = address(0);
+    │         ━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `guardian` is changed without an event but is used for access control
+    ╭▸ contracts/DecentralizedMicrocredit.sol:440:9
+    │
+440 │         guardian = newGuardian;
+    │         ━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `firstLossReserve` is changed without an event but is used for access control
+    ╭▸ contracts/DecentralizedMicrocredit.sol:538:9
+    │
+538 │         firstLossReserve -= amount;
+    │         ━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `totalQueuedShares` is changed without an event but is used for access control
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1510:13
+     │
+1510 │             totalQueuedShares -= burn;
+     │             ━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `totalShares` is changed without an event but is used for access control
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1186:9
+     │
+1186 │         totalShares -= shares;
+     │         ━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-events-access-control]: `lenderCash` is changed without an event but is used for access control
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1187:9
+     │
+1187 │         lenderCash -= assets;
+     │         ━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/missing-events-access-control
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/DecentralizedMicrocredit.sol:391:9
+    │
+391 │         address _originator
+    │         ━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/DecentralizedMicrocredit.sol:427:32
+    │
+427 │     function transferOwnership(address newOwner) external onlyOwner {
+    │                                ━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[missing-zero-check]: address parameter is used in a state write or value transfer without a zero-address check
+    ╭▸ contracts/DecentralizedMicrocredit.sol:439:26
+    │
+439 │     function setGuardian(address newGuardian) external onlyOwner {
+    │                          ━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/missing-zero-check
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:539:9
+    │
+539 │         emit ReserveReleased(amount);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1191:13
+     │
+1191 │             emit PayoutHeld(to, assets);
+     │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1193:9
+     │
+1193 │         emit Withdrawn(lender, to, assets, shares);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1513:13
+     │
+1513 │             emit MetaWithdrawalFilled(withdrawalHead, pay);
+     │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/DecentralizedMicrocredit.sol:624:44
+    │
+624 │             msg.sender == loan.borrower || block.timestamp > loan.requestedAt + RESERVATION_TTL, NotCancellableYet()
+    │                                            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/DecentralizedMicrocredit.sol:645:17
+    │
+645 │         require(block.timestamp > loan.disbursedAt + loan.term, NotOverdue());
+    │                 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/DecentralizedMicrocredit.sol:669:17
+    │
+669 │         require(block.timestamp > loan.disbursedAt + loan.term + LATE_PERIOD, NotYetDefaultable());
+    │                 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:683:9
+    │
+683 │         emit LoanDefaulted(loan.borrower, loanId, writtenOff, slashed + fromReserve);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:699:9
+    │
+699 │         emit LoanRepaid(loan.borrower, loanId, paid);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1336:13
+     │
+1336 │             emit RepaymentApplied(loanId, interest, principal, fee);
+     │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:731:9
+    │
+731 │         emit LoanRepaid(borrower, loanId, paid);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1279:9
+     │
+1279 │         emit LoanRequested(borrower, loanId, amount, effrRate + riskPremium);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:842:9
+    │
+842 │         emit MetaLoanRequested(req.borrower, req.amount, loanId);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1296:9
+     │
+1296 │         emit LoanDisbursed(loan.borrower, loanId, to, principal);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:856:9
+    │
+856 │         emit MetaLoanDisbursed(req.borrower, req.loanId, principal);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:886:9
+    │
+886 │         emit MetaLoanCreated(req.borrower, loanId, req.amount, currentApr, req.repaymentPeriod);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:887:9
+    │
+887 │         emit MetaLoanDisbursed(req.borrower, loanId, req.amount);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:923:9
+    │
+923 │         emit MetaLoanRepaid(req.borrower, req.loanId, out);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1176:9
+     │
+1176 │         emit Deposited(lender, assets, shares);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:950:9
+    │
+950 │         emit MetaDeposit(req.lender, req.amount, req.receiver, shares);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:963:9
+    │
+963 │         emit MetaDeposit(lender, permit.value, lender, shares);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ contracts/DecentralizedMicrocredit.sol:988:9
+    │
+988 │         emit MetaWithdrawalRequested(req.lender, queueId, assets, req.to);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1471:9
+     │
+1471 │         emit Backed(backer, borrower, edge.secured, edge.unsecured);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1137:17
+     │
+1137 │         require(block.timestamp <= deadline, SignatureExpired());
+     │                 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[arbitrary-send-erc20]: `transferFrom` uses an arbitrary `from`; require it to equal `msg.sender` or `address(this)`
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1156:9
+     │
+1156 │         usdc.safeTransferFrom(from, address(this), amount);
+     │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/arbitrary-send-erc20
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1397:45
+     │
+1397 │             if (slashed > 0 || charged > 0) emit BackerCharged(backer, loanId, slashed, charged);
+     │                                             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[calls-loop]: external call inside a loop
+    ╭▸ contracts/DecentralizedMicrocredit.sol:774:25
+    │
+774 │         return Math.min(scoreProvider.creditScore(user), SCALE);
+    │                         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/calls-loop
+
+warning[divide-before-multiply]: division before multiplication may lose precision
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1426:16
+     │
+1426 │         return (((loan.principal * loan.interestRate) / BASIS_POINTS) * elapsed) / SECONDS_PER_YEAR;
+     │                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/divide-before-multiply
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+     ╭▸ contracts/DecentralizedMicrocredit.sol:1425:13
+     │
+1425 │         if (elapsed < GRACE_PERIOD) return 0;
+     │             ━━━━━━━━━━━━━━━━━━━━━━
+     │
+     ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[incorrect-strict-equality]: dangerous strict equality check on an externally-influenced value
+    ╭▸ contracts/TransitiveStakeRouter.sol:171:13
+    │
+171 │         if (token.balanceOf(address(this)) - beforeBalance != amount) revert WrongFunding();
+    │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/incorrect-strict-equality
+
+warning[unused-return]: return value of an external call is not used
+    ╭▸ contracts/TransitiveStakeRouter.sol:238:62
+    │
+238 │         (uint256 principal,, address debtor,, bool active) = pool.getLoan(loanId);
+    │                                                              ━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/unused-return
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/TransitiveStakeRouter.sol:260:15
+    │
+260 │             ) revert InvalidCertificate();
+    │               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/TransitiveStakeRouter.sol:275:94
+    │
+275 │         if (c.version != edgeVersion[key] || block.timestamp > c.expiry || term > c.maxTerm) revert InvalidConsent();
+    │                                                                                              ━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/TransitiveStakeRouter.sol:276:83
+    │
+276 │         if (!SignatureChecker.isValidSignatureNow(c.from, consentDigest(c), sig)) revert InvalidConsent();
+    │                                                                                   ━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/TransitiveStakeRouter.sol:278:29
+    │
+278 │         if (used > c.limit) revert LimitExceeded();
+    │                             ━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+    ╭▸ contracts/TransitiveStakeRouter.sol:265:40
+    │
+265 │             if (free[root] < p.amount) revert InsufficientFree();
+    │                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ contracts/TransitiveStakeRouter.sol:275:46
+    │
+275 │         if (c.version != edgeVersion[key] || block.timestamp > c.expiry || term > c.maxTerm) revert InvalidConsent();
+    │                                              ━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[unused-return]: return value of an external call is not used
+    ╭▸ contracts/TransitiveStakeRouter.sol:294:60
+    │
+294 │         (DecentralizedMicrocredit.LoanStatus status,,,,) = pool.getLoanTerms(lot.loanId);
+    │                                                            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/unused-return
+
+warning[uninitialized-local]: local variable is read before being initialized
+    ╭▸ contracts/TransitiveStakeRouter.sol:334:13
+    │
+334 │             assigned += share[i];
+    │             ━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/uninitialized-local
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+    ╭▸ test/DeployProduction.t.sol:278:17
+    │
+278 │         vm.warp(block.timestamp + delay - 1);
+    │         ────────━━━━━━━━━━━━━━━───────────── `vm.warp` changes this environment here
+    │
+    ├ help: capture it with `vm.getBlockTimestamp()` instead
+    ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+   ╭▸ test/HermesPR16.t.sol:87:17
+   │
+87 │         vm.warp(block.timestamp + 10 days);
+   │         ────────━━━━━━━━━━━━━━━─────────── `vm.warp` changes this environment here
+   │
+   ├ help: capture it with `vm.getBlockTimestamp()` instead
+   ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+    ╭▸ test/HermesPR16.t.sol:244:21
+    │
+244 │             vm.warp(block.timestamp + 365 days);
+    │             ────────━━━━━━━━━━━━━━━──────────── `vm.warp` changes this environment here
+    │
+    ├ help: capture it with `vm.getBlockTimestamp()` instead
+    ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+    ╭▸ test/TransitiveStakeRouter.t.sol:133:21
+    │
+133 │             expiry: block.timestamp + 30 days
+    │                     ━━━━━━━━━━━━━━━
+    ‡
+210 │         vm.warp(dueAt + credit.LATE_PERIOD() + 1);
+    │         ───────────────────────────────────────── `vm.warp` changes this environment here
+    │
+    ├ help: capture it with `vm.getBlockTimestamp()` instead
+    ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+   ╭▸ test/fork/HermesCI21.t.sol:99:21
+   │
+99 │             vm.warp(block.timestamp + 365 days);
+   │             ────────━━━━━━━━━━━━━━━──────────── `vm.warp` changes this environment here
+   │
+   ├ help: capture it with `vm.getBlockTimestamp()` instead
+   ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+warning[environment-read-across-mutation]: `block.timestamp` may be reused across `vm.warp`
+   ╭▸ test/fork/HermesCI21.t.sol:76:21
+   │
+76 │             vm.warp(block.timestamp + 365 days);
+   │             ────────━━━━━━━━━━━━━━━──────────── `vm.warp` changes this environment here
+   │
+   ├ help: capture it with `vm.getBlockTimestamp()` instead
+   ╰ help: https://getfoundry.sh/forge/linting/environment-read-across-mutation
+
+No files changed, compilation skipped
+
+╭--------------------------+------------------+-------------------+--------------------+---------------------╮
+| Contract                 | Runtime Size (B) | Initcode Size (B) | Runtime Margin (B) | Initcode Margin (B) |
++============================================================================================================+
+| AlwaysReverts            | 116              | 140               | 24,460             | 49,012              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| AttributionHarness       | 11,811           | 13,323            | 12,765             | 35,829              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| BlacklistableUSDC        | 3,609            | 5,458             | 20,967             | 43,694              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| BootstrapOrderRouter     | 18,105           | 19,735            | 6,471              | 29,417              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| CreditHandler            | 38,002           | 40,921            | -13,426            | 8,231               |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| DecentralizedMicrocredit | 24,439           | 25,852            | 137                | 23,300              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| EighteenDecimalToken     | 1,543            | 2,356             | 23,033             | 46,796              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| MicrocreditLens          | 3,287            | 3,473             | 21,289             | 45,679              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| MockUSDC                 | 3,237            | 5,086             | 21,339             | 44,066              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| OracleScoreProvider      | 4,916            | 5,401             | 19,660             | 43,751              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| OrderRouterHandler       | 19,410           | 21,506            | 5,166              | 27,646              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| RouterHandler            | 21,639           | 23,734            | 2,937              | 25,418              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| SmartRoot                | 284              | 310               | 24,292             | 48,842              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| StakeVault               | 1,763            | 1,981             | 22,813             | 47,171              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| SwallowingBatch          | 594              | 620               | 23,982             | 48,532              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| TimelockController       | 5,450            | 6,755             | 19,126             | 42,397              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| TransitiveStakeRouter    | 11,539           | 13,051            | 13,037             | 36,101              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| UsageStub                | 299              | 325               | 24,277             | 48,827              |
+|--------------------------+------------------+-------------------+--------------------+---------------------|
+| Wrapper                  | 378              | 404               | 24,198             | 48,748              |
+╰--------------------------+------------------+-------------------+--------------------+---------------------╯
+
+Error: some contracts exceed the runtime size limit (EIP-170: 24576 bytes)

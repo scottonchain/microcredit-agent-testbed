@@ -1,0 +1,2 @@
+rehearsal-normal 0
+rehearsal-with-default 0
