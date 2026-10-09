@@ -1,0 +1,18 @@
+START 2026-10-09T06:20:17Z
+forge Version: 1.8.4
+Commit SHA: 50af4efe189dc64bad2b75ed6990b835de66c4ae
+Build Timestamp: 2026-10-01T14:08:28.191932892Z (1790863708)
+Build Profile: dist
+cast Version: 1.8.4
+Commit SHA: 50af4efe189dc64bad2b75ed6990b835de66c4ae
+Build Timestamp: 2026-10-01T14:08:28.191932892Z (1790863708)
+Build Profile: dist
+anvil Version: 1.8.4-dev
+Commit SHA: 50af4efe189dc64bad2b75ed6990b835de66c4ae
+Build Timestamp: 2026-10-01T13:48:41.535389527Z (1790862521)
+Build Profile: dist
+EVIDENCE GATE FAILED:
+- invariant-deep: 0 PASS lines, not all at runs 512 and calls 76800
+the evidence run did not pass; see <WORK>/out-3efdb6f/FAILED.txt and the logs
+EXIT 1
+END 2026-10-09T07:38:55Z
