@@ -26,7 +26,8 @@ class WorkspaceTests(unittest.TestCase):
         (tb / "agent-card.json").write_text(self.card)
         for repo in (tb, self.root / REPOS[4]):
             (repo / ".well-known").mkdir()
-            (repo / ".well-known/agent-card.json").write_text(self.card)
+            for name in ("agent-card.json", "agent.json"):
+                (repo / ".well-known" / name).write_text(self.card)
         app = self.root / REPOS[1] / "packages/nextjs"
         (app / "contracts").mkdir(parents=True)
         (app / "utils").mkdir()
@@ -51,6 +52,14 @@ class WorkspaceTests(unittest.TestCase):
         (self.tb / "agent-card.json").write_text(json.dumps(card))
         self.assertTrue(check(self.root, verify_remotes=False, sync_cards=True))
         self.assertEqual((self.tb / ".well-known/agent-card.json").read_text(), self.card)
+
+    def test_legacy_discovery_aliases_are_checked_and_repaired(self):
+        for repo in (self.tb, self.root / REPOS[4]):
+            alias = repo / ".well-known/agent.json"
+            alias.write_text("{}")
+            self.assertTrue(check(self.root, verify_remotes=False))
+            self.assertEqual(check(self.root, verify_remotes=False, sync_cards=True), [])
+            self.assertEqual(alias.read_text(), self.card)
 
     def test_missing_checkout_fails(self):
         (self.root / REPOS[2]).rmdir()

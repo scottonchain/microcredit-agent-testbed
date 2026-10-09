@@ -9,7 +9,8 @@ python tools/check.py
 
 `tools/check.py --list` lists the checks. `--json` returns their results and test
 counts. GitHub Actions runs the same command for every pull request and push to
-main. The command has no live sends, wallet access, RPC reads or privileged
+main. Every listed suite is required; a missing directory or an empty suite fails
+the gate. The command has no live sends, wallet access, RPC reads or privileged
 archive execution. Individual suites run in separate processes so the older
 flat modules named `model`, `lib` and `q` cannot shadow one another.
 
@@ -32,6 +33,13 @@ flat modules named `model`, `lib` and `q` cannot shadow one another.
 New operational helpers should use these modules instead of copying addresses,
 amount parsing, RPC retries or validators. The deployment descriptor is a record
 of deployed code; it does not mean the current contract source has been deployed.
+
+Retry effect scripts share their S1–S4 setup and score labels in
+`retry-fixture/reference/gate_readings.py`. Each effect's `evaluate()` supplies its
+CLI and the scorecard with the same cells and expected-table checks. The scorecard
+runs those evaluators directly, so it needs no child-process/JSON bridge. Existing
+CLI paths and published results remain usable; each effect keeps its own policy
+and horizon.
 
 ## Sources retained for reproduction
 

@@ -8,8 +8,8 @@ observations identical in the accepted/lost-response and never-dispatched cases 
 Then require it not to magically distinguish them using harness-only truth. A conservative gate can pass the duplicate
 check while leaving work unfinished; label that tradeoff explicitly rather than calling the whole run successful."
 
-Part 1: the three columns for every cell of the five effect scripts, computed from their own --json rows (nothing re-run
-differently):
+Part 1: the three columns for every cell of the five effect scripts, computed by the same checked evaluation as their
+--json CLIs (nothing re-run differently):
   duplicate_effects  messages at the provider beyond the one intended: max(0, messages - 1)
   missing_effects    1 if no message reached the provider by the script's observation deadline (the end of its run)
   unresolved_rows    rows still 'unknown' at that deadline: nothing in the run closed them, so they need review; in
@@ -41,20 +41,21 @@ Expected (asserted; exit 1 if any value differs):
 A property of our toy model, not of any agent's system. Stdlib only; deterministic; simulated clock.
 Usage: python3 scorecard.py [--json]
 """
-import json, os, subprocess, sys
+import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import kill_points
+import freshness_rule, gate_readings, keyed_resend, kill_points, reopen_rule
+from gate_readings import effect_label as label
 
-SCRIPTS = (("gate_readings.py", "reading"), ("keyed_resend.py", "reading"), ("kill_points.py", "design"),
-           ("freshness_rule.py", "read_path"), ("reopen_rule.py", "path"))
+SCRIPTS = ((gate_readings, "reading"), (keyed_resend, "reading"), (kill_points, "design"),
+           (freshness_rule, "read_path"), (reopen_rule, "path"))
 
 
-def rows_of(script):
-    r = subprocess.run([sys.executable, os.path.join(HERE, script), "--json"], capture_output=True, text=True, timeout=300)
-    if r.returncode != 0:
-        raise SystemExit("%s exited %d: %s" % (script, r.returncode, r.stderr[-300:]))
-    return json.loads(r.stdout)
+def rows_of(module):
+    rows, problems = module.evaluate()
+    if problems:
+        raise SystemExit("%s.py failed its expected table: %s" % (module.__name__, problems))
+    return rows
 
 
 def cell_columns(script, x):
@@ -71,14 +72,6 @@ def group_of(script, field, x):
     if script == "reopen_rule.py" and x["setup"] == "sweep":
         g += " sweep"
     return g
-
-
-def label(d, m, u):
-    if d:
-        return "duplicates"
-    if m or u:
-        return "no duplicate, but not a full success"
-    return "clean"
 
 
 EXPECTED_GROUPS = {
@@ -195,8 +188,9 @@ def main(argv):
     as_json = "--json" in argv
     problems, groups, cells = [], {}, 0
     kp_rows = None
-    for script, field in SCRIPTS:
-        rows = rows_of(script)
+    for module, field in SCRIPTS:
+        script = module.__name__ + ".py"
+        rows = rows_of(module)
         if script == "kill_points.py":
             kp_rows = rows
         for x in rows:

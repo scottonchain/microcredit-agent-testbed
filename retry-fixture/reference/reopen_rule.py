@@ -36,24 +36,16 @@ toy model, not of merktop's system. Stdlib only; deterministic; simulated clock.
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from model import Clock, Provider, Reconciler, REFERENCE
-from gate_readings import gate
+from model import REFERENCE
+from gate_readings import FIRST as BEHAVIOUR, LAG, SETUPS, first_attempt, gate
 
 UNSTAMPED = REFERENCE.mutate(use_as_of=False)
-SETUPS = ("S1", "S2", "S3", "S4")
-LAG = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}
-BEHAVIOUR = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}
 EXECUTIONS = 5
 GAP = 60
 
 
 def run(behaviour, lag, reopen):
-    clk = Clock()
-    p = Provider(clk, index_latency=lag)
-    r = Reconciler(p, clk, UNSTAMPED)
-    p.send_behaviour = behaviour
-    r.submit("k", ["a@x"], "body")
-    p.send_behaviour = "accepted"
+    clk, p, r = first_attempt(behaviour, lag, UNSTAMPED)
     trace, fresh, reopened_at = [], None, None
     for n in range(EXECUTIONS):
         r.verify("k")                                   # the model's own pass: rounds + fallback, never sends
@@ -88,8 +80,7 @@ SWEEP = {10: (1, "confirmed", None), 60: (1, "confirmed", None), 92: (1, "confir
          93: (2, "unknown", "confirmed"), 10 ** 6: (2, "unknown", "confirmed")}
 
 
-def main(argv):
-    as_json = "--json" in argv
+def evaluate():
     results, problems = [], []
     for path in ("wait", "reopen"):
         for s in SETUPS:
@@ -108,7 +99,12 @@ def main(argv):
         if not x["ok"]:
             problems.append(("sweep", lag))
         results.append(x)
-    if as_json:
+    return results, problems
+
+
+def main(argv):
+    results, problems = evaluate()
+    if "--json" in argv:
         print(json.dumps(results, indent=1, default=str))
     else:
         print("path    setup  index_lag_s  messages_at_provider  old_row    fresh_row  re-opened_at_s  executions")

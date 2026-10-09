@@ -16,7 +16,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KINDS = ("entities", "evidence", "claims", "edges", "hypotheses", "actions", "decisions", "open_questions")
-LETTER = {"c": "agent:claude", "x": "agent:codex", "h": "agent:hermes"}
+LETTER = {"c": {"agent:claude"}, "x": {"agent:codex", "agent:coordinator"}, "h": {"agent:hermes"}}
 
 
 def load():
@@ -28,7 +28,7 @@ def line(k, r):
     status = r.get("status") or (r.get("epistemics") or {}).get("status") or ""
     owner = (r.get("owner_id") or r.get("subject_id") or "").replace("agent:", "")
     due = (r.get("due_at") or "")[:16]
-    title = r.get("title") or r.get("statement") or r.get("summary") or r.get("question") or r.get("recommendation") or ""
+    title = r.get("title") or r.get("name") or r.get("statement") or r.get("summary") or r.get("question") or r.get("recommendation") or ""
     return f"{r['id']} [{k[:3]} {status} {owner} {due}] {title[:110]}"
 
 
@@ -60,7 +60,7 @@ def main(a=None):
         for record in m["actions"]:
             if record["status"] in ("done", "cancelled"):
                 continue
-            if args.open and record["owner_id"] != LETTER.get(args.open, args.open):
+            if args.open and record["owner_id"] not in LETTER.get(args.open, {args.open}):
                 continue
             due = record.get("due_at")
             if deadline is not None and (not due or datetime.datetime.fromisoformat(due.replace("Z", "+00:00")) > deadline):

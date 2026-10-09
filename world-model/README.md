@@ -34,8 +34,12 @@ bounded proof exchange is younger and its answer remains unverified.
 
 ## Use it in every work cycle
 
-1. Fetch current `main`; record the model commit used. Inspect relevant entity,
-   goal, claim, action and question IDs. Missing coverage means unknown.
+1. Fetch current `main`; record the model commit used. Query the relevant slice:
+   `python world-model/q.py goal:`, `--open x`, `--due 24`, then `-f ID` for the
+   chosen action, dependencies and original evidence. `x` includes both Codex and
+   coordinator responsibilities; an exact owner ID selects only that owner.
+   Read decision-critical records in full; missing coverage means unknown.
+   Do not reload the entire model into every routine prompt.
 2. Re-read decision-critical mutable sources. A `recheck_by` date is a refresh
    deadline, not cancellation of an obligation. A failed read is not negative
    evidence. Public activity timestamps are not read receipts.
@@ -70,8 +74,15 @@ Use Python 3.10+ in an environment with `pydantic>=2.11,<3` (see
 
 ```bash
 python world-model/validate.py --check-schema
+python world-model/validate.py --check-schema --format
 python -m unittest discover -s world-model -p 'test_*.py'
 ```
+
+`--format` is optional and writes only after validation. It preserves every JSON
+value, ID, timestamp, conflict and evidence record while storing one complete
+record per line. Use this canonical formatter after a model edit; do not add
+another serializer or copy old model history into routine prompts. A formatting
+change alone does not change the model version or claim new observations.
 
 `schema.py` is the type definition; `schema.json` is its standard JSON Schema
 2020-12 export. On a schema change regenerate it with:

@@ -72,12 +72,13 @@ def check(root, *, sync_cards=False, verify_remotes=True):
     if f'deployedCommit: "{deployment["source"]["contract_commit"]}"' not in config:
         errors.append("App deployed-source label differs from the recorded deployment")
     for repo in (testbed, root / "scottonchain.github.io"):
-        mirror = repo / ".well-known/agent-card.json"
-        if sync_cards and not errors:
-            mirror.parent.mkdir(parents=True, exist_ok=True)
-            mirror.write_bytes(card_file.read_bytes())
-        if not mirror.is_file() or mirror.read_bytes() != card_file.read_bytes():
-            errors.append(f"Agent card mirror differs: {repo.name}/.well-known/agent-card.json")
+        for filename in ("agent-card.json", "agent.json"):
+            mirror = repo / ".well-known" / filename
+            if sync_cards and not errors:
+                mirror.parent.mkdir(parents=True, exist_ok=True)
+                mirror.write_bytes(card_file.read_bytes())
+            if not mirror.is_file() or mirror.read_bytes() != card_file.read_bytes():
+                errors.append(f"Agent card mirror differs: {repo.name}/.well-known/{filename}")
 
     return errors
 
@@ -86,7 +87,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2],
                         help="parent directory containing all five named checkouts")
-    parser.add_argument("--sync-cards", action="store_true", help="replace only the two known card mirrors")
+    parser.add_argument("--sync-cards", action="store_true", help="replace the four known card mirrors, including legacy aliases")
     args = parser.parse_args(argv)
     try:
         errors = check(args.root, sync_cards=args.sync_cards)
@@ -96,7 +97,7 @@ def main(argv=None):
         print("FAIL:", error)
     if errors:
         return 1
-    print("PASS: five repository origins; recorded deployment, generated app and three agent cards agree")
+    print("PASS: five repository origins; recorded deployment, generated app and five agent cards agree")
     return 0
 
 

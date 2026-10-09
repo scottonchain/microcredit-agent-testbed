@@ -1,46 +1,29 @@
-# Hourly Codex continuation: testbed and theory
+# Protected Git writes and continuation records
 
-> Ownership and schedules: the current team split and coverage inventory are in [team-structure.md](team-structure.md) (TEAM-STRUCTURE-001 v3, 2026-10-06), and planning starts from the canonical [world model](../world-model/model.json). Neither changes the mutex or write requirements below.
+Read the [team operating guide](README.md) for current work selection, ownership,
+communication and recurring responsibilities. This file owns the verified Git
+lease and protected-cursor protocol; it is not a second backlog or scheduler.
+The [October 6 setup and prior task snapshot](https://github.com/scottonchain/microcredit-agent-testbed/blob/d4f5b4f4a0783e696fb9a740692655e94afd7f0e/coordination/issue-12-recurring-task.md)
+remains in history. Current original evidence and operator directions supersede
+that snapshot's old priorities, email-first wording and README format.
 
-This is the replacement runbook for BOARD-004. It supersedes the earlier
-30-minute/non-branch-ref instructions and the unverified connector-CAS claim.
-The replay implementation on PR #14 remains unchanged at `f46287f`.
+## Capability requirements
 
-## Setup result and current limits
+Capability must be established in the actual execution environment. A prior clone,
+interactive push or scheduled prompt does not prove a future worker can write,
+serialize work or protect its identity. The previous connector commit path did
+not expose explicit author/committer parameters, leaked a personal email, and did
+not establish atomic conditional ref updates. **Connector-only protected work
+remains read-only.** Do not create a probe commit, change privacy settings or use
+an unverified expected-SHA argument as a substitute for the protocol below.
 
-The coordinating assistant reports creating one enabled hourly replacement after
-its scheduler list returned no automations. Public cadence: `0 * * * *` UTC.
-The scheduler identifier and operator timezone remain in the private scheduling
-record. The create response did not supply a next-run time or model field.
-First scheduled execution, its model, serialization and unattended continuation
-are **not verified**. A separately selected model for this setup run does not
-configure the recurring worker. Do not create or alter automations from this
-implementation workflow; scheduling belongs to the coordinating assistant.
-
-All four `scottonchain` repositories are readable in the connector and this shell:
-`microcredit-agent-testbed`, `microcredit-contract`, `microcredit-theory`, and
-`microcredit-vision`. Connector metadata reports push permission on all four;
-actual authenticated Git push was tested in testbed only. A temporary HTTP 401
-interrupted setup after acquisition; the lock was retained until authenticated
-access returned, then the same owner released it with the exact lease. On any
-future credential failure, stop protected writes and retain the lock until safe
-owner release is possible. This incident does not establish credential reliability
-for scheduled runs.
-
-**Connector-only runs remain read-only.** The exposed commit tools have no
-explicit author/committer parameters, and the previous default identity leaked a
-personal email. No account privacy setting has been verified. The connector
-`update_ref(expected_sha=...)` implementation/atomicity has not been established.
-A stale-SHA check performed after another write is not a simultaneous-acquisition
-proof. Git-shell tests do not validate connector behavior. No further connector
-commit may be created to probe identity while this privacy blocker remains.
-
-The minimum write capability is a verified noreply-safe commit path together with
-server-atomic conditional ref update, or documented sufficient scheduler
-serialization plus a protocol agreed with every participating writer. The current
-shell route supplies the former. A scheduled connector run must either gain that
-same Git-shell execution path and validate it there, or keep its read-only guard.
-No documented scheduler serialization is currently available in this setup.
+Require actual authenticated Git with explicit noreply author and committer plus
+server-atomic exact leases. Scheduled serialization is not assumed. The old
+implementation writer stays disabled; this runbook neither revives it nor changes
+any schedule. On a credential failure, stop protected writes and retain an owned
+lock until its safe release is possible. Finish useful read-only work and provide
+an exact patch/handoff when writing is unavailable; a request to Claude is not a
+publication receipt. Append-only messages must also follow their current rules.
 
 ## Verified Git-shell protocol
 
@@ -131,73 +114,33 @@ this Git transport, **not a scheduled execution or connector CAS**.
 
 Reference: [Git push explicit-lease documentation](https://git-scm.com/docs/git-push).
 
-## Each hourly run
+## Protected input and outcome records
 
-You are Codex, the operator's internal implementation and coordination agent.
-The project aims to eliminate human poverty; code and participation are
-intermediate evidence, not demonstrated borrower benefit. Identify yourself as
-Codex in every public comment. Never count internal agents as independent
-reviewers. Read current repository instructions and relevant `.agents/skills`
-when present; none were present in the four repositories inspected for setup.
+Before shared writes acquire the lease and reread canonical comments
+**5999201336** (testbed #12) and **5999791943** (theory #1), current board inputs,
+relevant PR heads, reviews and original evidence. Read complete relevant pagination
+and edits. Hermes may work through other channels; an old board timestamp is not
+proof that it is idle. Keep lock activity off main and do not hold it while waiting
+for an agent, researching or running a long independent test.
 
-Start with new testbed board #15 comments, testbed issue #12 and all PR #14
-comments/reviews/current head, theory program #1 and assignments #2–#4, and linked
-authoritative evidence. Refresh all four repositories' heads and access. Read all
-pages, not just the latest comment. Hermes may be working outside GitHub; an old
-board timestamp does not prove idleness. Comments are inputs to the next hourly
-trigger, not proof that a worker has awakened.
+Update the existing protected records only under the lease; do not replace them
+with parallel cursor files/comments. Preserve other agents' content. Record input
+IDs **and updated_at**, PR heads/review IDs, actual owner, dependency, next action
+and completed stable markers, including the board cursor in the testbed record.
+Use real source timestamps, never fabricated ones. Never advance past an unresolved
+action. Ordinary append-only research handoffs do not silently advance protected
+implementation cursors.
 
-Before shared writes, require the verified capabilities above and acquire the
-shared testbed lock. Reread canonical comments **5999201336** (testbed #12) and
-**5999791943** (theory #1) after acquisition. Update these existing records rather
-than creating replacements. Preserve other agents' comments. Record each input
-ID **and updated_at** (edits count), PR heads and review IDs, owner, dependency,
-next action, and completed stable action markers. Include the board cursor in the
-testbed record. Use real REST timestamps if a normalized connector omits them;
-never invent timestamps. Do not advance a cursor past an unresolved action.
+Use a deterministic marker derived from source ID and relevant revision; find it
+in the destination before posting. After a crash or uncertain response, reconcile
+actual remote outcomes before retrying. Save completed outcomes, stop/await all
+owned mutations, then release only the exact owned acquisition. A missing or held
+lock blocks protected writes; preserve it and do independent work. No repeated
+unchanged blocker comments, stale takeover, replacement lock or quota workaround.
 
-Use a deterministic HTML action marker based on the source ID and relevant SHA;
-search all destination comments for it before posting. After a timeout or crash,
-reconcile an already-posted receipt rather than posting again. Check outcomes and
-fresh state before retrying any uncertain mutation. Save completed outcomes under
-the lock, then release. If nothing actionable changed, end quietly. Do not repeat
-unchanged blocker messages.
-
-Priorities and current boundaries:
-
-- Finish testbed #12 / PR #14 first. Head `f46287f1550b0fcc470e8bb26797e0aa80de66c1`
-  contains the diagnostics-before-acceptance fix and 15 passing focused tests.
-  Preserve the outside `TESTED_CODE_AUTHORS_WITNESS` report and its limits.
-  The receipt describes a pre-execution sibling namespace, not the acceptance
-  namespace, post-execution state or chroot-escape resistance. No privileged
-  execution or clean-host witness is claimed; `REVEAL.json` stays unchanged.
-  Hermes already sent the recheck at 2026-10-06 03:10:16 UTC, receipt
-  `6008557819` in #12. Do not resend it. Process its actual answer when mirrored;
-  maintainers alone decide merges. The stronger same-namespace/host-descriptor
-  design remains an explicitly unimplemented follow-on.
-- Support independent theory review. Claude owns author packets, itemized
-  responses and manuscript revisions; Hermes owns outside qualification,
-  recruitment and contact deduplication. Preserve pinned packets, proof gaps,
-  unfavorable findings, uncertainty about operator independence and consented
-  disclosures. Invitation, accepted scope, outside report, author response,
-  revision and same-reviewer recheck are distinct stages. Parent research leads
-  are inputs for Hermes's private contact-log check, not invitations. Theory #3
-  is first; #2/#4 stay prepared/unassigned. Do not invent qualifications, promise
-  payment, or count internal reproductions as independent review.
-- Notify Hermes only when a verified change warrants a vision update. Preserve
-  the five-paragraph/five-sentence README form. Distinguish participation,
-  incorporated contributions, completed review and real-world impact.
-
-Choose and finish the next useful authorized implementation or coordination
-step, with focused tests and a branch/draft PR when needed. Keep detailed technical
-evidence in the relevant issue/PR and brief meaningful results/handoffs on board
-#15. Preserve frozen challenge terms, payout commitments, privacy and deployment
-restrictions. No merging, deployment, transfer of funds, new spending or expanded
-authority. Escalate only substantive milestones, consequential blockers,
-time-sensitive opportunities or decisions beyond authority.
-
-Until a **later scheduled run** reads a new input, processes it with the verified
-protocol and records an outcome, describe this as setup plus manual verification,
-not verified hands-off operation. If a connector-only run cannot safely write,
-continue useful read-only analysis, return the missing capability privately, and
-leave shared cursors unchanged.
+Internal reproduction is not independent outside review. Preserve calibration
+terms, source pins, unfavorable findings, consent and financial/deployment bounds.
+Use a branch and focused checks. Maintainer integration follows actual current
+operator authority; cleanup permission does not grant public-chain execution.
+Report a later scheduled worker as verified only after its own capability check,
+new-input processing and outcome receipt, not from this manual setup/runbook.

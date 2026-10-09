@@ -46,8 +46,7 @@ def syntax_check():
 
 def checks():
     for suite in SUITES:
-        if (ROOT / suite).exists():
-            yield suite, [sys.executable, "-m", "unittest", "discover", "-s", suite, "-p", "test_*.py"]
+        yield suite, [sys.executable, "-m", "unittest", "discover", "-s", suite, "-p", "test_*.py"]
     yield "world-model schema and relationships", [sys.executable, "world-model/validate.py", "--check-schema"]
     yield "retry case ledger", [sys.executable, "retry-fixture/validate_cases.py"]
     for name in REFERENCE_CHECKS:

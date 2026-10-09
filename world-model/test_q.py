@@ -1,4 +1,5 @@
 import contextlib, io, json, unittest
+from unittest.mock import patch
 import q
 
 
@@ -26,6 +27,26 @@ class QTest(unittest.TestCase):
         for l in out.strip().splitlines():
             self.assertIn(" claude ", l)
             self.assertNotIn(" done ", l)
+
+    def test_codex_lane_includes_coordinator_obligations(self):
+        actions = [
+            {"id": "action:codex-open", "owner_id": "agent:codex", "status": "ready"},
+            {"id": "action:coordinator-open", "owner_id": "agent:coordinator", "status": "ready"},
+            {"id": "action:claude-open", "owner_id": "agent:claude", "status": "ready"},
+            {"id": "action:hermes-open", "owner_id": "agent:hermes", "status": "ready"},
+            {"id": "action:codex-done", "owner_id": "agent:codex", "status": "done"},
+            {"id": "action:coordinator-cancelled", "owner_id": "agent:coordinator", "status": "cancelled"},
+        ]
+        with patch.object(q, "load", return_value=({"actions": actions}, {})):
+            _, out = run("--open", "x")
+            _, exact = run("--open", "agent:codex")
+        ids = {line.split()[0] for line in out.splitlines()}
+        self.assertEqual(ids, {"action:codex-open", "action:coordinator-open"})
+        self.assertEqual({line.split()[0] for line in exact.splitlines()}, {"action:codex-open"})
+
+    def test_goal_names_are_visible_without_dumping_full_records(self):
+        _, out = run("goal:poverty")
+        self.assertIn("Measurable alleviation of human poverty", out)
 
     def test_missing_arguments_unknown_ids_and_invalid_hours_have_usage_errors(self):
         for arguments in (("-f",), ("-f", "action:missing"), ("--grep",), ("--due", "nan"), ("--due", "-1"), ("--due", "inf")):

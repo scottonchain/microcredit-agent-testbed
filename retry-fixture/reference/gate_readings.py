@@ -39,6 +39,32 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from model import Clock, Provider, Reconciler, REFERENCE
 
 READINGS = ("R0", "R1", "R2")
+SETUPS = ("S1", "S2", "S3", "S4")
+LAG = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}
+FIRST = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}
+
+
+def first_attempt(behaviour, lag, policy=REFERENCE, provider_class=Provider):
+    """One fresh toy-model intent; subsequent provider calls can succeed.
+
+    The effect scripts share this setup, but retain their own recovery policy,
+    observation deadline and expected table. Nothing here reads a real provider.
+    """
+    clk = Clock()
+    p = provider_class(clk, index_latency=lag)
+    r = Reconciler(p, clk, policy)
+    p.send_behaviour = behaviour
+    r.submit("k", ["a@x"], "body")
+    p.send_behaviour = "accepted"
+    return clk, p, r
+
+
+def effect_label(duplicates, missing, unresolved):
+    if duplicates:
+        return "duplicates"
+    if missing or unresolved:
+        return "no duplicate, but not a full success"
+    return "clean"
 
 
 def gate(r, key, reading):
@@ -64,13 +90,7 @@ def gate(r, key, reading):
 
 
 def run(setup, reading, passes=2):
-    clk = Clock()
-    lag = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}[setup]
-    p = Provider(clk, index_latency=lag)
-    r = Reconciler(p, clk, REFERENCE)
-    p.send_behaviour = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}[setup]
-    r.submit("k", ["a@x"], "body")
-    p.send_behaviour = "accepted"
+    clk, p, r = first_attempt(FIRST[setup], LAG[setup])
     history = []
     for n in range(passes):
         r.verify("k")                      # the model's own pass: rounds + fallback, never sends
@@ -92,12 +112,12 @@ EXPECTED = {   # (messages_at_provider, delivered?) per (reading, setup)
 }
 
 
-def main(argv):
-    as_json = "--json" in argv
+def evaluate():
+    """Return the same checked cells used by this CLI and the scorecard."""
     results = []
     problems = []
     for reading in READINGS:
-        for setup in ("S1", "S2", "S3", "S4"):
+        for setup in SETUPS:
             x = run(setup, reading)
             want_msgs, want_delivered = EXPECTED[(reading, setup)]
             delivered = x["messages_at_provider"] >= 1
@@ -106,7 +126,12 @@ def main(argv):
             if not x["ok"]:
                 problems.append((reading, setup))
             results.append(x)
-    if as_json:
+    return results, problems
+
+
+def main(argv):
+    results, problems = evaluate()
+    if "--json" in argv:
         print(json.dumps(results, indent=1, default=str))
     else:
         print("reading  setup  messages_at_provider  delivered  final_row/status                 gate verdicts per pass")

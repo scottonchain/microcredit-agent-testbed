@@ -1,8 +1,11 @@
 import copy
 import json
 from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
-from validate import validate
+from validate import format_model, validate
 
 class PlanningIntegrity(unittest.TestCase):
     def setUp(self):
@@ -40,5 +43,22 @@ class PlanningIntegrity(unittest.TestCase):
         self.rejects(lambda m:m['decisions'][0].update(assents=[{'agent_id':'agent:claude','evidence_id':m['evidence'][0]['id'],'version':'decision:old'}]))
     def test_unknown_field(self): self.rejects(lambda m:m['actions'][0].update(authority_to_spend=True))
     def test_ambiguous_time(self): self.rejects(lambda m:m.update(updated_at='tomorrow'))
+
+    def test_compact_format_preserves_every_value_and_record(self):
+        text = format_model(self.model)
+        self.assertEqual(json.loads(text), self.model)
+        self.assertEqual(format_model(json.loads(text)), text)
+        self.assertIn('"actions": [\n', text)
+
+    def test_invalid_model_is_not_rewritten_by_format_command(self):
+        self.model['actions'][0]['owner_id'] = 'agent:missing'
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'invalid.json'
+            original = json.dumps(self.model, indent=2)
+            path.write_text(original)
+            result = subprocess.run([sys.executable, str(Path(__file__).with_name('validate.py')),
+                                     str(path), '--format'], capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(path.read_text(), original)
 
 if __name__=='__main__': unittest.main()

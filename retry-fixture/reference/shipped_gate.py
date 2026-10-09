@@ -35,21 +35,14 @@ Stdlib only; deterministic; simulated clock. Usage: python3 shipped_gate.py [--j
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from model import Clock, Provider, Reconciler, REFERENCE
-from gate_readings import gate
+from model import REFERENCE
+from gate_readings import FIRST as BEHAVIOUR, LAG, SETUPS, first_attempt, gate
 
 UNSTAMPED = REFERENCE.mutate(use_as_of=False)
-BEHAVIOUR = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}
-LAG = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}
 
 
 def run(behaviour, lag, deadline):
-    clk = Clock()
-    p = Provider(clk, index_latency=lag)
-    r = Reconciler(p, clk, UNSTAMPED)
-    p.send_behaviour = behaviour
-    r.submit("k", ["a@x"], "body")
-    p.send_behaviour = "accepted"
+    clk, p, r = first_attempt(behaviour, lag, UNSTAMPED)
     clk.advance(deadline)                                  # the observation deadline: no read before it
     events, gates = [], []
     for n in range(2):
@@ -87,7 +80,7 @@ def main(argv):
     print()
     print("Sweep B: gate_readings.py's four setups at D = 76")
     want_b = {"S1": 2, "S2": 1, "S3": 1, "S4": 1}
-    for s in ("S1", "S2", "S3", "S4"):
+    for s in SETUPS:
         x = run(BEHAVIOUR[s], LAG[s], 76)
         ok = x["messages_at_provider"] == want_b[s] and x["scorecard"]["missing_effects"] == 0
         if not ok:

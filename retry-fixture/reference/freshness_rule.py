@@ -27,22 +27,15 @@ Usage: python3 freshness_rule.py [--json]
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from model import Clock, Provider, Reconciler, REFERENCE
-from gate_readings import gate
+from model import REFERENCE
+from gate_readings import FIRST, LAG, SETUPS, first_attempt, gate
 
 PATHS = (("stamped", REFERENCE), ("unstamped", REFERENCE.mutate(use_as_of=False)))
-SETUPS = ("S1", "S2", "S3", "S4")
 EXECUTIONS = 5
 
 
 def run(setup, policy):
-    clk = Clock()
-    lag = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}[setup]
-    p = Provider(clk, index_latency=lag)
-    r = Reconciler(p, clk, policy)
-    p.send_behaviour = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}[setup]
-    r.submit("k", ["a@x"], "body")
-    p.send_behaviour = "accepted"
+    clk, p, r = first_attempt(FIRST[setup], LAG[setup], policy)
     gates = []
     for n in range(EXECUTIONS):
         r.verify("k")                      # the model's own pass: rounds + fallback, never sends
@@ -60,8 +53,7 @@ EXPECTED = {   # (messages_at_provider, final_row) per (read path, setup)
 }
 
 
-def main(argv):
-    as_json = "--json" in argv
+def evaluate():
     results, problems = [], []
     for name, policy in PATHS:
         for setup in SETUPS:
@@ -73,7 +65,12 @@ def main(argv):
             if not x["ok"]:
                 problems.append((name, setup))
             results.append(x)
-    if as_json:
+    return results, problems
+
+
+def main(argv):
+    results, problems = evaluate()
+    if "--json" in argv:
         print(json.dumps(results, indent=1, default=str))
     else:
         print("read_path  setup  messages_at_provider  final_row  executions  gate verdicts")

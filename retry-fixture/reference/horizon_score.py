@@ -77,7 +77,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from model import Clock, Reconciler, REFERENCE                                  # noqa: E402
-from gate_readings import gate                                                  # noqa: E402
+from gate_readings import effect_label as label, gate                            # noqa: E402
 from kill_points import WorkerDied, KillingProvider, recover_as, gate_after_recovery  # noqa: E402
 
 HORIZONS = (120, 600, 3600)
@@ -218,14 +218,6 @@ def evaluate(cell, H):
     return {"duplicates": max(0, n - 1), "missing": int(n == 0), "unresolved": unresolved, "messages": n,
             "review_at": review_at, "executions": executions, "sends": snap["sends"], "reads": snap["reads"],
             "first_commit": cell["commits"][0] if cell["commits"] else None}
-
-
-def label(d, m, u):
-    if d:
-        return "duplicates"
-    if m or u:
-        return "no duplicate, but not a full success"
-    return "clean"
 
 
 # ---- live record (point 4) ---------------------------------------------------------------------------------------

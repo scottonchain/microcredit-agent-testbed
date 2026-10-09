@@ -4,12 +4,29 @@ import argparse
 from collections import Counter
 from datetime import datetime
 import json
+import os
 from pathlib import Path
 import re
 import sys
+import tempfile
 from schema import WorldModel
 
 ROOT = Path(__file__).resolve().parent
+
+def format_model(data):
+    """Keep sections and one complete record per line, without changing values."""
+    encode = lambda value: json.dumps(value, ensure_ascii=False, separators=(',', ':'))
+    lines = ['{']
+    for index, (key, value) in enumerate(data.items()):
+        suffix = ',' if index < len(data) - 1 else ''
+        if isinstance(value, list) and value:
+            lines.append('  ' + encode(key) + ': [')
+            lines.extend('    ' + encode(record) + (',' if i < len(value) - 1 else '')
+                         for i, record in enumerate(value))
+            lines.append('  ]' + suffix)
+        else:
+            lines.append('  ' + encode(key) + ': ' + encode(value) + suffix)
+    return '\n'.join([*lines, '}']) + '\n'
 
 def validate(data):
     WorldModel.model_validate(data)
@@ -147,12 +164,25 @@ def validate(data):
 
 def main():
     p=argparse.ArgumentParser(); p.add_argument('model',nargs='?',default=str(ROOT/'model.json')); p.add_argument('--check-schema',action='store_true')
+    p.add_argument('--format', action='store_true', help='after validation, atomically store compact records; all values are preserved')
     args=p.parse_args()
-    data=json.loads(Path(args.model).read_text())
+    path=Path(args.model)
+    data=json.loads(path.read_text(encoding='utf-8'))
     result=validate(data)
     if args.check_schema:
         expected=WorldModel.model_json_schema(); expected['$schema']='https://json-schema.org/draft/2020-12/schema'
         if json.loads((ROOT/'schema.json').read_text()) != expected: raise ValueError('schema.json differs from schema.py; regenerate')
+    if args.format:
+        temporary=None
+        try:
+            with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent, delete=False) as handle:
+                temporary=Path(handle.name)
+                handle.write(format_model(data))
+                handle.flush()
+                os.fchmod(handle.fileno(), path.stat().st_mode & 0o777)
+            os.replace(temporary, path)
+        finally:
+            if temporary is not None: temporary.unlink(missing_ok=True)
     print(json.dumps({'valid':True,'counts':result}))
 
 if __name__=='__main__':

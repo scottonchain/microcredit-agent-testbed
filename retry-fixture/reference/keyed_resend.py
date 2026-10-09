@@ -47,13 +47,11 @@ Stdlib only; deterministic; simulated clock. Usage: python3 keyed_resend.py [--j
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from model import Clock, Provider, Reconciler, REFERENCE
-from gate_readings import gate
+from model import Provider
+from gate_readings import FIRST, LAG, SETUPS, first_attempt, gate
 
 RETENTION = 24 * 3600          # Stripe documents keys as prunable once at least 24 hours old
 EARLY, LATE = 60, RETENTION + 60
-LAG = {"S1": 10 ** 6, "S2": 0, "S3": 10, "S4": 10}
-FIRST = {"S1": "accept_then_timeout", "S2": "reset_before_commit", "S3": "accept_then_timeout", "S4": "reset_before_commit"}
 
 
 class KeyedProvider(Provider):
@@ -81,13 +79,8 @@ def same_key_resend(r, key):
 
 
 def run(reading, setup):
-    clk = Clock()
-    p = (Provider if reading == "R3N" else KeyedProvider)(clk, index_latency=LAG[setup])
-    r = Reconciler(p, clk, REFERENCE)
-    p.send_behaviour = FIRST[setup]
-    r.submit("k", ["a@x"], "body")
+    clk, p, r = first_attempt(FIRST[setup], LAG[setup], provider_class=Provider if reading == "R3N" else KeyedProvider)
     first_dispatch_at = r.dispatches["k"][0]["at"]
-    p.send_behaviour = "accepted"
     clk.advance(LATE if reading in ("R3L", "R3G") else EARLY)
     if reading == "R3G" and clk.now - first_dispatch_at >= RETENTION:
         r.verify("k")
@@ -109,10 +102,10 @@ EXPECTED = {   # (messages_at_provider, final_row) per (reading, setup)
 }
 
 
-def main(argv):
+def evaluate():
     results, problems = [], []
     for reading in ("R3", "R3L", "R3G", "R3N"):
-        for setup in ("S1", "S2", "S3", "S4"):
+        for setup in SETUPS:
             x = run(reading, setup)
             want_msgs, want_row = EXPECTED[(reading, setup)]
             x["expected"] = {"messages_at_provider": want_msgs, "final_row": want_row}
@@ -120,6 +113,11 @@ def main(argv):
             if not x["ok"]:
                 problems.append((reading, setup))
             results.append(x)
+    return results, problems
+
+
+def main(argv):
+    results, problems = evaluate()
     if "--json" in argv:
         print(json.dumps(results, indent=1))
     else:

@@ -142,7 +142,7 @@ EXPECTED[("pre", "K2", "R0", "LH")] = 0
 EXPECTED[("pre", "K2", "R2", "LH")] = 0              # the bound is never met: K2 cannot be told from K3
 
 
-def main(argv):
+def evaluate():
     results, problems = [], []
     for d in DESIGNS:
         for k in KILLS:
@@ -154,6 +154,11 @@ def main(argv):
                     if not x["ok"]:
                         problems.append((d, k, rd, lg))
                     results.append(x)
+    return results, problems
+
+
+def main(argv):
+    results, problems = evaluate()
     if "--json" in argv:
         print(json.dumps(results, indent=1))
     else:
