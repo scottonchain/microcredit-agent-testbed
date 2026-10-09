@@ -7588,6 +7588,43 @@
         "The sandbox cannot fetch scottonchain.github.io; the live URLs are confirmed only by the successful Pages deployment until Codex or Hermes fetches them.",
         "The no-outside-borrower claim ends when the newcomer's line is drawn."
       ]
+    },
+    {
+      "id": "ev:youtube-watch-finding-20261008t1810z-lyaboyyjixu",
+      "kind": "primary_public",
+      "url": "https://www.youtube.com/watch?v=lyAboyYjIXU",
+      "locator": "The Cognitive Revolution, \"Formal AI Safety & Risk Strategy + LoRA-Powered Work Agents\", released 2026-10-07T18:53Z; complete English automatic caption track (last caption 2:44:51) relayed by Hermes; minute marks in the blog's VERIFY.md",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T18:53:00Z",
+      "retrieved_at": "2026-10-08T18:10:00Z",
+      "summary": "youtube-watch iteration at 2026-10-08T18:10:00Z: coverage complete transcript of the episode. Outcome: Host Nathan Labenz says he approves agent commands reflexively (\"the birdie that just keeps pecking the enter key\", 2:33:47) and asks how to get people to pay attention when they should (2:33:58): human oversight of agents fails when it asks too often. Guest Evan Miyazono (nonprofit Atlas, as captioned) holds that as intelligence gets cheap, coordination gets expensive (42:24) and wants agents that can verify which principal they act for (49:27). Guest Edward Hu (Mercor) wants AI as co-workers rather than replacements (2:01:28). Relevance: an audience-holding podcast whose host and guests favour accountable, identifiable agents working for people; the blog answered with \"The birdie at the enter key\" (2026-10-08).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "youtube-watch-finding-20261008t1810z-lyaboyyjixu",
+      "derived_from_ids": [],
+      "limitations": [
+        "speakers' statements as captioned (source-reported), not verified facts",
+        "the organisation's name as captioned"
+      ]
+    },
+    {
+      "id": "ev:youtube-watch-finding-20261008t1810z-tdbhckwumrk",
+      "kind": "primary_public",
+      "url": "https://www.youtube.com/watch?v=TDbHCKwuMrk",
+      "locator": "Doom Debates, \"AI Has Become Profoundly WEIRD, But Is Anyone Noticing? With Sarah Hastings-Woodhouse\", released 2026-10-07T22:42Z; complete English automatic caption track (last caption 1:07:00) relayed by Hermes; minute marks in the blog's VERIFY.md",
+      "author_id": "agent:claude",
+      "observer_id": "agent:claude",
+      "published_at": "2026-10-07T22:42:00Z",
+      "retrieved_at": "2026-10-08T18:10:00Z",
+      "summary": "youtube-watch iteration at 2026-10-08T18:10:00Z: coverage complete transcript of the episode. Outcome: Host Liron Shapira favours slowing AI development by degrees over an all-or-nothing halt (\"turning a switch into a dial\", 55:19). Guest Sarah Hastings-Woodhouse (writer, independent AI-safety researcher) argues against telling the public that catastrophe is certain because it is disempowering (1:02:58 to 1:03:06), holds that public opinion is shifted by what people say and do (38:53), and observes that people have stopped noticing how strange talking to a machine in plain English is (0:00, 46:08). Relevance: a safety-focused podcast whose participants want graduated, visible control of AI and public agency; the blog answered with \"A dial, not a switch\" (2026-10-08).",
+      "content_sha256": null,
+      "fingerprint_scope": null,
+      "origin_group": "youtube-watch-finding-20261008t1810z-tdbhckwumrk",
+      "derived_from_ids": [],
+      "limitations": [
+        "speakers' statements as captioned (source-reported), not verified facts"
+      ]
     }
   ],
   "claims": [
@@ -17865,6 +17902,6 @@
       ]
     }
   ],
-  "model_version": "0.1.89",
-  "updated_at": "2026-10-08T22:30:00Z"
+  "model_version": "0.1.90",
+  "updated_at": "2026-10-09T01:50:36Z"
 }
