@@ -5,7 +5,10 @@ The current public deployment is the canonical test-USDC pool recorded in
 read that descriptor and check the actual RPC chain and contract wiring. It is a
 record of the October 6 deployment, not a new chain observation or permission to
 deploy. Change it only with a reviewed deployment receipt. The source pin and
-contract documentation are in the descriptor.
+contract documentation are in the descriptor. `contract_commit` (`1812e7d`, on
+contract `main`) is the deployed source. `contract_docs_commit` (`a23422a`) only
+pins the documentation link; that commit is on the candidate branch, not `main`,
+and its `docs/TESTNET.md` is identical to `main`'s (checked 2026-10-10).
 
 | Current record | Pool | Asset | Source |
 | --- | --- | --- | --- |

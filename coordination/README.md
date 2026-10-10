@@ -198,7 +198,7 @@ from the canonical testbed card.
 
 | Repository | Regular checks |
 | --- | --- |
-| `microcredit-contract` | `yarn test:all`, `yarn lint`, `yarn next:check-types`, `yarn next:build` |
+| `microcredit-contract` | On `main`: `yarn foundry:test`, `yarn workspace @se-2/nextjs test`, `yarn lint`, `yarn next:check-types`, `yarn next:build` (its CLAUDE.md lists the rest). `yarn test:all` exists only on the candidate branch |
 | `microcredit-agent-testbed` | `python tools/check.py` |
 | `microcredit-theory` | `make check`; `python reproduce.py --help` for pinned model reproduction |
 | `microcredit-vision` | `python -m unittest discover -s tools -p 'test_*.py'`; `python tools/build.py --check` |
