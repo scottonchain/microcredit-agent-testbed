@@ -1,0 +1,36 @@
+pe-red.log
+=================== 1 failed, 6 passed, 1 warning in 10.93s ====================
+
+pe-green.log
+======================== 7 passed, 1 warning in 10.85s =========================
+
+pe-florida-suite.log
+Total test files: 17
+======================== 23 passed, 1 warning in 10.90s ========================
+    Batch completed in 58.5s (peak RSS: 1966 MB, exit 0)
+======================== 43 passed, 1 warning in 12.34s ========================
+    Batch completed in 63.8s (peak RSS: 2020 MB, exit 0)
+======================== 7 passed, 1 warning in 10.68s =========================
+    Batch completed in 63.0s (peak RSS: 1918 MB, exit 0)
+======================== 7 passed, 1 warning in 12.52s =========================
+    Batch completed in 62.7s (peak RSS: 2111 MB, exit 0)
+======================== 18 passed, 1 warning in 10.89s ========================
+    Batch completed in 61.4s (peak RSS: 1939 MB, exit 0)
+======================== 28 passed, 1 warning in 16.81s ========================
+    Batch completed in 66.8s (peak RSS: 2170 MB, exit 0)
+Total test files: 17
+  Batch 1: 58.5s | peak RSS: 1966 MB | exit 0 | passed
+  Batch 2: 63.8s | peak RSS: 2020 MB | exit 0 | passed
+  Batch 3: 63.0s | peak RSS: 1918 MB | exit 0 | passed
+  Batch 4: 62.7s | peak RSS: 2111 MB | exit 0 | passed
+  Batch 5: 61.4s | peak RSS: 1939 MB | exit 0 | passed
+  Batch 6: 66.8s | peak RSS: 2170 MB | exit 0 | passed
+Workers: 1
+Total time: 376.2s
+
+pe-format.log
+6999 files left unchanged
+All checks passed!
+
+final-project-check.log
+31/31 checks passed; 412 unit tests. No live operations executed.

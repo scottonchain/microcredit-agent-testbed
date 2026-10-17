@@ -1,0 +1,88 @@
+From 10cf9185357db18c801cf0a8957629c9ad49da40 Mon Sep 17 00:00:00 2001
+From: "Codex (AI)" <5783027+scottonchain@users.noreply.github.com>
+Date: Sat, 17 Oct 2026 19:02:47 +0000
+Subject: [PATCH] Fix double-counted tips in Florida School Readiness income
+
+---
+ .../fix-fl-school-readiness-tips.fixed.md     |  1 +
+ .../gov/states/fl/doe/sr/income/sources.yaml  |  2 +-
+ .../doe/sr/income/fl_sr_countable_income.yaml | 44 +++++++++++++++++++
+ 3 files changed, 46 insertions(+), 1 deletion(-)
+ create mode 100644 changelog.d/fix-fl-school-readiness-tips.fixed.md
+
+diff --git a/changelog.d/fix-fl-school-readiness-tips.fixed.md b/changelog.d/fix-fl-school-readiness-tips.fixed.md
+new file mode 100644
+index 00000000..ff70b02b
+--- /dev/null
++++ b/changelog.d/fix-fl-school-readiness-tips.fixed.md
+@@ -0,0 +1 @@
++Fixed double-counting of tips in Florida School Readiness countable income.
+diff --git a/policyengine_us/parameters/gov/states/fl/doe/sr/income/sources.yaml b/policyengine_us/parameters/gov/states/fl/doe/sr/income/sources.yaml
+index de99ddf3..53c694ac 100644
+--- a/policyengine_us/parameters/gov/states/fl/doe/sr/income/sources.yaml
++++ b/policyengine_us/parameters/gov/states/fl/doe/sr/income/sources.yaml
+@@ -6,11 +6,11 @@ description: Florida counts these gross family income sources under the School R
+ # a person-level income source, is counted. Matches the ME/WV CCAP convention.
+ values:
+   2025-10-01:
++    # employment_income already includes tips and commissions.
+     - employment_income
+     - self_employment_income
+     - sstb_self_employment_income
+     - farm_income
+-    - tip_income
+     - social_security_retirement
+     - social_security_disability
+     - social_security_survivors
+diff --git a/policyengine_us/tests/policy/baseline/gov/states/fl/doe/sr/income/fl_sr_countable_income.yaml b/policyengine_us/tests/policy/baseline/gov/states/fl/doe/sr/income/fl_sr_countable_income.yaml
+index d9b939c0..d56739cc 100644
+--- a/policyengine_us/tests/policy/baseline/gov/states/fl/doe/sr/income/fl_sr_countable_income.yaml
++++ b/policyengine_us/tests/policy/baseline/gov/states/fl/doe/sr/income/fl_sr_countable_income.yaml
+@@ -119,3 +119,47 @@
+   output:
+     # Both adults (40 and 18) count: (24_000 + 12_000) / 12 = 3_000.
+     fl_sr_countable_income: 3_000
++
++- name: Gross employment income of 30,000 without separately reported tips.
++  period: 2026-01
++  absolute_error_margin: 0.01
++  input:
++    people:
++      parent:
++        age: 30
++        employment_income: 30_000
++        tip_income: 0
++      child:
++        age: 3
++    spm_units:
++      spm_unit:
++        members: [parent, child]
++    households:
++      household:
++        members: [parent, child]
++        state_code: FL
++  output:
++    # Gross wages include tips: 30_000 / 12 = 2_500 in both cases.
++    fl_sr_countable_income: 2_500
++
++- name: Gross employment income of 30,000 with tips already included in employment income.
++  period: 2026-01
++  absolute_error_margin: 0.01
++  input:
++    people:
++      parent:
++        age: 30
++        employment_income: 30_000
++        tip_income: 10_000
++      child:
++        age: 3
++    spm_units:
++      spm_unit:
++        members: [parent, child]
++    households:
++      household:
++        members: [parent, child]
++        state_code: FL
++  output:
++    # Gross wages include tips: 30_000 / 12 = 2_500 in both cases.
++    fl_sr_countable_income: 2_500

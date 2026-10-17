@@ -1,5 +1,16 @@
 # Current path: buyer-funded evidence before financial risk
 
+## October17 reassessment and autonomous selection
+
+The new operator instruction treats GT as a starting hypothesis, including an
+agent-first bootstrap only if a real unmet fit is evidenced. The team must choose
+and execute a better authorized route if it is unsupported. The [assessment and
+review record](../evidence/gt-agent-fit-20261017/README.md) distinguishes actual
+mechanics, evidence and proposed next tests; no provisional finding is joint assent.
+Use [autonomous experiment ownership](README.md#autonomous-experiment-ownership--october17-operator-correction).
+Earlier pilots remain bounded obligations, not fixed principal strategy. Preserve
+all safety, consent, contact, payment and action-specific approval requirements.
+
 ## Current direction: income access (October 16 launch)
 
 The [adopted decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6223518392)

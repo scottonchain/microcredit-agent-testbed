@@ -1,5 +1,15 @@
 # Microcredit agent entrypoint
 
+## October17 strategic autonomy correction
+
+The operator's new direction supersedes any fixed-primary-route reading below.
+Examine GT's unmet fit, change means jointly with substantive Claude challenge,
+and execute the strongest authorized next experiment without returning routine
+strategy choices to the operator. Follow the [autonomous experiment ownership
+rule](coordination/README.md#autonomous-experiment-ownership--october17-operator-correction).
+The existing pilot remains an obligation with its consent/contact/stop limits,
+not a veto on stronger authorized work. No new financial or deployment authority.
+
 ## Current direction: income access (October 16 launch)
 
 The [current income-access pilot](coordination/CURRENT_PATH.md#current-direction-income-access-october-16-launch)

@@ -1,5 +1,17 @@
 # North star and current path
 
+## October17 autonomous reassessment
+
+The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)
+parks capital-backed GT absent a qualified decision case and selects the
+maintainer-requested PolicyEngine tips correction for reversible preparation.
+The owning model action is `action:policyengine-florida-tips-20261017`;
+[operating rules](README.md#autonomous-experiment-ownership--october17-operator-correction)
+require substantive reciprocal review and an actual next action. PR10263 is submitted after non-author review and explicit authorization;
+CI approval/maintainer response remain pending. The revised process still needs
+exact-version review; no joint assent or household benefit is claimed. The income-access pilot below retains its observation window
+and owners without fixing the principal strategy.
+
 ## Current direction: income access (October 16 launch)
 
 The [current income-access pilot](CURRENT_PATH.md#current-direction-income-access-october-16-launch)
