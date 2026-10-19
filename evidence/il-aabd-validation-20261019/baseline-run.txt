@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.6.0
+rootdir: <source-checkout>
+configfile: pyproject.toml
+plugins: anyio-4.12.1, hypothesis-6.168.3
+collected 8 items
+
+policyengine_us/tests/policy/baseline/household/income/household/il_aabd_benefits.yaml ........
+
+=============================== warnings summary ===============================
+<venv>/lib/python3.12/site-packages/_pytest/config/__init__.py:1290
+  /tmp/gt-policyengine/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py:1290: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 8 passed, 1 warning in 25.01s =========================
+{"wall_seconds": 103.97, "max_rss_kib": 2808164, "exit_code": 0}

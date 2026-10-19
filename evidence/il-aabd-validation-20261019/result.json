@@ -1,0 +1,11 @@
+{
+  "head": "95d1b3a0c0a98cfecfacbabfe61c587466f39a3c",
+  "file": "policyengine_us/tests/policy/baseline/household/income/household/il_aabd_benefits.yaml",
+  "file_sha256": "2517b3b9601540be714d70c16c0ea1b728ce55823e809e84cfee7c3a3fad5d20",
+  "passed": 8,
+  "pytest_seconds": 25.01,
+  "wall_seconds": 103.97,
+  "max_rss_kib": 2808164,
+  "source_modified": false,
+  "upstream_delivery": false
+}
