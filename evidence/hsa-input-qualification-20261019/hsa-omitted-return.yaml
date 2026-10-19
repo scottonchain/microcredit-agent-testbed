@@ -1,0 +1,12 @@
+# Separate cases with the return-level deduction omitted entirely.
+- name: Omitted HSA return deduction stays zero despite person amount
+  period: 2025
+  input:
+    age: [40, 40]
+    state_code: [TX, TX]
+    employment_income: [300000, 300000]
+    health_savings_account_ald_person: [0, 4000]
+  output:
+    health_savings_account_ald: [0, 0]
+    adjusted_gross_income: [300000, 300000]
+    above_the_line_deductions_person: [0, 0]

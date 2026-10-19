@@ -1,0 +1,14 @@
+# Synthetic input-contract qualification, not advice about deductible amounts.
+# Four separate single-person tax units: no input, person only, return only,
+# conflicting person/return inputs. Explicit return amount controls federal AGI.
+- name: HSA person attribution does not replace the explicit return deduction
+  period: 2025
+  input:
+    age: [40, 40, 40, 40]
+    state_code: [TX, TX, TX, TX]
+    employment_income: [300000, 300000, 300000, 300000]
+    health_savings_account_ald_person: [0, 4000, 0, 4000]
+    health_savings_account_ald: [0, 0, 4000, 1000]
+  output:
+    adjusted_gross_income: [300000, 300000, 296000, 299000]
+    above_the_line_deductions_person: [0, 0, 4000, 1000]
