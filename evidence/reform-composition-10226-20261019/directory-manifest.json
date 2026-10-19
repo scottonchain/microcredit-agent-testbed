@@ -1,0 +1,87 @@
+[
+  {
+    "path": "policyengine_us/tests/policy/reform/boost_head_start_benefits_composition.yaml",
+    "sha256": "0754db37dadf4dc6755e92ab50d0850c4bdb60b56a88840aa851569cd8387729",
+    "cases": 1
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/cdcc_single_parent_work_requirement.yaml",
+    "sha256": "513043b89e5f228e6d65231b7289e5800ff85b12b2d2a999221ccb641a0d8e5c",
+    "cases": 7
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/ctc_expansion.yaml",
+    "sha256": "d6e36c6597b8958b21c172d7470078e29b444f7503082a521f65363803074a71",
+    "cases": 4
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/ctc_linear_phase_out.yaml",
+    "sha256": "2426d983ccab2399735b99122fedcc473d36af2914586606bf2e79d89f448176",
+    "cases": 9
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/ecpa_head_start_benefits_composition.yaml",
+    "sha256": "bfb4e289b50b8073eff19e9c0be1e850cbeaac66e0f15e9f3da144433709d50a",
+    "cases": 1
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/mo_refundable_eitc.yaml",
+    "sha256": "314a3a2c11b417cb9c0545abff41084cff3c078ab30e57227344da339dab3906",
+    "cases": 5
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/oh_refundable_eitc.yaml",
+    "sha256": "d5e350235202893d4924128630e3c8c1f79740773513c679b6ba28a185ac3f9d",
+    "cases": 4
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/sc_fully_refundable_eitc.yaml",
+    "sha256": "f06df96e3ddca65d4ae7426ea4e73ac190aacd6f22eabbb02bd53f01339a2593",
+    "cases": 8
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/streamlined_eitc.yaml",
+    "sha256": "ffcce40d84f69deed6fe6f439ae2e65826c1dd30b7643d007988d5139508e90b",
+    "cases": 7
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/trump_dividend_in_boost_benefit_aggregates.yaml",
+    "sha256": "80f5034a08b10a880a27b671cd97a70dbb5a64ae3b02702da33fb181d1c664d3",
+    "cases": 2
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/trump_dividend_in_ecpa_benefit_aggregates.yaml",
+    "sha256": "1ba08ab2bf6fd9df4764b8468d8f05a170d8d9eb7eaada53a5e05f42a7592bc7",
+    "cases": 2
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/trump_dividend_in_edaa_benefit_aggregates.yaml",
+    "sha256": "ac9a0e2e756beade7d3f9ac4d155454bcdb74a161d030c55dec86b2dfc8ca20c",
+    "cases": 2
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/trump_dividend_in_tx_rebate_benefit_aggregates.yaml",
+    "sha256": "3d903e6c39b597ef19c4f2cef9df9f8c1816a7c9f5eb73a86c30a4b7befee883",
+    "cases": 2
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/tx_rebate/spm_unit_benefits.yaml",
+    "sha256": "d7a4b721822168918bfab37a31de6193b8bb74dfd5e15a7f13b2657846dab84f",
+    "cases": 2
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/ut_fully_refundable_eitc.yaml",
+    "sha256": "e89101a95fe85fa910217be64a88c2cf3227088a9d026bdd21f5bc6672fa07c9",
+    "cases": 4
+  },
+  {
+    "path": "policyengine_us/tests/policy/reform/winship.yaml",
+    "sha256": "71f9755b85a645eb20d19e45ebdfc6d569cb2839cec0c24eb19bcb6ae51b532f",
+    "cases": 5
+  },
+  {
+    "path": "policyengine_us/tests/policy/contrib/states/tx/rebate/tx_rebate.yaml",
+    "sha256": "5990cbe63b17f7c2838a55d85f3ee50fc99b2769a2e9ee42274d416db1cd3d27",
+    "cases": 8
+  }
+]

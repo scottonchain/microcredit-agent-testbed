@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.6.0
+rootdir: /tmp/pe-composition0600
+configfile: pyproject.toml
+plugins: anyio-4.12.1, hypothesis-6.168.3
+collected 2 items
+
+policyengine_us/tests/policy/reform/tx_rebate/spm_unit_benefits.yaml .F
+
+=================================== FAILURES ===================================
+_________________________________ test session _________________________________
+<upstream-checkout>/policyengine_us/tests/policy/reform/tx_rebate/spm_unit_benefits.yaml:
+  Test 'Texas reform preserves baseline programs outside Texas':
+    spm_unit_benefits@2027: [0. 0. 0. 0. 0. 0.] differs from [101. 102. 103. 104. 105. 106.] with an absolute margin [101. 102. 103. 104. 105. 106.] > 0.001
+=============================== warnings summary ===============================
+<venv>/lib/python3.12/site-packages/_pytest/config/__init__.py:1290
+  /tmp/gt-policyengine/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py:1290: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED policyengine_us/tests/policy/reform/tx_rebate/spm_unit_benefits.yaml::
+=================== 1 failed, 1 passed, 1 warning in 51.93s ====================

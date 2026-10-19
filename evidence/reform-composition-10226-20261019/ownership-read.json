@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-19T08:31:27.899465Z",
+  "open_prs_scanned": 164,
+  "extended_file_lists": [
+    9184,
+    10134,
+    10182
+  ],
+  "incomplete_file_lists": [],
+  "matching_prs": [
+    {
+      "number": 8017,
+      "title": "Add Iowa state supplementation for 2026",
+      "head": "acf387bb0b32c86f7a8d8b29e904c64832888ea6",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 8233,
+      "title": "Add Montana state supplementation for 2026",
+      "head": "e4fc84a5652d46980f0f0af5c1cde9d79c17aeca",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 9462,
+      "title": "Separate SPM measurement scope from ordinary income",
+      "head": "091cf350227754ed6e0e7985ed391e6e094c780e",
+      "paths": [
+        "policyengine_us/reforms/states/tx/rebate/tx_rebate.py",
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10086,
+      "title": "Count Illinois AABD cash in household and SPM benefits",
+      "head": "95d1b3a0c0a98cfecfacbabfe61c587466f39a3c",
+      "paths": [
+        "policyengine_us/reforms/states/tx/rebate/tx_rebate.py",
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10156,
+      "title": "Add New Hampshire state supplementation for 2026",
+      "head": "a71c7cde73861f8fbab50ceb43d9e2ed5273abfd",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10158,
+      "title": "Add New York state supplementation for 2026",
+      "head": "03a3fc2200c1eea580cdee240948e73368bab031",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10164,
+      "title": "Add Ohio state supplementation for 2026",
+      "head": "e1cb3ee997ed50e7b549d56a03040be0422a0fa8",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10165,
+      "title": "Add Oklahoma state supplementation for 2026",
+      "head": "8d2de3b22fa5c38187fb682d61d15b13d7fc32e1",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10166,
+      "title": "Add Oregon state supplementation for 2026",
+      "head": "3311c3b18f300ec5fde4e323a449215ad8bbe232",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10168,
+      "title": "Add Rhode Island state supplementation for 2026",
+      "head": "5279c1bb6ca0c55af4df3eea00dfa241c1232eeb",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10169,
+      "title": "Add South Dakota state supplementation for 2026",
+      "head": "b416b58e8e7f550006a9386bc445bd916ce77e0e",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10170,
+      "title": "Add Utah state supplementation for 2026",
+      "head": "6e1647df50275463bf7b72f5448473cc39c0b40a",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10171,
+      "title": "Add Vermont state supplementation for 2026",
+      "head": "0693646254bc4c422f53a2cbe9e9a44d0283466c",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10172,
+      "title": "Add Virginia state supplementation for 2026",
+      "head": "1a6e32cf8a79bead940e183708f7d4efdc947048",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    },
+    {
+      "number": 10173,
+      "title": "Add Wisconsin state supplementation for 2026",
+      "head": "bd14e92bd986abed6e5e12570a517c1eab46a730",
+      "paths": [
+        "policyengine_us/variables/household/income/spm_unit/spm_unit_benefits.py"
+      ]
+    }
+  ],
+  "issue_updated_at": "2026-10-14T17:34:30Z",
+  "issue_comments": 0,
+  "issue_assignees": []
+}

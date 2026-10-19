@@ -1,0 +1,14 @@
+{
+  "reform-directory.log": {
+    "cases_passed": 65,
+    "wall_seconds": 1859.4,
+    "max_rss_kib": 5836848,
+    "exit_code": 0
+  },
+  "texas-directory.log": {
+    "cases_passed": 8,
+    "wall_seconds": 121.34,
+    "max_rss_kib": 3723668,
+    "exit_code": 0
+  }
+}

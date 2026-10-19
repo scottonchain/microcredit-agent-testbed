@@ -1,0 +1,16 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_tx_rebate_preserves_future_baseline_program _______________
+policyengine_us/tests/test_tx_rebate_future_baseline.py:54: in test_tx_rebate_preserves_future_baseline_program
+    assert simulation.calculate("spm_unit_benefits", 2027) == pytest.approx(
+E   assert array([0., 0....dtype=float32) == approx([0 ± 1...77 ± 7.7e-05])
+E     
+E     comparison failed. Mismatched elements: 1 / 6:
+E     Max absolute difference: 77.0
+E     Max relative difference: inf
+E     Index | Obtained | Expected    
+E     5     | 0.0      | 77 ± 7.7e-05
+=========================== short test summary info ============================
+FAILED policyengine_us/tests/test_tx_rebate_future_baseline.py::test_tx_rebate_preserves_future_baseline_program
+1 failed in 20.23s
+{"wall_seconds": 57.25, "max_rss_kib": 1548804, "exit_code": 1}

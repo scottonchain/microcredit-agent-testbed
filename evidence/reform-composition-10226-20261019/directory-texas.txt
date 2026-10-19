@@ -1,0 +1,48 @@
+PolicyEngine Test Runner
+============================================================
+Test path: policyengine_us/tests/policy/contrib/states/tx/rebate
+Requested batches: 2
+Total test files: 1
+Actual batches: 1 (optimized for 1 files)
+============================================================
+
+[Batch 1/1]
+  Test files: ~1
+------------------------------------------------------------
+    Running Batch 1...
+    Paths: 1 items
+
+    Still running Batch 1 after 30s (30s since last output)...
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.6.0
+rootdir: <upstream-checkout>
+configfile: pyproject.toml
+plugins: anyio-4.12.1, hypothesis-6.168.3
+collected 8 items
+
+policyengine_us/tests/policy/contrib/states/tx/rebate/tx_rebate.yaml     Still running Batch 1 after 68s (30s since last output)...
+........
+
+=============================== warnings summary ===============================
+<venv>/lib/python3.12/site-packages/_pytest/config/__init__.py:1290
+  /tmp/gt-policyengine/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py:1290: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 8 passed, 1 warning in 55.26s =========================
+
+__POLICYENGINE_BATCH_EXIT__ 0
+
+    Runner reported exit 0; terminating process...
+
+    Batch completed in 121.3s (peak RSS: 3637 MB, exit 0)
+  Cleaning up memory...
+
+============================================================
+TEST SUMMARY
+============================================================
+Total test files: 1
+  Batch 1: 121.3s | peak RSS: 3637 MB | exit 0 | passed
+Workers: 1
+Total time: 121.3s
+{"wall_seconds": 121.34, "max_rss_kib": 3723668, "exit_code": 0}
