@@ -1,0 +1,97 @@
+{
+  "observed_at": "2026-10-19T10:04:10.124760+00:00",
+  "source_main": "ae51c9be60635f6933ab551c08bfe83ae7e5c061",
+  "offer": {
+    "id": 6264207881,
+    "html_url": "https://github.com/PolicyEngine/policyengine-us/issues/10226#issuecomment-6264207881",
+    "created_at": "2026-10-19T09:37:24Z",
+    "updated_at": "2026-10-19T09:37:24Z"
+  },
+  "offer_author": "hermes-agent-909",
+  "offer_utf8_bytes": 2007,
+  "offer_sha256": "5a8fe0db04691620615626cf5b1cc7d6e9e8449f0ea6e46e7406291f7a5f73bc",
+  "endpoint": "2026-10-26T09:37:24Z",
+  "qualification": [
+    {
+      "number": 10146,
+      "url": "https://github.com/PolicyEngine/policyengine-us/pull/10146",
+      "head": "47f4a1a770260db71a0473e76ffd5c6e20c2b87a",
+      "updated_at": "2026-10-19T09:08:42Z",
+      "draft": false,
+      "author": "MaxGhenis",
+      "body_sha256": "d4f22f96085c22dd8f55b11a1266cc88a52596887e4ee61b028c26c980ef38ef",
+      "comment_ids": [],
+      "review_ids": []
+    },
+    {
+      "number": 9698,
+      "url": "https://github.com/PolicyEngine/policyengine-us/pull/9698",
+      "head": "3f807d71ca409e421f86d6c56a2beee280171933",
+      "updated_at": "2026-10-19T09:14:19Z",
+      "draft": false,
+      "author": "MaxGhenis",
+      "body_sha256": "3757a1ad402e920e661ba746837d4435d218689dd1fbf0b80b170bcdda9e2172",
+      "comment_ids": [
+        5902253632
+      ],
+      "review_ids": []
+    },
+    {
+      "number": 10185,
+      "url": "https://github.com/PolicyEngine/policyengine-us/pull/10185",
+      "head": "c10ffcad6089d81cddb1f3e2c06108d5c961cb39",
+      "updated_at": "2026-10-19T08:57:31Z",
+      "draft": false,
+      "author": "MaxGhenis",
+      "body_sha256": "93545d282f0b2923da14eadc269e0272c5674efc7ca2e79b0c530bd9674d342b",
+      "comment_ids": [
+        6142632778
+      ],
+      "review_ids": []
+    },
+    {
+      "number": 9621,
+      "url": "https://github.com/PolicyEngine/policyengine-us/pull/9621",
+      "head": "1a56a90069dfdf73cca7b2ce67af9a926c47324f",
+      "updated_at": "2026-10-19T09:06:51Z",
+      "draft": true,
+      "author": "MaxGhenis",
+      "body_sha256": "0a9b96f1cb557c182212e9d0d626a1167d97f7d90b572c2f0687309680a43a0f",
+      "comment_ids": [],
+      "review_ids": []
+    }
+  ],
+  "observations": {
+    "10226": {
+      "comment_ids": [
+        6264207881
+      ],
+      "head": null,
+      "review_ids": null
+    },
+    "10229": {
+      "comment_ids": [
+        6194245276,
+        6258088582
+      ],
+      "head": "a6254dc75c6b8b851a648bb7bf2080dc644515e1",
+      "review_ids": []
+    },
+    "10263": {
+      "comment_ids": [],
+      "head": "e4cdfbc58ca227589748b8c2595abda81aa63ade",
+      "review_ids": []
+    },
+    "10264": {
+      "comment_ids": [],
+      "head": "781a91b24e0fd0df0d3c9cb8c9ca6bfa05df445d",
+      "review_ids": []
+    }
+  },
+  "reader_comment_ids": [
+    "dbcad355-0cb2-4407-8d80-25745ef36382",
+    "ef5b3db0-bfcc-4266-831c-6623bee8bce2",
+    "e2f891c5-29e8-42dc-adee-1204e90d8141",
+    "6f649371-f8bf-46a9-b042-d0450affbfe6"
+  ]
+}
