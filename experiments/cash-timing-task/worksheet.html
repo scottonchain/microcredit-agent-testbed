@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>When does the money run short?</title>
+<style>body{font:18px/1.55 system-ui,sans-serif;max-width:760px;margin:32px auto;padding:0 18px;color:#182e34;background:#faf9f3}h1{line-height:1.15}label{display:block;font-weight:650;margin-top:20px}input,textarea,button{font:inherit;padding:10px;box-sizing:border-box;max-width:100%}textarea{width:100%;min-height:190px}button{background:#165e60;color:white;border:0;border-radius:4px;margin:16px 8px 8px 0;cursor:pointer}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #bbc8c9;padding:8px}aside{border-left:4px solid #b16b20;padding-left:16px}#error{color:#a11212}small{display:block}</style>
+<main><h1>When does the money run short?</h1>
+<p>A positive ending total can hide an earlier shortfall. This worksheet adds and subtracts each entry in order. It does not choose which bills to pay or recommend borrowing.</p>
+<aside><strong>Use fictional numbers for this public test.</strong> Do not put names, account information, benefit details or actual finances here or in a public reply. This downloaded file makes no automatic network requests and has no analytics or saved data. Opening the source link visits that external site. The page itself does not store entries, but your browser may retain form history. Browser extensions and screen-sharing are outside its control.</aside>
+<label for="start">Starting amount (one currency, no symbol)</label><input id="start" value="80.00" inputmode="decimal">
+<label for="entries">Entries: day number, signed amount</label>
+<p id="help">One entry per line. A minus means money leaves; a plus means money arrives. Use days 1–31 in order. For the same day, list the actual order; if unknown, this calculation cannot establish the lowest balance. Include only spendable money, not restricted benefits or credit limits.</p>
+<textarea id="entries" aria-describedby="help" spellcheck="false">1,-50.00
+2,-40.00
+3,+120.00
+4,-25.00</textarea>
+<button id="calculate" type="button">Show each balance</button><button id="reset" type="button">Restore fictional example</button>
+<p id="error" role="alert"></p><section id="result" aria-live="polite"></section>
+<h2>Use the method on paper</h2><ol><li>Write the starting amount.</li><li>Put each arrival and payment in time order.</li><li>Add or subtract the next amount and write the new balance.</li><li>Find the first negative balance and the largest amount below zero.</li></ol>
+<p>A shortfall is a gap in this supplied schedule, not proof of a bank fee or a financial loss. Delayed deposits, missing costs, holds and transaction ordering can change the result. Moving dates does not create income.</p>
+<p>For broader planning, see the CFPB's <a href="https://files.consumerfinance.gov/f/documents/cfpb_your-money-your-goals_cash_flow_budget_tool_2018-11_ADA.pdf" rel="noreferrer">cash flow budget worksheet</a>. Our additional hypothesis is that showing each step can make within-week timing easier to inspect. No advantage over that resource or human benefit has been established.</p>
+<small>Created by Codex, an AI agent, for the microcredit project's human-welfare research. Arithmetic demonstration only; no individualized financial or eligibility advice. Version 1, 23 October 2026.</small></main>
+<script>
+'use strict';
+function cents(s) {
+ s=s.trim(); if(!/^[+-]?\d{1,9}(?:\.\d{1,2})?$/.test(s)) throw Error('Use a plain amount with at most two decimal places.');
+ const neg=s[0]==='-';s=s.replace(/^[+-]/,'');const [whole,fraction='']=s.split('.');return (neg?-1:1)*(Number(whole)*100+Number(fraction.padEnd(2,'0')));
+}
+function calculate(start,text){
+ let balance=cents(start);if(balance<0)throw Error('For this demonstration, start with zero or a positive amount.');
+ const lines=text.trim().split('\n');if(!text.trim()||lines.length>100)throw Error('Enter 1 to 100 entries.');
+ let lastDay=0,min=balance,first=null;const rows=[];
+ for(const line of lines){const parts=line.split(',');if(parts.length!==2||!/^\d{1,2}$/.test(parts[0].trim()))throw Error('Each line must be day,amount.');
+ const day=Number(parts[0]);if(day<1||day>31||day<lastDay)throw Error('Use days 1 to 31 in chronological order.');lastDay=day;
+ const amount=cents(parts[1]);balance+=amount;min=Math.min(min,balance);if(balance<0&&first===null)first=day;rows.push({day,amount,balance});}
+ return {rows,first,shortfall:Math.max(0,-min),final:balance};
+}
+function money(n){return (n<0?'-':'')+(Math.abs(n)/100).toFixed(2);}
+function render(){const out=document.getElementById('result');out.replaceChildren();document.getElementById('error').textContent='';try{
+ const result=calculate(document.getElementById('start').value,document.getElementById('entries').value);
+ const summary=document.createElement('p');summary.textContent=(result.first===null?'No negative balance in these entries.':'First shortfall: day '+result.first+'.')+' Largest shortfall: '+money(result.shortfall)+'. Final balance: '+money(result.final)+'.';out.append(summary);
+ const table=document.createElement('table');const head=table.createTHead().insertRow();for(const label of ['Day','Change','Balance']){const th=document.createElement('th');th.scope='col';th.textContent=label;head.append(th);}const body=table.createTBody();
+ for(const r of result.rows){const tr=body.insertRow();for(const value of [String(r.day),money(r.amount),money(r.balance)])tr.insertCell().textContent=value;}out.append(table);
+ }catch(e){document.getElementById('error').textContent=e.message;}}
+document.getElementById('calculate').addEventListener('click',render);
+document.getElementById('reset').addEventListener('click',()=>{document.getElementById('start').value='80.00';document.getElementById('entries').value='1,-50.00\n2,-40.00\n3,+120.00\n4,-25.00';document.getElementById('result').replaceChildren();document.getElementById('error').textContent='';});
+</script></html>

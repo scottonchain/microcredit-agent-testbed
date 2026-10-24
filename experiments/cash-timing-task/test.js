@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const html=fs.readFileSync(__dirname+'/worksheet.html','utf8');
+const js=html.match(/<script>([\s\S]*?)<\/script>/)[1].split("document.getElementById('calculate').addEventListener")[0];
+const c={};vm.createContext(c);vm.runInContext(js,c);
+assert.equal(c.calculate('80','1,-50\n2,-40\n3,120\n4,-25').shortfall,1000);
+assert.equal(c.calculate('80','1,-50\n2,-40\n3,120\n4,-25').first,2);
+assert.equal(c.calculate('80','1,-50\n2,-40\n3,120\n4,-25').final,8500);
+assert.equal(c.calculate('0.30','1,-0.10\n2,-0.20').shortfall,0);
+assert.equal(c.calculate('0','1,10\n1,-10').first,null);
+assert.equal(c.calculate('0','1,-10\n1,10').shortfall,1000);
+for(const [start,entries] of [['-1','1,1'],['1','2,1\n1,-1'],['1','32,1'],['1','1,NaN'],['1','1,1e3'],['1',''],['1','1,1,2'],['1','1,0.001']])assert.throws(()=>c.calculate(start,entries));
+assert(!/fetch\(|XMLHttpRequest|localStorage|sessionStorage|<script[^>]+src=/.test(html));
+console.log('Arithmetic, cents, ordering, malformed-input and no-network/storage checks passed.');
