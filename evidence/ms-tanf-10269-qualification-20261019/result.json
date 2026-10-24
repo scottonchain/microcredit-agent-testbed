@@ -1,0 +1,27 @@
+{
+  "source_head": "f9b55fc4dd05f1bed921a4dd06cb8c81f6ceb2c7",
+  "core_version": "3.32.27",
+  "failed": 3,
+  "passed": 4,
+  "warnings": 1,
+  "pytest_seconds": 10.2,
+  "wall_seconds": 79.01,
+  "max_rss_kib": 1945528,
+  "exit_code": 1,
+  "failures": {
+    "net200": {
+      "actual": 60,
+      "reference": 228
+    },
+    "net500": {
+      "actual": 0,
+      "reference": 48
+    },
+    "net564": {
+      "actual": 0,
+      "reference": 10
+    }
+  },
+  "input_sha256": "03b7561a5a97c07f330b0bb7e6166de58caa90cde0ca7a485b38685aba1848fd",
+  "scope": "Supplied eligibility/max/net component test, January2026; not full household eligibility or real payout"
+}

@@ -1,0 +1,36 @@
+{
+  "source_head": "f9b55fc4dd05f1bed921a4dd06cb8c81f6ceb2c7",
+  "period": "2026-01",
+  "issue": {
+    "url": "https://github.com/PolicyEngine/policyengine-us/issues/10269",
+    "author": "PavelMakarchuk",
+    "created_at": "2026-10-19T10:52:52Z",
+    "updated_at": "2026-10-19T10:52:52Z",
+    "body_sha256": "bc951789008bcb1b0e2bbd8153d0562736327cf6762e78a4a2ad263727442300",
+    "comments": 0,
+    "assignees": []
+  },
+  "overlap_pr": {
+    "number": 10258,
+    "head": "69ee0cfc88bcbc8aeb5a784c4d6a59091a03464d",
+    "author": "PavelMakarchuk",
+    "draft": true,
+    "body_sha256": "b0657a3b3828ed433c3f6ac9796d98cd2887bfc410f76a5d89eecc8c40269639"
+  },
+  "source_file_hashes": {
+    "policyengine_us/variables/gov/states/ms/dhs/tanf/ms_tanf.py": "bab448baefcf6b1e3870f2897f3d2f1adf6b39c374ffa9e2a036e9e62365893a",
+    "policyengine_us/parameters/gov/states/ms/dhs/tanf/need_standard/amount.yaml": "91649dd3b8a24b84eddea5e8001e4be6ee00948fb29fb1bb6735e09f6273dbc6"
+  },
+  "manual": {
+    "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000330c.pdf",
+    "agency_listing": "https://www.mdhs.ms.gov/partner-resources/administrative-codes/",
+    "retrieved": "2026-10-19",
+    "locators": [
+      "PDF index458: printed6013 computing/minimum/rounding",
+      "PDF index968: TableI three-person net581",
+      "PDF index969: TableII60percent,max260,min10"
+    ],
+    "pdf_bytes_sha256": null,
+    "limitation": "Primary text read and table screenshot retrieval; no complete PDF byte archive/hash. Table-label ambiguity and historical effective dates unresolved."
+  }
+}

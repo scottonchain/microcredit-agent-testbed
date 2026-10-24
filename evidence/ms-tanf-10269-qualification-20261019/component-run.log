@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-8.4.2, pluggy-1.6.0
+rootdir: <evidence>
+plugins: anyio-4.12.1, hypothesis-6.168.3
+collected 7 items
+
+..<evidence>/component.yaml .FFF...
+
+=================================== FAILURES ===================================
+_________________________________ test session _________________________________
+<evidence>/component.yaml:
+  Test 'January2026 three-person budget, supplied net income 200; source rule reference':
+    ms_tanf@2026-01: [60.] differs from 228.0 with an absolute margin [168.] > 0.001
+_________________________________ test session _________________________________
+<evidence>/component.yaml:
+  Test 'January2026 three-person budget, supplied net income 500; source rule reference':
+    ms_tanf@2026-01: [0.] differs from 48.0 with an absolute margin [48.] > 0.001
+_________________________________ test session _________________________________
+<evidence>/component.yaml:
+  Test 'January2026 three-person budget, supplied net income 564; source rule reference':
+    ms_tanf@2026-01: [0.] differs from 10.0 with an absolute margin [10.] > 0.001
+=============================== warnings summary ===============================
+..<environment>/lib/python3.12/site-packages/_pytest/config/__init__.py:1290
+  <environment>/lib/python3.12/site-packages/_pytest/config/__init__.py:1290: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ..<evidence>/component.yaml::
+FAILED ..<evidence>/component.yaml::
+FAILED ..<evidence>/component.yaml::
+=================== 3 failed, 4 passed, 1 warning in 10.20s ====================
+{"wall_seconds": 79.01, "max_rss_kib": 1945528, "exit_code": 1}

@@ -1,0 +1,63 @@
+- name: January2026 three-person budget, supplied net income 0; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 0
+  output:
+    ms_tanf: 260
+- name: January2026 three-person budget, supplied net income 200; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 200
+  output:
+    ms_tanf: 228
+- name: January2026 three-person budget, supplied net income 500; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 500
+  output:
+    ms_tanf: 48
+- name: January2026 three-person budget, supplied net income 564; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 564
+  output:
+    ms_tanf: 10
+- name: January2026 three-person budget, supplied net income 565; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 565
+  output:
+    ms_tanf: 0
+- name: January2026 three-person budget, supplied net income 600; source rule reference
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: true
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 600
+  output:
+    ms_tanf: 0
+- name: Ineligible component control
+  period: 2026-01
+  input:
+    state_code: MS
+    ms_tanf_eligible: false
+    ms_tanf_maximum_benefit: 260
+    ms_tanf_countable_income: 200
+  output:
+    ms_tanf: 0
