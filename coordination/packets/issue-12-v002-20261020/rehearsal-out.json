@@ -1,0 +1,176 @@
+[
+  {
+    "scenario": "dry run",
+    "runs": [
+      {
+        "exit": 0,
+        "outcome": "DRY_RUN_OK",
+        "reason": null,
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 2,
+    "patches": 0,
+    "final_equals_baseline": true,
+    "final_equals_candidate": false
+  },
+  {
+    "scenario": "apply, rerun without baseline, rerun with baseline, release, rerun",
+    "runs": [
+      {
+        "exit": 0,
+        "outcome": "APPLIED",
+        "reason": null,
+        "comment": null,
+        "semantic_verified": true
+      },
+      {
+        "extra_args": [],
+        "exit": 3,
+        "outcome": "UNCERTAIN",
+        "reason": "ALREADY_APPLIED_UNVERIFIED",
+        "comment": {
+          "sha256": "231282714fd3ddc1f54d0350a98fb7e8cf05e9f564c013941059f6adc63472d9",
+          "state": "APPLIED"
+        },
+        "semantic_verified": null
+      },
+      {
+        "extra_args": [
+          "--baseline",
+          "baseline-body.txt"
+        ],
+        "exit": 0,
+        "outcome": "ALREADY_APPLIED",
+        "reason": null,
+        "comment": null,
+        "semantic_verified": true
+      },
+      {
+        "step": "released lease"
+      },
+      {
+        "extra_args": [
+          "--baseline",
+          "baseline-body.txt"
+        ],
+        "exit": 2,
+        "outcome": "REFUSED",
+        "reason": "LEASE_NOT_OWNED",
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 6,
+    "patches": 1,
+    "final_equals_baseline": false,
+    "final_equals_candidate": true
+  },
+  {
+    "scenario": "stale baseline (one byte appended to the live body)",
+    "runs": [
+      {
+        "exit": 2,
+        "outcome": "REFUSED",
+        "reason": "BODY_CHANGED",
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 1,
+    "patches": 0,
+    "final_equals_baseline": false,
+    "final_equals_candidate": false
+  },
+  {
+    "scenario": "lease released before the run",
+    "runs": [
+      {
+        "exit": 2,
+        "outcome": "REFUSED",
+        "reason": "LEASE_NOT_OWNED",
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 2,
+    "patches": 0,
+    "final_equals_baseline": true,
+    "final_equals_candidate": false
+  },
+  {
+    "scenario": "PATCH acknowledged but not stored",
+    "runs": [
+      {
+        "exit": 3,
+        "outcome": "UNCERTAIN",
+        "reason": "READBACK_MISMATCH",
+        "comment": {
+          "characters": 63484,
+          "sha256": "0066e39cc24b14bd90872173a68c1dd6c6e585ce92057b8531810f2b4137103b",
+          "state": "NOT_APPLIED",
+          "updated_at": "2026-10-19T22:03:30Z"
+        },
+        "semantic_verified": null
+      }
+    ],
+    "gets": 4,
+    "patches": 1,
+    "final_equals_baseline": true,
+    "final_equals_candidate": false
+  },
+  {
+    "scenario": "PATCH stored but reported failed",
+    "runs": [
+      {
+        "exit": 3,
+        "outcome": "UNCERTAIN",
+        "reason": "PATCH_FAILED",
+        "comment": {
+          "characters": 58073,
+          "sha256": "231282714fd3ddc1f54d0350a98fb7e8cf05e9f564c013941059f6adc63472d9",
+          "state": "APPLIED",
+          "updated_at": "2026-10-20T08:00:02Z"
+        },
+        "semantic_verified": null
+      }
+    ],
+    "gets": 3,
+    "patches": 1,
+    "final_equals_baseline": false,
+    "final_equals_candidate": true
+  },
+  {
+    "scenario": "wrong candidate hash",
+    "runs": [
+      {
+        "exit": 2,
+        "outcome": "REFUSED",
+        "reason": "CANDIDATE_HASH",
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 0,
+    "patches": 0,
+    "final_equals_baseline": true,
+    "final_equals_candidate": false
+  },
+  {
+    "scenario": "optimized interpreter (-O)",
+    "runs": [
+      {
+        "exit": 2,
+        "outcome": null,
+        "reason": null,
+        "comment": null,
+        "semantic_verified": null
+      }
+    ],
+    "gets": 0,
+    "patches": 0,
+    "final_equals_baseline": true,
+    "final_equals_candidate": false
+  }
+]

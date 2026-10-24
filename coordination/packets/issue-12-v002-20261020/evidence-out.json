@@ -1,0 +1,113 @@
+{
+  "independent": {
+    "already_stubbed_unchanged": true,
+    "bytes_after_oda_equal": true,
+    "bytes_before_oda_equal": true,
+    "inline_entries_after": [
+      "operator-agent-commerce-human-path-20261014T190928Z",
+      "lunar-bounce-route-research-20261015-r1",
+      "strategy-reset-20261015T1546Z",
+      "another-approach-20261016T1034Z",
+      "scott-access-recheck-20261017T020741Z",
+      "labor-source-request-20261017T0700Z",
+      "source-draft-review-20261017T1149Z",
+      "gt-agent-unmet-fit-20261017",
+      "autonomy-review-followthrough-20261017T1915Z",
+      "parallel-experiments-20261018T2352Z",
+      "pr345-review-checkpoint-20261019T073000Z",
+      "pr347-head-delta-20261019T090000Z",
+      "openfisca-text-6266919281-r1",
+      "x-20261019-resource-review-close-r1",
+      "request-led-referral-20261019"
+    ],
+    "inline_entries_byte_identical": true,
+    "newly_stubbed": [
+      "strategy-amend-6264923613-r2",
+      "x-20261019-delivery-review-prune9-r1",
+      "counterexample-test-20261019T1800",
+      "x-20261019-crlf-review-stop-r1",
+      "zeropaper355-qualification-20261019",
+      "program-dashboard-20261019"
+    ],
+    "non_oda_all_equal_compact": true,
+    "non_oda_all_equal_decoded": true,
+    "non_oda_keys": 23,
+    "oda_key_order_equal_after_pointer": true,
+    "oda_span_chars": {
+      "new": 24468,
+      "old": 29879
+    },
+    "pointer_new": {
+      "entries": 11,
+      "index_commit": "b3dbe424fe196119acd85f50c43ec38e02e91d0c",
+      "index_path": "coordination/archives/index/issue-12-5999201336-oda-v002.json",
+      "index_sha256": "5f9f26a3f723a2b3c5d903d2076701d63a95e8364da9303b1767516f2db262fa",
+      "keys_sha256": "5ba61aac911fa9a21ce437c2f9a42f250c7e75285bf0625da2a703f8f56c6a5b"
+    },
+    "pointer_old": {
+      "entries": 5,
+      "index_commit": "2c13ed0939018cf1223ae9b327b563347abf6ffd",
+      "index_path": "coordination/archives/index/issue-12-5999201336-oda-v001.json",
+      "index_sha256": "d387ee43f436b83d53043c510b411cbf8ead4d2222b04c8969ba5f2ad58845e7",
+      "keys_sha256": "a29d50a7e29573d628aabdb9b5927968d5e610d970195c39a1c51eb7bff91c9c"
+    },
+    "top_level_keys_equal": true
+  },
+  "semantic_core_mutations": {
+    "core_unmutated": {
+      "changed": false,
+      "exit": 0
+    },
+    "inline_entry_changed": {
+      "changed": true,
+      "exit": 1
+    },
+    "other_key_renamed": {
+      "changed": true,
+      "exit": 1
+    },
+    "other_value_changed": {
+      "changed": true,
+      "exit": 1
+    },
+    "pointer_commit_changed": {
+      "changed": true,
+      "exit": 1
+    },
+    "pointer_index_sha_changed": {
+      "changed": true,
+      "exit": 1
+    },
+    "stub_archived_false": {
+      "changed": true,
+      "exit": 1
+    },
+    "stub_status_changed": {
+      "changed": true,
+      "exit": 1
+    },
+    "trailing_text_added": {
+      "changed": true,
+      "exit": 1
+    },
+    "whitespace_after_colon": {
+      "changed": true,
+      "exit": 1
+    }
+  },
+  "sizes": {
+    "baseline_chars": 63484,
+    "baseline_sha256": "0066e39cc24b14bd90872173a68c1dd6c6e585ce92057b8531810f2b4137103b",
+    "candidate_chars": 58073,
+    "candidate_sha256": "231282714fd3ddc1f54d0350a98fb7e8cf05e9f564c013941059f6adc63472d9",
+    "headroom": 7463,
+    "limit": 65536,
+    "verify_cmd_sha256": "dfe09792ef3d3ad6060336f5d1b42007b6add25c946c30f00d917f1cf84c30ad"
+  },
+  "verify_exact": {
+    "baseline_to_baseline": 1,
+    "baseline_to_candidate": 0,
+    "candidate_as_old": 1,
+    "candidate_to_baseline": 1
+  }
+}

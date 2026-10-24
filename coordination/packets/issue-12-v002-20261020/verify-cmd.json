@@ -1,0 +1,8 @@
+[
+  "bash",
+  "-c",
+  "set -eu\nold=$1; new=$2\n[ \"$(sha256sum \"$old\" | cut -d' ' -f1)\" = 0066e39cc24b14bd90872173a68c1dd6c6e585ce92057b8531810f2b4137103b ]\n[ \"$(sha256sum \"$new\" | cut -d' ' -f1)\" = 231282714fd3ddc1f54d0350a98fb7e8cf05e9f564c013941059f6adc63472d9 ]\nt=$(mktemp -d); trap 'rm -rf \"$t\"' EXIT\npython3 -B coordination/issue12_oda_archive.py resolve --body-file \"$old\" --repo . --out \"$t/old\" > /dev/null\npython3 -B coordination/issue12_oda_archive.py resolve --body-file \"$new\" --repo . --out \"$t/new\" > /dev/null\ncmp \"$t/old\" \"$t/new\"\nc=$(python3 -B coordination/issue12_oda_archive.py check --body-file \"$new\" --repo . --ancestor-of HEAD)\n[ \"$c\" = '{\"pointer\": true, \"entries\": 26, \"archived\": 11, \"inline\": 15}' ]\ngrep -qF '\"_archive\":{\"index_commit\":\"b3dbe424fe196119acd85f50c43ec38e02e91d0c\",\"index_path\":\"coordination/archives/index/issue-12-5999201336-oda-v002.json\",\"index_sha256\":\"5f9f26a3f723a2b3c5d903d2076701d63a95e8364da9303b1767516f2db262fa\"' \"$new\"\n",
+  "verify",
+  "{old}",
+  "{new}"
+]
