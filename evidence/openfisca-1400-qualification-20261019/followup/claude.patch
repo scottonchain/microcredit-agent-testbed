@@ -1,0 +1,56 @@
+diff --git a/openfisca_core/taxscales/linear_average_rate_tax_scale.py b/openfisca_core/taxscales/linear_average_rate_tax_scale.py
+index ef2717b1..efc9d8ae 100644
+--- a/openfisca_core/taxscales/linear_average_rate_tax_scale.py
++++ b/openfisca_core/taxscales/linear_average_rate_tax_scale.py
+@@ -24,15 +24,23 @@ class LinearAverageRateTaxScale(RateTaxScaleLike):
+         if len(self.rates) == 1:
+             return tax_base * self.rates[0]
+ 
+-        tiled_base = numpy.tile(tax_base, (len(self.thresholds) - 1, 1)).T
+-        tiled_thresholds = numpy.tile(self.thresholds, (len(tax_base), 1))
++        thresholds = list(self.thresholds)
++        rates = list(self.rates)
++        if thresholds[-1] != float("inf"):
++            # A last finite threshold keeps its average rate for larger bases, as an
++            # explicit infinite bracket would, instead of leaving them in no bracket.
++            thresholds.append(float("inf"))
++            rates.append(rates[-1])
++
++        tiled_base = numpy.tile(tax_base, (len(thresholds) - 1, 1)).T
++        tiled_thresholds = numpy.tile(thresholds, (len(tax_base), 1))
+ 
+         bracket_dummy = (tiled_base >= tiled_thresholds[:, :-1]) * (
+             +tiled_base < tiled_thresholds[:, 1:]
+         )
+ 
+-        rates_array = numpy.array(self.rates)
+-        thresholds_array = numpy.array(self.thresholds)
++        rates_array = numpy.array(rates)
++        thresholds_array = numpy.array(thresholds)
+ 
+         rate_slope = (rates_array[1:] - rates_array[:-1]) / (
+             +thresholds_array[1:] - thresholds_array[:-1]
+diff --git a/tests/core/tax_scales/test_linear_average_rate_tax_scale.py b/tests/core/tax_scales/test_linear_average_rate_tax_scale.py
+index 6205d6de..4bde084c 100644
+--- a/tests/core/tax_scales/test_linear_average_rate_tax_scale.py
++++ b/tests/core/tax_scales/test_linear_average_rate_tax_scale.py
+@@ -85,3 +85,19 @@ def test_to_marginal() -> None:
+         [0.1, 0.25, 0.4, 0.5],
+         absolute_error_margin=0,
+     )
++
++
++def test_calc_beyond_last_threshold() -> None:
++    tax_base = numpy.array([1, 1.5, 2, 2.5, 4])
++    tax_scale = taxscales.LinearAverageRateTaxScale()
++    tax_scale.add_bracket(0, 0)
++    tax_scale.add_bracket(1, 0.1)
++    tax_scale.add_bracket(2, 0.2)
++
++    result = tax_scale.calc(tax_base)
++
++    tools.assert_near(
++        result,
++        [0.1, 0.225, 0.4, 0.5, 0.8],
++        absolute_error_margin=1e-9,
++    )

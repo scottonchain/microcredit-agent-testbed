@@ -1,0 +1,362 @@
+[
+  {
+    "number": 1406,
+    "head": "df0bfb596ce269908b4155c02eba84665c7e596e",
+    "files": [
+      "pyproject.toml",
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1405,
+    "head": "7b6c63297949d586ee2f4bf754baf6367590a074",
+    "files": [
+      "pyproject.toml",
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1404,
+    "head": "1b9539fc3e15d0f0e8356dd17f98ce6b982b9bda",
+    "files": [
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1403,
+    "head": "6cc4877f9240ed5bf9776d347d1a55ddb110eedb",
+    "files": [
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1402,
+    "head": "e70b41256b023722cdf0e2e0678e65c6ae3fd27d",
+    "files": [
+      "pyproject.toml",
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1401,
+    "head": "b4ec00bc7c1d2d9154af2db79dd2bd434324cf2e",
+    "files": [
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1399,
+    "head": "013ea66471e5a85b4e6804d83d1aa492f87b2c24",
+    "files": [
+      ".github/workflows/push.yaml",
+      "CHANGES.md",
+      "openfisca_core/data_storage/in_memory_storage.py",
+      "openfisca_core/data_storage/on_disk_storage.py",
+      "openfisca_core/entities/__init__.py",
+      "openfisca_core/entities/entity.py",
+      "openfisca_core/entities/group_entity.py",
+      "openfisca_core/entities/helpers.py",
+      "openfisca_core/entities/role.py",
+      "openfisca_core/entities/tests/test_entity.py",
+      "openfisca_core/entities/tests/test_group_entity.py",
+      "openfisca_core/entities/tests/test_role.py",
+      "openfisca_core/entities/types.py",
+      "openfisca_core/holders/holder.py",
+      "openfisca_core/populations/__init__.py",
+      "openfisca_core/populations/_core_population.py",
+      "openfisca_core/populations/membership.py",
+      "openfisca_core/populations/population.py",
+      "openfisca_core/populations/tests/test_members_position.py",
+      "openfisca_core/populations/types.py",
+      "openfisca_core/projectors/__init__.py",
+      "openfisca_core/projectors/entity_to_person_projector.py",
+      "openfisca_core/projectors/helpers.py",
+      "openfisca_core/projectors/members_to_entity_projector.py",
+      "openfisca_core/projectors/typing.py",
+      "openfisca_core/projectors/unique_role_to_entity_projector.py",
+      "openfisca_core/scripts/measure_performances.py",
+      "openfisca_core/simulations/_build_default_simulation.py",
+      "openfisca_core/simulations/_build_from_variables.py",
+      "openfisca_core/simulations/simulation.py",
+      "openfisca_core/simulations/simulation_builder.py",
+      "openfisca_core/simulations/typing.py",
+      "openfisca_core/taxbenefitsystems/tax_benefit_system.py",
+      "openfisca_core/tools/simulation_dumper.py",
+      "openfisca_core/types.py",
+      "openfisca_core/variables/variable.py",
+      "openfisca_web_api/loader/entities.py",
+      "openfisca_web_api/loader/spec.py",
+      "pyproject.toml",
+      "tasks/test_code.mk",
+      "tests/core/entity_structure/test_multimembers.py",
+      "tests/core/entity_structure/test_multimemberships.py",
+      "tests/core/entity_structure/test_selfreferencing_entity.py",
+      "tests/core/entity_structure/test_unrelated_entities.py",
+      "tests/core/test_axes.py",
+      "tests/core/test_build_entity.py",
+      "tests/core/test_dump_restore.py",
+      "tests/core/test_entities.py",
+      "tests/core/test_formulas.py",
+      "tests/core/test_opt_out_cache.py",
+      "tests/core/test_projectors.py",
+      "tests/core/test_reforms.py",
+      "tests/core/test_simulation_builder.py",
+      "tests/core/test_simulations.py",
+      "tests/core/test_tracers.py",
+      "tests/core/tools/test_runner/test_yaml_runner.py",
+      "tests/fixtures/entities.py",
+      "tests/web_api/test_calculate.py",
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1391,
+    "head": "29be2d9432906786383518c8252a8a21c9758d76",
+    "files": [
+      ".python-version",
+      "CHANGELOG.md",
+      "openfisca_core/data_storage/in_memory_storage.py",
+      "openfisca_core/data_storage/on_disk_storage.py",
+      "openfisca_core/entities/__init__.py",
+      "openfisca_core/entities/_core_entity.py",
+      "openfisca_core/entities/entity.py",
+      "openfisca_core/entities/group_entity.py",
+      "openfisca_core/entities/helpers.py",
+      "openfisca_core/entities/role.py",
+      "openfisca_core/entities/tests/test_entity.py",
+      "openfisca_core/entities/tests/test_group_entity.py",
+      "openfisca_core/entities/tests/test_role.py",
+      "openfisca_core/entities/types.py",
+      "openfisca_core/holders/holder.py",
+      "openfisca_core/populations/_core_population.py",
+      "openfisca_core/populations/group_population.py",
+      "openfisca_core/populations/population.py",
+      "openfisca_core/populations/types.py",
+      "openfisca_core/projectors/helpers.py",
+      "openfisca_core/projectors/typing.py",
+      "openfisca_core/scripts/measure_performances.py",
+      "openfisca_core/simulations/_build_default_simulation.py",
+      "openfisca_core/simulations/_build_from_variables.py",
+      "openfisca_core/simulations/simulation.py",
+      "openfisca_core/simulations/simulation_builder.py",
+      "openfisca_core/simulations/typing.py",
+      "openfisca_core/taxbenefitsystems/tax_benefit_system.py",
+      "openfisca_core/tools/simulation_dumper.py",
+      "openfisca_core/types.py",
+      "openfisca_core/variables/variable.py",
+      "openfisca_web_api/loader/entities.py",
+      "openfisca_web_api/loader/spec.py",
+      "pyproject.toml",
+      "setup.py",
+      "tests/core/test_axes.py",
+      "tests/core/test_entities.py",
+      "tests/core/test_formulas.py",
+      "tests/core/test_opt_out_cache.py",
+      "tests/core/test_projectors.py",
+      "tests/core/test_reforms.py",
+      "tests/core/test_simulation_builder.py",
+      "tests/core/test_simulations.py",
+      "tests/fixtures/entities.py",
+      "tests/web_api/test_calculate.py",
+      "tests/web_api/test_entities.py",
+      "uv.lock"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1386,
+    "head": "7c1d0b6fee5ddc9b657a63b09929eace93b1948c",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/simulations/simulation.py",
+      "openfisca_core/warnings/__init__.py",
+      "openfisca_core/warnings/spiral_warning.py",
+      "setup.py",
+      "tests/core/test_cycles.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1385,
+    "head": "59e8a417e53518e7541a85110d5259680f55533f",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/data_storage/in_memory_storage.py",
+      "openfisca_core/data_storage/on_disk_storage.py",
+      "openfisca_core/holders/holder.py",
+      "openfisca_core/populations/group_population.py",
+      "openfisca_core/populations/population.py",
+      "openfisca_core/simulations/simulation.py",
+      "setup.py",
+      "tests/core/test_simulations.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1378,
+    "head": "786da7090e5a3f313fcfb15f75c27ca44a471abb",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/tools/__init__.py",
+      "openfisca_core/variables/config.py",
+      "tests/core/tools/test_runner/test_yaml_runner.py",
+      "tests/core/variables/test_precision.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1377,
+    "head": "376289a59a8829c3acea0a8d242552159696ccb8",
+    "files": [
+      "README.md"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1376,
+    "head": "fdee3d2c55799e9000b6e396963aba885ab0dcf5",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/commons/misc.py",
+      "openfisca_core/data_storage/__init__.py",
+      "openfisca_core/data_storage/_cache.py",
+      "openfisca_core/data_storage/in_memory_storage.py",
+      "openfisca_core/data_storage/on_disk_storage.py",
+      "openfisca_core/data_storage/tests/__init__.py",
+      "openfisca_core/data_storage/tests/test_in_memory_storage.py",
+      "openfisca_core/data_storage/tests/test_on_disk_storage.py",
+      "openfisca_core/data_storage/tests/test_storage_cache.py",
+      "openfisca_core/data_storage/types.py",
+      "openfisca_core/experimental/_memory_config.py",
+      "openfisca_core/holders/__init__.py",
+      "openfisca_core/holders/_cache.py",
+      "openfisca_core/holders/_store.py",
+      "openfisca_core/holders/helpers.py",
+      "openfisca_core/holders/holder.py",
+      "openfisca_core/holders/tests/cache/__init__.py",
+      "openfisca_core/holders/tests/cache/test_fifo_cache.py",
+      "openfisca_core/holders/tests/cache/test_lru_cache.py",
+      "openfisca_core/holders/tests/store/__init__.py",
+      "openfisca_core/holders/tests/store/test_counter_factual_store.py",
+      "openfisca_core/holders/tests/store/test_factual_store.py",
+      "openfisca_core/holders/tests/store/test_temporal_store.py",
+      "openfisca_core/holders/types.py",
+      "openfisca_core/indexed_enums/__init__.py",
+      "openfisca_core/indexed_enums/_enum_type.py",
+      "openfisca_core/indexed_enums/_errors.py",
+      "openfisca_core/indexed_enums/_guards.py",
+      "openfisca_core/indexed_enums/_utils.py",
+      "openfisca_core/indexed_enums/enum.py",
+      "openfisca_core/indexed_enums/enum_array.py",
+      "openfisca_core/indexed_enums/types.py",
+      "openfisca_core/types.py",
+      "setup.cfg",
+      "setup.py",
+      "tasks/lint.mk"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1373,
+    "head": "4ac1962a5cda31f8b006b5fd7c405b3cb3611b99",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/reforms/in_yaml_test_reform.py",
+      "setup.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1371,
+    "head": "395952f05200b3730bfab6244b45475c9f02d7a7",
+    "files": [
+      "AGENTS.md",
+      "CHANGELOG.md",
+      "PR_DESCRIPTION.md",
+      "openfisca_core/holders/holder.py",
+      "openfisca_core/links/implicit.py",
+      "openfisca_core/links/link.py",
+      "openfisca_core/links/many2one.py",
+      "openfisca_core/links/tests/test_edge_cases.py",
+      "openfisca_core/links/tests/test_implicit.py",
+      "openfisca_core/links/tests/test_integration.py",
+      "openfisca_core/links/tests/test_many2one.py",
+      "openfisca_core/links/tests/test_one2many.py",
+      "openfisca_core/populations/group_population.py",
+      "openfisca_core/populations/population.py",
+      "openfisca_core/populations/tests/test_members_position.py",
+      "openfisca_core/simulations/_build_default_simulation.py",
+      "openfisca_core/simulations/simulation.py",
+      "openfisca_core/simulations/simulation_builder.py",
+      "pyproject.toml",
+      "tests/core/test_asof_variable.py",
+      "tests/core/test_link_accessors.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1342,
+    "head": "23eec0cac082c3abcbdc22cf95d8bd8bbbe695a1",
+    "files": [
+      "CODE_OF_CONDUCT.md"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 1113,
+    "head": "44a045574a070e59e09682b88aa14e872c245d41",
+    "files": [
+      "CHANGELOG.md",
+      "openfisca_core/parameters/parameter_scale.py",
+      "setup.py",
+      "tests/core/tax_scales/test_tax_scale_descendants.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 976,
+    "head": "714bea97d21a5dd97fa7381474a6f8087086564a",
+    "files": [
+      "openfisca_core/holders.py",
+      "openfisca_core/periods.py",
+      "openfisca_core/populations.py",
+      "openfisca_core/simulation_builder.py",
+      "openfisca_core/simulations.py",
+      "openfisca_core/taxbenefitsystems.py",
+      "openfisca_core/variables.py"
+    ],
+    "page_full": false
+  },
+  {
+    "number": 969,
+    "head": "a162adb3d9561b68cd9f8ee14b9feb48d1520287",
+    "files": [
+      "tests/core/conftest.py",
+      "tests/core/parameter_validation/test_parameter_clone.py",
+      "tests/core/test_axes.py",
+      "tests/core/test_calculate_output.py",
+      "tests/core/test_countries.py",
+      "tests/core/test_cycles.py",
+      "tests/core/test_dump_restore.py",
+      "tests/core/test_entities.py",
+      "tests/core/test_extensions.py",
+      "tests/core/test_formulas.py",
+      "tests/core/test_holders.py",
+      "tests/core/test_opt_out_cache.py",
+      "tests/core/test_parameters.py",
+      "tests/core/test_reforms.py",
+      "tests/core/test_simulation_builder.py",
+      "tests/core/test_simulations.py",
+      "tests/core/test_yaml.py",
+      "tests/core/tools/test_assert_near.py"
+    ],
+    "page_full": false
+  }
+]

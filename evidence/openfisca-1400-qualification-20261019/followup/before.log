@@ -1,0 +1,93 @@
+=================================== FAILURES ===================================
+_______________________ test_calc_beyond_last_threshold ________________________
+
+    def test_calc_beyond_last_threshold() -> None:
+        tax_base = numpy.array([1, 1.5, 2, 2.5, 4])
+        tax_scale = taxscales.LinearAverageRateTaxScale()
+        tax_scale.add_bracket(0, 0)
+        tax_scale.add_bracket(1, 0.1)
+        tax_scale.add_bracket(2, 0.2)
+
+        result = tax_scale.calc(tax_base)
+
+>       tools.assert_near(
+            result,
+            [0.1, 0.225, 0.4, 0.5, 0.8],
+            absolute_error_margin=1e-9,
+        )
+
+result     = array([0.1  , 0.225, 0.   , 0.   , 0.   ])
+tax_base   = array([1. , 1.5, 2. , 2.5, 4. ])
+tax_scale  =   - threshold: 0
+    rate: 0
+  - threshold: 1
+    rate: 0.1
+  - threshold: 2
+    rate: 0.2
+
+<pinned-source>/tests/core/tax_scales/test_linear_average_rate_tax_scale.py:99:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = array([0.1  , 0.225, 0.   , 0.   , 0.   ], dtype=float32)
+target_value = array([0.1  , 0.225, 0.4  , 0.5  , 0.8  ], dtype=float32)
+absolute_error_margin = 1e-09, message = '', relative_error_margin = None
+
+    def assert_near(
+        value,
+        target_value,
+        absolute_error_margin=None,
+        message="",
+        relative_error_margin=None,
+    ):
+        """:param value: Value returned by the test
+        :param target_value: Value that the test should return to pass
+        :param absolute_error_margin: Absolute error margin authorized
+        :param message: Error message to be displayed if the test fails
+        :param relative_error_margin: Relative error margin authorized
+
+        Limit : This function cannot be used to assert near periods.
+
+        """
+        import numpy
+
+        if absolute_error_margin is None and relative_error_margin is None:
+            absolute_error_margin = 0
+        if not isinstance(value, numpy.ndarray):
+            value = numpy.array(value)
+        if isinstance(value, EnumArray):
+            return assert_enum_equals(value, target_value, message)
+        if numpy.issubdtype(value.dtype, numpy.datetime64):
+            target_value = numpy.array(target_value, dtype=value.dtype)
+            assert_datetime_equals(value, target_value, message)
+        if isinstance(target_value, str):
+            target_value = commons.eval_expression(target_value)
+        if isinstance(target_value, str):
+            return assert_array_equal(value, [target_value])
+        if isinstance(target_value, list) and isinstance(target_value[0], str):
+            return assert_array_equal(value, target_value)
+
+        target_value = numpy.array(target_value).astype(numpy.float32)
+
+        value = numpy.array(value).astype(numpy.float32)
+        diff = abs(target_value - value)
+        if absolute_error_margin is not None:
+>           assert (diff <= absolute_error_margin).all(), (
+                f"{message}{value} differs from {target_value} with an absolute margin {diff} > {absolute_error_margin}"
+            )
+E           AssertionError: [0.1   0.225 0.    0.    0.   ] differs from [0.1   0.225 0.4   0.5   0.8  ] with an absolute margin [0.  0.  0.4 0.5 0.8] > 1e-09
+E           assert np.False_
+E            +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7fdc2438f270>()
+E            +    where <built-in method all of numpy.ndarray object at 0x7fdc2438f270> = array([0. , 0. , 0.4, 0.5, 0.8], dtype=float32) <= 1e-09.all
+
+absolute_error_margin = 1e-09
+diff       = array([0. , 0. , 0.4, 0.5, 0.8], dtype=float32)
+message    = ''
+numpy      = <module 'numpy' from '/tmp/of1100-venv/lib/python3.12/site-packages/numpy/__init__.py'>
+relative_error_margin = None
+target_value = array([0.1  , 0.225, 0.4  , 0.5  , 0.8  ], dtype=float32)
+value      = array([0.1  , 0.225, 0.   , 0.   , 0.   ], dtype=float32)
+
+<pinned-source>/openfisca_core/tools/__init__.py:48: AssertionError
+=========================== short test summary info ============================
+FAILED ..<pinned-source>/tests/core/tax_scales/test_linear_average_rate_tax_scale.py::test_calc_beyond_last_threshold
+1 failed, 36 passed in 0.49s

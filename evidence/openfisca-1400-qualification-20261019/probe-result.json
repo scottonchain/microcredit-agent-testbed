@@ -1,0 +1,69 @@
+{
+  "python": "3.12.14",
+  "openfisca_core": "46.0.0",
+  "numpy": "2.5.4",
+  "bases": [
+    0.0,
+    500.0,
+    1000.0,
+    1500.0,
+    1999.0,
+    2000.0,
+    2001.0,
+    3000.0,
+    100000.0
+  ],
+  "finite_calc": [
+    0.0,
+    25.0,
+    100.0,
+    225.00000000000003,
+    399.60010000000005,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "explicit_infinite_tail_calc": [
+    0.0,
+    25.0,
+    100.0,
+    225.00000000000003,
+    399.60010000000005,
+    400.0,
+    400.20000000000005,
+    600.0,
+    20000.0
+  ],
+  "linear_average_reference": [
+    0.0,
+    25.0,
+    100.0,
+    225.00000000000003,
+    399.60010000000005,
+    400.0,
+    400.20000000000005,
+    600.0,
+    20000.0
+  ],
+  "to_marginal_calc": [
+    0.0,
+    50.0,
+    100.0,
+    249.99999999999994,
+    399.69999999999993,
+    399.99999999999994,
+    400.2,
+    600.0,
+    20000.0
+  ],
+  "checks": [
+    "finite interior matches interpolation",
+    "four points at or above top collapse to zero",
+    "explicit infinite tail matches reference",
+    "conversion tail matches reference",
+    "single bracket remains constant",
+    "conversion differs in interior; not a global oracle"
+  ],
+  "elapsed_seconds": 0.003153125988319516
+}

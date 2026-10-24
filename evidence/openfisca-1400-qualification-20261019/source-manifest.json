@@ -1,0 +1,23 @@
+{
+  "source_revision": "fda2f9c48b1af3d6bb7e4edecade751173c812b2",
+  "observed_at": "2026-10-19T11:04:51.617980+00:00",
+  "issue": {
+    "url": "https://github.com/openfisca/openfisca-core/issues/1400",
+    "author": "ArtJack",
+    "updated_at": "2026-10-17T05:43:34Z",
+    "body_sha256": "81398e0824eee111a9d11acf4bab88bb9ae46fa282c72636c629f5ce2e9fd454",
+    "assignees": [],
+    "comment_ids": []
+  },
+  "source_files": {
+    "openfisca_core/taxscales/linear_average_rate_tax_scale.py": "7493e13c47f4de6b16f9d4a667b3f194a94c5843260be3cc1d236d1f44fe7af5",
+    "tests/core/tax_scales/test_linear_average_rate_tax_scale.py": "4a8c9bcb2ce3cd75626ca97669398ef4ee9f0df64fdd2102606a418856a04e3b",
+    "pyproject.toml": "4ce0bd58f0919d5eb4e44c666601a436f14c5ac2c895b711779eecafc07d4cbe",
+    "CONTRIBUTING.md": "2df0e25af3548d7b4d7e0f32ade4b9bf2ed26db916d363b17d116a88bd7e4e66"
+  },
+  "public_ownership": "19open PR file lists all complete; no change to direct calculation file, PR1113 parameter-scale adjacency; private/unpublished work unknown",
+  "limits": [
+    "AI QA reported origin; operator independence unknown",
+    "No production patch, external contact, maintainer agreement, complete suite or human benefit"
+  ]
+}
