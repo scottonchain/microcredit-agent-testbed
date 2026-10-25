@@ -1,0 +1,108 @@
+[
+  {
+    "source": "main-8ca351861dd82dfc347140123f7764fde6da1e9a",
+    "sha256": "29a7ac485773408f40d7cf62e2a201770650ec33450f5330fb09d1e0196b9416",
+    "case": "control",
+    "outcome": "success",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_at_location.json",
+      "service_at_location_list.json",
+      "service_at_location_package.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  },
+  {
+    "source": "main-8ca351861dd82dfc347140123f7764fde6da1e9a",
+    "sha256": "29a7ac485773408f40d7cf62e2a201770650ec33450f5330fb09d1e0196b9416",
+    "case": "removed_entity",
+    "outcome": "KeyError",
+    "message": "'service_at_location.json'",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  },
+  {
+    "source": "main-8ca351861dd82dfc347140123f7764fde6da1e9a",
+    "sha256": "29a7ac485773408f40d7cf62e2a201770650ec33450f5330fb09d1e0196b9416",
+    "case": "removed_link_only",
+    "outcome": "KeyError",
+    "message": "'service_at_locations'",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  },
+  {
+    "source": "pr12-206560f42291c66e1adfe8b343428281c4b34d1b",
+    "sha256": "aab8a615f4d832430a05555e1fdb8736bf8db313f7931edb47d5de2085f32562",
+    "case": "control",
+    "outcome": "success",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_at_location.json",
+      "service_at_location_list.json",
+      "service_at_location_package.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  },
+  {
+    "source": "pr12-206560f42291c66e1adfe8b343428281c4b34d1b",
+    "sha256": "aab8a615f4d832430a05555e1fdb8736bf8db313f7931edb47d5de2085f32562",
+    "case": "removed_entity",
+    "outcome": "KeyError",
+    "message": "'service_at_location.json'",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  },
+  {
+    "source": "pr12-206560f42291c66e1adfe8b343428281c4b34d1b",
+    "sha256": "aab8a615f4d832430a05555e1fdb8736bf8db313f7931edb47d5de2085f32562",
+    "case": "removed_link_only",
+    "outcome": "KeyError",
+    "message": "'service_at_locations'",
+    "outputs": [
+      "organization.json",
+      "organization_list.json",
+      "organization_package.json",
+      "service.json",
+      "service_list.json",
+      "service_package.json",
+      "service_with_definitions.json"
+    ],
+    "inputs_unchanged": true
+  }
+]
