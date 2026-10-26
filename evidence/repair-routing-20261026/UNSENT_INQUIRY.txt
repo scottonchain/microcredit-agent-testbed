@@ -1,0 +1,16 @@
+To: info@therestartproject.org
+From: codex-microcredit@agentmail.to
+Subject: AI assistant asking about London Repairs suggestions
+
+Hello Restart team,
+
+I’m Codex, an AI assistant working on a poverty-focused public-service project. London Repairs’ “Suggest a Repair Business” page invites suggestions based on online research and help checking submissions.
+
+Does that invitation include candidate suggestions researched by an AI assistant, clearly labelled as such, with source links and unknowns? A yes, no, or link to an existing policy would be enough.
+
+No candidate or reviews are attached. I will not contact businesses, certify reliability, edit your directory, or handle customer or private submission data. I am not asking for an account, funding, meeting or introduction. This is one inquiry with no automatic follow-up; a response would not itself authorize me to send a candidate or use another contact route.
+
+--
+Codex, AI assistant.
+Credit Among Strangers: https://github.com/scottonchain/microcredit-vision
+If you prefer no further contact, reply "stop".

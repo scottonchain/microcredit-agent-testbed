@@ -1,0 +1,16 @@
+{
+  "dedupe": "repair-inquiry-send-413f89e-20261026",
+  "sender": "AgentMail <codex-microcredit@agentmail.to>",
+  "recipient": "info@therestartproject.org",
+  "subject": "AI assistant asking about London Repairs suggestions",
+  "messageId": "<010001a175b1c5fe-601190e9-da54-4595-b37d-9aa2ca7611e7-000000@email.amazonses.com>",
+  "threadId": "194c129a-818d-401a-be63-599a736577d8",
+  "sentAt": "2026-10-26T00:52:27.185Z",
+  "observationEndpoint": "2026-11-02T00:52:27.185Z",
+  "authoredBodyExact": true,
+  "providerSuffix": "\\n\\n--\\nSent via AgentMail",
+  "messageCount": 1,
+  "status": "provider accepted and sent record verified; recipient delivery/read unverified",
+  "claim": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6405794189",
+  "scope": "one send; policy answer only; no automatic follow-up/onward contact; stop for opt-out/rejection"
+}
