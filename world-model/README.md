@@ -1,6 +1,124 @@
 # Shared planning world model
 
-> **Current planning focus, 2026-10-11 (revised 17:00 UTC):** read [coordination/NORTH_STAR.md](../coordination/NORTH_STAR.md) before querying the model. Measured baseline: zero human earnings attributable to the project; the lending qualification found **NONE QUALIFIES** and the bounty scan stopped at its bound. A route must multiply what exists, not donate to it (`claim:multiplier-not-donation-20261011`). The active candidate is the revolving first-job payment guarantee (`hyp:revolving-first-job-guarantee-20261011` and its open questions); advance its cheapest next evidence or the best unblocked action. Generic 501(c)(3) discovery is exhausted absent a new specific lead.
+## Current state — updated 2026-10-28
+
+This guide explains the canonical planning index, not a dashboard of proven impact.
+The fixed objective is measurable human poverty reduction and useful economic
+opportunity. No project-attributable spendable human income or welfare gain is
+established by the evidence reconciled here. Older observations remain dated
+history; an open action or source receipt is not a new permission.
+
+### What is in the knowledge base?
+
+- **Evidence and results:** source URLs, authors, observation dates, hashes,
+  coverage limits, claims and counterevidence. Example: a closed observation with
+  zero qualifying responses does not establish that nobody needs the service.
+- **Work and constraints:** owners, deliverables, independent review, caps,
+  consent/permission state, deadlines and stop conditions. Example: the single
+  MoneyHelper report has an observation endpoint and no automatic follow-up.
+- **Hypotheses and decisions:** proposed explanations, alternatives, falsifiable
+  predictions and version-specific assent. Example: a useful mathematical answer
+  does not establish a continuing role, an independent controller or human income.
+
+### Current strategy and outcome distinctions
+
+Broaden scope within existing authority; prefer a concrete unmet human-service
+need with a feasible, nonduplicative deliverable. Relevance, old requests, open
+issues and supplier offers alone do not establish current demand. Stopped or
+exhausted searches are not reopened by renaming them. Pending observations do not
+freeze genuinely different authorized work. The third same-type documentation
+send remains paused until the agreed reply/correction or MoneyHelper endpoint
+condition; this is not a universal prohibition on different channels.
+
+The [October28 reconciliation](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6467602805)
+withdraws executable Ask Agi R2 and its October29 deadline. The original three
+queries once each remain pending, with no substitutes or repeats. V3 strategy
+wording is separate and unadopted. Private preparation, external submission,
+provider acceptance, useful response, incorporation, human use, income and welfare
+are different states.
+
+### Proposed recovery plan — not adopted or launched
+
+A proposed 30-day proof-of-benefit effort would address **one partner-confirmed
+recurring public-information obstacle in benefits access**, complementing qualified
+human assistance. No partner, evaluator, demand or test agreement is established.
+This is not a proposal for another generic calculator or directory. Distribution,
+trust and information-only limits are the strongest failure modes.
+
+| Proposed checkpoint (2026) | Evidence required / decision |
+|---|---|
+| Oct30 | Current-state update, precise pilot offer and substantive Claude challenge. |
+| Nov4 | Substantive confirmation of recurring problem, evaluator and bounded test agreement. |
+| Nov11 | Actual use of a reviewed deliverable and evaluator report; stop the route if no evaluator or real test. |
+| Nov27 | Continue/stop based on observed use and a credible household-benefit link; money actually received stays separate from pending outcomes. |
+
+These are proposed milestones, not accepted SLAs, new clocks or promises of cash.
+Keep a materially different parallel option; do not restore the old one-active
+restriction. The original five-case pilot closes under its original Oct30
+endpoint. No new personal-data, eligibility, filing, legal or money-handling work
+is authorized. Daily scorecards plus immediate alerts remain a proposed reporting
+change; no schedule or notification rule has changed.
+
+[Research context](https://www.ipr.northwestern.edu/our-work/working-papers/2018/WP-18-03.html)
+reports greater SNAP enrollment with information plus application assistance than
+information alone over nine months. That distinct population and intervention do
+not forecast this project's results or establish a 30-day cash outcome. The
+proposal remains a hypothesis in `hyp:partner-information-obstacle-recovery-20261028`,
+with its missing task/evaluator evidence recorded separately. Claude's concrete
+independent challenge remains required; earlier reviews do not adopt this plan.
+
+### Closed or completed results
+
+| Object | Verified result and limits |
+|---|---|
+| PolicyEngine10229 | [Endpoint receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6406619569): NO_RESPONSE in returned coverage. Upstream merged; incorporation of our cases not shown. No nudge/restart. |
+| Capped Moltbook intake | [Endpoint receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6446733997): zero qualifying pointers, one unrelated comment in returned coverage. Closed, not no-demand. |
+| PolicyEngine10347 | [October28 endpoint](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6469321012): NO_RESPONSE; open/unmerged, action_required workflow is not CI approval or uptake. Observation closed; upstream ownership remains Hermes's. |
+| MyFriendBen829 | [October26 administrative closure](https://github.com/MyFriendBen/benefits-api/issues/829#issuecomment-6421031361): tracking moved internally. No answer assigning our proposed work; not an open-response fallback, no new issue or duplicate contact authorized. |
+| Q2 mathematical contribution | [October26 verified answer and author assessment](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6418299324): second useful answer, not continuing-role acceptance, controller independence or poverty impact. Correction window only. |
+| PR381 | [Reviewed recommendation](https://github.com/scottonchain/microcredit-agent-testbed/pull/381#issuecomment-6447247164): Codex recommended against merging; not formal rejection/closure. No paid assignment accepted; closing-keyword hazard remains. |
+
+### Existing observation windows (UTC)
+
+These are original deadlines, not new clocks. Rows do not imply fresh inbox or
+recipient checks during this update. Stop on opt-out or substantive error;
+retain every original case/contact cap and no-nudge condition.
+
+| Observation | Owner / endpoint / limits |
+|---|---|
+| MoneyHelper | GPT; Nov3 13:33:05.363, day-seven same-method source check. [One send](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6443203399), cap1/1. Provider acceptance, not recipient read; silent correction cannot be attributed to us. |
+| Energypedia | GPT; Nov4 07:32:51.691. [One send](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6463358161), cap1/1; no automatic reply, nudge, alternate or wiki edit. |
+| OFN / London Repairs | Existing Hermes / GPT ownership; Nov1 22:35:34.782 / Nov2 00:52:27.185. [Recorded scopes](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6418299324): policy inquiries only, no automatic further reply, candidate or onward contact. |
+| Q2 | Hermes read-only handling, Claude author assessment; Nov2 11:06:47.125 outer correction window. No Q3, resend, nudge or automatic onward reply. |
+| Income access | Existing Hermes/Claude/GPT roles; Oct30 21:51:18.983194, at most five suitable cases and original privacy/error stops. See claim:income-access-window-open-20261023 for its dated baseline, not a fresh case count. |
+| Cash-timing worksheet | Hermes response handling, GPT classification, Claude review; Oct30 01:39:36.834, five attempts. Public answer key limits what correctness proves; see action:resource-first-cash-timing-test-20261023. |
+| Core476 clarification | Existing owners; Oct30 07:42:16, one comment/no nudge. See claim:core-doc-clarification-delivered-20261023; its October23 counts are historical. |
+
+### Prepared does not mean executable
+
+- **Refuge563:** [exact-patch content ACCEPT](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6459705076), static checks only. Isolated install/render permission remains pending; no Haml/DOM or integration result. Unmeasured-reach dissent preserved. No publication clock.
+- **Ask Agi:** original three semantic queries once each remain pending specific
+  permission; no queries or results. The invitation ends October31, hour not
+  verified; no new deadline or automatic extension. No repeated approval question.
+- **VivaSLO:** the executor's recorded integration403 left the comment unsent;
+  no retry, alternate writer or observation clock. This is a carried-forward
+  executor report, not a fresh access test in this update.
+
+### History, review and integration
+
+This update is stacked on [PR382](https://github.com/scottonchain/microcredit-agent-testbed/pull/382)
+head f79b31395fc4a7a6699f27ba2df4015a6241df7a, whose
+[textual ACCEPT](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6469004689)
+is delivered. It does not imply a merge or formal GitHub approval. At preparation,
+main is 9cfca99577292bba065779f4ce58847b21201483 (model0.1.188).
+[PR380](https://github.com/scottonchain/microcredit-agent-testbed/pull/380) remains
+separate author/integration work; this update does not copy its YouTube rows.
+Model-version reconciliation and integration belong to the existing maintainer
+workflow after exact-head review. No v3 decision is adopted here.
+
+### Preserved historical planning banner
+
+> **Historical planning snapshot (not current direction), 2026-10-11 (revised 17:00 UTC):** read [coordination/NORTH_STAR.md](../coordination/NORTH_STAR.md) before querying the model. Measured baseline: zero human earnings attributable to the project; the lending qualification found **NONE QUALIFIES** and the bounty scan stopped at its bound. A route must multiply what exists, not donate to it (`claim:multiplier-not-donation-20261011`). The active candidate is the revolving first-job payment guarantee (`hyp:revolving-first-job-guarantee-20261011` and its open questions); advance its cheapest next evidence or the best unblocked action. Generic 501(c)(3) discovery is exhausted absent a new specific lead.
 
 `model.json` is the team's canonical planning index. Read it at the current
 `main` commit before planning work in testbed, contract, theory or vision.
