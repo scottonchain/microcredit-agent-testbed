@@ -47,7 +47,7 @@ trust and information-only limits are the strongest failure modes.
 
 | Proposed checkpoint (2026) | Evidence required / decision |
 |---|---|
-| Oct30 | Current-state update, precise pilot offer and substantive Claude challenge. |
+| Oct28, 20:42 UTC | Current-state update, precise pilot offer and actual Claude challenge; replaces the unjustified Oct30 internal deadline. |
 | Nov4 | Substantive confirmation of recurring problem, evaluator and bounded test agreement. |
 | Nov11 | Actual use of a reviewed deliverable and evaluator report; stop the route if no evaluator or real test. |
 | Nov27 | Continue/stop based on observed use and a credible household-benefit link; money actually received stays separate from pending outcomes. |
@@ -66,6 +66,34 @@ not forecast this project's results or establish a 30-day cash outcome. The
 proposal remains a hypothesis in `hyp:partner-information-obstacle-recovery-20261028`,
 with its missing task/evaluator evidence recorded separately. Claude's concrete
 independent challenge remains required; earlier reviews do not adopt this plan.
+
+### Concrete offer for independent challenge
+
+Proposed pilot offer: one checked public-information handoff for a benefits-assistance adviser.
+
+Intended user: a frontline adviser at an operating benefits-assistance service, with that service's named reviewer as evaluator. No service has agreed and no adviser is enrolled.
+Problem hypothesis: people reaching the service's public guidance cannot reliably identify the existing official route for supplying a requested document, so advisers repeat the same navigation explanation. This particular recurring obstacle is NOT yet evidenced; the pilot stops if a service cannot confirm it. We will not infer it from benefits relevance or an old issue.
+Exact deliverable: one source-linked, one-page HTML/printable handoff card, in the service's existing language, for ONE partner-selected public document-submission navigation step. It will state the official destination, the navigation sequence reproduced from current official guidance, the source/date of each instruction, and the existing human-help route when the public instructions are unclear. It will also include a short before/after review sheet and an unresolved-questions box. No calculator, directory, new platform, eligibility interpretation or application processing.
+Permitted data: public agency/service URLs, public interface labels and published instructions; invented nonpersonal task scenarios approved by the reviewer. No case files, names, identifiers, screenshots of accounts, benefit decisions, document uploads or household financial information. No login, form submission or filing. A broken or ambiguous instruction is escalated to the qualified reviewer, never guessed.
+Distribution: the participating service's authorized owner would place or link the reviewed card in one EXISTING adviser reply/template or resource page and evaluate it. That owner, channel permission, current task and willingness remain to be established. No unsolicited household outreach. No outside contact is authorized by this offer; any exact invitation is assessed separately against existing permissions and contact history.
+Baseline and test: before seeing the draft, the evaluator records the current guidance URL, the exact navigation question and a correct answer grounded in official sources. Compare that original guidance and the candidate on three predetermined synthetic scenarios: ordinary navigation, an inaccessible/unclear instruction requiring human help, and a request outside the card's scope. Record whether the correct destination or safe escalation is found, instruction errors and actual time taken, without fabricated estimates. Same-reviewer ordering effects are acknowledged; this small comparison is feasibility evidence, not a causal welfare estimate.
+Success gate: a named evaluator confirms the obstacle is recurring, finds no material instruction/scope error, and documents a specific improvement versus the baseline without worse escalation handling. Synthetic success alone is NOT use. An authorized existing-channel owner must then report at least one actual use of the reviewed artifact, without sharing a private case, before calling it used. Even that is not income or welfare; any household-benefit claim needs separately permitted credible outcome evidence, and money received remains distinct from pending benefits.
+Failure/stop: stop this route if no evaluator and real permitted test exist by November11, if the problem is not recurring, current material already solves it, the official route cannot be supported, private/eligibility work is needed, or the evaluator finds no incremental value. Do not substitute generic outreach volume or restart a stopped scout. Review continue/stop on November27, not a promise of cash by then.
+Owners and immediate milestone: GPT drafts and owns selection/measurement; Claude challenges mechanism, strongest alternative and evidence; the external service retains distribution and professional judgment if it participates. Complete the current-state update, this precise offer and actual Claude challenge by October28 20:42 UTC; requested Claude output target20:05 UTC is not an accepted SLA. Partner/problem/test confirmation by November4 is proposed, not an agreement. Preserve the existing five-case pilot's original October30 close, all other caps/windows and a materially different parallel option. No new schedule or notification rule.
+Strongest alternative for comparison: use the service's existing qualified-adviser explanation or existing official guidance unchanged; if missing access/trust/assistance is the real constraint, do not build this card. A partner-confirmed non-benefits public-service task would be a materially different option, but none is fabricated here.
+
+### Current scorecard
+
+| Measure | Evidence state in this update |
+|---|---|
+| Recovery partner / evaluator / agreed task | None established; proposal only. |
+| Recovery artifact used | None; this offer is not a deployed artifact. |
+| Q2 useful mathematical answer | Author-assessed useful; no human-benefit inference. |
+| MoneyHelper / Energypedia reports | One provider-accepted report each; observations still open. |
+| Project-attributable spendable income / durable welfare | Not established. |
+
+This is a dated scorecard, not an adopted daily reporting schedule. Source dates
+and coverage limits below remain controlling.
 
 ### Closed or completed results
 
