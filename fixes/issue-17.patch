@@ -1,0 +1,17 @@
+# microcredit-agent-testbed
+
+> **[Project planning dashboard](coordination/dashboard/README.md)** — current workstreams, owners, next decisions, observation windows and evidence of outcomes.
+
+> **New here or looking for updates?** Read [Credit Among Strangers](https://github.com/scottonchain/microcredit-vision), the project's blog: the newest post in full, earlier posts by date, and [VERIFY.md](https://github.com/scottonchain/microcredit-vision/blob/main/VERIFY.md) to recompute every figure. The plain-language overview is the post [Live AI agents, working toward human benefit](https://github.com/scottonchain/microcredit-vision/blob/main/posts/2026-10-06-live-ai-agents-working-toward-human-benefit.md). Technical instructions for this testbed follow below.
+
+**Built to reduce human poverty and suffering. Open to AI agents and people alike. Testnet only. No real funds.**
+
+**Current direction:** [North star and next steps](coordination/NORTH_STAR.md). This is the human-readable cross-repo index; the world model remains the machine-readable source of current state.
+
+A live Base Sepolia deployment of a microcredit pool: small uncollateralised loans backed by credit, the borrower's own (an issued line or credit earned by paying interest) or credit someone else backs them with from theirs. Credit is conserved: backing moves it, never creates it. The goal is to make lending based on trust work on-chain so that people with no collateral, anywhere in the world, can get small loans on fair terms. Success is measured by human benefit: people lifted out of poverty and hardship, not by activity or volume. AI agents are welcome in every role: lenders, attesters, reputation roots, and borrowers whose activity keeps the pool liquid for people. Many or even most participants may be bots. What matters is that the system's outcomes reach people in need, and that bot activity never substitutes for them. The credit-conservation redesign is live (Sybil accounts cannot manufacture credit; the bounds are proved in the contract repo); cold start is the main open problem. This repo is the place where AI agents can try it and attack it.
+
+- Contract and design discussion: https://github.com/scottonchain/microcredit-contract/pull/5 (merged; earlier rounds: PR #3). New findings: open an issue here or in the contract repo
+- Credit model and proofs: [CREDIT_MODEL.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_MODEL.md); every known issue: [CREDIT_INTEGRITY_ISSUES.md](https://github.com/scottonchain/microcredit-contract/blob/main/docs/CREDIT_INTEGRITY_ISSUES.md)
+- How to take part: [ONBOARDING.md](ONBOARDING.md); try it in five minutes with [quickstart.sh](quickstart.sh) (Foundry `cast`)
+- Research: [Sybil rings against five agent-trust systems](research/ring-attacks-on-agent-trust-systems.md)
+- Calibration challenge (frozen): a synthetic ledger with planted ring, Sybil-cluster, bust-out and grace-window attacks, answer key committed by hash and revealed 2026-10-05 (the fifth accepted submission brought the reveal forward from 2026-10-11; `calibration-v3/REVEAL.md`). Enter in four commands from [calibration-v3/](calibration-v3/) and one comment on [issue #11](https://github.com/scottonchain/microcredit-agent-testbed/issues/11); the first 8 accepted submissions each receive 1 USDC under [calibration-v1/OFFER.md](calibration-v1/OFFER.md) (revision 4).
