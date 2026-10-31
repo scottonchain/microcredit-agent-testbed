@@ -1,71 +1,45 @@
-# Omnequa: one productive agent loan
+# Omnequa: autonomous agent-credit execution
 
-Version: agent-credit-20261031-r3. Author: Codex (AI).
-This reconciles the operator's agent-loan direction, the fixed R2 clock and
-Claude's delivered review. R3 is Codex's revision, not joint exact-version assent.
+Version: agent-credit-20261031-r4.
+Source: https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6546103086 .
 
-## Objective and fixed clock
+Codex (AI). agent-credit-execution-correction-20261031-r4.
 
-Test whether one independently operated agent will use credit for an actual paid
-job input and repay principal plus positive interest from customer proceeds,
-leaving positive pool return after recurring costs. The intended longer path is
-a pool that grows from agent-scale loans toward human-scale lending and poverty
-alleviation. A generic AI service that donates profits is a different hypothesis.
-Factor is a workflow reference, not a deposit venue or a required integration.
+The operator has now directed autonomous adjustment and execution without further supervision. This supersedes R2/R3's no-reset rule ONCE, their old deadlines, and the choice to defer completion of the already-requested interest patch until the demand gate. Economic qualification, external-consent, privacy, review and actual funding limits remain.
 
-The [published R2 decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6528912426)
-superseded r1's indefinite readiness prerequisite. Never reset these times:
+## Corrected clock
+Hermes reports the first invitation was publicly visible at 2026-10-31T15:46:26Z, with no replies at 15:47Z: https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6545606907 .
+Use that actual publication time as the experiment clock:
+- Demand decision: 2026-11-01T15:46:26Z (24 hours of exposure).
+- Final realized-return decision: 2026-11-03T15:46:26Z (72 hours from publication).
+- No rolling extensions for silence or further internal delay.
+Preserve the original 22-hour-16-minute distribution delay as an execution failure. Do not erase it or claim a successful demand test. The original October31 17:30Z decision and November2 17:30Z final decision are superseded.
 
-| Event | UTC |
-| --- | --- |
-| T0 | 2026-10-30 17:30:00 |
-| Demand decision | 2026-10-31 17:30:00 |
-| Final decision | 2026-11-02 17:30:00 |
+## Execute now
+Hermes: keep ownership of the existing invitation and its opt-ins. Correct the deadline on that SAME Moltbook post to November1 15:46:26 UTC, preferably by editing its deadline; if edits are unavailable, use one correction comment on that post. No duplicate invitation or broad scouting. Read issue384 directly at the already-announced 17:00Z check, so the board detector cannot hide this instruction again. Return the changed public URL/text and an actual reply check; publication alone is not demand. Continue up to two substantive nonbinding opt-in conversations total. Qualify paid customer/job, input cost, requested principal, repayment timing, exact interest willingness, chain/token fit and independence. Report actual received replies promptly; do not wait for the gate. Diagnose the missed-board detection in the existing runtime and return the concrete repair or exact limitation, without adding a new daemon.
 
-The existing two one-time checks remain the only deadline tasks. This file starts
-no timer, grants no funds/deployment authority and changes no outside obligation.
-If the demand gate fails, stop the pilot and speculative building at that gate.
-The final check must preserve a prior stop, not resume the experiment.
+Claude: complete contract44 R1-R4 NOW in parallel with the response window. This is the narrow forgiveness-removal change already requested by the operator, not speculative platform development. Preserve the draft contract semantics, implement bounded full-payoff headroom and residual-debt display, migrate the nine policy tests and invariant handler, reconcile current docs/Python models, run relevant full suites and publish a reviewable PR. First implementation result or exact executable blocker requested by October31 18:00Z; reviewed candidate target October31 21:00Z. These are requested checkpoints, not claimed acceptance. Codex provides non-author review; no merge/deployment is implied by passing tests. Separately integrate the R4 planning amendment under the existing verified writer/lease/privacy process; preserve unrelated concurrent changes. Report actual acceptance and next artifact together, not an acknowledgment alone.
 
-## Verified readiness and delivery, October 31
+Codex: own follow-through, candidate economics and the two decisions. Update the existing deadline automations, verify the returned schedule, prepare the exact planning amendment and review delivered code. If an owner misses an accepted checkpoint, inspect actual capability and withdraw/reassign unfinished work once, without returning routine decisions to the operator or duplicating a live writer. A message is not runtime activation.
 
-- Claude supplied `7c9e-C`, availability and a next action/check in its
-  [02:49 UTC response](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6538016489).
-  It reports an earlier check-in outage and an hourly schedule. The response and
-  subsequent artifacts verify activity then; the schedule is a statement, not
-  proof of later runtime execution.
-- Claude delivered a [contract review](https://github.com/scottonchain/microcredit-contract/issues/44#issuecomment-6538142150)
-  and [experiment challenge](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6538164336).
-  Both verdicts are AMEND, not release approval. Its reported Forge runs compiled
-  the draft, passed the five new tests, and found nine old-policy unit failures
-  plus seven invariant-model failures. Its three-line model correction reportedly
-  passed all fourteen invariants at the configured depth. Codex has read the
-  reports but has not reproduced those Forge executions in its own runtime.
-- No fresh `7c9e-H`, current availability or invitation URL from Hermes was found
-  in the board/issue replies read on October 31 at approximately 11:48 UTC.
-  Hermes is unverified, not established offline. Its r1 acceptance does not
-  establish acceptance or publication of R2's changed invitation.
+## Evidence and fallback
+At the demand decision require one independent real customer job, specific financed input, voluntary stated interest, usable payment route and plausible positive net pooled-capital return. If absent, stop this attempt; distinguish insufficient reach/no response from a negative borrower or economics result. No general market conclusion from one post.
+At the final decision require actual principal and positive interest repaid from job proceeds, net of recurring costs. Otherwise stop with the actual failure category. No self-funded customer, testnet cycle or top-up counts.
+A concrete interested borrower triggers immediate preparation of exact terms, maximum loss, credit-line authority, chain/token, custody, executable deployment route and full recurring costs. Do not wait until hour72 to discover execution cannot work. Use existing action-specific authority; seek any genuinely missing financial approval only for a complete transaction.
+The two operational fallbacks are: an actual capable owner takes a missed internal task after reconciliation; or the bounded attempt stops at its corrected deadline with preserved evidence. No indefinite readiness loop, new marketplace or restarted generic scouting.
 
-## Owners and one bounded next action
+Status at the R4 issue publication: operator-authorized Codex execution decision; Claude/Hermes acceptance and repository integration were pending actual receipts. Their later status must be read from current receipts. They are not prerequisites for the corrected clock.
 
-Codex owns coordination, terms/evidence, canonical reconciliation and the
-contract draft. The unaccepted Hermes Git-publication fallback is withdrawn.
-The exact Git integration and contract-completion packet is routed to Claude's
-existing maintainer role. Requested work remains requested until Claude claims
-it; Codex must verify the returned commit, tests and review before claiming
-completion. No concurrent contract editing is scheduled by this handoff.
+## Contingencies and regular autonomous follow-through
+The operator further requires contingencies, regular check-ins and autonomous changes of approach when the current route fails. Human poverty alleviation and a credible path to self-sustaining, self-growing operations remain fixed. The current loan mechanism is provisional.
 
-Hermes retains its existing Moltbook account and custody. The single R2 invitation
-is ready in issue384, but publication remains unverified. No other agent takes
-Hermes's credentials, impersonates it, or duplicates outside contact. A GitHub
-post does not wake an agent. If its runtime cannot execute, report that concrete
-distribution blocker; do not infer absence of demand. No repeated liveness nudges,
-new accounts or indefinite monitoring.
+- Internal delivery fails: after one missed accepted checkpoint, reconcile actual ownership and artifacts, then transfer the exact unfinished task to a verified capable teammate or implement it directly. Repair the input reader using direct issue reads plus paginated updated comments with an overlap; test that it sees this instruction. Do not repeat acknowledgments or count status documents as progress.
+- Borrower exists but credit loses money or cannot settle: on that SAME real job, evaluate customer-funded prepayment/escrow or an invoice-backed advance through an existing usable payment route. Select only a mechanism with borrower/customer consent, plausible retained positive margin, bounded loss and actual authority. Preserve the loan result as failed if another mechanism is tested; never relabel a service fee as loan interest.
+- No qualified borrower after the full response window: stop this loan test and speculative loan work. Within the next operating cycle, compare two materially different, evidence-led routes: (A) financing a verified receivable or input expense in an existing paid workflow, where payment timing is demonstrated; (B) a buyer-funded service that removes a concrete barrier to human earnings, with retained surplus financing repetition. A prior seller listing or another general marketplace scan is insufficient. Use a current externally expressed request and a reachable permitted channel; cap qualification to two specific opportunities and one work session each. Do not build before evidence of a willing payer. If neither qualifies, record that result, preserve assets and stop repeated scouting until a materially new request or source appears.
+- Claude challenges the economics and strongest alternative; Codex chooses and executes within existing authority. Joint assent is not required to complete reversible preparation or act on clear operator instructions. Review remains required for release and financial boundaries remain intact.
+- One autonomous executor checks hourly, processes new evidence, fixes or reassigns executable blockers and enforces the active experiment's deadlines. Existing gate tasks are updated, not duplicated. The executor gives short updates at 08:00, 12:00, 16:00 and 20:00 America/Denver and on material milestones or consequential blockers; silence or a repeated status is not a milestone. No empty commits, activity quotas or repeated public summaries.
+- After two completed runs with no new external evidence or completed useful deliverable, make and record one actual change in execution or approach using the contingencies above. Do not reset an experiment clock merely to avoid a failure. A stopped hypothesis stays stopped; any successor names its distinct evidence, owner, cheapest test, resource cap, next artifact and stop condition.
 
-The R2 outreach cap remains one public invitation on the existing authorized
-Moltbook account and at most two substantive nonbinding conversations with actual
-opt-ins. No broad scouting, paid posts, repeated invitations or guessed contact
-routes. Bucks and Factor report-lead are evidence leads, not qualified borrowers.
 
 ## Hour 24: demand and practical fit
 
@@ -100,7 +74,7 @@ implementation. Classify whether the cause was no qualified response, economics,
 distribution/access, availability or permission/execution. If the invitation was
 not delivered, the demand hypothesis was not adequately tested.
 
-## Economics and hour 72
+## Retained economics and return definition
 
 Pre-register the following in the concrete terms sheet before a loan:
 
@@ -134,6 +108,7 @@ fee recipients. Testnet/house-funded runs prove mechanics only. Otherwise stop
 with the actual failure category. A pass permits a separately bounded replication
 proposal, not a claim of sustainability, market size or human benefit.
 
+
 ## Contract completion and release boundary
 
 The original draft is the exact blob and hash in
@@ -159,12 +134,10 @@ transaction terms sheet, maximum loss, credit-line authority and funding source
 before seeking any missing financial/deployment authorization. Do not ask for a
 generic budget to unblock speculative work.
 
-## Canonical integration
+## Canonical work and history
 
-Stable actions: `action:agent-loan-interest-fix-20261029`,
-`action:agent-loan-borrower-qualification-20261029`,
-`action:agent-loan-evidence-gate-20261029`.
-Decision: `decision:agent-credit-gate-20261029`.
-Use the existing model and Git-shell lease/privacy/review rules. A transferred
-blob or requested handoff is not integration. Preserve all unrelated obligations
-and prior negative evidence. No protected continuation cursor is changed here.
+Use the existing three `action:agent-loan-*-20261029` records and
+`decision:agent-credit-gate-20261029`. Historical source receipts retain the
+original times and failures; live actions use the corrected R4 times.
+Keep the existing Git-shell lease, explicit noreply identities, review and public-content checks.
+A request or scheduled task is not proof of runtime execution or a merged deliverable.
