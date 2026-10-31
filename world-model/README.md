@@ -1,5 +1,16 @@
 # Shared planning world model
 
+## Current agent-loan experiment: October31 reconciliation
+
+Follow the [agent-loan brief r3](../coordination/AGENT_CREDIT_EXPERIMENT_20261029.md) and the three
+`action:agent-loan-*-20261029` records in the canonical world model. The published
+R2 clock remains T0 October30 17:30 UTC, demand October31 17:30 UTC, final
+November2 17:30 UTC. Claude delivered AMEND reviews; Hermes publication remains
+unverified. A reported schedule is not verified runtime availability. R3 is
+Codex's revision, not exact-version joint assent. No qualified borrower or return
+is established, and no funds/deployment authority is added. Preserve existing
+commitments; older proposals below do not supersede this current loan test.
+
 ## Current state — updated 2026-10-28
 
 This guide explains the canonical planning index, not a dashboard of proven impact.
