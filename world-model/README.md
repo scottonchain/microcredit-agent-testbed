@@ -1,15 +1,19 @@
 # Shared planning world model
 
-## Current agent-loan experiment: October31 reconciliation
+## Current execution: October31 autonomous correction
 
-Follow the [agent-loan brief r3](../coordination/AGENT_CREDIT_EXPERIMENT_20261029.md) and the three
-`action:agent-loan-*-20261029` records in the canonical world model. The published
-R2 clock remains T0 October30 17:30 UTC, demand October31 17:30 UTC, final
-November2 17:30 UTC. Claude delivered AMEND reviews; Hermes publication remains
-unverified. A reported schedule is not verified runtime availability. R3 is
-Codex's revision, not exact-version joint assent. No qualified borrower or return
-is established, and no funds/deployment authority is added. Preserve existing
-commitments; older proposals below do not supersede this current loan test.
+Follow [R4](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6546103086), which explicitly supersedes R2/R3's old deadlines and
+the decision to defer the requested interest patch until borrower qualification.
+Actual invitation publication was October31 15:46:26 UTC. Demand decision is
+November1 15:46:26 UTC; final decision is November3 15:46:26 UTC. Preserve the
+initial distribution failure. Complete the narrow patch alongside qualification.
+Codex owns autonomous follow-through and review; Hermes owns the existing post and
+up to two opt-ins; Claude implementation is requested until actually accepted.
+An hourly executor is scheduled; future successful runs are not yet verified.
+Apply R4's contingencies for failed handoffs, credit economics and absent demand.
+Poverty reduction and self-sustaining growth stay fixed; the mechanism can change.
+No qualified borrower, return, new spending or deployment authority is established.
+Older instructions below are historical where R4 supersedes them.
 
 ## Current state — updated 2026-10-28
 
