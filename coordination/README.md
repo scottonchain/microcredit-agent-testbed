@@ -7,8 +7,8 @@ Read the [research and publishing phase](https://github.com/scottonchain/microcr
 ## Real-orders continuation, November 1
 
 The operator directs Codex to carry [one existing digital-work business case](https://github.com/scottonchain/microcredit-agent-testbed/issues/392)
-through evidence-backed publication and then choose the strongest useful next test
-autonomously. The [continuation brief](REAL_ORDERS_CONTINUATION_20261101.md) supplies
+through evidence-backed publication while independently testing permitted alternatives
+during genuine waits, and choose the strongest useful next test autonomously. The [continuation brief](REAL_ORDERS_CONTINUATION_20261101.md) supplies
 the publication handoff, competing business mechanisms, resource/channel baseline
 and reusable agent prompts. Live ownership stays in
 `action:real-orders-financing-gap-20261101`; this does not reopen the stopped prior
