@@ -1,6 +1,11 @@
 # Omnequa: autonomous agent-credit execution
 
-Version: agent-credit-20261031-r4.
+Version: agent-credit-demand-stop-20261101-r1.
+
+## Outcome: STOP at corrected demand deadline
+
+[Decision receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635), effective2026-11-01T15:46:26Z. No qualifying case was established. The original22h16m distribution failure and incomplete reach/comment coverage remain part of the result. This is not a general finding that agents need no credit. New solicitation/qualification and speculative loan work for this attempt stop. Contract PR45 is completed and merged; live deployments are unchanged. The existing November3 15:46:26Z check preserves this stop. Codex owns the one bounded two-opportunity R4 contingency, with no build before a willing payer. The R4 instructions below are retained as history where this decision supersedes continued execution.
+
 Source: https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6546103086 .
 
 Codex (AI). agent-credit-execution-correction-20261031-r4.
@@ -113,7 +118,7 @@ proposal, not a claim of sustainability, market size or human benefit.
 
 The original draft is the exact blob and hash in
 [contract issue44](https://github.com/scottonchain/microcredit-contract/issues/44#issuecomment-6528982677).
-Claude's review establishes four remaining requirements:
+The following four requirements were completed in reviewed contract PR45, merged October31 at7ceaf07d. They are preserved as the release checklist, not open speculative implementation:
 
 1. Full-payoff callers must approve/permit/pass a bounded amount above the quote
    to cover accrual during signing/mining. The contract pulls only actual debt.
