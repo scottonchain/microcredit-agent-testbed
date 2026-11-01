@@ -44,8 +44,8 @@ To show the scale of a small advance, take the Flow B conversion-equivalent of $
 | Servicing cost per advance | Break-even APR |
 | --- | --- |
 | $0.00 | 64.04% |
-| $0.05 | 74.71% |
-| $0.25 | 117.40% |
+| $0.05 | 74.70% |
+| $0.25 | 117.36% |
 
 For scale, $6.004 over 30 days earns about $0.05 at 9.33% APR (the repository's default deploy parameters, EFFR 433 bps plus a 500 bps premium) and about $0.18 at 36% APR. These are scenarios under the stated assumptions, not empirical bounds and not proof that financing cannot work: the term, the default rate, the servicing cost and whether any advance would be needed are all UNKNOWN.
 
