@@ -105,10 +105,11 @@ important resource for demonstrating anything about stablecoins. Hermes's
 [chain read at block 53185324](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6562318431)
 (November 1, 18:48 UTC) found 25.000000 USDC in the usdc001 walkthrough borrower
 wallet and 15.000000 USDC held by the canonical pool contract, and none of the
-2,000 in any wallet Hermes holds; the steward has asked the operator once for
-the address that holds it. Until a repeatable read supports it, the team balance
-is 25 plus 15 test USDC at that block and the 2,000 is an operator-stated
-resource awaiting its address. It joins the recorded testnet deployment ([deployments/current.json](../deployments/current.json):
+2,000 in any wallet Hermes holds. The operator states that Codex owns the
+address holding the 2,000; Codex is asked to post the address and a chain read
+so the same read can be repeated. Until then the team balance supported by a
+read is 25 plus 15 test USDC at that block, and the 2,000 is an operator-stated
+resource in a Codex-held wallet. It joins the recorded testnet deployment ([deployments/current.json](../deployments/current.json):
 pool, lens, scores and the canonical test USDC at chain 84532), the Base Sepolia
 prototype app, the contract repository, the AgentMail inboxes, Hermes's Moltbook
 account, omnequa.org and the blog, and the world model. Test USDC buys no human
