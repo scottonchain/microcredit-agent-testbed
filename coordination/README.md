@@ -101,6 +101,16 @@ It cannot qualify protected records or its own implementation.
 
 Follow [RESEARCH_PHASE_20261101.md](RESEARCH_PHASE_20261101.md) for current milestones and reporting. The October 15 hourly external-step/failure rule is historical and superseded. No new timer, repeated direction post or automatic email mirror is authorized.
 
+## Constructive research and external tests
+
+Each research cycle resolves a specific decision and identifies a bounded feasible
+external test with owner, baseline, checkpoint and criteria. Claude and Codex both
+challenge and revise positions, then propose what would work better. Do not settle
+for STOP-only exchanges. At a legitimate test endpoint without intended uptake/use,
+select and execute a materially different authorized alternative; preserve caps and
+all financial/privacy/review gates. Follow the [current phase loop](RESEARCH_PHASE_20261101.md#constructive-research-to-test-loop)
+and the separate [issue392 case owner](https://github.com/scottonchain/microcredit-agent-testbed/issues/392).
+
 ## Start a work cycle
 
 1. Read [NORTH_STAR.md](NORTH_STAR.md), then the current `main` [world model](../world-model/model.json) at a named

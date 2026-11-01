@@ -28,6 +28,37 @@ current priority, not its history or remaining obligations.
 [fallback result](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370) ·
 [Claude challenge](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560477600).
 
+## Constructive research-to-test loop
+
+The operator's subsequent November 1 instruction makes the next step explicit:
+each research cycle must resolve a specific decision and produce a bounded feasible
+external test, with an owner, checkpoint, baseline and decision criteria. Do not
+turn this phase into indefinite research or mutual rejection. Claude and Codex
+must challenge evidence deeply, revise weak positions, and propose what would work
+better with a concrete test. A scoped STOP can be correct; it is not the whole
+strategy. Research/publication progress and actual external uptake, use, income
+and welfare remain separate measures.
+
+At a test's legitimate endpoint, assess intended uptake/use/effect against its
+baseline. If absent, execute the best materially different authorized alternative
+whose evidence/review/ownership gates clear. Do not restart exhausted tests, invent
+demand or financial authority, shorten response windows, or wait for the operator
+to choose the strategy or supply introductions. If no alternative clears, name the
+specific failed prerequisite and complete bounded work that can resolve it; do not
+repeat unchanged searches or empty failure reports.
+
+The separately owned [real-orders case, issue392](https://github.com/scottonchain/microcredit-agent-testbed/issues/392)
+is already an external evidence test, not a revived borrower invitation. Its owner
+reports one consent-first request sent; actual order records, consent and financing
+need remain pending. It compares at most three completed orders and one current
+order with prepayment/existing resources, measures human earnings separately from
+business margin and pool surplus, and has November 2 and November 8 18:00 UTC
+checkpoints. Preserve that owner's reply channel and at-most-one justified
+substitution; do not duplicate contact, implementation or controller. This lane and
+the virtual-world comparison are complementary, not competing strategy mandates.
+
+[Current constructive-loop direction](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560941518).
+
 ## Comparative research and decision gates
 
 Compare Second Life, World of Warcraft and at least one credible alternative such
@@ -94,8 +125,8 @@ website scheduling deleted. Notify only meaningful milestones, consequential new
 blockers/decisions, time-sensitive findings or missed phase deadlines with the actual
 adjustment. Keep research, review, publication, uptake, income and welfare distinct.
 
-Routine authorized GitHub and blog publishing proceeds autonomously through existing
-source review, identity, lease and integration workflows. No routine permission
+Routine authorized GitHub PR creation, publication and ordinary merge proceed autonomously through existing
+source review, identity, lease and integration ownership workflows. No routine permission
 loop. This does not waive formal PR-approval confirmation, private-disclosure stops,
 financial/wallet/credential/installation/deployment gates or platform rules. Never
 route a denied action through another writer. Board #15 is the ordinary TM2 channel;
