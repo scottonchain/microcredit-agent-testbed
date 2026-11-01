@@ -1,0 +1,119 @@
+# Reliable GitHub execution
+
+Codex (AI), November 1, 2026. This is a diagnostic and routing rule, not a new
+credential, permission, writer, or task ledger. It implements the operator's
+direction to resolve repeated access failures without requesting another unlock.
+The existing [GitHub-first invariant](README.md#github-first-completion-invariant-operator-direction-2026-10-12)
+and [identity/lease requirements](issue-12-recurring-task.md) continue to govern.
+
+## Ordinary publication and merge authority
+
+The operator's November 1 direction authorizes ordinary project PR creation,
+publication and merge without routine user approval loops. Use a verified writer,
+required independent exact-content review, branch protections, explicit noreply
+author/committer and the existing lease. Formal GitHub PR approval remains a
+separate action requiring its specific confirmation. No financial, wallet,
+production-deployment or private-disclosure authority follows.
+
+Use already configured approved authentication. Creating credentials, entering or
+configuring credentials for ongoing new access, expanding persistent privileges
+or changing security-sensitive settings requires the applicable precise approval.
+Do not copy another runtime's secrets. A technical capability handoff cannot bypass
+a denial, pending confirmation, privacy gate or required review.
+
+## Verified capability matrix
+
+Evidence cutoff November 1, 16:44 UTC. This is a dated comparison, not a global
+claim that all sessions are repaired. Recheck in each actual execution before work.
+
+| Existing writer | Read/pull | Authenticated source write | PR creation | Merge path | Identity / review / lease / readback |
+| --- | --- | --- | --- | --- | --- |
+| Codex alignment writer | Verified HTTPS clone and current refs in five repos | Five alignment branches and reviewed-route branch actually pushed | Testbed391/393, contract46, theory14, vision41, delivery3 created and read back | Not yet exercised by this writer at cutoff | Explicit noreply identities and exact files/heads verified; shared leases acquired/released; independent review still governs integration |
+| Route-diagnosis / Virtual Worlds writer | Public read reported working | Noninteractive Git push reported missing username | Connector comments/blobs work; source PR creation not established here | Not established | Published patch transferred through confirmed alignment-writer handoff; no credential transfer |
+| Claude maintainer | Verified repository work in PR390 receipt | PR390 main integration receipt exists | PR390 workflow exists | Non-squash source integration reported/remote main verified by project readers | Recheck current lease, head, review and identity for each next integration; prior success does not establish another runtime's capability |
+| Forecast preparation writer | Source reading and patch preparation reported | Missing shell authentication reported; unsafe connector-identity route not used | Exact artifact supplied; source publication still required | Not established | Existing article owner retained; no evidence of a GitHub App scope deficit from this failure alone |
+
+[Actual route publication](https://github.com/scottonchain/microcredit-agent-testbed/pull/393)
+and [nonsecret environment observations](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560828233)
+provide concrete evidence. The alignment runtime reports configured GH_TOKEN ready;
+no local helper/header/rewrite configuration or credential files were found. This
+does not establish which managed transport authenticates Git or a transferable
+bootstrap recipe. No persistent binding or privilege was changed.
+
+## Diagnose the right layer
+
+An app's approval setting, its repository access, the current execution's Git
+authentication, safe commit identity, and successful publication are different
+facts. Public cloning proves none of the write requirements. Do not ask the
+operator to repeat an authorization already given merely because a different
+execution lacks a configured Git authentication route.
+
+Before preparing a substantial deliverable, run in the actual writer checkout:
+
+```sh
+python coordination/github_route_preflight.py --probe-remote
+```
+
+The helper performs local checks and one noninteractive `git push --dry-run`.
+It prints static diagnostics and booleans, never credentials, remote URLs,
+identity addresses, or raw Git errors. It preserves configured credential
+providers, proxy settings and trust. It does not publish, change authentication,
+change any ref, acquire a lock, or verify persistence across executions. Git's
+configured hooks/providers may still run. Without `--probe-remote`, it performs
+only local checks and cannot report a candidate write route.
+
+| Observation | Required next action |
+| --- | --- |
+| App already permits requested actions | Keep that setting; do not request another unlock. |
+| Public Git read succeeds but push reports missing authentication | Repair the supported execution credential binding or use the existing verified writer. Do not mistake this for repository denial. |
+| Repository/network/policy failure | Diagnose the actual supported connection and configured policy. Do not bypass the proxy, switch identities silently, or copy another worker's credentials. |
+| Unknown/unsafe author or committer | Use explicit approved noreply identities. Do not create an unsafe probe commit. |
+| Connector cannot fix both commit identities before creation | Use the verified Git-shell writer; issue comments and blob transfer may still work. |
+| Dry run succeeds and configured identities are safe | Perform the already-authorized useful write under existing checks, then independently read back exact remote bytes and commit identities. A dry run is only a candidate route. |
+| Protected records | Use the existing exact Git lease in addition to the above. No connector parameter replaces the demonstrated protocol. |
+
+## Finish through an owned route
+
+If supported setup repair is unavailable in the current execution, send the
+existing Claude writer one exact, idempotent TM2 handoff on board 15: target repo,
+base SHA, exact public-safe patch blob and SHA256, expected file scope, checks,
+actual authority, and completion receipt required. Preserve concurrent changes.
+Use the same logical request until it resolves. A board request or blob is not a
+published commit. The existing autonomous continuation owns verification and
+follow-through; no new schedule, duplicate writer, or repeated user question.
+
+If another currently active Codex execution has demonstrated a supported write
+route, ask it for the non-secret provider/setup recipe and capability evidence.
+Reuse only a supported binding that is actually available to this execution.
+Never extract or transfer the other execution's token, private endpoint, or
+credential files. A recipe is not evidence that setup succeeded here.
+
+Report completion only after the requested commit/PR or publication is read back.
+Report a durable authentication repair only after the supported persistent
+configuration is confirmed and a subsequent fresh autonomous execution repeats a
+safe useful write and readback. Otherwise name the working route and the remaining
+setup dependency accurately. Do not call one successful interactive push permanent.
+
+## November 1 evidence
+
+The diagnosing execution found the GitHub app already set to **Allow all actions**
+and the connected account's testbed permission **admin**. Public `ls-remote`
+returned main `bacd2696d8a2857dcb1c71065c0b5b9d9d744f93`. A noninteractive push dry
+run failed with the missing-username diagnostic. No configured Git credential
+helper was found. Credential-environment absence was corroborating information,
+not the basis for claiming a failed authentication attempt. No credentials or
+private identity values are recorded here.
+
+At the same time, another Codex execution reported verified noreply-safe pushes
+and lease release for [PR391 and related work](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560683847).
+This demonstrates that access differs by execution; it does not establish this
+execution's setup. The [concrete route-repair request](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560695398)
+asks that writer and Claude for the supported setup recipe and an owned fix.
+The request was read back exactly. A reply, canonical integration, subsequent
+fresh-execution write, and permanent setup repair remain distinct receipts.
+
+Run the focused offline tests with:
+
+```sh
+python -m unittest coordination.test_github_route_preflight
+```

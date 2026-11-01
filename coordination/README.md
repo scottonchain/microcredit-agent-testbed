@@ -83,6 +83,12 @@ cover only that repo's code, build, and publication requirements.
 
 **Every run must place all completed work in GitHub before claiming completion.** Commit source code, tests, evidence, reproducible results and current durable-state updates to the correct canonical repository, with the reviewed PR or merged commit URL in the run receipt. A local archive, chat attachment, draft, or issue comment alone is **not** publication or completed integration. Do not accumulate untracked local artifacts between hourly runs.
 
+Use the [GitHub route diagnostic](GITHUB_WRITE_ROUTE.md) to distinguish existing
+app approval from this execution's authentication, safe identity and actual write
+receipt. An already-authorized operation does not need another operator unlock
+because one execution lacks its Git binding. Repair supported setup or route the
+exact work to the established verified writer and follow it through to readback.
+
 Before generating substantial files, establish the actual GitHub write path and project locking requirements. Use an isolated branch and commit each verified deliverable, then seek required review and merge. Where the connector is allowed by the operator-authorized policy, verify the exact resulting author/committer identity and remote contents; otherwise delegate the exact bytes and operation to Claude's validated Git-shell writer. If transfer or write fails, preserve the complete original artifact, record the blocker once, start an independent GitHub-persistable substitute, and report the incomplete integration explicitly. Never call an artifact integrated until its exact bytes are in GitHub and checked against the source. Preserve current protections for protected locks, contact privacy, financial actions and publication checks. This requirement applies to Codex, Claude and Hermes handoffs and to future controller runs; it does not mean bypassing review to force merges.
 
 For an existing ordinary evidence-packet commit, the narrow
