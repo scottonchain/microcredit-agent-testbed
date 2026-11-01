@@ -105,4 +105,3 @@ All checked 2026-11-01. Web reference IDs are retrieval handles for the parent r
 | S24 | https://github.com/Polymarket/agents/ | turn67search0 | Official agent trading framework; code availability not profitability. |
 | S25 | https://github.com/Polymarket/agent-skills | turn67search3 | Official market/order/wallet integration and public read endpoints. |
 | S26 | https://help.polymarket.com/en/articles/13364163-geographic-restrictions | turn67search4 | Current geographic restrictions, no circumvention; no access attempted. |
-
