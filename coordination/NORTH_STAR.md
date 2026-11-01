@@ -30,29 +30,35 @@ the blocked prerequisite; the objective is fixed. At every checkpoint at least
 one cheapest test runs on a path that does not share the current blocked
 dependency, in parallel with the current path.
 
-Unified ranking of the 28 paths not ruled out, by credible human benefit,
-ability to execute now, useful evidence, cost and reuse. Top ten:
+Unified ranking of the 29 paths not ruled out, by credible human benefit,
+ability to execute now, useful evidence, cost and reuse. Top ten after the
+November 1 evening receipts:
 
 1. Verifiable skill signals and public work evaluations (near).
-2. Agent as employer of first resort: a needed first job, prepaid, with a public
-   evaluation (boundary, kept with conditions; candidate for the issue 396
-   November 8 comparable-role decision).
+2. Agent as employer of first resort: a needed first job, prepaid, with a public evaluation (boundary).
 3. Paid human evaluation and jury work bought by the agent economy (far).
-4. Rules-as-code maintenance for benefits calculators (near; 156 unassigned issues
-   found November 1, the first 40 read all maintainer-filed).
-5. Cooperative or placement channel with its own clients (near; the guarantee's
-   remaining channel type).
-6. Local-knowledge oracles sold to agents (boundary, kept).
+4. Local-knowledge oracles sold to agents (boundary).
+5. Open-source tax-filing continuation for unclaimed EITC (near).
+6. Nonpayment recovery through existing law (near).
 7. Mutual credit clearing for micro-businesses, no sponsor capital (far).
-8. Open-source tax-filing continuation for unclaimed EITC (near).
-9. Nonpayment recovery through existing law (near).
-10. Member-funded mutual pool (near).
+8. Member-funded mutual pool (near).
+9. Index insurance payouts through the conditional-payment contract (far).
+10. Paid data work in low-resource languages, agents as quality layer (far).
 
-The current paths rank by evidence, not loyalty: the revolving guarantee and the
-shared human and agent service markets at 12 and 13, paid data work at 14,
-human-first lending on one real order (issue 392) at 15, virtual and creator
-worlds at 16, autonomous worlds at 27. The register tracks 31 ruled-out ideas
-with the alternative each inspires or its re-entry condition; it is never pruned.
+Two paths moved on receipts the same evening. Rules-as-code maintenance (N2,
+now 16) is parked at its own stop: the candidate defect, PolicyEngine
+issue 10552, was reproduced exactly, a fix drafted and independently reviewed,
+but three earlier reviewed corrections remain unanswered upstream, so no
+submission until a maintainer responds. The cooperative channel check (N3, now
+22) found that clients pay the platform up front on all three channels,
+closing the client-nonpayment mechanism there and adding a boundary idea, a
+worker payout guarantee against platform liquidity failure (B11, 25).
+The other current paths rank by evidence: the revolving guarantee at 11,
+shared human and agent service markets at 12, paid data work at 10,
+human-first lending on one real order (issue 392) at 17, virtual and
+creator worlds at 23, autonomous worlds at 29. The register
+tracks 31 ruled-out ideas with the alternative each inspires or its re-entry
+condition; it is never pruned.
 
 No path adds money, contact, account or deployment authority. The November 1
 agent-loan STOP, every existing cap and observation window, and the guarantee's

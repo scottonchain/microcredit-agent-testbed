@@ -82,41 +82,45 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out)
+## Unified priority list (everything not ruled out; 29 paths after the November 1 evening receipts)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 2 | 2 | 3 | 3 | 13 | Receipt: a platform displays partner-issued credentials |
 | 2 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 1 | 3 | 2 | 3 | 12 | Boundary, kept with conditions; fuses N1 with the issue 396 roadmap |
 | 3 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
-| 4 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 3 | 2 | 3 | 2 | 12 | Receipt: 156 unassigned issues, first 40 read maintainer-filed |
-| 5 | N3 | Cooperative or placement channel with its own clients | 2 | 2 | 3 | 3 | 2 | 12 | Public `p` check specified |
-| 6 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
+| 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
+| 5 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
+| 6 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
 | 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
-| 8 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
-| 9 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
-| 10 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
-| 11 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
-| 12 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
-| 13 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown |
-| 14 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
-| 15 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent, reply pending |
-| 16 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 2 | 2 | 2 | 2 | 9 | Current research slice |
-| 17 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
+| 8 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
+| 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
+| 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
+| 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
+| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown |
+| 13 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
+| 14 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
+| 15 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
+| 16 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop (three earlier PRs unanswered) |
+| 17 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent, reply pending |
 | 18 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
 | 19 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 2 | 2 | 2 | 9 | Far; no vendor channel |
 | 20 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
-| 21 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
-| 22 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
-| 23 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
+| 21 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
+| 22 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
+| 23 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 2 | 2 | 2 | 2 | 9 | Current research slice |
 | 24 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
-| 25 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
-| 26 | N9 | Positive payment-history reporting | 1 | 1 | 1 | 2 | 2 | 7 | Specified |
-| 27 | C3 | Autonomous worlds (Trinary on Sui testnet) | 0 | 2 | 1 | 2 | 1 | 6 | Current research slice; no spendable payout |
+| 25 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
+| 26 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
+| 27 | N9 | Positive payment-history reporting | 1 | 1 | 1 | 2 | 2 | 7 | Specified |
 | 28 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked |
+| 29 | C3 | Autonomous worlds (Trinary on Sui testnet) | 0 | 2 | 1 | 2 | 1 | 6 | Current research slice; no spendable payout |
 
 Reading the list: the top five need no new authority and attack the hiring
-decision or ride an existing tool. B10 is the one far idea that also serves the
+decision or buy human judgment from the agent economy. N2 and N3 dropped on
+November 1 evening receipts: N2 is parked at its own stop with a reproduced
+candidate ready, and N3 found that cooperative platforms take client payment
+up front, which closes the client-nonpayment mechanism there and spawned B11. B10 is the one far idea that also serves the
 operator's November 8 "comparable-role workflow" decision in issue 396. The
 current paths rank mid-table on evidence, not on loyalty: C4 scores highest of
 them on useful evidence because one real order decides the necessary-finance
@@ -275,6 +279,7 @@ to the register with their reason and the alternative they inspire.
 | B8 | Local-knowledge oracles: humans paid by agents for verified local prices, routes, availability, dialect | Kept | Demand exists inside the agent economy; the team can specify its own first need. Consent and quality rules apply; payout needs currency. |
 | B9 | Human cash-out agents for stablecoin remittances paid on commission | Ruled out, permission (R5) | Money transmission licensing. Inspires F2 as cost comparison with licensed providers. |
 | B10 | Agent as employer of first resort: an agent with a real need prepays a newcomer's first small job and publishes a detailed evaluation | Kept with conditions | Pallais (2014) is the mechanism; issue 396 names a small USDC seed in principle and a demand-trace audit. Conditions: the work must be needed, pay at or above a floor, payout route lawful, no debt, randomized offer where possible. |
+| B11 | Worker payout guarantee against cooperative platform liquidity failure: the cooperative, not the client, is the counterparty | Kept with conditions (added from the N3 receipt) | One press-reported case of late or missed driver pay at a New York cooperative; clients already pay the platform up front. Needs a cooperative channel (L2) and the cooperative's own books before any parameter can be bounded. |
 
 ## Near-lateral paths (tier N), from revision 1
 
@@ -283,8 +288,8 @@ Full entries are in commit 4bf8b02. One line each.
 | ID | Path | Cheapest test | Stop |
 | --- | --- | --- | --- |
 | N1 | Verifiable skill signals and public evaluations (Carranza et al. 2022: employment 31 to 36 percent, earnings +34 percent, benefit 2.3 times variable cost; Abel et al.: callbacks 4.2 to 6.7 percent) | Partner terms of the credential programme; attestation specification from contract events | No channel shows external credentials to the hiring party |
-| N2 | Rules-as-code maintenance (Finkelstein and Notowidigdo 2019: information plus assistance raised enrollment to about 18 percent) | Unassigned-issue scan, done | Two reviewed corrections with no maintainer response |
-| N3 | Cooperative or placement channel (Up & Go: 95 percent of booking to workers, self-reported) | Public payment and dispute terms of three channels | All prepay or hold deposits |
+| N2 | Rules-as-code maintenance (Finkelstein and Notowidigdo 2019: information plus assistance raised enrollment to about 18 percent) | Unassigned-issue scan, done; candidate 10552 reproduced and fix drafted ([evidence](../evidence/lateral-n2-n3-20261101/README.md)) | Met November 1: PRs 10263, 10264 and 10347 open with zero comments; parked, re-entry on any maintainer response |
+| N3 | Cooperative or placement channel (Up & Go: 95 percent of booking to workers, self-reported) | Done November 1 ([evidence](../evidence/lateral-n2-n3-20261101/README.md)): clients pay the platform by card; sub-24-hour cancellation fee; 48-hour quality window; one reported platform-to-driver pay failure | Met for client nonpayment; spawned B11 |
 | N4 | Open-source tax filing (8.2 billion dollars EITC unclaimed, tax year 2021) | Fork activity and named operator | No operator for the 2026 season |
 | N5 | Nonpayment recovery law (NYC: over 3.5 million dollars across 4,300 cases since 2017) | Recovery-rate map | Awareness is not the gap |
 | N6 | Member-funded mutual pool (VSLA trials: savings and business profits up, no income effect) | Zero-sponsor simulation | Contribution rates erode benefit |
@@ -362,6 +367,12 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 6. Recorded the ranking, register and receipts in NORTH_STAR.md and the world
    model (`action:lateral-paths-first-tests-20261101`,
    `claim:lateral-paths-ranked-20261101-r2`).
+7. Evening, after Codex declined N2 and N3 and the steward assigned them to
+   Claude (board 15 comments 6564338961 and 6564389264): N2 candidate issue
+   10552 reproduced exactly and a fix drafted, then parked at N2's own stop
+   because PRs 10263, 10264 and 10347 remain unanswered; N3 public-terms check
+   of three cooperative channels returned a bound and spawned B11. Packet:
+   [evidence/lateral-n2-n3-20261101](../evidence/lateral-n2-n3-20261101/README.md).
 
 ## Proposed next actions
 
@@ -370,10 +381,10 @@ Owners are proposed; acceptance is recorded in the model when given.
 | Step | Path | Owner proposed | Deliverable | Checkpoint |
 | --- | --- | --- | --- | --- |
 | Challenge the issue 396 evidence matrix with this ranking; propose B10 as the comparable-role workflow candidate | C1, C2, B10 | Claude | Comment on issue 396 with the cheapest discriminator | 2026-11-03 |
-| Select one current maintainer-filed defect under existing gates | N2 | Codex selection, Claude review | One reviewed candidate with reproduction | 2026-11-04 |
+| Select one current maintainer-filed defect under existing gates | N2 | Claude (reassigned Nov 1) | Done Nov 1: issue 10552 reproduced, fix drafted, parked at stop | 2026-11-04 |
 | Partner terms of the credential programme; attestation specification | N1 | Claude | One page, issuer-trust problem stated | 2026-11-08 |
 | Price our own verification need against a panel's public terms; record whether disclosed-AI buyers are permitted | F9 | Claude | One-page receipt | 2026-11-08 |
-| Public `p` check on three cooperative or placement channels | N3 | Codex | Table of payment timing, deposits, disputes | 2026-11-08 |
+| Public `p` check on three cooperative or placement channels | N3 | Claude (reassigned Nov 1) | Done Nov 1: bound; clients pay the platform; B11 spawned | 2026-11-08 |
 | Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | One reproducible run each beside existing ruin results | 2026-11-15 |
 | Voucher versus guarantee `M` note | N7 | Claude | Reproducible note in the theory repository | 2026-11-15 |
 
