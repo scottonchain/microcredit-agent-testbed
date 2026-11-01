@@ -77,13 +77,21 @@ head into main under the project lease (non-squash, isolated worktree, noreply i
 expected-main compare-and-swap push, readback). Configuration is by environment: `CLONE`,
 `RUNNER_LANE`, `PUBLIC_CONTENT_CHECK` (required; the checker is not in this repository),
 `PYLIB`, `GITHUB_API`, `GITHUB_REPO`, `NO_API` (accepted only for a local scratch origin),
-`MAIN_EXPECT`. It holds no machine-specific path. `test_lease_merge.py` runs it against
+`MAIN_EXPECT`. It holds no machine-specific path. The pull-request state check is
+`pr_state_check.py`: a GitHub token from the environment is sent only to the approved API
+origin (`https://api.github.com`), never to a configured test endpoint, and redirects are
+never followed, so a token cannot be forwarded elsewhere. The toggle is read from main before
+the lease; right after the lease is acquired the wrapper reads main again and stops if it
+moved, so an owner switch that lands in between cannot leave the checks running on a stale
+answer. `test_lease_merge.py` runs it against
 scratch origins and covers: a clean merge, a refused lane, a missing configuration, a switch
 in progress, main moving after the lease, a lost lease (the other owner's lease is never
 released), a refused push, a readback mismatch, a missing or failing checker (fails closed),
 a missing public-content checker, forbidden message content, a wrong head, a held lease,
-`NO_API` against a remote origin, a signal during the checks (the lease is released), and
-draft, merged, closed, unreadable and unreachable pull-request states. It does not cover
+`NO_API` against a remote origin, a signal during the checks (the lease is released), an owner
+switch landing between the gate and the lease (the checker never starts), a sentinel token that
+must never reach a test endpoint, a redirect that must not be followed, and draft, merged, closed,
+unreadable and unreachable pull-request states. Scratch runs strip any inherited GitHub token. It does not cover
 the real GitHub API or a real remote.
 
 ## Recording a change

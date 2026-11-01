@@ -15,7 +15,8 @@
 #   PUBLIC_CONTENT_CHECK  path to check-public-content.sh (default $CLONE/scripts/check-public-content.sh);
 #                         required, the run stops if it is missing
 #   PYLIB                 optional directory added to PYTHONPATH for the model validators (pydantic)
-#   GITHUB_API            API base for the pull-request state check (default https://api.github.com)
+#   GITHUB_API            API base for the pull-request state check (default https://api.github.com); a
+#                         GitHub token in the environment is sent only to that default origin
 #   GITHUB_REPO           owner/name for that check (default: read from origin)
 #   NO_API=1              skip the pull-request state check; accepted only when origin is a local path
 #   MAIN_EXPECT           optional sha main must still be at when the merge starts
@@ -89,15 +90,8 @@ if [ -n "${MAIN_EXPECT:-}" ] && [ "$MAIN_BEFORE" != "$MAIN_EXPECT" ]; then fail 
 if [ "${NO_API:-0}" != 1 ]; then
   REPO_SLUG="${GITHUB_REPO:-$(printf '%s' "$ORIGIN_URL" | sed -nE 's#^.*github\.com[:/]([^/]+/[^/]+)$#\1#p' | sed -E 's#\.git$##')}"
   [ -n "$REPO_SLUG" ] || fail "cannot work out owner/name for the pull-request check (set GITHUB_REPO)"
-  GITHUB_API="$GITHUB_API" REPO_SLUG="$REPO_SLUG" python3 - "$PR" <<'PY' || fail "PR is not an open, non-draft, unmerged pull request (or its state could not be read)"
-import json, os, sys, urllib.request
-tok = os.environ.get('GITHUB_TOKEN') or os.environ.get('GH_TOKEN')
-h = {'Accept': 'application/vnd.github+json', 'User-Agent': 'lease_merge'}
-if tok: h['Authorization'] = 'Bearer ' + tok
-url = os.environ['GITHUB_API'].rstrip('/') + '/repos/' + os.environ['REPO_SLUG'] + '/pulls/' + sys.argv[1]
-p = json.load(urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=60))
-sys.exit(0 if p.get('state') == 'open' and p.get('draft') is False and p.get('merged') is False else 1)
-PY
+  GITHUB_API="$GITHUB_API" REPO_SLUG="$REPO_SLUG" python3 "$HERE/pr_state_check.py" "$PR" \
+    || fail "PR is not an open, non-draft, unmerged pull request (or its state could not be read)"
 fi
 git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null 2>&1 || git fetch -q --deepen=500 origin main "refs/pull/${PR}/head" || true
 git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null || fail "no merge base between main and the PR head"
@@ -116,6 +110,10 @@ say "preconditions ok: PR $PR head $HEAD_EXPECT, main $MAIN_BEFORE; $(cat "$WORK
 OUT="$(python3 coordination/run_lock.py --repo "$CLONE" acquire --owner "$OWNER" --execution "$EXECID")" || fail "lease acquisition refused (held, missing or ambiguous)"
 ACQUIRED="$(python3 -c 'import json,sys;print(json.loads(sys.argv[1])["acquired_head"])' "$OUT")"
 say "lease acquired: $ACQUIRED"
+# The execution-owner gate above read MAIN_BEFORE. If main moved before the lease was ours (for example an
+# owner switch landed), those results are stale: stop before any merge or check runs.
+git fetch -q origin main
+[ "$(git rev-parse origin/main)" = "$MAIN_BEFORE" ] || fail "main moved to $(git rev-parse origin/main) between the execution-owner check and the lease; nothing was merged or checked"
 
 # 3. Merge in an isolated worktree.
 WT="$WORK/worktree"

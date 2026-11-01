@@ -25,6 +25,8 @@ IDENT = {"GIT_AUTHOR_NAME": "Scratch", "GIT_AUTHOR_EMAIL": "scratch@example.inva
 
 CHECK_STUB = '''import os, subprocess, sys, time
 action = os.environ.get("CHECK_ACTION", "ok")
+if os.environ.get("CHECK_MARKER"):
+    open(os.environ["CHECK_MARKER"], "w").write("started")
 if action == "advance":      # main moves after the lease was taken
     other = os.environ["OTHER_CLONE"]
     subprocess.run(["git", "-C", other, "pull", "-q", "origin", "main"], check=True)
@@ -45,6 +47,21 @@ elif action == "fail":
 print("stub: 1 check passed")
 '''
 
+RACE_SHIM = '''import json, os, runpy, subprocess, sys
+if "acquire" in sys.argv and os.environ.get("RACE_ACTION") == "owner_switch":
+    other = os.environ["OTHER_CLONE"]
+    subprocess.run(["git", "-C", other, "pull", "-q", "origin", "main"], check=True)
+    path = other + "/coordination/execution-owner.json"
+    cfg = json.load(open(path))
+    cfg["owner"] = "openai"
+    cfg["override"]["owner"] = "openai"
+    json.dump(cfg, open(path, "w"), indent=2)
+    subprocess.run(["git", "-C", other, "add", "-A"], check=True)
+    subprocess.run(["git", "-C", other, "commit", "-q", "-m", "owner switch lands before acquisition"], check=True)
+    subprocess.run(["git", "-C", other, "push", "-q", "origin", "HEAD:main"], check=True)
+runpy.run_path(os.path.join(os.path.dirname(os.path.abspath(__file__)), "run_lock_real.py"), run_name="__main__")
+'''
+
 PUBLIC_CONTENT_STUB = '''#!/usr/bin/env bash
 case "$1" in
   --message) if grep -q FORBIDDEN "$2"; then echo "forbidden content" >&2; exit 1; fi;;
@@ -54,8 +71,16 @@ exit 0
 '''
 
 
+TOKEN_VARIABLES = ("GH_TOKEN", "GITHUB_TOKEN")
+
+
+def clean_environment():
+    """The caller's environment without any GitHub credential."""
+    return {key: value for key, value in os.environ.items() if key not in TOKEN_VARIABLES}
+
+
 def run(cmd, cwd=None, env=None, check=True):
-    merged = dict(os.environ, **IDENT)
+    merged = dict(clean_environment(), **IDENT)
     if env:
         merged.update(env)
     result = subprocess.run(cmd, cwd=cwd, env=merged, capture_output=True, text=True)
@@ -134,11 +159,17 @@ class Scratch:
         git(self.other, "commit", "-q", "-m", "change main")
         git(self.other, "push", "-q", "origin", "HEAD:main")
 
+    def install_race_shim(self):
+        """Make the clone's run_lock.py land an owner switch on main just before it acquires the lease."""
+        directory = self.clone / "coordination"
+        shutil.copyfile(directory / "run_lock.py", directory / "run_lock_real.py")
+        (directory / "run_lock.py").write_text(RACE_SHIM)
+
     def command(self, head=None):
         return ["bash", str(SCRIPT), "7", head or self.head, str(self.message), OWNER, EXECUTION]
 
     def environment(self, **extra):
-        env = {"CLONE": str(self.clone), "NO_API": "1",
+        env = {"CLONE": str(self.clone), "NO_API": "1", "CHECK_MARKER": str(self.tmp / "checker-started"),
                "PUBLIC_CONTENT_CHECK": str(self.clone / "scripts" / "check-public-content.sh"),
                "OTHER_CLONE": str(self.other)}
         env.update(extra)
@@ -215,6 +246,23 @@ class LeaseMergeTests(unittest.TestCase):
         self.assertEqual(git(self.s.origin, "log", "-1", "--format=%s", "refs/heads/main"), "racing commit")
         self.assertNotIn("feature.txt", git(self.s.origin, "ls-tree", "-r", "--name-only", "refs/heads/main"))
         self.assertEqual(self.s.lock_state()["state"], "unlocked")
+
+    def test_the_checker_marker_proves_a_normal_run_starts_the_checker(self):
+        result = self.s.run()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue((self.s.tmp / "checker-started").exists())
+
+    def test_an_owner_switch_landing_before_the_lease_stops_the_run_before_any_check(self):
+        self.s.install_race_shim()
+        before = self.s.main_head()
+        result = self.s.run(RACE_ACTION="owner_switch")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("between the execution-owner check and the lease", result.stderr)
+        self.assertFalse((self.s.tmp / "checker-started").exists(), "the checker must never start on a stale gate")
+        self.assertNotEqual(self.s.main_head(), before)  # the switch did land
+        self.assertNotIn("feature.txt", git(self.s.origin, "ls-tree", "-r", "--name-only", "refs/heads/main"))
+        state = self.s.lock_state()
+        self.assertEqual((state["state"], state["released_by"]), ("unlocked", OWNER))
 
     def test_a_lost_lease_pushes_nothing_and_never_releases_another_owners_lease(self):
         before = self.s.main_head()
@@ -310,7 +358,7 @@ class LeaseMergeTests(unittest.TestCase):
 
     def test_a_signal_during_the_checks_releases_the_lease(self):
         before = self.s.main_head()
-        process = subprocess.Popen(self.s.command(), env=dict(os.environ, **IDENT, **self.s.environment(CHECK_ACTION="sleep")),
+        process = subprocess.Popen(self.s.command(), env=dict(clean_environment(), **IDENT, **self.s.environment(CHECK_ACTION="sleep")),
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
         try:
             deadline = time.time() + 30
@@ -337,10 +385,12 @@ class PullRequestStateTests(unittest.TestCase):
         self.s = Scratch()
         self.addCleanup(self.s.close)
         self.reply = {"code": 200, "body": {"state": "open", "draft": False, "merged": False}}
-        reply = self.reply
+        self.seen = []
+        reply, seen = self.reply, self.seen
 
         class Handler(http.server.BaseHTTPRequestHandler):
             def do_GET(self):
+                seen.append(dict(self.headers.items()))
                 payload = json.dumps(reply["body"]).encode()
                 self.send_response(reply["code"])
                 self.send_header("Content-Type", "application/json")
@@ -384,6 +434,17 @@ class PullRequestStateTests(unittest.TestCase):
             self.assertEqual(self.s.main_head(), before, name)
             self.assertEqual(self.s.lock_state()["released_by"], "seed", name)  # lease never taken
 
+    def test_a_credential_in_the_environment_never_reaches_a_test_endpoint(self):
+        sentinel = "sentinel-token-must-not-leak-0123456789"
+        env = self.s.environment(GITHUB_API=self.api, GITHUB_REPO="scratch/test", NO_API="", GH_TOKEN=sentinel,
+                                 GITHUB_TOKEN=sentinel)
+        result = run(self.s.command(), env=env, check=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(self.seen, "the stand-in API was never asked")
+        for headers in self.seen:
+            self.assertNotIn("Authorization", headers)
+            self.assertNotIn(sentinel, " ".join(headers.values()))
+
     def test_an_unreachable_api_is_refused(self):
         self.server.shutdown()
         self.server.server_close()
@@ -391,6 +452,67 @@ class PullRequestStateTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("not an open, non-draft, unmerged pull request", result.stderr)
         self.assertEqual(self.s.lock_state()["released_by"], "seed")
+
+
+class PullRequestHelperTests(unittest.TestCase):
+    """pr_state_check.py: where a credential may go, and that redirects are never followed."""
+
+    def setUp(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("pr_state_check", HERE / "pr_state_check.py")
+        self.helper = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.helper)
+
+    def test_the_credential_goes_only_to_the_approved_origin(self):
+        headers = self.helper.request_headers("https://api.github.com", "tok")
+        self.assertEqual(headers["Authorization"], "Bearer tok")
+        self.assertEqual(self.helper.request_headers("https://api.github.com/", "tok")["Authorization"], "Bearer tok")
+        for base in ("http://api.github.com", "https://api.github.com.evil.example", "http://127.0.0.1:9",
+                     "https://example.test", "https://api.github.com:8443"):
+            self.assertNotIn("Authorization", self.helper.request_headers(base, "tok"), base)
+        self.assertNotIn("Authorization", self.helper.request_headers("https://api.github.com", None))
+
+    def test_a_redirect_is_not_followed_and_nothing_is_forwarded(self):
+        received = []
+
+        class Target(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                received.append(dict(self.headers.items()))
+                payload = json.dumps({"state": "open", "draft": False, "merged": False}).encode()
+                self.send_response(200)
+                self.send_header("Content-Length", str(len(payload)))
+                self.end_headers()
+                self.wfile.write(payload)
+
+            def log_message(self, *args):
+                pass
+
+        target = http.server.HTTPServer(("127.0.0.1", 0), Target)
+        threading.Thread(target=target.serve_forever, daemon=True).start()
+        self.addCleanup(target.server_close)
+        self.addCleanup(target.shutdown)
+        where = "http://127.0.0.1:%d/elsewhere" % target.server_address[1]
+
+        class Redirector(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                self.send_response(302)
+                self.send_header("Location", where)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+
+            def log_message(self, *args):
+                pass
+
+        origin = http.server.HTTPServer(("127.0.0.1", 0), Redirector)
+        threading.Thread(target=origin.serve_forever, daemon=True).start()
+        self.addCleanup(origin.server_close)
+        self.addCleanup(origin.shutdown)
+        base = "http://127.0.0.1:%d" % origin.server_address[1]
+        self.assertFalse(self.helper.pull_request_is_mergeable(base, "scratch/test", 7, token="sentinel-token"))
+        self.assertEqual(received, [], "the redirect target must never be contacted")
+
+    def test_wrong_usage_exits_2(self):
+        self.assertEqual(self.helper.main(["7", "8"]), 2)
 
 
 if __name__ == "__main__":
