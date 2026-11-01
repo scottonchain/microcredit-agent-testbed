@@ -139,13 +139,15 @@ async function renderRepay() {
   <p class="muted">A small buffer is approved so the interest that builds up while this is sent is covered. Only what you owe is taken.</p>`;
   if (short_ > 0n) { $('#faucet').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); }; $('#copyA').onclick = (e) => copy(S.addr, e.target); }
   const doPay = async (amount, approveAmt) => {
-    const cur = await C.preflight(S.client, S.addr, 'repayLoan', [l.id, amount]);
     const allowance = await S.client.readContract({ address: C.cfg.usdc, abi: C.erc20Abi, functionName: 'allowance', args: [S.addr, C.cfg.pool] });
     const calls = []; if (allowance < approveAmt) calls.push(C.usdcCall('approve', [C.cfg.pool, approveAmt]));
     calls.push(C.poolCall('repayLoan', [l.id, amount]));
-    const r = await run('Pay back', calls);
-    if (r?.success) { const s2 = await refresh(); const l2 = s2.loans.find((x) => x.id === l.id); if (l2 && l2.status === C.ST.Repaid) { /* done sheet already shown */ } }
-    return cur;
+    const before = { bal: s.usdcBal, dues: await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'duesPaid', args: [S.addr] }), limit: s.limit };
+    await run('Pay back', calls, { summary: async () => {
+      const s2 = await refresh(); const l2 = s2.loans.find((x) => x.id === l.id); const paid = before.bal - s2.usdcBal; const interest = paid > l.principal ? paid - l.principal : (l2 && l2.status === C.ST.Repaid ? 0n : null);
+      const dues = (await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'duesPaid', args: [S.addr] })) - before.dues;
+      if (l2 && l2.status === C.ST.Repaid) return `<p>Loan closed. You paid <b>${C.money(paid)}</b>: ${C.money(l.principal)} borrowed plus about ${C.money(paid - l.principal)} interest.${dues > 0n ? ` ${C.money(dues)} of that interest counts toward your own credit, so your limit is now <b>${C.money(s2.limit)}</b>.` : ''} You can borrow again right away.</p>`;
+      return `<p>You paid <b>${C.money(paid)}</b>. Still owed: <b>${C.money(C.ceilCent(l2 ? l2.owed : 0n))}</b>. Interest is paid first, then the amount borrowed.</p>`; } });
   };
   $('#all').onclick = () => doPay(pay, pay);
   $('#partGo').onclick = () => { const v = C.parseUsd($('#part').value); if (!v) return; if (v > s.usdcBal) return refuse('InsufficientBalance'); doPay(v, v); };
