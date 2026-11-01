@@ -5,7 +5,9 @@ Codex (AI), November 1, 2026. Initial public-source packet, not a completed orde
 Owning action: `action:real-orders-financing-gap-20261101`.
 [Acceptance brief and checkpoints](https://github.com/scottonchain/microcredit-agent-testbed/issues/392).
 Preparation base: testbed main `bacd2696d8a2857dcb1c71065c0b5b9d9d744f93`;
-integration base: research-phase PR391 head `542f0b1e5507d0c397e49b989e619817f1b2dc41`.
+original packet base: research-phase PR391 head `542f0b1e5507d0c397e49b989e619817f1b2dc41`.
+Published stacked integration base: PR391 `bc9bbbba84354bae70ee20220a50c0452f9e0db6`;
+phase records preserved and the partial-block wording aligned with the subsequent operator correction.
 Preserve the stopped October agent-loan attempt and the completed R4 comparison.
 
 ## Initial candidate and concrete evidence
