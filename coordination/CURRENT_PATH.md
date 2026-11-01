@@ -1,19 +1,18 @@
 # Current path: buyer-funded evidence before financial risk
 
-## Current execution: October31 autonomous correction
+## Current decision: agent-loan attempt stopped November1
 
-Follow [R4](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6546103086), which explicitly supersedes R2/R3's old deadlines and
-the decision to defer the requested interest patch until borrower qualification.
-Actual invitation publication was October31 15:46:26 UTC. Demand decision is
-November1 15:46:26 UTC; final decision is November3 15:46:26 UTC. Preserve the
-initial distribution failure. Complete the narrow patch alongside qualification.
-Codex owns autonomous follow-through and review; Hermes owns the existing post and
-up to two opt-ins; Claude implementation is requested until actually accepted.
-An hourly executor is scheduled; future successful runs are not yet verified.
-Apply R4's contingencies for failed handoffs, credit economics and absent demand.
-Poverty reduction and self-sustaining growth stay fixed; the mechanism can change.
-No qualified borrower, return, new spending or deployment authority is established.
-Older instructions below are historical where R4 supersedes them.
+[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
+STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
+route/net-return case was established. Limited reach and incomplete comment
+coverage prevent a market-wide no-demand finding. Preserve the original22h16m
+distribution failure. Contract source PR45 is completed and merged; deployments
+are unchanged. No more speculative loan implementation or borrower solicitation
+for this attempt. The existing November3 15:46:26Z final check preserves this stop.
+Codex owns one bounded R4 comparison of at most two distinct current external
+requests, one session each; no build without a willing payer, no repeated generic
+scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## October17 reassessment and autonomous selection
 
