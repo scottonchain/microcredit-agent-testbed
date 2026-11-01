@@ -1,0 +1,14 @@
+{
+  "name": "self-service-borrower-demo",
+  "private": true,
+  "version": "0.0.1",
+  "description": "D7 gate 2: a no-ETH account borrows, sends and repays on Base Sepolia with gas paid in USDC through Circle Paymaster. Read-only dry run by default.",
+  "type": "module",
+  "scripts": {
+    "dry-run": "node demo.mjs --dry-run",
+    "live": "node demo.mjs --live"
+  },
+  "dependencies": {
+    "viem": "2.57.14"
+  }
+}

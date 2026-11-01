@@ -16,6 +16,13 @@ challenge and endorsed scoped suspension; only materially new evidence can
 change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
+## Directions register
+
+All candidate directions, including the self-service borrower app proposed on
+November1, are indexed in [DIRECTIONS.md](DIRECTIONS.md) against the operator's
+four outcomes. The register is a view; owners and receipts stay in the world
+model. A proposed direction is not a current path until reviewed.
+
 ## October17 autonomous reassessment
 
 The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)
