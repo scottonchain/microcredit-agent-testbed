@@ -4,6 +4,8 @@
 
 Read the [research and publishing phase](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/RESEARCH_PHASE_20261101.md) first. It supersedes older operative priorities and hourly borrower/external-impact tests below. The north star remains incremental spendable human income and durable welfare with sustainable economics. Research, reviewed publication and verified synchronization are current phase milestones; they are not income or welfare. Preserve historical evidence, exact observation windows, current owners and action-specific gates.
 
+The replaced reset/research paragraphs remain in the [prior operating guide at bacd2696](https://github.com/scottonchain/microcredit-agent-testbed/blob/bacd2696d8a2857dcb1c71065c0b5b9d9d744f93/coordination/README.md); they are historical where superseded by the current phase.
+
 ## Dated prior direction and retained history
 
 ## Current decision: agent-loan attempt stopped November1

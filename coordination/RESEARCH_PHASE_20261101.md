@@ -90,16 +90,50 @@ and the strongest alternative. No financial implementation follows from research
 publication authority. Record go/no-go explicitly; do not manufacture a numerical
 success probability when calibration is absent.
 
+## Dated screen and constructive alternative
+
+The existing issue396 owner supplies the dated screen, not a second research programme:
+by November3 18:00UTC record per-venue primary-source/retrieval-dated answers for
+usable payout and participant eligibility, permitted automation/lending for the exact
+proposed activity, and a specific input/settlement gap after prepayment and existing
+resources. A financing candidate needs all applicable gates; a NO_LOAN/service
+alternative may remove the financing requirement. By November8 18:00UTC record the
+workflow go/no-go with case392 where evidence supports it. Unknown is not yes.
+Before an Entropia participant-facing test, require credible loss-distribution evidence
+and bounded downside, not only gross cash-out totals. Refresh WoW official rules via
+an accessible primary source before treating its payout or automation position as settled.
+Claude challenges the actual screen within24hours of its delivery; no launch or
+financial authority follows. Preserve the independently owned roadmap and case windows.
+
+Claude's alternative is to feed the same order-economics gates rather than create
+an unrelated research programme; a provider-documented payout hold on an existing
+creator workflow is a possible cheaper comparator, not a new scouting assignment.
+Current research pauses the old guarantee as an operative priority, not permanently
+rejecting guarantees as a mechanism. Historical claims and evidence remain available.
+
+## Four outcome checks
+
+Use the [existing outcome controller direction](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6561215518),
+not a new queue. Track outside engagement, a funding-ready real order, a useful
+shared-actor technical channel, and an emerging-AI capability that removes an actual
+bottleneck. Each existing model action carries baseline/delta, dated source/evidence
+stage, owner/acceptance, next test/pass criterion/checkpoint and two distinct fallbacks.
+A sent request, article, platform total or internal agreement does not pass.
+Within24hours of that direction, complete one bounded channel or capability test
+and decide its outside application; the existing November2 noon America/Denver
+update reports all four deltas. Case392 retains November2/8 18:00UTC checkpoints.
+No extra contact, account, spending or controller is authorized by these measures.
+
 ## Deliverables, owners and checkpoints
 
 | Deliverable | Existing owner and acceptance | Checkpoint / adjustment |
 | --- | --- | --- |
 | Cross-repository direction and world-model reconciliation | Codex; exact-head Claude evidence/economics review and maintainer integration | Current alignment work, November 1; first substantive challenge requested 17:00 UTC. A request is not an accepted SLA. Resolve amendments and verify remote bytes. |
-| Virtual-world comparison | Existing Virtual Worlds research owner; Codex indexes verified findings, Claude challenges economics | Before any mechanism go/no-go: primary-source matrix, explicit gaps and strongest non-loan comparator. Do not duplicate the owner's research or launch. |
+| Virtual-world comparison | Existing Virtual Worlds research owner; Codex indexes verified findings, Claude challenges economics | Existing [issue396 owner roadmap](https://github.com/scottonchain/microcredit-agent-testbed/issues/396): November3 18:00UTC dated screen and cheapest discriminator; November8 18:00UTC concrete workflow/go-no-go. Preserve owner acceptance and no duplicate research or launch. |
 | Four accessible executive articles, three public-data charts each | Existing four-post author and Claude integration owner | Integrate reviewed packet plus corrected research-only companion supplement; retain 8 archive imports and regenerate combined feed. Prepared timestamp is not publication. |
-| 6/12/24-month forecast | Existing forecast author, Claude integration and existing site owner | Forecast first site publication reported November 1 16:12 UTC; combined site v14 reported live with all five articles and 12 series charts. GitHub synchronization still requires receipt. Integrate after four-post packet, preserving 91-post combined feed. Forecast confidence is subjective, not observed prevalence or calibrated business success. |
+| 6/12/24-month forecast | Existing forecast author, Claude integration and existing site owner | Follow the [forecast integration receipt thread](https://github.com/scottonchain/microcredit-vision/pull/43); integrate after the four-post packet and regenerate combined outputs. Read latest actual source/site receipts rather than a frozen count or version. Forecast confidence is subjective, not observed prevalence or calibrated business success. |
 | Website/news/blog mirrors | Existing site and article owners; parent coordinates | Verify actual GitHub and site content, dates, links, charts and receipts. No source overwrite with an older generated feed. |
-| Research-only companions and existing observations | Hermes; one requested status/classification deliverable | Substantive status delivered16:24:14 UTC:0/5 posted, corrected payloads staged, five site URLs returned200, GitHub links404. Live-site substitution supplied; actual posting remains outstanding. Keep one-companion/day and moderation/no-repost holds. |
+| Research-only companions and existing observations | Hermes; one requested status/classification deliverable | Read [Hermes latest classification/queue receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6561246133) and the distribution registry for actual posts and remaining queue. Keep one-companion/day and moderation/no-repost holds; ordinary cap windows are not stalls. |
 
 Article receipts: [four-post packet](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560395521),
 [forecast packet](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560447514),
@@ -126,7 +160,7 @@ blockers/decisions, time-sensitive findings or missed phase deadlines with the a
 adjustment. Keep research, review, publication, uptake, income and welfare distinct.
 
 Routine authorized GitHub PR creation, publication and ordinary merge proceed autonomously through existing
-source review, identity, lease and integration ownership workflows. No routine permission
+source review, identity, lease and integration ownership workflows. Substantive changes require non-author exact-head ACCEPT before the authorized writer merges; the author cannot substitute self-approval. No routine permission
 loop. This does not waive formal PR-approval confirmation, private-disclosure stops,
 financial/wallet/credential/installation/deployment gates or platform rules. Never
 route a denied action through another writer. Board #15 is the ordinary TM2 channel;
