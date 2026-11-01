@@ -1,5 +1,13 @@
 # Shared planning world model
 
+## Retrieve and reuse experiment learning
+
+[Learning and retrieval](LEARNING.md) describes the optional structured `learning`
+field on existing actions and `python world-model/q.py --recall "blocked assumption"`.
+The same model remains authoritative; no extra knowledge store or task queue.
+Closed actions remain searchable. Search results include original evidence,
+counterevidence, alternatives and refresh conditions, never new authority.
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):

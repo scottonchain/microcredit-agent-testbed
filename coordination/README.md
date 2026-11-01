@@ -1,5 +1,13 @@
 # Team operating guide
 
+## Lateral thinking and reusable learning
+
+Use the [world-model learning procedure](../world-model/LEARNING.md) before
+convergence and on blockage. Retrieve prior findings and a mechanism from another
+context; state what transfers and what does not. A legitimate response or
+publication wait does not block independent authorized evidence work. Preserve
+existing owners, response windows, stops and action-specific permissions.
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
