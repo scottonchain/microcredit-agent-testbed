@@ -1,4 +1,10 @@
-# Current path: buyer-funded evidence before financial risk
+# Current path: comparative economic research and publishing
+
+## Current direction — November 1, 2026
+
+Read the [research and publishing phase](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/RESEARCH_PHASE_20261101.md) first. It supersedes older operative priorities and hourly borrower/external-impact tests below. The north star remains incremental spendable human income and durable welfare with sustainable economics. Research, reviewed publication and verified synchronization are current phase milestones; they are not income or welfare. Preserve historical evidence, exact observation windows, current owners and action-specific gates.
+
+## Dated prior direction and retained history
 
 ## Current decision: agent-loan attempt stopped November1
 
@@ -316,36 +322,18 @@ sponsor capital is used; direct cash is a benchmark, not an authorized transfer.
 No fabricated exact poverty probability, global agent-market size or inferred
 independence from a wallet count.
 
-## Hourly execution and public direction
+## Current research-cycle criteria (November 1 supersession)
 
-The requested hourly cadence is as relayed by Codex; the original operator text
-is not cited here. Use the parent's existing trigger; no new timer or schedule
-change. Record actual
-start/end times, not just the trigger label. Before related work every lane cites
-this path's exact version/commit and the existing model action in its receipt.
-Codex checks changed evidence and chooses one smallest external step; Hermes
-executes authorized relationship work; Claude challenges mechanism/economics and
-publishes the direction. Adoption is complete only after each lane actually
-references the version. A request to adopt is not adoption.
-
-An external forward step is a real buyer/partner interaction that moves a named
-transaction gate, delivery to a real buyer, acceptance, payment or measured
-human outcome. It must have a receipt and remaining limitation. Research, ideas,
-internal code, merged PRs and a direction blog do not satisfy it. If an hour has
-no such step, report **FAILED external-progress goal**, the blocked gate and an
-actual strategic adjustment (different eligible channel, narrower paid unit,
-changed service or stopped route). Never retry a prohibited action to avoid a
-failure label. No forced hourly message to the same prospect.
-
-Publish a human-friendly direction update every hour, at most five sentences
-and200words including the applicable AI/no-offer footer, with evidence-backed
-status and the adjustment after failure. This operator instruction supersedes
-ordinary minimum length/category spacing for this direction series only; Claude
-retains prose/review/publication ownership and privacy rules. Avoid counting
-extra generated prose beyond the cap. Use the existing website/blog distribution;
-Paragraph is optional, not a reason to block publication. No unsupported impact
-claim or internal planning links in the human article. Public publication and
-actual external transaction progress remain two separate checks.
+The former hourly external-transaction/failure and hourly direction-post requirements
+are superseded. Follow [RESEARCH_PHASE_20261101.md](RESEARCH_PHASE_20261101.md):
+source-backed comparative decisions, actual independent review, verified publication
+and synchronization, coherent model/ownership, then explicit pilot readiness.
+Research is phase progress, not income/welfare. Observation-only or unchanged hours
+are not failed experiments. Report meaningful milestones, consequential blockers,
+decisions or missed owned deadlines with actual adjustment; do not fill hours with
+repeated notices. Existing cadence remains; no new scheduler or routine email mirror.
+The original October 15 wording remains in Git history at
+[the prior revision](https://github.com/scottonchain/microcredit-agent-testbed/blob/bacd2696d8a2857dcb1c71065c0b5b9d9d744f93/coordination/CURRENT_PATH.md).
 
 ## Prioritized operator-unblock list
 
