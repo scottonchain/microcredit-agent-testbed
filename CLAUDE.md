@@ -8,12 +8,7 @@ strategy or backlog here.
 
 For every substantive deliverable, state the measurable human outcome or decision,
 the evidence sought, the competing simpler route, and the stop/change condition.
-Credit is provisional; the lending qualification found **NONE QUALIFIES**, a
-successful measurement, not a reason to broaden outreach. The active candidate path
-is the revolving first-job payment guarantee in NORTH_STAR.md, with its two
-scorecards (reserve survival and human benefit per sponsor dollar), exposure rules
-and gates; consider it in every substantive deliverable. Broad 501(c)(3) discovery
-for direct project support is exhausted absent a new specific lead.
+Follow the current [research phase](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/RESEARCH_PHASE_20261101.md). Prior guarantees and lending tests remain historical mechanisms, not mandatory active candidates. Claude independently challenges source quality, economics and alternatives; reviews exact patch heads and preserves dissent. Existing authors retain publication ownership.
 
 Run `python tools/check.py` before submitting changes. It covers maintained
 code and schema checks without importing live experiments or rewriting evidence.
