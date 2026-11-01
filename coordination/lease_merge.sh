@@ -1,52 +1,84 @@
 #!/usr/bin/env bash
-# leasedmerge2.sh PR_NUMBER EXPECTED_HEAD MSGFILE OWNER_TOKEN EXEC_TOKEN
+# lease_merge.sh PR_NUMBER EXPECTED_HEAD MSGFILE OWNER_TOKEN EXEC_TOKEN
 #
-# Non-squash merge of one reviewed pull-request head into the testbed's main under the project lease
-# (coordination/run_lock.py, ref refs/heads/coordination/issue-12-run-lock). Rebuilt on 2026-11-01 after the
-# earlier wrapper was lost in an environment reset; it is a different file from that one and is disclosed as such.
-# Every step stops the run on failure. Nothing is ignored by exit status.
+# Non-squash merge of one reviewed pull-request head into the repository's main under the project lease
+# (coordination/run_lock.py, ref refs/heads/coordination/issue-12-run-lock). Every step stops the run on
+# failure; nothing is ignored by exit status, and a missing required checker or configuration fails closed.
+# Behaviour is covered by coordination/test_lease_merge.py, which runs it against scratch origins.
+#
+# It is the one consumer of the execution-owner toggle in this repository: before it takes the lease it reads
+# coordination/execution-owner.json from main and refuses unless RUNNER_LANE may run heavy ("other") work.
 #
 # Environment:
-#   CLONE        persistent testbed clone whose `origin` is the target (default /home/user/microcredit-agent-testbed)
-#   PYLIB        directory holding pydantic for the model validators (default the scratchpad pylib)
-#   NO_API=1     skip the GitHub API state check (scratch-origin tests only)
-#   MAIN_EXPECT  optional sha main must still be at when the merge starts
+#   CLONE                 clone whose `origin` is the target (default: the repository containing this script)
+#   RUNNER_LANE           openai or claude, the lane running this merge (default claude)
+#   PUBLIC_CONTENT_CHECK  path to check-public-content.sh (default $CLONE/scripts/check-public-content.sh);
+#                         required, the run stops if it is missing
+#   PYLIB                 optional directory added to PYTHONPATH for the model validators (pydantic)
+#   GITHUB_API            API base for the pull-request state check (default https://api.github.com)
+#   GITHUB_REPO           owner/name for that check (default: read from origin)
+#   NO_API=1              skip the pull-request state check; accepted only when origin is a local path
+#   MAIN_EXPECT           optional sha main must still be at when the merge starts
 #
 # Owner token: claude-<16 hex>; execution token: merge<PR>-<16 hex> (run_lock.py wants lowercase, 8-80 chars).
 set -euo pipefail
 
 PR="$1"; HEAD_EXPECT="$2"; MSG="$3"; OWNER="$4"; EXECID="$5"
-CLONE="${CLONE:-/home/user/microcredit-agent-testbed}"
-PYLIB="${PYLIB:-/tmp/claude-0/-home-user-microcredit-contract/570fe25d-c591-5ade-adbc-064b6b189c41/scratchpad/pylib}"
-PCS_FALLBACK=/home/user/microcredit-contract/scripts/check-public-content.sh
-export PYTHONPATH="$PYLIB"
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CLONE="${CLONE:-$(git -C "$HERE" rev-parse --show-toplevel)}"
+RUNNER_LANE="${RUNNER_LANE:-claude}"
+GITHUB_API="${GITHUB_API:-https://api.github.com}"
+PCS="${PUBLIC_CONTENT_CHECK:-$CLONE/scripts/check-public-content.sh}"
+if [ -n "${PYLIB:-}" ]; then export PYTHONPATH="$PYLIB${PYTHONPATH:+:$PYTHONPATH}"; fi
 NOREPLY_NAME="Claude"; NOREPLY_EMAIL="noreply@anthropic.com"
 export GIT_AUTHOR_NAME="$NOREPLY_NAME" GIT_AUTHOR_EMAIL="$NOREPLY_EMAIL" GIT_COMMITTER_NAME="$NOREPLY_NAME" GIT_COMMITTER_EMAIL="$NOREPLY_EMAIL"
 
-ACQUIRED=""; WT=""
-say() { echo "[leasedmerge2] $*"; }
-fail() { echo "[leasedmerge2] CHECK FAILED: $*" >&2; exit 1; }
+ACQUIRED=""; WT=""; BGPID=""; RELEASE_FAILED=0
+WORK="$(mktemp -d)"
+say() { echo "[lease_merge] $*"; }
+fail() { echo "[lease_merge] CHECK FAILED: $*" >&2; exit 1; }
 release() {
   if [ -n "$ACQUIRED" ]; then
-    if python3 "$CLONE/coordination/run_lock.py" --repo "$CLONE" release --owner "$OWNER" --acquired-head "$ACQUIRED" >/tmp/claude-0/lm-release.json 2>/tmp/claude-0/lm-release.err; then
-      say "lease released: $(cat /tmp/claude-0/lm-release.json)"
+    if python3 "$CLONE/coordination/run_lock.py" --repo "$CLONE" release --owner "$OWNER" --acquired-head "$ACQUIRED" >"$WORK/release.json" 2>"$WORK/release.err"; then
+      say "lease released: $(cat "$WORK/release.json")"
     else
-      echo "[leasedmerge2] LEASE RELEASE REFUSED: $(cat /tmp/claude-0/lm-release.err)" >&2
+      echo "[lease_merge] LEASE RELEASE REFUSED (not released by this run): $(cat "$WORK/release.err")" >&2
       RELEASE_FAILED=1
     fi
     ACQUIRED=""
   fi
   if [ -n "$WT" ] && [ -d "$WT" ]; then git -C "$CLONE" worktree remove --force "$WT" >/dev/null 2>&1 || true; fi
 }
-RELEASE_FAILED=0
-trap 'rc=$?; release; if [ "$RELEASE_FAILED" = 1 ] && [ "$rc" = 0 ]; then rc=1; fi; exit $rc' EXIT
+finish() {
+  rc=$?
+  if [ -n "$BGPID" ]; then kill "$BGPID" 2>/dev/null || true; fi
+  release
+  if [ "$RELEASE_FAILED" = 1 ] && [ "$rc" = 0 ]; then rc=1; fi
+  rm -rf "$WORK"
+  exit "$rc"
+}
+trap finish EXIT
+# A signal must release the lease too: run the long checks in the background and wait, so bash can act at once.
+trap 'echo "[lease_merge] interrupted" >&2; exit 130' INT
+trap 'echo "[lease_merge] terminated" >&2; exit 143' TERM
+run_bg() { "$@" & BGPID=$!; local rc=0; wait "$BGPID" || rc=$?; BGPID=""; return "$rc"; }
 
 [[ "$OWNER" =~ ^claude-[0-9a-f]{16}$ ]] || fail "owner token must look like claude-<16 hex>"
 [[ "$EXECID" =~ ^merge${PR}-[0-9a-f]{16}$ ]] || fail "execution token must look like merge${PR}-<16 hex>"
 [ -f "$MSG" ] || fail "message file missing"
 MSG="$(realpath "$MSG")"
+[ -f "$PCS" ] || fail "the public-content checker is required and was not found at $PCS (set PUBLIC_CONTENT_CHECK)"
 cd "$CLONE"
 git config user.name "$NOREPLY_NAME"; git config user.email "$NOREPLY_EMAIL"
+
+# 0. The state check may be skipped only against a local scratch origin, never against a remote.
+ORIGIN_URL="$(git remote get-url origin)"
+if [ "${NO_API:-0}" = 1 ]; then
+  case "$ORIGIN_URL" in
+    /*|./*|../*) say "NO_API=1: skipping the pull-request state check (local scratch origin)";;
+    *) fail "NO_API=1 is accepted only for a local scratch origin, not for $ORIGIN_URL";;
+  esac
+fi
 
 # 1. Preconditions: exact reviewed head, non-draft open PR, main where we expect it.
 git fetch -q origin main "refs/pull/${PR}/head:refs/remotes/origin/pr-${PR}"
@@ -55,20 +87,30 @@ HEAD_NOW="$(git rev-parse "refs/remotes/origin/pr-${PR}")"
 MAIN_BEFORE="$(git rev-parse origin/main)"
 if [ -n "${MAIN_EXPECT:-}" ] && [ "$MAIN_BEFORE" != "$MAIN_EXPECT" ]; then fail "main is $MAIN_BEFORE, expected $MAIN_EXPECT"; fi
 if [ "${NO_API:-0}" != 1 ]; then
-  python3 - "$PR" <<'PY' || fail "PR is not an open, non-draft, unmerged pull request"
+  REPO_SLUG="${GITHUB_REPO:-$(printf '%s' "$ORIGIN_URL" | sed -nE 's#^.*github\.com[:/]([^/]+/[^/]+)$#\1#p' | sed -E 's#\.git$##')}"
+  [ -n "$REPO_SLUG" ] || fail "cannot work out owner/name for the pull-request check (set GITHUB_REPO)"
+  GITHUB_API="$GITHUB_API" REPO_SLUG="$REPO_SLUG" python3 - "$PR" <<'PY' || fail "PR is not an open, non-draft, unmerged pull request (or its state could not be read)"
 import json, os, sys, urllib.request
 tok = os.environ.get('GITHUB_TOKEN') or os.environ.get('GH_TOKEN')
-h = {'Accept': 'application/vnd.github+json', 'User-Agent': 'leasedmerge2'}
+h = {'Accept': 'application/vnd.github+json', 'User-Agent': 'lease_merge'}
 if tok: h['Authorization'] = 'Bearer ' + tok
-p = json.load(urllib.request.urlopen(urllib.request.Request('https://api.github.com/repos/scottonchain/microcredit-agent-testbed/pulls/' + sys.argv[1], headers=h), timeout=60))
-sys.exit(0 if p['state'] == 'open' and not p['draft'] and not p['merged'] else 1)
+url = os.environ['GITHUB_API'].rstrip('/') + '/repos/' + os.environ['REPO_SLUG'] + '/pulls/' + sys.argv[1]
+p = json.load(urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=60))
+sys.exit(0 if p.get('state') == 'open' and p.get('draft') is False and p.get('merged') is False else 1)
 PY
 fi
 git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null 2>&1 || git fetch -q --deepen=500 origin main "refs/pull/${PR}/head" || true
 git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null || fail "no merge base between main and the PR head"
-PCS="$CLONE/scripts/check-public-content.sh"; [ -x "$PCS" ] || PCS="$PCS_FALLBACK"
 bash "$PCS" --message "$MSG" || fail "public content in the merge message"
-say "preconditions ok: PR $PR head $HEAD_EXPECT, main $MAIN_BEFORE"
+
+# 1b. The execution-owner gate, read from main: heavy work belongs to the owner lane. Fails closed.
+git show "$MAIN_BEFORE:coordination/execution_owner.py" >"$WORK/execution_owner.py" 2>/dev/null \
+  || fail "no execution-owner library on main; refusing to run heavy work without it"
+git show "$MAIN_BEFORE:coordination/execution-owner.json" >"$WORK/execution-owner.json" 2>/dev/null \
+  || fail "no execution-owner configuration on main; refusing to run heavy work without it"
+python3 "$WORK/execution_owner.py" --config "$WORK/execution-owner.json" check --runner "$RUNNER_LANE" --kind other >"$WORK/toggle.out" 2>&1 \
+  || { cat "$WORK/toggle.out" >&2; fail "the execution-owner configuration does not allow $RUNNER_LANE to run heavy work now"; }
+say "preconditions ok: PR $PR head $HEAD_EXPECT, main $MAIN_BEFORE; $(cat "$WORK/toggle.out")"
 
 # 2. Lease.
 OUT="$(python3 coordination/run_lock.py --repo "$CLONE" acquire --owner "$OWNER" --execution "$EXECID")" || fail "lease acquisition refused (held, missing or ambiguous)"
@@ -76,32 +118,31 @@ ACQUIRED="$(python3 -c 'import json,sys;print(json.loads(sys.argv[1])["acquired_
 say "lease acquired: $ACQUIRED"
 
 # 3. Merge in an isolated worktree.
-WT="$(mktemp -d /tmp/claude-0/lm-wt-XXXXXX)"; rmdir "$WT"
+WT="$WORK/worktree"
 git worktree add -q --detach "$WT" "$MAIN_BEFORE"
 cd "$WT"
-git merge --no-ff --no-commit "$HEAD_EXPECT" >/tmp/claude-0/lm-merge.out 2>&1 || { cat /tmp/claude-0/lm-merge.out; fail "merge conflicts; return the changed head for review"; }
+git merge --no-ff --no-commit "$HEAD_EXPECT" >"$WORK/merge.out" 2>&1 || { cat "$WORK/merge.out"; fail "merge conflicts; return the changed head for review"; }
 git commit -q -F "$MSG"
 MERGE="$(git rev-parse HEAD)"
 [ "$(git rev-parse HEAD^1)" = "$MAIN_BEFORE" ] && [ "$(git rev-parse HEAD^2)" = "$HEAD_EXPECT" ] || fail "merge parents are not main and the reviewed head"
 [ "$(git log -1 --format='%ae|%ce')" = "$NOREPLY_EMAIL|$NOREPLY_EMAIL" ] || fail "merge identity is not the noreply identity"
 say "merge commit $MERGE tree $(git rev-parse HEAD^{tree})"
 
-# 4. Checks on the merge. Each one stops the run.
+# 4. Checks on the merge. Each one stops the run; a missing required checker stops it too.
 CHANGED="$(git diff --name-only "$MAIN_BEFORE" "$MERGE" | sort | tr '\n' ' ')"
 PRFILES="$(git diff --name-only "$(git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT")" "$HEAD_EXPECT" | sort | tr '\n' ' ')"
 say "files changed by the merge: $CHANGED"
 [ "$CHANGED" = "$PRFILES" ] || say "NOTE: the merge changes a different file set than the PR alone ($PRFILES); main moved underneath it"
 git diff --check "$MAIN_BEFORE" "$MERGE" || fail "git diff --check"
 if git diff --name-only "$MAIN_BEFORE" "$MERGE" | grep -q '^world-model/model.json$'; then
-  python3 world-model/validate.py --check-schema >/tmp/claude-0/lm-schema.out 2>&1 || { cat /tmp/claude-0/lm-schema.out; fail "model schema"; }
-  say "model schema: $(head -c 160 /tmp/claude-0/lm-schema.out)"
-  ( cd world-model && python3 -B -m unittest test_validate test_q ) >/tmp/claude-0/lm-model-tests.out 2>&1 || { tail -20 /tmp/claude-0/lm-model-tests.out; fail "model unit tests"; }
+  python3 world-model/validate.py --check-schema >"$WORK/schema.out" 2>&1 || { cat "$WORK/schema.out"; fail "model schema"; }
+  say "model schema: $(head -c 160 "$WORK/schema.out")"
+  ( cd world-model && python3 -B -m unittest test_validate test_q ) >"$WORK/model-tests.out" 2>&1 || { tail -20 "$WORK/model-tests.out"; fail "model unit tests"; }
   say "model tests ok"
 fi
-if [ -f tools/check.py ]; then
-  timeout 1500 python3 tools/check.py >/tmp/claude-0/lm-check.out 2>&1 || { tail -30 /tmp/claude-0/lm-check.out; fail "tools/check.py"; }
-  say "tools/check.py: $(tail -1 /tmp/claude-0/lm-check.out)"
-fi
+[ -f tools/check.py ] || fail "tools/check.py is required and is missing; refusing to skip it"
+run_bg timeout 1500 python3 tools/check.py >"$WORK/check.out" 2>&1 || { tail -30 "$WORK/check.out"; fail "tools/check.py"; }
+say "tools/check.py: $(tail -1 "$WORK/check.out")"
 bash "$PCS" --range "$MAIN_BEFORE..$MERGE" || fail "public content in the merge range"
 
 # 5. Re-assert ownership, then a guarded push and a readback.

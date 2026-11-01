@@ -6,7 +6,9 @@ means scheduled dispatches and any other compute-intensive execution; lightweigh
 verification and access-bridge work stays open to both lanes. The configuration lives in
 `execution-owner.json` on the default branch. Standard library only.
 
-This module decides and records; it does not run, schedule or hold credentials. A runner
+This module decides and records; it does not run, schedule or hold credentials, and it is
+a decision library, not an enforced dispatcher: a runner has to call `check`. The leased merge
+wrapper (`lease_merge.sh`) is the one consumer in this repository that does, and it fails closed. A runner
 calls `check` before it dispatches heavy work. A switch is a four-step handover so two
 lanes never run heavy work at once:
 
@@ -15,8 +17,11 @@ lanes never run heavy work at once:
     drained (draining -> handover)   the source lane: nothing in flight, lease released
     complete (handover -> stable)    the destination lane, naming the lease head it acquired
 
-While a switch is in progress nobody may start new heavy work. `cancel` returns an
-unfinished switch to stable. The default owner never silently overrides the current owner:
+The acceptance is bound to the configuration version, not to a clock: it counts only if it
+was recorded at a version after the request, so an acceptance made in the same second before
+the request, or before a cancelled request, never carries over. While a switch is in progress
+nobody may start new heavy work. `cancel` returns an unfinished switch to stable; cancelling
+a handover also needs the destination lane's attestation that it released any lease it took. The default owner never silently overrides the current owner:
 switching back is the same four steps. No budget telemetry is read or invented; a reason
 is a stated declaration.
 """
@@ -38,6 +43,11 @@ CONFIG_PATH = Path(__file__).with_name("execution-owner.json")
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 RECEIPT = re.compile(r"^(gh:(ctr|tb|th|vis|site)#\d+(c\d+)?|sha:(ctr|tb|th|vis|site)@[0-9a-f]{7,40}|https://\S+)$")
 EXIT_ALLOWED, EXIT_INVALID, EXIT_SUPPRESSED, EXIT_TRANSITION = 0, 2, 3, 4
+
+
+STABLE_TRANSITION = {"state": "stable", "from": None, "to": None, "requested_by": None,
+                     "requested_at_utc": None, "reason": None, "drain_deadline_utc": None,
+                     "requested_config_version": None}
 
 
 class ConfigError(ValueError):
@@ -95,7 +105,8 @@ def validate(cfg):
         errors.append("transition.state must be one of " + ", ".join(STATES))
     else:
         if transition["state"] == "stable":
-            for field in ("from", "to", "requested_by", "requested_at_utc", "reason", "drain_deadline_utc"):
+            for field in ("from", "to", "requested_by", "requested_at_utc", "reason", "drain_deadline_utc",
+                          "requested_config_version"):
                 if transition.get(field) is not None:
                     errors.append("transition.%s must be null while stable" % field)
         else:
@@ -109,6 +120,9 @@ def validate(cfg):
             _timestamp_ok(transition.get("drain_deadline_utc"), "transition.drain_deadline_utc", errors, allow_none=False)
             if not isinstance(transition.get("reason"), str) or not transition["reason"].strip():
                 errors.append("transition.reason is required during a switch")
+            requested = transition.get("requested_config_version")
+            if not isinstance(requested, int) or isinstance(requested, bool) or requested < 1:
+                errors.append("transition.requested_config_version must be a positive integer during a switch")
     acceptance = cfg.get("acceptance")
     if not isinstance(acceptance, dict) or set(acceptance) != set(LANES):
         errors.append("acceptance must hold exactly openai and claude")
@@ -120,10 +134,16 @@ def validate(cfg):
                 continue
             _timestamp_ok(entry.get("accepted_at_utc"), "acceptance.%s.accepted_at_utc" % lane, errors)
             receipt = entry.get("receipt")
+            bound = entry.get("config_version")
             if (entry.get("accepted_at_utc") is None) != (receipt is None):
                 errors.append("acceptance.%s needs both a time and a receipt, or neither" % lane)
-            elif receipt is not None and not RECEIPT.fullmatch(receipt):
+            elif receipt is not None and not (isinstance(receipt, str) and RECEIPT.fullmatch(receipt)):
                 errors.append("acceptance.%s.receipt must be a gh:, sha: or https reference" % lane)
+            if receipt is None:
+                if bound is not None:
+                    errors.append("acceptance.%s.config_version must be null without an acceptance" % lane)
+            elif bound is not None and (not isinstance(bound, int) or isinstance(bound, bool) or bound < 1):
+                errors.append("acceptance.%s.config_version must be a positive integer or null" % lane)
     lease = cfg.get("lease_owner")
     if lease is not None and lease not in LANES:
         errors.append("lease_owner must be null, openai or claude")
@@ -186,16 +206,20 @@ def request_switch(cfg, *, to, by, reason, drain_deadline_utc, now=None):
         raise ConfigError("a reason is required (a stated declaration, not telemetry)")
     transition = cfg["transition"]
     if transition["state"] != "stable":
-        if transition["to"] == to and transition["requested_by"] == by:
-            return cfg  # the same request again changes nothing
-        raise ConfigError("a switch is already in progress; cancel it first")
+        same = (transition["to"] == to and transition["requested_by"] == by
+                and transition["reason"] == reason.strip() and transition["drain_deadline_utc"] == drain_deadline_utc)
+        if same:
+            return cfg  # the identical request again changes nothing
+        raise ConfigError("a switch is already in progress with different terms; "
+                          "a retry must match exactly, otherwise cancel it first")
     if to == cfg["owner"]:
         raise ConfigError("%s already owns heavy work" % to)
     if drain_deadline_utc <= now:
         raise ConfigError("the drain deadline must be after the request")
     new = _bump(cfg, "request", by, now, "to=%s reason=%s" % (to, reason.strip()))
     new["transition"] = {"state": "draining", "from": cfg["owner"], "to": to, "requested_by": by,
-                         "requested_at_utc": now, "reason": reason.strip(), "drain_deadline_utc": drain_deadline_utc}
+                         "requested_at_utc": now, "reason": reason.strip(), "drain_deadline_utc": drain_deadline_utc,
+                         "requested_config_version": new["config_version"]}
     return new
 
 
@@ -207,7 +231,7 @@ def accept(cfg, *, by, receipt, now=None):
     if not isinstance(receipt, str) or not RECEIPT.fullmatch(receipt):
         raise ConfigError("receipt must be a gh:, sha: or https reference to the acceptance")
     new = _bump(cfg, "accept", by, now, "receipt=" + receipt)
-    new["acceptance"][by] = {"accepted_at_utc": now, "receipt": receipt}
+    new["acceptance"][by] = {"accepted_at_utc": now, "receipt": receipt, "config_version": new["config_version"]}
     return new
 
 
@@ -240,7 +264,10 @@ def complete(cfg, *, by, lease_head, now=None):
     if by != transition["to"]:
         raise ConfigError("only the destination lane can complete the switch")
     entry = cfg["acceptance"][by]
-    if entry["accepted_at_utc"] is None or entry["accepted_at_utc"] < transition["requested_at_utc"]:
+    bound = entry.get("config_version")
+    if (entry["accepted_at_utc"] is None or bound is None
+            or bound <= transition["requested_config_version"]
+            or entry["accepted_at_utc"] < transition["requested_at_utc"]):
         raise ConfigError("the destination lane has not accepted since this request; "
                           "an earlier acceptance does not carry over")
     if not isinstance(lease_head, str) or not re.fullmatch(r"[0-9a-f]{7,40}", lease_head):
@@ -249,23 +276,29 @@ def complete(cfg, *, by, lease_head, now=None):
     new["owner"] = by
     new["override"] = {"owner": by, "effective_at_utc": now, "reason": transition["reason"],
                        "declared_by": transition["requested_by"]}
-    new["transition"] = {"state": "stable", "from": None, "to": None, "requested_by": None,
-                         "requested_at_utc": None, "reason": None, "drain_deadline_utc": None}
+    new["transition"] = dict(STABLE_TRANSITION)
     new["lease_owner"] = by
     return new
 
 
-def cancel(cfg, *, by, now=None):
-    """Return an unfinished switch to stable with the owner unchanged."""
+def cancel(cfg, *, by, destination_lease_released=False, now=None):
+    """Return an unfinished switch to stable with the owner unchanged.
+
+    After the source lane has drained (state handover) the destination lane may already hold
+    the lease, so cancelling then needs its attestation that it released any lease it took.
+    The lease is left unheld; the owner acquires it again before heavy work."""
     require_valid(cfg)
     now = utc(now)
     other(by)
     if cfg["transition"]["state"] == "stable":
         return cfg
+    if cfg["transition"]["state"] == "handover" and destination_lease_released is not True:
+        raise ConfigError("the destination lane may hold the lease; it must release it before a handover "
+                          "is cancelled (destination_lease_released)")
     new = _bump(cfg, "cancel", by, now, "switch to %s cancelled in state %s" %
                 (cfg["transition"]["to"], cfg["transition"]["state"]))
-    new["transition"] = {"state": "stable", "from": None, "to": None, "requested_by": None,
-                         "requested_at_utc": None, "reason": None, "drain_deadline_utc": None}
+    new["transition"] = dict(STABLE_TRANSITION)
+    new["lease_owner"] = None
     return new
 
 
@@ -329,6 +362,8 @@ def build_parser():
     co.add_argument("--lease-head", required=True)
     ca = sub.add_parser("cancel")
     ca.add_argument("--by", required=True, choices=LANES)
+    ca.add_argument("--destination-lease-released", action="store_true",
+                    help="required to cancel a handover: the destination lane released any lease it took")
     return parser
 
 
@@ -353,7 +388,7 @@ def main(argv=None):
         elif args.action == "complete":
             new = complete(cfg, by=args.by, lease_head=args.lease_head, now=args.now)
         else:
-            new = cancel(cfg, by=args.by, now=args.now)
+            new = cancel(cfg, by=args.by, destination_lease_released=args.destination_lease_released, now=args.now)
         if new is not cfg:
             save(new, args.config)
         print(json.dumps(status(new, args.now), indent=2))

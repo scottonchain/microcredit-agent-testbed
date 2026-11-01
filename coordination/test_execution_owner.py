@@ -200,6 +200,109 @@ class SwitchTests(unittest.TestCase):
         self.assertEqual(cfg, snapshot)
 
 
+class HardeningTests(unittest.TestCase):
+    """Review amendments: version-bound acceptance, exact retries, safe validation, handover cancel."""
+
+    def finish(self, cfg, now=T3):
+        cfg = eo.drained(cfg, by="claude", in_flight=0, lease_released=True, now=T2)
+        return eo.complete(cfg, by="openai", lease_head="a1b2c3d4e5", now=now)
+
+    def test_an_acceptance_in_the_same_second_before_the_request_does_not_count(self):
+        cfg = eo.accept(base(), by="openai", receipt=RECEIPT_OPENAI, now=T0)
+        cfg = eo.request_switch(cfg, to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        self.assertEqual(cfg["acceptance"]["openai"]["accepted_at_utc"], cfg["transition"]["requested_at_utc"])
+        self.assertLess(cfg["acceptance"]["openai"]["config_version"], cfg["transition"]["requested_config_version"])
+        with self.assertRaises(eo.ConfigError) as caught:
+            self.finish(cfg)
+        self.assertIn("accepted since this request", str(caught.exception))
+
+    def test_an_acceptance_after_the_request_in_the_same_second_counts(self):
+        cfg = eo.request_switch(base(), to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        cfg = eo.accept(cfg, by="openai", receipt=RECEIPT_OPENAI, now=T0)
+        done = self.finish(cfg)
+        self.assertEqual(done["owner"], "openai")
+
+    def test_an_acceptance_from_a_cancelled_request_does_not_carry_over(self):
+        cfg = eo.request_switch(base(), to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        cfg = eo.accept(cfg, by="openai", receipt=RECEIPT_OPENAI, now=T0)
+        cfg = eo.cancel(cfg, by="claude", now=T0)
+        self.assertEqual(cfg["transition"]["state"], "stable")
+        cfg = eo.request_switch(cfg, to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T1)
+        with self.assertRaises(eo.ConfigError):
+            self.finish(cfg)
+        cfg = eo.accept(cfg, by="openai", receipt=RECEIPT_OPENAI, now=T1)
+        self.assertEqual(self.finish(cfg)["owner"], "openai")
+
+    def test_a_changed_retry_is_refused_and_an_identical_one_is_not(self):
+        first = eo.request_switch(base(), to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        self.assertIs(eo.request_switch(first, to="openai", by="claude", reason=" r ",
+                                        drain_deadline_utc=DEADLINE, now=T1), first)
+        with self.assertRaises(eo.ConfigError) as reason:
+            eo.request_switch(first, to="openai", by="claude", reason="a different reason",
+                              drain_deadline_utc=DEADLINE, now=T1)
+        self.assertIn("different terms", str(reason.exception))
+        with self.assertRaises(eo.ConfigError):
+            eo.request_switch(first, to="openai", by="claude", reason="r",
+                              drain_deadline_utc="2026-11-01T20:00:00Z", now=T1)
+        self.assertEqual(first["transition"]["drain_deadline_utc"], DEADLINE)
+
+    def test_a_receipt_that_is_not_a_string_is_an_invalid_config_not_a_crash(self):
+        for bad in (1, 1.5, True, {"a": 1}, ["gh:tb#15c1"]):
+            cfg = base()
+            cfg["acceptance"]["claude"]["receipt"] = bad
+            problems = eo.validate(cfg)
+            self.assertTrue(any("receipt" in problem for problem in problems), (bad, problems))
+            with self.assertRaises(eo.ConfigError):
+                eo.decide(cfg, "claude", "scheduled")
+            with self.assertRaises(eo.ConfigError):
+                eo.accept(base(), by="openai", receipt=bad, now=T0)
+
+    def test_a_bad_receipt_in_the_file_exits_2_and_leaves_the_file_alone(self):
+        for bad in (1, {"a": 1}, ["x"]):
+            with tempfile.TemporaryDirectory() as folder:
+                path = os.path.join(folder, "cfg.json")
+                cfg = base()
+                cfg["acceptance"]["claude"]["receipt"] = bad
+                with open(path, "w", encoding="utf-8") as handle:
+                    json.dump(cfg, handle)
+                with open(path, encoding="utf-8") as handle:
+                    before = handle.read()
+                out, err = io.StringIO(), io.StringIO()
+                with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                    code = eo.main(["--config", path, "--now", T0, "request", "--to", "openai", "--by", "claude",
+                                    "--reason", "r", "--drain-deadline", DEADLINE])
+                self.assertEqual(code, eo.EXIT_INVALID, bad)
+                with open(path, encoding="utf-8") as handle:
+                    self.assertEqual(handle.read(), before)
+
+    def test_handover_blocks_heavy_work_for_both_lanes_and_cancel_needs_the_attestation(self):
+        cfg = eo.request_switch(base(), to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        cfg = eo.accept(cfg, by="openai", receipt=RECEIPT_OPENAI, now=T1)
+        cfg = eo.drained(cfg, by="claude", in_flight=0, lease_released=True, now=T2)
+        for lane in eo.LANES:
+            for kind in eo.HEAVY_KINDS:
+                result = eo.decide(cfg, lane, kind)
+                self.assertFalse(result["allowed"], (lane, kind))
+                self.assertEqual(result["exit_code"], eo.EXIT_TRANSITION)
+        self.assertFalse(eo.decide(cfg, "claude", "drain")["allowed"])
+        with self.assertRaises(eo.ConfigError) as caught:
+            eo.cancel(cfg, by="claude", now=T3)
+        self.assertIn("release it before a handover", str(caught.exception))
+        cancelled = eo.cancel(cfg, by="claude", destination_lease_released=True, now=T3)
+        self.assertEqual(cancelled["owner"], "claude")
+        self.assertEqual(cancelled["transition"]["state"], "stable")
+        self.assertIsNone(cancelled["lease_owner"])
+        self.assertEqual(eo.validate(cancelled), [])
+        self.assertTrue(eo.decide(cancelled, "claude", "scheduled")["allowed"])
+        self.assertFalse(eo.decide(cancelled, "openai", "scheduled")["allowed"])
+
+    def test_cancel_before_the_handover_needs_no_attestation(self):
+        cfg = eo.request_switch(base(), to="openai", by="claude", reason="r", drain_deadline_utc=DEADLINE, now=T0)
+        cancelled = eo.cancel(cfg, by="openai", now=T1)
+        self.assertEqual(cancelled["owner"], "claude")
+        self.assertEqual(cancelled["transition"]["state"], "stable")
+
+
 class CliTests(unittest.TestCase):
     def run_cli(self, path, *args):
         out, err = io.StringIO(), io.StringIO()
