@@ -36,10 +36,8 @@ research service; that failure is not evidence that delivery did not occur.
 The 2024 impact report is discoverable through a third-party-hosted PDF, but its
 full download exceeded the research service's size limit. Its indexed aggregate
 figures are excluded from the quantitative baseline until the original complete
-report is obtained. A May 2026 founder interview describes the agency's B2B model
-and AI-assisted work, but it contains political material; no political passage
-is used or proposed for the public blog. The direct business pages suffice for
-this initial selection.
+report is obtained. The direct public business pages suffice for this initial
+selection; no founder-profile material is used.
 
 ## What was actually checked
 
