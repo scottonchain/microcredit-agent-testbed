@@ -19,6 +19,7 @@ export const MESSAGES = {
   InsufficientStake: 'That is more than you have staked.',
   LendingPaused: 'New lending is paused by the pool guardian. Repayments still work.',
   WrongBorrower: 'This loan belongs to a different wallet.',
+  NotYetDefaultable: 'This loan is not overdue long enough to be marked defaulted yet.',
   NotCancellableYet: 'Only the borrower can cancel this loan for now.',
   SafeERC20FailedOperation: 'The USDC transfer failed. Check your balance.',
   CapExceeded: 'This wallet has used up its free-gas allowance for the test.',

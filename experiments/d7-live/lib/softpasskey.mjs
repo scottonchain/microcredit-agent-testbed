@@ -1,11 +1,14 @@
 // A software WebAuthn authenticator for Node: stands in for navigator.credentials.create/get so the passkey smart wallet
 // can be exercised headlessly in scripts. Produces the same data shapes a real authenticator returns.
-import { generateKeyPairSync, createHash, createSign, randomBytes } from 'node:crypto';
+import { generateKeyPairSync, createHash, createSign, randomBytes, createPrivateKey } from 'node:crypto';
 
 const b64u = (buf) => Buffer.from(buf).toString('base64url');
 const sha256 = (b) => createHash('sha256').update(b).digest();
 
 export class SoftAuthenticator {
+  // Persist and restore keys so a headless agent keeps the same passkey between processes.
+  toJSON() { return { rpId: this.rpId, origin: this.origin, signCount: this.signCount, keys: [...this.keys].map(([id, k]) => ({ id, pem: k.export({ type: 'pkcs8', format: 'pem' }) })) }; }
+  static fromJSON(o) { const a = new SoftAuthenticator({ rpId: o.rpId, origin: o.origin }); a.signCount = o.signCount || 0; for (const k of o.keys) a.keys.set(k.id, createPrivateKey(k.pem)); return a; }
   constructor({ rpId = 'localhost', origin = 'http://localhost' } = {}) {
     this.rpId = rpId; this.origin = origin; this.keys = new Map(); this.signCount = 0; this.uvFails = false; this.calls = 0;
   }

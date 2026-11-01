@@ -74,8 +74,11 @@ export async function snapshot(client, addr) {
     const [terms, loan, owed] = await Promise.all([P('getLoanTerms', [id]), P('getLoan', [id]), P('getCurrentOutstandingAmount', [id])]);
     return { id, status: Number(terms[0]), term: Number(terms[1]), dueAt: Number(terms[4]), disbursedAt: Number(terms[3]), principal: loan[0], owed, rateBps: loan[3] };
   }));
+  const backings = await P('getBackings', [addr]); const backedAll = await P('getBackedBorrowers');
+  const backedBy = backings.map((b) => ({ who: b.backer, amount: b.secured + b.unsecured })).filter((b) => b.amount > 0n);
+  const youBack = (await Promise.all(backedAll.map(async (b) => { const bk = await client.readContract({ address: cfg.pool, abi: poolAbi, functionName: 'getBacking', args: [addr, b] }); return { who: b, amount: bk[0] + bk[1] }; }))).filter((b) => b.amount > 0n);
   const code = await client.getCode({ address: addr });
-  return { usdcBal, limit: limit[0], available: limit[1], freeCredit: free[0], stake, loans, rate, lenderCash, reserved, totalAssets, defaulted: Number(defaults), deployed: !!code && code !== '0x' };
+  return { backedBy, youBack, usdcBal, limit: limit[0], available: limit[1], freeCredit: free[0], stake, loans, rate, lenderCash, reserved, totalAssets, defaulted: Number(defaults), deployed: !!code && code !== '0x' };
 }
 export const openLoans = (s) => s.loans.filter((l) => l.status === ST.Active || l.status === ST.Requested);
 

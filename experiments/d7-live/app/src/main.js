@@ -8,7 +8,9 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&
 const S = { client: null, cred: null, account: null, addr: null, bundler: null, snap: null };
 const short = (a) => a.slice(0, 6) + '…' + a.slice(-4);
 const days = (secs) => Math.max(0, Math.ceil(secs / 86400));
-const now = () => Math.floor(Date.now() / 1000);
+let chainNow = null; // block time, so the screens agree with the pool even when the phone clock is wrong
+const now = () => chainNow ?? Math.floor(Date.now() / 1000);
+const dueLine = (l) => { const d = l.dueAt - now(); if (d >= 0) return `Due in ${days(d)} days (${new Date(l.dueAt * 1000).toLocaleDateString()}).`; const late = Math.max(1, Math.floor(-d / 86400)); return `Overdue by ${late} day${late === 1 ? '' : 's'}. Pay now. After 30 more days late the loan can be marked defaulted and anyone who backed you can lose their stake.`; };
 
 function sheet({ title, body = '', actions = [] }) {
   $('#overlayTitle').textContent = title; $('#overlayBody').innerHTML = body;
@@ -20,10 +22,10 @@ const closeSheet = () => { $('#overlay').hidden = true; };
 const go = (r) => { location.hash = r; };
 const copy = async (t, btn) => { try { await navigator.clipboard.writeText(t); if (btn) { const o = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => (btn.textContent = o), 1200); } } catch { prompt('Copy this:', t); } };
 
-async function refresh() { S.snap = await C.snapshot(S.client, S.addr); return S.snap; }
+async function refresh() { S.snap = await C.snapshot(S.client, S.addr); try { chainNow = Number((await S.client.getBlock()).timestamp); } catch {} return S.snap; }
 
 // ---------- running an action ----------
-async function run(title, calls, { retryIds } = {}) {
+async function run(title, calls, { retryIds, summary } = {}) {
   const steps = ['Approve with your fingerprint, face or screen lock', 'Sending to the test network', 'Done'];
   const draw = (i, extra = '') => sheet({ title, body: `<ul class="steps">${steps.map((s, k) => `<li class="${k < i ? 'done' : k === i ? 'on' : ''}">${k < i ? '✓ ' : ''}${s}</li>`).join('')}</ul>${extra}` });
   draw(0);
@@ -32,7 +34,8 @@ async function run(title, calls, { retryIds } = {}) {
     try {
       const r = await C.send(S.bundler, S.account, calls, (st) => draw(st === 'sign' ? 0 : 1));
       if (r.success) {
-        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)} went through.</div><p class="muted"><a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">View on the block explorer</a></p>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+        let extra = ''; try { extra = summary ? await summary(r) : ''; } catch {}
+        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)} went through.</div>${extra}<p class="muted"><a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">View on the block explorer</a></p>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
         return r;
       }
       lastErr = r.reason || 'Reverted';
@@ -76,10 +79,11 @@ async function renderHome() {
   app.innerHTML = `<h1>Your wallet</h1>
   <div class="card"><div class="muted">Test USDC in your wallet</div><div class="big" id="bal">${C.money(s.usdcBal)}</div>
     <div class="row" style="margin-top:8px"><span class="muted">${short(S.addr)}</span><button class="link" id="copyAddr">Copy address</button></div></div>
-  <div class="card"><div class="muted">You can borrow up to</div><div class="big" id="avail">${C.money(s.available)}</div>
-    <p class="muted">${s.limit === 0n ? 'You have no credit yet. <a href="#credit">How to get credit</a>' : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
+  <div class="card"><div class="muted">${active || waiting ? 'Your credit limit' : 'You can borrow up to'}</div><div class="big" id="avail">${C.money(active || waiting ? s.limit : s.available)}</div>
+    <p class="muted">${s.limit === 0n ? 'You have no credit yet. <a href="#credit">How to get credit</a>' : active || waiting ? `You can borrow again after you pay this loan back. Interest is ${apr.toFixed(2)}% a year.` : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
+  ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Backing</h2>${s.backedBy.length ? `<div class="muted">Backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
   ${waiting ? `<div class="note warn">A loan of ${C.money(waiting.principal)} was requested but not paid out.<div class="grid"><button id="finish">Finish it</button><button class="secondary" id="cancelReq">Cancel it</button></div></div>` : ''}
-  ${active ? `<div class="card"><div class="muted">You owe</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="muted">Due in ${days(active.dueAt - now())} days (${new Date(active.dueAt * 1000).toLocaleDateString()}). Interest grows a little each day.</p><button id="payNow">Pay back</button></div>` : ''}
+  ${active ? `<div class="card"><div class="muted">You owe</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day.</p><button id="payNow">Pay back</button></div>` : ''}
   ${s.defaulted ? '<div class="note bad">This wallet has a defaulted loan and cannot borrow again.</div>' : ''}
   <div class="grid"><button id="gBorrow" ${active || waiting || s.defaulted ? 'disabled' : ''}>Borrow</button><button class="secondary" id="gRepay" ${active ? '' : 'disabled'}>Pay back</button>
   <button class="secondary" id="gSend">Send</button><button class="secondary" id="gReceive">Receive / get test dollars</button>
@@ -119,7 +123,7 @@ async function renderBorrow() {
     go_.disabled = true; const err = await C.preflight(S.client, S.addr, 'requestLoan', [v]);
     if (err) { refuse(err); go_.disabled = false; return; }
     const build = async () => { const id = await C.nextLoanId(S.client); return [C.poolCall('requestLoan', [v]), C.poolCall('disburseLoan', [id])]; };
-    await run('Borrow ' + C.money(v), await build(), { retryIds: build });
+    await run('Borrow ' + C.money(v), await build(), { retryIds: build, summary: async () => { const s2 = await refresh(); const l = C.openLoans(s2).find((x) => x.status === C.ST.Active); return l ? `<p>You now owe about <b>${C.money(C.ceilCent(l.owed))}</b>. It is due on <b>${new Date(l.dueAt * 1000).toLocaleDateString()}</b>. Interest grows a little each day, so pay back a few days early and keep a few dollars of test USDC for the interest.</p>` : ''; } });
   };
 }
 
@@ -128,7 +132,7 @@ async function renderRepay() {
   if (!l) { app.innerHTML = `${header('Pay back')}<div class="card"><p>You have no loan to pay back.</p></div>`; return; }
   const quote = C.ceilCent(l.owed), pay = quote + C.headroom(l.principal); const short_ = quote > s.usdcBal ? quote - s.usdcBal : 0n;
   app.innerHTML = `${header('Pay back')}
-  <div class="card"><div class="muted">You owe right now</div><div class="big">${C.money(quote)}</div><p class="muted">Borrowed ${C.money(l.principal)}. Due in ${days(l.dueAt - now())} days. Your wallet has ${C.money(s.usdcBal)}.</p></div>
+  <div class="card"><div class="muted">You owe right now</div><div class="big">${C.money(quote)}</div><p class="muted">Borrowed ${C.money(l.principal)}. ${dueLine(l)} Your wallet has ${C.money(s.usdcBal)}.</p></div>
   ${short_ > 0n ? `<div class="note warn">You are ${C.money(short_ + C.CENT)} short. The interest is not in your wallet yet. Get test USDC from the faucet, then come back.<div class="grid"><button id="faucet">Open the faucet</button><button class="secondary" id="copyA">Copy my address</button></div></div>` : ''}
   <button id="all" ${short_ > 0n ? 'disabled' : ''}>Pay back everything</button>
   <details class="card"><summary>Pay only part</summary><label for="part">Amount</label><input id="part" inputmode="decimal" placeholder="e.g. 5"><button id="partGo" class="secondary" style="margin-top:8px">Pay this part</button></details>
@@ -187,7 +191,7 @@ async function renderBack() {
   const s = S.snap || (await refresh());
   const [credit, freeStake] = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getFreeCredit', args: [S.addr] });
   app.innerHTML = `${header('Back a friend')}
-  <div class="card"><p>Backing lets a friend borrow against <b>your</b> guarantee. If they do not pay back, the amount you backed with can be lost. Back only people you trust, with test money.</p><div class="muted">You can back up to ${C.money(credit + freeStake)} without adding more. You have ${C.money(s.usdcBal)} in your wallet to lock as new stake.</div></div>
+  <div class="card"><p>Backing lets a friend borrow against <b>your</b> guarantee. If they do not pay back, the amount you backed with can be lost. Back only people you trust, with test money.</p><div class="muted">Backing uses your own credit first, so it can lower how much you can borrow yourself. You can back up to ${C.money(credit + freeStake)} without adding more. You have ${C.money(s.usdcBal)} in your wallet to lock as new stake.</div></div>
   <label for="to">Friend's wallet address</label><input id="to" placeholder="0x…" autocapitalize="off" autocorrect="off" spellcheck="false">
   <label for="amt">Amount to back (min $1.00)</label><input id="amt" inputmode="decimal" placeholder="e.g. 10"><div id="warn"></div><div id="plan" class="note ok" hidden></div>
   <button id="go" style="margin-top:12px">Back this friend</button>`;
@@ -203,7 +207,7 @@ async function renderBack() {
     if (need > s.usdcBal) { w.innerHTML = `<div class="note warn">To back ${C.money(v)} you need ${C.money(need)} more test USDC in your wallet to lock as stake. Get some from the faucet.</div>`; return; }
     const calls = []; if (need > 0n) { calls.push(C.usdcCall('approve', [C.cfg.pool, need])); calls.push(C.poolCall('stake', [need])); }
     calls.push(C.poolCall('back', [C.getAddress(to), v]));
-    await run('Back ' + short(to), calls);
+    await run('Back ' + short(to), calls, { summary: async () => { const lim = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getBorrowLimit', args: [C.getAddress(to)] }); return `<p>${esc(short(to))} can now borrow up to <b>${C.money(lim[0])}</b>.</p>`; } });
   };
 }
 

@@ -19,6 +19,8 @@ export function startBundler({ rpc, port = 4337, key, verificationGas = 2_500_00
   const pc = createPublicClient({ chain: baseSepolia, transport: vhttp(rpc) });
   const wc = createWalletClient({ account, chain: baseSepolia, transport: vhttp(rpc) });
   const txOf = new Map(); // userOpHash -> tx hash
+  let chain = Promise.resolve(); // submissions run one at a time so the bundler account's nonce never collides
+  const serial = (fn) => { const run = chain.then(fn, fn); chain = run.catch(() => {}); return run; };
   const opOf = new Map();
   const EP = entryPoint06Address;
 
@@ -28,7 +30,7 @@ export function startBundler({ rpc, port = 4337, key, verificationGas = 2_500_00
       case 'eth_supportedEntryPoints': return [EP];
       case 'eth_estimateUserOperationGas':
         return { preVerificationGas: toHex(preVerificationGas), verificationGasLimit: toHex(verificationGas), callGasLimit: toHex(callGas) };
-      case 'eth_sendUserOperation': {
+      case 'eth_sendUserOperation': return serial(async () => {
         const op = fromRpc(params[0]);
         const hash = await pc.readContract({ address: EP, abi: entryPoint06Abi, functionName: 'getUserOpHash', args: [op] });
         // Pre-flight: simulate the bundle so a doomed operation is refused with a reason instead of wasting gas.
@@ -36,8 +38,9 @@ export function startBundler({ rpc, port = 4337, key, verificationGas = 2_500_00
         catch (e) { const m = (e.shortMessage || e.message || '').slice(0, 300); log('reject', m); throw Object.assign(new Error(m), { code: -32500 }); }
         const tx = await wc.writeContract({ address: EP, abi: entryPoint06Abi, functionName: 'handleOps', args: [[op], account.address] });
         txOf.set(hash, tx); opOf.set(hash, params[0]); log('sent', hash, tx);
+        await pc.waitForTransactionReceipt({ hash: tx });
         return hash;
-      }
+      });
       case 'eth_getUserOperationReceipt': {
         const hash = params[0]; const tx = txOf.get(hash); if (!tx) return null;
         const raw = await pc.request({ method: 'eth_getTransactionReceipt', params: [tx] }); if (!raw) return null;

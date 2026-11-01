@@ -1,0 +1,67 @@
+[
+ {
+  "name": "E01 double tap on Borrow creates exactly one loan",
+  "ok": true,
+  "ms": 3570
+ },
+ {
+  "name": "E02 reload during a pending operation leaves a consistent state (no duplicate loan)",
+  "ok": true,
+  "ms": 11817
+ },
+ {
+  "name": "E03 stuck request: Finish it disburses, Cancel it releases",
+  "ok": true,
+  "ms": 2979
+ },
+ {
+  "name": "E04 stuck request can be cancelled",
+  "ok": true,
+  "ms": 1509
+ },
+ {
+  "name": "E05 stale second tab: after tab 1 borrows the whole limit, tab 2 gets a plain refusal before any signature",
+  "ok": true,
+  "ms": 2560
+ },
+ {
+  "name": "E06 overdue loan shows a clear warning",
+  "ok": true,
+  "ms": 182
+ },
+ {
+  "name": "E07 after the grace period anyone can default it; app shows the defaulted state and blocks borrowing",
+  "ok": true,
+  "ms": 214
+ },
+ {
+  "name": "E08 offline: friendly message and Try again works after reconnecting",
+  "ok": true,
+  "ms": 629
+ },
+ {
+  "name": "E09 bundler down: operation fails politely and nothing changes; recovers when it is back",
+  "ok": true,
+  "ms": 4313
+ },
+ {
+  "name": "E10 pool short of cash: borrow bigger than free cash gets the plain pool message",
+  "ok": true,
+  "ms": 6832
+ },
+ {
+  "name": "E11 sponsor allowance used up: a plain message, no crash",
+  "ok": true,
+  "ms": 3398
+ },
+ {
+  "name": "E12 small phones and dark mode: no horizontal scroll on every screen",
+  "ok": true,
+  "ms": 15082
+ },
+ {
+  "name": "E13 no uncaught page errors across the edge run",
+  "ok": true,
+  "ms": 1
+ }
+]

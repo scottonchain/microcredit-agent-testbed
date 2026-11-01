@@ -3,32 +3,32 @@
   {
    "name": "T01 first visit shows welcome and the test-network banner",
    "ok": true,
-   "ms": 174
+   "ms": 228
   },
   {
    "name": "T02 create wallet with a passkey, land on home with $0.00 and no credit",
    "ok": true,
-   "ms": 1400
+   "ms": 2759
   },
   {
    "name": "T03 borrow with no credit is refused in plain words",
    "ok": true,
-   "ms": 98
+   "ms": 104
   },
   {
    "name": "T04 receive screen shows address, QR and faucet steps",
    "ok": true,
-   "ms": 97
+   "ms": 95
   },
   {
    "name": "T05 faucet drop of $3 shows on home after reload",
    "ok": true,
-   "ms": 66
+   "ms": 95
   },
   {
    "name": "T06 a friend backs the wallet with $20, available becomes $20",
    "ok": true,
-   "ms": 1087
+   "ms": 1356
   },
   {
    "name": "T07 borrow more than the limit is refused before any signature",
@@ -38,82 +38,82 @@
   {
    "name": "T08 invalid amounts keep Borrow disabled (blank, abc, -5, 0, 1.2345678)",
    "ok": true,
-   "ms": 31
+   "ms": 28
   },
   {
    "name": "T09 borrow $10: one fingerprint prompt, success, owed shown",
    "ok": true,
-   "ms": 4263
+   "ms": 4115
   },
   {
    "name": "T10 borrow while a loan is open is not offered",
    "ok": true,
-   "ms": 5
+   "ms": 6
   },
   {
    "name": "T11 send $2 to a friend",
    "ok": true,
-   "ms": 1378
+   "ms": 908
   },
   {
    "name": "T12 send validation: bad address, own address, zero, too much",
    "ok": true,
-   "ms": 226
+   "ms": 192
   },
   {
    "name": "T13 repay with too little: shortfall note and Pay all disabled",
    "ok": true,
-   "ms": 210
+   "ms": 193
   },
   {
    "name": "T14 faucet top-up then pay part ($4) leaves the loan open",
    "ok": true,
-   "ms": 1650
+   "ms": 1618
   },
   {
    "name": "T15 pay back everything closes the loan",
    "ok": true,
-   "ms": 1611
+   "ms": 2679
   },
   {
    "name": "T16 history effect: dues earned and limit available again",
    "ok": true,
-   "ms": 8
+   "ms": 9
   },
   {
    "name": "T17 borrow again after repaying works (second loan)",
    "ok": true,
-   "ms": 1193
+   "ms": 1728
   },
   {
    "name": "T18 cancelled fingerprint: friendly message, nothing sent",
    "ok": true,
-   "ms": 437
+   "ms": 368
   },
   {
    "name": "T19 back a friend with new stake from wallet USDC",
    "ok": true,
-   "ms": 1449
+   "ms": 2013
   },
   {
    "name": "T20 back validation: self, below $1, bad address",
    "ok": true,
-   "ms": 211
+   "ms": 197
   },
   {
    "name": "T21 recovery code round trip restores the same address",
    "ok": true,
-   "ms": 199
+   "ms": 232
   },
   {
    "name": "T22 bad recovery code is rejected politely",
    "ok": true,
-   "ms": 202
+   "ms": 200
   },
   {
    "name": "T23 no horizontal scroll and tap targets at least 44px on home",
    "ok": true,
-   "ms": 815
+   "ms": 1732
   },
   {
    "name": "T24 sponsor allowance accounted for the wallet and gas stayed tiny",
