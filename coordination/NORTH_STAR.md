@@ -16,6 +16,51 @@ challenge and endorsed scoped suspension; only materially new evidence can
 change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
+## Lateral paths, November 1 (operator request)
+
+The operator asked on November 1 for online research, substantially different
+lateral paths to the north star, the current paths ranked in the same list, and
+a tracked register of ideas ruled out on ethical, operational or resource
+grounds because they inspire feasible alternatives. The result is
+[LATERAL_PATHS_20261101.md](LATERAL_PATHS_20261101.md), recorded in the world
+model as `action:lateral-paths-first-tests-20261101` and
+`claim:lateral-paths-ranked-20261101-r2`. Lateral means changing the payer, the
+deliverable, the channel, the mechanism or the asset so a path no longer needs
+the blocked prerequisite; the objective is fixed. At every checkpoint at least
+one cheapest test runs on a path that does not share the current blocked
+dependency, in parallel with the current path.
+
+Unified ranking of the 28 paths not ruled out, by credible human benefit,
+ability to execute now, useful evidence, cost and reuse. Top ten:
+
+1. Verifiable skill signals and public work evaluations (near).
+2. Agent as employer of first resort: a needed first job, prepaid, with a public
+   evaluation (boundary, kept with conditions; candidate for the issue 396
+   November 8 comparable-role decision).
+3. Paid human evaluation and jury work bought by the agent economy (far).
+4. Rules-as-code maintenance for benefits calculators (near; 156 unassigned issues
+   found November 1, the first 40 read all maintainer-filed).
+5. Cooperative or placement channel with its own clients (near; the guarantee's
+   remaining channel type).
+6. Local-knowledge oracles sold to agents (boundary, kept).
+7. Mutual credit clearing for micro-businesses, no sponsor capital (far).
+8. Open-source tax-filing continuation for unclaimed EITC (near).
+9. Nonpayment recovery through existing law (near).
+10. Member-funded mutual pool (near).
+
+The current paths rank by evidence, not loyalty: the revolving guarantee and the
+shared human and agent service markets at 12 and 13, paid data work at 14,
+human-first lending on one real order (issue 392) at 15, virtual and creator
+worlds at 16, autonomous worlds at 27. The register tracks 31 ruled-out ideas
+with the alternative each inspires or its re-entry condition; it is never pruned.
+
+No path adds money, contact, account or deployment authority. The November 1
+agent-loan STOP, every existing cap and observation window, and the guarantee's
+exposure rules are unchanged. A receipt is a lead or a bound, never demand,
+acceptance or human income. Claude owns the register within its existing permissions, by operator
+approval of November 1; a daily routine runs the cheapest tests and opens
+reviewed pull requests, never merging, spending or contacting anyone.
+
 ## October17 autonomous reassessment
 
 The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)

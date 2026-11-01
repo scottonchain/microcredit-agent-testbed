@@ -7,6 +7,9 @@ convergence and on blockage. Retrieve prior findings and a mechanism from anothe
 context; state what transfers and what does not. A legitimate response or
 publication wait does not block independent authorized evidence work. Preserve
 existing owners, response windows, stops and action-specific permissions.
+The [lateral paths register](LATERAL_PATHS_20261101.md) holds the unified ranking
+and the tracked ruled-out ideas; Claude owns it by operator approval of November 1
+and a daily routine advances it through reviewed pull requests.
 
 ## Current decision: agent-loan attempt stopped November1
 
