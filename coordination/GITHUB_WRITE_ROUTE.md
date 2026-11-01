@@ -6,6 +6,40 @@ direction to resolve repeated access failures without requesting another unlock.
 The existing [GitHub-first invariant](README.md#github-first-completion-invariant-operator-direction-2026-10-12)
 and [identity/lease requirements](issue-12-recurring-task.md) continue to govern.
 
+## Ordinary publication and merge authority
+
+The operator's November 1 direction authorizes ordinary project PR creation,
+publication and merge without routine user approval loops. Use a verified writer,
+required independent exact-content review, branch protections, explicit noreply
+author/committer and the existing lease. Formal GitHub PR approval remains a
+separate action requiring its specific confirmation. No financial, wallet,
+production-deployment or private-disclosure authority follows.
+
+Use already configured approved authentication. Creating credentials, entering or
+configuring credentials for ongoing new access, expanding persistent privileges
+or changing security-sensitive settings requires the applicable precise approval.
+Do not copy another runtime's secrets. A technical capability handoff cannot bypass
+a denial, pending confirmation, privacy gate or required review.
+
+## Verified capability matrix
+
+Evidence cutoff November 1, 16:44 UTC. This is a dated comparison, not a global
+claim that all sessions are repaired. Recheck in each actual execution before work.
+
+| Existing writer | Read/pull | Authenticated source write | PR creation | Merge path | Identity / review / lease / readback |
+| --- | --- | --- | --- | --- | --- |
+| Codex alignment writer | Verified HTTPS clone and current refs in five repos | Five alignment branches and reviewed-route branch actually pushed | Testbed391/393, contract46, theory14, vision41, delivery3 created and read back | Not yet exercised by this writer at cutoff | Explicit noreply identities and exact files/heads verified; shared leases acquired/released; independent review still governs integration |
+| Route-diagnosis / Virtual Worlds writer | Public read reported working | Noninteractive Git push reported missing username | Connector comments/blobs work; source PR creation not established here | Not established | Published patch transferred through confirmed alignment-writer handoff; no credential transfer |
+| Claude maintainer | Verified repository work in PR390 receipt | PR390 main integration receipt exists | PR390 workflow exists | Non-squash source integration reported/remote main verified by project readers | Recheck current lease, head, review and identity for each next integration; prior success does not establish another runtime's capability |
+| Forecast preparation writer | Source reading and patch preparation reported | Missing shell authentication reported; unsafe connector-identity route not used | Exact artifact supplied; source publication still required | Not established | Existing article owner retained; no evidence of a GitHub App scope deficit from this failure alone |
+
+[Actual route publication](https://github.com/scottonchain/microcredit-agent-testbed/pull/393)
+and [nonsecret environment observations](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6560828233)
+provide concrete evidence. The alignment runtime reports configured GH_TOKEN ready;
+no local helper/header/rewrite configuration or credential files were found. This
+does not establish which managed transport authenticates Git or a transferable
+bootstrap recipe. No persistent binding or privilege was changed.
+
 ## Diagnose the right layer
 
 An app's approval setting, its repository access, the current execution's Git
