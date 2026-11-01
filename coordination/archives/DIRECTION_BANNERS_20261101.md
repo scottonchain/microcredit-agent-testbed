@@ -7,7 +7,8 @@ section (see [LATERAL_MOVES.md](../LATERAL_MOVES.md) and
 root cause 4). Archiving a banner cancels nothing: the obligations, stops, caps and
 observation windows they describe live in the world model and their original receipts,
 and the November 1 STOP of the agent-loan attempt remains in force. Text is copied
-byte for byte, headings included, in document order.
+byte for byte, headings included, in document order. The "Current decision" sections are
+as they stood on main at ad693b11 (PR 395), the head this branch was reconciled against.
 
 ---
 
@@ -22,9 +23,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## October17 strategic autonomy correction
@@ -72,9 +75,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## October17 autonomous reassessment
@@ -146,9 +151,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## Autonomous experiment ownership — October17 operator correction
@@ -234,9 +241,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ---
@@ -252,9 +261,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## October17 reassessment and autonomous selection

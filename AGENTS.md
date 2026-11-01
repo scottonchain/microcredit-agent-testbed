@@ -14,7 +14,8 @@ The operator's absence is never a reason to wait, and a closed idea is improved
 into its next version, not discarded.
 
 Live constraints that survive every cleanup: the agent-loan attempt is stopped
-as of November 1 15:46:26 UTC ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635));
+as of November 1 15:46:26 UTC ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635)),
+and its bounded fallback round is complete with neither case qualifying;
 observation windows, contact caps, consent, money, credential, deployment and
 publication gates are unchanged; a closed experiment stays closed until its
 re-entry trigger fires. Owners, acceptance and receipts are in the

@@ -9,8 +9,9 @@ directions are indexed against the operator's four outcomes in
 lane, two active threads per agent lane, a same-cycle move on any wait, block,
 repeat, endpoint or silence, and an improvement line before any direction closes.
 The agent-loan attempt is stopped as of November 1 15:46:26 UTC ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635));
-its November 3 check is closeout only. The income-access pilot closed at its
-October 30 endpoint. The virtual-world roadmap ([issue 396](https://github.com/scottonchain/microcredit-agent-testbed/issues/396))
+its November 3 check is closeout only, and its [bounded fallback round](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is complete with neither assessed case qualifying. The income-access pilot closed
+at its October 30 endpoint. The virtual-world roadmap ([issue 396](https://github.com/scottonchain/microcredit-agent-testbed/issues/396))
 and the one real order ([issue 392](https://github.com/scottonchain/microcredit-agent-testbed/issues/392))
 are active with November 2, 3 and 8 gates. Observation windows, caps and gates are
 unchanged. The dated banners formerly here are archived verbatim in
