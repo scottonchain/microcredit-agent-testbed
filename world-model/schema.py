@@ -88,6 +88,28 @@ class Hypothesis(Record):
     confidence: Literal['high', 'medium', 'low']
     confidence_scope: str
 
+class AlternativeMechanism(Record):
+    mechanism: str = Field(min_length=1)
+    avoids_dependency: str = Field(min_length=1)
+    cheapest_test: str = Field(min_length=1)
+    transfer_limit: str = Field(min_length=1)
+    related_ids: list[str]
+
+class Learning(Record):
+    """Evidence-backed interpretation attached to an action, never a new task."""
+    assumption: str = Field(min_length=1)
+    result: Literal['supported', 'contradicted', 'inconclusive', 'not_tested']
+    finding: str = Field(min_length=1)
+    blocker_kind: Literal['access', 'distribution', 'economics', 'mechanism', 'measurement', 'none', 'unknown']
+    evidence_ids: list[str] = Field(min_length=1)
+    counterevidence_ids: list[str]
+    rules_out: list[str]
+    does_not_rule_out: list[str] = Field(min_length=1)
+    alternatives: list[AlternativeMechanism] = Field(min_length=1)
+    revisit_when: list[str] = Field(min_length=1)
+    tags: list[str] = Field(min_length=1)
+    freshness: Freshness
+
 class Action(Record):
     id: str
     title: str
@@ -108,6 +130,7 @@ class Action(Record):
     spending: Literal['none', 'requires_separate_authorization', 'existing_authorized_commitment']
     stop_conditions: list[str] = Field(min_length=1)
     outcome_evidence_ids: list[str]
+    learning: Learning | None = None
 
 class Assent(Record):
     agent_id: str

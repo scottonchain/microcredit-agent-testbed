@@ -1,5 +1,13 @@
 # Microcredit agent entrypoint
 
+## Retrieve lessons before choosing work
+
+Before selecting a mechanism or declaring a blocker, follow the [learning and
+retrieval procedure](world-model/LEARNING.md). Query the current model for relevant
+lessons, including closed actions; read their evidence, limits and alternatives.
+Choose and execute an authorized test that avoids the blocked dependency while
+preserving existing obligations. Record the result in the owning action.
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
@@ -9,9 +17,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## October17 strategic autonomy correction

@@ -1,5 +1,13 @@
 # Shared planning world model
 
+## Retrieve and reuse experiment learning
+
+[Learning and retrieval](LEARNING.md) describes the optional structured `learning`
+field on existing actions and `python world-model/q.py --recall "blocked assumption"`.
+The same model remains authoritative; no extra knowledge store or task queue.
+Closed actions remain searchable. Search results include original evidence,
+counterevidence, alternatives and refresh conditions, never new authority.
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
@@ -9,9 +17,11 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
 ## Current state — updated 2026-10-28
