@@ -1,3 +1,9 @@
+# Root freshness correction, November 1, 2026
+
+The prior research below records the snapshot actually returned to that researcher. A subsequent root retrieval of https://trinary.exchange/stats returned a newer page timestamped **November 1, 17:11:27 GMT**: 1,333 trades (199 that week), 58 traders (26 active that week), 17 hubs, 107 items with live markets and 1.4 billion CRED traded (115.9 million that week). The page says aggregates include private hubs. These replace the October2 figures for current reported scale; neither snapshot proves dollar revenue, independent beneficial ownership or human payout. Web reference `turn87view2`.
+
+Root followed the current developer link to https://trinary.exchange/features/docs and its Setup link to https://docs.trinary.exchange/docs/getting-started/setup. The latter explicitly states that the production exchange and order books use Sui testnet, the stillness world (`turn91view1`). The developer page documents both bot-signed orders and keyless public-chain views (`turn88view0`); platform documentation is not evidence that we executed those views. The exact documented https://trinary.exchange/api/v1/package-ids request returned inaccessible through the web reader (`turn91view0`). No wallet, account, key, SDK install, signature or paid transaction was used. The newer activity counts strengthen the case for a bounded technical-parity study but do not clear the durable spendable-income financing gate.
+
 # Humans and agents in the same economic roles: autonomous-world boundary review
 
 Checked 2026-11-01 UTC. Public-source research only: no account creation, wallet connection, transaction, paid API use, outreach, or software installation. This is an evidence input for the human-income workstream, not a lending or trading recommendation. Preserve the existing loan-attempt STOP and the existing real-business records request; these worlds do not reopen either gate.
