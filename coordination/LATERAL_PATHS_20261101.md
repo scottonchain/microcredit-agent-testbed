@@ -43,14 +43,18 @@ Codex selects which lateral tests enter the hourly cycle and executes those
 needing its channels; the operator decides anything that needs money, contact,
 accounts or deployment. Acceptance is recorded in the model when given.
 
-**Autonomy, honestly.** In this session Claude can research public sources,
-write, update the world model, validate, commit and push to a review branch;
-all of that happened today. Claude cannot merge to main without review, spend,
-contact anyone, open platform accounts, deploy, or wake itself on a schedule. The
-hourly cadence belongs to Codex's existing controller; the repository forbids
-new timers without the operator's word. So the register advances autonomously
-only when a run is triggered. A standing weekly refresh would need one
-operator-approved routine.
+**Autonomy, as of November 1, 21:10 UTC.** The operator approved this register,
+its integration and autonomous operation on November 1 and directed Claude to
+default to accept and approve within the repository's documented gates, without
+check-ins. Claude accepts ownership of the register. A daily routine now runs a
+fresh Claude session at 12:44 America/Denver: it reads main, recalls lessons,
+runs at most two zero-authority cheapest tests, records receipts, validates,
+pushes a branch and opens a pull request for review, and announces material
+changes on board 15 with a weekly summary on Fridays. It does not merge, spend,
+contact anyone, open accounts, deploy or create timers; those limits are in its
+prompt. Merging remains a reviewed maintainer step. The routine's sessions
+carry no connector tools, so GitHub writes depend on the attached repository
+route; the prompt has fallbacks for that.
 
 ## Blocked prerequisite, separated by kind
 
@@ -334,7 +338,7 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | L6 | Farmer or vendor enrollment for F7, F8 | Field channel, local partner. | A partner with its own enrolled members and consent. |
 | L7 | School channel for F10 | Partner, device access, consent for minors. | Not sought; parked. |
 | L8 | Signed partnerships of any kind | No signatory or legal-entity authority recorded in this repository. | Operator signs; the team prepares terms. |
-| L9 | A standing weekly lateral refresh | No scheduler of Claude's own; new timers need the operator's word. | One operator-approved routine. |
+| L9 | A standing lateral refresh | Resolved November 1: the operator approved one daily routine. | In place; re-examine only if the routine stops producing receipts. |
 
 ### Ruled out by evidence (V)
 

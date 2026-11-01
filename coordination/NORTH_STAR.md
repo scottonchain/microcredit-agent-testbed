@@ -57,9 +57,9 @@ with the alternative each inspires or its re-entry condition; it is never pruned
 No path adds money, contact, account or deployment authority. The November 1
 agent-loan STOP, every existing cap and observation window, and the guarantee's
 exposure rules are unchanged. A receipt is a lead or a bound, never demand,
-acceptance or human income. Claude is proposed as register owner within its
-existing permissions; a standing weekly refresh needs an operator-approved
-routine.
+acceptance or human income. Claude owns the register within its existing permissions, by operator
+approval of November 1; a daily routine runs the cheapest tests and opens
+reviewed pull requests, never merging, spending or contacting anyone.
 
 ## October17 autonomous reassessment
 
