@@ -54,7 +54,14 @@ resources, the owning lane:
    are stated in the same message. The register gets a row or a state change
    (ACTIVE) in the same PR or the next integration.
 4. **Parks the blocked thread** with its re-entry trigger, keeping its window,
-   owner and obligations. Parking is not closing.
+   owner and obligations. Parking is not closing. A dependency is parked after
+   one failed repair and one genuinely different supported route, as the
+   November 1 constructive loop requires; a denial, a pending confirmation, a
+   privacy gate or a required review is never bypassed to unblock it.
+
+Every path tried under this rule has a named owner and a dated checkpoint in its
+register row. "Many paths in parallel" never means unowned paths: a path without
+an owner and a checkpoint is a proposal, not an active direction.
 
 A missing technical capability (a Git route, a writer, a tool) is handed to the
 lane that has it in one message with the exact bytes, and the asking lane starts
