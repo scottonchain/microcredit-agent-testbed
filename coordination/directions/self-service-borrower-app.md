@@ -107,6 +107,23 @@ Consequences, with the three options the lateral rule requires:
 
 A passkey can be exercised headlessly with the preinstalled Playwright browser through the WebAuthn virtual authenticator, so the "no wallet, no key file" claim is testable without a person present; a person is still needed for the usability half.
 
+### Gate 2 probe, second pass (2026-11-01, after the operator allowed `developers.circle.com` and `api.pimlico.io`)
+
+Verified from Circle's documentation (fetched through the session proxy, HTTP 200, pages `paymaster` and `paymaster/addresses-and-events`) and the Base Sepolia RPC:
+
+| Item | Finding | Check |
+| --- | --- | --- |
+| Circle Paymaster on Base Sepolia, EntryPoint v0.7 | `0x31BE08D380A21fc740883c0BC434FcFc88740b58` | 144 bytes of code at that address (proxy) |
+| Circle Paymaster on Base Sepolia, EntryPoint v0.8 | `0x3BA9A96eE3eFf3A69E2B18886AcF52027EFF8966` | 141 bytes of code |
+| EntryPoint v0.7 `0x0000000071727De22E5E9d8BAf0edAc6f37da032` | present | 16,035 bytes |
+| EntryPoint v0.8 `0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108` | present | 21,738 bytes |
+| Fee | 10% surcharge on gas, Arbitrum and Base and their testnets; USDC only | Circle overview page |
+| Account types | ERC-4337 v0.7 and v0.8 accounts; EIP-7702 EOA through the v0.8 quickstart (`toSimple7702SmartAccount`); Circle Modular Wallets add passkeys (WebAuthn) but need a Circle Console client key and a registered passkey domain | Circle quickstart and the `circlefin/skills` modular-wallets skill |
+| Bundler in Circle's quickstart | `https://public.pimlico.io/v2/<chainId>/rpc`, no API key | quickstart code |
+| Reachability from this container | `api.pimlico.io` answers but requires an `apikey` query parameter; `public.pimlico.io` still denied (proxy 403) | curl, 2026-11-01 18:2x UTC |
+
+So the demonstration is buildable with viem's account-abstraction module, the v0.8 paymaster and either the keyless public Pimlico endpoint (needs `public.pimlico.io` allowed) or the relayer calling `EntryPoint.handleOps` directly. The passkey half has two routes: Circle Modular Wallets (a Console key and domain, no payment for testnet) or a plain WebAuthn P-256 signer validated by an ERC-4337 account that supports it. A funded throwaway testnet key remains the one input this session does not hold.
+
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
 - **2026-11-03 18:00 UTC:** review disposition (GO, CHANGE, PARK) recorded on board 15 next to the issue 396 matrix, so the two technical-channel candidates are compared at once.
