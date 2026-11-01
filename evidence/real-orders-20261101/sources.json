@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-11-01T16:34:00Z",
+  "scope": "Initial current public-source selection, not an independently audited order dataset",
+  "sources": [
+    {
+      "id": "agency-portfolio",
+      "url": "https://agency.naamal.org/",
+      "publisher": "Na'amal Agency",
+      "publication_date": null,
+      "locator": "Services; Case Studies, Clients 1, 2 and 3",
+      "observation": "Live page describes full-stack development, workflow automation, a Framer personal site, a consultancy Wix-to-Webflow migration, and avatar promotional videos with voiceovers and subtitles.",
+      "evidence_class": "primary organisation report",
+      "limitations": "Public self-report; no underlying order, price, cost, hours or payment receipt. Repeated testimonial blocks are one source, not multiple independent confirmations. No numerical marketing claims adopted.",
+      "content_hash": null,
+      "hash_limit": "Research service rendered text read; no immutable original revision or exact raw bytes available. Recheck before publication."
+    },
+    {
+      "id": "organisation-home",
+      "url": "https://naamal.org/",
+      "publisher": "Na'amal",
+      "publication_date": null,
+      "locator": "Support at every step, Paid Digital Work",
+      "observation": "Organisation identifies agency project work, marketplace gigs and direct placement as its paid digital-work routes.",
+      "evidence_class": "primary organisation report",
+      "limitations": "Operating-model description, not a transaction receipt or proof of a cash constraint."
+    },
+    {
+      "id": "business-contact-route",
+      "url": "https://naamal.org/get-involved/",
+      "publisher": "Na'amal",
+      "publication_date": null,
+      "locator": "Contact, Prefer email; Location",
+      "observation": "Official page publishes a general business inbox and identifies the operating organisations. Used to resolve the business recipient, not a personal address.",
+      "evidence_class": "primary published contact route",
+      "limitations": "Public contact availability is not consent to supply records, a partnership or an agreement. Exact address remains in the authorised private correspondence."
+    },
+    {
+      "id": "linked-client-site",
+      "url": "https://crowdpotential.co.uk/",
+      "publisher": "linked client",
+      "publication_date": null,
+      "locator": "Agency portfolio link",
+      "observation": "Research service could not retrieve the linked site.",
+      "evidence_class": "failed retrieval",
+      "limitations": "Does not corroborate or refute delivery. No content inferred."
+    },
+    {
+      "id": "impact-report-not-used",
+      "url": "https://www.circlemena.org/media/gapc32vh/naamal-impact-report-2024.pdf",
+      "publisher": "Na'amal, third-party PDF host",
+      "publication_date": null,
+      "locator": "2024 impact report, indexed page 15",
+      "observation": "Full retrieval failed because file exceeded research-service size limit. Search text reported historical aggregate project earnings.",
+      "evidence_class": "incomplete retrieval",
+      "limitations": "No report figures used in baseline or economics; obtain complete original and source revision before using them."
+    },
+    {
+      "id": "official-prepayment-counterexample",
+      "url": "https://stepup.one/founder-gtm",
+      "publisher": "StepUp.One",
+      "publication_date": null,
+      "locator": "Pricing; What happens next",
+      "observation": "Published AI-assisted human service describes checkout before access and onboarding.",
+      "evidence_class": "primary commercial terms, separate business",
+      "limitations": "A comparison illustrating why prepayment must be tested, not evidence of Na'amal payment terms, a second case, or a validated provider outcome. No contact made."
+    }
+  ]
+}
