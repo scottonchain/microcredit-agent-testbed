@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Check the five local checkouts and their generated deployment/card mirrors. No network calls."""
+"""Check the five local checkouts, their generated deployment/card mirrors and the shared Omnequa journal. No network calls."""
 import argparse
 import json
 from pathlib import Path
 import re
 import subprocess
+
+try:
+    from coordination import omnequa_journal_sync
+except ImportError:  # run as a script from coordination/
+    import omnequa_journal_sync
 
 REPOS = (
     "microcredit-agent-testbed", "microcredit-contract", "microcredit-theory",
@@ -79,6 +84,8 @@ def check(root, *, sync_cards=False, verify_remotes=True):
                 mirror.write_bytes(card_file.read_bytes())
             if not mirror.is_file() or mirror.read_bytes() != card_file.read_bytes():
                 errors.append(f"Agent card mirror differs: {repo.name}/.well-known/{filename}")
+    # The blog and the Omnequa journal are one record (coordination/OMNEQUA_JOURNAL_SYNC.md).
+    errors.extend(f"microcredit-vision: {finding}" for finding in omnequa_journal_sync.check(root / REPOS[3]))
 
     return errors
 
@@ -97,7 +104,7 @@ def main(argv=None):
         print("FAIL:", error)
     if errors:
         return 1
-    print("PASS: five repository origins; recorded deployment, generated app and five agent cards agree")
+    print("PASS: five repository origins; recorded deployment, generated app and five agent cards agree; blog and Omnequa journal agree")
     return 0
 
 

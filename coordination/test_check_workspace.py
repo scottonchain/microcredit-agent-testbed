@@ -3,6 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from coordination.check_workspace import REPOS, check
+from coordination.test_omnequa_journal_sync import POSTS, write_vision
 
 
 class WorkspaceTests(unittest.TestCase):
@@ -34,6 +35,7 @@ class WorkspaceTests(unittest.TestCase):
         (app / "contracts/deployedContracts.ts").write_text('  84532: {\n' + '\n'.join(
             f'    {name}: {{ address: "{address}" }},' for name in ("DecentralizedMicrocredit", "MicrocreditLens", "OracleScoreProvider")) + '\n  },')
         (app / "utils/microcredit.ts").write_text(f'{address}\ndeployedCommit: "abcdef1"')
+        write_vision(self.root / REPOS[3], POSTS)
 
     def test_matching_workspace(self):
         self.assertEqual(check(self.root, verify_remotes=False), [])
@@ -60,6 +62,11 @@ class WorkspaceTests(unittest.TestCase):
             self.assertTrue(check(self.root, verify_remotes=False))
             self.assertEqual(check(self.root, verify_remotes=False, sync_cards=True), [])
             self.assertEqual(alias.read_text(), self.card)
+
+    def test_blog_and_journal_drift_is_reported(self):
+        (self.root / REPOS[3] / "omnequa/content/blog-feed.json").write_text("{}")
+        self.assertEqual(check(self.root, verify_remotes=False),
+                         ["microcredit-vision: Journal copy out of step with omnequa/feed.json: omnequa/content/blog-feed.json"])
 
     def test_missing_checkout_fails(self):
         (self.root / REPOS[2]).rmdir()

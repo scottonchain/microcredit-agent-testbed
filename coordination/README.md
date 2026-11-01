@@ -296,10 +296,13 @@ past or a shorter runbook never cancel a promise. In particular:
 | Contract, ABI and relayer implementation | `microcredit-contract` | Site `pool/` is a generated release, not editable source |
 | Models behind the papers | Contract `analysis/`, at each paper's recorded revision | Paper data and source snapshots remain reproducible historical evidence |
 | Papers and public explanations | `microcredit-theory`; `microcredit-vision` | Blog README/feed/tags and site `listen/` are generated artifacts |
+| Blog and Omnequa journal | `microcredit-vision/posts/*.md`; its build renders `omnequa/feed.json` and the four copies omnequa.org bundles | One record; omnequa.org reads the feed from `main`. Process and checks: [OMNEQUA_JOURNAL_SYNC.md](OMNEQUA_JOURNAL_SYNC.md) |
 
 With the five checkouts side by side, run
 `python microcredit-agent-testbed/coordination/check_workspace.py --root .`
-to check repository identities, deployment consistency and agent-card mirrors.
+to check repository identities, deployment consistency, agent-card mirrors and
+that the blog and the Omnequa journal agree (`coordination/omnequa_journal_sync.py`,
+also runnable alone with `--vision ../microcredit-vision`).
 This command reads local files and Git metadata; it neither publishes nor sends
 transactions. `--sync-cards` explicitly regenerates all four known card mirrors
 from the canonical testbed card.
@@ -311,7 +314,7 @@ from the canonical testbed card.
 | `microcredit-contract` | On `main`: `yarn foundry:test`, `yarn workspace @se-2/nextjs test`, `yarn lint`, `yarn next:check-types`, `yarn next:build` (its CLAUDE.md lists the rest). `yarn test:all` exists only on the candidate branch |
 | `microcredit-agent-testbed` | `python tools/check.py` |
 | `microcredit-theory` | `make check`; `python reproduce.py --help` for pinned model reproduction |
-| `microcredit-vision` | `python -m unittest discover -s tools -p 'test_*.py'`; `python tools/build.py --check` |
+| `microcredit-vision` | `python -m unittest discover -s tools -p 'test_*.py'`; `python tools/build.py --check` (fails when the Omnequa journal files are out of step with `posts/`); after a site build, `python omnequa/tools/check.py` |
 | `scottonchain.github.io` | `python tools/check.py --testbed ../microcredit-agent-testbed` |
 
 Check commands use local fixtures. Network tests, fork rehearsals, publishing and
