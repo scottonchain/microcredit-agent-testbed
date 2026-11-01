@@ -1,18 +1,15 @@
 # Team operating guide
 
-## Current decision: agent-loan attempt stopped November1
+## Current state, November 1, 2026
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+Read [NORTH_STAR.md](NORTH_STAR.md), then [DIRECTIONS.md](DIRECTIONS.md) for the
+live directions and [LATERAL_MOVES.md](LATERAL_MOVES.md) for what to do when a
+thread stalls. The agent-loan attempt is stopped ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635));
+the dated banners formerly here are archived verbatim in
+[archives/DIRECTION_BANNERS_20261101.md](archives/DIRECTION_BANNERS_20261101.md)
+and cancel nothing. Since the November 1 execution transfer the Claude steward
+session coordinates scheduled and compute-heavy work and Codex reviews; the toggle
+for moving heavy work between lanes is proposed in testbed PR 398.
 
 ## Directions register (November1 operator direction)
 
@@ -25,66 +22,42 @@ never allowed to stop the team. It is an index into the world model, not a
 second ledger. Proposed directions enter as PROPOSED and advance only after
 non-author review.
 
-## Autonomous experiment ownership — October17 operator correction
+## Lateral moves, parallel experiments and experiment ownership
 
-The north star is fixed; GT and current pilots are provisional means. Codex owns
-selection/execution, Claude substantive challenge and accepted technical actions,
-and Hermes authorized external delivery. Use the world model, not another ledger.
-The October18 23:52UTC operator correction supersedes the former one-active
-constraint: run materially different feasible experiments in parallel and track
-each separately. Do not wait for a legitimate response window to expire before
-starting an authorized test of a different hypothesis. Each experiment records
-beneficiary, hypothesis, owner/actual acceptance, external test, baseline, artifact, response
-window, deadline, kill condition, authority and next action. Operator relay and bounded review experiment: [board receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6256776930).
-Existing obligations,
-consent/contact caps and observation windows survive a strategy change.
+[LATERAL_MOVES.md](LATERAL_MOVES.md) (November 1 operator direction) governs stalls:
+five objective triggers, a same-cycle move of three materially different options
+with one started, at least one active direction per outcome lane and two active
+threads per agent lane, an improvement line before any direction closes, and a
+generator so new directions come from the team rather than the operator; every
+channel read and pushed each cycle (GitHub, AgentMail, Moltbook, omnequa.org and
+the blog, upstream projects, chain reads) and a bounded scan of developments in
+each outcome lane each cycle. The October 17 and 18 operator corrections remain in force through it: run materially
+different feasible experiments in parallel and track each separately; do not wait
+for a response window to expire before starting an authorized test of a different
+hypothesis; each experiment records beneficiary, hypothesis, owner and actual
+acceptance, external test, baseline, artifact, response window, deadline, kill
+condition, authority and next action. Codex owns selection and execution of its
+lanes, Claude substantive challenge, maintainer integration and, since November 1,
+execution coordination; Hermes owns authorized external delivery.
 
 - Pre-register the external response event and distinguish it from acceptance:
-  CI approval, review, merge and decline are different outcomes. Name the repeat
-  test before declaring success; internal artifacts do not establish human benefit.
-- Require substantive non-author review, strongest falsifier and an owned action.
-  Verify delivered artifacts and actual outcomes; preserve dissent. Code review,
-  strategy review and delivery permissions are separate gates.
-- Board/email publication does not wake an agent. Record its posted next-check
-  time and explicit acceptance; a requester-imposed checkpoint is not an SLA.
-  Claude states a <=75minute check interval while requests are open and next check
-  about22:55UTC onOctober17. This is a commitment to verify from outputs, not proof
-  that a scheduler changed. It never grants indefinite ownership by silence.
-- At a missed accepted checkpoint, diagnose artifacts, actual capability and live
-  ownership. Withdraw unaccepted requests explicitly before selecting one fallback;
-  require a claim before execution and never duplicate a live writer or steal a lease.
-  Continue independent authorized work; no assumed control of another runtime.
-- After two completed sessions yield neither new external evidence nor a materially
-  different test, stop repeating and start the strongest authorized alternative.
-  Preserve natural response windows; no artificial pivot to meet an activity count.
-  Missing technical permission is distinct from missing demand or approval.
+  CI approval, review, merge and decline are different outcomes. Internal
+  artifacts do not establish human benefit.
+- Require substantive non-author review that carries the stronger alternative,
+  and an owned next action. Verify delivered artifacts; preserve dissent. Code
+  review, strategy review and delivery permissions are separate gates.
+- Publication does not wake an agent. Record the posted next-check time and
+  explicit acceptance; a requester's checkpoint is not an SLA, and silence never
+  grants ownership. The steward's hourly register walk is the check.
+- At a missed checkpoint, diagnose artifacts, capability and live ownership;
+  withdraw unaccepted requests before selecting a fallback; never duplicate a
+  live writer or take a lease. Missing technical permission is distinct from
+  missing demand or approval: route it in one message and start a different path.
 - Apply current action-specific authorization; do not re-request approval already
-  given. Strategy autonomy adds no spending, credentials, deployments or unrestricted
-  contact. Keep explicit noreply identities, leases, compact history and safeguards.
-- Keep this operating section short; update experiments in their owning model slice.
-  The [assessment](../evidence/gt-agent-fit-20261017/README.md) records actual reviews
-  and disagreements. A revised draft is not exact-version joint adoption or merger.
+  given. Strategy autonomy adds no spending, credentials, deployments or contact.
+- Keep this section short; experiments live in their owning model slice.
 
-The parent reports its existing hourly prompt updatedOctober17 at18:51:58UTC.
-This document creates no schedule or verified wake-up claim. Repetitive direction
-posts remain stopped; the deleted website task stays deleted.
-
-
-## October16 repair instruction (supersedes hourly posting)
-
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
-
-
-For the concise cross-repo direction, read [NORTH_STAR.md](NORTH_STAR.md) first. This guide contains operating detail; NORTH_STAR.md contains the current mission test, the multiplier rule, the proposed staged path in [CURRENT_PATH.md](CURRENT_PATH.md), repository boundaries and next-step sequence. Its [per-lane status](CURRENT_PATH.md#review-and-lane-adoption-status) governs supersession of the earlier active-guarantee priority; neither publication nor main integration proves every lane adopted it.
+For the concise cross-repo direction, read [NORTH_STAR.md](NORTH_STAR.md) first. This guide contains operating detail; NORTH_STAR.md contains the mission test, the multiplier rule, repository boundaries and the pointer to the directions register. [CURRENT_PATH.md](CURRENT_PATH.md) is the October 15 to 30 history and its obligations.
 
 This is the shared entrypoint for maintaining the four microcredit repositories.
 Keep common operating rules here and link to them from each repo. Local instructions
@@ -108,19 +81,6 @@ parent and expected noreply identities. Its result is never authorization or
 content approval; all current review, policy, privacy and concurrency gates remain.
 It cannot qualify protected records or its own implementation.
 
-## Shared reset path
-
-Before related work, read and cite [CURRENT_PATH.md](CURRENT_PATH.md) at an exact
-version and check its [per-lane status](CURRENT_PATH.md#review-and-lane-adoption-status).
-The path supersedes the earlier priority only for lanes that actually adopt it;
-unreceived decisions remain pending. As relayed by Codex (the operator's original
-text is not cited here), the October15 reset requests hourly reassessment, one
-concrete external forward step and a human-friendly direction update of at most
-five sentences/200words including footer. No external step means failure plus an
-actual strategic adjustment, not success from preparation. Use existing parent
-recurrence; no new timer. Old daily cycles and records remain historical inputs,
-not competing priorities. Payment, privacy, review and deployment limits remain.
-
 ## Start a work cycle
 
 1. Read [NORTH_STAR.md](NORTH_STAR.md), then the current `main` [world model](../world-model/model.json) at a named
@@ -131,7 +91,8 @@ not competing priorities. Payment, privacy, review and deployment limits remain.
 2. Read new [team-board](https://github.com/scottonchain/microcredit-agent-testbed/issues/15)
    handoffs and the actual heads of relevant PRs. Strategy decisions are in
    [issue 17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17).
-3. Choose one concrete deliverable, preserve existing owners and commitments,
+3. Choose the deliverable for each active thread (at least two per lane, one
+   per outcome lane across the team), preserve existing owners and commitments,
    and use an isolated branch. Record evidence and blockers against existing
    stable model IDs; a document or message is not a second task ledger.
 4. Run that repo's checks and review its diff. Before shared writes, use the
@@ -158,8 +119,8 @@ and no loan on the same job, including all costs and locked capital. Do not turn
 agent transactions or a generic service business into a claimed human outcome.
 
 Protect accepted outside commitments and fund recovery first, then address
-returned reviews, imminent deadlines and concrete blockers. Keep one substantial
-deliverable per lane. Each new task needs an existing goal/action ID, a beneficiary
+returned reviews, imminent deadlines and concrete blockers. Keep at least two
+active threads per lane so that a wait never idles it. Each new task needs an existing goal/action ID, a beneficiary
 or decision it serves, one owner, an artifact, acceptance evidence, a checkpoint,
 a resource bound and a stop or change condition. Brief urgent triage may interrupt
 it. Combine related model updates and send one material handoff; documents and
@@ -169,7 +130,7 @@ Do not repeat unchanged landscape/keeper scans, completed rehearsals, full test
 campaigns or status summaries to create activity. Reuse exact-revision evidence;
 rerun only for changed inputs, a concrete unresolved risk or a required gate.
 Check the cheapest prerequisite before an expensive run. If it is blocked, leave
-its owner/trigger intact and finish useful independent work. Unknown costs,
+its owner/trigger intact and make the lateral move in the same cycle. Unknown costs,
 channel state and outside demand remain unknown. A `NO_LOAN` result can be correct.
 
 At the daily sync record a dated baseline and delta for:
@@ -193,6 +154,8 @@ These experiment thresholds do not prove scale or authorize human debt.
 ## Existing recurring work
 
 These are distinct responsibilities on the existing schedules, not new timers.
+Since the November 1 execution transfer the schedules are the steward's; the
+required outputs are unchanged.
 Private control-plane identifiers stay outside the repositories. Read changed
 inputs by ID and update time; use the current model/receipts for status rather
 than copied historical progress paragraphs.
@@ -201,7 +164,7 @@ than copied historical progress paragraphs.
 | --- | --- | --- |
 | Daily research, 01:00 America/Denver | One source-backed six-question assessment and the strongest path comparison | `NIGHTLY-AGENTIC-RESEARCH-YYYY-MM-DD` on strategy #17; one board pointer |
 | Daily Claude sync, 04:00 America/Denver | One consolidated opening and scorecard using research and unresolved decisions | `CLAUDE-STRATEGY-YYYY-MM-DD`, `READY-FOR-CLAUDE`, `FOLLOWUP-OWNS-REPLIES` |
-| Hourly continuation, existing trigger (October15 hourly request relayed by Codex) | Actual replies, accepted work, due commitments, useful Codex implementation and Hermes management | Continue the existing rounds; one material receipt, no duplicate opening |
+| Hourly continuation, steward register walk (November 1 execution transfer) | Walk every thread and the four outcome lanes: advance, post a slippage note or close each with a receipt; start a lateral move where a lane is empty or a trigger fired; read and push every channel (GitHub, AgentMail, Moltbook, omnequa.org and the blog, upstream projects, chain reads); run the bounded development scan; manage Hermes's bounded assignments | One material receipt naming the four lanes, their last delta, each channel's read/pushed state and the scan's changes; no duplicate opening |
 
 **Research scope.** Broad 501(c)(3) discovery for organizations willing to invest direct time/resources is exhausted; do not restart it without a new specific lead or changed condition. Assess all six questions with definitions, comparable baselines,
 source/check times, coverage and limits: (1) agent numbers, activity and productive

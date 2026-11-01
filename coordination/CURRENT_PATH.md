@@ -1,29 +1,16 @@
 # Current path: buyer-funded evidence before financial risk
 
-## Current decision: agent-loan attempt stopped November1
+## Status, November 1, 2026
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
-
-## October17 reassessment and autonomous selection
-
-The new operator instruction treats GT as a starting hypothesis, including an
-agent-first bootstrap only if a real unmet fit is evidenced. The team must choose
-and execute a better authorized route if it is unsupported. The [assessment and
-review record](../evidence/gt-agent-fit-20261017/README.md) distinguishes actual
-mechanics, evidence and proposed next tests; no provisional finding is joint assent.
-Use [autonomous experiment ownership](README.md#autonomous-experiment-ownership--october17-operator-correction).
-Earlier pilots remain bounded obligations, not fixed principal strategy. Preserve
-all safety, consent, contact, payment and action-specific approval requirements.
+This document is the October 15 to 30 history of the buyer-funded path, the
+October 17 reassessment and the income-access pilot, which closed at its
+October 30 endpoint. Read it for obligations and evidence, not for work
+selection: live directions are in [DIRECTIONS.md](DIRECTIONS.md) and the stall
+rule in [LATERAL_MOVES.md](LATERAL_MOVES.md). The hourly external-step rule and
+the hourly 200-word direction update below are historical. The November 1 STOP
+of the agent-loan attempt is in [NORTH_STAR.md](NORTH_STAR.md) and the world
+model; the banners formerly here are archived verbatim in
+[archives/DIRECTION_BANNERS_20261101.md](archives/DIRECTION_BANNERS_20261101.md).
 
 ## Current direction: income access (October 16 launch)
 

@@ -1,18 +1,15 @@
 # Shared planning world model
 
-## Current decision: agent-loan attempt stopped November1
+## Current state, November 1, 2026
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+Read [coordination/NORTH_STAR.md](../coordination/NORTH_STAR.md), then
+[DIRECTIONS.md](../coordination/DIRECTIONS.md) for the live directions and
+[LATERAL_MOVES.md](../coordination/LATERAL_MOVES.md) for the stall rule. The
+agent-loan attempt is stopped ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635)).
+The October 28 summary below is dated history: its recovery proposal was not
+adopted and its observation windows are tracked in the model. The banner formerly
+here is archived verbatim in
+[coordination/archives/DIRECTION_BANNERS_20261101.md](../coordination/archives/DIRECTION_BANNERS_20261101.md).
 
 ## Current state — updated 2026-10-28
 

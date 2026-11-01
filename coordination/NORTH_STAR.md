@@ -1,18 +1,22 @@
 # North star and current path
 
-## Current decision: agent-loan attempt stopped November1
+## Current state, November 1, 2026
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+The north star below is fixed; every mechanism is provisional. Candidate
+directions are indexed against the operator's four outcomes in
+[DIRECTIONS.md](DIRECTIONS.md), and the rule for moving when a thread stalls is
+[LATERAL_MOVES.md](LATERAL_MOVES.md): at least one active direction per outcome
+lane, two active threads per agent lane, a same-cycle move on any wait, block,
+repeat, endpoint or silence, and an improvement line before any direction closes.
+The agent-loan attempt is stopped as of November 1 15:46:26 UTC ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635));
+its November 3 check is closeout only. The income-access pilot closed at its
+October 30 endpoint. The virtual-world roadmap ([issue 396](https://github.com/scottonchain/microcredit-agent-testbed/issues/396))
+and the one real order ([issue 392](https://github.com/scottonchain/microcredit-agent-testbed/issues/392))
+are active with November 2, 3 and 8 gates. Observation windows, caps and gates are
+unchanged. The dated banners formerly here are archived verbatim in
+[archives/DIRECTION_BANNERS_20261101.md](archives/DIRECTION_BANNERS_20261101.md);
+[CURRENT_PATH.md](CURRENT_PATH.md) and [STRATEGY_REPAIR_20261016.md](STRATEGY_REPAIR_20261016.md)
+are history and obligations, not work selection.
 
 ## Directions register
 
@@ -21,65 +25,7 @@ November1, are indexed in [DIRECTIONS.md](DIRECTIONS.md) against the operator's
 four outcomes. The register is a view; owners and receipts stay in the world
 model. A proposed direction is not a current path until reviewed.
 
-## October17 autonomous reassessment
-
-The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)
-parks capital-backed GT absent a qualified decision case and selects the
-maintainer-requested PolicyEngine tips correction for reversible preparation.
-The owning model action is `action:policyengine-florida-tips-20261017`;
-[operating rules](README.md#autonomous-experiment-ownership--october17-operator-correction)
-require substantive reciprocal review and an actual next action. PR10263 is submitted after non-author review and explicit authorization;
-CI approval/maintainer response remain pending. The revised process still needs
-exact-version review; no joint assent or household benefit is claimed. The income-access pilot below retains its observation window
-and owners without fixing the principal strategy.
-
-## Current direction: income access (October 16 launch)
-
-The [current income-access pilot](CURRENT_PATH.md#current-direction-income-access-october-16-launch)
-supersedes the dated buyer-route and active-guarantee priorities below. Its approved
-invitation is already live; do not republish. Follow its actual launch/stop dates,
-five-case cap, existing owners and privacy limits. Publication is not a qualifying
-case or human-income outcome. Keep the deleted website task deleted and preserve
-D's contact caps. Older mechanisms remain historical evidence.
-
-
-## October16 repair instruction (supersedes hourly posting)
-
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
-At02:58UTC the operator superseded the introduction prerequisite and demand pause:
-no introduction is available; pursue bounded autonomous discovery through existing
-authorized agent-network channels, with Hermes owning outreach and Claude challenging
-the test. Do not ask again. Read the repair document for two fallbacks, response
-criteria and actual receipts; internal agreement or a sent message is not demand.
-
-
 This page is the human-readable index for current direction across the microcredit workspace. The canonical machine-readable state remains `world-model/model.json`; board #15 carries team handoffs and issue #17 carries strategy evidence and decisions.
-
-## Proposed path after the October15 reset relay
-
-Read [CURRENT_PATH.md](CURRENT_PATH.md) at the named current commit before related
-activity. It supplies one staged buyer-funded path, the operator's exact
-approval-contingent worker-payment alternative, two fallbacks per stage, evidence
-gates and the prioritized operator-unblock list. Read its
-[actual per-lane review/adoption status](CURRENT_PATH.md#review-and-lane-adoption-status):
-do not infer team assent or external progress from a PR or main integration.
-This path supersedes the older active-guarantee priority below only for lanes
-that explicitly adopt the selected version within existing authority;
-retain those equations and findings as historical evidence, not calibration for
-rejected-work coverage. Existing world-model action IDs remain the live index.
-The hourly reassessment and <=5sentence/200word direction-update requirements
-are as relayed by Codex; the operator's original text is not cited here.
-Use the parent's existing trigger without changing schedules, with actual failure and adjustment
-reported honestly. Publication alone does not meet the external-progress goal.
 
 ## North star
 
@@ -211,6 +157,6 @@ A `NO_LOAN` or `NO_GUARANTEE` result is valid evidence. Do not create activity t
 
 ## Working rules
 
-At the start of every work cycle, use the current path below and compare its active step against simpler alternatives; the earlier guarantee remains a conditional hypothesis. Use one substantial deliverable per lane. Protect accepted outside commitments before speculative work. Reuse exact-revision evidence instead of rerunning unchanged experiments. Every new action needs a beneficiary or decision, owner, artifact, acceptance evidence, checkpoint, resource bound and falsifier.
+At the start of every work cycle, read the directions register and compare each active direction against simpler alternatives; the earlier guarantee remains a conditional hypothesis. Keep at least two active threads per lane and one active direction per outcome lane ([LATERAL_MOVES.md](LATERAL_MOVES.md)). Protect accepted outside commitments before speculative work. Reuse exact-revision evidence instead of rerunning unchanged experiments. Every new action needs a beneficiary or decision, owner, artifact, acceptance evidence, checkpoint, resource bound and falsifier.
 
 For current operational details, read [the team operating guide](README.md), [the world model](../world-model/model.json), [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15) and [strategy issue #17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17).

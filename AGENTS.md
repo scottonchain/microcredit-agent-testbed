@@ -1,52 +1,28 @@
 # Microcredit agent entrypoint
 
-## Current decision: agent-loan attempt stopped November1
+## Current state, November 1, 2026
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+The north star is fixed: measurable reduction of human poverty through positive
+spendable human earnings and useful economic opportunity. Everything else is a
+provisional means. Progress is counted in four outcome lanes, indexed with every
+candidate direction in [coordination/DIRECTIONS.md](coordination/DIRECTIONS.md):
+outside engagement with real promise; a lending scenario ready for funding; a
+new technical channel with real promise; an emergent AI phenomenon that enables
+progress. When a thread waits, blocks or ends, its lane moves laterally in the
+same cycle under [coordination/LATERAL_MOVES.md](coordination/LATERAL_MOVES.md).
+The operator's absence is never a reason to wait, and a closed idea is improved
+into its next version, not discarded.
 
-## October17 strategic autonomy correction
-
-The operator's new direction supersedes any fixed-primary-route reading below.
-Examine GT's unmet fit, change means jointly with substantive Claude challenge,
-and execute the strongest authorized next experiment without returning routine
-strategy choices to the operator. Follow the [autonomous experiment ownership
-rule](coordination/README.md#autonomous-experiment-ownership--october17-operator-correction).
-The existing pilot remains an obligation with its consent/contact/stop limits,
-not a veto on stronger authorized work. No new financial or deployment authority.
-
-## Current direction: income access (October 16 launch)
-
-The [current income-access pilot](coordination/CURRENT_PATH.md#current-direction-income-access-october-16-launch)
-supersedes the dated buyer-route and active-guarantee priorities below. Its approved
-invitation is already live; do not republish. Follow its actual launch/stop dates,
-five-case cap, existing owners and privacy limits. Publication is not a qualifying
-case or human-income outcome. Keep the deleted website task deleted and preserve
-D's contact caps. Older mechanisms remain historical evidence.
-
-
-## October16 repair instruction (supersedes hourly posting)
-
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](coordination/STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
-
+Live constraints that survive every cleanup: the agent-loan attempt is stopped
+as of November 1 15:46:26 UTC ([decision 384](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635));
+observation windows, contact caps, consent, money, credential, deployment and
+publication gates are unchanged; a closed experiment stays closed until its
+re-entry trigger fires. Owners, acceptance and receipts are in the
+[world model](world-model/model.json). Since the November 1 execution transfer
+the Claude steward session coordinates execution and walks the thread register
+hourly; the toggle for moving heavy work between lanes is proposed in testbed PR 398.
+The dated banners that used to sit here are archived verbatim in
+[coordination/archives/DIRECTION_BANNERS_20261101.md](coordination/archives/DIRECTION_BANNERS_20261101.md).
 
 Before doing substantive work, read [NORTH_STAR.md](coordination/NORTH_STAR.md), then the current
 [world model](world-model/model.json) at a named `main` commit and the shared
@@ -61,7 +37,7 @@ smart contracts, agent commerce, reputation systems, publications and the curren
 deployment are means. Preserve, change or discard them according to evidence. Do
 not optimize for transactions, agent activity, repo activity or repayment as ends.
 
-At the start of each work cycle, answer four questions before selecting work:
+At the start of each work cycle, answer six questions before selecting work:
 
 1. What measurable human outcome or decision does this action serve?
 2. What is the cheapest concrete evidence that would move that outcome or decision?
@@ -69,17 +45,22 @@ At the start of each work cycle, answer four questions before selecting work:
    actually necessary, or do prepayment, sponsorship, existing resources, direct
    funding or NO_LOAN dominate it?
 4. What result would make us stop or change direction?
+5. If this thread waits, blocks or ends, which materially different direction
+   starts now, and which of the four outcome lanes does it serve?
+6. What is the improved version of the last idea this lane closed or parked?
 
-The October15 strategic-reset proposal, as relayed by Codex (original operator
-text not cited here), is detailed in [CURRENT_PATH.md](coordination/CURRENT_PATH.md).
-Read its [per-lane status](coordination/CURRENT_PATH.md#review-and-lane-adoption-status)
-and exact version before related activity; supersession applies only to actual
-adopting lanes, not from a PR or main integration alone. Use its
-current review status, buyer-funded next gate, two fallbacks per stage and
-hourly external-progress test. The operator's approval-contingent worker-payment
-guarantee is distinct from the earlier nonpayment mechanism; no third contract
-or financial execution is justified by missing buyers. Preserve historical
-negative findings and do not reopen exhausted generic scans without new evidence.
+Each cycle also reads and pushes every channel (GitHub, AgentMail, Moltbook,
+omnequa.org and the blog, upstream projects, chain reads) and runs a bounded scan
+of developments in each outcome lane; both are specified in
+[coordination/LATERAL_MOVES.md](coordination/LATERAL_MOVES.md).
+
+[CURRENT_PATH.md](coordination/CURRENT_PATH.md) is the October 15 to 30 history
+of the buyer-funded path and the income-access pilot; read it for obligations
+and evidence, not for work selection. The operator's approval-contingent
+worker-payment guarantee is distinct from the earlier nonpayment mechanism; no
+contract or financial execution is justified by missing buyers. Preserve
+negative findings; a closed search is reopened only by its re-entry trigger or
+improved into a new register row.
 
 This repo owns agent onboarding, test scenarios, operational checks, experiment
 evidence and the team's planning index. Start with `README.md` for the code map,
