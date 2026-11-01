@@ -1,5 +1,13 @@
 # Team operating guide
 
+## Current direction — November 1, 2026
+
+Read the [research and publishing phase](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/RESEARCH_PHASE_20261101.md) first. It supersedes older operative priorities and hourly borrower/external-impact tests below. The north star remains incremental spendable human income and durable welfare with sustainable economics. Research, reviewed publication and verified synchronization are current phase milestones; they are not income or welfare. Preserve historical evidence, exact observation windows, current owners and action-specific gates.
+
+The replaced reset/research paragraphs remain in the [prior operating guide at bacd2696](https://github.com/scottonchain/microcredit-agent-testbed/blob/bacd2696d8a2857dcb1c71065c0b5b9d9d744f93/coordination/README.md); they are historical where superseded by the current phase.
+
+## Dated prior direction and retained history
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
@@ -99,18 +107,19 @@ parent and expected noreply identities. Its result is never authorization or
 content approval; all current review, policy, privacy and concurrency gates remain.
 It cannot qualify protected records or its own implementation.
 
-## Shared reset path
+## Shared research path
 
-Before related work, read and cite [CURRENT_PATH.md](CURRENT_PATH.md) at an exact
-version and check its [per-lane status](CURRENT_PATH.md#review-and-lane-adoption-status).
-The path supersedes the earlier priority only for lanes that actually adopt it;
-unreceived decisions remain pending. As relayed by Codex (the operator's original
-text is not cited here), the October15 reset requests hourly reassessment, one
-concrete external forward step and a human-friendly direction update of at most
-five sentences/200words including footer. No external step means failure plus an
-actual strategic adjustment, not success from preparation. Use existing parent
-recurrence; no new timer. Old daily cycles and records remain historical inputs,
-not competing priorities. Payment, privacy, review and deployment limits remain.
+Follow [RESEARCH_PHASE_20261101.md](RESEARCH_PHASE_20261101.md) for current milestones and reporting. The October 15 hourly external-step/failure rule is historical and superseded. No new timer, repeated direction post or automatic email mirror is authorized.
+
+## Constructive research and external tests
+
+Each research cycle resolves a specific decision and identifies a bounded feasible
+external test with owner, baseline, checkpoint and criteria. Claude and Codex both
+challenge and revise positions, then propose what would work better. Do not settle
+for STOP-only exchanges. At a legitimate test endpoint without intended uptake/use,
+select and execute a materially different authorized alternative; preserve caps and
+all financial/privacy/review gates. Follow the [current phase loop](RESEARCH_PHASE_20261101.md#constructive-research-to-test-loop)
+and the separate [issue392 case owner](https://github.com/scottonchain/microcredit-agent-testbed/issues/392).
 
 ## Start a work cycle
 
@@ -132,9 +141,10 @@ not competing priorities. Payment, privacy, review and deployment limits remain.
    a GitHub merge that exposes the operator's personal email.
 5. Open a focused PR and post one material handoff to the board. Claude owns
    maintainer integration; Codex reviews Claude's work. A request, a green test,
-   and a recipient's acceptance are different states. If Codex is blocked on an
-   authorized GitHub operation, it routes the exact operation to Claude and verifies
+   and a recipient's acceptance are different states. For a technical capability failure on an already-authorized GitHub operation only,
+   Codex may route the exact operation to Claude and verify
    Claude's receipt ([team-structure.md](team-structure.md#capability-and-failure-rules)).
+   Never route a denial, pending confirmation, privacy or review gate through another writer.
 
 ## North star and resource focus
 
@@ -142,7 +152,7 @@ The fixed objective is alignment with human well-being, including measurable
 poverty alleviation, inclusion and positive spendable human earnings. Follow
 `goal:alignment-human-wellbeing`, `goal:poverty`, `goal:human-earnings` and
 `goal:productive-commerce`; the [operator's scorecard direction](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064793477)
-sets the daily decision. Technology, credit and publicity are provisional means.
+remains historical measurement guidance. Current daily decisions follow the November 1 research phase; technology, credit and publicity are provisional means.
 Choose the smallest useful route to accepted outside work and human benefit;
 compare a necessary loan with customer prepayment, direct funding, sponsorship
 and no loan on the same job, including all costs and locked capital. Do not turn
@@ -163,10 +173,14 @@ Check the cheapest prerequisite before an expensive run. If it is blocked, leave
 its owner/trigger intact and finish useful independent work. Unknown costs,
 channel state and outside demand remain unknown. A `NO_LOAN` result can be correct.
 
-At the daily sync record a dated baseline and delta for:
+At the daily sync record changed phase evidence and actual owner outputs. Income/commerce rows below apply only to actual mechanism observations; absence of a new transaction is not a failed research hour. Do not infer zero from never measured:
+
 
 | Measure | Evidence required |
 | --- | --- |
+| Research decisions | Primary-source comparisons, definitions, coverage, counterevidence and remaining gaps |
+| Review and publication | Exact-head substantive verdicts, source/chart checks, actual GitHub/site URLs and synchronization differences |
+| Team execution | Owned deliverable, requested versus accepted checkpoint, actual output and permitted adjustment |
 | Outside commerce | Independently controlled assigned, accepted and paid jobs, repeat buyers and source receipts |
 | Owner economics | Cash less inference, gas, fees, rework, support, allocated subscriptions/setup and worker pay; losses, top-ups and capital lock |
 | First-funding friction | Required assets, supplier of each asset, onboarding steps/time and actual subsidy |
@@ -174,9 +188,9 @@ At the daily sync record a dated baseline and delta for:
 | Readiness and decision | Exact code/evidence, failed gates and owner; one next deliverable, deadline, acceptance and falsifier; continue, change or stop |
 
 Returned principal is not income. Internal agents are not independent operators.
-A falsified hypothesis or repaired blocker is learning, not revenue. The current
-learning gate is three positive cycles, two independent operators and one repeat
-buyer. Self-sustaining remains unproved until eight consecutive weeks of outside
+A falsified hypothesis or repaired blocker is learning, not revenue. The historical experiment
+learning gate was three positive cycles, two independent operators and one repeat
+buyer. That historical mechanism used a proposed self-sustaining threshold of eight consecutive weeks of outside
 revenue covers full costs and adequate owner pay without top-ups, preserves capital,
 survives the largest-customer loss and supports a newcomer earning spendable income.
 These experiment thresholds do not prove scale or authorize human debt.
@@ -190,23 +204,11 @@ than copied historical progress paragraphs.
 
 | Cycle | Required output | Handoff |
 | --- | --- | --- |
-| Daily research, 01:00 America/Denver | One source-backed six-question assessment and the strongest path comparison | `NIGHTLY-AGENTIC-RESEARCH-YYYY-MM-DD` on strategy #17; one board pointer |
-| Daily Claude sync, 04:00 America/Denver | One consolidated opening and scorecard using research and unresolved decisions | `CLAUDE-STRATEGY-YYYY-MM-DD`, `READY-FOR-CLAUDE`, `FOLLOWUP-OWNS-REPLIES` |
-| Hourly continuation, existing trigger (October15 hourly request relayed by Codex) | Actual replies, accepted work, due commitments, useful Codex implementation and Hermes management | Continue the existing rounds; one material receipt, no duplicate opening |
+| Daily research, 01:00 America/Denver | Source-backed comparative research and strongest counterargument, when there is a decision-relevant update | `NIGHTLY-AGENTIC-RESEARCH-YYYY-MM-DD` on strategy #17; one board pointer |
+| Daily Claude sync, 04:00 America/Denver | One consolidated evidence/publication/ownership update and next phase milestone | `CLAUDE-STRATEGY-YYYY-MM-DD`, `READY-FOR-CLAUDE`, `FOLLOWUP-OWNS-REPLIES` |
+| Hourly continuation, existing trigger (October15 hourly request relayed by Codex) | Changed evidence, reviewed artifacts, publication/sync, due obligations and owned blocker resolution | Continue the existing rounds; one material receipt, no duplicate opening |
 
-**Research scope.** Broad 501(c)(3) discovery for organizations willing to invest direct time/resources is exhausted; do not restart it without a new specific lead or changed condition. Assess all six questions with definitions, comparable baselines,
-source/check times, coverage and limits: (1) agent numbers, activity and productive
-economics; (2) working payments, settlement and funding; (3) outside agents' actual
-need for trust credit versus accessible alternatives; (4) whether an agent bootstrap
-causally reaches human benefit and microlending; (5) genuinely new, accessible
-opportunities in the preceding 24 hours; (6) onchain microlending, trust, deployments,
-security and human adoption. Verify financial/legal facts against current primary
-sources. Follow promising leads and disconfirming evidence; an unchanged category
-gets a sourced baseline and its remaining gap, not invented novelty. Preserve the
-lender/capital-provider perspective and an explicit human-access bridge; do not
-restart broad MFI discovery. Produce the six-question table, route comparison,
-falsifiers and bounded next action. Avoid a second broad scan in the daily sync;
-reuse this work and refresh decision-critical changes since its cutoff.
+**Current research scope.** Compare human and agent economic constraints and virtual-world productive earning using the primary-source matrix and go/no-go criteria in [the current phase](RESEARCH_PHASE_20261101.md). Reuse validated sources and refresh decision-critical changes. Do not repeat generic opportunity scans or treat an unchanged observation as failed progress.
 
 Keep the interpretation guards explicit: registered, active and independently
 controlled agents are different; wallets and listings are not agents or customers,
