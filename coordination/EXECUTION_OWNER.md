@@ -83,11 +83,20 @@ origin (`https://api.github.com`), never to a configured test endpoint, and redi
 never followed, so a token cannot be forwarded elsewhere. The toggle is read from main before
 the lease; right after the lease is acquired the wrapper reads main again and stops if it
 moved, so an owner switch that lands in between cannot leave the checks running on a stale
-answer. `test_lease_merge.py` runs it against
+answer.
+
+The toggle has to reach main by some path, and the wrapper's gate needs it on main. The one
+bootstrap exception is `TOGGLE_BOOTSTRAP_PR=<this PR number>`: the gate files are read from the
+reviewed head instead of main, only for that pull request, and only while main has no
+`execution_owner.py` or `execution-owner.json` at all. The owner lane is still enforced from the
+head's configuration. Once main has either file the exception is refused, so it works once. The
+older scratch wrapper is not a bootstrap path. `test_lease_merge.py` runs it against
 scratch origins and covers: a clean merge, a refused lane, a missing configuration, a switch
 in progress, main moving after the lease, a lost lease (the other owner's lease is never
 released), a refused push, a readback mismatch, a missing or failing checker (fails closed),
-a missing public-content checker, forbidden message content, a wrong head, a held lease,
+a missing public-content checker, forbidden message content, a wrong head, a held lease, the
+bootstrap path (merges the toggle pull request, refused once main has a toggle, refused for another
+PR number, still enforces the owner lane),
 `NO_API` against a remote origin, a signal during the checks (the lease is released), an owner
 switch landing between the gate and the lease (the checker never starts), a sentinel token that
 must never reach a test endpoint, a redirect that must not be followed, and draft, merged, closed,

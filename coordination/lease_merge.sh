@@ -20,6 +20,8 @@
 #   GITHUB_REPO           owner/name for that check (default: read from origin)
 #   NO_API=1              skip the pull-request state check; accepted only when origin is a local path
 #   MAIN_EXPECT           optional sha main must still be at when the merge starts
+#   TOGGLE_BOOTSTRAP_PR   the PR number of the pull request that adds the toggle itself; reads the gate from the
+#                         reviewed head, and only while main has no execution-owner library or configuration
 #
 # Owner token: claude-<16 hex>; execution token: merge<PR>-<16 hex> (run_lock.py wants lowercase, 8-80 chars).
 set -euo pipefail
@@ -97,11 +99,24 @@ git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null 2>&1 || git fetch -q --d
 git merge-base "$MAIN_BEFORE" "$HEAD_EXPECT" >/dev/null || fail "no merge base between main and the PR head"
 bash "$PCS" --message "$MSG" || fail "public content in the merge message"
 
-# 1b. The execution-owner gate, read from main: heavy work belongs to the owner lane. Fails closed.
-git show "$MAIN_BEFORE:coordination/execution_owner.py" >"$WORK/execution_owner.py" 2>/dev/null \
-  || fail "no execution-owner library on main; refusing to run heavy work without it"
-git show "$MAIN_BEFORE:coordination/execution-owner.json" >"$WORK/execution-owner.json" 2>/dev/null \
-  || fail "no execution-owner configuration on main; refusing to run heavy work without it"
+# 1b. The execution-owner gate: heavy work belongs to the owner lane. The gate files are read from main and the
+# gate fails closed. There is exactly one bootstrap exception, for the pull request that adds the toggle itself:
+# with TOGGLE_BOOTSTRAP_PR set to this PR's number the files are read from the reviewed head instead, and only
+# while main has no execution-owner library or configuration at all. Once main has either, it is refused.
+GATE_REF="$MAIN_BEFORE"; GATE_LABEL="main"
+if [ -n "${TOGGLE_BOOTSTRAP_PR:-}" ]; then
+  [ "$TOGGLE_BOOTSTRAP_PR" = "$PR" ] || fail "TOGGLE_BOOTSTRAP_PR is $TOGGLE_BOOTSTRAP_PR but this run merges PR $PR"
+  if git cat-file -e "$MAIN_BEFORE:coordination/execution-owner.json" 2>/dev/null \
+     || git cat-file -e "$MAIN_BEFORE:coordination/execution_owner.py" 2>/dev/null; then
+    fail "bootstrap refused: main already has an execution-owner library or configuration"
+  fi
+  GATE_REF="$HEAD_EXPECT"; GATE_LABEL="the reviewed head"
+  say "BOOTSTRAP: main has no execution-owner configuration; the gate is read from the reviewed head $HEAD_EXPECT"
+fi
+git show "$GATE_REF:coordination/execution_owner.py" >"$WORK/execution_owner.py" 2>/dev/null \
+  || fail "no execution-owner library on $GATE_LABEL; refusing to run heavy work without it"
+git show "$GATE_REF:coordination/execution-owner.json" >"$WORK/execution-owner.json" 2>/dev/null \
+  || fail "no execution-owner configuration on $GATE_LABEL; refusing to run heavy work without it"
 python3 "$WORK/execution_owner.py" --config "$WORK/execution-owner.json" check --runner "$RUNNER_LANE" --kind other >"$WORK/toggle.out" 2>&1 \
   || { cat "$WORK/toggle.out" >&2; fail "the execution-owner configuration does not allow $RUNNER_LANE to run heavy work now"; }
 say "preconditions ok: PR $PR head $HEAD_EXPECT, main $MAIN_BEFORE; $(cat "$WORK/toggle.out")"

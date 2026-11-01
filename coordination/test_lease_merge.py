@@ -96,15 +96,16 @@ def git(cwd, *args, **kwargs):
 class Scratch:
     """A scratch origin, a clone the wrapper works in, and a second clone for racing pushes."""
 
-    def __init__(self):
+    def __init__(self, toggle_on_main=True):
         self.tmp = Path(tempfile.mkdtemp(prefix="lease-merge-test-"))
         self.origin = self.tmp / "origin.git"
         run(["git", "init", "-q", "--bare", "-b", "main", str(self.origin)])
         seed = self.tmp / "seed"
         run(["git", "init", "-q", "-b", "main", str(seed)])
+        toggle_files = (("coordination/execution_owner.py", (HERE / "execution_owner.py").read_text()),
+                        ("coordination/execution-owner.json", (HERE / "execution-owner.json").read_text()))
         for relative, content in (("coordination/run_lock.py", (HERE / "run_lock.py").read_text()),
-                                  ("coordination/execution_owner.py", (HERE / "execution_owner.py").read_text()),
-                                  ("coordination/execution-owner.json", (HERE / "execution-owner.json").read_text()),
+                                  *(toggle_files if toggle_on_main else ()),
                                   ("tools/check.py", CHECK_STUB),
                                   ("scripts/check-public-content.sh", PUBLIC_CONTENT_STUB),
                                   ("README.md", "scratch\n")):
@@ -125,6 +126,9 @@ class Scratch:
         git(lock, "push", "-q", str(self.origin), "lock:" + LOCK_REF)
         git(seed, "checkout", "-q", "-b", "pr")
         (seed / "feature.txt").write_text("the reviewed change\n")
+        if not toggle_on_main:  # the reviewed pull request is the one that adds the toggle
+            for relative, content in toggle_files:
+                (seed / relative).write_text(content)
         git(seed, "add", "-A")
         git(seed, "commit", "-q", "-m", "the reviewed change")
         self.head = git(seed, "rev-parse", "HEAD")
@@ -211,6 +215,56 @@ class LeaseMergeTests(unittest.TestCase):
         self.assertIn("does not allow openai to run heavy work", result.stderr)
         self.assertNothingPushedAndLeaseFree(before)
         self.assertEqual(self.s.lock_state()["released_by"], "seed")  # the lease was never taken
+
+    def test_the_pull_request_that_adds_the_toggle_merges_through_the_bootstrap_path(self):
+        s = Scratch(toggle_on_main=False)
+        self.addCleanup(s.close)
+        before = s.main_head()
+        result = s.run(TOGGLE_BOOTSTRAP_PR="7")
+        self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
+        self.assertIn("BOOTSTRAP: main has no execution-owner configuration", result.stdout)
+        merged = s.main_head()
+        self.assertNotEqual(merged, before)
+        tree = git(s.origin, "ls-tree", "-r", "--name-only", merged)
+        self.assertIn("coordination/execution-owner.json", tree)
+        self.assertEqual(s.lock_state()["released_by"], OWNER)
+
+    def test_without_the_bootstrap_variable_a_main_with_no_toggle_fails_closed(self):
+        s = Scratch(toggle_on_main=False)
+        self.addCleanup(s.close)
+        before = s.main_head()
+        result = s.run()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("no execution-owner library on main", result.stderr)
+        self.assertEqual(s.main_head(), before)
+        self.assertEqual(s.lock_state()["released_by"], "seed")
+
+    def test_the_bootstrap_is_refused_once_main_has_a_toggle(self):
+        before = self.s.main_head()
+        result = self.s.run(TOGGLE_BOOTSTRAP_PR="7")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("bootstrap refused: main already has an execution-owner", result.stderr)
+        self.assertNothingPushedAndLeaseFree(before)
+        self.assertEqual(self.s.lock_state()["released_by"], "seed")
+
+    def test_the_bootstrap_for_another_pull_request_number_is_refused(self):
+        s = Scratch(toggle_on_main=False)
+        self.addCleanup(s.close)
+        before = s.main_head()
+        result = s.run(TOGGLE_BOOTSTRAP_PR="8")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("TOGGLE_BOOTSTRAP_PR is 8 but this run merges PR 7", result.stderr)
+        self.assertEqual(s.main_head(), before)
+
+    def test_the_bootstrap_still_enforces_the_owner_lane_from_the_reviewed_head(self):
+        s = Scratch(toggle_on_main=False)
+        self.addCleanup(s.close)
+        before = s.main_head()
+        result = s.run(TOGGLE_BOOTSTRAP_PR="7", RUNNER_LANE="openai")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("does not allow openai to run heavy work", result.stderr)
+        self.assertEqual(s.main_head(), before)
+        self.assertEqual(s.lock_state()["released_by"], "seed")
 
     def test_a_missing_toggle_configuration_fails_closed(self):
         self.s.push_main_change(remove="coordination/execution-owner.json")
