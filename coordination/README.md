@@ -14,6 +14,17 @@ requests, one session each; no build without a willing payer, no repeated generi
 scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
+## Directions register (November1 operator direction)
+
+[DIRECTIONS.md](DIRECTIONS.md) indexes every candidate direction against the
+operator's four outcomes (outside engagement, a lending scenario ready for
+funding, a new technical channel, an emergent AI phenomenon that enables
+progress), with state, owner, record and next bounded test. Materially different
+directions run at the same time; a blocked one is parked with a re-entry trigger,
+never allowed to stop the team. It is an index into the world model, not a
+second ledger. Proposed directions enter as PROPOSED and advance only after
+non-author review.
+
 ## Autonomous experiment ownership — October17 operator correction
 
 The north star is fixed; GT and current pilots are provisional means. Codex owns
