@@ -132,6 +132,40 @@ def ruin_probability(terms: LoanTerms, reserve: float, loans: int, runs: int, se
     }
 
 
+DESIGN_BAND = (0.03, 0.05, 0.10)
+
+
+def design_proof(principal: float = 20.0, cost_per_loan: float = 0.02, reserve: float = 100.0,
+                 loans: int = 500, runs: int = 2000, seed: int = 11, ruin_threshold: float = 0.01) -> list[dict]:
+    """Which parameter sets keep expected net per loan positive across the 3% to 10% default band.
+
+    Steward change C1(a), 2026-11-01: a design passes only if every point of the band has
+    positive expected net AND the seeded ruin estimate stays under `ruin_threshold`.
+    Candidates vary term, annual rate and the share of a loss that stakers absorb.
+    """
+    candidates = (
+        ("live rate, 30 days, full loss to pool", 30, 0.0933, 1.0),
+        ("live rate, 90 days, full loss to pool", 90, 0.0933, 1.0),
+        ("live rate, 90 days, stakers cover 80%", 90, 0.0933, 0.2),
+        ("18.33% (10%-default calibration row), 90 days, stakers cover 80%", 90, 0.1833, 0.2),
+        ("live rate, 90 days, stakers cover 100%", 90, 0.0933, 0.0),
+    )
+    rows = []
+    for label, term, apr, lgd in candidates:
+        points = []
+        for d in DESIGN_BAND:
+            t = LoanTerms(principal, term, apr, d, lgd, cost_per_loan)
+            ruin = ruin_probability(t, reserve, loans, runs, seed=seed, floor=5.0)
+            points.append({"default_per_loan": d, "expected_net_per_loan": round(expected_net(t), 4),
+                           "annual_growth_at_half_utilisation": round(annual_growth_rate(t, 0.5), 4),
+                           "ruin_probability": ruin["ruin_probability"],
+                           "median_final_reserve": round(ruin["median_final_reserve"], 1)})
+        passes = all(p["expected_net_per_loan"] > 0 and p["ruin_probability"] < ruin_threshold for p in points)
+        rows.append({"design": label, "term_days": term, "apr": apr, "loss_given_default": lgd,
+                     "principal": principal, "cost_per_loan": cost_per_loan, "passes_band": passes, "points": points})
+    return rows
+
+
 def table(principal: float = 25.0) -> list[dict]:
     rows = []
     for term in (30, 90):
@@ -156,9 +190,14 @@ def main(argv=None) -> int:
     parser.add_argument("--loans", type=int, default=100)
     parser.add_argument("--runs", type=int, default=2000)
     parser.add_argument("--table", action="store_true", help="print the break-even table only")
+    parser.add_argument("--design-proof", action="store_true",
+                        help="which designs keep expected net positive across the 3%% to 10%% default band")
     args = parser.parse_args(argv)
     if args.table:
         print(json.dumps(table(args.principal), indent=1))
+        return 0
+    if args.design_proof:
+        print(json.dumps(design_proof(runs=args.runs), indent=1))
         return 0
     terms = LoanTerms(args.principal, args.term_days, args.apr, args.default_per_loan, args.lgd, args.cost)
     out = {

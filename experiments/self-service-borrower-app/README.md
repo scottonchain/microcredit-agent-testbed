@@ -48,6 +48,8 @@ run as a test, not a demonstration. It needs:
 3. no ETH at all, which is the point: every step's gas is paid in USDC through the
    paymaster, 10% surcharge.
 
+Steward condition (2026-11-01): no session runs the live path with a funded key it holds; a fork rehearsal and a headless passkey test come first, then a run by an independent operator with their own throwaway key.
+
 The demo stakes the account's own USDC to open its first loan, so it proves the
 plumbing (no wallet software, no ETH, borrow, send, repay) and nothing about
 creditworthiness, demand or benefit. A passkey signer is the next step and is

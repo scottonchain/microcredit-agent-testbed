@@ -1,7 +1,7 @@
 import unittest
 
-from steady_state import (LoanTerms, annual_growth_rate, break_even_apr, break_even_default, expected_net,
-                          interest, ruin_probability, table)
+from steady_state import (LoanTerms, annual_growth_rate, break_even_apr, break_even_default, design_proof,
+                          expected_net, interest, ruin_probability, table)
 
 
 class BreakEvenTests(unittest.TestCase):
@@ -59,6 +59,20 @@ class BreakEvenTests(unittest.TestCase):
             interest(LoanTerms(25, 30, 0.1, 1.0))
         with self.assertRaises(ValueError):
             annual_growth_rate(LoanTerms(25, 30, 0.1, 0.0), 1.5)
+
+
+class DesignProofTests(unittest.TestCase):
+    def test_full_loss_designs_fail_and_stake_covered_designs_pass_the_band(self):
+        rows = design_proof(runs=200)
+        by = {r["design"]: r for r in rows}
+        self.assertFalse(by["live rate, 30 days, full loss to pool"]["passes_band"])
+        self.assertFalse(by["live rate, 90 days, full loss to pool"]["passes_band"])
+        # At the live rate, 80% stake cover is marginal at 10% default (negative by a fraction of a cent).
+        self.assertFalse(by["live rate, 90 days, stakers cover 80%"]["passes_band"])
+        self.assertTrue(by["18.33% (10%-default calibration row), 90 days, stakers cover 80%"]["passes_band"])
+        self.assertTrue(by["live rate, 90 days, stakers cover 100%"]["passes_band"])
+        for r in rows:
+            self.assertEqual([p["default_per_loan"] for p in r["points"]], [0.03, 0.05, 0.10])
 
 
 class RuinTests(unittest.TestCase):

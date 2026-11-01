@@ -1,6 +1,6 @@
 # Direction D7: self-service Omnequa borrower app with an embedded smart wallet
 
-Claude Code (AI), 2026-11-01. **Status: PROPOSED, awaiting non-author review.** Not a decision, a mandate, a deployment, a solicitation or financial authority. Written at the operator's direction on November 1 (chat session; the operator's words are summarised, not quoted as a receipt) to record the direction in a reviewable form so that it can become a roadmap if it passes review, alongside other directions in [DIRECTIONS.md](../DIRECTIONS.md). Base inspected: testbed `main` d858448 (model 0.1.195). Checkable arithmetic: `experiments/self-service-borrower-app/steady_state.py`.
+Claude Code (AI), 2026-11-01. **Status: GO for gates 1 to 3 only, zero money, with three changes applied below (steward session disposition by cross-session message, 2026-11-01 18:25 UTC; to be mirrored on board 15 by the steward). Gates 4 to 6 remain unreviewed and unauthorised.** Not a decision, a mandate, a deployment, a solicitation or financial authority. Written at the operator's direction on November 1 (chat session; the operator's words are summarised, not quoted as a receipt) to record the direction in a reviewable form so that it can become a roadmap if it passes review, alongside other directions in [DIRECTIONS.md](../DIRECTIONS.md). Base inspected: testbed `main` d858448 (model 0.1.195). Checkable arithmetic: `experiments/self-service-borrower-app/steady_state.py`.
 
 ## What the operator proposed
 
@@ -8,6 +8,8 @@ Claude Code (AI), 2026-11-01. **Status: PROPOSED, awaiting non-author review.** 
 2. An agent assesses creditworthiness and assigns a reputation score in the contract; borrowers borrow against it, repay, and their reputation rises; borrowers can stake reputation on others.
 3. A web-based Omnequa app that lets a borrower borrow USDC and send it, with an embedded smart wallet or an external wallet, so that anyone with the app can use it autonomously.
 4. The concept is proven when the 100 USDC grows instead of shrinks; the numbers may be adjusted so that defaults do not wipe out the interest; the system must be self-sustaining (growing) in steady state. More capital follows proof.
+
+**Change C2 (steward, 2026-11-01).** No public advertisement and no borrower invitation of any kind before gates 4 and 5 (lender of record, mainnet readiness) have passed. Gate 3 uses named people reached through existing relationships, not an advertisement.
 
 ## Outcome lane and the four questions
 
@@ -54,6 +56,20 @@ Longer terms help the ratio (interest scales with days, a per-borrower default d
 
 **Finite pool.** Expected-value neutrality is not solvency. At 5% default priced exactly to break even, fixed 25 USDC loans from 100 USDC end the pool in 53% of seeded 500-loan runs; with the NORTH_STAR exposure rule (no loan above a fifth of the reserve) the same pool is never exhausted in 2,000 runs and its median ends at 58, so the rule trades ruin for shrinkage. A design that grows: 20 USDC loans, 0.5% per-loan default, 2 cent cost, live rate, half utilisation gives about 1% growth a year, median 113 after 100 loans, 10th percentile 74. **Growth at the live price is detectable only over a year or more, and one default of 20 USDC sets it back two to four years.** The pre-registered test therefore has to be a count of defaults in N loans, not a balance comparison.
 
+## Design proof (change C1a), computed 2026-11-01
+
+`steady_state.py --design-proof`: 20 USDC loans, 2 cent per-loan cost, 100 USDC reserve, one-fifth exposure cap, 2,000 seeded runs of 500 loans. Ruin is below 1% for every candidate because the cap shrinks loans with the reserve, so the discriminating number is expected net per loan and the median final reserve.
+
+| Design | 3% default | 5% | 10% | Passes band |
+| --- | --- | --- | --- | --- |
+| Live 9.33%, 30 days, full loss to pool | net -0.47, median 23 | -0.87, 23 | -1.88, 22 | no |
+| Live 9.33%, 90 days, full loss to pool | -0.17, 28 | -0.58, 23 | -1.61, 23 | no |
+| Live 9.33%, 90 days, stakers cover 80% of loss | +0.31, 253 | +0.22, 209 | -0.006, 95 | no (marginal at 10%) |
+| 18.33% (the 10%-default calibration row), 90 days, stakers cover 80% | +0.74, 468 | +0.64, 419 | +0.39, 297 | yes |
+| Live 9.33%, 90 days, stakers cover 100% | +0.43, 313 | +0.42, 309 | +0.39, 297 | yes |
+
+Reading: at the live price with losses falling on the pool, no term in the band grows. The pool grows across the whole band only when stakers absorb most or all of each loss, which is the contract's existing structure (secured backing slashed first). That moves the question to the stakers: at 10% default a staker covering 80% of 20 USDC loans loses 1.60 USDC per loan on average and must be paid for it, so the design proof for the whole system (pool + stakes) still requires either the known-borrower default band (3% or below) or a priced backer share of interest (Design Question 2). The 18.33% row prices the pool for 10% default but at nearly twice the live rate.
+
 ## What the app would be
 
 - **Web app, no install, no key file.** A passkey-backed smart account (ERC-4337 account or EIP-7702 delegated EOA) created in the browser; the team never holds a key. Gas paid in USDC through Circle Paymaster; the first transaction of a fresh account funded by the relayer (a subsidy to count in `c`). External wallet connection remains as the second path.
@@ -65,7 +81,7 @@ Longer terms help the ratio (interest scales with days, a per-borrower default d
 ## Gates this direction must pass, in order
 
 1. **Review** of this document by a non-author (the steward session or Codex): GO to a roadmap, CHANGE, or PARK with a re-entry trigger.
-2. **Technical demonstration on testnet, zero money at risk:** a non-technical tester with no wallet borrows 5 test USDC through a passkey smart account, sends it to another address, repays, with gas paid in test USDC; every transaction hash recorded; paymaster testnet availability measured or a test paymaster substituted. This is the technical-channel evidence and needs no new authority.
+2. **Technical demonstration on testnet, zero money at risk** (steward condition: no funded key held by a session; a fork rehearsal and the preinstalled browser's WebAuthn virtual authenticator first, then a run with a key held by an independent operator): a non-technical tester with no wallet borrows 5 test USDC through a passkey smart account, sends it to another address, repays, with gas paid in test USDC; every transaction hash recorded; paymaster testnet availability measured or a test paymaster substituted. This is the technical-channel evidence and needs no new authority.
 3. **People before money:** five named prospective borrowers and five people willing to stake their own 5 to 20 USDC on them, with the stated purpose of each loan. If no one will stake on a borrower, no agent score should either, and the direction parks here.
 4. **Legal:** counsel names the lender of record and the rules for the borrowers' jurisdiction (claim `lender-of-record-required`); consumer disclosure in plain words before acceptance.
 5. **Mainnet readiness** as already recorded in `action:mainnet-readiness`: audit and bounty of the fixed source, a deployed fixed pool, a funded reserve, a measured cash-out round trip.
@@ -80,7 +96,7 @@ Longer terms help the ratio (interest scales with days, a per-borrower default d
 | Backing | Each loan backed by a named person's own stake of at least 25% of principal |
 | Term and price | 30 to 90 days; live rate unless the break-even table and measured `c` require a stated premium, disclosed in local currency before acceptance |
 | N | 20 loans |
-| Growth test | Pool + stakes + reserve at the end of 20 loans, against the start, with `c` itemised |
+| Success criterion (change C1) | Two parts, neither alone suffices. (a) **Design proof:** parameters (term, price, cap, backing share, per-loan cost) at which expected net per loan is positive at every point of the 3% to 10% default band and a 2,000-run seeded simulation keeps ruin below 1%. (b) **Pilot statistic:** observed default count, per-loan cost and loss given default over the 20 loans with exact binomial bounds, reported beside pool + stakes + reserve (change C3: stakers' losses always counted with the pool). A balance comparison alone is underpowered and is not the test. |
 | Human test | For each loan, the purchase or activity it made possible and the earnings reported, with a NO_LOAN comparison |
 | Stop | Two defaults in the first 20; any consumer-protection failure; any zero-purpose loan |
 
