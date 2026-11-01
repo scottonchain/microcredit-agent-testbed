@@ -81,7 +81,7 @@ async function renderHome() {
     <div class="row" style="margin-top:8px"><span class="muted">${short(S.addr)}</span><button class="link" id="copyAddr">Copy address</button></div></div>
   <div class="card"><div class="muted">${active || waiting ? 'Your credit limit' : 'You can borrow up to'}</div><div class="big" id="avail">${C.money(active || waiting ? s.limit : s.available)}</div>
     <p class="muted">${s.limit === 0n ? 'You have no credit yet. <a href="#credit">How to get credit</a>' : active || waiting ? `You can borrow again after you pay this loan back. Interest is ${apr.toFixed(2)}% a year.` : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
-  ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Backing</h2>${s.backedBy.length ? `<div class="muted">Backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
+  ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Backing</h2>${s.backedBy.length ? `<div class="muted">Backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><span><b>${C.money(b.amount)}</b> <a href="#back?to=${esc(b.who)}">Change</a></span></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
   ${waiting ? `<div class="note warn">A loan of ${C.money(waiting.principal)} was requested but not paid out.<div class="grid"><button id="finish">Finish it</button><button class="secondary" id="cancelReq">Cancel it</button></div></div>` : ''}
   ${active ? `<div class="card"><div class="muted">You owe</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day.</p><button id="payNow">Pay back</button></div>` : ''}
   ${s.defaulted ? '<div class="note bad">This wallet has a defaulted loan and cannot borrow again.</div>' : ''}
@@ -190,24 +190,31 @@ function renderCredit() {
 async function renderBack() {
   const s = S.snap || (await refresh());
   const [credit, freeStake] = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getFreeCredit', args: [S.addr] });
+  const q = new URLSearchParams((location.hash.split('?')[1]) || ''); const pre = q.get('to') || '';
   app.innerHTML = `${header('Back a friend')}
-  <div class="card"><p>Backing lets a friend borrow against <b>your</b> guarantee. If they do not pay back, the amount you backed with can be lost. Back only people you trust, with test money.</p><div class="muted">Backing uses your own credit first, so it can lower how much you can borrow yourself. You can back up to ${C.money(credit + freeStake)} without adding more. You have ${C.money(s.usdcBal)} in your wallet to lock as new stake.</div></div>
-  <label for="to">Friend's wallet address</label><input id="to" placeholder="0x…" autocapitalize="off" autocorrect="off" spellcheck="false">
-  <label for="amt">Amount to back (min $1.00)</label><input id="amt" inputmode="decimal" placeholder="e.g. 10"><div id="warn"></div><div id="plan" class="note ok" hidden></div>
-  <button id="go" style="margin-top:12px">Back this friend</button>`;
-  const upd = () => { const v = C.parseUsd($('#amt').value); const p = $('#plan'); if (!v) { p.hidden = true; return; } const need = v > credit + freeStake ? v - (credit + freeStake) : 0n; p.hidden = false; p.innerHTML = need > 0n ? `This will lock <b>${C.money(need)}</b> of your wallet's USDC as new stake, then back your friend with ${C.money(v)}.` : `This uses ${C.money(v)} of your free credit or stake.`; };
-  $('#amt').oninput = upd;
+  <div class="card"><p>Backing lets a friend borrow against <b>your</b> guarantee. If they do not pay back, the amount you backed with can be lost. Back only people you trust, with test money.</p><div class="muted">Backing uses your own credit first, so it can lower how much you can borrow yourself. You can back up to ${C.money(credit + freeStake)} more without adding stake. You have ${C.money(s.usdcBal)} in your wallet to lock as new stake.</div></div>
+  <label for="to">Friend's wallet address</label><input id="to" value="${esc(pre)}" placeholder="0x…" autocapitalize="off" autocorrect="off" spellcheck="false">
+  <div id="cur" class="muted"></div>
+  <label for="amt">Total you back them with (min $1.00, or 0 to remove)</label><input id="amt" inputmode="decimal" placeholder="e.g. 10"><div id="warn"></div><div id="plan" class="note ok" hidden></div>
+  <button id="go" style="margin-top:12px">Save backing</button>`;
+  let cur = 0n;
+  const readCur = async () => { const to = $('#to').value.trim(); cur = 0n; if (C.isAddress(to)) { const bk = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getBacking', args: [S.addr, C.getAddress(to)] }); cur = bk[0] + bk[1]; } $('#cur').textContent = cur > 0n ? `You currently back this friend with ${C.money(cur)}. Enter the new total.` : ''; upd(); };
+  const upd = () => { const v = C.parseUsd($('#amt').value); const p = $('#plan'); if (v === null) { p.hidden = true; return; } const total = credit + freeStake;
+    if (v < cur) { p.hidden = false; p.innerHTML = v === 0n ? `This removes your backing of ${C.money(cur)}. It only works if your friend does not owe more than their remaining limit.` : `This lowers your backing from ${C.money(cur)} to ${C.money(v)}. It only works if your friend does not owe more than their remaining limit.`; return; }
+    const extra = v - cur; const need = extra > total ? extra - total : 0n; p.hidden = false; p.innerHTML = extra === 0n ? 'Nothing changes.' : need > 0n ? `This adds ${C.money(extra)}. It will lock <b>${C.money(need)}</b> of your wallet's USDC as new stake.` : `This adds ${C.money(extra)} using your free credit or stake.`; };
+  $('#to').oninput = readCur; $('#amt').oninput = upd; if (pre) readCur();
   $('#go').onclick = async () => {
     const to = $('#to').value.trim(), v = C.parseUsd($('#amt').value); const w = $('#warn'); w.innerHTML = '';
     if (!C.isAddress(to)) { w.innerHTML = '<div class="note warn">That is not a valid wallet address.</div>'; return; }
-    if (!v) { w.innerHTML = '<div class="note warn">Enter an amount.</div>'; return; }
-    if (v < 1000000n) return refuse('BackingTooSmall');
+    if (v === null) { w.innerHTML = '<div class="note warn">Enter an amount.</div>'; return; }
     if (to.toLowerCase() === S.addr.toLowerCase()) return refuse('SelfBacking');
-    const total = credit + freeStake; const need = v > total ? v - total : 0n;
-    if (need > s.usdcBal) { w.innerHTML = `<div class="note warn">To back ${C.money(v)} you need ${C.money(need)} more test USDC in your wallet to lock as stake. Get some from the faucet.</div>`; return; }
+    if (v !== 0n && v < 1000000n) return refuse('BackingTooSmall');
+    await readCur(); const total = credit + freeStake; const extra = v > cur ? v - cur : 0n; const need = extra > total ? extra - total : 0n;
+    if (need > s.usdcBal) { w.innerHTML = `<div class="note warn">To add ${C.money(extra)} you need ${C.money(need)} more test USDC in your wallet to lock as stake. Get some from the faucet.</div>`; return; }
+    if (v === cur) { w.innerHTML = '<div class="note warn">That is what you already back them with.</div>'; return; }
     const calls = []; if (need > 0n) { calls.push(C.usdcCall('approve', [C.cfg.pool, need])); calls.push(C.poolCall('stake', [need])); }
     calls.push(C.poolCall('back', [C.getAddress(to), v]));
-    await run('Back ' + short(to), calls, { summary: async () => { const lim = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getBorrowLimit', args: [C.getAddress(to)] }); return `<p>${esc(short(to))} can now borrow up to <b>${C.money(lim[0])}</b>.</p>`; } });
+    await run((v === 0n ? 'Remove backing for ' : 'Back ') + short(to), calls, { summary: async () => { const lim = await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'getBorrowLimit', args: [C.getAddress(to)] }); return `<p>${esc(short(to))} can now borrow up to <b>${C.money(lim[0])}</b>.</p>`; } });
   };
 }
 
@@ -225,7 +232,7 @@ function renderHelp() {
 const routes = { home: renderHome, borrow: renderBorrow, repay: renderRepay, send: renderSend, receive: renderReceive, back: renderBack, help: renderHelp, credit: renderCredit };
 export function render() {
   if (!S.cred) return renderWelcome();
-  const r = (location.hash || '#home').slice(1); window.scrollTo(0, 0);
+  const r = (location.hash || '#home').slice(1).split('?')[0]; window.scrollTo(0, 0);
   Promise.resolve().then(() => (routes[r] || renderHome)()).catch((e) => { app.innerHTML = `<div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 300))}</pre>`; });
 }
 async function boot() {

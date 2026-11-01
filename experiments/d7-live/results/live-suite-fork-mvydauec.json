@@ -1,0 +1,299 @@
+{
+ "when": "2026-11-01T21:54:28.725Z",
+ "rpc": "fork",
+ "paymaster": "0x7383e3103f316a771a1c4e0fd2d37200c59092b6",
+ "backer": "0xd3a5Ee10B97a06a59E5a40380A508bF993A6D630",
+ "borrower": "0xB828693B2119a822bE1bd9bebBd6B33B05178417",
+ "results": [
+  {
+   "name": "L0 fund the wallets from the treasury (plain USDC transfers)",
+   "ok": true,
+   "ms": 216,
+   "checks": [
+    {
+     "n": "backer has 8",
+     "ok": true,
+     "got": "8",
+     "want": "8"
+    },
+    {
+     "n": "borrower has 1",
+     "ok": true,
+     "got": "1",
+     "want": "1"
+    }
+   ]
+  },
+  {
+   "name": "L1 a fresh passkey wallet with no credit is refused in plain words",
+   "ok": true,
+   "ms": 3999,
+   "checks": [
+    {
+     "n": "preflight says NoCredit",
+     "ok": true,
+     "got": "NoCredit",
+     "want": "NoCredit"
+    },
+    {
+     "n": "operation reports failure",
+     "ok": true,
+     "got": "false",
+     "want": "false"
+    },
+    {
+     "n": "revert named NoCredit",
+     "ok": true,
+     "got": "true",
+     "want": "true",
+     "note": "NoCredit"
+    }
+   ]
+  },
+  {
+   "name": "L2 backer stakes 6 in one operation (approve + stake)",
+   "ok": true,
+   "ms": 620,
+   "checks": [
+    {
+     "n": "ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "stake is 6",
+     "ok": true,
+     "got": "6",
+     "want": "6"
+    }
+   ]
+  },
+  {
+   "name": "L3 backer backs the borrower with 5; the borrower limit becomes 5",
+   "ok": true,
+   "ms": 1239,
+   "checks": [
+    {
+     "n": "ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "limit 5",
+     "ok": true,
+     "got": "5",
+     "want": "5"
+    }
+   ]
+  },
+  {
+   "name": "L4 refusals with real transactions: committed stake, self-backing, below the minimum",
+   "ok": true,
+   "ms": 3226,
+   "checks": [
+    {
+     "n": "unstake committed (preflight)",
+     "ok": true,
+     "got": "StakeCommitted",
+     "want": "StakeCommitted"
+    },
+    {
+     "n": "self-backing (preflight)",
+     "ok": true,
+     "got": "SelfBacking",
+     "want": "SelfBacking"
+    },
+    {
+     "n": "below minimum (preflight)",
+     "ok": true,
+     "got": "BackingTooSmall",
+     "want": "BackingTooSmall"
+    }
+   ]
+  },
+  {
+   "name": "L5 borrower borrows 4 (request + payout in one operation) and owns the cash",
+   "ok": true,
+   "ms": 1733,
+   "checks": [
+    {
+     "n": "ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "borrower holds 5",
+     "ok": true,
+     "got": "5",
+     "want": "5"
+    },
+    {
+     "n": "loan active",
+     "ok": true,
+     "got": "2",
+     "want": "2"
+    }
+   ]
+  },
+  {
+   "name": "L6 over the limit is refused before any signature",
+   "ok": true,
+   "ms": 1074,
+   "checks": [
+    {
+     "n": "borrow 2 more -> BorrowLimitExceeded",
+     "ok": true,
+     "got": "BorrowLimitExceeded",
+     "want": "BorrowLimitExceeded"
+    }
+   ]
+  },
+  {
+   "name": "L7 borrower repays everything in one operation (approve + repay)",
+   "ok": true,
+   "ms": 767,
+   "checks": [
+    {
+     "n": "ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "loan repaid",
+     "ok": true,
+     "got": "3",
+     "want": "3"
+    },
+    {
+     "n": "history recorded (completed loans = 1)",
+     "ok": true,
+     "got": "true",
+     "want": "true",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "name": "L8 a second, smaller loan works and is repaid (the cycle repeats)",
+   "ok": true,
+   "ms": 1242,
+   "checks": [
+    {
+     "n": "borrow ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "repay ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "repaid",
+     "ok": true,
+     "got": "3",
+     "want": "3"
+    }
+   ]
+  },
+  {
+   "name": "L9 backer lowers the backing to zero and unstakes everything",
+   "ok": true,
+   "ms": 538,
+   "checks": [
+    {
+     "n": "lower ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "unstake ok",
+     "ok": true,
+     "got": "true",
+     "want": "true"
+    },
+    {
+     "n": "stake 0",
+     "ok": true,
+     "got": "0",
+     "want": "0"
+    }
+   ]
+  },
+  {
+   "name": "L10 recycle: both wallets send their USDC back to the treasury",
+   "ok": true,
+   "ms": 516,
+   "checks": [
+    {
+     "n": "treasury has its USDC back (within interest)",
+     "ok": true,
+     "got": "true",
+     "want": "true",
+     "note": "20"
+    }
+   ]
+  }
+ ],
+ "hashes": [
+  {
+   "label": "treasury -> backer 8 USDC",
+   "tx": "0xad2b81c1f8d3b8471a1e28b7102980b520c09065bfdeae541ea37ec4d22582de"
+  },
+  {
+   "label": "treasury -> borrower 1 USDC",
+   "tx": "0xb93f6cb2a9ef1cf4558e958865013fb90ad6ffb82e3cb4b9079eb89b0871947f"
+  },
+  {
+   "label": "borrow without credit (mined, inner revert)",
+   "tx": "0xcfc2be571bb7947869b2031c70f50ca96276a4ab328de7b2ae0f90e0c0192e98"
+  },
+  {
+   "label": "backer approve+stake 6",
+   "tx": "0x7fed6d56c0d98b277ddcbfc1e10874099f65d6ada144aea13824fabddca5e4cf"
+  },
+  {
+   "label": "backer back borrower 5",
+   "tx": "0xb6f5b383d5386bc57b47a7aebc6dfb9f97c901551c39a23906723bedd4a29b0b"
+  },
+  {
+   "label": "borrower borrow 4",
+   "tx": "0xc26630bedbae65d7fa87170db031fe3064f760ed0135e9720cec47669df5966d"
+  },
+  {
+   "label": "borrower repay all",
+   "tx": "0x13281d76fd5262d76d4eb145b7ccb283859b2b79949b4d3485ff8f1d2fb7cb57"
+  },
+  {
+   "label": "borrower borrow 2 (second)",
+   "tx": "0x4c83831481c3d26bacba8bc6aca24037ab1cfbbf90f97d7be7a280928eb10ff3"
+  },
+  {
+   "label": "borrower repay second",
+   "tx": "0xc8788717871ceccca9a08f962d64f486deff9ff2b2d961ae0ffcb4932c50b41c"
+  },
+  {
+   "label": "backer lower backing to 0",
+   "tx": "0x7e841a97cc0f9bc8520f1174a95b0ea07714bfdd25d2e1b2211e284a6b9167ac"
+  },
+  {
+   "label": "backer unstake 6",
+   "tx": "0x06edaa8266ef29e97a18eea97d6f8bb9ebe84026ad81f79022cf80cb6408fc59"
+  },
+  {
+   "label": "return USDC to treasury",
+   "tx": "0x9ade667b7bdee33a9c21fb68245451b782f8d2b557e1a45f6a1f887a71ac5231"
+  },
+  {
+   "label": "return USDC to treasury",
+   "tx": "0x0380e89a13068f0f1deaeeb5aac5f306011b4910f16b7f1ee35ddfe23f6db6e3"
+  }
+ ]
+}

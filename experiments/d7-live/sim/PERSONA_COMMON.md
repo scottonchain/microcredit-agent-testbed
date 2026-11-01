@@ -18,11 +18,11 @@ Run from the folder `/tmp/claude-0/-home-user-microcredit-contract/570fe25d-c591
 
 Commands (output is JSON; `message` is what the real app would tell a person):
 - `status` your money, credit limit, who backs you and whom you back, loans, stake, history, and pool numbers
-- `world` pool numbers, everyone's active loans (name, amount, days to due, days overdue), names of people, recent posts on the community board
+- `world` pool numbers, everyone's active loans (name, amount, who backs that borrower and with how much, days to due, days overdue), names of people, recent posts on the community board
 - `borrow <amount>` borrow now (up to what `status` says you can borrow)
 - `repay [amount|all]` repay your loan (default all, with a tiny buffer)
 - `send <name> <amount>` send money to someone
-- `back <name> <amount>` back someone with your own stake or credit (locks your money if you have no free credit)
+- `back <name> <amount>` set the TOTAL you back that person with to <amount> (it is not added to what you already back). It uses your own free credit first, then locks your own money as stake if needed. Use `back <name> 0` to remove your backing; lowering only works if they do not owe more than their remaining limit
 - `stake <amount>` / `unstake <amount>` lock or unlock your own money
 - `deposit <amount>` / `withdraw <amount|all>` lend to the pool / take your lending back
 - `default <loanId>` mark an overdue loan defaulted (only works once it is allowed)

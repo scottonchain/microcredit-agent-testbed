@@ -1,8 +1,8 @@
 {
   "chainId": 84532,
-  "rpcs": ["https://sepolia.base.org"],
-  "bundler": "",
-  "paymaster": "",
+  "rpcs": ["https://sepolia.base.org", "https://base-sepolia-rpc.publicnode.com", "https://base-sepolia.drpc.org"],
+  "bundler": "https://public.pimlico.io/v2/84532/rpc",
+  "paymaster": "0x7383e3103f316a771a1c4e0fd2d37200c59092b6",
   "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
   "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
   "explorer": "https://sepolia.basescan.org",

@@ -38,10 +38,21 @@ contract SponsorPaymaster {
     address public immutable usdc;
     address public immutable walletFactory;
     address public owner;
-    uint256 public capPerSender; // lifetime cap of sponsored gas cost (wei) per wallet
+    uint256 public immutable capPerSender; // lifetime cap of sponsored gas cost (wei) per wallet
+    // The only storage validation touches is spent[sender], which is associated with the sender (ERC-7562), so a
+    // bundler accepts this paymaster without a stake. Everything else it reads is immutable or constant.
     mapping(address => uint256) public spent;
 
-    mapping(bytes4 => bool) private poolAllowed;
+    bytes4 private constant REQUEST_LOAN = bytes4(keccak256("requestLoan(uint256)"));
+    bytes4 private constant DISBURSE_LOAN = bytes4(keccak256("disburseLoan(uint256)"));
+    bytes4 private constant CANCEL_LOAN = bytes4(keccak256("cancelLoan(uint256)"));
+    bytes4 private constant REPAY_LOAN = bytes4(keccak256("repayLoan(uint256,uint256)"));
+    bytes4 private constant BACK = bytes4(keccak256("back(address,uint256)"));
+    bytes4 private constant STAKE = bytes4(keccak256("stake(uint256)"));
+    bytes4 private constant UNSTAKE = bytes4(keccak256("unstake(uint256)"));
+    bytes4 private constant DEPOSIT = bytes4(keccak256("depositFunds(uint256)"));
+    bytes4 private constant WITHDRAW = bytes4(keccak256("withdrawFunds(uint256)"));
+    bytes4 private constant SET_NAME = bytes4(keccak256("setDisplayName(string)"));
     bytes4 private constant EXECUTE = 0xb61d27f6; // execute(address,uint256,bytes)
     bytes4 private constant EXECUTE_BATCH = 0x34fcd5be; // executeBatch((address,uint256,bytes)[])
     bytes4 private constant APPROVE = 0x095ea7b3; // approve(address,uint256)
@@ -60,12 +71,11 @@ contract SponsorPaymaster {
         walletFactory = _factory;
         capPerSender = _cap;
         owner = msg.sender;
-        string[10] memory sigs = [
-            "requestLoan(uint256)", "disburseLoan(uint256)", "cancelLoan(uint256)", "repayLoan(uint256,uint256)",
-            "back(address,uint256)", "stake(uint256)", "unstake(uint256)", "depositFunds(uint256)",
-            "withdrawFunds(uint256)", "setDisplayName(string)"
-        ];
-        for (uint256 i = 0; i < sigs.length; i++) poolAllowed[bytes4(keccak256(bytes(sigs[i])))] = true;
+    }
+
+    function _poolAllowed(bytes4 sel) internal pure returns (bool) {
+        return sel == REQUEST_LOAN || sel == DISBURSE_LOAN || sel == CANCEL_LOAN || sel == REPAY_LOAN || sel == BACK
+            || sel == STAKE || sel == UNSTAKE || sel == DEPOSIT || sel == WITHDRAW || sel == SET_NAME;
     }
 
     modifier onlyOwner() { if (msg.sender != owner) revert NotOwner(); _; }
@@ -114,7 +124,7 @@ contract SponsorPaymaster {
         bytes4 sel;
         assembly { sel := mload(add(inner, 32)) }
         if (target == pool) {
-            if (!poolAllowed[sel]) revert BadCall();
+            if (!_poolAllowed(sel)) revert BadCall();
         } else if (target == usdc) {
             if (sel == APPROVE) {
                 if (inner.length != 68) revert BadCall();
@@ -137,6 +147,5 @@ contract SponsorPaymaster {
     function unlockStake() external onlyOwner { entryPoint.unlockStake(); }
     function withdrawStake(address payable to) external onlyOwner { entryPoint.withdrawStake(to); }
     function withdrawDeposit(address payable to, uint256 amount) external onlyOwner { entryPoint.withdrawTo(to, amount); }
-    function setCap(uint256 cap) external onlyOwner { capPerSender = cap; }
     function transferOwnership(address next) external onlyOwner { owner = next; }
 }
