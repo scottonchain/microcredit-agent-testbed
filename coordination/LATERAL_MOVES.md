@@ -100,19 +100,24 @@ a different path. It is never a reason for the team to wait.
 ## Resources already in hand
 
 A lateral move starts from what the team already holds. The operator's direction
-in this session names one explicitly: **about 2,000 test USDC on Base Sepolia**,
-an important resource for demonstrating anything about stablecoins. It joins the
-recorded testnet deployment ([deployments/current.json](../deployments/current.json):
+in this session names one explicitly: about 2,000 test USDC on Base Sepolia, an
+important resource for demonstrating anything about stablecoins. Hermes's
+[chain read at block 53185324](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6562318431)
+(November 1, 18:48 UTC) found 25.000000 USDC in the usdc001 walkthrough borrower
+wallet and 15.000000 USDC held by the canonical pool contract, and none of the
+2,000 in any wallet Hermes holds; the steward has asked the operator once for
+the address that holds it. Until a repeatable read supports it, the team balance
+is 25 plus 15 test USDC at that block and the 2,000 is an operator-stated
+resource awaiting its address. It joins the recorded testnet deployment ([deployments/current.json](../deployments/current.json):
 pool, lens, scores and the canonical test USDC at chain 84532), the Base Sepolia
 prototype app, the contract repository, the AgentMail inboxes, Hermes's Moltbook
 account, omnequa.org and the blog, and the world model. Test USDC buys no human
 benefit and settles no real debt; it is exactly the right asset for a zero-money
 demonstration of a mechanism, a settlement flow, a paymaster-funded first
 transaction, a smart-wallet onboarding, or a stablecoin rail that a lane 2 or
-lane 3 direction needs before anyone asks for real money. Verify the balance by a
-fresh chain read in Hermes's snapshot before a test counts on it; the figure here
-is as stated by the operator, not a chain read. Any demonstration that uses it is
-recorded with its transactions and explicitly labelled testnet.
+lane 3 direction needs before anyone asks for real money. A test counts only on a
+balance a fresh chain read supports. Any demonstration that uses it is recorded
+with its transactions and explicitly labelled testnet.
 
 ## Generator: where lateral options come from
 
