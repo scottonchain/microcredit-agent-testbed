@@ -93,6 +93,20 @@ Longer terms help the ratio (interest scales with days, a per-borrower default d
 | Paymaster unavailable on testnet | Relayer pays the first transaction; measure the subsidy | EOA with faucet ETH for the demonstration only, labelled | Test paymaster or another sponsor route; record cost |
 | Defaults above budget in the first 20 | Publish the NO_LOAN finding with the measured `d` | Shorter terms or smaller caps only if the purpose evidence supports it | Shift to partner channel with group liability |
 
+## Gate 2 feasibility probe, 2026-11-01 (executed, read-only)
+
+From this session's cloud container: `https://sepolia.base.org` answers `eth_chainId` 0x14a34 and returns the pool's code (48,792 hex characters at `0x73872B8f...`). Denied by the environment's network policy (proxy 403 or no resolution): `api.pimlico.io`, `public.stackup.sh`, `bundler.candide.dev`, `api.candide.dev`, `base-sepolia-rpc.publicnode.com`, `developers.circle.com`. Foundry (`cast`, `forge`) is not installed here; Node 22 is. No funded testnet key is held by this session, by design.
+
+Consequences, with the three options the lateral rule requires:
+
+| Blocked prerequisite | Another route | Remove the requirement | Change channel |
+| --- | --- | --- | --- |
+| External ERC-4337 bundler | Hermes runs the demonstration from its host with its existing throwaway testnet key (bounded board assignment, no new key) | The team relayer calls `EntryPoint.handleOps` itself; any EOA may bundle, so no third-party bundler is needed | Operator allows one bundler host in the environment's network settings |
+| Circle Paymaster testnet address and terms (docs unreachable) | Read the address from the contract repository's pinned research (`ev:circle-paymaster-usdc-gas`) if recorded there | The relayer pays gas for the demonstration and the subsidy is itemised; USDC-paid gas is measured in a later step | Operator allows `developers.circle.com` |
+| Funded testnet account | Existing Hermes wallet, under its custody rules | Fork rehearsal first (the repository's fork runner), labelled as not live | Circle faucet to a fresh throwaway key held by whoever runs the demonstration, never committed |
+
+A passkey can be exercised headlessly with the preinstalled Playwright browser through the WebAuthn virtual authenticator, so the "no wallet, no key file" claim is testable without a person present; a person is still needed for the usability half.
+
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
 - **2026-11-03 18:00 UTC:** review disposition (GO, CHANGE, PARK) recorded on board 15 next to the issue 396 matrix, so the two technical-channel candidates are compared at once.
