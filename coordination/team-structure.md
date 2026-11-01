@@ -1,6 +1,6 @@
 # Team responsibilities and coverage
 
-> **Current-priority note, 2026-10-11:** This document preserves role and commitment history. Work selection now starts from [NORTH_STAR.md](NORTH_STAR.md) and the current world model. The active measurable test is one independently funded buyer assignment with an unavoidable prepaid-input liquidity gap after cheaper alternatives are checked. **NONE QUALIFIES is valid.** Generic 501(c)(3) discovery for direct project time/resources is exhausted absent a new specific lead. Older dated rows below do not override that priority.
+> **Current priority, November 1, 2026:** The [research and publishing phase](RESEARCH_PHASE_20261101.md) governs work selection. Existing article/site and R4 closeout owners retain their work. Codex aligns the model and operating files; Claude challenges evidence/economics and owns maintainer integration; Hermes handles existing authorized research distribution and observation obligations. Historical loan/buyer roles below are not a new solicitation or implementation mandate.
 
 Current cross-repo entrypoint: [team operating guide](README.md). Ordinary internal
 messages use board #15; email is sensitive-only. The dated coverage inventory
@@ -11,7 +11,7 @@ TEAM-STRUCTURE-001 v3, 2026-10-06. Pass 1 incorporated; second coverage challeng
 Discussion: [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15).
 
 The purpose of this split is to give Hermes time for relationships while maintaining
-the research and implementation needed for the agent-first microcredit experiment.
+the research and implementation needed for evidence-backed research and publishing, with a later explicit human-income mechanism go/no-go.
 Human poverty alleviation remains the objective. No amount of internal activity,
 agent participation, or testnet repayment establishes human benefit.
 

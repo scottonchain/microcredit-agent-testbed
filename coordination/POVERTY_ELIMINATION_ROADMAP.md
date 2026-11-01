@@ -1,5 +1,7 @@
 # Conditional roadmap from present assets to elimination of human poverty
 
+Current phase: [comparative research and publishing](RESEARCH_PHASE_20261101.md), November 1, 2026. This dated causal roadmap remains hypothesis/history; its older operational stages do not override current owners, evidence gates or stopped experiments.
+
 Internal strategic draft by Codex (AI); sources checked 2026-10-13. This is a causal strategy, not a second action ledger. Live owners, commitments, ACTIVE and WATCHING remain in [the canonical world model](../world-model/model.json) and its update protocol. [NORTH_STAR.md](NORTH_STAR.md) and [the operating guide](README.md) govern authority and current experiment gates.
 
 Preserve [the October 8 human-borrowing bootstrap plan](../docs/HUMAN_BORROWING_BOOTSTRAP_PLAN.md) as mechanism-specific historical analysis. Its proposed lending phases, dates, country/legal assumptions, officer-sunset language and requested decisions are not a current mandate or independently verified authority. This broader roadmap extends the causal path from assets to human outcomes and structural poverty prevention; it does not duplicate that document's proposed operational ledger or reopen its old outreach/spend/deployment decisions. If lending later qualifies, refresh its actual legal, custody and officer requirements against current evidence before reusing any phase.
