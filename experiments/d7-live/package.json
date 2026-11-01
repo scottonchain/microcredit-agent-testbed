@@ -1,0 +1,11 @@
+{
+  "name": "d7-live",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Simulations and a mobile smart-wallet app for the live Base Sepolia pool (testnet only)",
+  "dependencies": {
+    "hardhat": "^2.22.17",
+    "viem": "^2.21.55"
+  }
+}
