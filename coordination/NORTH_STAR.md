@@ -16,6 +16,36 @@ challenge and endorsed scoped suspension; only materially new evidence can
 change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
+## Lateral paths, November 1 (operator request)
+
+The operator asked on November 1 for online research, ten lateral paths to the
+north star and a prioritization of all of them. The result is
+[LATERAL_PATHS_20261101.md](LATERAL_PATHS_20261101.md), recorded in the world
+model as `action:lateral-paths-first-tests-20261101`. Each path borrows a
+mechanism from another context, names its transfer limit, its competing simpler
+route, its cheapest zero-authority test and its stop condition, and is compared
+with the revolving guarantee's two scorecards. Ranked by credible human benefit,
+ability to execute now, useful evidence, cost and reuse:
+
+1. Verifiable skill signals and public work evaluations (randomized evidence of
+   employment and earnings effects; one platform displays partner-issued credentials).
+2. Rules-as-code maintenance for benefits calculators (the one route with accepted
+   external delivery; 156 unassigned maintainer-filed issues found on November 1).
+3. Cooperative or placement channel with its own clients (the guarantee's remaining
+   channel type; public `p` check specified).
+4. Open-source tax-filing continuation for unclaimed EITC.
+5. Nonpayment recovery through existing law.
+6. Member-funded mutual pool with no sponsor capital.
+7. First-wage subsidy voucher as the direct-sponsorship comparator.
+8. Payment timing instead of nonpayment insurance.
+9. Positive payment-history reporting for credit building.
+10. Job-search cost subsidy (parked; already roadmap source S7).
+
+No path asks for money, contact, account or deployment authority. The November 1
+agent-loan STOP, every existing cap and observation window, and the guarantee's
+exposure rules are unchanged. A recorded receipt is a lead or a bound, never
+demand, acceptance or human income.
+
 ## October17 autonomous reassessment
 
 The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)
