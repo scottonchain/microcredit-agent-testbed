@@ -53,7 +53,9 @@ with cited evidence and Git history; do not overwrite unfavorable outcomes.
 
 `--recall` returns at most five annotated actions by lexical term overlap, with
 their explicit evidence/counterevidence and alternative links. Use `--limit N`
-(1 to 20) when needed. Ranking is not confidence, causal validity or comprehensive
+(1 to 20) when needed. A complete stable ID instead selects lessons owned by that
+action or explicitly linking that record; surrounding whitespace is ignored and
+an unknown ID returns no matches. Ranking is not confidence, causal validity or comprehensive
 semantic search. `refresh_due` covers the dated deadline only. Missing references
 fail rather than silently dropping evidence. Retrieval performs no network or
 mutation and creates no separate index. Run normal model/schema validation after

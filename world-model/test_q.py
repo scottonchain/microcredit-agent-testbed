@@ -142,6 +142,22 @@ class LearningRecallTest(unittest.TestCase):
         result = self.recall('action:closed')['results'][0]
         self.assertIn('coverage:scope', {r['record']['id'] for r in result['linked_records']})
 
+    def test_exact_linked_ids_whitespace_and_unknown_ids(self):
+        self.model['entities'] = [{'id': 'goal:earnings', 'name': 'Human earnings'}]
+        self.index['goal:earnings'] = ('entities', self.model['entities'][0])
+        self.model['actions'][0]['learning']['alternatives'][0]['related_ids'] += ['goal:earnings', 'coverage:scope']
+        for ident in ('ev:source', 'ev:challenge', 'hyp:deposit'):
+            with self.subTest(ident=ident):
+                self.assertEqual(self.recall(ident)['matching_records'], 2)
+                self.assertEqual(self.recall('  ' + ident + '\n'), self.recall(ident))
+        for ident in ('goal:earnings', 'coverage:scope', 'action:closed'):
+            with self.subTest(ident=ident):
+                result = self.recall(ident)
+                self.assertEqual([r['action_id'] for r in result['results']], ['action:closed'])
+                self.assertEqual(result['results'][0]['matched_terms'], [ident])
+        for ident in ('ev:missing', 'hyp:missing', 'action:missing', 'action:unannotated'):
+            self.assertEqual(self.recall(ident)['results'], [])
+
     def test_cli_json_and_bad_arguments(self):
         with patch.object(q, 'load', return_value=(self.model, self.index)):
             _, out = run('--recall', 'cash', '--limit', '1')

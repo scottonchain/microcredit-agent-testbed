@@ -38,6 +38,8 @@ def line(k, r):
 def recall(model, index, query, limit=5, now=None):
     """Lexical retrieval only: matching is not evidence strength or permission."""
     now = now or datetime.datetime.now(datetime.timezone.utc)
+    query = query.strip()
+    exact_id = bool(re.fullmatch(r'[a-z][a-z0-9_-]*:[a-z0-9][a-z0-9._-]*', query))
     terms = set(re.findall(r"[^\W_]+", query.casefold()))
     matches = []
     available = 0
@@ -46,14 +48,17 @@ def recall(model, index, query, limit=5, now=None):
         if not learning:
             continue
         available += 1
-        words = set(re.findall(r"[^\W_]+", json.dumps(
-            [action['id'], action.get('title', ''), learning], ensure_ascii=False).casefold()))
-        matched = sorted(terms & words)
-        if not matched or (query in index and query != action['id']):
-            continue
         references = set(learning['evidence_ids'] + learning['counterevidence_ids'])
         for alternative in learning['alternatives']:
             references.update(alternative['related_ids'])
+        if exact_id:
+            matched = [query] if query == action['id'] or query in references else []
+        else:
+            words = set(re.findall(r"[^\W_]+", json.dumps(
+                [action['id'], action.get('title', ''), learning], ensure_ascii=False).casefold()))
+            matched = sorted(terms & words)
+        if not matched:
+            continue
         missing = references - index.keys()
         if missing:
             raise ValueError('learning has unresolved references: ' + ', '.join(sorted(missing)))
@@ -68,7 +73,7 @@ def recall(model, index, query, limit=5, now=None):
     matches.sort(key=lambda row: (-len(row['matched_terms']), row['action_id']))
     return {
         'model_version': model.get('model_version'), 'model_updated_at': model.get('updated_at'),
-        'query': query, 'method': 'lexical term overlap; not confidence or authority',
+        'query': query, 'method': 'lexical term overlap or exact owning/linked ID; not confidence or authority',
         'learning_records_available': available, 'matching_records': len(matches),
         'truncated': len(matches) > limit, 'results': matches[:limit],
         'limits': 'Only annotated actions are searched. No match means a retrieval gap, not no opportunity. '
