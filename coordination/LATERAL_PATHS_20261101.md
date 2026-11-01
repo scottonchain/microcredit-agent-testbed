@@ -89,7 +89,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 2 | 2 | 3 | 3 | 13 | Receipt: a platform displays partner-issued credentials |
 | 2 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 1 | 3 | 2 | 3 | 12 | Boundary, kept with conditions; fuses N1 with the issue 396 roadmap |
 | 3 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
-| 4 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 3 | 2 | 3 | 2 | 12 | Receipt: 156 unassigned maintainer-filed issues |
+| 4 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 3 | 2 | 3 | 2 | 12 | Receipt: 156 unassigned issues, first 40 read maintainer-filed |
 | 5 | N3 | Cooperative or placement channel with its own clients | 2 | 2 | 3 | 3 | 2 | 12 | Public `p` check specified |
 | 6 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
 | 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
@@ -127,8 +127,9 @@ question, and lowest on cost because it exposes real funds.
 **C1. Virtual and creator worlds with human co-creators.** Operator direction of
 November 1 (issue 396). Roblox reported creators earned 1,503 million dollars in
 2025 against 923 million in 2024 (SEC annual report); cashout needs at least
-30,000 earned Robux at 0.0038 dollars each, about 114 dollars, and third-party
-analyses put the top 1,000 creators near 1.1 million dollars each, so earnings
+30,000 earned Robux at 0.0038 dollars each, about 114 dollars, and a third-party
+analysis puts the top 1,000 creators near 1.1 million dollars each (RoLearn,
+unaudited), so earnings
 are concentrated. Second Life permits agent avatars; the roadmap packet flags
 speculative rent. Human outcome: a human co-creator's spendable payout. Simpler
 route: the human publishes alone. Transfer limit: play-to-earn history (see
@@ -205,7 +206,7 @@ insiders. Cheapest test: simulate a clearing ring on the contract's dues
 mechanics. Stop: no candidate network of members exists.
 
 **F5. Appeals of wrongly denied claims and benefits.** Payer: the insurer or
-agency that denied. HealthCare.gov consumers appealed about 1 percent of denied
+agency that denied. HealthCare.gov consumers appealed less than 1 percent of denied
 in-network claims in 2023; prior-authorization denials were overturned on appeal
 43 percent (marketplace), 47 percent (Medicaid managed care) and 67 percent
 (Medicare Advantage) in 2025 (KFF). Money owed, rarely claimed. Transfer limit:
@@ -302,7 +303,7 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | ID | Idea | Why ruled out | Alternative it inspires |
 | --- | --- | --- | --- |
 | E1 | Play-to-earn scholarships, agents or guilds as asset owners taking a cut (B6) | Typical scholar earnings fell below the Philippine minimum wage by late 2021; owner cuts up to 30 percent; token collapse in 2022 (Naavik, press). Rent extraction from the poor on a volatile asset. | C1 with human-owned assets and wages in stable currency; B10. |
-| E2 | Payday-style advances or expedite fees charged to workers | Fees of up to 218.83 dollars a year per user in one state's data; credit-adjacent harm. | N8 at zero worker fee; employer-paid timing. |
+| E2 | Payday-style advances or expedite fees charged to workers | Fees of up to 218.83 dollars a year per user in South Carolina's 2024 provider data (register N8); credit-adjacent harm. | N8 at zero worker fee; employer-paid timing. |
 | E3 | Paying for or brokering personal data of beneficiaries without consent or benefit share | Privacy and consent; the person is the product. | F1 with consented tasks and a worker resale share, as Karya reports. |
 | E4 | Avoided-deforestation credits with weak additionality sold as farmer income | Buyers misled, farmers paid little, credit quality disputes. | F8 restricted to removal credits with a published farmer share and public monitoring. |
 | E5 | Paid personhood or biometric attestation markets (B4) | Biometric data of poor people as the product; irreversible harm if leaked. | F9: pay for judgment, not identity. |
@@ -352,8 +353,8 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 
 1. Recalled both existing lessons; separated the blocked prerequisite by kind.
 2. Researched the far and boundary mechanisms from public sources (register).
-3. Ran the N2 test: label scan stale; 156 unassigned maintainer-filed issues
-   updated since October 1 (GitHub search API, 19:36 to 19:40 UTC). Lead
+3. Ran the N2 test: label scan stale; 156 unassigned issues updated since
+   October 1, the first 40 read all maintainer-filed (GitHub search API, 19:36 to 19:40 UTC). Lead
    inventory only.
 4. Ran the N1 channel check: one platform displays partner-issued credentials.
 5. Read issues 396 and 392 to place the current paths in the ranking on what the
@@ -390,6 +391,7 @@ Company-reported and advocacy figures are marked as such in the text.
 | --- | --- | --- |
 | C | Issue 396 roadmap and packets | https://github.com/scottonchain/microcredit-agent-testbed/issues/396 |
 | C | Issue 392 real-orders case | https://github.com/scottonchain/microcredit-agent-testbed/issues/392 |
+| C | RoLearn third-party creator earnings analysis (unaudited) | https://rolearn.dev/insights/roblox-creator-earnings-how-much-developers-make |
 | C | Roblox Corp annual report FY2025 | https://www.sec.gov/Archives/edgar/data/1315098/000110465926044380/rblx-20251231xars.pdf |
 | C, N7 | MDRC, Pathways to Financial Resilience | https://www.mdrc.org/work/publications/pathways-financial-resilience |
 | F1 | Time on Karya | https://time.com/6297403/india-ai-karya-startup |

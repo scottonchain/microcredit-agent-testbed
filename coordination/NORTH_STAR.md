@@ -38,8 +38,8 @@ ability to execute now, useful evidence, cost and reuse. Top ten:
    evaluation (boundary, kept with conditions; candidate for the issue 396
    November 8 comparable-role decision).
 3. Paid human evaluation and jury work bought by the agent economy (far).
-4. Rules-as-code maintenance for benefits calculators (near; 156 unassigned
-   maintainer-filed issues found November 1).
+4. Rules-as-code maintenance for benefits calculators (near; 156 unassigned issues
+   found November 1, the first 40 read all maintainer-filed).
 5. Cooperative or placement channel with its own clients (near; the guarantee's
    remaining channel type).
 6. Local-knowledge oracles sold to agents (boundary, kept).
