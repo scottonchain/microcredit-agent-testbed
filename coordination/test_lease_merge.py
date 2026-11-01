@@ -72,11 +72,18 @@ exit 0
 
 
 TOKEN_VARIABLES = ("GH_TOKEN", "GITHUB_TOKEN")
+# The wrapper's own inputs. When the wrapper merges a pull request it runs tools/check.py, which runs this file, so
+# the caller's values for these variables are in this process's environment. They must never reach the scratch runs
+# below: a stray MAIN_EXPECT or TOGGLE_BOOTSTRAP_PR turns every scratch merge into a refusal about the real repository.
+WRAPPER_INPUTS = ("CLONE", "RUNNER_LANE", "PUBLIC_CONTENT_CHECK", "PYLIB", "GITHUB_API", "GITHUB_REPO", "NO_API",
+                  "MAIN_EXPECT", "TOGGLE_BOOTSTRAP_PR")
+GIT_REPOSITORY_VARIABLES = ("GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_OBJECT_DIRECTORY", "GIT_COMMON_DIR")
 
 
 def clean_environment():
-    """The caller's environment without any GitHub credential."""
-    return {key: value for key, value in os.environ.items() if key not in TOKEN_VARIABLES}
+    """The caller's environment without any GitHub credential, wrapper input or repository-selecting git variable."""
+    drop = TOKEN_VARIABLES + WRAPPER_INPUTS + GIT_REPOSITORY_VARIABLES
+    return {key: value for key, value in os.environ.items() if key not in drop}
 
 
 def run(cmd, cwd=None, env=None, check=True):
@@ -567,6 +574,25 @@ class PullRequestHelperTests(unittest.TestCase):
 
     def test_wrong_usage_exits_2(self):
         self.assertEqual(self.helper.main(["7", "8"]), 2)
+
+
+class HermeticEnvironmentTests(unittest.TestCase):
+    def test_the_callers_wrapper_inputs_do_not_reach_scratch_runs(self):
+        polluted = {"MAIN_EXPECT": "0" * 40, "TOGGLE_BOOTSTRAP_PR": "398", "CLONE": "/nonexistent", "RUNNER_LANE": "openai",
+                    "PUBLIC_CONTENT_CHECK": "/nonexistent", "GIT_DIR": "/nonexistent", "GITHUB_TOKEN": "t"}
+        saved = {key: os.environ.get(key) for key in polluted}
+        os.environ.update(polluted)
+        try:
+            cleaned = clean_environment()
+            for key in polluted:
+                self.assertNotIn(key, cleaned, key)
+            self.assertIn("PATH", cleaned)
+        finally:
+            for key, value in saved.items():
+                if value is None:
+                    os.environ.pop(key, None)
+                else:
+                    os.environ[key] = value
 
 
 if __name__ == "__main__":
