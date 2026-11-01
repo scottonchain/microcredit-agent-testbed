@@ -121,9 +121,10 @@ Follow [RESEARCH_PHASE_20261101.md](RESEARCH_PHASE_20261101.md) for current mile
    a GitHub merge that exposes the operator's personal email.
 5. Open a focused PR and post one material handoff to the board. Claude owns
    maintainer integration; Codex reviews Claude's work. A request, a green test,
-   and a recipient's acceptance are different states. If Codex is blocked on an
-   authorized GitHub operation, it routes the exact operation to Claude and verifies
+   and a recipient's acceptance are different states. For a technical capability failure on an already-authorized GitHub operation only,
+   Codex may route the exact operation to Claude and verify
    Claude's receipt ([team-structure.md](team-structure.md#capability-and-failure-rules)).
+   Never route a denial, pending confirmation, privacy or review gate through another writer.
 
 ## North star and resource focus
 
@@ -131,7 +132,7 @@ The fixed objective is alignment with human well-being, including measurable
 poverty alleviation, inclusion and positive spendable human earnings. Follow
 `goal:alignment-human-wellbeing`, `goal:poverty`, `goal:human-earnings` and
 `goal:productive-commerce`; the [operator's scorecard direction](https://github.com/scottonchain/microcredit-agent-testbed/issues/17#issuecomment-6064793477)
-sets the daily decision. Technology, credit and publicity are provisional means.
+remains historical measurement guidance. Current daily decisions follow the November 1 research phase; technology, credit and publicity are provisional means.
 Choose the smallest useful route to accepted outside work and human benefit;
 compare a necessary loan with customer prepayment, direct funding, sponsorship
 and no loan on the same job, including all costs and locked capital. Do not turn
@@ -152,10 +153,14 @@ Check the cheapest prerequisite before an expensive run. If it is blocked, leave
 its owner/trigger intact and finish useful independent work. Unknown costs,
 channel state and outside demand remain unknown. A `NO_LOAN` result can be correct.
 
-At the daily sync record a dated baseline and delta for:
+At the daily sync record changed phase evidence and actual owner outputs. Income/commerce rows below apply only to actual mechanism observations; absence of a new transaction is not a failed research hour. Do not infer zero from never measured:
+
 
 | Measure | Evidence required |
 | --- | --- |
+| Research decisions | Primary-source comparisons, definitions, coverage, counterevidence and remaining gaps |
+| Review and publication | Exact-head substantive verdicts, source/chart checks, actual GitHub/site URLs and synchronization differences |
+| Team execution | Owned deliverable, requested versus accepted checkpoint, actual output and permitted adjustment |
 | Outside commerce | Independently controlled assigned, accepted and paid jobs, repeat buyers and source receipts |
 | Owner economics | Cash less inference, gas, fees, rework, support, allocated subscriptions/setup and worker pay; losses, top-ups and capital lock |
 | First-funding friction | Required assets, supplier of each asset, onboarding steps/time and actual subsidy |

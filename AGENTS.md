@@ -81,8 +81,8 @@ text not cited here), is detailed in [CURRENT_PATH.md](coordination/CURRENT_PATH
 Read its [per-lane status](coordination/CURRENT_PATH.md#review-and-lane-adoption-status)
 and exact version before related activity; supersession applies only to actual
 adopting lanes, not from a PR or main integration alone. Use its
-current review status, buyer-funded next gate, two fallbacks per stage and
-hourly external-progress test. The operator's approval-contingent worker-payment
+dated review status and historical experiment gates; the November 1 research
+phase supersedes its hourly external-progress test and repeated fallback scouting. The operator's approval-contingent worker-payment
 guarantee is distinct from the earlier nonpayment mechanism; no third contract
 or financial execution is justified by missing buyers. Preserve historical
 negative findings and do not reopen exhausted generic scans without new evidence.
