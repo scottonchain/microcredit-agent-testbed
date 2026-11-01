@@ -1,0 +1,9153 @@
+[
+ {
+  "page": "/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 22,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "p",
+    "cls": "hero-footnote",
+    "fs": 11,
+    "text": "Independent research. AI-led w"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 10,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 15,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 267,
+    "h": 17,
+    "text": "Explore the evidence in our jo"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 26,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 92,
+    "h": 15,
+    "text": "October archive"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "36px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 155,
+    "h": 19,
+    "text": "Browse all stories →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 13,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "How we work"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/partners/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/mission/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 74,
+     "r": 103,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 121,
+     "r": 165,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 183,
+     "r": 217,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 235,
+     "r": 300,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 22,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "p",
+    "cls": "hero-footnote",
+    "fs": 11,
+    "text": "Independent research. AI-led w"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 10,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 15,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 267,
+    "h": 17,
+    "text": "Explore the evidence in our jo"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 26,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 92,
+    "h": 15,
+    "text": "October archive"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "36px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 155,
+    "h": 19,
+    "text": "Browse all stories →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 13,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "How we work"
+   }
+  ],
+  "nSmallTargets": 14,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 294,
+    "h": 17,
+    "text": "Download the introduction and "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 256,
+    "h": 17,
+    "text": "Our current questions and appr"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/partners/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 7,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/mission/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 84,
+     "r": 113,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 141,
+     "r": 185,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 213,
+     "r": 247,
+     "h": 43,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 275,
+     "r": 340,
+     "h": 43,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "43px",
+  "nSmallText": 17,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "p",
+    "cls": "hero-footnote",
+    "fs": 11,
+    "text": "Independent research. AI-led w"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 10,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "feed-note",
+    "fs": 11,
+    "text": "Showing the saved edition."
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 267,
+    "h": 17,
+    "text": "Explore the evidence in our jo"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 21,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 31, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 29, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 28, 2026 · guest post"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 155,
+    "h": 19,
+    "text": "Browse all stories →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "How we work"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Where to follow"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Questions behind the story"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 16,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 294,
+    "h": 17,
+    "text": "Download the introduction and "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 256,
+    "h": 17,
+    "text": "Our current questions and appr"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 280,
+    "h": 17,
+    "text": "Research and stories with thei"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/partners/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/mission/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 90,
+     "r": 121,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 152,
+     "r": 201,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 231,
+     "r": 269,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 299,
+     "r": 370,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "43px",
+  "nSmallText": 17,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "p",
+    "cls": "hero-footnote",
+    "fs": 11,
+    "text": "Independent research. AI-led w"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 10,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "feed-note",
+    "fs": 11,
+    "text": "Showing the saved edition."
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 267,
+    "h": 17,
+    "text": "Explore the evidence in our jo"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 21,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 31, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 29, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 28, 2026 · guest post"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 155,
+    "h": 19,
+    "text": "Browse all stories →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "How we work"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Where to follow"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Questions behind the story"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 16,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 294,
+    "h": 17,
+    "text": "Download the introduction and "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 256,
+    "h": 17,
+    "text": "Our current questions and appr"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 280,
+    "h": 17,
+    "text": "Research and stories with thei"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/partners/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/mission/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 96,
+     "r": 127,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 164,
+     "r": 213,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 249,
+     "r": 287,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 323,
+     "r": 394,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 9,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "66px",
+  "nSmallText": 16,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 11,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "feed-note",
+    "fs": 11,
+    "text": "Showing the saved edition."
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "What we are exploring"
+   }
+  ],
+  "nSmallTargets": 7,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 7,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 10,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 14, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 13, 2026"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 218,
+    "h": 19,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 284,
+    "h": 19,
+    "text": "Explore the evidence in our jo"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 21,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 31, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 29, 2026 · podcasts"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Oct 28, 2026 · guest post"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 92,
+    "h": 15,
+    "text": "October archive"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 155,
+    "h": 19,
+    "text": "Browse all stories →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "How we work"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Where to follow"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Questions behind the story"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 14,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 313,
+    "h": 19,
+    "text": "Download the introduction and "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 219,
+    "h": 19,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 272,
+    "h": 19,
+    "text": "Our current questions and appr"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 19,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 298,
+    "h": 19,
+    "text": "Research and stories with thei"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 244,
+    "h": 19,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 215,
+    "h": 19,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 19,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 132,
+    "h": 16,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 244,
+    "h": 19,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/partners/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 2,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 215,
+    "h": 19,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 19,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 132,
+    "h": 16,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ },
+ {
+  "page": "/mission/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 391,
+     "r": 437,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 459,
+     "r": 495,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 517,
+     "r": 574,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 596,
+     "r": 640,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 7,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "http://127.0.0.1:8765/style.css"
+  ]
+ }
+]
