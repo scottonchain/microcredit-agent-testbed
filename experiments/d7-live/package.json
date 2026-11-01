@@ -5,7 +5,12 @@
   "version": "0.0.1",
   "description": "Simulations and a mobile smart-wallet app for the live Base Sepolia pool (testnet only)",
   "dependencies": {
+    "esbuild": "^0.24.0",
     "hardhat": "^2.22.17",
+    "permissionless": "^0.2.29",
+    "playwright-core": "^1.49.1",
+    "qrcode-generator": "^1.4.4",
+    "solc": "^0.8.26",
     "viem": "^2.21.55"
   }
 }

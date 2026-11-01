@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+experiments/d7-live/results/screens/FAIL-*.png
+experiments/d7-live/results/test-config.json
