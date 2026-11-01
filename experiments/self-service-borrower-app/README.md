@@ -52,7 +52,8 @@ Steward condition (2026-11-01): no session runs the live path with a funded key 
 
 The demo stakes the account's own USDC to open its first loan, so it proves the
 plumbing (no wallet software, no ETH, borrow, send, repay) and nothing about
-creditworthiness, demand or benefit. A passkey signer is the next step and is
-not in this script: either Circle Modular Wallets (Console client key and passkey
+creditworthiness, demand or benefit. `passkey_probe.cjs` shows the passkey primitive working headlessly (P-256 create and
+sign through the virtual authenticator against a localhost page, 2026-11-01). Wiring it
+to an account is the next step and is not in `demo.mjs`: either Circle Modular Wallets (Console client key and passkey
 domain) or a WebAuthn P-256 signer on an account that validates it, exercised
 headlessly with Playwright's virtual authenticator before any person is asked.

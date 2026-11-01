@@ -140,6 +140,12 @@ Verified from Circle's documentation (fetched through the session proxy, HTTP 20
 
 So the demonstration is buildable with viem's account-abstraction module, the v0.8 paymaster and either the keyless public Pimlico endpoint (needs `public.pimlico.io` allowed) or the relayer calling `EntryPoint.handleOps` directly. The passkey half has two routes: Circle Modular Wallets (a Console key and domain, no payment for testnet) or a plain WebAuthn P-256 signer validated by an ERC-4337 account that supports it. A funded throwaway testnet key remains the one input this session does not hold.
 
+### Gate 2, third pass (2026-11-01, after the steward's GO): zero-key prerequisites
+
+- **Headless passkey works.** `demo/passkey_probe.cjs` with the preinstalled Chromium and Playwright: the WebAuthn virtual authenticator (CTAP2, internal transport, resident key, user verification) created a P-256 credential (COSE alg -7, 32-byte id, 91-byte SPKI public key) and signed a challenge (70-byte DER signature, 37-byte authenticator data) on a page served from localhost. This is the "no wallet software, no key file" primitive; the remaining work is an ERC-4337 account that validates that signature, or Circle Modular Wallets, which needs a Console client key and passkey domain.
+- **Fork rehearsal tooling.** The Foundry release download was refused by this session's auto-mode classifier (external binary); `hardhat` 3.21.2 is installable from npm and can fork `sepolia.base.org`, so the fork rehearsal uses it or waits for an environment with Foundry. Not run yet.
+- **Keyless bundler** `public.pimlico.io` is still denied by network policy; `api.pimlico.io` answers but needs an API key. Either unblocks the live path once an independent operator holds the key.
+
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
 - **2026-11-03 18:00 UTC:** review disposition (GO, CHANGE, PARK) recorded on board 15 next to the issue 396 matrix, so the two technical-channel candidates are compared at once.
