@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { DAILY_CAP_USDC, FLOOR_USDC, MAX_PER_RUN_ANY, loadAllowlist, parseAmount, runTitle, spentToday, decide } from './drip_rules.mjs';
+import { DAILY_CAP_USDC, FLOOR_USDC, MAX_PER_RUN_ANY, loadAllowlist, parseAmount, runTitle, runsSince, spentToday, decide } from './drip_rules.mjs';
 
 const list = loadAllowlist(JSON.parse(readFileSync(new URL('./drip_allowlist.json', import.meta.url), 'utf8')));
 const treasury = list.get('0x2aa4069f65931e8b35ed11ac493b1c3ab9917212');
@@ -55,4 +55,15 @@ test('daily total from run titles: success and active count, dry runs and the cu
   ];
   assert.equal(spentToday(runs, '6'), 25 + 5 + MAX_PER_RUN_ANY);
   assert.equal(spentToday(runs, '999'), 25 + 5 + MAX_PER_RUN_ANY + 25);
+});
+
+test('runs since midnight UTC are selected by created_at, newest first', () => {
+  const since = '2026-11-02T00:00:00Z';
+  const runs = [
+    { id: 1, created_at: '2026-11-02T17:50:33Z' },
+    { id: 2, created_at: '2026-11-02T00:00:00Z' },
+    { id: 3, created_at: '2026-11-01T23:59:59Z' },
+    { id: 4 },
+  ];
+  assert.deepEqual(runsSince(runs, since).map((r) => r.id), [1, 2]);
 });

@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JsonRpcProvider, Wallet, Contract, isAddress, getAddress, parseUnits, formatUnits } from 'ethers';
-import { DEFAULT_AMOUNT_USDC, loadAllowlist, parseAmount, spentToday, decide } from './drip_rules.mjs';
+import { DEFAULT_AMOUNT_USDC, loadAllowlist, parseAmount, runsSince, spentToday, decide } from './drip_rules.mjs';
 
 const USDC = '0x036CbD53842c5426634e7929541eC2318f3dCF7e';
 const TEAM = '0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1';
@@ -31,12 +31,22 @@ async function fetchSpentToday() {
     if (!dryRun) fail(2, 'live run needs GITHUB_TOKEN and GITHUB_REPOSITORY to compute the daily total');
     return { spent: Number(process.env.DAILY_SPENT_USDC || 0), source: 'DAILY_SPENT_USDC (dry run, no token)' };
   }
-  const day = new Date().toISOString().slice(0, 10);
-  const url = `https://api.github.com/repos/${repo}/actions/workflows/${WORKFLOW_FILE}/runs?created=%3E%3D${day}T00:00:00Z&per_page=100`;
-  const res = await fetch(url, { headers: { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28' } });
-  if (!res.ok) fail(2, `GitHub API ${res.status} while listing today's runs`);
-  const body = await res.json();
-  return { spent: spentToday(body.workflow_runs || [], runId), source: `${(body.workflow_runs || []).length} runs since ${day}T00:00:00Z` };
+  // Today's runs are selected here, not by a server-side date filter: the API lists runs newest first, so pages are
+  // read until one holds a run older than today. Many runs in one day (for example dry runs) cannot hide live runs.
+  const since = `${new Date().toISOString().slice(0, 10)}T00:00:00Z`;
+  const headers = { authorization: `Bearer ${token}`, accept: 'application/vnd.github+json', 'x-github-api-version': '2022-11-28' };
+  const today = [];
+  let page = 1, seen = 0;
+  for (; page <= 10; page++) {
+    const res = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${WORKFLOW_FILE}/runs?per_page=100&page=${page}`, { headers });
+    if (!res.ok) fail(2, `GitHub API ${res.status} while listing this workflow's runs`);
+    const batch = (await res.json()).workflow_runs || [];
+    const fresh = runsSince(batch, since);
+    seen += batch.length; today.push(...fresh);
+    if (batch.length < 100 || fresh.length < batch.length) break;
+  }
+  if (page > 10) fail(2, 'more than 1,000 runs today; refusing to count');
+  return { spent: spentToday(today, runId), source: `${today.length} runs since ${since} (${seen} read)` };
 }
 
 const provider = new JsonRpcProvider(process.env.RPC_URL || 'https://base-sepolia-rpc.publicnode.com', undefined, { batchMaxCount: 1 });

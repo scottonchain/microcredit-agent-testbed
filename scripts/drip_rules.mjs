@@ -34,6 +34,11 @@ export function loadAllowlist(entries) {
   return map;
 }
 
+// Runs created at or after `since` (ISO 8601 UTC strings compare lexicographically). The runs API lists newest first.
+export function runsSince(runs, since) {
+  return runs.filter((r) => typeof r.created_at === 'string' && r.created_at >= since);
+}
+
 // Test USDC already committed today by other runs of this workflow. Counts successful runs and runs still
 // queued or in progress; skips dry runs and the current run; an unparsable title counts as the largest cap.
 export function spentToday(runs, currentRunId) {
