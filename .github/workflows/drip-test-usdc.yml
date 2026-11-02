@@ -1,0 +1,70 @@
+# Bounded test USDC drip from the team test wallet to an allowlisted address on Base Sepolia.
+# Rules and record: scripts/drip_rules.mjs, scripts/drip_allowlist.json, evidence/circle-faucet-access-20261102/README.md.
+# Caps: per-run and balance caps per allowlisted address, 100 test USDC per UTC day across runs (read from today's
+# runs of this workflow, so the run name below must keep its form), a 50 USDC wallet floor, one wallet job at a time.
+name: Drip test USDC from the team wallet
+run-name: "Drip ${{ inputs.amount }} test USDC to ${{ inputs.recipient }}${{ inputs.dry_run && ' (dry run)' || '' }}"
+on:
+  workflow_dispatch:
+    inputs:
+      recipient:
+        description: Allowlisted Base Sepolia address (scripts/drip_allowlist.json)
+        required: true
+        type: string
+      amount:
+        description: Test USDC to send; the allowlist caps each address per run (default 5, treasury up to 25)
+        required: false
+        default: "5"
+        type: string
+      dry_run:
+        description: Read-only plan with the caps applied; sends nothing and the secret is not loaded
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: codex-sepolia-test-wallet
+  cancel-in-progress: false
+jobs:
+  drip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned ethers runtime and stage the scripts
+        run: |
+          npm install --prefix /tmp/gt-drip --no-audit --no-fund ethers@6.15.0
+          cp scripts/drip_test_usdc.mjs scripts/drip_rules.mjs scripts/drip_allowlist.json /tmp/gt-drip/
+      - name: Dry run (no secret loaded)
+        if: ${{ inputs.dry_run }}
+        env:
+          DRY_RUN: "true"
+          RECIPIENT: ${{ inputs.recipient }}
+          AMOUNT_USDC: ${{ inputs.amount }}
+          RPC_URL: https://base-sepolia-rpc.publicnode.com
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node /tmp/gt-drip/drip_test_usdc.mjs | tee drip-result.jsonl
+      - name: Send the drip (the secret never enters a log or an artifact)
+        if: ${{ !inputs.dry_run }}
+        env:
+          TEST_WALLET_PRIVATE_KEY: ${{ secrets.TEST_WALLET_PRIVATE_KEY }}
+          RECIPIENT: ${{ inputs.recipient }}
+          AMOUNT_USDC: ${{ inputs.amount }}
+          RPC_URL: https://base-sepolia-rpc.publicnode.com
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node /tmp/gt-drip/drip_test_usdc.mjs | tee drip-result.jsonl
+      - name: Write the run summary (amount, recipient, hash)
+        if: always()
+        run: |
+          { echo '### Drip'; echo '```json'; cat drip-result.jsonl 2>/dev/null || echo '{"error":"no result"}'; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve the public result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: drip-result
+          path: drip-result.jsonl
+          if-no-files-found: warn

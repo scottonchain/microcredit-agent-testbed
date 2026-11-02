@@ -26,7 +26,7 @@ The upgrade is a business verification of the operator's entity with Circle. Cir
 
 | Route | What it needs | Status today | Exposure |
 | --- | --- | --- | --- |
-| R1. Transfer from the team's test wallet `0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1` | Nothing new. Its key exists only as the GitHub Actions secret the cold-start and real-agents workflows already use. A `workflow_dispatch` job (draft in this folder, not live) sends a fixed 5 test USDC to one address and records the hash. A session triggers it through the GitHub API. | Buildable now. Needs the steward's review and a merge; the trust boundary does not change, because anyone who can push to this repository can already run a workflow that spends this wallet | Shared wallet: the draft refuses when the recipient already holds 5 USDC or the wallet would fall below a 50 USDC floor, and runs in the same concurrency group as the other wallet workflows |
+| R1. Transfer from the team's test wallet `0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1` | Nothing new. Its key exists only as the GitHub Actions secret the cold-start and real-agents workflows already use. A `workflow_dispatch` job sends a capped amount of test USDC to an allowlisted address and records the hash. A session triggers it through the GitHub API. | Built on branch `claude/sweet-hopper-a60ogd` with the steward's conditions (below); live only after a reviewed merge to main. The trust boundary does not change, because anyone who can push to this repository can already run a workflow that spends this wallet | Shared wallet: allowlist, per-run and balance caps per address, 100 test USDC per UTC day across runs, a 50 USDC floor, one wallet job at a time |
 | R2. Circle agent-wallet CLI (`@circle-fin/cli`) | Operator allows `agentic-wallet.circle.com` in the environment's network access; one login email whose one-time passwords a session can read; `CIRCLE_ACCEPT_TERMS=1`, which accepts Circle's agent Terms of Use | Blocked: the host returns a proxy refusal from this container (checked 2026-11-02 about 17:00 UTC). Everything else is verified from the CLI source, below | A Circle-custodied testnet agent wallet under that email; faucet limits unknown; sessions last 28 days, then a new one-time password |
 | R3. Web faucet `faucet.circle.com`, by the tester | A person and a browser | Already wired into the app and the tester guide on the steward's branch. The host is blocked from containers, and it is a human path | None for sessions. One measurement owed: the amount and the retry window, which the app copy and the sim docs state differently |
 | R4. Circle faucet API after a mainnet upgrade | Business verification of the operator's entity | Not now (gate 5) | A mainnet-capable account before gates 4 and 5 |
@@ -65,10 +65,28 @@ Balances at that block: sim treasury `0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212
 
 Answer recorded here: no session-side Circle drip is possible today. R2 is blocked by the network policy and waits on the operator's three decisions; R4 is not taken. R1 can fund both addresses from the team test wallet at 5 test USDC per dispatched run under the draft's caps; raising the cap for the treasury is a review decision, not a session's.
 
+## Steward disposition and the conditions as implemented (2026-11-02, 17:40 UTC)
+
+The steward accepted the team-wallet drip for review by cross-session message, with five conditions. How each is met on the branch:
+
+| Condition | Implementation |
+| --- | --- |
+| Recipient allowlist: the sim treasury and the desk officer only, more addresses by a reviewed change | `scripts/drip_allowlist.json`, read by the script; an address not on it is refused before anything is signed |
+| 5 per run by default, the treasury up to 25 per run, 100 per UTC day across runs, the 50 floor | `amount` input (default 5) checked against the entry's `max_per_run`; the daily total is read from today's runs of this workflow through the GitHub API (successful and still-running runs, dry runs excluded, an unrecognisable run name counted as 25), so the run name must keep its form; floor unchanged |
+| The balance refusal stays for the officer (5) but the treasury may receive while below 25 | `max_balance` per entry: officer 5, treasury 25 |
+| One log line per run on board 15, or the run summary if a workflow cannot post | The workflow holds no issue-write permission on purpose (it holds the wallet secret); the run summary and a `drip-result` artifact carry amount, recipient and hash, and the steward posts the line |
+| Same concurrency group, dry-run input kept | `codex-sepolia-test-wallet`; `dry_run` input runs a separate step with no secret loaded |
+
+Read-only checks on 2026-11-02 at about 17:45 UTC, block 53598123 and following: treasury 25 would send; officer 5 would send (balance 1.9); officer 10 refused (per-run cap); an address off the list refused; treasury 25 with 80 already committed today refused (daily cap); a live run without a GitHub token refuses before any send. Six rule tests pass. No transaction was made.
+
+The steward also reports: the 403 is mirrored on board 15 with the bogus-key and no-key controls (comment 6583257474); Hermes tried `faucet.circle.com` from its host at 17:32 UTC and was stopped by reCAPTCHA (comment 6583862893); the operator's own visit today put 20 test USDC into each of two wallets, so the web faucet gives 20 per drip and its interval is still unknown. The Circle agent-wallet CLI route is recorded as the operator's decision; the steward will put it to the operator as one question once the team-wallet route is in place.
+
+Opening the pull request is not this session's to do without the operator's word; the branch is ready for the steward to open it, or for the operator to say so.
+
 ## Recommendation
 
 1. **Now:** the desk's 0.10 test USDC pre-fund is live on the steward's branch and the app links the web faucet; the steward records the 403 on board 15 as the measurement.
-2. **Cheapest session-side drip:** R1. The steward reviews the draft `drip-workflow.draft.yml` and `drip.mjs` in this folder; if accepted, it moves to `.github/workflows/` through the ordinary reviewed PR and merge. The desk daemon's drip helper then triggers the workflow through the GitHub API instead of posting to Circle, or the desk transfers from a small float of its own.
+2. **Cheapest session-side drip:** R1, accepted by the steward for review on 2026-11-02 at 17:40 UTC with conditions, all folded in: `.github/workflows/drip-test-usdc.yml`, `scripts/drip_test_usdc.mjs`, `scripts/drip_rules.mjs` (pure rules, tested by `node --test scripts/test_drip_rules.mjs`) and `scripts/drip_allowlist.json`. It goes live through the ordinary reviewed PR and merge; the steward then triggers runs through the GitHub Actions API when the pool or the desk needs cash.
 3. **If a Circle-side drip is still wanted:** R2, after the operator allows `agentic-wallet.circle.com`, chooses the login email and accepts the terms. First run measures the faucet's amount and limit with one drip to the agent wallet and one transfer out, recorded here.
 4. **Not now:** R4.
 
