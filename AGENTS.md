@@ -6,6 +6,14 @@ Read the [research and publishing phase](https://github.com/scottonchain/microcr
 
 ## Dated prior direction and retained history
 
+## Retrieve lessons before choosing work
+
+Before selecting a mechanism or declaring a blocker, follow the [learning and
+retrieval procedure](world-model/LEARNING.md). Query the current model for relevant
+lessons, including closed actions; read their evidence, limits and alternatives.
+Choose and execute an authorized test that avoids the blocked dependency while
+preserving existing obligations. Record the result in the owning action.
+
 ## Current decision: agent-loan attempt stopped November1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):

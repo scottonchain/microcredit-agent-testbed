@@ -21,7 +21,7 @@ SUITES = (
     "retry-fixture/reference", "retry-fixture/chain/base-sepolia", "retry-fixture/chain/base-sepolia/reconcile",
     "research/calibration-v3-replay-archive", "experiments/revolving-guarantee",
     "experiments/paid-work-channel-qualification",
-    "experiments/nline-applicant-access-gate-20261013",
+    "experiments/nline-applicant-access-gate-20261013", "experiments/self-service-borrower-app",
 )
 REFERENCE_CHECKS = (
     "run_email_cases", "scorecard", "horizon_score", "resend_authority", "shipped_gate", "in_progress_409",

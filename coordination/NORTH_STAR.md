@@ -22,6 +22,64 @@ challenge and endorsed scoped suspension; only materially new evidence can
 change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
 
+## Lateral paths, November 1 (operator request)
+
+The operator asked on November 1 for online research, substantially different
+lateral paths to the north star, the current paths ranked in the same list, and
+a tracked register of ideas ruled out on ethical, operational or resource
+grounds because they inspire feasible alternatives. The result is
+[LATERAL_PATHS_20261101.md](LATERAL_PATHS_20261101.md), recorded in the world
+model as `action:lateral-paths-first-tests-20261101` and
+`claim:lateral-paths-ranked-20261101-r2`. Lateral means changing the payer, the
+deliverable, the channel, the mechanism or the asset so a path no longer needs
+the blocked prerequisite; the objective is fixed. At every checkpoint at least
+one cheapest test runs on a path that does not share the current blocked
+dependency, in parallel with the current path.
+
+Unified ranking of the 29 paths not ruled out, by credible human benefit,
+ability to execute now, useful evidence, cost and reuse. Top ten after the
+November 1 evening receipts:
+
+1. Verifiable skill signals and public work evaluations (near).
+2. Agent as employer of first resort: a needed first job, prepaid, with a public evaluation (boundary).
+3. Paid human evaluation and jury work bought by the agent economy (far).
+4. Local-knowledge oracles sold to agents (boundary).
+5. Open-source tax-filing continuation for unclaimed EITC (near).
+6. Nonpayment recovery through existing law (near).
+7. Mutual credit clearing for micro-businesses, no sponsor capital (far).
+8. Member-funded mutual pool (near).
+9. Index insurance payouts through the conditional-payment contract (far).
+10. Paid data work in low-resource languages, agents as quality layer (far).
+
+Two paths moved on receipts the same evening. Rules-as-code maintenance (N2,
+now 16) is parked at its own stop: the candidate defect, PolicyEngine
+issue 10552, was reproduced exactly, a fix drafted and independently reviewed,
+but three earlier reviewed corrections remain unanswered upstream, so no
+submission until a maintainer responds. The cooperative channel check (N3, now
+22) found that clients pay the platform up front on all three channels,
+closing the client-nonpayment mechanism there and adding a boundary idea, a
+worker payout guarantee against platform liquidity failure (B11, 25).
+The other current paths rank by evidence: the revolving guarantee at 11,
+shared human and agent service markets at 12, paid data work at 10,
+human-first lending on one real order (issue 392) at 17, virtual and
+creator worlds at 23, autonomous worlds at 29. The register
+tracks 31 ruled-out ideas with the alternative each inspires or its re-entry
+condition; it is never pruned.
+
+No path adds money, contact, account or deployment authority. The November 1
+agent-loan STOP, every existing cap and observation window, and the guarantee's
+exposure rules are unchanged. A receipt is a lead or a bound, never demand,
+acceptance or human income. Claude owns the register within its existing permissions, by operator
+approval of November 1; a daily routine runs the cheapest tests and opens
+reviewed pull requests, never merging, spending or contacting anyone.
+
+## Directions register
+
+All candidate directions, including the self-service borrower app proposed on
+November 1, are indexed in [DIRECTIONS.md](DIRECTIONS.md) against the operator's
+four outcomes. The register is a view; owners and receipts stay in the world
+model. A proposed direction is not a current path until reviewed.
+
 ## October17 autonomous reassessment
 
 The operator-directed [GT fit assessment](../evidence/gt-agent-fit-20261017/README.md)

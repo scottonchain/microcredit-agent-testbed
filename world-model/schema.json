@@ -145,6 +145,17 @@
           },
           "title": "Outcome Evidence Ids",
           "type": "array"
+        },
+        "learning": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Learning"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [
@@ -169,6 +180,47 @@
         "outcome_evidence_ids"
       ],
       "title": "Action",
+      "type": "object"
+    },
+    "AlternativeMechanism": {
+      "additionalProperties": false,
+      "properties": {
+        "mechanism": {
+          "minLength": 1,
+          "title": "Mechanism",
+          "type": "string"
+        },
+        "avoids_dependency": {
+          "minLength": 1,
+          "title": "Avoids Dependency",
+          "type": "string"
+        },
+        "cheapest_test": {
+          "minLength": 1,
+          "title": "Cheapest Test",
+          "type": "string"
+        },
+        "transfer_limit": {
+          "minLength": 1,
+          "title": "Transfer Limit",
+          "type": "string"
+        },
+        "related_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Related Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "mechanism",
+        "avoids_dependency",
+        "cheapest_test",
+        "transfer_limit",
+        "related_ids"
+      ],
+      "title": "AlternativeMechanism",
       "type": "object"
     },
     "Assent": {
@@ -915,6 +967,118 @@
         "note"
       ],
       "title": "Identity",
+      "type": "object"
+    },
+    "Learning": {
+      "additionalProperties": false,
+      "description": "Evidence-backed interpretation attached to an action, never a new task.",
+      "properties": {
+        "assumption": {
+          "minLength": 1,
+          "title": "Assumption",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "supported",
+            "contradicted",
+            "inconclusive",
+            "not_tested"
+          ],
+          "title": "Result",
+          "type": "string"
+        },
+        "finding": {
+          "minLength": 1,
+          "title": "Finding",
+          "type": "string"
+        },
+        "blocker_kind": {
+          "enum": [
+            "access",
+            "distribution",
+            "economics",
+            "mechanism",
+            "measurement",
+            "none",
+            "unknown"
+          ],
+          "title": "Blocker Kind",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "counterevidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Counterevidence Ids",
+          "type": "array"
+        },
+        "rules_out": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rules Out",
+          "type": "array"
+        },
+        "does_not_rule_out": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Does Not Rule Out",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/AlternativeMechanism"
+          },
+          "minItems": 1,
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "revisit_when": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Revisit When",
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Tags",
+          "type": "array"
+        },
+        "freshness": {
+          "$ref": "#/$defs/Freshness"
+        }
+      },
+      "required": [
+        "assumption",
+        "result",
+        "finding",
+        "blocker_kind",
+        "evidence_ids",
+        "counterevidence_ids",
+        "rules_out",
+        "does_not_rule_out",
+        "alternatives",
+        "revisit_when",
+        "tags",
+        "freshness"
+      ],
+      "title": "Learning",
       "type": "object"
     },
     "OpenQuestion": {
