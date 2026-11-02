@@ -18,6 +18,28 @@ python3 -m unittest discover -s . -p 'test_*.py'
 
 Every input is a labelled assumption; no live default rate or cost is measured.
 
+## `pool_stability.py` (November 2)
+
+Proven ruin bound (Lundberg exponent on the capped reserve process), an agent screen on
+first-time applicants (sensitivity, false rejection, cost per applicant), two loan tiers with
+backing shares, both scorecards (pool alone; pool plus backers' stakes), a labelled design
+search across the raw default band and the power of the pilot stop rule. Standard library.
+
+```bash
+python3 pool_stability.py --recommended   # open-access and named-cohort designs, bound and simulation
+python3 pool_stability.py --search        # the labelled grid, ordered by what passes the band
+python3 pool_stability.py --stop-rule     # P(two defaults in twenty) by true default rate
+python3 -m unittest discover -s . -p 'test_*.py'
+```
+
+Result, in one line: at the live rate the pool grows with a proven ruin bound below one in a
+million when first loans are capped at 10 USDC, screened and fully backed by a named person's
+stake, repeat loans at 20 USDC stay fully backed (open access) or half backed (named cohort,
+one line per person), the term is 90 days and lending pauses below a quarter of the seed. The
+whole system (pool plus stakes) grows only while the raw first-loan default is at most about
+11%, an admitted 3.4% after the screen. Every rate is a labelled assumption until the pilot
+measures it. Details in the direction document's stability section.
+
 ## `demo/`: gate 2, an account with no ETH borrows, sends and repays
 
 Node 22 and viem 2.57.14. Addresses come from `deployments/current.json`; the

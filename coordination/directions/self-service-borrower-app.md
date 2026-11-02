@@ -1,6 +1,6 @@
 # Direction D7: self-service Omnequa borrower app with an embedded smart wallet
 
-Claude Code (AI), 2026-11-01. **Status: GO for gates 1 to 3 only, zero money, with three changes applied below (steward session disposition by cross-session message, 2026-11-01 18:25 UTC; to be mirrored on board 15 by the steward). Gates 4 to 6 remain unreviewed and unauthorised.** Not a decision, a mandate, a deployment, a solicitation or financial authority. Written at the operator's direction on November 1 (chat session; the operator's words are summarised, not quoted as a receipt) to record the direction in a reviewable form so that it can become a roadmap if it passes review, alongside other directions in [DIRECTIONS.md](../DIRECTIONS.md). Base inspected: testbed `main` d858448 (model 0.1.195). Checkable arithmetic: `experiments/self-service-borrower-app/steady_state.py`.
+Claude Code (AI), 2026-11-01. **Status: GO for gates 1 to 3 only, zero money, with three changes applied below (steward session disposition by cross-session message, 2026-11-01 18:25 UTC; to be mirrored on board 15 by the steward). Gates 4 to 6 remain unreviewed and unauthorised.** Not a decision, a mandate, a deployment, a solicitation or financial authority. Written at the operator's direction on November 1 (chat session; the operator's words are summarised, not quoted as a receipt) to record the direction in a reviewable form so that it can become a roadmap if it passes review, alongside other directions in [DIRECTIONS.md](../DIRECTIONS.md). Base inspected: testbed `main` d858448 (model 0.1.195). Checkable arithmetic: `experiments/self-service-borrower-app/steady_state.py` and, from November 2, `pool_stability.py` (proven ruin bound, screening, two tiers).
 
 ## What the operator proposed
 
@@ -92,13 +92,13 @@ Reading: at the live price with losses falling on the pool, no term in the band 
 | Field | Value |
 | --- | --- |
 | Reserve | 100 USDC sponsor capital, recorded as `sponsorCapital`, separate from stakes |
-| Loan cap | 20 USDC (a fifth of the reserve); one open loan per person; no new loan while reserve < 2 × cap |
-| Backing | Each loan backed by a named person's own stake of at least 25% of principal |
-| Term and price | 30 to 90 days; live rate unless the break-even table and measured `c` require a stated premium, disclosed in local currency before acceptance |
+| Loan cap | 10 USDC first loan, 20 USDC after one on-time repayment (a fifth of the reserve); one open loan per person; lending pauses while the reserve is below 25 USDC (revised November 2, see the stability section) |
+| Backing | First loans backed by a named person's own stake covering the whole principal, or the borrower's own locked deposit; repeat loans fully backed in open access, at least half backed in a named cohort (revised November 2) |
+| Term and price | 90 days at the live rate (revised November 2: no 30-day design grows the whole system at the live rate); any premium stated and disclosed in local currency before acceptance |
 | N | 20 loans |
-| Success criterion (change C1) | Two parts, neither alone suffices. (a) **Design proof:** parameters (term, price, cap, backing share, per-loan cost) at which expected net per loan is positive at every point of the 3% to 10% default band and a 2,000-run seeded simulation keeps ruin below 1%. (b) **Pilot statistic:** observed default count, per-loan cost and loss given default over the 20 loans with exact binomial bounds, reported beside pool + stakes + reserve (change C3: stakers' losses always counted with the pool). A balance comparison alone is underpowered and is not the test. |
+| Success criterion (change C1) | Two parts, neither alone suffices. (a) **Design proof:** parameters (term, price, cap, backing share, screen, per-loan cost) at which expected net per loan is positive at every point of the 3% to 10% default band and the proven ruin bound (stability section, `pool_stability.py`) is below 1%, checked against a 2,000-run seeded simulation. (b) **Pilot statistic:** observed default count, per-loan cost and loss given default over the 20 loans with exact binomial bounds, reported beside pool + stakes + reserve (change C3: stakers' losses always counted with the pool). A balance comparison alone is underpowered and is not the test. |
 | Human test | For each loan, the purchase or activity it made possible and the earnings reported, with a NO_LOAN comparison |
-| Stop | Two defaults in the first 20; any consumer-protection failure; any zero-purpose loan |
+| Stop | Two defaults in the first 20 (power table in the stability section); any consumer-protection failure; any zero-purpose loan; per-loan cost measured above 15 cents |
 
 ## Contingencies (three options at every block, per the November 1 lateral rule)
 
@@ -145,6 +145,72 @@ So the demonstration is buildable with viem's account-abstraction module, the v0
 - **Headless passkey works.** `demo/passkey_probe.cjs` with the preinstalled Chromium and Playwright: the WebAuthn virtual authenticator (CTAP2, internal transport, resident key, user verification) created a P-256 credential (COSE alg -7, 32-byte id, 91-byte SPKI public key) and signed a challenge (70-byte DER signature, 37-byte authenticator data) on a page served from localhost. This is the "no wallet software, no key file" primitive; the remaining work is an ERC-4337 account that validates that signature, or Circle Modular Wallets, which needs a Console client key and passkey domain.
 - **Fork rehearsal tooling.** The Foundry release download was refused by this session's auto-mode classifier (external binary); `hardhat` 3.21.2 is installable from npm and can fork `sepolia.base.org`, so the fork rehearsal uses it or waits for an environment with Foundry. Not run yet.
 - **Keyless bundler** `public.pimlico.io` is still denied by network policy; `api.pimlico.io` answers but needs an API key. Either unblocks the live path once an independent operator holds the key.
+
+## Pool stability assurance and first-borrower screening (November 2, operator request)
+
+Operator request of November 2: give mathematical assurance of pool stability, adjust the numbers, algorithms and assumptions so the pool grows, and let an agent filter first-time borrowers to establish trust. Checkable arithmetic: `experiments/self-service-borrower-app/pool_stability.py` (`--recommended`, `--search`, `--stop-rule`), with tests.
+
+- **Measurable human outcome or decision:** whether the pilot's reserve rule and screening rule can be pre-registered with a stated, proven failure probability, so the operator's seed decision rests on a bound and a count, not on a hope.
+- **Evidence sought:** (a) a proven upper bound on the chance the reserve ever falls to the pause level; (b) the admitted first-loan default rate and admission rate the screen actually produces, measured in the pilot; (c) the backers' realised loss per loan, counted with the pool (change C3).
+- **Competing simpler route:** direct cash to the same people; a partner lending inside an existing group (D8); an employer wage advance (D10). None needs a reserve bound because none revolves. The revolving guarantee (NORTH_STAR.md) is the sibling mechanism: same exposure rule, same two scorecards; its channel remains unqualified.
+- **Stop or change condition:** the pilot's admitted default count exceeds the stop rule below; a measured per-loan cost above 15 cents; a backer unwilling to stake at the required share; or any evidence that screening excludes the people the project exists for faster than it excludes defaulters.
+
+### 1. The assurance: a proven ruin bound, not a simulation
+
+With the exposure rule (no loan above a fifth of the reserve) and lending paused when the reserve falls below a pause level, the reserve after each loan is `R(1 + lambda X')` where `lambda` is in (0, 1] and `X'` is the relative change that a loan of exactly a fifth of the reserve would cause, with the per-loan cost charged at its worst case (the smallest loan the rule ever makes). If `theta > 0` solves `E[(1 + X')^-theta] = 1` (the Lundberg equation), then `R^-theta` is a supermartingale, because `(1 + lambda x)^-theta` is convex in `lambda` and equals 1 at `lambda = 0`, and optional stopping gives
+
+`P(reserve ever falls below pause) <= (pause / R0)^theta`.
+
+Such a `theta` exists exactly when `E[log(1 + X')] > 0`, which is also the condition for the reserve to grow almost surely (strong law), not merely in expectation. The bound is conservative on purpose. The module checks it against long seeded simulations where the bound is strictly between 0 and 1:
+
+| Design (90 days, screened first loans) | Raw first-loan default | `theta` | Proven bound | Simulated (4,000 runs of 3,000 loans) |
+| --- | --- | --- | --- | --- |
+| 18.33%, no backing | 10% | 3.87 | 0.47% | 0.00% |
+| 9.33%, no backing | 5% | 2.04 | 5.9% | 0.08% |
+| 18.33%, first 50% backed, repeat 25% | 20% | 1.34 | 15.7% | 0.30% |
+
+Reserve 100 USDC, pause 25 USDC (loans at the cap are then 5 USDC, the smallest useful loan), exposure a fifth. With an unbacked 30-day loan at the live rate the drift is negative at every rate in the band and no `theta` exists: there is no assurance to give, which is the honest reading of PR 400's finding.
+
+### 2. The screen: an agent filters first-time borrowers
+
+An applicant population with raw per-loan default `d0` is filtered with sensitivity `s` (share of would-be defaulters rejected) and false-rejection rate `f` (share of good applicants rejected). Admitted default is `d1 = d0(1 - s) / (d0(1 - s) + (1 - d0)(1 - f))`; the admission rate is the denominator; screening cost per funded first loan is cost per applicant over the admission rate. Two labelled screens are modelled: evidence review alone (60% / 20%, 5 cents) and evidence review plus a named backer's own record in the pool (80% / 30%, 10 cents). At a raw 10% the stronger screen admits 65% of applicants at an admitted default of 3.1%, for about 15 cents per funded first loan.
+
+What the agent does, and does not do (the existing officer rule in [MANDATORY_CREDIT_OFFICER_COMPARISON.md](../../docs/MANDATORY_CREDIT_OFFICER_COMPARISON.md) stands):
+
+1. **One person, one line.** Named people through existing relationships in the pilot (change C2); partner KYC or proof of personhood in any open phase. Without it, the screen filters honest risk only.
+2. **A named backer's stake covers the whole first loan**, or the borrower's own locked deposit does (a credit-builder loan). No backer and no deposit: decline. This is the only defence that works against free identities, because a filter has no power against an attacker who creates identities until one passes ([ring attacks](../../research/ring-attacks-on-agent-trust-systems.md)); the stake makes the pool indifferent to who the borrower is.
+3. **Evidence review, deterministic cap.** The agent extracts recorded evidence (stated purpose, stated repayment source, the backer's record in the pool, contradictions between statements) and policy code sets the first cap, at most 10 USDC, from it. The agent never emits a trust number and never issues a line.
+4. **Graduation.** After one on-time repayment the cap rises to 20 USDC. In the open-access design repeat loans stay fully backed. In a named cohort, where identities are not free, repeat loans may be half backed: a two-identity ring would otherwise repay one 10 USDC first loan, borrow 20 against a 10 USDC stake and keep 10 by defaulting.
+5. **Measuring `s` and `f`.** The pilot observes the admitted default rate and the admission rate directly. Separating `s` from `f` needs a randomised holdout: a seeded random slice of rejected applicants admitted with full backing, whose outcomes are reported apart. Without it the screen's accuracy stays an assumption.
+
+### 3. The numbers that grow, and what they cost
+
+Two tiers: first loans (cap 10 USDC, screened) and repeat loans (cap 20 USDC, default assumed half the admitted first-loan rate, four repeat loans per surviving borrower, so about a fifth of loans are first loans). Per-loan cost 2 cents plus screening. Reserve 100, pause 25, 500 loans, 2,000 seeded runs. The pool scorecard counts the pool alone; the system scorecard counts pool plus backers' stakes (change C3).
+
+**Open access (anyone with the app): 90 days, live 9.33%, both tiers fully backed, screened first loans.**
+
+| Raw first-loan default | Admitted | Pool net per loan | System net per loan | Proven ruin bound | Median reserve after 500 loans | Median pool + stakes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 3% | 0.9% | +0.36 | +0.27 | below 1e-6 | 281 | 242 |
+| 5% | 1.5% | +0.36 | +0.21 | below 1e-6 | 280 | 210 |
+| 10% | 3.1% | +0.35 | +0.05 | below 1e-6 | 277 | 127 |
+| 20% | 6.7% | +0.34 | -0.33 | below 1e-6 | 271 | -58 |
+
+The pool grows at every raw default rate up to 50%, trivially: it never loses principal, only the per-loan cost, and interest covers that. The pool is a senior lender; the backers carry the credit risk. The system grows up to a raw 11%, which with the screen means an admitted first-loan default of about 3.4%. Above that the backers lose more than the interest earns, and the pool's growth is their loss moved, not wealth created.
+
+**Named cohort (one line per person): same, repeat loans half backed.** Doubles the loans a backer's dollar can support. Pool grows with a proven bound below 1e-6 up to a raw 14%; system up to 11%. At a raw 20% the pool's drift turns negative and the bound is void (the simulation shows 0.05% ruin in 500 loans, which is not assurance, only too short a horizon).
+
+**What moved from PR 400, and why:** the term, from 30 to 90 days (interest scales with days, a per-loan default does not: at the live rate no 30-day design grows the whole system anywhere in the band); the first loan, capped at 10 USDC and fully backed; a screen on first-time applicants; a pause level at a quarter of the seed. The price stays at the live rate. The 18.33% row (the 10%-default calibration row) would extend the system band to a raw 21%, at the cost of the human-benefit scorecard the project exists to beat. Paying backers a share of interest (Design Question 2) is priced too: at a 25% share the pool still passes to a raw 8%, at 50% only to 2%, so at the live rate the pool cannot afford to pay the backers; their compensation is the relationship, which is what social collateral means, and the pilot records their realised loss (about 0.31 USDC per 10 USDC first loan at a raw 10%, zero when the backer knows the borrower well enough that the admitted rate is near 1%).
+
+**Growth is slow.** At a raw 10%, half utilisation and 90-day terms, the open-access design turns about 11 loans a year on a 100 USDC reserve: about 4 USDC a year, 4%. Full utilisation doubles it. More capital does not change the rate, only the amount.
+
+### 4. The pilot stop rule has little power at 20 loans
+
+`--stop-rule`: the pre-registered rule, two defaults in the first 20 loans, fires with probability 1.7% at a true 1% per-loan default, 12% at 3%, 26% at 5%, 61% at 10% and 93% at 20%. It catches the unsecured-stranger band and mostly misses the partner band, which is acceptable only because the first loans are fully backed: a default there costs the backer, not the pool. The pilot statistic therefore reports the exact binomial interval on the admitted default count and the backers' realised loss, as change C1 requires, and does not read two defaults in 20 as proof of a 10% population.
+
+### 5. Assumptions that are not measurements
+
+Screen sensitivity and false-rejection rates; the repeat-loan default ratio (one half); four repeat loans per surviving borrower; 2 cents per loan; applicants' raw default band from `claim:first-loan-default-benchmarks`. Each is labelled in the module and replaced by a pilot measurement when one exists. Nothing here is demand, a borrower, a backer or human benefit.
 
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
