@@ -19,6 +19,7 @@ try {
     if (!granted) { await page.fill('#msg', 'I need 5 dollars.'); await page.locator('#send').click(); await p.tapDone(); await waitReply(3); }
     await page.waitForFunction(() => document.querySelector('#granted'), null, { timeout: MODE === 'claude' ? 240000 : 40000 });
     const b = await read('getBorrowLimit', [wallet]); if (usd(b[0]) < 1 || usd(b[0]) > 5) throw new Error('limit ' + usd(b[0])); if (!(await page.locator('#toBorrow').isVisible())) throw new Error('no Borrow button'); await shot('03-granted');
+    const { pc: pc_, ADDR: A_, ABI: AB_ } = await import('./lib/sim.mjs'); const t0 = Date.now(); let got = 0n; while (Date.now() - t0 < 30000) { got = await pc_.readContract({ address: A_.usdc, abi: AB_.erc20, functionName: 'balanceOf', args: [wallet] }); if (got >= 100000n) break; await new Promise((r) => setTimeout(r, 1000)); } if (got < 100000n) throw new Error('no pre-fund for the interest: wallet holds ' + usd(got));
     console.log('   officer:', (await page.locator('.bub.desk').last().innerText()).slice(0, 200), '| limit', usd(b[0]));
   }, page);
   await R.step('D05 desk stake is committed by the backing (desk is the backer)', async () => { const bk = await read('getBacking', [w.desk.address, wallet]); if (bk[0] + bk[1] === 0n) throw new Error('desk not backing'); }, page);

@@ -2,22 +2,22 @@
  {
   "name": "D01 create wallet, home offers the credit desk",
   "ok": true,
-  "ms": 2169
+  "ms": 4076
  },
  {
   "name": "D02 credit screen shows the officer greeting and no backing",
   "ok": true,
-  "ms": 1388
+  "ms": 1032
  },
  {
   "name": "D03 first message (no amount) is answered by the officer with a question or a grant",
   "ok": true,
-  "ms": 3612
+  "ms": 7801
  },
  {
   "name": "D04 second message with an amount leads to a grant of at most $5 and the Borrow button",
   "ok": true,
-  "ms": 4019
+  "ms": 4022
  },
  {
   "name": "D05 desk stake is committed by the backing (desk is the backer)",
@@ -27,27 +27,27 @@
  {
   "name": "D06 borrow against the desk line works from the chat",
   "ok": true,
-  "ms": 2238
+  "ms": 5271
  },
  {
   "name": "D07 spam guard: a fourth unanswered message is refused before any signature",
   "ok": true,
-  "ms": 4134
+  "ms": 4115
  },
  {
   "name": "D08 a message over 1000 characters is refused locally",
   "ok": true,
-  "ms": 34
+  "ms": 50
  },
  {
   "name": "D09 maxLine is enforced on chain: officer cannot set a line above it",
   "ok": true,
-  "ms": 1292
+  "ms": 1283
  },
  {
   "name": "D10 only the officer can reply",
   "ok": true,
-  "ms": 1082
+  "ms": 1077
  },
  {
   "name": "D11 no uncaught page errors",

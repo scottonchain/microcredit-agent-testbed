@@ -7,7 +7,7 @@ export { devices, fork, read, usd, toUnits, ADDR, pc, asOwner, Actor, seededKey,
 export async function world({ seed = 2, bundlerPort = 4337, webPort = 4173, poolLiquidity = 300, cap, deskFund = 50, daemonMode = 'rules' } = {}) {
   const RPC = process.env.RPC_URL; mkdirSync('results/screens', { recursive: true });
   await fundFork(new Actor('d', seededKey(seed, 'deployer')), { eth: parseEther('5') }); await fundFork(new Actor('b', seededKey(seed, 'bundler')), { eth: parseEther('5') });
-  const officerKey = seededKey(seed, 'officer'); const officerAddr = privateKeyToAccount(officerKey).address; await fundFork(new Actor('o', officerKey), { eth: parseEther('1') });
+  const officerKey = seededKey(seed, 'officer'); const officerAddr = privateKeyToAccount(officerKey).address; await fundFork(new Actor('o', officerKey), { eth: parseEther('1'), usdcAmount: toUnits(5) });
   await fundFork(new Actor('d', seededKey(seed, 'deployer')), { usdcAmount: toUnits(deskFund) });
   const desk = await deployDesk({ rpc: RPC, key: seededKey(seed, 'deployer'), officer: officerAddr, maxLine: toUnits(5), fund: toUnits(deskFund) });
   const pm = await deployPaymaster({ rpc: RPC, key: seededKey(seed, 'deployer'), desk: desk.address, ...(cap ? { cap } : {}) });

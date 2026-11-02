@@ -57,9 +57,21 @@ function decideRules({ thread, facts, maxLine }) {
   return { reply: `Thanks. The desk backs you with $${n} of test credit. Tap Borrow when you are ready; you pay it back within 30 days.`, backing: n };
 }
 
+const PREFUND = BigInt(Math.round(Number(process.env.PREFUND_USDC || 0.1) * 1e6)); // test USDC the officer sends a new applicant for the interest, when the faucet drip is refused
 async function drip(address) {
-  if (!process.env.CIRCLE_API_KEY) return null;
-  try { const r = await fetch('https://api.circle.com/v1/faucet/drips', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + process.env.CIRCLE_API_KEY }, body: JSON.stringify({ address, blockchain: 'BASE-SEPOLIA', native: false, usdc: true, eurc: false }) }); return { status: r.status }; } catch (e) { return { error: e.message }; }
+  let faucet = null;
+  if (process.env.CIRCLE_API_KEY) {
+    // curl, not fetch: in this environment outbound HTTPS goes through a proxy that Node's fetch ignores; curl honours it.
+    try { const out = await new Promise((resolve, reject) => { const ch = spawn('curl', ['-sS', '-m', '30', '-o', '/dev/null', '-w', '%{http_code}', '-X', 'POST', 'https://api.circle.com/v1/faucet/drips', '-H', 'Authorization: Bearer ' + process.env.CIRCLE_API_KEY, '-H', 'content-type: application/json', '--data', JSON.stringify({ address, blockchain: 'BASE-SEPOLIA', native: false, usdc: true, eurc: false })], { stdio: ['ignore', 'pipe', 'pipe'] }); let o = '', e = ''; ch.stdout.on('data', (d) => (o += d)); ch.stderr.on('data', (d) => (e += d)); ch.on('error', reject); ch.on('close', (c) => (c === 0 ? resolve(o.trim()) : reject(new Error('curl exit ' + c + ' ' + e.slice(0, 100))))); });
+      const status = Number(out); faucet = { status }; if (status >= 200 && status < 300) return { faucet }; } catch (e) { faucet = { error: String(e.message).slice(0, 120) }; }
+  }
+  if (PREFUND === 0n) return { faucet, prefund: 'off' };
+  try {
+    const mine = await pc.readContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'balanceOf', args: [officer.address] });
+    if (mine < PREFUND) return { faucet, prefund: 'officer has no test USDC left' };
+    const hash = await wc.writeContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'transfer', args: [address, PREFUND] }); const rc = await pc.waitForTransactionReceipt({ hash });
+    return { faucet, prefund: { amount: usd(PREFUND), tx: hash, ok: rc.status === 'success' } };
+  } catch (e) { return { faucet, prefund: { error: String(e.shortMessage || e.message).slice(0, 160) } }; }
 }
 
 async function handle(applicant) {
@@ -76,7 +88,7 @@ async function handle(applicant) {
   try { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, d.reply, total], account: officer }); hash = await wc.writeContract(request); }
   catch (e) { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, d.reply, cur], account: officer }); hash = await wc.writeContract(request); total = cur; log({ ev: 'backing-unchanged', applicant, why: String(e.shortMessage || e.message).slice(0, 200) }); }
   const rc = await pc.waitForTransactionReceipt({ hash });
-  let drip_ = null; if (facts.usdcBal < 1 && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
+  let drip_ = null; if (total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
   log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, drip: drip_ });
 }
 
