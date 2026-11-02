@@ -1,0 +1,30 @@
+# Proposed upstream test for PolicyEngine US issue 10552 (not submitted; see README).
+- name: Married filing separately filer aged 65 or older uses the 3,750 initial amount (IRC 22(c)(2)(A)(iii))
+  period: 2021
+  input:
+    people:
+      person1:
+        age: 72
+        employment_income: 12_000
+    tax_units:
+      tax_unit:
+        members: [person1]
+        filing_status: SEPARATE
+  output:
+    section_22_income: 250  # 3,750 - 0.5 * (12,000 - 5,000); the unfixed formula gives 1,500
+- name: Joint return where both spouses qualify keeps the 7,500 initial amount
+  period: 2021
+  input:
+    people:
+      person1:
+        age: 70
+        employment_income: 6_000
+      person2:
+        age: 68
+        employment_income: 0
+    tax_units:
+      tax_unit:
+        members: [person1, person2]
+        filing_status: JOINT
+  output:
+    section_22_income: 7_500  # AGI 6,000 is below the 10,000 joint phase-out threshold
