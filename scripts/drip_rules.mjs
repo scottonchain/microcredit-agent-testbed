@@ -45,7 +45,7 @@ export function spentToday(runs, currentRunId) {
   let total = 0;
   for (const r of runs) {
     if (String(r.id) === String(currentRunId)) continue;
-    const active = r.status === 'queued' || r.status === 'in_progress' || r.status === 'waiting';
+    const active = ['queued', 'in_progress', 'waiting', 'pending', 'requested'].includes(r.status);
     if (!(active || r.conclusion === 'success')) continue;
     const m = TITLE.exec(r.display_title || r.name || '');
     if (!m) { total += MAX_PER_RUN_ANY; continue; }

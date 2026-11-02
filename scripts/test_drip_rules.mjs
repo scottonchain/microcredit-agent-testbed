@@ -43,18 +43,19 @@ test('floor, daily cap, allowlist and self-send', () => {
   assert.equal(decide({ ...base, entry: treasury, amount: null }).ok, false);
 });
 
-test('daily total from run titles: success and active count, dry runs and the current run do not, junk counts as the max', () => {
+test('daily total from run titles: success and active (queued, in progress, pending) count, dry runs and the current run do not, junk counts as the max', () => {
   const t = (amount, dry = false) => runTitle(amount, '0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212', dry);
   const runs = [
     { id: 1, status: 'completed', conclusion: 'success', display_title: t(25) },
     { id: 2, status: 'in_progress', conclusion: null, display_title: t(5) },
+    { id: 7, status: 'pending', conclusion: null, display_title: t(5) },
     { id: 3, status: 'completed', conclusion: 'failure', display_title: t(25) },
     { id: 4, status: 'completed', conclusion: 'success', display_title: t(25, true) },
     { id: 5, status: 'completed', conclusion: 'success', display_title: 'renamed by hand' },
     { id: 6, status: 'completed', conclusion: 'success', display_title: t(25) },
   ];
-  assert.equal(spentToday(runs, '6'), 25 + 5 + MAX_PER_RUN_ANY);
-  assert.equal(spentToday(runs, '999'), 25 + 5 + MAX_PER_RUN_ANY + 25);
+  assert.equal(spentToday(runs, '6'), 25 + 5 + 5 + MAX_PER_RUN_ANY);
+  assert.equal(spentToday(runs, '999'), 25 + 5 + 5 + MAX_PER_RUN_ANY + 25);
 });
 
 test('runs since midnight UTC are selected by created_at, newest first', () => {
