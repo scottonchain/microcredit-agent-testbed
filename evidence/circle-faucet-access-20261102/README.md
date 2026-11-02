@@ -90,6 +90,22 @@ Opening the pull request is not this session's to do without the operator's word
 3. **If a Circle-side drip is still wanted:** R2, after the operator allows `agentic-wallet.circle.com`, chooses the login email and accepts the terms. First run measures the faucet's amount and limit with one drip to the agent wallet and one transfer out, recorded here.
 4. **Not now:** R4.
 
+## First runs on main (2026-11-02, 18:19 to 18:21 UTC), verified from the chain and the run logs
+
+PR 408 merged at exact head 85ac49a into main b7fe4417 after Hermes's non-author ACCEPT, by the steward through the lease script. The steward then dispatched three runs; this session read their job logs through the GitHub API and the chain through `sepolia.base.org`:
+
+| Run | Input | Result |
+| --- | --- | --- |
+| 41499484394, dry run | treasury, 25 | Success at 18:19:57 UTC: the paged daily-total read worked with no secret loaded |
+| 41499578615 | treasury `0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212`, 25 | Daily total read 0 from 3 runs; `0x0f50e465c7c1fe06ac097fb20fb6b3469e13be20ad01a5a24b08422dd32b2658`, status 1, block 53608783 |
+| 41499600858 | desk officer `0xb88DC88d538a754f57cAB344C1E09d02C129fcf2`, 5 | Daily total read 25 (the treasury run counted); `0xcd36fc917d36b3dfb3061a51a98319b13f087f2490fad9a03bfc991b7aafa5cc`, status 1, block 53608900 |
+
+Balances at block 53609172 (18:21:43 UTC): team test wallet 150.2 (from 180.2), desk officer 6.9 (from 1.9), sim treasury 0, because the steward had already swept it: 20 test USDC to the pool `0x73872b8fb7f1771c67911f03edc75abdc9514973` (deposit, `0xf19c36f6723ecd2460f8838dd04e310df6bdbf6127ab45f4a9eee2c2a65a5354`, block 53609017) and 5 to the CreditDesk `0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462` (stake, `0xbfb78d1b15133a2b3d3041c5002450089729f9a755415d315942bdc62abba05a`, block 53609022). No secret appears in any log or artifact; the secret's environment line is masked by GitHub. The steward posted the run lines on board 15 (comment 6584867756, reported by the steward at 18:22 UTC).
+
+One observation from the logs became a small fix: while the treasury run counted today's total, the officer run was already created and held by the concurrency group, and it was not counted. The serial order makes that harmless (the later run counts the earlier one once it has completed), but the rule now also counts runs in GitHub's `pending` and `requested` states. The repository rules were not changed otherwise.
+
+So the operator's request of November 2 is met: a Claude Code session can put test USDC into the D7 treasury or desk by dispatching the workflow through the GitHub API, within the caps, with no Circle account change and no key in any session. What remains open is the Circle agent-wallet route (the operator's decision) and the acceptance criterion that the desk funds an applicant's interest buffer from this supply without a person visiting the web faucet, which the steward's desk pre-fund now has the balance to do.
+
 ## What this does not establish
 
 Faucet limits for the agent wallet; whether Circle's agent-wallet faucet funds Base Sepolia in practice (its docs list `BASE-SEPOLIA` as supported); the per-transfer gas cost of R1; anything about testers, borrowers, demand or benefit.
