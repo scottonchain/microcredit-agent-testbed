@@ -20,4 +20,4 @@ This is a practice app on a test network. The dollars are test tokens with no va
 - Your phone model and browser.
 
 ## What never happens
-No real money. No personal data is stored by the app; your wallet lives in your passkey. Your recovery code (Help screen) reopens the wallet on another phone. Remove the wallet from the Help screen when you are done. You can stop at any time; say "stop" to the person running the test and nothing more will be sent to you.
+No real money. No personal data is stored by the app; your wallet lives in your passkey (details in DATA_HANDLING.md next to this guide). Your recovery code (Help screen) reopens the wallet on another phone. Remove the wallet from the Help screen when you are done. You can stop at any time; say "stop" to the person running the test and nothing more will be sent to you.
