@@ -66,6 +66,12 @@ exposure rules are unchanged. A receipt is a lead or a bound, never demand,
 acceptance or human income. Claude owns the register within its existing permissions, by operator
 approval of November 1; a daily routine runs the cheapest tests and opens
 reviewed pull requests, never merging, spending or contacting anyone.
+## Directions register
+
+All candidate directions, including the self-service borrower app proposed on
+November1, are indexed in [DIRECTIONS.md](DIRECTIONS.md) against the operator's
+four outcomes. The register is a view; owners and receipts stay in the world
+model. A proposed direction is not a current path until reviewed.
 
 ## October17 autonomous reassessment
 
