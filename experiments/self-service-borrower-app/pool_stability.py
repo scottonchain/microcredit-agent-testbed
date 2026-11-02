@@ -338,6 +338,12 @@ def simulate(design: Design, raw_default: float, reserve: float = 100.0, pause: 
 
 RAW_BAND = (0.03, 0.05, 0.10, 0.20)  # per-loan default of the unscreened first-loan population
 
+# Operator design constraint, 2026-11-02: the agent filter is built and measured so that the raw per-loan
+# default of the population it admits is at most this. It is the system scorecard's growth ceiling at the
+# live rate for the open-access design (both tiers fully backed, evidence-plus-backer screen). It is an
+# assumption to be measured, not a measurement: the pilot's binomial interval on observed defaults tests it.
+FILTER_DEFAULT_CEILING = 0.11
+
 
 def assess(design: Design, raw_default: float, reserve: float = 100.0, pause: float = 25.0, runs: int = 0,
            loans: int = 500, seed: int = 11, ruin_threshold: float = 0.01) -> dict:
@@ -362,6 +368,7 @@ def assess(design: Design, raw_default: float, reserve: float = 100.0, pause: fl
                     "median_final_system": round(sim["median_final_system"], 1)})
     row["pool_grows"] = net["pool"] > 0 and bound["ruin_bound"] <= ruin_threshold
     row["system_grows"] = net["system"] > 0
+    row["within_filter_ceiling"] = raw_default <= FILTER_DEFAULT_CEILING
     return row
 
 
@@ -485,6 +492,8 @@ def main(argv=None) -> int:
         out[design.label] = {
             "design": asdict(design),
             "limits": max_raw_default_passing(design, args.reserve, args.pause),
+            "filter_default_ceiling": FILTER_DEFAULT_CEILING,
+            "at_ceiling": assess(design, FILTER_DEFAULT_CEILING, args.reserve, args.pause),
             "points": [assess(design, d, args.reserve, args.pause, runs=args.runs if args.recommended else 0,
                               loans=args.loans) for d in (RAW_BAND if args.recommended else (args.raw_default,))],
         }

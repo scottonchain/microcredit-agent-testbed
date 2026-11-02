@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from pool_stability import (SCREENS, Design, Screen, assess, binomial_tail, expected_net_per_loan, log_drift,
+from pool_stability import (FILTER_DEFAULT_CEILING, SCREENS, Design, Screen, assess, binomial_tail, expected_net_per_loan, log_drift,
                             lundberg_exponent, max_raw_default_passing, named_cohort_design, outcomes,
                             recommended_design, ruin_bound, screened_default, search, simulate, stop_rule_power)
 
@@ -146,6 +146,24 @@ class DesignTests(unittest.TestCase):
         self.assertEqual(a, b)
         # Backers absorb losses, so the system ends below the pool when there are defaults.
         self.assertLess(a["median_final_system"], a["median_final_reserve"])
+
+
+class FilterCeilingTests(unittest.TestCase):
+    def test_both_designs_grow_pool_and_system_at_the_operator_ceiling(self):
+        self.assertEqual(FILTER_DEFAULT_CEILING, 0.11)
+        for design in (recommended_design(), named_cohort_design()):
+            row = assess(design, FILTER_DEFAULT_CEILING)
+            self.assertTrue(row["pool_grows"])
+            self.assertTrue(row["system_grows"])
+            self.assertTrue(row["within_filter_ceiling"])
+            self.assertLess(row["ruin_bound"], 1e-5)
+
+    def test_one_point_above_the_ceiling_the_system_stops_growing(self):
+        row = assess(recommended_design(), 0.12)
+        self.assertFalse(row["system_grows"])
+        self.assertFalse(row["within_filter_ceiling"])
+        # The pool itself still grows: fully backed loans move the loss to the backers.
+        self.assertTrue(row["pool_grows"])
 
 
 class StopRuleTests(unittest.TestCase):
