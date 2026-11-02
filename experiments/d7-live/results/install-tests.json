@@ -1,0 +1,67 @@
+[
+ {
+  "name": "I01 browser tab without an install event: the welcome screen offers Add to home screen and the sheet gives menu steps",
+  "ok": true,
+  "ms": 2265
+ },
+ {
+  "name": "I02 Chromium path: after beforeinstallprompt the sheet offers Install, prompt() is called once and Added is shown; appinstalled hides the card",
+  "ok": true,
+  "ms": 303
+ },
+ {
+  "name": "I03 Chromium path, dismissed: a Not installed sheet, nothing else changes",
+  "ok": true,
+  "ms": 229
+ },
+ {
+  "name": "I04 Not now closes the sheet and keeps the captured prompt for later",
+  "ok": true,
+  "ms": 213
+ },
+ {
+  "name": "I05 link flag ?install=1 opens the sheet by itself, offers the dialog once the event arrives, and the flag is removed from the address",
+  "ok": true,
+  "ms": 230
+ },
+ {
+  "name": "I06 link flag without an install event falls back to menu steps after a short wait",
+  "ok": true,
+  "ms": 1607
+ },
+ {
+  "name": "I07 iPhone in Safari: the sheet gives Share, then Add to Home Screen, and the storage note",
+  "ok": true,
+  "ms": 1683
+ },
+ {
+  "name": "I08 iPhone link flag: the Share steps open at once",
+  "ok": true,
+  "ms": 1611
+ },
+ {
+  "name": "I09 running from the home screen (display-mode standalone, Android): no install card, no iOS note, link flag ignored",
+  "ok": true,
+  "ms": 1927
+ },
+ {
+  "name": "I10 iPhone home-screen app (navigator.standalone) with no wallet: no install card, Safari storage note with the recovery route",
+  "ok": true,
+  "ms": 109
+ },
+ {
+  "name": "I11 iPad (Mac user agent, MacIntel platform, five touch points) counts as iOS",
+  "ok": true,
+  "ms": 104
+ },
+ {
+  "name": "I12 desktop browser without touch is not iOS and gets menu steps",
+  "ok": true,
+  "ms": 1663
+ },
+ {
+  "name": "I13 beforeinstallprompt fired before the app module loaded is still usable (captured by index.html)",
+  "ok": true,
+  "ms": 152
+ }
+]
