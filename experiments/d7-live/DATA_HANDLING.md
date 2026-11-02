@@ -9,8 +9,8 @@ What the app sends, and to whom:
 
 What the app never does: no account, no sign-up, no email, no phone number, no name, no cookies of its own, no analytics, no server run by us. The app has no backend. It cannot see who you are.
 
-What is public: every transaction on the test network is public forever, under your wallet address. That address is not linked to you by anything in the app. Do not reuse this wallet for anything you would not want tied to it.
+What is public: every transaction on the test network is public forever, under your wallet address. That includes what you write to the credit desk and what the officer answers, which is why the desk never asks for personal details. That address is not linked to you by anything in the app. Do not reuse this wallet for anything you would not want tied to it.
 
-What the person running the test records: your wallet address (so a guarantee can be set for it) and the feedback you choose to send. Feedback is kept in private notes, not posted anywhere with your name. Say "stop" and nothing more is sent to you.
+What the person running the test records: the feedback you choose to send. Your wallet address is visible to the credit desk when you write to it; nobody needs to be sent it. Feedback is kept in private notes, not posted anywhere with your name. Say "stop" and nothing more is sent to you.
 
 Everything here is on a test network with tokens that have no value. No real money, no real loans.

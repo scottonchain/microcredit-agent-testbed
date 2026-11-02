@@ -1,16 +1,20 @@
 // Shared harness for headless phone tests of the web app against a fork.
 import { createRequire } from 'node:module'; import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'; import { extname, join, normalize } from 'node:path'; import http from 'node:http'; import { parseEther } from 'viem';
-import { startBundler } from '../bundler.mjs'; import { deployPaymaster } from '../deploy-paymaster.mjs'; import { Actor, seededKey, fundFork, fork, read, usd, toUnits, ADDR, pc, asOwner } from './sim.mjs';
+import { startBundler } from '../bundler.mjs'; import { deployPaymaster } from '../deploy-paymaster.mjs'; import { deployDesk } from '../deploy-desk.mjs'; import { spawn } from 'node:child_process'; import { privateKeyToAccount } from 'viem/accounts'; import { Actor, seededKey, fundFork, fork, read, usd, toUnits, ADDR, pc, asOwner } from './sim.mjs';
 const require = createRequire(import.meta.url); const { chromium, devices } = require('playwright');
 export { devices, fork, read, usd, toUnits, ADDR, pc, asOwner, Actor, seededKey, fundFork, parseEther };
 
-export async function world({ seed = 2, bundlerPort = 4337, webPort = 4173, poolLiquidity = 300, cap } = {}) {
+export async function world({ seed = 2, bundlerPort = 4337, webPort = 4173, poolLiquidity = 300, cap, deskFund = 50, daemonMode = 'rules' } = {}) {
   const RPC = process.env.RPC_URL; mkdirSync('results/screens', { recursive: true });
   await fundFork(new Actor('d', seededKey(seed, 'deployer')), { eth: parseEther('5') }); await fundFork(new Actor('b', seededKey(seed, 'bundler')), { eth: parseEther('5') });
-  const pm = await deployPaymaster({ rpc: RPC, key: seededKey(seed, 'deployer'), ...(cap ? { cap } : {}) });
+  const officerKey = seededKey(seed, 'officer'); const officerAddr = privateKeyToAccount(officerKey).address; await fundFork(new Actor('o', officerKey), { eth: parseEther('1') });
+  await fundFork(new Actor('d', seededKey(seed, 'deployer')), { usdcAmount: toUnits(deskFund) });
+  const desk = await deployDesk({ rpc: RPC, key: seededKey(seed, 'deployer'), officer: officerAddr, maxLine: toUnits(5), fund: toUnits(deskFund) });
+  const pm = await deployPaymaster({ rpc: RPC, key: seededKey(seed, 'deployer'), desk: desk.address, ...(cap ? { cap } : {}) });
   const bundler = await startBundler({ rpc: RPC, port: bundlerPort, key: seededKey(seed, 'bundler') });
   const cfgPath = `results/test-config-${webPort}.json`;
-  writeFileSync(cfgPath, JSON.stringify({ chainId: 84532, rpcs: [RPC], bundler: bundler.url, paymaster: pm.address, pool: ADDR.pool, usdc: ADDR.usdc, explorer: 'https://sepolia.basescan.org', faucet: 'https://faucet.circle.com', creditRequestIssue: 'https://github.com/scottonchain/microcredit-contract/issues/7', headroomSeconds: 600 }));
+  writeFileSync(cfgPath, JSON.stringify({ chainId: 84532, rpcs: [RPC], bundler: bundler.url, paymaster: pm.address, pool: ADDR.pool, usdc: ADDR.usdc, desk: desk.address, maxLine: 5, explorer: 'https://sepolia.basescan.org', faucet: 'https://faucet.circle.com', creditRequestIssue: 'https://github.com/scottonchain/microcredit-contract/issues/7', headroomSeconds: 600 }));
+  const daemon = daemonMode ? spawn('node', ['desk-daemon.mjs'], { env: { ...process.env, RPC_URL: RPC, DESK: desk.address, OFFICER_KEY: officerKey, MODE: daemonMode, POLL: '1500', LOG: `results/desk-daemon-${webPort}.log` }, stdio: 'ignore', detached: false }) : null;
   const root = new URL('../app/', import.meta.url).pathname; const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json' };
   const web = http.createServer((req, res) => { const u = new URL(req.url, 'http://x'); const p = u.pathname === '/' ? '/index.html' : u.pathname;
     if (p === '/config.json') { res.writeHead(200, { 'content-type': 'application/json', 'cache-control': 'no-store' }); return res.end(readFileSync(cfgPath)); }
@@ -21,7 +25,7 @@ export async function world({ seed = 2, bundlerPort = 4337, webPort = 4173, pool
   if (poolLiquidity > 0) { lender = new Actor('lender', seededKey(seed, 'lender')); await fundFork(lender, { usdcAmount: toUnits(poolLiquidity + 100) }); await lender.ensureAllowance(toUnits(poolLiquidity + 100)); await lender.pool('depositFunds', [toUnits(poolLiquidity)]); }
   const backer = new Actor('backer', seededKey(seed, 'backer')); await fundFork(backer, { usdcAmount: toUnits(200) }); await backer.ensureAllowance(toUnits(200)); await backer.pool('stake', [toUnits(150)]);
   const friend = new Actor('friend', seededKey(seed, 'friend')); await fundFork(friend, {});
-  return { RPC, pm, bundler, web, lender, backer, friend, webPort, bundlerPort, close: async () => { web.close(); bundler.close(); } };
+  return { RPC, pm, desk, officerKey, daemon, bundler, web, lender, backer, friend, webPort, bundlerPort, close: async () => { web.close(); bundler.close(); try { daemon?.kill('SIGKILL'); } catch {} } };
 }
 
 export async function phone(w, { device = 'iPhone 13', colorScheme } = {}) {
@@ -33,7 +37,7 @@ export async function phone(w, { device = 'iPhone 13', colorScheme } = {}) {
   const text = () => page.locator('body').innerText();
   const expectText = (re, t = 20000) => page.waitForFunction((src) => new RegExp(src, 'i').test(document.body.innerText), re.source, { timeout: t });
   const addr = () => page.evaluate(() => window.__d7.S.addr);
-  const tapDone = async () => { await expectText(/Done/, 60000); await page.locator('#overlayActions button', { hasText: 'OK' }).click(); };
+  const tapDone = async () => { await page.waitForFunction(() => /\bDone\b|did not go through/.test(document.body.innerText), null, { timeout: 60000 }); if (/did not go through/.test(await text())) { const d = await page.locator('#overlay').innerText(); throw new Error('op failed: ' + d.replace(/\s+/g, ' ').slice(0, 400)); } await page.locator('#overlayActions button', { hasText: 'OK' }).click(); };
   const closeSheet = async () => { if (await page.locator('#overlay').isVisible()) await page.locator('#overlayActions button').first().click(); };
   const create = async () => { await page.goto('/'); await page.getByRole('button', { name: 'Create my wallet' }).click(); await expectText(/Your wallet/); await expectText(/\$\d/); return addr(); };
   return { browser, ctx, page, cdp, authId: va.authenticatorId, logs, text, expectText, addr, tapDone, closeSheet, create };

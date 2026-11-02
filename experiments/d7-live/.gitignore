@@ -5,3 +5,7 @@ keys/
 hardhat-cache/
 cache/
 artifacts/
+results/*.log
+results/desk-*.log
+results/walk/
+results/screens/desk-*.png

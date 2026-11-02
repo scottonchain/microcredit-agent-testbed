@@ -3,7 +3,7 @@ export const MESSAGES = {
   ZeroAmount: 'Enter an amount greater than zero.',
   InsufficientBalance: 'That is more than your available balance.',
   InsufficientLiquidity: 'The pool does not have enough free test USDC right now. Try a smaller amount or try again later.',
-  NoCredit: 'You have no credit yet. Ask a friend to back you, or request a test credit line (see Get credit).',
+  NoCredit: 'You have no credit yet. Ask the credit desk in the app (an AI officer answers there), or ask a friend to back you.',
   BorrowLimitExceeded: 'That is more than your credit allows. Your limit is your own credit plus what friends back you with.',
   BorrowerInDefault: 'This wallet has a defaulted loan and cannot borrow.',
   UtilisationCapExceeded: 'The pool has lent out as much as it allows right now. Try a smaller amount or try later.',

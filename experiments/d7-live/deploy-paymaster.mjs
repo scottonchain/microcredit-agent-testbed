@@ -7,11 +7,11 @@ import { ADDR } from './lib/chain.mjs';
 import { CB_FACTORY } from './lib/wallet.mjs';
 import { entryPoint06Address } from 'viem/account-abstraction';
 
-export async function deployPaymaster({ rpc, key, cap = parseEther('0.02'), deposit = parseEther('0.5'), stake = parseEther('0.05') }) {
+export async function deployPaymaster({ rpc, key, desk = '0x0000000000000000000000000000000000000000', cap = parseEther('0.02'), deposit = parseEther('0.5'), stake = parseEther('0.05') }) {
   const art = JSON.parse(readFileSync(new URL('./build/SponsorPaymaster.json', import.meta.url)));
   const account = privateKeyToAccount(key); const pc = createPublicClient({ chain: baseSepolia, transport: http(rpc) });
   const wc = createWalletClient({ account, chain: baseSepolia, transport: http(rpc) });
-  const hash = await wc.deployContract({ abi: art.abi, bytecode: art.bytecode, args: [entryPoint06Address, ADDR.pool, ADDR.usdc, CB_FACTORY, cap] });
+  const hash = await wc.deployContract({ abi: art.abi, bytecode: art.bytecode, args: [entryPoint06Address, ADDR.pool, ADDR.usdc, CB_FACTORY, desk, cap] });
   const rc = await pc.waitForTransactionReceipt({ hash }); const address = rc.contractAddress;
   const t1 = await wc.sendTransaction({ to: address, value: deposit }); await pc.waitForTransactionReceipt({ hash: t1 });
   const t2 = await wc.writeContract({ address, abi: art.abi, functionName: 'addStake', args: [86400], value: stake }); await pc.waitForTransactionReceipt({ hash: t2 });

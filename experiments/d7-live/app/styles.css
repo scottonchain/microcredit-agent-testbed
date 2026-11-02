@@ -25,3 +25,6 @@ label{display:block;font-weight:600;margin:12px 0 6px}
 .sheet-title{font-size:20px;font-weight:700}.sheet-body{margin:8px 0 14px}.sheet-actions{display:grid;gap:8px}
 .steps{list-style:none;padding:0;margin:8px 0}.steps li{padding:6px 0;color:var(--muted)}.steps li.on{color:var(--ink);font-weight:600}.steps li.done{color:var(--ok)}
 details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}pre{white-space:pre-wrap;word-break:break-word;font-size:12px}
+
+.chat{display:flex;flex-direction:column;gap:8px;margin-top:8px}.bub{max-width:88%;padding:10px 12px;border-radius:16px;line-height:1.35;white-space:pre-wrap}.bub.desk{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:4px}.bub.me{align-self:flex-end;background:var(--brand);color:var(--brand-ink);border-bottom-right-radius:4px}textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);resize:vertical}
+[hidden]{display:none!important}

@@ -7,7 +7,7 @@ This is a practice app on a test network. The dollars are test tokens with no va
 ## What to do (about 10 minutes)
 1. Tap **Create my wallet** and approve the passkey prompt (fingerprint, face or screen lock).
 2. Tap **Receive / get test dollars**, copy your address, then tap **Open the faucet**. On the Circle faucet choose **Base Sepolia** and **USDC**, paste your address, request. Wait a minute and go back: your balance shows a few test dollars.
-3. Send your address to the person running the test. They back you with a small guarantee, and your **You can borrow up to** amount goes above zero.
+3. Tap **Ask the credit desk**. An AI credit officer answers in the app, usually within a minute: say what the money is for, how much (up to $5) and when you will pay it back. When the officer backs you, your **You can borrow up to** amount goes above zero. Nothing you write there should be personal: it is public on the test network.
 4. Tap **Borrow**, pick an amount, read what you will owe, tap **Borrow** and approve with your fingerprint. The money arrives at once.
 5. Tap **Send** and send a little to a friend's address, or back to the person running the test.
 6. Tap **Pay back**. If you are short by the interest, get more from the faucet first (step 2), then pay back everything.
@@ -16,7 +16,7 @@ This is a practice app on a test network. The dollars are test tokens with no va
 ## What we want to hear
 - Anything that confused you: which screen, what you expected, what you saw.
 - Any step that failed. The red sheet has a **Technical details** fold; copy that text.
-- How long each step took, and whether the passkey prompt appeared every time.
+- How long each step took, whether the passkey prompt appeared every time, and what you thought of the credit officer's questions.
 - Your phone model and browser.
 
 ## What never happens

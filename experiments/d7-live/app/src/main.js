@@ -35,7 +35,7 @@ async function run(title, calls, { retryIds, summary } = {}) {
       const r = await C.send(S.bundler, S.account, calls, (st) => draw(st === 'sign' ? 0 : 1));
       if (r.success) {
         let extra = ''; try { extra = summary ? await summary(r) : ''; } catch {}
-        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)} went through.</div>${extra}<p class="muted"><a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">View on the block explorer</a></p>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)} went through.</div>${extra}<p class="muted"><a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">View on the block explorer</a></p>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); if (!location.hash.startsWith('#credit')) render(); } }] });
         return r;
       }
       lastErr = r.reason || 'Reverted';
@@ -71,16 +71,16 @@ function renderWelcome() {
   };
 }
 
-async function renderHome() {
+async function renderHome(my = renderSeq) {
   app.innerHTML = `<h1>Your wallet</h1><div class="card"><div class="muted">Loading…</div></div>`;
-  let s; try { s = await refresh(); } catch (e) { app.innerHTML = `<h1>Your wallet</h1><div class="note bad">${esc(friendly(e))}</div><button id="retry">Try again</button>`; $('#retry').onclick = renderHome; return; }
+  let s; try { s = await refresh(); if (stale(my)) return; } catch (e) { if (stale(my)) return; app.innerHTML = `<h1>Your wallet</h1><div class="note bad">${esc(friendly(e))}</div><button id="retry">Try again</button>`; $('#retry').onclick = renderHome; return; }
   const loans = C.openLoans(s); const active = loans.find((l) => l.status === C.ST.Active); const waiting = loans.find((l) => l.status === C.ST.Requested);
   const apr = Number(s.rate) / 100;
   app.innerHTML = `<h1>Your wallet</h1>
   <div class="card"><div class="muted">Test USDC in your wallet</div><div class="big" id="bal">${C.money(s.usdcBal)}</div>
     <div class="row" style="margin-top:8px"><span class="muted">${short(S.addr)}</span><button class="link" id="copyAddr">Copy address</button></div></div>
   <div class="card"><div class="muted">${active || waiting ? 'Your credit limit' : 'You can borrow up to'}</div><div class="big" id="avail">${C.money(active || waiting ? s.limit : s.available)}</div>
-    <p class="muted">${s.limit === 0n ? 'You have no credit yet. <a href="#credit">How to get credit</a>' : active || waiting ? `You can borrow again after you pay this loan back. Interest is ${apr.toFixed(2)}% a year.` : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
+    ${C.cfg.desk && !s.defaulted ? (s.limit === 0n ? '<button id="gCredit">Ask the credit desk</button>' : '<button class="secondary" id="gCredit">Credit desk</button>') : ''}<p class="muted">${s.limit === 0n ? (C.cfg.desk ? 'You have no credit yet. Ask the credit desk: an AI officer answers in the app.' : 'You have no credit yet. <a href="#credit">How to get credit</a>') : active || waiting ? `You can borrow again after you pay this loan back. Interest is ${apr.toFixed(2)}% a year.` : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
   ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Backing</h2>${s.backedBy.length ? `<div class="muted">Backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><span><b>${C.money(b.amount)}</b> <a href="#back?to=${esc(b.who)}">Change</a></span></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
   ${waiting ? `<div class="note warn">A loan of ${C.money(waiting.principal)} was requested but not paid out.<div class="grid"><button id="finish">Finish it</button><button class="secondary" id="cancelReq">Cancel it</button></div></div>` : ''}
   ${active ? `<div class="card"><div class="muted">You owe</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day.</p><button id="payNow">Pay back</button></div>` : ''}
@@ -92,14 +92,15 @@ async function renderHome() {
   $('#copyAddr').onclick = (e) => copy(S.addr, e.target);
   $('#gBorrow').onclick = () => go('borrow'); $('#gRepay').onclick = () => go('repay'); $('#gSend').onclick = () => go('send'); $('#gReceive').onclick = () => go('receive'); $('#gBack').onclick = () => go('back'); $('#gHelp').onclick = () => go('help');
   if (active) $('#payNow').onclick = () => go('repay');
+  if ($('#gCredit')) $('#gCredit').onclick = () => go('credit');
   if (waiting) {
     $('#finish').onclick = () => run('Finish loan', [C.poolCall('disburseLoan', [waiting.id])]);
     $('#cancelReq').onclick = () => run('Cancel request', [C.poolCall('cancelLoan', [waiting.id])]);
   }
 }
 
-async function renderBorrow() {
-  const s = S.snap || (await refresh()); const apr = Number(s.rate) / 100;
+async function renderBorrow(my = renderSeq) {
+  let s; try { s = await refresh(); } catch { s = S.snap; if (!s) throw new Error('Cannot reach the test network'); } if (stale(my)) return; const apr = Number(s.rate) / 100;
   app.innerHTML = `${header('Borrow')}
   <div class="card"><div class="muted">Available to borrow</div><div class="big">${C.money(s.available)}</div></div>
   <label for="amt">How much?</label><input id="amt" inputmode="decimal" placeholder="e.g. 10" autocomplete="off">
@@ -127,8 +128,8 @@ async function renderBorrow() {
   };
 }
 
-async function renderRepay() {
-  const s = S.snap || (await refresh()); const l = s.loans.find((x) => x.status === C.ST.Active);
+async function renderRepay(my = renderSeq) {
+  let s; try { s = await refresh(); } catch { s = S.snap; if (!s) throw new Error('Cannot reach the test network'); } if (stale(my)) return; const l = s.loans.find((x) => x.status === C.ST.Active);
   if (!l) { app.innerHTML = `${header('Pay back')}<div class="card"><p>You have no loan to pay back.</p></div>`; return; }
   const quote = C.ceilCent(l.owed), pay = quote + C.headroom(l.principal); const short_ = quote > s.usdcBal ? quote - s.usdcBal : 0n;
   app.innerHTML = `${header('Pay back')}
@@ -179,14 +180,43 @@ function renderReceive() {
   $('#cp').onclick = (e) => copy(S.addr, e.target); $('#fc').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); };
 }
 
-function renderCredit() {
-  const msg = `@HermesCRBot please issue a test credit line to ${S.addr}`;
+let chatTimer = null;
+function stopChat() { if (chatTimer) { clearInterval(chatTimer); chatTimer = null; } }
+async function renderCredit(my = renderSeq) {
+  stopChat();
+  if (!C.cfg.desk) return renderCreditManual();
+  const maxLine = C.cfg.maxLine || 5;
+  app.innerHTML = `${header('Credit desk')}
+  <div class="card"><p class="muted">An AI credit officer reads what you write and answers here, usually within a minute or two. Everything written here is public on the test network, so no personal details, please.</p>
+  <div id="chat" class="chat"><div class="muted">Loading…</div></div><div id="typing" class="muted" hidden>The credit officer is reading your message…</div></div>
+  <div class="card" id="askBox"><label for="msg" class="muted">Your message</label><textarea id="msg" rows="3" maxlength="1000" placeholder="What is it for, how much (up to $${maxLine}), and when will you pay it back?"></textarea>
+  <div class="grid"><button id="send">Send to the desk</button><button class="secondary" id="toBorrow" hidden>Borrow</button></div><div id="warn"></div></div>
+  <details class="card"><summary>Or ask a friend to back you</summary><p>Send them your address. In their app they open <b>Back a friend</b> and enter it. What they lock becomes your limit.</p><div class="addr">${esc(S.addr)}</div><button class="secondary" id="cp" style="margin-top:8px">Copy address</button></details>`;
+  $('#cp').onclick = (e) => copy(S.addr, e.target); $('#toBorrow').onclick = () => go('borrow');
+  const greeting = `Hello, I am the credit officer at the Omnequa credit desk, an AI agent. Tell me what you would use a small loan for, how much you need (up to $${maxLine} in this test), and when you would pay it back.`;
+  let lastLen = -1, lastBacking = -1n;
+  const draw = async () => {
+    let d; try { d = await C.deskState(S.client, S.addr); } catch (e) { if (stale(my)) return; $('#chat').innerHTML = `<div class="note bad">${esc(friendly(e))}</div>`; return; }
+    if (stale(my)) { stopChat(); return; }
+    if (d.thread.length === lastLen && d.backing === lastBacking) return; lastLen = d.thread.length; lastBacking = d.backing;
+    const bubbles = [{ from: 1, text: greeting }, ...d.thread].map((m) => `<div class="bub ${m.from === 0 ? 'me' : 'desk'}">${esc(m.text)}</div>`).join('');
+    const granted = d.backing > 0n ? `<div class="note ok" id="granted">The desk backs you with <b>${C.money(d.backing)}</b>. Your limit on the home screen includes it.</div>` : '';
+    $('#chat').innerHTML = bubbles + granted; $('#typing').hidden = d.unanswered === 0;
+    $('#toBorrow').hidden = d.backing === 0n; $('#send').disabled = d.unanswered >= 3;
+    $('#warn').innerHTML = d.unanswered >= 3 ? '<div class="note warn">Please wait for the officer to answer before writing again.</div>' : d.freeStake === 0n && d.backing === 0n ? '<div class="note warn">The desk has no free stake right now, so it cannot grant new lines until some is added.</div>' : '';
+  };
+  await draw(); chatTimer = setInterval(() => { if (location.hash.startsWith('#credit')) draw(); else stopChat(); }, 4000);
+  $('#send').onclick = async () => {
+    const text = $('#msg').value.trim(); if (!text) return; if (text.length > 1000) { $('#warn').innerHTML = '<div class="note warn">Please keep it under 1000 characters.</div>'; return; }
+    const r = await run('Send to the credit desk', [C.deskCall('say', [text])]); if (r && r.success) { $('#msg').value = ''; }
+  };
+}
+function renderCreditManual() {
   app.innerHTML = `${header('Get credit')}
   <div class="card"><h2>How credit works here</h2><p>You can borrow only against credit that exists. Nobody can make it up. Credit comes from two places:</p>
   <ul><li><b>A friend backs you.</b> They lock some of their own test USDC as a guarantee for you. Your limit goes up by what they lock.</li><li><b>A test credit line.</b> The test operator can grant a line for the experiment.</li></ul></div>
-  <div class="card"><h2>Ask a friend to back you</h2><p>Send them your address. In their app they open <b>Back a friend</b> and enter it.</p><div class="addr">${esc(S.addr)}</div><button class="secondary" id="cp" style="margin-top:8px">Copy address</button></div>
-  <div class="card"><h2>Request a test credit line</h2><p>Post this message as a comment on the test thread. The test operator replies and grants a line.</p><div class="addr">${esc(msg)}</div><div class="grid"><button id="cpm" class="secondary">Copy message</button><a class="btn" href="${C.cfg.creditRequestIssue}" target="_blank" rel="noopener">Open the thread</a></div></div>`;
-  $('#cp').onclick = (e) => copy(S.addr, e.target); $('#cpm').onclick = (e) => copy(msg, e.target);
+  <div class="card"><h2>Ask a friend to back you</h2><p>Send them your address. In their app they open <b>Back a friend</b> and enter it.</p><div class="addr">${esc(S.addr)}</div><button class="secondary" id="cp" style="margin-top:8px">Copy address</button></div>`;
+  $('#cp').onclick = (e) => copy(S.addr, e.target);
 }
 
 async function renderBack() {
@@ -231,11 +261,12 @@ function renderHelp() {
   $('#reset').onclick = () => sheet({ title: 'Remove wallet from this phone?', body: '<p>Make sure you saved your recovery code. Nothing on the network is deleted.</p>', actions: [{ label: 'Remove', onClick: () => { C.forget(); location.hash = ''; location.reload(); } }, { label: 'Keep it', secondary: true, onClick: closeSheet }] });
 }
 
+let renderSeq = 0; const stale = (my) => my !== renderSeq;
 const routes = { home: renderHome, borrow: renderBorrow, repay: renderRepay, send: renderSend, receive: renderReceive, back: renderBack, help: renderHelp, credit: renderCredit };
 export function render() {
   if (!S.cred) return renderWelcome();
-  const r = (location.hash || '#home').slice(1).split('?')[0]; window.scrollTo(0, 0);
-  Promise.resolve().then(() => (routes[r] || renderHome)()).catch((e) => { app.innerHTML = `<div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 300))}</pre>`; });
+  const r = (location.hash || '#home').slice(1).split('?')[0]; window.scrollTo(0, 0); const my = ++renderSeq;
+  Promise.resolve().then(() => (routes[r] || renderHome)(my)).catch((e) => { app.innerHTML = `<div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 300))}</pre>`; });
 }
 async function boot() {
   S.cred = C.loadCred(); if (!S.cred) return;

@@ -2,6 +2,7 @@ import { createPublicClient, http, fallback, encodeFunctionData, maxUint256, par
 import { createBundlerClient, toCoinbaseSmartAccount, toWebAuthnAccount, createWebAuthnCredential, entryPoint06Address, entryPoint06Abi } from 'viem/account-abstraction';
 import { baseSepolia } from 'viem/chains';
 import poolAbi from '../../abi/DecentralizedMicrocredit.json';
+import deskAbi from '../../abi/CreditDesk.json';
 
 export const erc20Abi = [
   { type: 'function', name: 'balanceOf', stateMutability: 'view', inputs: [{ name: 'a', type: 'address' }], outputs: [{ type: 'uint256' }] },
@@ -45,6 +46,13 @@ export function bundlerFor(client, account) {
 export const callOf = (to, abi, fn, args) => ({ to, data: encodeFunctionData({ abi, functionName: fn, args }) });
 export const poolCall = (fn, args) => callOf(cfg.pool, poolAbi, fn, args);
 export const usdcCall = (fn, args) => callOf(cfg.usdc, erc20Abi, fn, args);
+export const deskCall = (fn, args) => callOf(cfg.desk, deskAbi, fn, args);
+// The credit desk conversation for one wallet: messages, the desk's current backing and whether a reply is owed.
+export async function deskState(client, addr) {
+  const Dk = (functionName, args = []) => client.readContract({ address: cfg.desk, abi: deskAbi, functionName, args });
+  const [thread, backing, unanswered, maxLine, freeStake] = await Promise.all([Dk('thread', [addr]), Dk('backingOf', [addr]), Dk('unanswered', [addr]), Dk('maxLine'), Dk('freeStake')]);
+  return { thread: thread.map((m) => ({ from: Number(m.from), at: Number(m.at), text: m.text })), backing, unanswered: Number(unanswered), maxLine, freeStake };
+}
 
 export function decodeRevert(data) {
   if (!data || data === '0x') return 'Reverted';
@@ -88,6 +96,6 @@ export async function preflight(client, addr, fn, args) {
   catch (e) { let n = null; try { e.walk?.((x) => { if (x?.data?.errorName) n = x.data.errorName; }); } catch {} return n || 'Unknown'; }
 }
 export const nextLoanId = async (client) => { const ids = await client.readContract({ address: cfg.pool, abi: poolAbi, functionName: 'getAllLoanIds' }); return (ids.length ? ids[ids.length - 1] : 0n) + 1n; };
-export { isAddress, getAddress, maxUint256, poolAbi };
+export { isAddress, getAddress, maxUint256, poolAbi, deskAbi };
 // Headroom over a payoff quote: one cent at least, plus interest for the signing delay at the 100% APR ceiling.
 export const headroom = (principal) => { const a = (principal * 10000n * BigInt(cfg.headroomSeconds)) / (10000n * 31536000n); const b = ceilCent(a + 1n); return b > CENT ? b : CENT; };

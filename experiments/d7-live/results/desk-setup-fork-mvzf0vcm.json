@@ -1,0 +1,14 @@
+{
+ "rpc": "http://127.0.0.1:8545",
+ "when": "2026-11-02T15:30:12.731Z",
+ "treasury": "0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212",
+ "officer": "0xb88DC88d538a754f57cAB344C1E09d02C129fcf2",
+ "hashes": {
+  "deskDeploy": "0x48468da890361e89f27662b5e0ab2a3caf5e1112917080756b4dd18ec5f22490",
+  "deskApprove": "0xe328ab31f586aa67f445a80f9448582d5c6be6226eee2569b67773f01f242dfe",
+  "deskFund": "0x1ceeec9bbcdfbabdd01f0982286b145c109396b99668cd5f71d5c98d8fc002b8",
+  "officerGas": "0xfc6b45b431790ad9c15ebbd7ef1576cef067a77f51e83643a747cdb66605b283"
+ },
+ "desk": "0x22f7f6dcb63cd020556a8101247fe3900911215f",
+ "paymaster": "0xc0dec03ab8d2fe64d40a541aa1f0404c2726bc0c"
+}

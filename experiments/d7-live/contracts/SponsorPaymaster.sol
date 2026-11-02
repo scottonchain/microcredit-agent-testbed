@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 
 // TESTNET ONLY. A rule-based gas sponsor for ERC-4337 EntryPoint v0.6 (Base Sepolia).
 // It pays gas for Coinbase Smart Wallet user operations that only (a) create the wallet through the
-// canonical factory and (b) call the Omnequa test pool or Circle test USDC with allow-listed functions
+// canonical factory, (b) call the Omnequa test pool or Circle test USDC with allow-listed functions, or (c) write to the credit desk,
 // and no ETH value. No server and no signature: the rules are the code. Each sender has a lifetime cap.
 // It holds no user funds. The owner can change the cap, withdraw the ETH deposit and the stake.
 
@@ -37,6 +37,7 @@ contract SponsorPaymaster {
     address public immutable pool;
     address public immutable usdc;
     address public immutable walletFactory;
+    address public immutable desk; // CreditDesk: applicants may say() to it (0 = none)
     address public owner;
     uint256 public immutable capPerSender; // lifetime cap of sponsored gas cost (wei) per wallet
     // The only storage validation touches is spent[sender], which is associated with the sender (ERC-7562), so a
@@ -57,6 +58,7 @@ contract SponsorPaymaster {
     bytes4 private constant EXECUTE_BATCH = 0x34fcd5be; // executeBatch((address,uint256,bytes)[])
     bytes4 private constant APPROVE = 0x095ea7b3; // approve(address,uint256)
     bytes4 private constant TRANSFER = 0xa9059cbb; // transfer(address,uint256)
+    bytes4 private constant SAY = bytes4(keccak256("say(string)"));
 
     error NotEntryPoint();
     error NotOwner();
@@ -64,11 +66,12 @@ contract SponsorPaymaster {
     error BadCall();
     error CapExceeded();
 
-    constructor(address _entryPoint, address _pool, address _usdc, address _factory, uint256 _cap) {
+    constructor(address _entryPoint, address _pool, address _usdc, address _factory, address _desk, uint256 _cap) {
         entryPoint = IEntryPoint06(_entryPoint);
         pool = _pool;
         usdc = _usdc;
         walletFactory = _factory;
+        desk = _desk;
         capPerSender = _cap;
         owner = msg.sender;
     }
@@ -136,6 +139,8 @@ contract SponsorPaymaster {
             } else {
                 revert BadCall();
             }
+        } else if (target == desk && desk != address(0)) {
+            if (sel != SAY) revert BadCall();
         } else {
             revert BadCall();
         }
