@@ -2,9 +2,9 @@
 
 This is a practice app on a test network. The dollars are test tokens with no value. Nothing here is a real loan, and nobody is lending you money. We are testing whether a phone app can let a person borrow a small amount against a friend's guarantee, with no wallet software, no seed words and no fees.
 
-**Link:** https://scottonchain.github.io/microcredit-agent-testbed/ (open on your phone).
+**Link:** https://scottonchain.github.io/microcredit-agent-testbed/ (open on your phone, in Safari or Chrome).
 
-**Use it like an app (optional).** Tap **Add to home screen** on the first screen or on the Help screen and follow the steps; the link https://scottonchain.github.io/microcredit-agent-testbed/?install=1 offers the same step as soon as it opens. Android Chrome and desktop Chrome or Edge show an install dialog. iPhone has no dialog: the app shows the Share, then Add to Home Screen steps. On iPhone the home-screen app keeps its own storage, separate from Safari, so create your wallet in the one you will use, or move it with the recovery code (Help screen). Installing changes nothing else: same test network, same wallet rules.
+**Optional: put it on your home screen.** Tap **Add to home screen** on the first screen and follow the steps; afterwards it opens from its own icon like any app. On iPhone or iPad do this before step 1: a wallet created in the browser does not appear in the home-screen app (the recovery code on the Help screen moves it over, and creating a second wallet would replace the first passkey). If the link opened inside another app (Messages, WhatsApp, Gmail), open it in Safari or Chrome first. If the passkey prompt does not appear in the home-screen app, go back to the browser and use the wallet there.
 
 ## What to do (about 10 minutes)
 1. Tap **Create my wallet** and approve the passkey prompt (fingerprint, face or screen lock).
@@ -22,4 +22,4 @@ This is a practice app on a test network. The dollars are test tokens with no va
 - Your phone model and browser.
 
 ## What never happens
-No real money. No personal data is stored by the app; your wallet lives in your passkey (details in DATA_HANDLING.md next to this guide). Your recovery code (Help screen) reopens the wallet on another phone. Remove the wallet from the Help screen when you are done. You can stop at any time; say "stop" to the person running the test and nothing more will be sent to you.
+No real money. No personal data is stored by the app; your wallet lives in your passkey (details in DATA_HANDLING.md next to this guide). Your recovery code (Help screen) reopens the wallet on another phone. Remove the wallet from the Help screen when you are done; if you used both the browser and the home-screen app, remove it in each. You can stop at any time; say "stop" to the person running the test and nothing more will be sent to you.

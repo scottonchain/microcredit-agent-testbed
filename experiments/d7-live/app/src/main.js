@@ -14,13 +14,15 @@ let chainNow = null; // block time, so the screens agree with the pool even when
 const now = () => chainNow ?? Math.floor(Date.now() / 1000);
 const dueLine = (l) => { const d = l.dueAt - now(); if (d >= 0) return `Due in ${days(d)} days (${new Date(l.dueAt * 1000).toLocaleDateString()}).`; const late = Math.max(1, Math.floor(-d / 86400)); return `Overdue by ${late} day${late === 1 ? '' : 's'}. Pay now. After 30 more days late the loan can be marked defaulted and anyone who backed you can lose their stake.`; };
 
+let sheetReturnFocus = null; // where focus goes back to when the sheet closes
 function sheet({ title, body = '', actions = [] }) {
+  const o = $('#overlay'); if (o.hidden) sheetReturnFocus = document.activeElement;
   $('#overlayTitle').textContent = title; $('#overlayBody').innerHTML = body;
   const box = $('#overlayActions'); box.innerHTML = '';
   actions.forEach((a) => { const b = document.createElement('button'); b.textContent = a.label; if (a.secondary) b.className = 'secondary'; b.onclick = a.onClick; box.appendChild(b); });
-  $('#overlay').hidden = false;
+  o.hidden = false; const first = box.querySelector('button'); if (first) first.focus();
 }
-const closeSheet = () => { $('#overlay').hidden = true; };
+const closeSheet = () => { $('#overlay').hidden = true; const r = sheetReturnFocus; sheetReturnFocus = null; if (r && r.focus && document.contains(r)) { try { r.focus(); } catch {} } };
 const go = (r) => { location.hash = r; };
 const copy = async (t, btn) => { try { await navigator.clipboard.writeText(t); if (btn) { const o = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => (btn.textContent = o), 1200); } } catch { prompt('Copy this:', t); } };
 
@@ -54,26 +56,48 @@ async function run(title, calls, { retryIds, summary } = {}) {
 const refuse = (name) => { sheet({ title: 'Not possible yet', body: `<div class="note warn">${esc(friendly({ reason: name }))}</div>`, actions: [{ label: 'OK', onClick: closeSheet }] }); };
 
 // ---------- putting the app on the home screen ----------
-// On iPhone the home-screen app has its own storage, separate from Safari; the passkey itself is shared.
-const IOS_STORAGE = 'The home-screen app keeps its own storage, separate from Safari: create your wallet in the one you will use, or move it with the recovery code on the Help screen.';
-async function installSheet() {
-  await I.settle();
-  const k = I.kind();
-  if (k === 'prompt') {
-    sheet({ title: 'Add to your home screen', body: '<p>Your browser will ask to install the Omnequa test wallet. It then opens full screen from its own icon, like any app. Nothing comes from an app store.</p>',
-      actions: [{ label: 'Install', onClick: async () => {
-        sheet({ title: 'Add to your home screen', body: '<p>Confirm in your browser’s dialog.</p>' });
-        const o = await I.prompt();
-        if (o === 'accepted') sheet({ title: 'Added', body: '<p>Open the Omnequa test wallet from your home screen. You can close this browser tab.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
-        else sheet({ title: 'Not installed', body: '<p>No problem. You can add it later from the Help screen, or from your browser’s menu (Install app or Add to Home screen).</p>', actions: [{ label: 'OK', onClick: closeSheet }] });
-      } }, { label: 'Not now', secondary: true, onClick: closeSheet }] });
-  } else if (k === 'ios') {
-    sheet({ title: 'Add to your home screen', body: `<ol class="howto"><li>Tap the <b>Share</b> button (the square with an arrow) in the browser’s toolbar.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p>Then open the app from its new icon.</p><p class="muted">${IOS_STORAGE}</p>`, actions: [{ label: 'OK', onClick: closeSheet }] });
-  } else {
-    sheet({ title: 'Add to your home screen', body: '<p>In your browser’s menu, choose <b>Install app</b>, <b>Add to Home screen</b> or <b>Add to Dock</b>, then open the app from its new icon.</p><p class="muted">If it is already installed, open it from your home screen.</p>', actions: [{ label: 'OK', onClick: closeSheet }] });
-  }
+// On iPhone, iPad and Mac Safari the home-screen (or Dock) app keeps its own copy of the wallet entry, separate
+// from the browser's; the passkey is meant to be shared. Creating a second wallet replaces the first passkey.
+let installToken = 0, installUnsub = null;
+const endInstallWatch = () => { if (installUnsub) { installUnsub(); installUnsub = null; } };
+const closeInstall = () => { endInstallWatch(); closeSheet(); };
+const walletNote = (hasWallet) => { if (!I.appleWebKit()) return ''; const b = I.browserName(); return hasWallet
+  ? `<p>Copy your recovery code first (it is on the Help screen). The home-screen app will not see the wallet you made in ${b}: in the new app tap <b>I already have a recovery code</b> and paste it. Do not create a second wallet there.</p>`
+  : `<p>Add it first, then create your wallet from the new icon. A wallet created in ${b} does not show up in the home-screen app.</p>`; };
+const inAppLine = () => `<p>Opened this inside another app (Messages, WhatsApp, Gmail)? First choose <b>Open in ${I.isIOS() ? 'Safari' : 'Chrome'}</b> (or <b>Open in browser</b>) from that app's menu, then tap Add to home screen again.</p>`;
+function installContent(k, hasWallet) {
+  const inApp = I.inAppView();
+  if (k === 'prompt') return { body: '<p>Your browser will ask to install the Omnequa test wallet. It then opens from its own icon, without the browser bars. There is nothing to download from an app store.</p>', actions: [{ label: 'Install', onClick: doInstall }, { label: 'Not now', secondary: true, onClick: closeInstall }] };
+  if (k === 'ios') return { body: `${inApp ? inAppLine() : ''}<ol class="howto"><li>Tap the <b>Share</b> button (the square with an arrow pointing up), usually at the bottom of the screen; on iPad it is at the top.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p>Then open the app from its new icon. If it is already there, just open it.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
+  return { body: `${inApp ? inAppLine() : ''}<p>In your browser’s menu look for <b>Install app</b>, <b>Add to Home screen</b>, <b>Add to phone</b> or <b>Add to Dock</b>, then open the app from its new icon.</p><p class="muted">If it is already installed, open it from your home screen or app list. If there is nothing like that in the menu, keep using it here in the browser: nothing is lost.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
 }
-const installCard = () => I.available() ? '<div class="card" data-install><h2>Use it like an app</h2><p class="muted">Put the test wallet on your home screen. It opens full screen with its own icon.</p><button class="secondary" id="install">Add to home screen</button></div>' : '';
+function showInstalled() {
+  endInstallWatch(); installToken++;
+  if (I.standalone()) sheet({ title: 'Installed', body: '<p>You are now in the app. Carry on here; later, open it from your Dock, Start menu or app launcher.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+  else sheet({ title: 'Adding it now', body: '<p>In a few seconds, look for an icon named <b>Omnequa test</b> on your home screen or in your app list. You can keep using this tab or close it.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+}
+async function doInstall() {
+  if (I.isInstalled()) return showInstalled();
+  const my = ++installToken; endInstallWatch();
+  sheet({ title: 'Add to your home screen', body: '<p>Your browser is asking now: tap <b>Install</b> there.</p>', actions: [{ label: 'Cancel', secondary: true, onClick: closeInstall }] });
+  const o = await I.prompt();
+  if (my !== installToken || $('#overlay').hidden) return; // the person closed the sheet or moved on
+  if (o === 'accepted') showInstalled();
+  else sheet({ title: 'Not installed', body: '<p>No problem. You can add it from your browser’s menu, or here after you reopen the page.</p>', actions: [{ label: 'OK', onClick: closeInstall }] });
+}
+function installSheet() {
+  const hasWallet = !!S.cred; const my = ++installToken; endInstallWatch();
+  const draw = () => { const { body, actions } = installContent(I.kind(), hasWallet); sheet({ title: 'Add to your home screen', body, actions }); };
+  draw();
+  // The browser's install event can arrive after the sheet opened (first visit, slow network): upgrade the open
+  // sheet in place. If the app gets installed meanwhile (browser menu), say so instead of offering a dialog.
+  installUnsub = I.onChange(() => {
+    if (my !== installToken || $('#overlay').hidden || $('#overlayTitle').textContent !== 'Add to your home screen') return endInstallWatch();
+    if (I.isInstalled()) return showInstalled();
+    if (I.kind() === 'prompt') draw();
+  });
+}
+const installCard = () => I.available() ? '<div class="card" data-install><p><b>Add to your home screen</b> (optional)</p><p class="muted">It then opens from its own icon, like any app.</p><button class="secondary" id="install">Add to home screen</button></div>' : '';
 const wireInstall = () => { const b = $('#install'); if (b) b.onclick = installSheet; };
 
 // ---------- screens ----------
@@ -82,8 +106,9 @@ function header(title, back = true) { return `${back ? '<a class="back" href="#h
 function renderWelcome() {
   app.innerHTML = `${header('Omnequa test wallet', false)}
   <p>A practice wallet for small test loans. It opens with your fingerprint, face or screen lock. No password, no seed words, no fees to pay.</p>
-  <div class="card"><button id="create">Create my wallet</button><p class="muted">Your phone will ask you to create a passkey. It stays on your device and, if you use one, your password manager.</p></div>
-  ${I.standalone() && I.isIOS() ? '<div class="note warn">Already created your wallet in Safari? This home-screen app keeps its own storage. In Safari, open Help, copy the recovery code and restore it here.</div>' : ''}
+  <div class="card">${I.appleWebKit() ? (I.standalone()
+    ? '<div class="note warn"><b>Already made a wallet in a browser on this device?</b> Do not tap Create my wallet: your device would replace that passkey and the first wallet’s test dollars would be out of reach. Instead, in that browser open Help, copy the recovery code, then tap <b>I already have a recovery code</b> below and paste it.</div>'
+    : '<p class="muted">Made a wallet in the home-screen app already? Restore it with its recovery code (below) instead of creating a new one: a second passkey replaces the first.</p>') : ''}<button id="create">Create my wallet</button><p class="muted">Your phone will ask you to create a passkey. It stays on your device and, if you use one, your password manager.</p></div>
   <details class="card"><summary>I already have a recovery code</summary><label for="rc">Recovery code</label><textarea id="rc" rows="3" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea><button id="import" class="secondary" style="margin-top:8px">Restore wallet</button></details>
   ${installCard()}
   <p class="muted">Test network only. The dollars are test tokens with no real value.</p>`;
@@ -304,11 +329,11 @@ async function boot() {
 }
 (async () => {
   try {
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname))) navigator.serviceWorker.register('sw.js').catch(() => {});
     await C.loadConfig(); S.client = C.makeClient(); await boot();
     window.addEventListener('hashchange', render); render();
     I.onChange(() => document.querySelectorAll('[data-install]').forEach((el) => { el.hidden = !I.available(); }));
     window.__d7 = { S, C, I }; // test hook
     if (I.askedByLink()) { I.dropLinkFlag(); if (I.available()) installSheet(); }
-    if ('serviceWorker' in navigator && /^(localhost|127\.0\.0\.1)$|^https:/.test(location.hostname) || location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
   } catch (e) { app.innerHTML = `<h1>Cannot start</h1><div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 400))}</pre>`; }
 })();
