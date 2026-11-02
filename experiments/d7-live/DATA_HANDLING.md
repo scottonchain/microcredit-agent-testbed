@@ -1,6 +1,6 @@
 # Data handling (test wallet app)
 
-What the app keeps on your phone: one entry in the browser's local storage holding the passkey's credential id and its public key. Nothing else. The private key never leaves your phone's passkey store (Secure Enclave, Android keystore or the password manager that holds the passkey). "Remove wallet" on the Help screen deletes that entry; the passkey itself is removed from your phone's own settings.
+What the app keeps on your phone: one entry in the browser's local storage holding the passkey's credential id and its public key. Nothing else. On iPhone, a copy added to the home screen has its own local storage, separate from Safari's, so that entry exists only where the wallet was created or restored; the passkey itself is shared by both. The private key never leaves your phone's passkey store (Secure Enclave, Android keystore or the password manager that holds the passkey). "Remove wallet" on the Help screen deletes that entry; the passkey itself is removed from your phone's own settings.
 
 What the app sends, and to whom:
 - Read calls (balances, limits, loans) go to public Base Sepolia RPC endpoints (sepolia.base.org, publicnode.com, drpc.org). They see your wallet address and your IP address, as any website's host does.

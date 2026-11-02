@@ -2,7 +2,9 @@
 
 This is a practice app on a test network. The dollars are test tokens with no value. Nothing here is a real loan, and nobody is lending you money. We are testing whether a phone app can let a person borrow a small amount against a friend's guarantee, with no wallet software, no seed words and no fees.
 
-**Link:** https://scottonchain.github.io/microcredit-agent-testbed/ (open on your phone; "Add to Home Screen" from the browser menu if you want an icon).
+**Link:** https://scottonchain.github.io/microcredit-agent-testbed/ (open on your phone).
+
+**Use it like an app (optional).** Tap **Add to home screen** on the first screen or on the Help screen and follow the steps; the link https://scottonchain.github.io/microcredit-agent-testbed/?install=1 offers the same step as soon as it opens. Android Chrome and desktop Chrome or Edge show an install dialog. iPhone has no dialog: the app shows the Share, then Add to Home Screen steps. On iPhone the home-screen app keeps its own storage, separate from Safari, so create your wallet in the one you will use, or move it with the recovery code (Help screen). Installing changes nothing else: same test network, same wallet rules.
 
 ## What to do (about 10 minutes)
 1. Tap **Create my wallet** and approve the passkey prompt (fingerprint, face or screen lock).

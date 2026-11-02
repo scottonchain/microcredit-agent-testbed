@@ -1,11 +1,13 @@
 import qrcode from 'qrcode-generator';
 import * as C from './core.js';
 import { friendly } from './errors.js';
+import * as I from './install.js';
 
 const $ = (s) => document.querySelector(s);
 const app = $('#app');
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const S = { client: null, cred: null, account: null, addr: null, bundler: null, snap: null };
+I.watch();
 const short = (a) => a.slice(0, 6) + '…' + a.slice(-4);
 const days = (secs) => Math.max(0, Math.ceil(secs / 86400));
 let chainNow = null; // block time, so the screens agree with the pool even when the phone clock is wrong
@@ -51,6 +53,29 @@ async function run(title, calls, { retryIds, summary } = {}) {
 }
 const refuse = (name) => { sheet({ title: 'Not possible yet', body: `<div class="note warn">${esc(friendly({ reason: name }))}</div>`, actions: [{ label: 'OK', onClick: closeSheet }] }); };
 
+// ---------- putting the app on the home screen ----------
+// On iPhone the home-screen app has its own storage, separate from Safari; the passkey itself is shared.
+const IOS_STORAGE = 'The home-screen app keeps its own storage, separate from Safari: create your wallet in the one you will use, or move it with the recovery code on the Help screen.';
+async function installSheet() {
+  await I.settle();
+  const k = I.kind();
+  if (k === 'prompt') {
+    sheet({ title: 'Add to your home screen', body: '<p>Your browser will ask to install the Omnequa test wallet. It then opens full screen from its own icon, like any app. Nothing comes from an app store.</p>',
+      actions: [{ label: 'Install', onClick: async () => {
+        sheet({ title: 'Add to your home screen', body: '<p>Confirm in your browser’s dialog.</p>' });
+        const o = await I.prompt();
+        if (o === 'accepted') sheet({ title: 'Added', body: '<p>Open the Omnequa test wallet from your home screen. You can close this browser tab.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+        else sheet({ title: 'Not installed', body: '<p>No problem. You can add it later from the Help screen, or from your browser’s menu (Install app or Add to Home screen).</p>', actions: [{ label: 'OK', onClick: closeSheet }] });
+      } }, { label: 'Not now', secondary: true, onClick: closeSheet }] });
+  } else if (k === 'ios') {
+    sheet({ title: 'Add to your home screen', body: `<ol class="howto"><li>Tap the <b>Share</b> button (the square with an arrow) in the browser’s toolbar.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p>Then open the app from its new icon.</p><p class="muted">${IOS_STORAGE}</p>`, actions: [{ label: 'OK', onClick: closeSheet }] });
+  } else {
+    sheet({ title: 'Add to your home screen', body: '<p>In your browser’s menu, choose <b>Install app</b>, <b>Add to Home screen</b> or <b>Add to Dock</b>, then open the app from its new icon.</p><p class="muted">If it is already installed, open it from your home screen.</p>', actions: [{ label: 'OK', onClick: closeSheet }] });
+  }
+}
+const installCard = () => I.available() ? '<div class="card" data-install><h2>Use it like an app</h2><p class="muted">Put the test wallet on your home screen. It opens full screen with its own icon.</p><button class="secondary" id="install">Add to home screen</button></div>' : '';
+const wireInstall = () => { const b = $('#install'); if (b) b.onclick = installSheet; };
+
 // ---------- screens ----------
 function header(title, back = true) { return `${back ? '<a class="back" href="#home">‹ Back</a>' : ''}<h1>${esc(title)}</h1>`; }
 
@@ -58,8 +83,11 @@ function renderWelcome() {
   app.innerHTML = `${header('Omnequa test wallet', false)}
   <p>A practice wallet for small test loans. It opens with your fingerprint, face or screen lock. No password, no seed words, no fees to pay.</p>
   <div class="card"><button id="create">Create my wallet</button><p class="muted">Your phone will ask you to create a passkey. It stays on your device and, if you use one, your password manager.</p></div>
+  ${I.standalone() && I.isIOS() ? '<div class="note warn">Already created your wallet in Safari? This home-screen app keeps its own storage. In Safari, open Help, copy the recovery code and restore it here.</div>' : ''}
   <details class="card"><summary>I already have a recovery code</summary><label for="rc">Recovery code</label><textarea id="rc" rows="3" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea><button id="import" class="secondary" style="margin-top:8px">Restore wallet</button></details>
+  ${installCard()}
   <p class="muted">Test network only. The dollars are test tokens with no real value.</p>`;
+  wireInstall();
   $('#create').onclick = async () => {
     sheet({ title: 'Creating your wallet', body: '<p>Approve the passkey prompt on your phone.</p>' });
     try { const cred = await C.createPasskey('Omnequa test wallet'); C.saveCred(cred); await boot(); closeSheet(); go('home'); render(); }
@@ -255,8 +283,10 @@ function renderHelp() {
   app.innerHTML = `${header('Help')}
   <div class="card"><h2>How it works</h2><ol><li>You get test USDC from a faucet.</li><li>A friend backs you, or the test operator grants a line.</li><li>You borrow up to your limit. You get the money at once.</li><li>You pay it back with a little interest. Paying back builds your history.</li></ol></div>
   <div class="card"><h2>Your recovery code</h2><p class="muted">Save this somewhere private. With it you can reopen this wallet on a new phone if your passkey syncs.</p><div class="addr" style="max-height:90px;overflow:auto">${esc(code)}</div><button id="cp" class="secondary" style="margin-top:8px">Copy recovery code</button></div>
+  ${installCard()}
   <div class="card"><h2>Send feedback</h2><p>Tell us what confused you. Include what you tapped and what you saw. Never include real personal information.</p><button class="secondary" id="reset">Remove this wallet from this phone</button></div>
   <p class="muted">Wallet address: ${esc(S.addr)}</p>`;
+  wireInstall();
   $('#cp').onclick = (e) => copy(code, e.target);
   $('#reset').onclick = () => sheet({ title: 'Remove wallet from this phone?', body: '<p>Make sure you saved your recovery code. Nothing on the network is deleted.</p>', actions: [{ label: 'Remove', onClick: () => { C.forget(); location.hash = ''; location.reload(); } }, { label: 'Keep it', secondary: true, onClick: closeSheet }] });
 }
@@ -276,7 +306,9 @@ async function boot() {
   try {
     await C.loadConfig(); S.client = C.makeClient(); await boot();
     window.addEventListener('hashchange', render); render();
-    window.__d7 = { S, C }; // test hook
+    I.onChange(() => document.querySelectorAll('[data-install]').forEach((el) => { el.hidden = !I.available(); }));
+    window.__d7 = { S, C, I }; // test hook
+    if (I.askedByLink()) { I.dropLinkFlag(); if (I.available()) installSheet(); }
     if ('serviceWorker' in navigator && /^(localhost|127\.0\.0\.1)$|^https:/.test(location.hostname) || location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
   } catch (e) { app.innerHTML = `<h1>Cannot start</h1><div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 400))}</pre>`; }
 })();
