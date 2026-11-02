@@ -31,7 +31,14 @@ export const forget = () => localStorage.removeItem(KEY);
 export const recoveryCode = (c) => btoa(JSON.stringify({ id: c.id, publicKey: c.publicKey }));
 export const parseRecovery = (s) => { const o = JSON.parse(atob(s.trim())); if (!o.id || !o.publicKey) throw new Error('bad code'); return o; };
 
-export async function createPasskey(label) { return createWebAuthnCredential({ name: label || 'Omnequa test wallet' }); }
+// Each wallet gets its own passkey: the library derives the WebAuthn user id from the name unless one is given, and a
+// second creation with the same user id replaces the first passkey on the device. A random id and a dated name keep
+// every wallet's passkey separate and tell them apart in the passkey picker.
+export async function createPasskey(label) {
+  const base = label || 'Omnequa test wallet'; const id = crypto.getRandomValues(new Uint8Array(32));
+  const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
+  return createWebAuthnCredential({ name: base, user: { id, name: base, displayName: `${base} (${stamp})` } });
+}
 export async function openAccount(client, cred) {
   const owner = toWebAuthnAccount({ credential: cred });
   return toCoinbaseSmartAccount({ client, owners: [owner] });

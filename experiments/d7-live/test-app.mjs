@@ -83,6 +83,10 @@ await step('T21 recovery code round trip restores the same address', async () =>
   await page.goto('/#help'); await expectText(/Your recovery code/); const code = await page.locator('.addr').first().innerText();
   await page.evaluate(() => localStorage.clear()); await page.goto('/'); await page.reload(); await expectText(/Create my wallet/);
   await page.locator('summary', { hasText: 'recovery code' }).click(); await page.fill('#rc', code.trim()); await page.getByRole('button', { name: 'Restore wallet' }).click(); await expectText(/Your wallet/); const a2 = await addr(); if (a2.toLowerCase() !== wallet.toLowerCase()) throw new Error('address changed'); });
+await step('T21b Help screen offers Add to home screen and its sheet opens with the has-wallet wording', async () => {
+  await page.goto('/#help'); await expectText(/Your recovery code/); if ((await page.locator('[data-install]:not([hidden])').count()) !== 1) throw new Error('no install card on Help');
+  await page.getByRole('button', { name: 'Add to home screen' }).click(); await page.waitForFunction(() => { const o = document.querySelector('#overlay'); return o && !o.hidden && /Add to your home screen/.test(o.innerText); });
+  const t = await page.locator('#overlay').innerText(); if (!/Copy your recovery code first/.test(t)) throw new Error('has-wallet wording missing: ' + t.slice(0, 200)); await page.locator('#overlayActions button').first().click(); if (await page.locator('#overlay').isVisible()) throw new Error('sheet still open'); });
 await step('T22 bad recovery code is rejected politely', async () => { await page.evaluate(() => localStorage.clear()); await page.goto('/'); await page.reload(); await page.locator('summary', { hasText: 'recovery code' }).click(); await page.fill('#rc', 'not-a-code'); await page.getByRole('button', { name: 'Restore wallet' }).click(); await expectText(/does not work/i); await closeSheet(); });
 await step('T23 no horizontal scroll and tap targets at least 44px on home', async () => {
   await page.evaluate(() => { localStorage.clear(); }); // restore wallet again for the layout check
