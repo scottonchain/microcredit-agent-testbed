@@ -19,20 +19,27 @@ agent filter first-time borrowers to establish trust. This module extends
 
    with k = max(c / P, c / (e * pause)) an upper bound on cost as a share of the
    loan while the reserve is above the pause level (lending pauses below it, so the
-   smallest loan ever made is e * pause). Because (1 + lambda x) ** -theta is
-   convex in lambda and equals 1 at lambda = 0, and because the cost bound makes
-   X >= lambda * X' pathwise, M_n = R_n ** -theta is a supermartingale whenever
-   theta solves E[(1 + X') ** -theta] = 1 (the Lundberg equation). Optional
-   stopping then gives, for a reserve starting at R0,
+   smallest loan ever made is e * pause). The cost bound makes X >= lambda * X'
+   pathwise, and (1 + lambda x) ** -theta is convex in lambda and equals 1 at
+   lambda = 0, so h(lambda) = E[(1 + lambda X') ** -theta] <= 1 for every lambda in
+   [0, 1] whenever h(1) <= 1. With two loan tiers the factor lambda differs by tier
+   (the caps differ), so the mixture root alone is not enough. The chord bound
+   h_t(lambda) <= 1 + lambda (h_t(1) - 1) shows the mixture root is proven whenever
+   every tier whose h_t(1) exceeds 1 has a cap no larger than the tiers below 1, so
+   its lambda is never the larger one; otherwise theta is the smallest per-tier
+   root, at which every tier satisfies its own Lundberg inequality (lundberg_detail
+   reports which case applies). Then M_n = R_n ** -theta is a supermartingale and
+   optional stopping gives, for a reserve starting at R0,
 
        P(reserve ever falls below pause) <= (pause / R0) ** theta.
 
-   theta exists and is positive exactly when E[log(1 + X')] > 0, the condition for
-   the pool to grow almost surely rather than merely in expectation. The bound is
-   conservative: it charges every loan the worst-case cost share and it ignores the
-   fact that large reserves make fixed-size loans and therefore smaller relative
-   swings. A seeded simulation with the same inputs is reported beside it; the bound
-   must dominate the simulation, and the tests check that it does.
+   The mixture root exists exactly when E[log(1 + X')] > 0, the condition for the
+   reserve to grow almost surely rather than merely in expectation; the per-tier
+   fallback needs every tier's own drift positive.
+   The bound is conservative: it charges every loan the worst-case cost share and it
+   ignores the fact that large reserves make fixed-size loans and therefore smaller
+   relative swings. A seeded simulation with the same inputs is reported beside it;
+   the bound must dominate the simulation, and the tests check that it does.
 
 2. Screening of first-time borrowers by an agent. An applicant population with raw
    per-loan default d0 is filtered with sensitivity s (share of would-be defaulters
@@ -206,7 +213,7 @@ def expected_net_per_loan(design: Design, raw_default: float) -> dict:
 # ----------------------------------------------------------------------------
 
 def _relative_outcomes(design: Design, raw_default: float, exposure_share: float, pause: float) -> list[tuple[float, float]]:
-    """(probability, X') pairs: the relative reserve change if every loan were e * R, cost at its bound."""
+    """(probability, X') pairs over all tiers: the relative reserve change if every loan were e * R, cost at its bound."""
     rows = []
     for o in outcomes(design, raw_default):
         k = max(o.cost / o.cap, o.cost / (exposure_share * pause))
@@ -214,26 +221,43 @@ def _relative_outcomes(design: Design, raw_default: float, exposure_share: float
     return rows
 
 
-def log_drift(design: Design, raw_default: float, exposure_share: float = 0.2, pause: float = 25.0) -> float:
-    """E[log(1 + X')]: positive means the reserve grows almost surely (strong law), at the cost bound."""
+def _tier_relative_outcomes(design: Design, raw_default: float, exposure_share: float, pause: float) -> dict[str, list[tuple[float, float]]]:
+    """Per tier: (conditional probability, X') pairs, probabilities summing to one within the tier."""
+    tiers: dict[str, list[tuple[float, float]]] = {}
+    for o in outcomes(design, raw_default):
+        k = max(o.cost / o.cap, o.cost / (exposure_share * pause))
+        tiers.setdefault(o.tier, []).append((o.prob, exposure_share * (o.pool_gain - k)))
+    out = {}
+    for tier, rows in tiers.items():
+        total = sum(p for p, _ in rows)
+        out[tier] = [(p / total, x) for p, x in rows]
+    return out
+
+
+def _log_drift_of(rows: list[tuple[float, float]]) -> float:
     total = 0.0
-    for p, x in _relative_outcomes(design, raw_default, exposure_share, pause):
+    for p, x in rows:
         if 1 + x <= 0:
             return -math.inf
         total += p * math.log1p(x)
     return total
 
 
-def lundberg_exponent(design: Design, raw_default: float, exposure_share: float = 0.2, pause: float = 25.0,
-                      tol: float = 1e-10) -> float | None:
-    """theta > 0 with E[(1 + X') ** -theta] = 1, or None if the drift condition fails.
+def log_drift(design: Design, raw_default: float, exposure_share: float = 0.2, pause: float = 25.0) -> float:
+    """E[log(1 + X')] over the tier mix, at the cost bound. Reported; the bound uses the per-tier drifts."""
+    return _log_drift_of(_relative_outcomes(design, raw_default, exposure_share, pause))
 
-    Returns math.inf when no outcome is negative (ruin is impossible).
-    """
-    rows = _relative_outcomes(design, raw_default, exposure_share, pause)
+
+def tier_log_drifts(design: Design, raw_default: float, exposure_share: float = 0.2, pause: float = 25.0) -> dict[str, float]:
+    """E[log(1 + X'_tier)] for each tier; every one must be positive for the bound to exist."""
+    return {t: _log_drift_of(rows) for t, rows in _tier_relative_outcomes(design, raw_default, exposure_share, pause).items()}
+
+
+def _lundberg_root(rows: list[tuple[float, float]], tol: float = 1e-10) -> float | None:
+    """theta > 0 with sum p (1 + x)^-theta = 1 for one tier; None if its drift is not positive; inf if no loss."""
     if any(1 + x <= 0 for _, x in rows):
         return None
-    if log_drift(design, raw_default, exposure_share, pause) <= 0:
+    if _log_drift_of(rows) <= 0:
         return None
     if all(x >= 0 for _, x in rows):
         return math.inf
@@ -247,7 +271,6 @@ def lundberg_exponent(design: Design, raw_default: float, exposure_share: float 
         hi *= 2
         if hi > 1e6:
             return math.inf
-    # phi(lo) is 0 at lo = 0; move lo to a point where phi < 0 so bisection brackets the positive root.
     lo = hi / 2
     while phi(lo) >= 0 and lo > tol:
         lo /= 2
@@ -264,12 +287,56 @@ def lundberg_exponent(design: Design, raw_default: float, exposure_share: float 
     return (lo + hi) / 2
 
 
+def tier_lundberg_exponents(design: Design, raw_default: float, exposure_share: float = 0.2,
+                            pause: float = 25.0) -> dict[str, float | None]:
+    """Each tier's own Lundberg root (None: the tier's drift is not positive; inf: the tier has no loss outcome)."""
+    return {t: _lundberg_root(rows) for t, rows in _tier_relative_outcomes(design, raw_default, exposure_share, pause).items()}
+
+
+def lundberg_detail(design: Design, raw_default: float, exposure_share: float = 0.2,
+                    pause: float = 25.0) -> dict:
+    """theta and how it is justified.
+
+    The mixture root theta_m solves sum over all outcomes p (1 + X')^-theta = 1. With several tiers the
+    size factor lambda_t = min(1, P_t / (e R)) differs by tier and is non-decreasing in the cap P_t. By
+    the chord bound h_t(lambda) <= 1 + lambda (h_t(1) - 1), the conditional expectation of R^-theta is at
+    most 1 + sum_t m_t lambda_t (h_t(1) - 1), and at theta_m the weighted sum of (h_t(1) - 1) is zero. If
+    every tier with h_t(1) > 1 has a cap no larger than every tier with h_t(1) < 1, its lambda is never
+    larger, so that sum is at most zero and theta_m is proven ("mixture"). Otherwise theta is the
+    smallest per-tier root, at which every tier has h_t(1) <= 1 ("per-tier"); if a tier's drift is not
+    positive there is no bound ("none").
+    """
+    tiers = _tier_relative_outcomes(design, raw_default, exposure_share, pause)
+    caps = {o.tier: o.cap for o in outcomes(design, raw_default)}
+    all_rows = _relative_outcomes(design, raw_default, exposure_share, pause)
+    theta_m = _lundberg_root(all_rows)
+    per_tier = {t: _lundberg_root(rows) for t, rows in tiers.items()}
+    if theta_m is not None and theta_m != math.inf:
+        h = {t: sum(p * (1 + x) ** (-theta_m) for p, x in rows) for t, rows in tiers.items()}
+        above = [t for t in h if h[t] > 1 + 1e-12]
+        below = [t for t in h if h[t] < 1 - 1e-12]
+        if all(caps[a] <= caps[b] for a in above for b in below):
+            return {"theta": theta_m, "method": "mixture", "tier_h_at_theta": h, "tier_thetas": per_tier}
+    elif theta_m == math.inf:
+        return {"theta": math.inf, "method": "mixture", "tier_h_at_theta": {}, "tier_thetas": per_tier}
+    if any(r is None for r in per_tier.values()):
+        return {"theta": None, "method": "none", "tier_h_at_theta": {}, "tier_thetas": per_tier}
+    return {"theta": min(per_tier.values()), "method": "per-tier", "tier_h_at_theta": {}, "tier_thetas": per_tier}
+
+
+def lundberg_exponent(design: Design, raw_default: float, exposure_share: float = 0.2, pause: float = 25.0,
+                      tol: float = 1e-10) -> float | None:
+    """The proven theta (see lundberg_detail): None if no bound exists, math.inf if ruin is impossible."""
+    return lundberg_detail(design, raw_default, exposure_share, pause)["theta"]
+
+
 def ruin_bound(design: Design, raw_default: float, reserve: float = 100.0, pause: float = 25.0,
                exposure_share: float = 0.2) -> dict:
     """Proven upper bound on P(reserve ever falls below `pause`), starting from `reserve`."""
     if reserve <= pause or pause <= 0:
         raise ValueError("reserve must exceed pause, and pause must be positive")
-    theta = lundberg_exponent(design, raw_default, exposure_share, pause)
+    detail = lundberg_detail(design, raw_default, exposure_share, pause)
+    theta = detail["theta"]
     drift = log_drift(design, raw_default, exposure_share, pause)
     if theta is None:
         bound = 1.0
@@ -277,8 +344,10 @@ def ruin_bound(design: Design, raw_default: float, reserve: float = 100.0, pause
         bound = 0.0
     else:
         bound = (pause / reserve) ** theta
-    return {"theta": theta, "log_drift_per_loan": drift, "ruin_bound": bound,
-            "reserve": reserve, "pause": pause, "exposure_share": exposure_share}
+    return {"theta": theta, "log_drift_per_loan": drift,
+            "tier_log_drifts": tier_log_drifts(design, raw_default, exposure_share, pause),
+            "tier_thetas": detail["tier_thetas"], "bound_method": detail["method"],
+            "ruin_bound": bound, "reserve": reserve, "pause": pause, "exposure_share": exposure_share}
 
 
 # ----------------------------------------------------------------------------
@@ -358,6 +427,7 @@ def assess(design: Design, raw_default: float, reserve: float = 100.0, pause: fl
         "system_net_per_loan": round(net["system"], 4),
         "log_drift_per_loan": None if bound["log_drift_per_loan"] == -math.inf else round(bound["log_drift_per_loan"], 6),
         "theta": None if bound["theta"] in (None, math.inf) else round(bound["theta"], 3),
+        "bound_method": bound["bound_method"],
         "ruin_bound": round(bound["ruin_bound"], 6),
     }
     if runs:

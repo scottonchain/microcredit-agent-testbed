@@ -2,7 +2,7 @@ import math
 import unittest
 
 from pool_stability import (FILTER_DEFAULT_CEILING, SCREENS, Design, Screen, assess, binomial_tail, expected_net_per_loan, log_drift,
-                            lundberg_exponent, max_raw_default_passing, named_cohort_design, outcomes,
+                            lundberg_detail, lundberg_exponent, max_raw_default_passing, named_cohort_design, outcomes,
                             recommended_design, ruin_bound, screened_default, search, simulate, stop_rule_power)
 
 
@@ -72,6 +72,21 @@ class LundbergTests(unittest.TestCase):
         from pool_stability import _relative_outcomes
         rows = _relative_outcomes(design, 0.10, 0.2, 25.0)
         self.assertAlmostEqual(sum(p * (1 + x) ** (-theta) for p, x in rows), 1.0, places=8)
+
+    def test_two_tier_rule_mixture_root_proven_only_when_the_worse_tier_has_the_smaller_cap(self):
+        # Open access: the larger-cap repeat tier is the better one (no screening cost), so the mixture root is proven.
+        d = lundberg_detail(recommended_design(), 0.10)
+        self.assertEqual(d["method"], "mixture")
+        self.assertLessEqual(d["tier_h_at_theta"]["repeat"], 1 + 1e-9)
+        # Weakly screened first loans fully backed, repeat loans half backed: the larger-cap tier is the worse
+        # one, so the mixture root is not proven and the smaller per-tier root is used instead.
+        design = Design(90, 0.1833, backing_first=1.0, backing_repeat=0.5, screen=SCREENS["evidence+backer"])
+        d = lundberg_detail(design, 0.05)
+        self.assertEqual(d["method"], "per-tier")
+        self.assertEqual(lundberg_exponent(design, 0.05), min(d["tier_thetas"].values()))
+        # Per-tier is never looser than the mixture root would have been.
+        from pool_stability import _lundberg_root, _relative_outcomes
+        self.assertLessEqual(lundberg_exponent(design, 0.05), _lundberg_root(_relative_outcomes(design, 0.05, 0.2, 25.0)))
 
     def test_no_exponent_when_the_log_drift_is_not_positive(self):
         design = Design(30, 0.0933, backing_first=0.0, backing_repeat=0.0)
