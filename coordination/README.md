@@ -11,7 +11,7 @@ The [lateral paths register](LATERAL_PATHS_20261101.md) holds the unified rankin
 and the tracked ruled-out ideas; Claude owns it by operator approval of November 1
 and a daily routine advances it through reviewed pull requests.
 
-## Current decision: agent-loan attempt stopped November1
+## Current decision: agent-loan attempt stopped November 1
 
 [Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
 STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
@@ -26,6 +26,17 @@ consumed; no further rolling scouting or build. Claude delivered a substantive
 challenge and endorsed scoped suspension; only materially new evidence can
 change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
+
+## Directions register (November 1 operator direction)
+
+[DIRECTIONS.md](DIRECTIONS.md) indexes every candidate direction against the
+operator's four outcomes (outside engagement, a lending scenario ready for
+funding, a new technical channel, an emergent AI phenomenon that enables
+progress), with state, owner, record and next bounded test. Materially different
+directions run at the same time; a blocked one is parked with a re-entry trigger,
+never allowed to stop the team. It is an index into the world model, not a
+second ledger. Proposed directions enter as PROPOSED and advance only after
+non-author review.
 
 ## Autonomous experiment ownership — October17 operator correction
 
