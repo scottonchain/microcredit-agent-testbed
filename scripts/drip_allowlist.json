@@ -1,0 +1,4 @@
+[
+  {"address": "0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212", "label": "D7 sim treasury (feeds pool deposits and desk stake)", "max_per_run": 25, "max_balance": 25},
+  {"address": "0xb88DC88d538a754f57cAB344C1E09d02C129fcf2", "label": "D7 desk officer (pre-funds applicants)", "max_per_run": 5, "max_balance": 5}
+]
