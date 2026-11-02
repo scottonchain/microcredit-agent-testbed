@@ -1,0 +1,42 @@
+# DRAFT for the steward's review. Not live: it sits outside .github/workflows on purpose.
+# If accepted, a reviewed merge moves it to .github/workflows/drip-test-usdc.yml and keeps drip.mjs where the
+# copy step below expects it. A session then starts it through the GitHub API (workflow dispatch) with one input.
+name: Drip 5 test USDC to one address on Base Sepolia
+on:
+  workflow_dispatch:
+    inputs:
+      recipient:
+        description: Base Sepolia address that receives 5 test USDC from the team test wallet
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: codex-sepolia-test-wallet
+  cancel-in-progress: false
+jobs:
+  drip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned ethers runtime
+        run: npm install --prefix /tmp/gt-drip --no-audit --no-fund ethers@6.15.0
+      - name: Send the drip and record the hash (the secret never enters a log or an artifact)
+        env:
+          TEST_WALLET_PRIVATE_KEY: ${{ secrets.TEST_WALLET_PRIVATE_KEY }}
+          RECIPIENT: ${{ inputs.recipient }}
+          RPC_URL: https://base-sepolia-rpc.publicnode.com
+        run: |
+          cp evidence/circle-faucet-access-20261102/drip.mjs /tmp/gt-drip/drip.mjs
+          node /tmp/gt-drip/drip.mjs | tee drip-result.jsonl
+          { echo '### Drip'; echo '```json'; cat drip-result.jsonl; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve the public result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: drip-result
+          path: drip-result.jsonl
+          if-no-files-found: warn

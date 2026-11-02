@@ -146,6 +146,12 @@ So the demonstration is buildable with viem's account-abstraction module, the v0
 - **Fork rehearsal tooling.** The Foundry release download was refused by this session's auto-mode classifier (external binary); `hardhat` 3.21.2 is installable from npm and can fork `sepolia.base.org`, so the fork rehearsal uses it or waits for an environment with Foundry. Not run yet.
 - **Keyless bundler** `public.pimlico.io` is still denied by network policy; `api.pimlico.io` answers but needs an API key. Either unblocks the live path once an independent operator holds the key.
 
+### Gate 2, fourth pass (2026-11-02): test USDC for sessions
+
+- **Circle's faucet API is closed to a testnet-only account.** The steward's drip from its container returned 403 with a Restricted key, a Standard key, a bogus key and no key (16:58:24 UTC, block 53584176, nothing dripped), while an authenticated read with the real key returned 200; Circle's reference says the endpoint requires upgrading to mainnet. The upgrade is a gate 5 action and is not taken. Record, routes and commands: [evidence/circle-faucet-access-20261102](../../evidence/circle-faucet-access-20261102/README.md).
+- **Routes that remain:** a bounded 5 USDC transfer from the team test wallet (180.2 test USDC at block 53587951) through a dispatchable workflow, drafted in that folder for the steward's review and not live; Circle's agent-wallet CLI, verified from its source and blocked until the operator allows `agentic-wallet.circle.com`, chooses a login inbox and accepts Circle's agent terms; and the web faucet by the tester, already in the app.
+- The two Circle keys the operator created on November 2 (a Modular Wallets client key bound to `localhost` for the passkey route, and a testnet API key) are proxy-injected environment secrets that no session can read. Neither is a funded key; the steward condition stands.
+
 ## Pool stability assurance and first-borrower screening (November 2, operator request)
 
 Operator request of November 2: give mathematical assurance of pool stability, adjust the numbers, algorithms and assumptions so the pool grows, and let an agent filter first-time borrowers to establish trust. Checkable arithmetic: `experiments/self-service-borrower-app/pool_stability.py` (`--recommended`, `--search`, `--stop-rule`), with tests.
