@@ -52,9 +52,22 @@ Balances read by this session on 2026-11-02 at 17:10:59 UTC, block 53587951, Bas
 
 Nothing in R2 was executed. The host is blocked, so no login, no account, no terms acceptance and no drip happened.
 
+## Live fallback on the steward's branch (verified 2026-11-02, 17:37 UTC)
+
+The steward reports (cross-session message, 17:26 UTC) that the credit desk officer on branch `claude/d7-live-sim-app-20261101` (head 444d0a8 then, 1326dd7 at 17:36 UTC) tries one faucet drip and, when refused, sends 0.10 test USDC from its own balance to each newly backed wallet. Verified from the chain through `sepolia.base.org` at block 53595767:
+
+| Transaction | Block | What it did |
+| --- | --- | --- |
+| `0x03b7cee64163f0288ae07e3de6a84b6c7919550d2ea9a233b07ab6acee8397d7` | 53585728 | Desk officer `0xb88DC88d538a754f57cAB344C1E09d02C129fcf2` to the CreditDesk `0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462`, status 1 (the grant) |
+| `0xd250157d032a8ac3df79a79a0de37a3cc3aa9172ea58c8918e2522597c9bbc38` | 53585749 | 0.1 test USDC from the desk officer to `0x97bdfc59363f971ea96fd69783c8fde9d93ed458`, status 1 (the pre-fund) |
+
+Balances at that block: sim treasury `0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212` 0 test USDC; desk officer 1.9 test USDC. The steward also reports today's liquidity as pool lendable 10, desk stake 10 free, officer pre-fund budget 2 and sponsor wallet 3 free (test USDC, not verified here), and relays the operator's statement that Codex is out of credits, so the expected 2,000 test USDC deposit will not come. Test USDC must then come from a faucet or from recycling. The steward asks for drips to the sim treasury and the desk officer once a session-side faucet works, with the per-drip amount, the observed rate limit and the host, and otherwise stays on the pre-fund route.
+
+Answer recorded here: no session-side Circle drip is possible today. R2 is blocked by the network policy and waits on the operator's three decisions; R4 is not taken. R1 can fund both addresses from the team test wallet at 5 test USDC per dispatched run under the draft's caps; raising the cap for the treasury is a review decision, not a session's.
+
 ## Recommendation
 
-1. **Now:** the desk falls back to the web faucet it already links, and the steward records the 403 on board 15 as the measurement.
+1. **Now:** the desk's 0.10 test USDC pre-fund is live on the steward's branch and the app links the web faucet; the steward records the 403 on board 15 as the measurement.
 2. **Cheapest session-side drip:** R1. The steward reviews the draft `drip-workflow.draft.yml` and `drip.mjs` in this folder; if accepted, it moves to `.github/workflows/` through the ordinary reviewed PR and merge. The desk daemon's drip helper then triggers the workflow through the GitHub API instead of posting to Circle, or the desk transfers from a small float of its own.
 3. **If a Circle-side drip is still wanted:** R2, after the operator allows `agentic-wallet.circle.com`, chooses the login email and accepts the terms. First run measures the faucet's amount and limit with one drip to the agent wallet and one transfer out, recorded here.
 4. **Not now:** R4.
