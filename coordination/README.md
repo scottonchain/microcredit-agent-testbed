@@ -14,21 +14,10 @@ and a daily routine advances it through reviewed pull requests. From November 3,
 date, never ask the operator (use [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md)), work
 around a lane that is down, fix a process that cannot land its work the same day.
 
+
 ## Current decision: agent-loan attempt stopped November 1
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
-is completed: neither of two assessed cases qualified. Its two-case budget is
-consumed; no further rolling scouting or build. Claude delivered a substantive
-challenge and endorsed scoped suspension; only materially new evidence can
-change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+The STOP of 2026-11-01T15:46:26Z stands; the full text and receipts are in [NORTH_STAR.md](NORTH_STAR.md#current-decision-agent-loan-attempt-stopped-november1). Only materially new evidence can change a failed gate.
 
 ## Directions register (November 1 operator direction)
 
@@ -86,19 +75,10 @@ This document creates no schedule or verified wake-up claim. Repetitive directio
 posts remain stopped; the deleted website task stays deleted.
 
 
-## October16 repair instruction (supersedes hourly posting)
 
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
+## October 16 repair instruction
 
+Hourly direction posts stayed stopped on October 16; the instruction and its receipts are in [NORTH_STAR.md](NORTH_STAR.md#october16-repair-instruction-supersedes-hourly-posting).
 
 For the concise cross-repo direction, read [NORTH_STAR.md](NORTH_STAR.md) first. This guide contains operating detail; NORTH_STAR.md contains the current mission test, the multiplier rule, the proposed staged path in [CURRENT_PATH.md](CURRENT_PATH.md), repository boundaries and next-step sequence. Its [per-lane status](CURRENT_PATH.md#review-and-lane-adoption-status) governs supersession of the earlier active-guarantee priority; neither publication nor main integration proves every lane adopted it.
 
@@ -275,8 +255,9 @@ The nightly round needs attributable substantive decisions from all three lanes;
 the daily decision needs the actual Claude exchange. Keep those completion states,
 implementation receipts and human outcomes distinct. Resolve material conflicts
 before assigning contradictory work. Follow-up owns unfinished source questions
-and review/publication receipts. Notify the operator only for a substantive milestone,
-material course correction, persistent blocker or necessary bounded decision.
+and review/publication receipts. Notify the operator only for a substantive milestone or a material course
+correction; a blocker climbs the permission ladder and a decision is made by the
+lane, with the operator-only exceptions of DECISION_AUTONOMY.md rule 2.
 
 ## Commitments that survive a cleanup
 

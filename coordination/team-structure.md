@@ -120,6 +120,10 @@ snapshots, not a claim that pending work has finished.
 
 ## Capability and failure rules
 
+> Since November 3, 2026 the permission-failure ladder, the lane-down rule and the
+> stale-work sweep in [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) (rules 3, 8, 9)
+> govern these rules; the bullets below are the history they generalise.
+
 - Capability is per execution environment. Read/compute, git push, maintainer
   merge, outbound channel access, wallet authority and persistent hosting are
   separate capabilities. A successful clone does not prove push, and a successful
