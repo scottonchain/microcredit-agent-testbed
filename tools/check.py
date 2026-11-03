@@ -10,6 +10,7 @@ import argparse
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -21,7 +22,7 @@ SUITES = (
     "retry-fixture/reference", "retry-fixture/chain/base-sepolia", "retry-fixture/chain/base-sepolia/reconcile",
     "research/calibration-v3-replay-archive", "experiments/revolving-guarantee",
     "experiments/paid-work-channel-qualification",
-    "experiments/nline-applicant-access-gate-20261013",
+    "experiments/nline-applicant-access-gate-20261013", "experiments/self-service-borrower-app",
 )
 REFERENCE_CHECKS = (
     "run_email_cases", "scorecard", "horizon_score", "resend_authority", "shipped_gate", "in_progress_409",
@@ -50,6 +51,8 @@ def checks():
     for suite in SUITES:
         yield suite, [sys.executable, "-m", "unittest", "discover", "-s", suite, "-p", "test_*.py"]
     yield "world-model schema and relationships", [sys.executable, "world-model/validate.py", "--check-schema"]
+    if shutil.which("node"):
+        yield "node rule tests (drip, circle agent route)", ["node", "--test", "scripts/test_drip_rules.mjs", "scripts/test_circle_agent_rules.mjs"]
     yield "retry case ledger", [sys.executable, "retry-fixture/validate_cases.py"]
     for name in REFERENCE_CHECKS:
         yield f"retry model: {name}", [sys.executable, f"retry-fixture/reference/{name}.py", "--json"]

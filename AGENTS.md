@@ -1,18 +1,17 @@
 # Microcredit agent entrypoint
 
-## Current decision: agent-loan attempt stopped November1
+## Retrieve lessons before choosing work
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+Before selecting a mechanism or declaring a blocker, follow the [learning and
+retrieval procedure](world-model/LEARNING.md). Query the current model for relevant
+lessons, including closed actions; read their evidence, limits and alternatives.
+Choose and execute an authorized test that avoids the blocked dependency while
+preserving existing obligations. Record the result in the owning action.
+
+
+## Current decision: agent-loan attempt stopped November 1
+
+The STOP of 2026-11-01T15:46:26Z stands; the full text and receipts are in [NORTH_STAR.md](coordination/NORTH_STAR.md#current-decision-agent-loan-attempt-stopped-november1). Only materially new evidence can change a failed gate.
 
 ## October17 strategic autonomy correction
 
@@ -34,19 +33,14 @@ case or human-income outcome. Keep the deleted website task deleted and preserve
 D's contact caps. Older mechanisms remain historical evidence.
 
 
-## October16 repair instruction (supersedes hourly posting)
 
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](coordination/STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
+## Channels and currencies (November 3)
 
+[D17](coordination/directions/whatsapp-local-currency-channel.md) carries local-currency repayment and a conversational servicing agent on the channel people already use, from the [November 3 research packet](evidence/human-first-channels-20261103/README.md); the summary and rules are in [NORTH_STAR.md](coordination/NORTH_STAR.md#channels-and-currencies-november-3-operator-request).
+
+## October 16 repair instruction
+
+Hourly direction posts stayed stopped on October 16; the instruction and its receipts are in [NORTH_STAR.md](coordination/NORTH_STAR.md#october16-repair-instruction-supersedes-hourly-posting).
 
 Before doing substantive work, read [NORTH_STAR.md](coordination/NORTH_STAR.md), then the current
 [world model](world-model/model.json) at a named `main` commit and the shared
@@ -69,6 +63,14 @@ At the start of each work cycle, answer four questions before selecting work:
    actually necessary, or do prepayment, sponsorship, existing resources, direct
    funding or NO_LOAN dominate it?
 4. What result would make us stop or change direction?
+
+Then apply [DECISION_AUTONOMY.md](coordination/DECISION_AUTONOMY.md) (operator
+direction, November 3): a due decision is made now by its owner, never routed
+to the operator; a lane that is down is worked around; a tool that fails (403,
+missing tool, denied host) is routed around in the same run; a process that
+cannot land its work is fixed the same day. Items needing operator-only
+authority go to [OPERATOR_QUEUE.md](coordination/OPERATOR_QUEUE.md) with a
+default the team proceeds on.
 
 The October15 strategic-reset proposal, as relayed by Codex (original operator
 text not cited here), is detailed in [CURRENT_PATH.md](coordination/CURRENT_PATH.md).

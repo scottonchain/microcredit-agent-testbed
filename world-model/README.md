@@ -1,18 +1,17 @@
 # Shared planning world model
 
-## Current decision: agent-loan attempt stopped November1
+## Retrieve and reuse experiment learning
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+[Learning and retrieval](LEARNING.md) describes the optional structured `learning`
+field on existing actions and `python world-model/q.py --recall "blocked assumption"`.
+The same model remains authoritative; no extra knowledge store or task queue.
+Closed actions remain searchable. Search results include original evidence,
+counterevidence, alternatives and refresh conditions, never new authority.
+
+
+## Current decision: agent-loan attempt stopped November 1
+
+The STOP of 2026-11-01T15:46:26Z stands; the full text and receipts are in [NORTH_STAR.md](../coordination/NORTH_STAR.md#current-decision-agent-loan-attempt-stopped-november1). Only materially new evidence can change a failed gate.
 
 ## Current state — updated 2026-10-28
 

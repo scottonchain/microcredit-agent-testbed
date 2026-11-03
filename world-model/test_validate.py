@@ -44,6 +44,34 @@ class PlanningIntegrity(unittest.TestCase):
     def test_unknown_field(self): self.rejects(lambda m:m['actions'][0].update(authority_to_spend=True))
     def test_ambiguous_time(self): self.rejects(lambda m:m.update(updated_at='tomorrow'))
 
+    def test_old_actions_without_learning_remain_valid(self):
+        for action in self.model['actions']:
+            action.pop('learning', None)
+        validate(self.model)
+
+    def test_learning_references_times_and_limits_are_validated(self):
+        seed = next(a['learning'] for a in self.model['actions'] if a.get('learning'))
+        changes = [
+            lambda l: l.update(evidence_ids=['ev:missing']),
+            lambda l: l.update(counterevidence_ids=['ev:missing']),
+            lambda l: l['alternatives'][0].update(related_ids=['hyp:missing']),
+            lambda l: l['freshness'].update(observed_at='tomorrow'),
+            lambda l: l['freshness'].update(recheck_by='tomorrow'),
+            lambda l: l.update(does_not_rule_out=[]),
+            lambda l: l.update(revisit_when=[' ']),
+            lambda l: l.update(evidence_ids=[]),
+            lambda l: l.update(alternatives=[]),
+            lambda l: l.update(authority_to_spend=True),
+        ]
+        for change in changes:
+            with self.subTest(change=change):
+                lesson = copy.deepcopy(seed)
+                change(lesson)
+                candidate = copy.deepcopy(self.model)
+                candidate['actions'][0]['learning'] = lesson
+                with self.assertRaises((ValueError, TypeError)):
+                    validate(candidate)
+
     def test_compact_format_preserves_every_value_and_record(self):
         text = format_model(self.model)
         self.assertEqual(json.loads(text), self.model)

@@ -126,6 +126,17 @@ def validate(data):
         refs(a['rationale_claim_ids'], 'claims', a['id'])
         refs(a['dependency_action_ids'], 'actions', a['id'])
         refs(a['outcome_evidence_ids'], 'evidence', a['id'])
+        learning = a.get('learning')
+        if learning:
+            at = a['id'] + '/learning'
+            refs(learning['evidence_ids'] + learning['counterevidence_ids'], 'evidence', at)
+            for alternative in learning['alternatives']:
+                refs(alternative['related_ids'], 'all', at + '/alternatives')
+            timestamp(learning['freshness']['observed_at'], at + '/observed_at')
+            timestamp(learning['freshness']['recheck_by'], at + '/recheck_by')
+            for field in ('does_not_rule_out', 'revisit_when', 'tags'):
+                if any(not value.strip() for value in learning[field]):
+                    errors.append(at + ': ' + field + ' must contain nonblank values')
         timestamp(a['not_before'], a['id']+'/not_before'); timestamp(a['due_at'], a['id']+'/due_at')
         if a['due_at']:
             deadline = datetime.fromisoformat(a['due_at'].replace('Z', '+00:00'))

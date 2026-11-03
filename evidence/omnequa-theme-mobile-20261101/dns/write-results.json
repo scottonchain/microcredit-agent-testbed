@@ -1,0 +1,138 @@
+[
+ {
+  "time": "2026-11-03T17:07:43.778830+00:00",
+  "step": "apex A 1 -> 185.199.108.153",
+  "method": "PUT",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/%3C1032844462%3E-%5B1149%5D-28301b6d-c20e-4c23-a8c2-8a8e",
+  "record": {
+   "type": "A",
+   "name": "@",
+   "data": "185.199.108.153",
+   "ttl": 3600
+  },
+  "status": 200,
+  "result": {
+   "data": "185.199.108.153",
+   "name": "@",
+   "recordId": "<1032844462>-[1149]-28301b6d-c20e-4c23-a8c2-8a8e",
+   "ttl": 3600,
+   "type": "A"
+  }
+ },
+ {
+  "time": "2026-11-03T17:07:46.017258+00:00",
+  "step": "apex A 2 -> 185.199.109.153",
+  "method": "PUT",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/43f79a4e-2a80-4dbc-9e55-791718a854e6",
+  "record": {
+   "type": "A",
+   "name": "@",
+   "data": "185.199.109.153",
+   "ttl": 3600
+  },
+  "status": 200,
+  "result": {
+   "data": "185.199.109.153",
+   "name": "@",
+   "recordId": "43f79a4e-2a80-4dbc-9e55-791718a854e6",
+   "ttl": 3600,
+   "type": "A"
+  }
+ },
+ {
+  "time": "2026-11-03T17:07:48.042203+00:00",
+  "step": "apex A add 185.199.110.153",
+  "method": "POST",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records",
+  "record": {
+   "type": "A",
+   "name": "@",
+   "data": "185.199.110.153",
+   "ttl": 3600
+  },
+  "status": 201,
+  "result": {
+   "data": "185.199.110.153",
+   "name": "@",
+   "recordId": "8c528cf3-dd8f-4371-b74b-17324763b39c",
+   "ttl": 3600,
+   "type": "A"
+  }
+ },
+ {
+  "time": "2026-11-03T17:07:50.088337+00:00",
+  "step": "apex A add 185.199.111.153",
+  "method": "POST",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records",
+  "record": {
+   "type": "A",
+   "name": "@",
+   "data": "185.199.111.153",
+   "ttl": 3600
+  },
+  "status": 201,
+  "result": {
+   "data": "185.199.111.153",
+   "name": "@",
+   "recordId": "6a95fde8-283a-41b4-baca-c7e9d0121411",
+   "ttl": 3600,
+   "type": "A"
+  }
+ },
+ {
+  "time": "2026-11-03T17:07:52.296208+00:00",
+  "step": "www CNAME -> scottonchain.github.io",
+  "method": "PUT",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/8b31857c-fbef-47b4-9940-595989af92c8",
+  "record": {
+   "type": "CNAME",
+   "name": "www",
+   "data": "scottonchain.github.io.",
+   "ttl": 3600
+  },
+  "status": 200,
+  "result": {
+   "data": "scottonchain.github.io.",
+   "name": "www",
+   "recordId": "8b31857c-fbef-47b4-9940-595989af92c8",
+   "ttl": 3600,
+   "type": "CNAME"
+  }
+ },
+ {
+  "time": "2026-11-03T17:07:55.113190+00:00",
+  "step": "delete TXT _openai-site-verification",
+  "method": "DELETE",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/be2360ba-4bfa-4c9a-850e-75df3ccd7312",
+  "record": null,
+  "status": 204,
+  "result": null
+ },
+ {
+  "time": "2026-11-03T17:07:57.781796+00:00",
+  "step": "delete TXT _cf-custom-hostname",
+  "method": "DELETE",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/06f1a363-67f6-457e-a554-5cef0c3d26a0",
+  "record": null,
+  "status": 204,
+  "result": null
+ },
+ {
+  "time": "2026-11-03T17:08:00.670749+00:00",
+  "step": "delete TXT _openai-site-verification.www",
+  "method": "DELETE",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/a686f0ff-1686-48ee-ae4c-4e910b7bd4ec",
+  "record": null,
+  "status": 204,
+  "result": null
+ },
+ {
+  "time": "2026-11-03T17:08:03.319904+00:00",
+  "step": "delete TXT _cf-custom-hostname.www",
+  "method": "DELETE",
+  "url": "https://api.godaddy.com/v3/domains/zones/omnequa.org/dns-records/f49c353c-6f54-4c2d-887a-61e1762affb9",
+  "record": null,
+  "status": 204,
+  "result": null
+ }
+]

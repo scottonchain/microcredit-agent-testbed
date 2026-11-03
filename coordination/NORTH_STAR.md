@@ -9,10 +9,117 @@ coverage prevent a market-wide no-demand finding. Preserve the original22h16m
 distribution failure. Contract source PR45 is completed and merged; deployments
 are unchanged. No more speculative loan implementation or borrower solicitation
 for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
+The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
+is completed: neither of two assessed cases qualified. Its two-case budget is
+consumed; no further rolling scouting or build. Claude delivered a substantive
+challenge and endorsed scoped suspension; only materially new evidence can
+change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
 growth remain fixed. The world model holds the stable actions and source receipts.
+
+## Lateral paths, November 1 (operator request)
+
+The operator asked on November 1 for online research, substantially different
+lateral paths to the north star, the current paths ranked in the same list, and
+a tracked register of ideas ruled out on ethical, operational or resource
+grounds because they inspire feasible alternatives. The result is
+[LATERAL_PATHS_20261101.md](LATERAL_PATHS_20261101.md), recorded in the world
+model as `action:lateral-paths-first-tests-20261101` and
+`claim:lateral-paths-ranked-20261101-r2`. Lateral means changing the payer, the
+deliverable, the channel, the mechanism or the asset so a path no longer needs
+the blocked prerequisite; the objective is fixed. At every checkpoint at least
+one cheapest test runs on a path that does not share the current blocked
+dependency, in parallel with the current path.
+
+Unified ranking of the 29 paths not ruled out, by credible human benefit,
+ability to execute now, useful evidence, cost and reuse. Top ten after the
+November 1 evening receipts:
+
+1. Verifiable skill signals and public work evaluations (near).
+2. Agent as employer of first resort: a needed first job, prepaid, with a public evaluation (boundary).
+3. Paid human evaluation and jury work bought by the agent economy (far).
+4. Local-knowledge oracles sold to agents (boundary).
+5. Open-source tax-filing continuation for unclaimed EITC (near).
+6. Nonpayment recovery through existing law (near).
+7. Mutual credit clearing for micro-businesses, no sponsor capital (far).
+8. Member-funded mutual pool (near).
+9. Index insurance payouts through the conditional-payment contract (far).
+10. Paid data work in low-resource languages, agents as quality layer (far).
+
+Two paths moved on receipts the same evening. Rules-as-code maintenance (N2,
+now 16) is parked at its own stop: the candidate defect, PolicyEngine
+issue 10552, was reproduced exactly, a fix drafted and independently reviewed,
+but three earlier reviewed corrections remain unanswered upstream, so no
+submission until a maintainer responds. The cooperative channel check (N3, now
+22) found that clients pay the platform up front on all three channels,
+closing the client-nonpayment mechanism there and adding a boundary idea, a
+worker payout guarantee against platform liquidity failure (B11, 25).
+The other current paths rank by evidence: the revolving guarantee at 11,
+shared human and agent service markets at 12, paid data work at 10,
+human-first lending on one real order (issue 392) at 17, virtual and
+creator worlds at 23, autonomous worlds at 29. The register
+tracks 31 ruled-out ideas with the alternative each inspires or its re-entry
+condition; it is never pruned.
+
+No path adds money, contact, account or deployment authority. The November 1
+agent-loan STOP, every existing cap and observation window, and the guarantee's
+exposure rules are unchanged. A receipt is a lead or a bound, never demand,
+acceptance or human income. Claude owns the register within its existing permissions, by operator
+approval of November 1; a daily routine runs the cheapest tests and opens
+reviewed pull requests, never merging, spending or contacting anyone.
+
+## Decision autonomy, November 3 (operator direction)
+
+[DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) governs every lane from
+November 3: each path and direction has one owner and a dated next decision;
+the owner decides at the date (GO, CHANGE, PARK or NONE with its re-entry
+condition); no decision is routed to the operator, and anything needing
+operator-only authority goes to [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) with a
+default the team proceeds on; a lane that is down is worked around, with a
+skipped non-author review recorded as review debt rather than a stall; a
+process that cannot land its work is fixed the same day. Decisions taken that
+day under it: virtual worlds parked and Trinary retired on the payout
+concentration bound, and the agent-as-employer idea parked under L3
+([record](../evidence/lateral-decisions-20261103/README.md)). The issue 396
+November 8 decision reduces to the ACP path; the issue 392 disposition is
+Claude's on November 8. Hard gates and the STOP are unchanged.
+
+## Channels and currencies, November 3 (operator request)
+
+The operator asked on November 3 for broader thinking on the human-first
+direction: repayment in other currencies, the geographies with the least
+friction and the most need, the harms (money laundering, help to illicit
+actors and the rest), technology the people already understand, and an agentic
+conversation on WhatsApp reaching people directly or through a partner of the
+Friendship Bridge type. The research is in
+[evidence/human-first-channels-20261103](../evidence/human-first-channels-20261103/README.md)
+and the direction is [D17](directions/whatsapp-local-currency-channel.md),
+recorded as `action:whatsapp-local-currency-channel-20261103`. Three rules
+follow: the borrower never sees a dollar, a token or the word crypto (loans are
+priced, paid and repaid in local currency, converted in bulk on the platform's
+or a licensed partner's side, with exchange-rate risk on the pool and capped at
+a fifth of the reserve per currency); Guatemala leads the partner route and
+Kenya the rails measurement, while Ethiopia and Bangladesh are closed for the
+stablecoin leg and Nigeria and Ghana wait on currency; and the agent is the
+licensed lender's servicing assistant on that lender's own account, voice
+first, never messaging anyone but the borrower, with a non-Meta fallback,
+because Meta's rules bar peer-to-peer lending, debt collection, virtual
+currency and AI-as-primary-function as subjects of a business account. The
+fifteen questions the team added, the harms register and the dated plan are in
+the packet; the cheapest tests (a priced round trip, a Spanish voice servicing
+agent on the test app) need no money, contact or account. Friendship Bridge is
+named as the public model of a partner type; it has not been contacted and has
+agreed to nothing. D16's legal analysis of the same day (Colorado first, a named lender of
+record, dollars converted only on the lender's side) is the first mainnet
+pilot; D17's partner route is the stage after it and shares the rule. The
+human-readable explanation is the blog post
+[Money that speaks your language](https://github.com/scottonchain/microcredit-vision/blob/main/posts/2026-11-03-money-that-speaks-your-language.md).
+
+## Directions register
+
+All candidate directions, including the self-service borrower app proposed on
+November 1, are indexed in [DIRECTIONS.md](DIRECTIONS.md) against the operator's
+four outcomes. The register is a view; owners and receipts stay in the world
+model. A proposed direction is not a current path until reviewed.
 
 ## October17 autonomous reassessment
 

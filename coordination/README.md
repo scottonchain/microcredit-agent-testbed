@@ -1,18 +1,38 @@
 # Team operating guide
 
-## Current decision: agent-loan attempt stopped November1
+## Lateral thinking and reusable learning
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-Codex owns one bounded R4 comparison of at most two distinct current external
-requests, one session each; no build without a willing payer, no repeated generic
-scouting. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+Use the [world-model learning procedure](../world-model/LEARNING.md) before
+convergence and on blockage. Retrieve prior findings and a mechanism from another
+context; state what transfers and what does not. A legitimate response or
+publication wait does not block independent authorized evidence work. Preserve
+existing owners, response windows, stops and action-specific permissions.
+The [lateral paths register](LATERAL_PATHS_20261101.md) holds the unified ranking
+and the tracked ruled-out ideas; Claude owns it by operator approval of November 1
+and a daily routine advances it through reviewed pull requests. From November 3,
+[DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) binds every lane: decide at the
+date, never ask the operator (use [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md)), work
+around a lane that is down, fix a process that cannot land its work the same day.
+From November 3, [D17](directions/whatsapp-local-currency-channel.md) carries the
+borrower's currency and channel (local-currency repayment, a servicing agent on
+WhatsApp through a lender of record, the geography screen and the harms register),
+researched in [evidence/human-first-channels-20261103](../evidence/human-first-channels-20261103/README.md).
+
+
+## Current decision: agent-loan attempt stopped November 1
+
+The STOP of 2026-11-01T15:46:26Z stands; the full text and receipts are in [NORTH_STAR.md](NORTH_STAR.md#current-decision-agent-loan-attempt-stopped-november1). Only materially new evidence can change a failed gate.
+
+## Directions register (November 1 operator direction)
+
+[DIRECTIONS.md](DIRECTIONS.md) indexes every candidate direction against the
+operator's four outcomes (outside engagement, a lending scenario ready for
+funding, a new technical channel, an emergent AI phenomenon that enables
+progress), with state, owner, record and next bounded test. Materially different
+directions run at the same time; a blocked one is parked with a re-entry trigger,
+never allowed to stop the team. It is an index into the world model, not a
+second ledger. Proposed directions enter as PROPOSED and advance only after
+non-author review.
 
 ## Autonomous experiment ownership — October17 operator correction
 
@@ -59,19 +79,10 @@ This document creates no schedule or verified wake-up claim. Repetitive directio
 posts remain stopped; the deleted website task stays deleted.
 
 
-## October16 repair instruction (supersedes hourly posting)
 
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
+## October 16 repair instruction
 
+Hourly direction posts stayed stopped on October 16; the instruction and its receipts are in [NORTH_STAR.md](NORTH_STAR.md#october16-repair-instruction-supersedes-hourly-posting).
 
 For the concise cross-repo direction, read [NORTH_STAR.md](NORTH_STAR.md) first. This guide contains operating detail; NORTH_STAR.md contains the current mission test, the multiplier rule, the proposed staged path in [CURRENT_PATH.md](CURRENT_PATH.md), repository boundaries and next-step sequence. Its [per-lane status](CURRENT_PATH.md#review-and-lane-adoption-status) governs supersession of the earlier active-guarantee priority; neither publication nor main integration proves every lane adopted it.
 
@@ -82,6 +93,12 @@ cover only that repo's code, build, and publication requirements.
 ## GitHub-first completion invariant (operator direction, 2026-10-12)
 
 **Every run must place all completed work in GitHub before claiming completion.** Commit source code, tests, evidence, reproducible results and current durable-state updates to the correct canonical repository, with the reviewed PR or merged commit URL in the run receipt. A local archive, chat attachment, draft, or issue comment alone is **not** publication or completed integration. Do not accumulate untracked local artifacts between hourly runs.
+
+Use the [GitHub route diagnostic](GITHUB_WRITE_ROUTE.md) to distinguish existing
+app approval from this execution's authentication, safe identity and actual write
+receipt. An already-authorized operation does not need another operator unlock
+because one execution lacks its Git binding. Repair supported setup or route the
+exact work to the established verified writer and follow it through to readback.
 
 Before generating substantial files, establish the actual GitHub write path and project locking requirements. Use an isolated branch and commit each verified deliverable, then seek required review and merge. Where the connector is allowed by the operator-authorized policy, verify the exact resulting author/committer identity and remote contents; otherwise delegate the exact bytes and operation to Claude's validated Git-shell writer. If transfer or write fails, preserve the complete original artifact, record the blocker once, start an independent GitHub-persistable substitute, and report the incomplete integration explicitly. Never call an artifact integrated until its exact bytes are in GitHub and checked against the source. Preserve current protections for protected locks, contact privacy, financial actions and publication checks. This requirement applies to Codex, Claude and Hermes handoffs and to future controller runs; it does not mean bypassing review to force merges.
 
@@ -127,6 +144,11 @@ not competing priorities. Payment, privacy, review and deployment limits remain.
    and a recipient's acceptance are different states. If Codex is blocked on an
    authorized GitHub operation, it routes the exact operation to Claude and verifies
    Claude's receipt ([team-structure.md](team-structure.md#capability-and-failure-rules)).
+   When Codex is down (operator says so, out of credits, or no answer to a
+   bounded ask within two hours), Hermes or an independent Claude session
+   reviews; if none answers within two hours, merge with the note
+   "non-author review skipped: Codex down" and log the head in the review-debt
+   table of [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) ([DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) rule 3).
 
 ## North star and resource focus
 
@@ -237,8 +259,9 @@ The nightly round needs attributable substantive decisions from all three lanes;
 the daily decision needs the actual Claude exchange. Keep those completion states,
 implementation receipts and human outcomes distinct. Resolve material conflicts
 before assigning contradictory work. Follow-up owns unfinished source questions
-and review/publication receipts. Notify the operator only for a substantive milestone,
-material course correction, persistent blocker or necessary bounded decision.
+and review/publication receipts. Notify the operator only for a substantive milestone or a material course
+correction; a blocker climbs the permission ladder and a decision is made by the
+lane, with the operator-only exceptions of DECISION_AUTONOMY.md rule 2.
 
 ## Commitments that survive a cleanup
 
