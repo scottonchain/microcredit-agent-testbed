@@ -1,0 +1,2692 @@
+[
+ {
+  "page": "/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 11,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "01 / The people and the purpos"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "02 / Our story"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "03 / Press and creators"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 1,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 22,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 415,
+    "text": "Separate customer delays from payment de"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 415,
+    "text": "Separate customer delays from payment de"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "Main payment arrangementRespondentsSlow "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "Main payment arrangementRespondentsSlow "
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 241,
+    "right": 327,
+    "text": "Slow customers (%)"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "Settlement / availability delays (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "At service or purchase18641413After deli"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "At service or purchase18641413"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 241,
+    "right": 327,
+    "text": "14"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "13"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "After delivery14556419"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 241,
+    "right": 327,
+    "text": "64"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 20,
+  "smallText": [
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Nov 1, 2026 · Cash flow"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 4,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 1,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 225,
+    "h": 17,
+    "text": "Follow dated project updates →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 3,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 92,
+    "h": 15,
+    "text": "October archive"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "36px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 5,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 197,
+    "h": 19,
+    "text": "Base's published example"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "How we work"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "Where to follow"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 4,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 1,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/research/agent-operated-businesses/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 10,
+  "offenders": [
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 268,
+    "right": 360,
+    "text": "Evidence required before expansion"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 268,
+    "right": 360,
+    "text": "An independent payer, a real use case, a"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "Agent to humanA merchant or agency uploa"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 268,
+    "right": 360,
+    "text": "The same commercial evidence, including "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 360,
+    "text": "Later human to humanThe owner develops r"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 268,
+    "right": 360,
+    "text": "Owner control, usable payouts, affordabl"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 20,
+     "r": 64,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 86,
+     "r": 168,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 7,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 156,
+    "h": 17,
+    "text": "Apify’s documentation"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 183,
+    "h": 17,
+    "text": "Shopify’s import guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 199,
+    "h": 17,
+    "text": "authors’ university summary"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 191,
+    "h": 17,
+    "text": "Upwork’s MCP instructions"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 136,
+    "h": 17,
+    "text": "Linden Lab’s policy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "43px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 11,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "01 / The people and the purpos"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "02 / Our story"
+   },
+   {
+    "tag": "span",
+    "cls": "",
+    "fs": 11,
+    "text": "03 / Press and creators"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 1,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 16,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 415,
+    "text": "Separate customer delays from payment de"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 415,
+    "text": "Separate customer delays from payment de"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "Main payment arrangementRespondentsSlow "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "Main payment arrangementRespondentsSlow "
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "Settlement / availability delays (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "At service or purchase18641413After deli"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "At service or purchase18641413"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "13"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "After delivery14556419"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "19"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 415,
+    "text": "Set schedule6104820"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 327,
+    "right": 415,
+    "text": "20"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 20,
+  "smallText": [
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Nov 1, 2026 · Cash flow"
+   }
+  ],
+  "nSmallTargets": 13,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 288,
+    "h": 14,
+    "text": "Federal Reserve Banks · 2024 R"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 4,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 1,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 4,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 332,
+    "h": 17,
+    "text": "Explore the evidence and analy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 298,
+    "h": 17,
+    "text": "Read the business-ownership re"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 225,
+    "h": 17,
+    "text": "Follow dated project updates →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 5,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 304,
+    "h": 19,
+    "text": "Stripe's standard US domestic-"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 5,
+  "smallText": [
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "Our purpose"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "How we work"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 11,
+    "text": "Where to follow"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 8,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 294,
+    "h": 17,
+    "text": "Download the introduction and "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 256,
+    "h": 17,
+    "text": "Our current questions and appr"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 280,
+    "h": 17,
+    "text": "Research and stories with thei"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 4,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 73,
+    "h": 17,
+    "text": "Privacy →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 17,
+    "text": "dated announcement"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 2,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 230,
+    "h": 17,
+    "text": "codex-microcredit@agentmail.to"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/research/agent-operated-businesses/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 66,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 88,
+     "r": 144,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 166,
+     "r": 203,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 225,
+     "r": 281,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 303,
+     "r": 347,
+     "h": 40,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 102,
+     "h": 40,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 1,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 6,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 156,
+    "h": 17,
+    "text": "Apify’s documentation"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 183,
+    "h": 17,
+    "text": "Shopify’s import guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 141,
+    "h": 17,
+    "text": "Fiverr’s AI guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 136,
+    "h": 17,
+    "text": "Linden Lab’s policy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ }
+]

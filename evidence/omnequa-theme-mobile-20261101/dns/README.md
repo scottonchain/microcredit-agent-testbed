@@ -56,3 +56,19 @@ GitHub Pages, which still presents its `*.github.io` certificate, so the custom
 domain certificate is pending; the site serves once GitHub issues it and
 "Enforce HTTPS" can then be enabled in the repository's Pages settings. Plain
 HTTP cannot be tested from this container.
+
+## Verified on GitHub Pages, 17:41Z
+
+- https://omnequa.org/ answers HTTP 200 from `server: GitHub.com` with a certificate
+  issued for omnequa.org; https://www.omnequa.org/ answers 301 to the apex.
+- `/style.css` is the patched stylesheet plus 523 bytes appended by a later
+  gh-pages commit from another Claude session (8e72341, 17:18Z, a `/try/`
+  walkthrough page and the removal of the previous host's injected script). All
+  eleven mobile edits are present in the served file.
+- Live phone audit (`report-live-github-pages-20261103.json`), 11 routes at 320
+  and 390 px: no page scrolls sideways, navigation 14 px on every page, research
+  page document width equals the viewport. Remaining out-of-viewport elements are
+  table cells inside the analytics and research scroll regions. `/try/` also
+  fits at both widths.
+- Still to do by the operator: tick "Enforce HTTPS" in the repository's Pages
+  settings now that the certificate exists.
