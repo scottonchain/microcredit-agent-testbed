@@ -5,8 +5,8 @@ team's video and audio so far were "extremely poor", below NotebookLM, and the
 operator wants 20 to 30 second walkthroughs with an app explainer and a vision
 statement, at a professional level, for lay audiences. This page is the standard,
 the diagnosis, the pipeline and the gates. It replaces the production parts of
-the "Team audio" rules in the vision repository's CLAUDE.md (patch in
-[media/vision-CLAUDE-team-media.patch](media/vision-CLAUDE-team-media.patch));
+the "Team audio" rules in the vision repository's CLAUDE.md (applied to that repository on November 3; the patch is kept in
+[media/vision-CLAUDE-team-media.patch](media/vision-CLAUDE-team-media.patch) as the record);
 the editorial parts there (disclosure, claims, holds, categories, feed) still apply.
 
 Measurable outcome: a lay viewer understands the vision and the app from one
@@ -152,6 +152,7 @@ word mark); this section is the fix and `scene.html` implements it.
 | --- | --- | --- |
 | 2026-11-03 | G0 | Narrator for the app and vision series: `en-US-AvaMultilingualNeural` (operator chose Ava over Andrew and Ryan from 15 second samples) |
 | 2026-11-03 | G3 | The first cut "Omnequa: try a small loan" (Andrew voice, pre-brand) was judged publication quality by the operator; the published version is the same cut rebuilt with Ava and the brand fix |
+| 2026-11-03 | G4 | Published as a revision of the vision post "Try our test lending app on your phone" (video at the top, `team-video` category); YouTube waits for the new project account |
 
 ## YouTube channel
 
