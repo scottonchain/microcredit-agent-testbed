@@ -157,25 +157,55 @@ word mark); this section is the fix and `scene.html` implements it.
 ## YouTube channel
 
 The operator asked on November 3 whether the team can run a YouTube channel
-with these pieces autonomously. Production, captions, metadata, the measured QA
-and the journal post run without the operator. Upload needs the channel's own
-Google account, which only the operator can create and consent for. Once done it
-runs on its own. The plan is `tools/media/channel.json` (one piece a week, formats,
-gates, measures, stop rule); the uploader is `tools/media/youtube_upload.py`.
+with these pieces autonomously, and the same day handed over the Google account
+`omnequa@gmail.com` for it, to be used on YouTube without the operator in the
+loop. Production, captions, metadata, the measured QA, the journal post and the
+upload run without the operator. The plan is `tools/media/channel.json` (one piece
+a week, formats, gates, measures, stop rule); the uploader is
+`tools/media/youtube_upload.py`.
 
-Operator setup, once (about twenty minutes), in the operator queue:
+How the team holds the account: never the password. The agent holds an OAuth
+refresh token scoped to upload and captions only, stored as a cloud environment
+secret; the password, recovery options and two-step verification stay with the
+operator. That is the compliant shape of "take over": the account is the
+operator's, the channel is the project's, and the token can upload, set
+captions and metadata, and nothing else.
 
-1. Create the channel on a Google account the project controls (name Omnequa,
-   avatar the approved logo, about text from `channel.json`).
-2. In Google Cloud: a project, enable the YouTube Data API v3, create an OAuth
-   client of type Desktop app, add the channel's account as a test user.
-3. Consent once for the scope `https://www.googleapis.com/auth/youtube.upload`
-   (and `youtube.force-ssl` for captions) and keep the refresh token.
-4. Put `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET` and `YOUTUBE_REFRESH_TOKEN`
-   in the cloud environment's secrets. The hosts `www.googleapis.com` and
-   `oauth2.googleapis.com` already answer from the container.
+Operator setup, once, on their own computer (about twenty minutes):
 
-Until Google verifies the OAuth app, every API upload is locked to private;
-the operator makes each one public in YouTube Studio (one click), or submits the
-app for verification so the team can publish directly. The uploader marks every
-video as synthetic media, category Education, with the VTT as English captions.
+1. Signed in as `omnequa@gmail.com`: create the YouTube channel (name Omnequa,
+   handle `@omnequa` if free, avatar the approved logo, about text from
+   `channel.json`). Turn on two-step verification for the account.
+2. At console.cloud.google.com, same account: new project `omnequa-media`;
+   APIs and services, enable **YouTube Data API v3**.
+3. OAuth consent screen: External; app name `Omnequa media`; support and
+   developer email `omnequa@gmail.com`; scopes `youtube.upload` and
+   `youtube.force-ssl`. Then **Publish app** (status "In production"). This step
+   matters: while the app stays in "Testing", Google expires every refresh token
+   after seven days and the team would be back in the loop weekly. Publishing an
+   unverified app only adds a warning screen to the one consent in step 5.
+4. Credentials: create an OAuth client ID of type **Desktop app**; note the
+   client ID and secret.
+5. Run `python3 tools/media/youtube_auth.py --client-id … --client-secret …`
+   from a testbed checkout; it opens the browser, takes the consent for the
+   channel's account and prints the three values.
+6. Put `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET` and `YOUTUBE_REFRESH_TOKEN`
+   in the cloud environment's settings under network secrets or environment
+   variables (the environment menu in the session's title bar, then Edit). A new
+   session picks them up; `youtube_upload.py` reads only those names.
+7. Request the YouTube API Services **compliance audit** for the project (the
+   form linked from the API quota page, "Audit and quota extension"). Until the
+   audit passes, every video uploaded through the API is forced private and
+   someone must make it public in YouTube Studio; after it, the uploader
+   publishes directly and the operator is out of the loop. The audit is free
+   and takes Google some weeks; the team's answers are in `channel.json`
+   (purpose, no data collection, no scraping, uploads of the project's own
+   videos only).
+
+The hosts `www.googleapis.com` and `oauth2.googleapis.com` already answer from
+the container. Daily quota is 10,000 units; one upload costs about 1,600, so one
+piece a week is far inside it. Every upload is marked synthetic media and
+category Education, with the VTT as English captions. No comment replies, no
+likes, no subscriptions and no automation beyond the upload itself from the
+project's account; replies to viewers go through the blog's reply route.
+
