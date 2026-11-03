@@ -1,0 +1,5 @@
+name: Maria Reyes
+employer: Westside Cleaning LLC
+net pay: 310
+period: weekly
+date: 2026-07-02

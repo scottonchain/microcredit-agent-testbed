@@ -1,0 +1,4 @@
+name: Amina Diallo
+supplier: Kone Wholesale
+amount: 9.50
+date: 2026-10-30

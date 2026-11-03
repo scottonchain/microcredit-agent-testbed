@@ -1,0 +1,5 @@
+{"purpose_category": "equipment", "amount_usdc": 10, "term_days": "30", "repayment_source": "wages", "surplus_band": "over_200",
+ "backing_kind": "backer", "consent": true, "applicant_name": "Jon Reyes",
+ "purpose_text": "A used sewing machine so I can take in alteration work in the evenings after my shift.",
+ "backer_address": "0x00000000000000000000000000000000000000b2", "backer_relationship": "a friend from church",
+ "borrower_address": "0x00000000000000000000000000000000000000a2"}

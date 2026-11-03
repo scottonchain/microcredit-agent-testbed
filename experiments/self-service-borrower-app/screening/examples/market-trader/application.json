@@ -1,0 +1,6 @@
+{"purpose_category": "stock", "amount_usdc": 10, "term_days": "90", "repayment_source": "sales", "surplus_band": "10_50",
+ "backing_kind": "backer", "consent": true, "applicant_name": "Amina Diallo",
+ "purpose_text": "Buy two sacks of rice and a tin of oil to resell in small portions at the Tuesday market; each sack brings about 15 dollars more than it costs.",
+ "payer_text": "market customers, daily, cash and mobile money", "backer_name": "Fatou Diallo",
+ "backer_address": "0x00000000000000000000000000000000000000b1", "backer_relationship": "my aunt, we have traded side by side for six years",
+ "borrower_address": "0x00000000000000000000000000000000000000a1", "trial_wallet": "0x00000000000000000000000000000000000000a1"}

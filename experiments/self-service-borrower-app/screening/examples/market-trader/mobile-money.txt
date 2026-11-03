@@ -1,0 +1,5 @@
+name: Amina Diallo
+party: market customers (mobile money inflows)
+amount: 38
+period: monthly
+date: 2026-10-28

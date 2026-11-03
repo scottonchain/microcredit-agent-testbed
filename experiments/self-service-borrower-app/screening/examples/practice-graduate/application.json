@@ -1,0 +1,5 @@
+{"purpose_category": "work_costs", "amount_usdc": 5, "term_days": "60", "repayment_source": "wages", "surplus_band": "10_50",
+ "backing_kind": "own_deposit", "consent": true, "applicant_name": "Lina Mbeki", "own_deposit_usdc": 5,
+ "purpose_text": "Bus fare and a uniform for the first two weeks of a warehouse job that starts Monday, before the first pay day.",
+ "payer_text": "the warehouse, every two weeks", "trial_wallet": "0x00000000000000000000000000000000000000a4",
+ "borrower_address": "0x00000000000000000000000000000000000000a4"}

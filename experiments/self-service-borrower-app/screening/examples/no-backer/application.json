@@ -1,0 +1,4 @@
+{"purpose_category": "emergency", "amount_usdc": 5, "term_days": "30", "repayment_source": "other", "surplus_band": "none",
+ "backing_kind": "none", "consent": true, "applicant_name": "Sam Okafor",
+ "purpose_text": "My phone screen broke and I need it for the delivery jobs I pick up through an app.",
+ "borrower_address": "0x00000000000000000000000000000000000000a3"}

@@ -1,0 +1,2 @@
+{"apr": 0.0933, "reserve_usdc": 100, "borrower": {"open_loans": 0, "repaid_on_time": 0, "defaults": 0},
+ "backer": {"address": "0x00000000000000000000000000000000000000b2", "free_credit_usdc": 10, "repaid_on_time": 0, "defaults": 0}}
