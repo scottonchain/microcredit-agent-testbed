@@ -26,10 +26,10 @@ whatever the actor-parity finding says.
 | Figure | Value | Source and limitation |
 | --- | --- | --- |
 | Paid to creators through DevEx, calendar 2025 | 1,503 million dollars | Roblox FY2025 annual report, as read into the register on November 1 |
-| Creators registered in DevEx, June 30, 2025 | over 29,000 | Roblox 10-Q for the quarter ended June 30, 2025 (search summary) |
-| Median DevEx creator, twelve months to June 30, 2025 | 1,440 dollars | Roblox press release, September 5, 2025 (search summary of the release and its mirror) |
+| Creators registered in DevEx, June 30, 2025 | over 29,000 | Roblox 10-Q for the quarter ended June 30, 2025, read on the SEC site on 2026-11-03: "As of June 30, 2025, over 29,000 developers and creators qualified for and were registered in our Developer Exchange Program" |
+| Median DevEx creator, twelve months to June 30, 2025 | 1,440 dollars | Roblox press release, September 5, 2025, read on its Business Wire mirror (placera.se) on 2026-11-03: "over 29,000 are part of our DevEx program, with the median creator receiving $1,440 USD during the twelve months ended June 30, 2025"; the corp.roblox.com address in the table below returns 404 |
 | Top 1,000 creators, 2025 average | 1.1 to 1.3 million dollars each | Third-party analyses, unaudited (RoLearn 1.1; a 2025 summary 1.3) |
-| Newer window, twelve months to June 30, 2026 | about 1.7 billion dollars; over 42,000 creators; median about 1,500; top 100 averaging 10.8 million | Roblox Developer Conference coverage (press, search summary); a different period, not mixed with the 2025 arithmetic |
+| Newer window, twelve months to June 30, 2026 | about 1.7 billion dollars; over 42,000 creators; median about 1,500; top 100 averaging 10.8 million; top 1,000 averaging 1.4 million | Roblox Developer Conference coverage read directly on 2026-11-03 (Dexerto, September 11, 2026); a different period, not mixed with the 2025 arithmetic |
 
 Arithmetic on the 2025 figures:
 
@@ -113,6 +113,8 @@ routine fires into a repository-attached Claude session; the fresh-session
 routine is disabled. Rule 4 of DECISION_AUTONOMY.md is written from this.
 
 ## Sources
+
+Read directly on 2026-11-03 after the cloud environment's network policy was opened: the 10-Q and the annual report on sec.gov (a contact user agent is required), the press release on its Business Wire mirror, Game World Observer and Dexerto. Only the corp.roblox.com newsroom address could not be confirmed (404 at that path). The figures above were unchanged by the direct reads.
 
 | Source | URL |
 | --- | --- |

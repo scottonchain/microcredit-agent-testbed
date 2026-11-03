@@ -1,6 +1,6 @@
 # Human-first mainnet lane: research round one (November 3, 2026)
 
-Claude Code (AI). Public sources read on 2026-11-03 through web search summaries (the session's network policy denies most of the primary hosts; primary URLs listed for the next round to read directly). Nothing here is a quote from a provider's live fee page; every figure is to be re-read before it prices anything. No contact, spend, account or deployment.
+Claude Code (AI). Public sources first read on 2026-11-03 through web search summaries, then read directly the same day after the environment's network policy was opened (see "Direct reads" at the end). Every figure is to be re-read before it prices anything. No contact, spend, account or deployment.
 
 ## A. Fiat to USDC for a borrower who never touches crypto
 
@@ -8,7 +8,7 @@ Claude Code (AI). Public sources read on 2026-11-03 through web search summaries
 | --- | --- | --- | --- |
 | Coinbase Onramp, hosted widget guest checkout (debit card, Apple Pay, no Coinbase account) | Retired June 30, 2026 per Coinbase's developer FAQ; earlier limit about 500 dollars a week; minimum about 5 dollars | None, while it existed | Gone |
 | Coinbase Onramp, headless API | Card only, US only, up to 2,500 dollars a week, an access fee for the app; 2.5 percent card, 0.5 percent ACH per the FAQ; zero-fee USDC only for select partners | Coinbase app approval; borrower identity checks | 5 dollar minimum defeats interest-sized payments; works for principal at about 2.5 percent |
-| MoonPay | About 3.99 percent with a 3.99 dollar minimum on cards; bank transfer 1 to 1.99 percent | Account and identity | A 0.25 dollar payment costs 3.99 dollars |
+| MoonPay | Up to 4.5 percent on cards with a 3.99 to 4.50 dollar minimum fee per order (comparison page read directly; MoonPay's own schedule not fetched); bank transfer rates per the same page | Account and identity | A 0.25 dollar payment costs at least 3.99 dollars |
 | Transak | 3.5 to 5.5 percent on cards | Account and identity | Same shape |
 | Ramp Network | About 1.49 percent ACH, 2.9 to 3.9 percent card | Account and identity | Same shape |
 | Kraken | 0.25 dollars plus 3.75 percent debit; ACH deposits held 7 days before withdrawal | Exchange account | Hold makes it useless for a due date |
@@ -58,3 +58,7 @@ Nothing read describes an interview-style assessment for thin-file borrowers. Th
 4. Money-transmission treatment of collecting one's own receivables and converting them, by state; what Kiva's US zero-interest model and a nonprofit lender exemption would change.
 5. The cash-out side at pilot amounts: instant payout fees versus ACH.
 6. A measured sandbox round trip (Stripe test mode plus Base Sepolia) with every fee written down.
+
+## Direct reads, 2026-11-03
+
+After the network policy was opened the sources above were fetched from this environment. Confirmed as stated: Coinbase's developer FAQ and overview ("Will be deprecated on June 30, 2026: Guest Checkout (debit card, Apple Pay) via the Coinbase-hosted widget is being discontinued. Use the Headless Onramp API instead"; "2.5% fee for credit card transactions, and 0.5% fee for ACH"); the onramp comparison page (Coinbase 2.5 percent card and 0.5 percent ACH; MoonPay up to 4.5 percent with a 3.99 to 4.50 dollar minimum; Transak 3.5 percent plus 1 euro in EUR and 5.5 percent plus 1 euro otherwise); PayPal's fee page; the state usury and small-loan pages (Tennessee's cap raised to 36 percent, 19 states plus DC at 36 percent or lower for a 500 dollar loan). Corrected: the MoonPay row (the earlier "about 3.99 percent" was the minimum fee, not the rate). Not read: PayPal help article 822 (403) and the adverse-action page (429); Venmo's crypto page loaded but states no fee for the transfer in question.
