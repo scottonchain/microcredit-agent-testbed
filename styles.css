@@ -29,3 +29,10 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}pre{white-space
 
 .chat{display:flex;flex-direction:column;gap:8px;margin-top:8px}.bub{max-width:88%;padding:10px 12px;border-radius:16px;line-height:1.35;white-space:pre-wrap}.bub.desk{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:4px}.bub.me{align-self:flex-end;background:var(--brand);color:var(--brand-ink);border-bottom-right-radius:4px}textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);resize:vertical}
 [hidden]{display:none!important}
+/* wide screens: the app keeps its phone width inside a frame, with a hand-off to the phone beside it */
+@media (min-width:900px){body{background:var(--bg)}.frame{display:flex;justify-content:center;align-items:flex-start;gap:40px;padding:24px 16px 48px}main{margin:0;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px 20px 32px;min-height:640px;box-shadow:0 20px 50px rgba(20,32,28,.08)}.side{width:260px;padding:8px 0;font-size:15px;color:var(--muted)}.side h2{font-size:17px;margin:0 0 6px;color:var(--ink)}.side .qr{width:200px;margin:12px 0}.side .qr svg{width:100%;height:auto;display:block}}
+@media (max-width:899.9px){.side{display:none !important}}
+/* the More fold on the home screen reads as a row, not a hidden link */
+.more{padding:10px 16px}.more summary{font:600 16px system-ui;color:var(--ink);min-height:40px;display:flex;align-items:center;justify-content:space-between}.more summary::after{content:'▾';color:var(--muted)}.more[open] summary::after{content:'▴'}.more .grid{margin-top:10px}
+/* chips: big tap targets that read as choices */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{width:auto;min-height:44px;padding:8px 14px;font-weight:600;background:var(--card);color:var(--ink);border:1px solid var(--line)}.chip.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
