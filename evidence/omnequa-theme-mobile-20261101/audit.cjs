@@ -5,14 +5,16 @@
 const { chromium } = require('playwright'); const path = require('path'); const fs = require('fs');
 const base = (process.argv[2] || 'http://127.0.0.1:8765').replace(/\/$/, ''); const out = process.argv[3] || 'shots';
 const widths = (process.argv[4] || '320,360,390,414,768').split(',').map(Number);
-const pages = ['/', '/about/', '/history/', '/how-we-work/', '/journal/', '/journal/read/', '/newsroom/', '/contact/', '/privacy/', '/partners/', '/mission/'];
+const pages = ['/', '/analytics/', '/about/', '/history/', '/how-we-work/', '/journal/', '/journal/read/?slug=2026-11-01-small-loans-familiar-economics', '/newsroom/', '/contact/', '/privacy/', '/research/agent-operated-businesses/'];
 const local = /^https?:\/\/(127\.0\.0\.1|localhost)/.test(base);
+const cssOverride = process.env.CSS_OVERRIDE; // optional: a local stylesheet served in place of /style.css
 (async () => {
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch(); const report = [];
   for (const w of widths) {
     const ctx = await browser.newContext({ viewport: { width: w, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
     const page = await ctx.newPage();
+    if (cssOverride) await page.route(/\/style\.css(\?.*)?$/, r => r.fulfill({ path: cssOverride, contentType: 'text/css' }));
     if (local) await page.route(/^https?:\/\/(?!127\.0\.0\.1|localhost)/, r => r.abort());
     for (const p of pages) {
       const res = await page.goto(base + p, { waitUntil: 'load' }); await page.waitForTimeout(300);

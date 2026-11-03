@@ -1,107 +1,123 @@
-# Mobile hardening patch for the November 1 Omnequa theme
+# Live mobile audit and stylesheet patch for the Omnequa theme
 
-Claude Code (AI), November 1, 2026. Marker: `THEME-MOBILE-b49d21b-20261101-r1`.
+Claude Code (AI), November 1 to 3, 2026. Marker: `THEME-MOBILE-live-20261103-r2`.
 Existing action `action:omnequa-website-operate`. The operator reported that the
-updated omnequa.org theme is not mobile friendly and asked that the computation
-stay in this session while Codex applies the change to the Sites project. This is
-one bounded local-source check and a source patch, not a live-site result.
+updated omnequa.org theme is not mobile friendly, asked that the computation stay
+in this session, and said Codex applies the change to the Sites project. Revision
+r2 replaces the November 1 local-only record: the host was allowed on November 3
+and the live site was measured directly.
 
 ## Decision, evidence sought, simpler route, stop condition
 
-Decision: which change, if any, to the theme stylesheet makes the site usable on a
-phone, so a reader on a 320 to 414 CSS px screen can read the navigation and
-reach the journal. Human outcome: readers who arrive on phones can use the site;
-nothing here changes the lending qualification (NONE QUALIFIES) or the revolving
-first-job payment guarantee path in NORTH_STAR.md, and no spend, contact or
+Decision: which stylesheet change makes omnequa.org usable on a phone, so a
+reader on a 320 to 414 CSS px screen can read the navigation and every page
+without sideways scrolling. Human outcome: phone readers can use the site.
+Nothing here changes the lending qualification (NONE QUALIFIES) or the revolving
+first-job payment guarantee path in NORTH_STAR.md; no spend, contact or
 guarantee is involved.
 
-Evidence sought: horizontal overflow, elements outside the viewport, navigation
-font size and link height, text under 12 px and tap targets under 24 px, measured
-on the exact theme source at 320, 360, 390, 414 and 768 CSS px.
+Evidence sought: horizontal page overflow, elements outside the viewport,
+navigation font size and link height, text under 12 px and tap targets under
+24 px, measured on the live pages at 320, 360, 390, 414 and 768 CSS px, before
+and after the patch.
 
-Simpler route considered: do nothing and ask the operator for a screenshot. The
-live host is unreachable from this container (proxy 403, DNS refused for the
-fetch tool), so the operator's own view is still the only live evidence. The
-patch was prepared anyway because the measured deficiencies are real on the
-source and the fix is eight CSS edits.
+Simpler route considered: fix only the one page that scrolls sideways. Rejected
+because the navigation on every page is 11 px at 320 px and 12 px at 390 px,
+which is the defect a reader meets first.
 
-Stop or change condition: if the operator's phone shows a defect this audit did
-not reproduce (for example a stale cached stylesheet, or a page built from Sites
-content that is absent from the GitHub backup), the live audit below should be run
-by Codex against omnequa.org first and this patch should not be treated as the fix.
+Stop or change condition: if Codex's build or the Sites checkout no longer
+contains one of the eleven anchor strings, `apply_patch_live.py` stops without
+writing and the patch must be re-based on the current file. If the live audit
+after deployment still reports `navFont=11px` or `overflow=true`, the deployed
+file is not the patched one.
 
-## Source and bound
+## What is live, and how it differs from the GitHub backup
 
-Source: `scottonchain/microcredit-vision` main `b49d21b26d159f480137778cdd31c8b74a388992`,
-directory `omnequa/theme/`. Its `assets/style.css` SHA-256 `cd8a75f7…` matches the
-deployed-file hash in `omnequa/theme/evidence/theme-2026-11-01.json`, so the
-backup is the deployed stylesheet as of that record. The site was rebuilt locally
-with the theme's `tools/build.py` and `tools/theme.py` over the repository's
-`content/` and `assets/`; `content/enterprise-research.html` and the Sites-only
-archive normalization were not available, so the research page and the archived
-October pages were not rendered. Chromium and Playwright already installed here;
-localhost only; every non-local request aborted; no install, account, send, spend
-or live request succeeded. Clock bounds 18:45Z to 19:00Z.
+The live stylesheet (22,249 bytes, SHA-256 `49265e1c…`, fetched 2026-11-03
+between 05:05Z and 05:17Z, served by Cloudflare with `max-age=0, must-revalidate`) is a superset of
+the vision backup `omnequa/theme/assets/style.css` at `b49d21b`
+(15,761 bytes, `cd8a75f7…`): the first 275 rules are identical and 108 rules were
+appended for the analytics page, the forecast article and a six-link navigation
+(Analytics was added). The backup is therefore stale and was not patched; the
+patch here targets the live file. `live/style-live-20261103.css` is the exact
+fetched copy.
 
-## Result on the unpatched theme
+## Result on the live site before the patch
 
-No horizontal overflow on any of 11 shell pages at 320, 360, 390, 414, 480, 600,
-768, 820 and 1024 CSS px, and none on any of the 91 journal articles rendered
-through `/journal/read/?slug=` at 320 and 390. The viewport meta tag is present on
-all 29 built pages. The measured deficiencies are legibility and target size, not
-layout breakage:
+Measured with the pre-installed Chromium and Playwright, phone emulation,
+viewports 320, 360, 390, 414 and 768 CSS px, eleven routes including the
+analytics, research and one article page. `live/report-live-before.json` holds
+every number; screenshots are in `live/`.
 
-| Measure (home page) | 320 px before | 390 px before | after |
-| --- | --- | --- | --- |
-| Navigation font | 11 px | 12 px | 14 px |
-| Navigation link height | 43 px | 44 px | 40 px, wraps to a second row below 390 px |
-| Text under 12 px, all pages and widths | 489 | | 175 (uppercase labels at 11 px remain) |
-| Tap targets under 24 px, all pages and widths | 550 | | 198 (inline text links remain) |
-| Footer link height | 22 px | 22 px | 36 px |
-| Hero heading at 768 px | 66 px in a two-column grid | | 53.8 px (`clamp(44px,7vw,66px)`) |
+| Finding | Where | Measure |
+| --- | --- | --- |
+| Page scrolls sideways | `/research/agent-operated-businesses/` | document scroll width 440 px at 320, 360 and 414 px viewports, 441 at 390: a bare table in `.prose` has no overflow rule (the `.article table` rule does not reach it) |
+| Data tables clipped | `/analytics/` | three tables forced to 480 px inside a 316 px scroll region at 390 px, so the last column is hidden until the reader scrolls the region; 42 to 57 elements outside the viewport |
+| Navigation unreadable | every page | 11 px at 320 and 360 px, 12 px at 390 and 414 px; six links wrap to two rows |
+| Small text | every page | 489 text elements under 12 px across the run (eyebrows, dates, captions) |
+| Small targets | every page | footer links 22 px tall; 550 targets under 24 px across the run |
+| Tablet hero | `/` at 768 px | 66 px heading in a two-column grid |
 
-Raw numbers: `report-before.json`, `report-after.json`. Screenshots: `home-320-*`,
-`home-360-after.png`, `home-768-*`.
+The viewport meta tag is present on every live page, and the home, journal,
+article, about, history, work, newsroom, contact and privacy pages do not
+overflow. The problem is the two content pages above plus legibility.
 
 ## The patch
 
-`style.css.patch` is a `git diff` against `omnequa/theme/assets/style.css` at
-`b49d21b`; `git apply --check` passes. `style.css` is the full patched file
-(SHA-256 `ae0046fe…`). `style-readable.diff` shows the same change with one rule per
-line. `apply_patch.py` applies the eight edits to any copy of the stylesheet and
-fails if an anchor string is not found exactly once. The edits:
+`live/style.patch` is a unified diff from the live file to `live/style-patched.css`
+(SHA-256 `24a55440…`); `live/style-readable.diff` shows the same change one rule
+per line. `apply_patch_live.py <in> <out>` applies the eleven edits and stops if
+any anchor is not found exactly once:
 
-1. `text-size-adjust:100%` on `html`, so iOS Safari does not inflate pixel text in landscape.
-2. Tablet portrait (761 to 1100 px): hero heading `clamp(44px,7vw,66px)` instead of fixed 66 px.
-3. Phone (760 px and below): navigation at 14 px, wrapping instead of a hidden horizontal scroller, links at least 40 px tall.
-4. Phone: 12 px floor for eyebrows, card dates, feed note and archive dates; 13 px for "Read the story"; 11 px for uppercase index labels.
-5. Phone: footer links 14 px with 6 px vertical padding (36 px targets), row gap reduced to keep the rhythm.
-6. Removed the 380 px rule that shrank the navigation to 11 px.
+1. `text-size-adjust:100%` on `html`.
+2. Tablet (761 to 1100 px): hero heading `clamp(44px,7vw,66px)`.
+3. Phone (760 px and below): navigation at 14 px, wrapping, links 40 px tall; the 380 px rule that shrank it to 11 px is removed; the appended six-link rule is aligned to the same sizes.
+4. Phone: 12 px floor for eyebrows, card dates, feed note, archive dates, analytics jump links, chart captions and origin titles; 13 px for "Read the story"; 11 px for uppercase index labels, evidence tags and decision-note terms.
+5. Phone: footer links 14 px with 6 px vertical padding (36 px targets).
+6. `.prose table` gets the same block-and-scroll rule as `.article table`, which ends the sideways page scroll on the research page.
+7. `.data-content table{min-width:480px}` becomes `min-width:0`: the three analytics tables have three or four columns and fit a phone.
 
-Nothing else in the theme, builder, journal script, markup or content changes.
-The theme's own `tools/test_focus.py` (3 tests) passes on the patched file and
-`node --check assets/journal.js` passes; `tools/check.py` reports only the
-missing Sites-only inputs noted above.
+No markup, builder, journal script or content changes.
+
+## Result on the live site with the patch
+
+Verified by loading the live pages with the patched stylesheet substituted for
+`/style.css` at request time (`CSS_OVERRIDE` in `audit.cjs`), same viewports and
+routes. `live/report-live-after.json`:
+
+| Measure | before | after |
+| --- | --- | --- |
+| Pages with sideways scroll (55 page-width pairs) | 4 | 0 |
+| Research page document width at 390 px | 441 | 390; table 350 px wide |
+| Analytics tables at 390 px | 480 px each in a 316 px region | 316, 378 and 316 px; two fit, one scrolls inside its region |
+| Navigation font at 320 and 390 px | 11 px, 12 px | 14 px |
+| Text under 12 px, whole run | 489 | 175 (11 px uppercase labels remain by choice) |
+| Targets under 24 px, whole run | 550 | 198 (inline text links remain) |
+| Hero heading at 768 px | 66 px | 53.8 px |
+
+Screenshots: `live/home-320-{before,after}.png`,
+`live/research-table-390-{before,after}.png`,
+`live/analytics-table-390-{before,after}.png` (details opened for the capture),
+`live/research_agent-operated-businesses-390-{before,after}.png`,
+`live/analytics-390-{before,after}.png`.
 
 ## Handoff to Codex
 
-1. In the Sites checkout, apply `style.css.patch` to `assets/style.css` (or run
-   `python3 apply_patch.py assets/style.css assets/style.css`), then run the
-   theme's build and checks and deploy as usual. Update the file hash in
-   `theme/evidence/theme-2026-11-01.json` and mirror the file to
-   `omnequa/theme/assets/style.css` on vision main.
-2. Before or after, run the live audit from a host that can reach omnequa.org:
-   `node audit.cjs https://omnequa.org ./live-shots`. It prints, per page and
-   width, the HTTP status, scroll width, overflow, navigation font, counts of
-   small text and small targets, the viewport meta content and the stylesheet URLs,
-   and writes `report.json` plus screenshots. If `navFont` is not 14px after
-   deployment, the phone is still receiving the old stylesheet.
-3. If the live run shows overflow or offenders that this local run did not, send
-   that `report.json` and the screenshot back; the cause is then in Sites-only
-   content or hosting, not in this stylesheet.
+1. In the Sites checkout run `python3 apply_patch_live.py assets/style.css assets/style.css`
+   (or apply `live/style.patch`), then the theme's build and checks, then deploy.
+   Mirror the result to `omnequa/theme/assets/style.css` on vision main and update
+   the file hash in `theme/evidence/theme-2026-11-01.json`; the backup there is
+   already behind the live file.
+2. After deployment run `node audit.cjs https://omnequa.org ./live-shots` from any
+   host with Playwright. Expected: `overflow=false` on every row, `navFont=14px`
+   at every width, and the research page at scroll width equal to the viewport.
+3. `node tables.cjs <outdir>` reproduces the table measurements and screenshots
+   if the two content pages need a second look.
 
 ## Limitations
 
-Local source only; no live page, real device, assistive technology, zoom or
-WCAG claim. The operator's report of the defect remains unreproduced here. No
-paid work, human earnings or funnel step results from this.
+Chromium emulation on live pages, not a physical device, assistive technology,
+zoom or WCAG claim. The analytics four-column table still scrolls inside its
+labelled region on phones narrower than about 420 px. Eleven routes were measured;
+archived October pages and the forecast article were not. No paid work, human
+earnings or funnel step results from this.

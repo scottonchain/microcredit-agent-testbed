@@ -15,47 +15,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "40px",
-  "nSmallText": 22,
+  "nSmallText": 23,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -104,15 +117,9 @@
     "cls": "eyebrow",
     "fs": 11,
     "text": "Our guiding question"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "The Omnequa journal · Credit A"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 10,
   "smallTargets": [
    {
     "tag": "a",
@@ -154,6 +161,13 @@
     "cls": "",
     "w": 128,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -180,7 +194,290 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 57,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "All adults (%)"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "Poorest 40% (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7Lower middle income40."
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "43.8"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "34.7"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Lower middle income40.628.5"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "40.6"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 34,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Analytics · The evidence behin"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Executive summary"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "01 / Access to capital"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   }
+  ],
+  "nSmallTargets": 21,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -199,47 +496,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 10,
+  "nSmallText": 11,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -288,15 +598,9 @@
     "cls": "eyebrow",
     "fs": 9,
     "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 10,
   "smallTargets": [
    {
     "tag": "a",
@@ -338,6 +642,13 @@
     "cls": "",
     "w": 128,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -364,7 +675,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -383,47 +694,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 15,
+  "nSmallText": 16,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -472,15 +796,9 @@
     "cls": "",
     "fs": 11,
     "text": "October 15, 2026"
-   },
-   {
-    "tag": "time",
-    "cls": "",
-    "fs": 11,
-    "text": "October 14, 2026"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -529,6 +847,13 @@
     "cls": "",
     "w": 128,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -544,18 +869,11 @@
     "w": 128,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -574,47 +892,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 7,
+  "nSmallText": 8,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -644,7 +975,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Our work"
+    "text": "Our vision and approach"
    },
    {
     "tag": "p",
@@ -653,14 +984,14 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 267,
+    "w": 225,
     "h": 17,
-    "text": "Explore the evidence in our jo"
+    "text": "Follow dated project updates →"
    },
    {
     "tag": "a",
@@ -702,6 +1033,13 @@
     "cls": "",
     "w": 128,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -717,18 +1055,11 @@
     "w": 128,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -747,47 +1078,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 26,
+  "nSmallText": 27,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -823,7 +1167,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 10,
-    "text": "Nov 1, 2026 · economics"
+    "text": "Nov 1, 2026 · guest post"
    },
    {
     "tag": "p",
@@ -836,376 +1180,6 @@
     "cls": "eyebrow",
     "fs": 10,
     "text": "Nov 1, 2026 · economics"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Nov 1, 2026 · economics"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 92,
-    "h": 15,
-    "text": "October archive"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/journal/read/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "36px",
-  "nSmallText": 7,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "The Omnequa journal"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 155,
-    "h": 19,
-    "text": "Browse all stories →"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/newsroom/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 13,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "For journalists, creators & cu"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Omnequa in one sentence"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "What we are"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "Our purpose"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "How we work"
    }
   ],
   "nSmallTargets": 12,
@@ -1213,1622 +1187,10 @@
    {
     "tag": "a",
     "cls": "",
-    "w": 145,
+    "w": 133,
     "h": 17,
-    "text": "The Omnequa journal"
+    "text": "Explore analytics →"
    },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 206,
-    "h": 17,
-    "text": "The initiative and the AI team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 154,
-    "h": 17,
-    "text": "The Omnequa history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/contact/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 7,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Get in touch"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 202,
-    "h": 17,
-    "text": "Press resources and logo →"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/privacy/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 7,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Privacy"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/partners/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 7,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Get in touch"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 202,
-    "h": 17,
-    "text": "Press resources and logo →"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/mission/",
-  "width": 320,
-  "status": 200,
-  "vw": 320,
-  "sw": 320,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 74,
-     "r": 103,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 121,
-     "r": 165,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 183,
-     "r": 217,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 235,
-     "r": 300,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 10,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 128,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "40px",
-  "nSmallText": 22,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Technology with a human purpos"
-   },
-   {
-    "tag": "p",
-    "cls": "hero-footnote",
-    "fs": 11,
-    "text": "Independent research. AI-led w"
-   },
-   {
-    "tag": "figcaption",
-    "cls": "",
-    "fs": 10,
-    "text": "Human opportunity is the point"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Our guiding question"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "The Omnequa journal · Credit A"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/about/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 10,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/history/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 15,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Our history"
-   },
-   {
-    "tag": "time",
-    "cls": "",
-    "fs": 11,
-    "text": "October 16, 2026"
-   },
-   {
-    "tag": "time",
-    "cls": "",
-    "fs": 11,
-    "text": "October 15, 2026"
-   },
-   {
-    "tag": "time",
-    "cls": "",
-    "fs": 11,
-    "text": "October 15, 2026"
-   },
-   {
-    "tag": "time",
-    "cls": "",
-    "fs": 11,
-    "text": "October 14, 2026"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 205,
-    "h": 17,
-    "text": "October goals and reports →"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/how-we-work/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 7,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 267,
-    "h": 17,
-    "text": "Explore the evidence in our jo"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/journal/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 26,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "The Omnequa journal · Credit A"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Nov 1, 2026 · economics"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Nov 1, 2026 · economics"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Nov 1, 2026 · economics"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Nov 1, 2026 · economics"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
    {
     "tag": "a",
     "cls": "",
@@ -2839,78 +1201,71 @@
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Meet the team"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Our work"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Our history"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Press & creators"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Read the journal"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
     "h": 22,
     "text": "GitHub journal ↗"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 148,
+    "w": 128,
     "h": 22,
     "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/journal/read/",
-  "width": 360,
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
+  "width": 320,
   "status": 200,
-  "vw": 360,
-  "sw": 360,
+  "vw": 320,
+  "sw": 320,
   "hOverflow": false,
   "nOffenders": 0,
   "offenders": [],
@@ -2921,47 +1276,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "36px",
-  "nSmallText": 7,
+  "nSmallText": 8,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -2998,197 +1366,6 @@
     "cls": "eyebrow",
     "fs": 10,
     "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 10,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 155,
-    "h": 19,
-    "text": "Browse all stories →"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/newsroom/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 13,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "For journalists, creators & cu"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "Omnequa in one sentence"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "What we are"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "Our purpose"
-   },
-   {
-    "tag": "dt",
-    "cls": "",
-    "fs": 10,
-    "text": "How we work"
    }
   ],
   "nSmallTargets": 14,
@@ -3196,6 +1373,2492 @@
    {
     "tag": "a",
     "cls": "",
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 197,
+    "h": 19,
+    "text": "Base's published example"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Explore analytics"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 14,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   }
+  ],
+  "nSmallTargets": 13,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 145,
+    "h": 17,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 206,
+    "h": 17,
+    "text": "The initiative and the AI team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 154,
+    "h": 17,
+    "text": "The Omnequa history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/contact/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Get in touch"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 11,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 202,
+    "h": 17,
+    "text": "Press resources and logo →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/privacy/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 320,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Privacy"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/research/agent-operated-businesses/",
+  "width": 320,
+  "status": 200,
+  "vw": 320,
+  "sw": 440,
+  "hOverflow": true,
+  "nOffenders": 15,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 20,
+    "right": 440,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 215,
+    "right": 325,
+    "text": "Proposed deliverable"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Evidence required before expansion"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 215,
+    "right": 325,
+    "text": "A permitted source converted into a stab"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "An independent payer, a real use case, a"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to humanA merchant or agency uploa"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 215,
+    "right": 325,
+    "text": "A repaired catalog, explicit change log,"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "The same commercial evidence, including "
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Research"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 16,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 156,
+    "h": 17,
+    "text": "Apify’s documentation"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 183,
+    "h": 17,
+    "text": "Shopify’s import guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 199,
+    "h": 17,
+    "text": "authors’ university summary"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 191,
+    "h": 17,
+    "text": "Upwork’s MCP instructions"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 136,
+    "h": 17,
+    "text": "Linden Lab’s policy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 128,
+    "h": 22,
+    "text": "Press & creators"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "40px",
+  "nSmallText": 23,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Technology with a human purpos"
+   },
+   {
+    "tag": "p",
+    "cls": "hero-footnote",
+    "fs": 11,
+    "text": "Independent research. AI-led w"
+   },
+   {
+    "tag": "figcaption",
+    "cls": "",
+    "fs": 10,
+    "text": "Human opportunity is the point"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our guiding question"
+   }
+  ],
+  "nSmallTargets": 11,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 86,
+    "h": 12,
+    "text": "Also on GitHub ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 57,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "All adults (%)"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "Poorest 40% (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7Lower middle income40."
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "43.8"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "34.7"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Lower middle income40.628.5"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 242,
+    "right": 368,
+    "text": "40.6"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 34,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Analytics · The evidence behin"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Executive summary"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "01 / Access to capital"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   }
+  ],
+  "nSmallTargets": 21,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/about/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 11,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "About Omnequa"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & coordination"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Engineering & writing"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 9,
+    "text": "Research & operations"
+   }
+  ],
+  "nSmallTargets": 10,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 125,
+    "h": 16,
+    "text": "Contact the team →"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/history/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 16,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our history"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 16, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   },
+   {
+    "tag": "time",
+    "cls": "",
+    "fs": 11,
+    "text": "October 15, 2026"
+   }
+  ],
+  "nSmallTargets": 11,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 205,
+    "h": 17,
+    "text": "October goals and reports →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Privacy"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/how-we-work/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Our vision and approach"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 298,
+    "h": 17,
+    "text": "Read the business-ownership re"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 225,
+    "h": 17,
+    "text": "Follow dated project updates →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 27,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
+   }
+  ],
+  "nSmallTargets": 12,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 92,
+    "h": 15,
+    "text": "October archive"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "GitHub journal ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Subscribe via RSS ↗"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "36px",
+  "nSmallText": 8,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "The Omnequa journal"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Let’s compare notes"
+   }
+  ],
+  "nSmallTargets": 14,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 127,
+    "h": 19,
+    "text": "CGAP, Figure 26"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Meet the team"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Our history"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Press & creators"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Read the journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
+    "text": "Explore analytics"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/newsroom/",
+  "width": 360,
+  "status": 200,
+  "vw": 360,
+  "sw": 360,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 56,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "About",
+     "l": 144,
+     "r": 173,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Our work",
+     "l": 195,
+     "r": 239,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "History",
+     "l": 261,
+     "r": 296,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 85,
+     "h": 44,
+     "fs": "11px"
+    }
+   ]
+  },
+  "h1": "39px",
+  "nSmallText": 14,
+  "smallText": [
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "About"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Our work"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "History"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "For the press"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "For journalists, creators & cu"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Omnequa in one sentence"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "What we are"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our purpose"
+   }
+  ],
+  "nSmallTargets": 15,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
     "w": 145,
     "h": 17,
     "text": "The Omnequa journal"
@@ -3266,7 +3929,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -3285,47 +3948,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 7,
+  "nSmallText": 8,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -3364,7 +4040,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 13,
   "smallTargets": [
    {
     "tag": "a",
@@ -3427,19 +4103,19 @@
     "cls": "",
     "w": 148,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
    },
    {
     "tag": "a",
     "cls": "",
     "w": 148,
     "h": 22,
-    "text": "Subscribe via RSS ↗"
+    "text": "GitHub journal ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -3458,47 +4134,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 7,
+  "nSmallText": 8,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -3537,7 +4226,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -3586,6 +4275,13 @@
     "cls": "",
     "w": 148,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 148,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -3601,29 +4297,100 @@
     "w": 148,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/partners/",
+  "page": "/research/agent-operated-businesses/",
   "width": 360,
   "status": 200,
   "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
+  "sw": 440,
+  "hOverflow": true,
+  "nOffenders": 11,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 20,
+    "right": 440,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Evidence required before expansion"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "An independent payer, a real use case, a"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to humanA merchant or agency uploa"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "The same commercial evidence, including "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Later human to humanThe owner develops r"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Owner control, usable payouts, affordabl"
+   }
+  ],
   "navInfo": {
    "overflow": false,
    "links": [
@@ -3631,47 +4398,60 @@
      "t": "Journal",
      "l": 20,
      "r": 56,
-     "h": 43,
+     "h": 44,
+     "fs": "11px"
+    },
+    {
+     "t": "Analytics",
+     "l": 78,
+     "r": 122,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
+     "l": 144,
+     "r": 173,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
+     "l": 195,
+     "r": 239,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
+     "l": 261,
+     "r": 296,
+     "h": 44,
      "fs": "11px"
     },
     {
      "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
+     "l": 20,
+     "r": 85,
+     "h": 44,
      "fs": "11px"
     }
    ]
   },
   "h1": "39px",
-  "nSmallText": 7,
+  "nSmallText": 8,
   "smallText": [
    {
     "tag": "a",
     "cls": "",
     "fs": 11,
     "text": "Journal"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "fs": 11,
+    "text": "Analytics"
    },
    {
     "tag": "a",
@@ -3701,7 +4481,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Get in touch"
+    "text": "Research"
    },
    {
     "tag": "p",
@@ -3710,28 +4490,49 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 16,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 202,
+    "w": 156,
     "h": 17,
-    "text": "Press resources and logo →"
+    "text": "Apify’s documentation"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 73,
+    "w": 183,
     "h": 17,
-    "text": "Privacy →"
+    "text": "Shopify’s import guidance"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 150,
+    "w": 236,
     "h": 17,
-    "text": "dated announcement"
+    "text": "AI product-description generat"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 220,
+    "h": 17,
+    "text": "2026 field experiment in Kenya"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 199,
+    "h": 17,
+    "text": "authors’ university summary"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
    },
    {
     "tag": "a",
@@ -3760,216 +4561,11 @@
     "w": 148,
     "h": 22,
     "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/mission/",
-  "width": 360,
-  "status": 200,
-  "vw": 360,
-  "sw": 360,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 56,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "About",
-     "l": 84,
-     "r": 113,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "Our work",
-     "l": 141,
-     "r": 185,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "History",
-     "l": 213,
-     "r": 247,
-     "h": 43,
-     "fs": "11px"
-    },
-    {
-     "t": "For the press",
-     "l": 275,
-     "r": 340,
-     "h": 43,
-     "fs": "11px"
-    }
-   ]
-  },
-  "h1": "39px",
-  "nSmallText": 10,
-  "smallText": [
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "About"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "History"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "fs": 11,
-    "text": "For the press"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 148,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -3992,30 +4588,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4058,7 +4661,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 10,
-    "text": "Nov 1, 2026 · economics"
+    "text": "Nov 1, 2026 · guest post"
    },
    {
     "tag": "p",
@@ -4079,14 +4682,21 @@
     "text": "Nov 1, 2026 · economics"
    },
    {
-    "tag": "p",
-    "cls": "feed-note",
+    "tag": "a",
+    "cls": "",
     "fs": 11,
-    "text": "Showing the saved edition."
+    "text": "Also on GitHub ↗"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 11,
   "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 86,
+    "h": 12,
+    "text": "Also on GitHub ↗"
+   },
    {
     "tag": "a",
     "cls": "",
@@ -4127,6 +4737,13 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -4142,18 +4759,294 @@
     "w": 163,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 390,
+  "status": 200,
+  "vw": 390,
+  "sw": 390,
+  "hOverflow": false,
+  "nOffenders": 47,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "Poorest 40% (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7Lower middle income40."
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "34.7"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Lower middle income40.628.5"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "28.5"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Upper middle income74.660.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "60.7"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 151,
+     "r": 183,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 205,
+     "r": 253,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 275,
+     "r": 313,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 91,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 28,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Analytics · The evidence behin"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Executive summary"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "01 / Access to capital"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "02 / Cash flow"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   }
+  ],
+  "nSmallTargets": 22,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 288,
+    "h": 14,
+    "text": "Federal Reserve Banks · 2024 R"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -4176,30 +5069,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4239,7 +5139,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 10,
   "smallTargets": [
    {
     "tag": "a",
@@ -4281,6 +5181,13 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -4307,7 +5214,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -4330,30 +5237,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4423,7 +5337,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -4472,6 +5386,13 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -4487,18 +5408,11 @@
     "w": 163,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -4521,30 +5435,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4557,7 +5478,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Our work"
+    "text": "Our vision and approach"
    },
    {
     "tag": "p",
@@ -4566,14 +5487,28 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 13,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 267,
+    "w": 332,
     "h": 17,
-    "text": "Explore the evidence in our jo"
+    "text": "Explore the evidence and analy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 298,
+    "h": 17,
+    "text": "Read the business-ownership re"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 225,
+    "h": 17,
+    "text": "Follow dated project updates →"
    },
    {
     "tag": "a",
@@ -4615,33 +5550,19 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -4664,30 +5585,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4701,6 +5629,18 @@
     "cls": "eyebrow",
     "fs": 11,
     "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
    },
    {
     "tag": "p",
@@ -4743,22 +5683,17 @@
     "cls": "eyebrow",
     "fs": 10,
     "text": "Oct 31, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 29, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 28, 2026 · guest post"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 11,
   "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
    {
     "tag": "a",
     "cls": "",
@@ -4799,6 +5734,13 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -4814,22 +5756,15 @@
     "w": 163,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/journal/read/",
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
   "width": 390,
   "status": 200,
   "vw": 390,
@@ -4848,30 +5783,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -4893,14 +5835,35 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 14,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 155,
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 304,
     "h": 19,
-    "text": "Browse all stories →"
+    "text": "Stripe's standard US domestic-"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
    },
    {
     "tag": "a",
@@ -4942,33 +5905,12 @@
     "cls": "",
     "w": 163,
     "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
+    "text": "Explore analytics"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -4991,30 +5933,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -5072,7 +6021,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 16,
+  "nSmallTargets": 17,
   "smallTargets": [
    {
     "tag": "a",
@@ -5147,7 +6096,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -5170,30 +6119,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -5215,7 +6171,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 13,
   "smallTargets": [
    {
     "tag": "a",
@@ -5278,19 +6234,19 @@
     "cls": "",
     "w": 163,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
    },
    {
     "tag": "a",
     "cls": "",
     "w": 163,
     "h": 22,
-    "text": "Subscribe via RSS ↗"
+    "text": "GitHub journal ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -5313,30 +6269,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -5358,7 +6321,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -5407,6 +6370,13 @@
     "cls": "",
     "w": 163,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 163,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -5422,29 +6392,100 @@
     "w": 163,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/partners/",
+  "page": "/research/agent-operated-businesses/",
   "width": 390,
   "status": 200,
   "vw": 390,
-  "sw": 390,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
+  "sw": 441,
+  "hOverflow": true,
+  "nOffenders": 11,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 20,
+    "right": 440,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Evidence required before expansion"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "An independent payer, a real use case, a"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to humanA merchant or agency uploa"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "The same commercial evidence, including "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Later human to humanThe owner develops r"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Owner control, usable payouts, affordabl"
+   }
+  ],
   "navInfo": {
    "overflow": false,
    "links": [
@@ -5456,30 +6497,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 90,
-     "r": 121,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 152,
-     "r": 201,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 231,
-     "r": 269,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 299,
-     "r": 370,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -5492,7 +6540,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Get in touch"
+    "text": "Research"
    },
    {
     "tag": "p",
@@ -5501,28 +6549,42 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 15,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 202,
+    "w": 156,
     "h": 17,
-    "text": "Press resources and logo →"
+    "text": "Apify’s documentation"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 73,
+    "w": 183,
     "h": 17,
-    "text": "Privacy →"
+    "text": "Shopify’s import guidance"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 150,
+    "w": 141,
     "h": 17,
-    "text": "dated announcement"
+    "text": "Fiverr’s AI guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 136,
+    "h": 17,
+    "text": "Linden Lab’s policy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
    },
    {
     "tag": "a",
@@ -5558,179 +6620,11 @@
     "w": 163,
     "h": 22,
     "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/mission/",
-  "width": 390,
-  "status": 200,
-  "vw": 390,
-  "sw": 390,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 59,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "About",
-     "l": 90,
-     "r": 121,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "Our work",
-     "l": 152,
-     "r": 201,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "History",
-     "l": 231,
-     "r": 269,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "For the press",
-     "l": 299,
-     "r": 370,
-     "h": 44,
-     "fs": "12px"
-    }
-   ]
-  },
-  "h1": "42px",
-  "nSmallText": 5,
-  "smallText": [
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 163,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -5753,30 +6647,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -5819,7 +6720,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 10,
-    "text": "Nov 1, 2026 · economics"
+    "text": "Nov 1, 2026 · guest post"
    },
    {
     "tag": "p",
@@ -5843,10 +6744,10 @@
     "tag": "p",
     "cls": "feed-note",
     "fs": 11,
-    "text": "Showing the saved edition."
+    "text": "Articles from the Omnequa jour"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 10,
   "smallTargets": [
    {
     "tag": "a",
@@ -5888,6 +6789,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -5914,7 +6822,290 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 414,
+  "status": 200,
+  "vw": 414,
+  "sw": 414,
+  "hOverflow": false,
+  "nOffenders": 42,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "caption",
+    "cls": "",
+    "left": 37,
+    "right": 517,
+    "text": "Start with the owner's financial positio"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Economy income groupAll adults (%)Poores"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "Poorest 40% (%)"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7Lower middle income40."
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Low income43.834.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "34.7"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Lower middle income40.628.5"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "28.5"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 38,
+    "right": 517,
+    "text": "Upper middle income74.660.7"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 368,
+    "right": 517,
+    "text": "60.7"
+   }
+  ],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 20,
+     "r": 59,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "About",
+     "l": 151,
+     "r": 183,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "Our work",
+     "l": 205,
+     "r": 253,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "History",
+     "l": 275,
+     "r": 313,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
+     "t": "For the press",
+     "l": 20,
+     "r": 91,
+     "h": 44,
+     "fs": "12px"
+    }
+   ]
+  },
+  "h1": "42px",
+  "nSmallText": 28,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Analytics · The evidence behin"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Executive summary"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "01 / Access to capital"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "02 / Cash flow"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   }
+  ],
+  "nSmallTargets": 22,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 113,
+    "h": 20,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 77,
+    "h": 20,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 106,
+    "h": 20,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 20,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 288,
+    "h": 14,
+    "text": "Federal Reserve Banks · 2024 R"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -5937,30 +7128,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6000,7 +7198,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 10,
   "smallTargets": [
    {
     "tag": "a",
@@ -6042,6 +7240,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -6068,7 +7273,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -6091,30 +7296,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6184,7 +7396,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -6233,6 +7445,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -6248,18 +7467,11 @@
     "w": 175,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -6282,30 +7494,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6318,7 +7537,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Our work"
+    "text": "Our vision and approach"
    },
    {
     "tag": "p",
@@ -6327,14 +7546,21 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 12,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 267,
+    "w": 332,
     "h": 17,
-    "text": "Explore the evidence in our jo"
+    "text": "Explore the evidence and analy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 298,
+    "h": 17,
+    "text": "Read the business-ownership re"
    },
    {
     "tag": "a",
@@ -6376,6 +7602,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -6384,25 +7617,11 @@
     "w": 175,
     "h": 22,
     "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -6425,30 +7644,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6462,6 +7688,18 @@
     "cls": "eyebrow",
     "fs": 11,
     "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
    },
    {
     "tag": "p",
@@ -6504,22 +7742,17 @@
     "cls": "eyebrow",
     "fs": 10,
     "text": "Oct 31, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 29, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 28, 2026 · guest post"
    }
   ],
-  "nSmallTargets": 9,
+  "nSmallTargets": 11,
   "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
    {
     "tag": "a",
     "cls": "",
@@ -6560,6 +7793,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -6575,22 +7815,15 @@
     "w": 175,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/journal/read/",
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
   "width": 414,
   "status": 200,
   "vw": 414,
@@ -6609,30 +7842,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6654,14 +7894,35 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 14,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 155,
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 127,
     "h": 19,
-    "text": "Browse all stories →"
+    "text": "CGAP, Figure 26"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
    },
    {
     "tag": "a",
@@ -6703,33 +7964,12 @@
     "cls": "",
     "w": 175,
     "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
+    "text": "Explore analytics"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -6752,30 +7992,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6833,7 +8080,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 16,
+  "nSmallTargets": 17,
   "smallTargets": [
    {
     "tag": "a",
@@ -6908,7 +8155,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -6931,30 +8178,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -6976,7 +8230,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 13,
   "smallTargets": [
    {
     "tag": "a",
@@ -7039,19 +8293,19 @@
     "cls": "",
     "w": 175,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
    },
    {
     "tag": "a",
     "cls": "",
     "w": 175,
     "h": 22,
-    "text": "Subscribe via RSS ↗"
+    "text": "GitHub journal ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -7074,30 +8328,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -7119,7 +8380,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -7168,6 +8429,13 @@
     "cls": "",
     "w": 175,
     "h": 22,
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 175,
+    "h": 22,
     "text": "GitHub journal ↗"
    },
    {
@@ -7183,29 +8451,100 @@
     "w": 175,
     "h": 22,
     "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/partners/",
+  "page": "/research/agent-operated-businesses/",
   "width": 414,
   "status": 200,
   "vw": 414,
-  "sw": 414,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
+  "sw": 440,
+  "hOverflow": true,
+  "nOffenders": 11,
+  "offenders": [
+   {
+    "tag": "table",
+    "cls": "",
+    "left": 20,
+    "right": 440,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "thead",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "RouteCustomer and purchaseProposed deliv"
+   },
+   {
+    "tag": "th",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Evidence required before expansion"
+   },
+   {
+    "tag": "tbody",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to agentA business’s purchasing ag"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "An independent payer, a real use case, a"
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Agent to humanA merchant or agency uploa"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "The same commercial evidence, including "
+   },
+   {
+    "tag": "tr",
+    "cls": "",
+    "left": 21,
+    "right": 439,
+    "text": "Later human to humanThe owner develops r"
+   },
+   {
+    "tag": "td",
+    "cls": "",
+    "left": 325,
+    "right": 439,
+    "text": "Owner control, usable payouts, affordabl"
+   }
+  ],
   "navInfo": {
    "overflow": false,
    "links": [
@@ -7217,30 +8556,37 @@
      "fs": "12px"
     },
     {
+     "t": "Analytics",
+     "l": 81,
+     "r": 129,
+     "h": 44,
+     "fs": "12px"
+    },
+    {
      "t": "About",
-     "l": 96,
-     "r": 127,
+     "l": 151,
+     "r": 183,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "Our work",
-     "l": 164,
-     "r": 213,
+     "l": 205,
+     "r": 253,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "History",
-     "l": 249,
-     "r": 287,
+     "l": 275,
+     "r": 313,
      "h": 44,
      "fs": "12px"
     },
     {
      "t": "For the press",
-     "l": 323,
-     "r": 394,
+     "l": 20,
+     "r": 91,
      "h": 44,
      "fs": "12px"
     }
@@ -7253,7 +8599,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Get in touch"
+    "text": "Research"
    },
    {
     "tag": "p",
@@ -7262,28 +8608,56 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 12,
+  "nSmallTargets": 17,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 202,
+    "w": 156,
     "h": 17,
-    "text": "Press resources and logo →"
+    "text": "Apify’s documentation"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 73,
+    "w": 183,
     "h": 17,
-    "text": "Privacy →"
+    "text": "Shopify’s import guidance"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 150,
+    "w": 199,
     "h": 17,
-    "text": "dated announcement"
+    "text": "authors’ university summary"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 191,
+    "h": 17,
+    "text": "Upwork’s MCP instructions"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 141,
+    "h": 17,
+    "text": "Fiverr’s AI guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 136,
+    "h": 17,
+    "text": "Linden Lab’s policy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 173,
+    "h": 17,
+    "text": "Read the short article →"
    },
    {
     "tag": "a",
@@ -7305,193 +8679,11 @@
     "w": 175,
     "h": 22,
     "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/mission/",
-  "width": 414,
-  "status": 200,
-  "vw": 414,
-  "sw": 414,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 20,
-     "r": 59,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "About",
-     "l": 96,
-     "r": 127,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "Our work",
-     "l": 164,
-     "r": 213,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "History",
-     "l": 249,
-     "r": 287,
-     "h": 44,
-     "fs": "12px"
-    },
-    {
-     "t": "For the press",
-     "l": 323,
-     "r": 394,
-     "h": 44,
-     "fs": "12px"
-    }
-   ]
-  },
-  "h1": "42px",
-  "nSmallText": 5,
-  "smallText": [
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 9,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Subscribe via RSS ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 175,
-    "h": 22,
-    "text": "Privacy"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -7508,29 +8700,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -7574,7 +8773,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 10,
-    "text": "Nov 1, 2026 · economics"
+    "text": "Nov 1, 2026 · guest post"
    },
    {
     "tag": "p",
@@ -7598,7 +8797,7 @@
     "tag": "p",
     "cls": "feed-note",
     "fs": 11,
-    "text": "Showing the saved edition."
+    "text": "Articles from the Omnequa jour"
    },
    {
     "tag": "p",
@@ -7607,7 +8806,7 @@
     "text": "What we are exploring"
    }
   ],
-  "nSmallTargets": 7,
+  "nSmallTargets": 8,
   "smallTargets": [
    {
     "tag": "a",
@@ -7649,7 +8848,14 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    },
    {
     "tag": "a",
@@ -7661,7 +8867,205 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
+  ]
+ },
+ {
+  "page": "/analytics/",
+  "width": 768,
+  "status": 200,
+  "vw": 768,
+  "sw": 768,
+  "hOverflow": false,
+  "nOffenders": 0,
+  "offenders": [],
+  "navInfo": {
+   "overflow": false,
+   "links": [
+    {
+     "t": "Journal",
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "About",
+     "l": 465,
+     "r": 501,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Our work",
+     "l": 521,
+     "r": 578,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "History",
+     "l": 598,
+     "r": 642,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "For the press",
+     "l": 662,
+     "r": 744,
+     "h": 48,
+     "fs": "14px"
+    }
+   ]
+  },
+  "h1": "48px",
+  "nSmallText": 28,
+  "smallText": [
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Analytics · The evidence behin"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "Executive summary"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "01 / Access to capital"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 11,
+    "text": "02 / Cash flow"
+   },
+   {
+    "tag": "span",
+    "cls": "evidence-tag",
+    "fs": 10,
+    "text": "Observed data"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Decision this drives"
+   },
+   {
+    "tag": "dt",
+    "cls": "",
+    "fs": 10,
+    "text": "Our conclusion"
+   }
+  ],
+  "nSmallTargets": 20,
+  "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 123,
+    "h": 22,
+    "text": "01 · Access to capital"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 83,
+    "h": 22,
+    "text": "02 · Cash flow"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 115,
+    "h": 22,
+    "text": "03 · Unit economics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 90,
+    "h": 22,
+    "text": "Latest articles ↓"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 189,
+    "h": 14,
+    "text": "World Bank · Global Findex 202"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 288,
+    "h": 14,
+    "text": "Federal Reserve Banks · 2024 R"
+   },
+   {
+    "tag": "a",
+    "cls": "chart-size-link",
+    "w": 116,
+    "h": 22,
+    "text": "Open full-size chart ↗"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 217,
+    "h": 16,
+    "text": "Download this chart's data (CS"
+   }
+  ],
+  "viewport": "width=device-width,initial-scale=1",
+  "stylesheet": [
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -7678,29 +9082,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -7747,7 +9158,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 7,
+  "nSmallTargets": 8,
   "smallTargets": [
    {
     "tag": "a",
@@ -7789,7 +9200,14 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    },
    {
     "tag": "a",
@@ -7801,7 +9219,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -7818,29 +9236,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -7917,7 +9342,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 8,
+  "nSmallTargets": 9,
   "smallTargets": [
    {
     "tag": "a",
@@ -7966,7 +9391,14 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    },
    {
     "tag": "a",
@@ -7978,7 +9410,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -7995,29 +9427,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8037,7 +9476,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Our work"
+    "text": "Our vision and approach"
    },
    {
     "tag": "p",
@@ -8046,14 +9485,28 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 8,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 284,
+    "w": 353,
     "h": 19,
-    "text": "Explore the evidence in our jo"
+    "text": "Explore the evidence and analy"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 317,
+    "h": 19,
+    "text": "Read the business-ownership re"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 239,
+    "h": 19,
+    "text": "Follow dated project updates →"
    },
    {
     "tag": "a",
@@ -8095,19 +9548,19 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -8124,29 +9577,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8167,6 +9627,18 @@
     "cls": "eyebrow",
     "fs": 11,
     "text": "The Omnequa journal · Credit A"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · guest post"
+   },
+   {
+    "tag": "p",
+    "cls": "eyebrow",
+    "fs": 10,
+    "text": "Nov 1, 2026 · economics"
    },
    {
     "tag": "p",
@@ -8209,22 +9681,17 @@
     "cls": "eyebrow",
     "fs": 10,
     "text": "Oct 31, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 29, 2026 · podcasts"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Oct 28, 2026 · guest post"
    }
   ],
-  "nSmallTargets": 8,
+  "nSmallTargets": 10,
   "smallTargets": [
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 133,
+    "h": 17,
+    "text": "Explore analytics →"
+   },
    {
     "tag": "a",
     "cls": "",
@@ -8272,7 +9739,14 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    },
    {
     "tag": "a",
@@ -8284,11 +9758,11 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/journal/read/",
+  "page": "/journal/read/?slug=2026-11-01-small-loans-familiar-economics",
   "width": 768,
   "status": 200,
   "vw": 768,
@@ -8301,29 +9775,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8352,14 +9833,42 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 8,
+  "nSmallTargets": 13,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 155,
+    "w": 72,
+    "h": 15,
+    "text": "← All stories"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 68,
+    "h": 15,
+    "text": "← Analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 127,
     "h": 19,
-    "text": "Browse all stories →"
+    "text": "CGAP, Figure 26"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 304,
+    "h": 19,
+    "text": "Stripe's standard US domestic-"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 16,
+    "text": "Read the same story on GitHub "
    },
    {
     "tag": "a",
@@ -8395,25 +9904,11 @@
     "w": 101,
     "h": 22,
     "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -8430,29 +9925,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8517,7 +10019,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 14,
+  "nSmallTargets": 15,
   "smallTargets": [
    {
     "tag": "a",
@@ -8592,7 +10094,7 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -8609,29 +10111,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8660,7 +10169,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 11,
   "smallTargets": [
    {
     "tag": "a",
@@ -8723,19 +10232,19 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
@@ -8752,29 +10261,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8803,7 +10319,7 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 8,
+  "nSmallTargets": 9,
   "smallTargets": [
    {
     "tag": "a",
@@ -8852,7 +10368,14 @@
     "cls": "",
     "w": 101,
     "h": 22,
-    "text": "GitHub journal ↗"
+    "text": "Explore analytics"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 101,
+    "h": 22,
+    "text": "Privacy"
    },
    {
     "tag": "a",
@@ -8864,11 +10387,11 @@
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  },
  {
-  "page": "/partners/",
+  "page": "/research/agent-operated-businesses/",
   "width": 768,
   "status": 200,
   "vw": 768,
@@ -8881,29 +10404,36 @@
    "links": [
     {
      "t": "Journal",
-     "l": 391,
-     "r": 437,
+     "l": 323,
+     "r": 369,
+     "h": 48,
+     "fs": "14px"
+    },
+    {
+     "t": "Analytics",
+     "l": 389,
+     "r": 445,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "About",
-     "l": 459,
-     "r": 495,
+     "l": 465,
+     "r": 501,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "Our work",
-     "l": 517,
-     "r": 574,
+     "l": 521,
+     "r": 578,
      "h": 48,
      "fs": "14px"
     },
     {
      "t": "History",
-     "l": 596,
-     "r": 640,
+     "l": 598,
+     "r": 642,
      "h": 48,
      "fs": "14px"
     },
@@ -8923,7 +10453,7 @@
     "tag": "p",
     "cls": "eyebrow",
     "fs": 11,
-    "text": "Get in touch"
+    "text": "Research"
    },
    {
     "tag": "p",
@@ -8932,28 +10462,49 @@
     "text": "Let’s compare notes"
    }
   ],
-  "nSmallTargets": 10,
+  "nSmallTargets": 14,
   "smallTargets": [
    {
     "tag": "a",
     "cls": "",
-    "w": 215,
+    "w": 166,
     "h": 19,
-    "text": "Press resources and logo →"
+    "text": "Apify’s documentation"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 77,
+    "w": 194,
     "h": 19,
-    "text": "Privacy →"
+    "text": "Shopify’s import guidance"
    },
    {
     "tag": "a",
     "cls": "",
-    "w": 132,
-    "h": 16,
-    "text": "dated announcement"
+    "w": 233,
+    "h": 19,
+    "text": "2026 field experiment in Kenya"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 211,
+    "h": 19,
+    "text": "authors’ university summary"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 150,
+    "h": 19,
+    "text": "Fiverr’s AI guidance"
+   },
+   {
+    "tag": "a",
+    "cls": "",
+    "w": 183,
+    "h": 19,
+    "text": "Read the short article →"
    },
    {
     "tag": "a",
@@ -8982,172 +10533,11 @@
     "w": 101,
     "h": 22,
     "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
    }
   ],
   "viewport": "width=device-width,initial-scale=1",
   "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
-  ]
- },
- {
-  "page": "/mission/",
-  "width": 768,
-  "status": 200,
-  "vw": 768,
-  "sw": 768,
-  "hOverflow": false,
-  "nOffenders": 0,
-  "offenders": [],
-  "navInfo": {
-   "overflow": false,
-   "links": [
-    {
-     "t": "Journal",
-     "l": 391,
-     "r": 437,
-     "h": 48,
-     "fs": "14px"
-    },
-    {
-     "t": "About",
-     "l": 459,
-     "r": 495,
-     "h": 48,
-     "fs": "14px"
-    },
-    {
-     "t": "Our work",
-     "l": 517,
-     "r": 574,
-     "h": 48,
-     "fs": "14px"
-    },
-    {
-     "t": "History",
-     "l": 596,
-     "r": 640,
-     "h": 48,
-     "fs": "14px"
-    },
-    {
-     "t": "For the press",
-     "l": 662,
-     "r": 744,
-     "h": 48,
-     "fs": "14px"
-    }
-   ]
-  },
-  "h1": "48px",
-  "nSmallText": 5,
-  "smallText": [
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 11,
-    "text": "About Omnequa"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & coordination"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Engineering & writing"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 9,
-    "text": "Research & operations"
-   },
-   {
-    "tag": "p",
-    "cls": "eyebrow",
-    "fs": 10,
-    "text": "Let’s compare notes"
-   }
-  ],
-  "nSmallTargets": 7,
-  "smallTargets": [
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Meet the team"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Our work"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Our history"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Press & creators"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "Read the journal"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 101,
-    "h": 22,
-    "text": "GitHub journal ↗"
-   },
-   {
-    "tag": "a",
-    "cls": "",
-    "w": 125,
-    "h": 16,
-    "text": "Contact the team →"
-   }
-  ],
-  "viewport": "width=device-width,initial-scale=1",
-  "stylesheet": [
-   "http://127.0.0.1:8765/style.css"
+   "https://omnequa.org/style.css"
   ]
  }
 ]
