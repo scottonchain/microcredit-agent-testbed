@@ -1,0 +1,33 @@
+{
+ "mode": "check",
+ "startedAt": "2026-11-03T17:30:06.943Z",
+ "chain": "BASE-SEPOLIA",
+ "loginEmail": "claude-microcredit@agentmail.to",
+ "termsAcceptance": "accepted 2026-11-03 by the operator",
+ "steps": [
+  {
+   "step": "check",
+   "at": "2026-11-03T17:30:33.916Z",
+   "termsAccepted": true,
+   "loginEmail": "claude-microcredit@agentmail.to",
+   "rpcChainId": "0x14a34",
+   "rpcOk": true,
+   "hostStatus": 200,
+   "hostReachable": true,
+   "hostPolicy": {
+    "latestVersion": "1.2.2",
+    "minimumVersion": "1.1.4"
+   },
+   "inboxReadable": true,
+   "allowlist": [
+    "0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212 (25 per run, balance cap 25)",
+    "0xb88DC88d538a754f57cAB344C1E09d02C129fcf2 (5 per run, balance cap 5)"
+   ],
+   "cliVersion": "1.2.2",
+   "cliInstalled": true,
+   "cliPinned": true
+  }
+ ],
+ "finishedAt": "2026-11-03T17:30:33.917Z",
+ "summary": "all prerequisites present"
+}

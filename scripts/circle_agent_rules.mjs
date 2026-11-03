@@ -24,6 +24,19 @@ export function extractOtp(text) {
   return m ? `${m[1].toUpperCase()}-${m[2]}` : null;
 }
 
+// The one-time password from one AgentMail message detail. Circle puts the code in the subject; the message as the
+// API returns it (2026-11-03) carries only `subject`, `html` and `extracted_html`, no `text`, so every field is tried:
+// subject first, then the plain-text fields, then the HTML with its tags removed.
+export function otpFromMessage(detail) {
+  const d = detail && typeof detail === 'object' ? detail : {};
+  const strip = (h) => String(h || '').replace(/<[^>]*>/g, ' ');
+  for (const text of [d.subject, d.text, d.extracted_text, d.preview, strip(d.extracted_html), strip(d.html)]) {
+    const otp = extractOtp(text);
+    if (otp) return otp;
+  }
+  return null;
+}
+
 // The CLI prints one pretty-printed object per command: { "data": ... } on success, { "error": { code, message, hint } }
 // on failure, sometimes after other text. Returns { data, error }, both null when no JSON object is found.
 export function parseCliOutput(stdout) {
