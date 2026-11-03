@@ -27,15 +27,38 @@ recorded Base Sepolia pool in [deployments/current.json](../deployments/current.
 | [`metrics/lending_dashboard.py`](../metrics/lending_dashboard.py) | Collector. Plain JSON-RPC, standard library only, no key, no transaction. Writes `data/snapshot.json` and `data/snapshot.js` at one block hash. |
 | [`metrics/test_lending_dashboard.py`](../metrics/test_lending_dashboard.py) | Offline tests (keccak vectors, event topics, ABI decoding, aggregation, range splitting, the committed snapshot's shape). Run by `python tools/check.py`. |
 | [`index.html`](index.html) | The page. No build step, no library, no network: it renders `data/snapshot.js`. Works from a file, GitHub Pages or omnequa.org. |
-| [`render_check.cjs`](render_check.cjs) | Headless render check (Playwright): every section renders from the snapshot, no console errors, no horizontal overflow at 390 px, light and dark screenshots. |
+| [`render_check.cjs`](render_check.cjs) | Headless render check (Playwright, network blocked): every section renders from the committed snapshot alone, no console errors, no horizontal overflow at 390 px, light and dark screenshots. |
+| [`live_check.cjs`](live_check.cjs) | Live-read check (Playwright, network): serves the page with an older snapshot, lets it catch up from the chain, and compares every loan and total with the collector's own later snapshot. |
 | `data/` | The committed snapshot, the demonstrated state. Re-run the collector to refresh it. |
 
 ```bash
 python metrics/lending_dashboard.py            # refresh data/ from Base Sepolia (about a minute)
 python metrics/lending_dashboard.py --no-write # summary only
 python metrics/lending_dashboard.py --schema-uid
-node dashboard/render_check.cjs                # render check and screenshots
+node dashboard/render_check.cjs                # offline render check and screenshots
+python metrics/lending_dashboard.py --block 53500000 --out /tmp/old && node dashboard/live_check.cjs /tmp/old
 ```
+
+## How it stays current on its own
+
+Three layers, each enough on its own:
+
+1. **The page reads the chain when opened.** It renders the committed snapshot at once, then
+   fetches every pool event since that snapshot's block from the logs RPC, the balance sheet
+   and loan terms at the latest block from the state RPC, and any profile attestations, and
+   re-renders. The topics and selectors come from the snapshot (`abi`), computed by the
+   collector, so the page carries no hashing code. Both public RPCs answer browser requests
+   (CORS). The header badge says "Live from the chain · block N · k new events since the
+   snapshot". Where fetch is blocked (an offline file, a sandboxed copy) the badge says the
+   committed snapshot is showing and the page stands as it was.
+2. **A scheduled refresh.** A routine in the Claude session that owns this lane re-runs the
+   collector every six hours, runs the checks, and when the ledger changed pushes the new
+   snapshot to the hosted copy on the `pages` branch and republishes the shared artifact.
+   The committed snapshot in this folder is refreshed with code changes.
+3. **Hosting.** The page is served from this repository's GitHub Pages branch at
+   `https://scottonchain.github.io/microcredit-agent-testbed/dashboard/`, beside the test
+   wallet app. omnequa.org (served from the vision repository's `gh-pages` branch) can link
+   to it or carry a copy.
 
 The recorded RPC (`sepolia.base.org`) caps `eth_getLogs` at 200 blocks, so event history is
 read from `https://base-sepolia.gateway.tenderly.co` (override with `--logs-rpc` or

@@ -21,13 +21,16 @@ const browser = await chromium.launch();
 for (const [scheme, width] of [["light", 1200], ["dark", 1200], ["light", 390]]) {
   const context = await browser.newContext({ viewport: { width, height: 900 }, colorScheme: scheme, deviceScaleFactor: 2 });
   const page = await context.newPage();
+  await page.route(/^https?:\/\//, (route) => route.abort());  // offline path: the committed snapshot must stand on its own
   const errors = [];
-  page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+  page.on("console", (m) => { if (m.type() === "error" && !m.text().includes("net::ERR_FAILED")) errors.push(m.text()); });  // aborted network loads are expected offline
   page.on("pageerror", (e) => errors.push(String(e)));
   await page.goto(url);
   await page.waitForLoadState("networkidle").catch(() => {});
   const label = `${scheme} ${width}px`;
   check(errors.length === 0, `${label}: no console or page errors${errors.length ? " (" + errors.join("; ") + ")" : ""}`);
+  await page.waitForFunction(() => window.LENDING_LIVE_ERROR !== undefined);
+  check((await page.locator("#live").innerText()).includes("live read unavailable"), `${label}: offline badge names the committed snapshot`);
   check(await page.locator(".tile").count() === 6, `${label}: six headline tiles`);
   check(await page.locator("#ledger tbody tr").count() === snapshot.loans.length, `${label}: ledger has ${snapshot.loans.length} loan rows`);
   check(await page.locator("#flow-chart svg path").count() === 2, `${label}: two cumulative series drawn`);

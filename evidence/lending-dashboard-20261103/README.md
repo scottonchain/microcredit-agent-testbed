@@ -5,7 +5,16 @@ built at the operator's direction of November 3 (chat): a funder should see how 
 lends and collects and whom it reaches, from the public ledger, with anonymized borrower
 information on-chain. Testnet only; nothing here is human benefit.
 
-## The snapshot (committed as `dashboard/data/snapshot.json`)
+## The second snapshot (committed as `dashboard/data/snapshot.json`, block 54,062,828, 19:33:54 UTC)
+
+Loan 27 (5.00 USDC, disbursed November 2) was repaid at block 54,061,973 while this
+dashboard was being built, after about a day outstanding, and the pool kept **0.001520 USDC**
+of interest: assets 35.000836, share price 1.000023, 213 events, 26 of 26 closed loans repaid
+by the due date, 10 unattested repaying borrowers. That is the first observed instance on
+this deployment of "the pool grows from the repayment", and it is small because the rate is
+9.33 percent a year on 5 USDC for one day.
+
+## The first snapshot (block 54,056,560, 19:13:00 UTC, superseded above)
 
 | Item | Value |
 | --- | --- |
@@ -35,8 +44,14 @@ rounded zero. Interest will appear when a loan runs for more than a day, which i
   on a synthetic ledger with a repayment, a default and an active loan, backing edge
   clearing, monthly cumulatives, `eth_getLogs` range splitting, and the committed
   snapshot's shape against the schema UID.
-- `node dashboard/render_check.cjs`: 28 render checks passed in light and dark at 1200 px and
-  light at 390 px: no console or page errors, six tiles, 27 ledger rows, two series drawn,
+- `node dashboard/live_check.cjs <older snapshot>`: the page served with a snapshot from block
+  53,500,000 (26 loans) read 15 new events live from the chain and caught up to block
+  54,063,665; every one of the 27 reference loans matched the collector's own snapshot field
+  by field, as did the flows, status counts, human metrics, backing, stake, monthly
+  cumulatives and the balance sheet (31 checks, all passed).
+- `node dashboard/render_check.cjs` (network blocked, so the committed snapshot stands alone):
+  31 render checks passed in light and dark at 1200 px and light at 390 px, the offline badge
+  shown: no console or page errors, six tiles, 27 ledger rows, two series drawn,
   the header names the block, the profile section states 0 of 27 loans and the schema UID,
   no horizontal overflow, the table view lists 2 months, the labelled example renders
   behind its toggle.

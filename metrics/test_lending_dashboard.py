@@ -199,12 +199,14 @@ class SnapshotFileTest(unittest.TestCase):
         if not path.exists():
             self.skipTest("no committed snapshot")
         report = json.loads(path.read_text(encoding="utf-8"))
-        for key in ("snapshot", "pool", "flows", "loans", "loanStatus", "monthly", "backing", "profileSchema",
+        for key in ("snapshot", "abi", "pool", "flows", "loans", "loanStatus", "monthly", "backing", "profileSchema",
                     "profiles", "profileBreakdown", "humanMetrics", "caveats"):
             self.assertIn(key, report)
         self.assertEqual(report["snapshot"]["chainId"], 84532)
         self.assertEqual(len(report["snapshot"]["blockHash"]), 66)
         self.assertEqual(report["profileSchema"]["uid"], ld.schema_uid())
+        self.assertEqual(report["abi"]["selectors"]["totalAssets()"], "0x01e1d114")
+        self.assertIn(ld.parse_event(ld.POOL_EVENTS[0])["topic"], report["abi"]["events"])
         self.assertEqual(sum(report["loanStatus"].values()), len(report["loans"]))
         js = (path.parent / "snapshot.js").read_text(encoding="utf-8")
         self.assertTrue(js.startswith("window.LENDING_SNAPSHOT = "))

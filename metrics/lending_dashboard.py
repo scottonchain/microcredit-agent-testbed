@@ -490,6 +490,17 @@ def profile_breakdown(profiles):
             "byIncomeBand": count("incomeBandLabel")}
 
 
+PAGE_CALLS = ("totalAssets()", "lenderCash()", "totalLentOut()", "reservedLiquidity()", "firstLossReserve()",
+              "totalStaked()", "lenderCount()", "getLoanRate()", "sharePrice()", "getUtilisation()",
+              "getLoanTerms(uint256)", "getAttestation(bytes32)", "getSchema(bytes32)")
+
+
+def abi_for_page():
+    """Topics and selectors the page needs to read the chain itself, so it carries no hashing code."""
+    events = {ld["topic"]: {"name": ld["name"], "params": ld["params"]} for ld in map(parse_event, POOL_EVENTS + EAS_EVENTS)}
+    return {"events": events, "selectors": {sig: selector(sig) for sig in PAGE_CALLS}}
+
+
 def git_head():
     try:
         return subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True,
@@ -541,6 +552,7 @@ def collect(deployment, rpc, logs_rpc, block="latest", from_block=DEPLOYMENT_BLO
                      "explorer": deployment["explorer_url"], "stateRpc": rpc.url, "logsRpc": logs_rpc.url,
                      "collector": "metrics/lending_dashboard.py", "collectorCommit": git_head(),
                      "eventCount": len(events), "rpcCalls": rpc.calls + logs_rpc.calls},
+        "abi": abi_for_page(),
         "pool": pool,
         "flows": {"deposited": deposits, "withdrawn": withdrawals,
                   "disbursed": sum(l["principal"] for l in loans if l["disbursed"]),
