@@ -40,6 +40,35 @@ whole system (pool plus stakes) grows only while the raw first-loan default is a
 11%, an admitted 3.4% after the screen. Every rate is a labelled assumption until the pilot
 measures it. Details in the direction document's stability section.
 
+## `screening/` (November 3): the trust interview, documents, dossier and policy
+
+The real screen behind [D17, the trust ladder](../../coordination/directions/trust-ladder.md) and D16
+requirement 1. The practice app's credit desk approves every proper request (and says so); this
+package is what decides when money is real. Standard library; the Claude extractor is opt-in.
+
+```bash
+python3 -m screening --all-examples --today 2026-11-03     # four worked cases, one line each with reasons
+python3 -m screening --example mismatch --today 2026-11-03 # the full record: application, documents, dossier, decision
+python3 -m screening --questions                           # the interview script the app renders
+python3 -m screening.server --port 8765 --data-dir ~/private-intake --pool-record pool-record.json
+python3 -m unittest test_screening                         # 28 tests; also run by tools/check.py
+```
+
+Seven taps (six multiple choice, one consent) are the whole practice interview; a real loan adds a
+name, a sentence, who pays, the backer's account and up to three documents. Documents are hashed
+and reduced to claims (who, how much, how often, when, in whose name) by a rule-based extractor for
+labelled text or by Claude for PDFs and images, with the cost measured from token usage. The dossier
+tags every statement stated, evidenced or verified and codes contradictions. The policy
+(`policy.py`, version `2026-11-03.1`) has published weights summing to 100, four hard rules (no
+backing, a default or open loan, a severe contradiction, and a cap at the backing, a fifth of the
+reserve and the request), and reasons written as adverse-action reasons. A linked practice-desk
+record (borrowed and repaid, no default) is worth 5 points and never substitutes for backing.
+Records written by the server stay under `--data-dir`, outside any repository.
+
+`--extractor claude` needs the `anthropic` package and a key; it was not run live in the authoring
+session. The pool record (backer stake, borrower loans, practice record) is read by
+`experiments/d7-live/pool-record.mjs` from the chain and passed as JSON.
+
 ## `demo/`: gate 2, an account with no ETH borrows, sends and repays
 
 Node 22 and viem 2.57.14. Addresses come from `deployments/current.json`; the
