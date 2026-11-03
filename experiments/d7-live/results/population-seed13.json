@@ -1,0 +1,36 @@
+{
+ "seed": 13,
+ "actors": 36,
+ "days": 150,
+ "metrics": {
+  "loans": 38,
+  "repaid": 31,
+  "defaulted": 0,
+  "refused": {
+   "NoCredit": 118
+  },
+  "txs": 288,
+  "gas": "0",
+  "lineIssued": 7,
+  "curedByBacker": 0,
+  "cancelled": 0
+ },
+ "sharePrice": {
+  "start": 0.000001,
+  "end": 0.000001000989,
+  "pctChange": 0.09889999999999066
+ },
+ "end": {
+  "totalAssets": 613.959969,
+  "lenderCash": 559.74537,
+  "totalLentOut": 55,
+  "reserved": 0,
+  "reserve": 0.785401,
+  "impaired": 0,
+  "staked": 624,
+  "shares": 613353033.729849,
+  "usdcBalance": 1183.74537
+ },
+ "invariantFailures": [],
+ "openLoans": 7
+}

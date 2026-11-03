@@ -1,0 +1,122 @@
+[
+ {
+  "name": "I01 browser tab without an install event: the card offers Add to home screen and the menu steps open at once (no dead wait)",
+  "ok": true,
+  "ms": 187
+ },
+ {
+  "name": "I02 Chromium path: after beforeinstallprompt (default prevented) the sheet offers Install, prompt() runs once, Adding it now is shown, appinstalled hides the card",
+  "ok": true,
+  "ms": 235
+ },
+ {
+  "name": "I03 Chromium path, dismissed: a Not installed sheet, card stays, welcome intact",
+  "ok": true,
+  "ms": 231
+ },
+ {
+  "name": "I04 Not now closes the sheet and keeps the captured prompt for later; focus returns to the card button",
+  "ok": true,
+  "ms": 198
+ },
+ {
+  "name": "I05 link flag ?install=1: the sheet opens at once with menu steps, upgrades in place when the install event arrives later, and the flag leaves the address",
+  "ok": true,
+  "ms": 548
+ },
+ {
+  "name": "I06 link flag without an install event: menu steps immediately, nothing else changes",
+  "ok": true,
+  "ms": 160
+ },
+ {
+  "name": "I07 iPhone Safari: Share, Add to Home Screen, Add; the wallet note names Safari; the in-app hint is present; no wait",
+  "ok": true,
+  "ms": 168
+ },
+ {
+  "name": "I08 iPhone link flag: the Share steps open at once",
+  "ok": true,
+  "ms": 137
+ },
+ {
+  "name": "I09 running from the home screen (display-mode standalone, Android): no card, no WebKit note, link flag ignored",
+  "ok": true,
+  "ms": 727
+ },
+ {
+  "name": "I10 iPhone home-screen app with no wallet: no card; the warning sits above Create my wallet and names the recovery route",
+  "ok": true,
+  "ms": 123
+ },
+ {
+  "name": "I11 iPad (Mac user agent, MacIntel platform, five touch points) counts as iOS",
+  "ok": true,
+  "ms": 105
+ },
+ {
+  "name": "I12 desktop Chromium without touch: not iOS, the menu line names Install app and Add to Home screen",
+  "ok": true,
+  "ms": 162
+ },
+ {
+  "name": "I13 beforeinstallprompt fired before the app module loaded is kept by index.html (default prevented) and adopted by the module",
+  "ok": true,
+  "ms": 165
+ },
+ {
+  "name": "I14 appinstalled while the pre-prompt sheet is open (install from the browser menu): the sheet says Adding it now, prompt() is never called",
+  "ok": true,
+  "ms": 155
+ },
+ {
+  "name": "I15 prompt() rejected by the browser: Not installed, the event is spent, the card stays",
+  "ok": true,
+  "ms": 222
+ },
+ {
+  "name": "I16 display-mode flips to standalone (tab moved into the app window): the card hides without appinstalled; an accepted dialog there says Installed",
+  "ok": true,
+  "ms": 320
+ },
+ {
+  "name": "I17 Chrome on iPhone takes the iOS branch and the note names Chrome, not Safari",
+  "ok": true,
+  "ms": 162
+ },
+ {
+  "name": "I18 Android WebView (in-app browser): the open-in-Chrome line comes first in the menu sheet",
+  "ok": true,
+  "ms": 147
+ },
+ {
+  "name": "I19 iOS in-app web view (no Safari token, not standalone): the open-in-Safari line comes first in the iOS sheet",
+  "ok": true,
+  "ms": 162
+ },
+ {
+  "name": "I20 iPhone in dark mode: the iOS sheet renders (screenshot kept in results/screens/install-ios-dark.png)",
+  "ok": true,
+  "ms": 256
+ },
+ {
+  "name": "I21 browser reports the app already installed (getInstalledRelatedApps): no card from the start",
+  "ok": true,
+  "ms": 100
+ },
+ {
+  "name": "I22 Cancel on the asking-now sheet closes it, and the late dialog result is ignored",
+  "ok": true,
+  "ms": 513
+ },
+ {
+  "name": "I23 Help-screen wording for a person who has a wallet: Copy your recovery code first (iOS sheet with S.cred set)",
+  "ok": true,
+  "ms": 166
+ },
+ {
+  "name": "I24 no uncaught page errors across the welcome and the sheets",
+  "ok": true,
+  "ms": 172
+ }
+]

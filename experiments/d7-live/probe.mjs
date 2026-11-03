@@ -1,0 +1,13 @@
+import { publicClient, ADDR, ABI, usd } from './lib/chain.mjs';
+const c = publicClient();
+const r = (fn, args = []) => c.readContract({ address: ADDR.pool, abi: ABI.pool, functionName: fn, args });
+const names = new Set(ABI.pool.filter(x => x.type === 'function').map(x => x.name));
+const show = async (fn, args, fmt = (v) => v) => { if (!names.has(fn)) return console.log(fn, 'ABSENT'); try { console.log(fn.padEnd(28), fmt(await r(fn, args))); } catch (e) { console.log(fn.padEnd(28), 'ERR', e.shortMessage || e.message.slice(0, 80)); } };
+console.log('block', await c.getBlockNumber(), 'code bytes', ((await c.getCode({ address: ADDR.pool })).length - 2) / 2);
+for (const f of ['owner', 'guardian', 'paused', 'usdc', 'scoreProvider', 'lens']) await show(f);
+for (const f of ['totalAssets', 'lenderCash', 'totalLentOut', 'reservedLiquidity', 'firstLossReserve', 'totalImpaired', 'totalStaked', 'totalShares', 'protocolFees', 'totalDuesPaid']) await show(f, [], usd);
+for (const f of ['effrRate', 'riskPremium', 'maxLoanAmount', 'reserveBps', 'protocolFeeBps', 'lendingUtilizationCap', 'liquidityBuffer', 'liquidityThreshold', 'loanCounter', 'nextLoanId']) await show(f, [], v => typeof v === 'bigint' ? v.toString() : v);
+const avery = '0xc5E42B0fB0c109E55f4A40CccfCF3fed1Fc39009';
+for (const f of ['getCreditScore', 'getBorrowLimit', 'getFreeCredit', 'grantedCredit', 'stakeOf', 'duesPaid']) await show(f, [avery], v => typeof v === 'bigint' ? v.toString() : v);
+console.log('USDC pool bal', usd(await c.readContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'balanceOf', args: [ADDR.pool] })));
+console.log('functions:', [...names].join(' '));

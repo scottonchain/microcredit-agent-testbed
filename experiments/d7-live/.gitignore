@@ -1,0 +1,11 @@
+node_modules/
+*.key
+keys/
+.env*
+hardhat-cache/
+cache/
+artifacts/
+results/*.log
+results/desk-*.log
+results/walk/
+results/screens/desk-*.png

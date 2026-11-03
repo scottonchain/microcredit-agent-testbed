@@ -1,0 +1,18 @@
+{
+  "chainId": 84532,
+  "rpcs": [
+    "https://sepolia.base.org",
+    "https://base-sepolia-rpc.publicnode.com",
+    "https://base-sepolia.drpc.org"
+  ],
+  "bundler": "https://public.pimlico.io/v2/84532/rpc",
+  "paymaster": "0xe460c79e1dc6ed6e865ea95b03c4bdcc810bcf57",
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+  "explorer": "https://sepolia.basescan.org",
+  "faucet": "https://faucet.circle.com",
+  "creditRequestIssue": "https://github.com/scottonchain/microcredit-contract/issues/7",
+  "headroomSeconds": 600,
+  "desk": "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462",
+  "maxLine": 5
+}

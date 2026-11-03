@@ -1,0 +1,547 @@
+[
+ {
+  "name": "S1 stake-led cold start: stake, back, borrow, repay after 15 days",
+  "checks": [
+   {
+    "name": "stake 20 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "back 20 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "borrower limit is 20",
+    "ok": true,
+    "got": "20",
+    "want": "20"
+   },
+   {
+    "name": "borrow 20 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "borrower holds 25",
+    "ok": true,
+    "got": "25",
+    "want": "25"
+   },
+   {
+    "name": "interest ~ 20*9.33%*15/365 = 0.0767",
+    "ok": true,
+    "got": "0.0766840000000002",
+    "want": "0.0767±0.006"
+   },
+   {
+    "name": "payoff ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "loan status Repaid",
+    "ok": true,
+    "got": "3",
+    "want": "3"
+   },
+   {
+    "name": "borrower earned dues",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "staker stake intact",
+    "ok": true,
+    "got": "20",
+    "want": "20"
+   },
+   {
+    "name": "share price rose (assets > deposits)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S1: pool USDC (535.076685) covers cash+stake+fees (535.076685)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S1: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567142876,
+  "ms": 5562,
+  "pass": true
+ },
+ {
+  "name": "S2 refusal matrix",
+  "checks": [
+   {
+    "name": "fresh borrower, no credit",
+    "ok": true,
+    "got": "NoCredit",
+    "want": "NoCredit"
+   },
+   {
+    "name": "self-backing",
+    "ok": true,
+    "got": "SelfBacking",
+    "want": "SelfBacking"
+   },
+   {
+    "name": "backing below minimum",
+    "ok": true,
+    "got": "BackingTooSmall",
+    "want": "BackingTooSmall"
+   },
+   {
+    "name": "backer without credit",
+    "ok": true,
+    "got": "InsufficientCredit",
+    "want": "InsufficientCredit"
+   },
+   {
+    "name": "over-backing own stake",
+    "ok": true,
+    "got": "InsufficientCredit",
+    "want": "InsufficientCredit"
+   },
+   {
+    "name": "back 10 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "borrow above limit",
+    "ok": true,
+    "got": "BorrowLimitExceeded",
+    "want": "BorrowLimitExceeded"
+   },
+   {
+    "name": "pass received backing on",
+    "ok": true,
+    "got": "InsufficientCredit",
+    "want": "InsufficientCredit"
+   },
+   {
+    "name": "unstake committed stake",
+    "ok": true,
+    "got": "StakeCommitted",
+    "want": "StakeCommitted"
+   },
+   {
+    "name": "unstake free 10 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "borrow 10 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "disburse by stranger",
+    "ok": true,
+    "got": "LoanNotRequested",
+    "want": "LoanNotRequested"
+   },
+   {
+    "name": "markDefaulted before due",
+    "ok": true,
+    "got": "NotYetDefaultable",
+    "want": "NotYetDefaultable"
+   },
+   {
+    "name": "lower backing below use",
+    "ok": true,
+    "got": "BackingInUse",
+    "want": "BackingInUse"
+   },
+   {
+    "name": "zero repayment",
+    "ok": true,
+    "got": "ZeroAmount",
+    "want": "ZeroAmount"
+   },
+   {
+    "name": "S2: pool USDC (515) covers cash+stake+fees (515)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S2: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567148443,
+  "ms": 15870,
+  "pass": true
+ },
+ {
+  "name": "S3 default: stake slashed, lenders whole, borrower blocked",
+  "checks": [
+   {
+    "name": "borrow 10 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "too early (past due, within late period)",
+    "ok": true,
+    "got": "NotYetDefaultable",
+    "want": "NotYetDefaultable"
+   },
+   {
+    "name": "default ok after due+late",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "staker stake slashed to 0",
+    "ok": true,
+    "got": "0",
+    "want": "0"
+   },
+   {
+    "name": "loan status Defaulted",
+    "ok": true,
+    "got": "4",
+    "want": "4"
+   },
+   {
+    "name": "lenders not worse off (totalAssets >= before)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "borrower default count",
+    "ok": true,
+    "got": "1",
+    "want": "1"
+   },
+   {
+    "name": "defaulted borrower cannot borrow",
+    "ok": true,
+    "got": "BorrowerInDefault",
+    "want": "BorrowerInDefault"
+   },
+   {
+    "name": "S3: pool USDC (515) covers cash+stake+fees (515)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S3: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567164315,
+  "ms": 2774,
+  "pass": true
+ },
+ {
+  "name": "S4 third-party cure (CI-28) and partial repayment",
+  "checks": [
+   {
+    "name": "partial 5 ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "loan still active",
+    "ok": true,
+    "got": "2",
+    "want": "2"
+   },
+   {
+    "name": "backer pays off the rest",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "loan Repaid",
+    "ok": true,
+    "got": "3",
+    "want": "3"
+   },
+   {
+    "name": "S4: pool USDC (535.051123) covers cash+stake+fees (535.051123)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S4: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567167092,
+  "ms": 634,
+  "pass": true
+ },
+ {
+  "name": "S5 ring of ten fresh accounts: no credit appears",
+  "checks": [
+   {
+    "name": "10 backings refused",
+    "ok": true,
+    "got": "10",
+    "want": "10"
+   },
+   {
+    "name": "10 loans refused",
+    "ok": true,
+    "got": "10",
+    "want": "10"
+   }
+  ],
+  "started": 1793567167728,
+  "ms": 30796,
+  "pass": true
+ },
+ {
+  "name": "S6 issuer line: unsecured borrow, repay, default burns granted credit",
+  "checks": [
+   {
+    "name": "limit 25",
+    "ok": true,
+    "got": "25",
+    "want": "25"
+   },
+   {
+    "name": "borrow 25 unsecured ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "repay ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "second loan ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "default ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "lenders lose at most the unpaid 25",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "borrower blocked after default",
+    "ok": true,
+    "got": "BorrowerInDefault",
+    "want": "BorrowerInDefault"
+   },
+   {
+    "name": "S6: pool USDC (490.127808) covers cash+stake+fees (490.127808)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S6: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567198527,
+  "ms": 2481,
+  "pass": true
+ },
+ {
+  "name": "S7 payoff arithmetic: principal alone does not close; headroom does",
+  "checks": [
+   {
+    "name": "principal-only leaves loan active",
+    "ok": true,
+    "got": "2",
+    "want": "2"
+   },
+   {
+    "name": "owes interest sliver",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "final repay ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "loan Repaid",
+    "ok": true,
+    "got": "3",
+    "want": "3"
+   },
+   {
+    "name": "S7: pool USDC (525.076685) covers cash+stake+fees (525.076685)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S7: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567201010,
+  "ms": 515,
+  "pass": true
+ },
+ {
+  "name": "S8 liquidity: utilisation cap stops lending at 90% of assets",
+  "checks": [
+   {
+    "name": "cap enforced: reserved 400 <= 463.5 (ok=4, capped=4, other=)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S8: pool USDC (515) covers cash+stake+fees (515)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S8: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567201527,
+  "ms": 10919,
+  "pass": true
+ },
+ {
+  "name": "S9 request then cancel releases reservation; stale reservation can be cancelled by anyone",
+  "checks": [
+   {
+    "name": "request ok",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "status Requested",
+    "ok": true,
+    "got": "1",
+    "want": "1"
+   },
+   {
+    "name": "reservation held",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "stranger cannot cancel early",
+    "ok": true,
+    "got": "NotCancellableYet",
+    "want": "NotCancellableYet"
+   },
+   {
+    "name": "anyone cancels after TTL",
+    "ok": true,
+    "got": "true",
+    "want": "true"
+   },
+   {
+    "name": "status Cancelled",
+    "ok": true,
+    "got": "5",
+    "want": "5"
+   },
+   {
+    "name": "reservation released",
+    "ok": true,
+    "got": "0",
+    "want": "0"
+   },
+   {
+    "name": "S9: pool USDC (525) covers cash+stake+fees (525)",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   },
+   {
+    "name": "S9: reserved liquidity within cash",
+    "ok": true,
+    "got": "true",
+    "want": "true",
+    "note": ""
+   }
+  ],
+  "started": 1793567212448,
+  "ms": 1609,
+  "pass": true
+ }
+]

@@ -1,0 +1,15 @@
+{
+ "rpc": "https://sepolia.base.org",
+ "when": "2026-11-02T15:30:35.548Z",
+ "treasury": "0x2aA4069f65931E8b35Ed11aC493b1C3Ab9917212",
+ "officer": "0xb88DC88d538a754f57cAB344C1E09d02C129fcf2",
+ "hashes": {
+  "deskDeploy": "0x36f460a5d23e10069f6eda82f4e8fd117df77dcbbedeccc70b87fdf1453ae1e0",
+  "deskApprove": "0xe2a3e1fd17e343a245e507a4552d5c7c3e9a6d2e1df1be6fa5d8696091baa589",
+  "deskFund": "0x36222d349b42419d21f585e03705022258efea4cd5fca2cd1a1f646ac484ab30",
+  "oldPaymasterWithdraw": "0x8b731bd03293bf5100cff630a438b2ee50e542ef5bec1c661e9b482626def95e",
+  "officerGas": "0xdaf009f98248cccf1dd74410805d59f9872370eeb7838589249a15ea9fd6092f"
+ },
+ "desk": "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462",
+ "paymaster": "0xe460c79e1dc6ed6e865ea95b03c4bdcc810bcf57"
+}
