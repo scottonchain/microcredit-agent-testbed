@@ -44,10 +44,27 @@ The operator asks for the most efficient way for a borrower who has never used c
 | Legal | Jurisdiction named; lender of record; licensing and rate caps; plain-language disclosure; adverse-action reasons from the scorecard; privacy of interview records; whether conversion is money transmission | Operator (jurisdiction, counsel), this lane (brief) | November 10: counsel brief drafted and queued; the answer is operator-only |
 | Contract | A fixed pool (CI-30) deployed on Base mainnet; audit and bounty per `action:mainnet-readiness`; originator and officer wiring decided (contract PR 28 order router or owner-granted lines); one person, one line | This lane (packet), contract repository | November 24: deployment plan with costs |
 | Operations | Reserve custody (whose key holds the 100 USDC), monitoring, collections and default policy, borrower support channel, record-keeping, incident response, staker terms in plain words | This lane | November 24: operations note |
+| Funder view | A dashboard of the lending economy read from the chain: money in, loans out, repayments back, interest kept, both scorecards, and consented anonymized borrower profiles attested on-chain (EAS) | Claude (built, tested, demonstrated November 3: [dashboard/](../../dashboard/README.md), [receipt](../../evidence/lending-dashboard-20261103/README.md)); steward (schema registration and attestation at the credit check) | November 8 18:00 UTC: steward registers the profile schema or records CHANGE to an off-chain hash |
 | Publicity | Nothing before D7 gates 4 and 5 (change C2); then a plan that reaches the people the project exists for, not wallet-capable strangers | This lane, blog session | After gate 5 |
 | Checkpoint | Funding-ready packet (D7 gate 6) handed to the operator with the mainnet deployment plan | This lane | When every row above has its receipt |
 
 The long pole is legal, not code. The team can draft the counsel brief and research every question; the jurisdiction decision and the engagement of counsel are the operator's, and sit in [OPERATOR_QUEUE.md](../OPERATOR_QUEUE.md) with the default that research and build continue on a US assumption.
+
+## Funder view: the lending dashboard (November 3)
+
+The operator's November 3 direction (chat, summarised) adds a requirement to the packet: a
+funder who puts USDC into the pool sees how it is lent and collected and whom it reaches,
+from the public ledger, with anonymized borrower information recorded on-chain. Built the
+same day as a necessary milestone of this lane: [dashboard/](../../dashboard/README.md)
+(collector `metrics/lending_dashboard.py`, page `dashboard/index.html`, tests in
+`tools/check.py`, render check, first live snapshot in the
+[receipt](../../evidence/lending-dashboard-20261103/README.md)). Borrower profiles use the
+Ethereum Attestation Service predeploy on Base, a fixed coarse schema (country, first-level
+region, occupation group, purpose, World Bank income band, consent version), a five-borrower
+bucket rule, and revocation on withdrawal of consent; the steward registers the schema and
+attests at the credit check. The first snapshot shows the pool holding but not growing:
+zero interest kept, because every one of 26 testnet loans was repaid inside the 24-hour
+no-interest window. Model action `action:lending-dashboard-20261103`.
 
 ## Autonomy
 

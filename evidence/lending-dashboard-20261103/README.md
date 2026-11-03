@@ -1,0 +1,71 @@
+# Lending dashboard: first live snapshot, tests and render demonstration (2026-11-03)
+
+Claude Code (AI). Receipt for the dashboard in [`dashboard/`](../../dashboard/README.md),
+built at the operator's direction of November 3 (chat): a funder should see how the pool
+lends and collects and whom it reaches, from the public ledger, with anonymized borrower
+information on-chain. Testnet only; nothing here is human benefit.
+
+## The snapshot (committed as `dashboard/data/snapshot.json`)
+
+| Item | Value |
+| --- | --- |
+| Chain, pool | Base Sepolia (84532), `0x73872B8fB7F1771C67911f03edc75aBdc9514973` |
+| Block | 54,056,560, 2026-11-03 19:13:00 UTC, hash re-read unchanged at the end |
+| Events scanned | 211 pool events from the deployment block 47,776,780 |
+| Pool | 35.00 USDC assets; 30.00 cash; 5.00 out on one active loan; share price 1.0000; 9 lenders |
+| Flows to date | deposited 128.00; withdrawn 93.00; disbursed 42.00 over 26 loans; repaid 37.00; interest 0.00; written off 0.00 |
+| Loans | 27: 25 repaid (all 25 by the due date), 1 active (loan 27, 5.00 USDC, due 2026-12-02), 1 cancelled, 0 defaulted |
+| Human metrics | attested repaying borrowers 0, unattested 9; first-time borrowers' share of lending 60%; 10 of 10 borrowers had no stake of their own |
+| Profiles | 0 of 27 loans; schema `0x78e5c1a2…3199` not yet registered in the registry at `0x4200…0020` |
+| RPC | state from `https://sepolia.base.org`, logs from `https://base-sepolia.gateway.tenderly.co`; 245 calls, 47 s |
+
+**One finding worth the funder's attention.** The pool has kept zero interest from 26
+disbursed loans because every repayment came inside the contract's 24-hour no-interest
+window (median days to repay 0.0). "The pool grows from the repayment" is therefore not yet
+observed on this deployment; the dashboard tile says so in words rather than showing a
+rounded zero. Interest will appear when a loan runs for more than a day, which is what a
+30 to 90 day human loan does.
+
+## Tests
+
+- `python tools/check.py`: 33/33 checks, 612 unit tests, no live operation. The new suite
+  `metrics/test_lending_dashboard.py` (13 tests) covers keccak-256 against known vectors,
+  the event topics against those observed on the pool, ABI decoding of a recorded log,
+  dynamic types, the profile encode and decode round trip, the schema UID, loan aggregation
+  on a synthetic ledger with a repayment, a default and an active loan, backing edge
+  clearing, monthly cumulatives, `eth_getLogs` range splitting, and the committed
+  snapshot's shape against the schema UID.
+- `node dashboard/render_check.cjs`: 28 render checks passed in light and dark at 1200 px and
+  light at 390 px: no console or page errors, six tiles, 27 ledger rows, two series drawn,
+  the header names the block, the profile section states 0 of 27 loans and the schema UID,
+  no horizontal overflow, the table view lists 2 months, the labelled example renders
+  behind its toggle.
+- Series palette validated with the data-viz validator in both themes (adjacent CVD
+  Delta E 9.2 light, 9.4 dark; the aqua slot's contrast warning is relieved by direct labels
+  and the table view).
+
+## Screenshots
+
+| File | What |
+| --- | --- |
+| `dashboard-light-1200.png` | Desktop, light theme, live snapshot |
+| `dashboard-dark-1200.png` | Desktop, dark theme |
+| `dashboard-light-390.png` | Phone width |
+| `dashboard-light-1200-example.png`, `dashboard-dark-1200-example.png` | The profile section with the example data shown (labelled "Example, not on-chain") |
+
+## Handoff to the steward (profile recording)
+
+The schema, encoder, privacy rule and three-step procedure are in
+[`dashboard/README.md`](../../dashboard/README.md). The steward owns registering the
+schema and attesting at the credit check, because it holds the credit desk and the
+testnet key; no session here holds a funded key and none is requested. TM2 as sent:
+
+```json
+{"v":2,"id":"c-20261103-lending-dashboard-r1","k":"req","f":"c","t":["steward"],"by":"2026-11-08T18:00Z","nd":[{"o":"steward","a":"register profile schema; attest at credit check; or CHANGE to off-chain hash"}],"tr":"gh:board-default","i":[{"w":"action:lending-dashboard-20261103","op":"set","st":"dn","o":"c","oa":"ex","e":["sha:tb@<head>","evidence/lending-dashboard-20261103/README.md"],"n":{"loans":"27 at block 54056560","repaid":"25 of 25 closed","interest":"0 u (all repaid <24h)"},"x":"dashboard built, tested, rendered; reads pool events + EAS profile attestations; schema UID precomputed"},{"w":"action:borrower-profile-attestations-20261103","op":"ask","st":"rd","o":"steward","oa":"req","d":"2026-11-08T18:00Z","tx":1,"q":[{"o":"steward","a":"SchemaRegistry.register(schema,0x0,true) on Base Sepolia -> uid 0x78e5c1a2...3199; then EAS.attest per consented credit check (encode_profile in metrics/lending_dashboard.py); privacy rule in dashboard/README.md; D7 gate 3 borrowers first"}],"x":"one tx to register; one per profile; revocable; page reads automatically"}]}
+```
+
+## What this does not claim
+
+No borrower profile exists on-chain yet. No human has borrowed. The 25 on-time repayments
+are agent and test-account plumbing. The page's second scorecard reads "not measurable
+yet" and will until a consenting person borrows and a follow-up records what changed.

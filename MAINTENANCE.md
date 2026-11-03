@@ -22,6 +22,7 @@ flat modules named `model`, `lib` and `q` cannot shadow one another.
 | Pool quickstart | [`scripts/quickstart.py`](scripts/quickstart.py), reached through `quickstart.sh` | Exact amounts, keyless reads, receipt-derived loan IDs and failed-send controls in `scripts/test_*.py` |
 | Shared Foundry calls and token amounts | [`scripts/deployment.py`](scripts/deployment.py) | No automatic resend after an unknown outcome; no floating-point transaction amounts |
 | Pool health | [`metrics/pool_health.py`](metrics/pool_health.py) | One block for all reads, recorded block identity, reorg rejection and nonzero exit on a conservation violation |
+| Lending dashboard | [`metrics/lending_dashboard.py`](metrics/lending_dashboard.py), [`dashboard/`](dashboard/README.md) | Standard-library JSON-RPC, one block hash re-read at the end, event decoding checked against observed topics, committed snapshot shape checked offline; the page renders without network and `dashboard/render_check.cjs` screenshots it |
 | Planning and coordination | [`world-model/`](world-model/README.md), [`coordination/`](coordination/team-structure.md) | Schema, relationship and ownership checks; coordination unit tests |
 | Compact team messages | [`team-mail/tm2.py`](team-mail/tm2.py) and [`team-mail/SPEC.md`](team-mail/SPEC.md) | Published examples and malformed-input controls |
 | Offline accounting rehearsal | [`bootstrap/`](bootstrap/README.md) | Provenance, unknown usage, malformed receipts and simulated settlement controls |

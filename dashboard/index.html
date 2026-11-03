@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omnequa Lending Ledger</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="What the Omnequa microcredit pool is doing on-chain: money in, loans out, repayments back, and who the money reaches, read from the public ledger at one block.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a ledger read top to bottom; summary tiles, then the flow chart, then who the money reaches, then the loan-by-loan ledger. */
+:root {
+  --bg: #f6f7f5; --surface: #fdfdfc; --surface-2: #eef0ec;
+  --ink: #111412; --ink-2: #4e5450; --muted: #858b86; --line: #dfe3de; --grid: #e4e6e0; --axis: #c3c6bf;
+  --accent: #2a78d6; --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --good: #0ca30c; --good-text: #006300; --warn: #fab219; --serious: #ec835a; --crit: #d03b3b;
+  --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1110; --surface: #1a1c1b; --surface-2: #232625;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8e918c; --line: #2c2f2d; --grid: #2c2c2a; --axis: #3b3d3a;
+    --accent: #3987e5; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --good-text: #0ca30c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1110; --surface: #1a1c1b; --surface-2: #232625;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8e918c; --line: #2c2f2d; --grid: #2c2c2a; --axis: #3b3d3a;
+  --accent: #3987e5; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --good-text: #0ca30c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.45;
+  padding-block: 0 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); text-decoration: none; }
+a:hover, a:focus-visible { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+.wrap > *, .row > *, .cards > *, .grid3 > * { min-width: 0; }
+header.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; padding-block: 28px 4px; border-bottom: 1px solid var(--line); }
+h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.sub { color: var(--ink-2); margin: 4px 0 0; font-size: 14px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.02em; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+.badge.testnet { border-color: var(--warn); }
+.badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+.mono { font-family: var(--mono); font-size: 0.92em; overflow-wrap: anywhere; }
+h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.005em; }
+.lede { color: var(--ink-2); margin: 0 0 14px; max-width: 70ch; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.tile .v { font-size: 26px; font-weight: 600; line-height: 1.1; margin: 2px 0 4px; }
+.tile .v small { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.tile .n { color: var(--ink-2); font-size: 13px; }
+.row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; overflow-wrap: anywhere; }
+.chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); margin: 6px 0 0; }
+.legend span::before { content: ""; display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; background: var(--c); }
+.chart { position: relative; margin-top: 8px; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font-family: var(--font); fill: var(--muted); font-size: 11px; }
+.chart .lbl { fill: var(--ink-2); font-weight: 600; font-size: 12px; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--ink); box-shadow: 0 4px 16px rgba(0,0,0,0.12); white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); }
+.tip b { font-weight: 600; }
+.ghost { font: inherit; font-size: 12px; font-weight: 500; color: var(--ink-2); background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.ghost:hover { background: var(--surface-2); }
+.ghost[aria-pressed="true"] { background: var(--surface-2); color: var(--ink); border-color: var(--axis); }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12px; letter-spacing: 0.02em; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
+.pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.pill.Repaid i { background: var(--good); } .pill.Active i { background: var(--s1); } .pill.Defaulted i { background: var(--crit); } .pill.Cancelled i { background: var(--muted); } .pill.Requested i { background: var(--warn); }
+.bars { display: grid; gap: 8px; margin-top: 10px; }
+.bar { display: grid; grid-template-columns: 110px minmax(0, 1fr) 44px; align-items: center; gap: 10px; font-size: 13px; }
+.bar .track { height: 14px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.bar .fill { height: 100%; background: var(--s1); border-radius: 4px; min-width: 2px; }
+.bar .fill.good { background: var(--good); } .bar .fill.crit { background: var(--crit); } .bar .fill.mute { background: var(--axis); } .bar .fill.warn { background: var(--warn); }
+.bar .cnt { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 13px; margin-top: 12px; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; font-variant-numeric: tabular-nums; min-width: 0; overflow-wrap: anywhere; }
+.empty { border: 1px dashed var(--axis); border-radius: 10px; padding: 16px 18px; color: var(--ink-2); background: var(--surface); }
+.empty h3 { margin: 0 0 6px; font-size: 15px; color: var(--ink); }
+.empty ol { margin: 8px 0 0; padding-left: 20px; } .empty li { margin: 2px 0; overflow-wrap: anywhere; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+.example { position: relative; }
+.example::before { content: "Example, not on-chain"; position: absolute; top: -10px; right: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--warn); color: #0b0b0b; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.score { border-left: 4px solid var(--axis); }
+.score.good { border-left-color: var(--good); } .score.none { border-left-color: var(--warn); }
+.score .state { font-size: 13px; font-weight: 600; margin: 4px 0 8px; display: flex; align-items: center; gap: 6px; }
+.note { font-size: 13px; color: var(--ink-2); }
+ul.caveats { margin: 8px 0 0; padding-left: 20px; color: var(--ink-2); font-size: 13px; }
+ul.caveats li { margin: 3px 0; }
+pre { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; overflow-x: auto; font-family: var(--mono); font-size: 12px; margin: 8px 0 0; }
+footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 760px) { .row, .cards { grid-template-columns: 1fr; } .bar { grid-template-columns: 90px minmax(0,1fr) 40px; } .kv { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (prefers-reduced-motion: no-preference) { .bar .fill { transition: width 400ms ease-out; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Omnequa Lending Ledger</h1>
+      <p class="sub" id="sub">Reading the snapshot…</p>
+    </div>
+    <div class="badges" id="badges"></div>
+  </header>
+
+  <section aria-labelledby="h-pool">
+    <p class="eyebrow">The pool today</p>
+    <h2 id="h-pool">Money in, money out, money back</h2>
+    <p class="lede">Lenders put test USDC into one pool on Base. Borrowers draw small loans from it and repay with interest; interest that comes back grows the pool. Every figure here is read from the public ledger at the block named above.</p>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="row" aria-labelledby="h-flow">
+    <div class="panel">
+      <div class="chart-head">
+        <div>
+          <h2 id="h-flow">Lent out and paid back, cumulative</h2>
+          <div class="legend"><span style="--c: var(--s1)">Lent out (principal disbursed)</span><span style="--c: var(--s2)">Paid back (principal and interest)</span></div>
+        </div>
+        <button class="ghost" id="flow-table-btn" aria-pressed="false" aria-controls="flow-table">Table view</button>
+      </div>
+      <div class="chart" id="flow-chart"></div>
+      <div class="scroll" id="flow-table" hidden></div>
+    </div>
+    <div class="panel">
+      <h2>Repayment outcomes</h2>
+      <p class="note" id="outcome-note"></p>
+      <div class="bars" id="status-bars"></div>
+      <dl class="kv" id="outcome-kv"></dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-who">
+    <p class="eyebrow">Who the money reaches</p>
+    <h2 id="h-who">Anonymized borrower profiles, on-chain</h2>
+    <p class="lede">With the borrower's consent, the credit check records a coarse profile on-chain as an attestation tied to the loan: country, region, occupation group, loan purpose and an income band. No name, no exact place, no wallet-to-person link. Each borrower can revoke it.</p>
+    <div id="who"></div>
+  </section>
+
+  <section class="cards" aria-label="Scorecards">
+    <div class="panel score" id="score-reserve"></div>
+    <div class="panel score" id="score-human"></div>
+  </section>
+
+  <section aria-labelledby="h-ledger">
+    <p class="eyebrow">Loan by loan</p>
+    <h2 id="h-ledger">The ledger</h2>
+    <p class="lede">Every loan the pool has ever made, newest first. Borrowers are shown by address only. Each transaction links to the block explorer so anyone can check it.</p>
+    <div class="panel scroll" id="ledger"></div>
+  </section>
+
+  <section class="row" aria-label="Backing and lenders">
+    <div class="panel" id="backing"></div>
+    <div class="panel" id="lenders"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-prov">
+    <h2 id="h-prov">What this is and is not</h2>
+    <ul class="caveats" id="caveats"></ul>
+    <p class="note" style="margin-top:12px">Recompute this page from the chain:</p>
+    <pre>python metrics/lending_dashboard.py</pre>
+    <dl class="kv" id="prov"></dl>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="data/snapshot.js"></script>
+<script>
+(function () {
+  const S = window.LENDING_SNAPSHOT;
+  const $ = (id) => document.getElementById(id);
+  if (!S) { $("sub").textContent = "No snapshot found. Run python metrics/lending_dashboard.py to create data/snapshot.js."; return; }
+
+  const DEC = 10 ** (S.snapshot.token.decimals || 6);
+  const usdc = (u, places = 2) => (Number(u) / DEC).toLocaleString("en-US", { minimumFractionDigits: places, maximumFractionDigits: places });
+  const dateOf = (ts) => new Date(ts * 1000).toISOString().slice(0, 10);
+  const dateTime = (ts) => new Date(ts * 1000).toISOString().replace("T", " ").slice(0, 16) + " UTC";
+  const short = (a) => a.slice(0, 6) + "…" + a.slice(-4);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const tx = (hash, label) => `<a class="mono" href="${S.snapshot.explorer}/tx/${hash}" target="_blank" rel="noopener">${label || short(hash)}</a>`;
+  const addr = (a) => `<a class="mono" href="${S.snapshot.explorer}/address/${a}" target="_blank" rel="noopener">${short(a)}</a>`;
+  const pct = (x) => x == null ? "no data" : (x * 100).toFixed(0) + "%";
+
+  // Header
+  const snap = S.snapshot;
+  $("sub").innerHTML = `${esc(snap.network)} · block <span class="mono">${snap.blockNumber.toLocaleString("en-US")}</span> · ${dateTime(snap.blockTimestamp)} · pool ${addr(snap.pool)}`;
+  $("badges").innerHTML = `<span class="badge testnet"><span class="dot"></span>Testnet, test USDC, no real funds</span><span class="badge">${S.loans.length} loans · ${S.pool.lenderCount} lenders</span>`;
+
+  // Tiles
+  const P = S.pool, F = S.flows;
+  const tiles = [
+    ["Pool today", usdc(P.totalAssets), "all lenders' money, lent or waiting"],
+    ["Ready to lend", usdc(P.lenderCash - P.reservedLiquidity), "cash in the pool right now"],
+    ["Out on loan", usdc(P.totalLentOut), "principal borrowers still owe"],
+    ["Lent to date", usdc(F.disbursed), `${S.loans.filter(l => l.disbursed).length} loans disbursed`],
+    ["Paid back to date", usdc(F.repaid), "principal and interest returned"],
+    ["Interest kept by the pool", usdc(F.interest), F.interest ? "this is what grows the pool" : "none yet: every loan was repaid inside the 24-hour no-interest window"],
+  ];
+  $("tiles").innerHTML = tiles.map(([n, v, s]) => `<div class="tile"><div class="n">${n}</div><div class="v">${v}<small>USDC</small></div><div class="n">${esc(s)}</div></div>`).join("");
+
+  // Flow chart: cumulative step series from loan events
+  const points = [];
+  for (const l of S.loans) {
+    if (l.disbursed) points.push({ t: l.disbursed.time, out: l.principal, back: 0, what: `Loan ${l.id} disbursed, ${usdc(l.principal)} USDC` });
+    for (const r of l.repayments) points.push({ t: r.time, out: 0, back: r.amount, what: `Loan ${l.id} repaid ${usdc(r.amount)} USDC` });
+  }
+  points.sort((a, b) => a.t - b.t);
+  let out = 0, back = 0;
+  const series = points.map(p => ({ t: p.t, out: (out += p.out), back: (back += p.back), what: p.what }));
+  const t0 = series.length ? series[0].t : snap.blockTimestamp - 86400, t1 = snap.blockTimestamp;
+  series.push({ t: t1, out, back, what: "Snapshot block" });
+
+  function renderFlow() {
+    const W = 720, H = 260, m = { l: 48, r: 110, t: 14, b: 30 };
+    const maxY = Math.max(out, back, 1) * 1.08;
+    const x = (t) => m.l + (t - t0) / Math.max(1, t1 - t0) * (W - m.l - m.r);
+    const y = (v) => m.t + (H - m.t - m.b) * (1 - v / maxY);
+    const step = (key) => {
+      let d = `M${x(t0).toFixed(1)},${y(0).toFixed(1)}`;
+      let prev = 0;
+      for (const p of series) { d += ` L${x(p.t).toFixed(1)},${y(prev).toFixed(1)} L${x(p.t).toFixed(1)},${y(p[key]).toFixed(1)}`; prev = p[key]; }
+      return d;
+    };
+    const ticks = 4, gy = [];
+    for (let i = 0; i <= ticks; i++) { const v = maxY / 1.08 * i / ticks; gy.push(`<line x1="${m.l}" x2="${W - m.r}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" stroke="var(--grid)" stroke-width="1"/><text x="${m.l - 6}" y="${(y(v) + 4).toFixed(1)}" text-anchor="end">${usdc(v, 0)}</text>`); }
+    const days = Math.max(1, Math.round((t1 - t0) / 86400));
+    const nx = Math.min(6, days), gx = [];
+    for (let i = 0; i <= nx; i++) { const t = t0 + (t1 - t0) * i / nx; gx.push(`<text x="${x(t).toFixed(1)}" y="${H - 8}" text-anchor="middle">${dateOf(t).slice(5)}</text>`); }
+    const last = series[series.length - 1];
+    $("flow-chart").innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative principal lent out and amount paid back over time">
+        ${gy.join("")}${gx.join("")}
+        <line x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}" stroke="var(--axis)" stroke-width="1"/>
+        <path d="${step("out")}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="${step("back")}" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="${x(last.t)}" cy="${y(last.out)}" r="4" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
+        <circle cx="${x(last.t)}" cy="${y(last.back)}" r="4" fill="var(--s2)" stroke="var(--surface)" stroke-width="2"/>
+        <text class="lbl" x="${x(last.t) + 8}" y="${(y(last.out) + (last.out >= last.back ? -2 : 12)).toFixed(1)}">Lent ${usdc(last.out)}</text>
+        <text class="lbl" x="${x(last.t) + 8}" y="${(y(last.back) + (last.out >= last.back ? 12 : -2)).toFixed(1)}">Back ${usdc(last.back)}</text>
+        <line id="xh" x1="0" x2="0" y1="${m.t}" y2="${y(0)}" stroke="var(--axis)" stroke-dasharray="3 3" visibility="hidden"/>
+        <rect id="hit" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/>
+      </svg><div class="tip" id="tip" hidden></div>`;
+    const svg = $("flow-chart").querySelector("svg"), hit = $("hit"), xh = $("xh"), tip = $("tip");
+    const show = (ev) => {
+      const r = svg.getBoundingClientRect(); const px = (ev.clientX - r.left) / r.width * W;
+      const t = t0 + (px - m.l) / (W - m.l - m.r) * (t1 - t0);
+      let s = series[0]; for (const p of series) { if (p.t <= t) s = p; else break; }
+      xh.setAttribute("x1", px); xh.setAttribute("x2", px); xh.setAttribute("visibility", "visible");
+      tip.hidden = false; tip.style.left = (ev.clientX - r.left) + "px"; tip.style.top = (m.t / H * r.height) + "px";
+      tip.innerHTML = `<b>${dateOf(t)}</b><br>Lent out <b>${usdc(s.out)}</b> · Paid back <b>${usdc(s.back)}</b><br><span style="color:var(--muted)">${esc(s.what)}</span>`;
+    };
+    hit.addEventListener("mousemove", show); hit.addEventListener("touchstart", (e) => show(e.touches[0]), { passive: true });
+    hit.addEventListener("mouseleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
+  }
+  renderFlow();
+  $("flow-table").innerHTML = `<table><thead><tr><th>Month</th><th class="num">Loans</th><th class="num">Lent out</th><th class="num">Paid back</th><th class="num">Interest</th><th class="num">Lender deposits</th><th class="num">Withdrawals</th></tr></thead><tbody>${S.monthly.map(mo => `<tr><td class="mono">${mo.month}</td><td class="num">${mo.loans}</td><td class="num">${usdc(mo.disbursed)}</td><td class="num">${usdc(mo.repaid)}</td><td class="num">${usdc(mo.interest)}</td><td class="num">${usdc(mo.deposited)}</td><td class="num">${usdc(mo.withdrawn)}</td></tr>`).join("")}</tbody></table>`;
+  $("flow-table-btn").addEventListener("click", () => { const on = $("flow-table").hidden; $("flow-table").hidden = !on; $("flow-chart").hidden = on; $("flow-table-btn").setAttribute("aria-pressed", String(on)); $("flow-table-btn").textContent = on ? "Chart view" : "Table view"; });
+
+  // Repayment outcomes
+  const H = S.humanMetrics, R = H.repaymentRate;
+  const order = [["Repaid", "good"], ["Active", ""], ["Requested", "warn"], ["Defaulted", "crit"], ["Cancelled", "mute"]];
+  const maxC = Math.max(1, ...Object.values(S.loanStatus));
+  $("status-bars").innerHTML = order.map(([k, c]) => `<div class="bar"><span class="pill ${k}"><i></i>${k}</span><div class="track"><div class="fill ${c}" style="width:${(S.loanStatus[k] || 0) / maxC * 100}%"></div></div><span class="cnt">${S.loanStatus[k] || 0}</span></div>`).join("");
+  $("outcome-note").textContent = R.closedLoans ? `${R.repaid} of ${R.closedLoans} finished loans were repaid in full, ${R.onTime} of them by the due date.` : "No loan has finished yet.";
+  const dtr = S.loans.filter(l => l.daysToRepay != null).map(l => l.daysToRepay);
+  $("outcome-kv").innerHTML = [
+    ["Repayment rate", pct(R.rate)], ["Defaults", String(R.defaulted)],
+    ["Median days to repay", dtr.length ? dtr.sort((a, b) => a - b)[Math.floor(dtr.length / 2)].toFixed(1) : "no data"],
+    ["Loan rate (APR)", (P.getLoanRate / 100).toFixed(2) + "%"], ["Written off", usdc(F.writtenOff) + " USDC"],
+    ["First-time borrowers' share of lending", pct(H.firstTimeBorrowerShare)],
+    ["Borrowers with no stake of their own", `${H.disbursedToBorrowersWithNoOwnStake.borrowers} of ${H.disbursedToBorrowersWithNoOwnStake.ofBorrowers}`],
+  ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+
+  // Who the money reaches
+  const EXAMPLE = [
+    { country: "GT", region: "Sololá", occupation: "market trader", purpose: "inventory", incomeBandLabel: "2.15 to 3.65 USD a day" },
+    { country: "GT", region: "Quiché", occupation: "smallholder farmer", purpose: "seed and fertiliser", incomeBandLabel: "under 2.15 USD a day" },
+    { country: "GT", region: "Guatemala", occupation: "tailor", purpose: "equipment", incomeBandLabel: "3.65 to 6.85 USD a day" },
+    { country: "GT", region: "Sololá", occupation: "weaver", purpose: "inventory", incomeBandLabel: "2.15 to 3.65 USD a day" },
+    { country: "HN", region: "Copán", occupation: "food vendor", purpose: "inventory", incomeBandLabel: "2.15 to 3.65 USD a day" },
+    { country: "GT", region: "Huehuetenango", occupation: "motorcycle taxi", purpose: "repair", incomeBandLabel: "3.65 to 6.85 USD a day" },
+  ];
+  const breakdown = (list, key) => { const o = {}; for (const p of list) { const k = p[key] || "not stated"; o[k] = (o[k] || 0) + 1; } return Object.entries(o).sort((a, b) => b[1] - a[1]); };
+  const barBlock = (title, rows) => { const mx = Math.max(1, ...rows.map(r => r[1])); return `<div class="panel"><h2 style="font-size:14px">${title}</h2><div class="bars">${rows.map(([k, v]) => `<div class="bar"><span title="${esc(k)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(k)}</span><div class="track"><div class="fill" style="width:${v / mx * 100}%"></div></div><span class="cnt">${v}</span></div>`).join("")}</div></div>`; };
+  const profilesHtml = (list) => `<div class="grid3">${barBlock("By country", breakdown(list, "country"))}${barBlock("By occupation", breakdown(list, "occupation"))}${barBlock("By loan purpose", breakdown(list, "purpose"))}${barBlock("By income band", breakdown(list, "incomeBandLabel"))}</div>`;
+  const sch = S.profileSchema;
+  function renderWho(showExample) {
+    const A = H.attestedLoans;
+    if (S.profiles.length) {
+      $("who").innerHTML = `<p class="note">${A.withProfile} of ${A.ofLoans} loans carry a consented profile.</p>${profilesHtml(S.profiles)}`;
+      return;
+    }
+    $("who").innerHTML = `
+      <div class="empty">
+        <h3>${A.withProfile} of ${A.ofLoans} loans carry a profile yet</h3>
+        <p style="margin:0">Profiles arrive once the steward registers the profile schema on Base and attests a borrower's consented answers at the credit check. The schema is fixed now, so its on-chain ID is already known; this page starts reading the moment the first attestation lands.</p>
+        <ol>
+          <li>Schema <span class="mono">${esc(sch.schema)}</span></li>
+          <li>Schema ID <span class="mono">${sch.uid}</span>, ${sch.registered ? "registered" : "not yet registered"} in the registry at <span class="mono">${sch.registry}</span></li>
+          <li>Attester: the steward's credit-desk key; recipient: the borrower's address; revocable by the borrower.</li>
+        </ol>
+        <p style="margin:12px 0 0"><button class="ghost" id="example-btn" aria-pressed="${showExample}">${showExample ? "Hide the example" : "Show what this section looks like with profiles (example data)"}</button></p>
+      </div>
+      ${showExample ? `<div class="example" style="margin-top:22px">${profilesHtml(EXAMPLE)}</div>` : ""}`;
+    $("example-btn").addEventListener("click", () => renderWho(!showExample));
+  }
+  renderWho(false);
+
+  // Scorecards
+  const net = F.deposited - F.withdrawn, growth = P.totalAssets - net;
+  $("score-reserve").className = "panel score " + (growth >= 0 ? "good" : "none");
+  $("score-reserve").innerHTML = `<p class="eyebrow">Scorecard 1</p><h2>Reserve survival</h2><div class="state">${growth > 0 ? "Growing" : growth === 0 ? "Holding, not growing" : "Shrinking"}</div>
+    <dl class="kv"><dt>Lenders' money in, net of withdrawals</dt><dd>${usdc(net)} USDC</dd><dt>Pool today</dt><dd>${usdc(P.totalAssets)} USDC</dd><dt>Change from lending</dt><dd>${growth >= 0 ? "+" : ""}${usdc(growth)} USDC (${net ? ((growth / net) * 100).toFixed(2) : "0.00"}%)</dd><dt>Share price</dt><dd>${usdc(P.sharePrice, 4)}</dd><dt>First-loss reserve</dt><dd>${usdc(P.firstLossReserve)} USDC</dd><dt>Largest single loan vs pool</dt><dd>${S.loans.length ? (Math.max(...S.loans.map(l => l.principal)) / Math.max(1, P.totalAssets) * 100).toFixed(0) : 0}% (rule: at most 20%)</dd></dl>`;
+  const hb = H.uniqueRepayingBorrowers;
+  $("score-human").className = "panel score none";
+  $("score-human").innerHTML = `<p class="eyebrow">Scorecard 2</p><h2>Human benefit per sponsor dollar</h2><div class="state">Not measurable yet</div>
+    <dl class="kv"><dt>Attested human borrowers who repaid</dt><dd>${hb.attested}</dd><dt>Unattested repaying borrowers (agents and test accounts)</dt><dd>${hb.unattested}</dd><dt>Sponsor money consumed</dt><dd>${usdc(F.writtenOff)} USDC</dd><dt>Incremental earnings reported</dt><dd>none recorded</dd></dl>
+    <p class="note">This number exists only when a consenting person borrows, repays, and the follow-up records what the loan changed for them. Until then the dashboard shows the plumbing working, not people helped.</p>`;
+
+  // Ledger
+  const rows = [...S.loans].sort((a, b) => b.id - a.id).map(l => {
+    const when = l.disbursed || l.requested;
+    const closedAt = l.closed ? dateOf(l.closed.time) : (l.dueAt ? "due " + dateOf(l.dueAt) : "");
+    return `<tr><td class="mono">${l.id}</td><td>${when ? dateOf(when.time) : ""}</td><td>${addr(l.borrower)}${l.firstLoan ? ' <span class="pill" title="First loan for this borrower">first</span>' : ""}</td><td class="num">${usdc(l.principal)}</td><td><span class="pill ${l.status}"><i></i>${l.status}</span></td><td class="num">${usdc(l.repaid)}</td><td class="num">${usdc(l.interest)}</td><td>${closedAt}${l.daysToRepay != null ? ` <span style="color:var(--muted)">(${l.daysToRepay} d)</span>` : ""}</td><td>${l.disbursed ? tx(l.disbursed.tx, "disburse") : (l.requested ? tx(l.requested.tx, "request") : "")}${l.closed && l.closed.as === "Repaid" ? " · " + tx(l.closed.tx, "repay") : ""}</td></tr>`;
+  });
+  $("ledger").innerHTML = `<table><thead><tr><th>Loan</th><th>Date</th><th>Borrower</th><th class="num">Principal</th><th>Status</th><th class="num">Repaid</th><th class="num">Interest</th><th>Closed</th><th>Transactions</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
+
+  // Backing and lenders
+  $("backing").innerHTML = `<h2>Who stands behind whom</h2><p class="note">A backer commits part of their own stake or credit to a borrower; backing moves credit, it never creates it.</p>` +
+    (S.backing.length ? `<div class="scroll"><table><thead><tr><th>Backer</th><th>Borrower</th><th class="num">From stake</th><th class="num">From credit</th><th></th></tr></thead><tbody>${S.backing.map(b => `<tr><td>${addr(b.backer)}</td><td>${addr(b.borrower)}</td><td class="num">${usdc(b.secured)}</td><td class="num">${usdc(b.unsecured)}</td><td>${tx(b.tx, "tx")}</td></tr>`).join("")}</tbody></table></div>` : `<p class="note">No active backing.</p>`);
+  const stakers = Object.entries(S.stake).sort((a, b) => b[1] - a[1]);
+  $("lenders").innerHTML = `<h2>Lenders and stakers</h2><dl class="kv"><dt>Lenders with a position</dt><dd>${P.lenderCount}</dd><dt>Total deposited to date</dt><dd>${usdc(F.deposited)} USDC</dd><dt>Total withdrawn to date</dt><dd>${usdc(F.withdrawn)} USDC</dd><dt>Staked as credit</dt><dd>${usdc(P.totalStaked)} USDC by ${stakers.length} accounts</dd><dt>Utilisation</dt><dd>${(P.utilisationBps / 100).toFixed(1)}%</dd></dl>`;
+
+  // Provenance
+  $("caveats").innerHTML = S.caveats.map(c => `<li>${esc(c)}</li>`).join("");
+  $("prov").innerHTML = [["Block", `<span class="mono">${snap.blockNumber}</span> · <a class="mono" href="${snap.explorer}/block/${snap.blockNumber}" target="_blank" rel="noopener">${short(snap.blockHash)}</a>`], ["Scanned from block", `<span class="mono">${snap.fromBlock}</span> (deployment)`], ["Events read", String(snap.eventCount)], ["State RPC", esc(snap.stateRpc)], ["Logs RPC", esc(snap.logsRpc)], ["Collector", `${esc(snap.collector)}${snap.collectorCommit ? " at " + snap.collectorCommit : ""}`], ["Pool", addr(snap.pool)], ["Lens", addr(snap.lens)], ["Token", `${esc(snap.token.symbol)} ${addr(snap.token.address)} (test token)`]].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+  $("foot").textContent = "Omnequa microcredit testbed. Human benefit is the goal; a repaid testnet loan is evidence about the mechanism, not about people.";
+})();
+</script>
+</body>
+</html>

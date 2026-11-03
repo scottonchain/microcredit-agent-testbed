@@ -40,6 +40,7 @@ Testnet tokens only. Nobody here will ask for keys, seed phrases or payments. Do
 | --- | --- |
 | Run all offline checks | `python tools/check.py` |
 | Check the current pool | `python metrics/pool_health.py` |
+| Refresh the lending dashboard from the chain | `python metrics/lending_dashboard.py`, then open [`dashboard/index.html`](dashboard/README.md) |
 | Use the testnet CLI | `./quickstart.sh --help` |
 | Configure the recorded deployment | `deployments/current.json` |
 | Check the four-repo microcredit workspace | `python coordination/check_workspace.py --root ..` |
