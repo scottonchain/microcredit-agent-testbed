@@ -1,0 +1,153 @@
+[
+ {
+  "data": "185.199.108.153",
+  "name": "@",
+  "recordId": "<1032844462>-[1149]-28301b6d-c20e-4c23-a8c2-8a8e",
+  "ttl": 3600,
+  "type": "A"
+ },
+ {
+  "data": "185.199.109.153",
+  "name": "@",
+  "recordId": "43f79a4e-2a80-4dbc-9e55-791718a854e6",
+  "ttl": 3600,
+  "type": "A"
+ },
+ {
+  "data": "185.199.110.153",
+  "name": "@",
+  "recordId": "8c528cf3-dd8f-4371-b74b-17324763b39c",
+  "ttl": 3600,
+  "type": "A"
+ },
+ {
+  "data": "185.199.111.153",
+  "name": "@",
+  "recordId": "6a95fde8-283a-41b4-baca-c7e9d0121411",
+  "ttl": 3600,
+  "type": "A"
+ },
+ {
+  "data": "ns65.domaincontrol.com.",
+  "name": "@",
+  "recordId": "af33dc75-1d54-4e9a-a2f3-3312a626ebe9",
+  "ttl": 3600,
+  "type": "NS"
+ },
+ {
+  "data": "ns66.domaincontrol.com.",
+  "name": "@",
+  "recordId": "1f552833-745b-4f2e-9ff0-a5d5ae3dc4f4",
+  "ttl": 3600,
+  "type": "NS"
+ },
+ {
+  "data": "autodiscover.outlook.com.",
+  "name": "autodiscover",
+  "recordId": "<1040328105>-[152]-d02efaa7-a057-4e83-b206-034c0",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "email.secureserver.net.",
+  "name": "email",
+  "recordId": "<1040328105>-[155]-9215afc0-35f5-446a-9e16-0a36a",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "webdir.online.lync.com.",
+  "name": "lyncdiscover",
+  "recordId": "<1040328105>-[154]-d0845af9-e8ab-4c2f-8349-7ba28",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "clientconfig.microsoftonline-p.net.",
+  "name": "msoid",
+  "recordId": "<1040328105>-[156]-44a8b5df-f07f-42c7-a34a-37492",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "sipdir.online.lync.com.",
+  "name": "sip",
+  "recordId": "<1040328105>-[153]-f78211c2-016c-4590-95b8-2689a",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "scottonchain.github.io.",
+  "name": "www",
+  "recordId": "8b31857c-fbef-47b4-9940-595989af92c8",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "_domainconnect.gd.domaincontrol.com.",
+  "name": "_domainconnect",
+  "recordId": "69d17834-eb30-47db-9546-b2bb3caf5121",
+  "ttl": 3600,
+  "type": "CNAME"
+ },
+ {
+  "data": "",
+  "name": "@",
+  "recordId": "167f8988-66ff-4ea0-ab93-a912213a4f6f",
+  "ttl": 3600,
+  "type": "SOA"
+ },
+ {
+  "data": "omnequa-org.mail.protection.outlook.com.",
+  "name": "@",
+  "priority": 0,
+  "recordId": "<1040328105>-[157]-d22b0900-1947-4463-ae2b-fc793",
+  "ttl": 3600,
+  "type": "MX"
+ },
+ {
+  "data": "NETORGFT20229360.onmicrosoft.com",
+  "name": "@",
+  "recordId": "<1040328105>-[160]-771a5c15-31e0-4a9b-b922-daea4",
+  "ttl": 3600,
+  "type": "TXT"
+ },
+ {
+  "data": "v=spf1 include:secureserver.net -all",
+  "name": "@",
+  "recordId": "<1040328105>-[161]-037924da-65c6-4b71-ac69-1c607",
+  "ttl": 3600,
+  "type": "TXT"
+ },
+ {
+  "data": "v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;",
+  "name": "_dmarc",
+  "recordId": "24dcf9c0-5804-4cb1-bca9-5237942d91e3",
+  "ttl": 3600,
+  "type": "TXT"
+ },
+ {
+  "data": "sipdir.online.lync.com.",
+  "name": "@",
+  "port": 443,
+  "priority": 100,
+  "protocol": "_tls",
+  "recordId": "<1040328105>-[158]-2d4bc1b6-6745-4cc2-9923-c2f8d",
+  "service": "_sip",
+  "ttl": 3600,
+  "type": "SRV",
+  "weight": 1
+ },
+ {
+  "data": "sipfed.online.lync.com.",
+  "name": "@",
+  "port": 5061,
+  "priority": 100,
+  "protocol": "_tcp",
+  "recordId": "<1040328105>-[159]-51bead03-7df2-47a8-a57c-d1ff6",
+  "service": "_sipfederationtls",
+  "ttl": 3600,
+  "type": "SRV",
+  "weight": 1
+ }
+]

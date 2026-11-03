@@ -36,7 +36,35 @@ credentials to `write-results.json`, and saves the final zone as `zone-after.jso
 
 ## Status
 
-The first run on 2026-11-03 was refused by Claude Code's auto-mode permission
-classifier ("DNS / Domain / Cert Changes") before any request was sent. No DNS
-record has been changed by this record. Receipts are added here when the writes
-run.
+The first run on 2026-11-03 at about 16:59 UTC was refused by Claude Code's
+auto-mode permission classifier ("DNS / Domain / Cert Changes") before any
+request was sent. The steward session then ran the same script unchanged on
+2026-11-03 at 17:07:40 UTC, under the operator's direction of that day in the
+steward's chat (GoDaddy edits authorised; decide and act without the operator
+in the loop). The zone matched the recorded read (22 records, 15 untouched
+records guarded). Every write returned 2xx (`write-results.json`):
+
+| Step | Method | Status | Time |
+| --- | --- | --- | --- |
+| apex A 1 -> 185.199.108.153 | PUT | HTTP 200 | 2026-11-03T17:07:43Z |
+| apex A 2 -> 185.199.109.153 | PUT | HTTP 200 | 2026-11-03T17:07:46Z |
+| apex A add 185.199.110.153 | POST | HTTP 201 | 2026-11-03T17:07:48Z |
+| apex A add 185.199.111.153 | POST | HTTP 201 | 2026-11-03T17:07:50Z |
+| www CNAME -> scottonchain.github.io | PUT | HTTP 200 | 2026-11-03T17:07:52Z |
+| delete TXT _openai-site-verification | DELETE | HTTP 204 | 2026-11-03T17:07:55Z |
+| delete TXT _cf-custom-hostname | DELETE | HTTP 204 | 2026-11-03T17:07:57Z |
+| delete TXT _openai-site-verification.www | DELETE | HTTP 204 | 2026-11-03T17:08:00Z |
+| delete TXT _cf-custom-hostname.www | DELETE | HTTP 204 | 2026-11-03T17:08:03Z |
+
+Final zone: 20 records, the 15 untouched records identical (`zone-after.json`).
+Apex `@` now has the four GitHub Pages addresses 185.199.108.153 to
+185.199.111.153 and `www` points at `scottonchain.github.io.`; the four
+verification records of the previous host are gone; mail, Microsoft, NS, SOA,
+`_domainconnect` and `email` records are untouched.
+
+Checked before the write: `https://scottonchain.github.io/microcredit-vision/`
+answers 301 to `http://omnequa.org/`, so the custom domain is set on the Pages
+site. Records carry a 3600 s TTL, so resolvers follow within the hour. GitHub
+issues the HTTPS certificate after its own DNS check and the Enforce HTTPS
+switch in the repository's Pages settings follows that; the Pages API is not
+reachable through the session proxy, so that switch is checked by the operator.
