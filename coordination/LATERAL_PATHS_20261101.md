@@ -56,6 +56,15 @@ prompt. Merging remains a reviewed maintainer step. The routine's sessions
 carry no connector tools, so GitHub writes depend on the attached repository
 route; the prompt has fallbacks for that.
 
+**Autonomy, revised November 3 (operator direction).** The November 2 run lost its
+receipt because its fresh session could not push; on November 3 the routine was
+re-pointed into a repository-attached Claude session. From November 3 the rules
+in [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) apply: every path has an owner
+and a dated next decision, the owner decides at the date, no decision is routed
+to the operator, a lane that is down is worked around (review skipped with a
+note when Codex is down), and the daily run merges its reviewed pull request
+under those rules instead of leaving it open.
+
 ## Blocked prerequisite, separated by kind
 
 | Kind | Observed fact | Assumption the lateral paths change |
@@ -82,13 +91,13 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 29 paths after the November 1 evening receipts)
+## Unified priority list (everything not ruled out; 28 paths after the November 3 decisions)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 2 | 2 | 3 | 3 | 13 | Receipt: a platform displays partner-issued credentials |
-| 2 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 1 | 3 | 2 | 3 | 12 | Boundary, kept with conditions; fuses N1 with the issue 396 roadmap |
-| 3 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
+| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
+| 3 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
 | 5 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
 | 6 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
@@ -97,31 +106,33 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
 | 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
-| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown |
+| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown; Claude decides November 8 18:00 UTC on the Hermes trace or NONE |
 | 13 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
 | 14 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
 | 15 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
 | 16 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop (three earlier PRs unanswered) |
-| 17 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent, reply pending |
+| 17 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent November 1, no reply by the November 2 gate (no nudge); Claude decides November 8 18:00 UTC |
 | 18 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
 | 19 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 2 | 2 | 2 | 9 | Far; no vendor channel |
 | 20 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
 | 21 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
 | 22 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
-| 23 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 2 | 2 | 2 | 2 | 9 | Current research slice |
-| 24 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
-| 25 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
-| 26 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
+| 23 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
+| 24 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
+| 25 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
+| 26 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 27 | N9 | Positive payment-history reporting | 1 | 1 | 1 | 2 | 2 | 7 | Specified |
 | 28 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked |
-| 29 | C3 | Autonomous worlds (Trinary on Sui testnet) | 0 | 2 | 1 | 2 | 1 | 6 | Current research slice; no spendable payout |
 
 Reading the list: the top five need no new authority and attack the hiring
 decision or buy human judgment from the agent economy. N2 and N3 dropped on
 November 1 evening receipts: N2 is parked at its own stop with a reproduced
 candidate ready, and N3 found that cooperative platforms take client payment
-up front, which closes the client-nonpayment mechanism there and spawned B11. B10 is the one far idea that also serves the
-operator's November 8 "comparable-role workflow" decision in issue 396. The
+up front, which closes the client-nonpayment mechanism there and spawned B11. B10 was the one far idea that also served the
+operator's November 8 "comparable-role workflow" decision in issue 396; on
+November 3 Claude parked it under L3 and parked the virtual-world workflow
+(C1) on the payout-concentration bound, so the November 8 decision reduces to
+C2 ([record](../evidence/lateral-decisions-20261103/README.md)). The
 current paths rank mid-table on evidence, not on loyalty: C4 scores highest of
 them on useful evidence because one real order decides the necessary-finance
 question, and lowest on cost because it exposes real funds.
@@ -139,7 +150,12 @@ speculative rent. Human outcome: a human co-creator's spendable payout. Simpler
 route: the human publishes alone. Transfer limit: play-to-earn history (see
 register, E1). Cheapest test: already running as a Codex research slice; Claude's
 role is challenge. Stop: no human payout path without concentration or delay
-that defeats the purpose.
+that defeats the purpose. **Decided November 3: PARK.** Roblox's own
+figures (over 29,000 DevEx creators, median 1,440 dollars in the twelve months
+to June 30, 2025, against 1,503 million paid in 2025) put the lower half of
+creators under 1.4 percent of payouts; the stop condition is met for a
+newcomer co-creator. Re-entry and arithmetic in the
+[decision record](../evidence/lateral-decisions-20261103/README.md).
 
 **C2. Productive service, API and compute markets with shared roles.** One
 indexed historical ACP settlement on Base with unknown payer, output and
@@ -149,7 +165,8 @@ asked to complete read-only. Stop: no independent customer by the November 8
 decision.
 
 **C3. Autonomous worlds.** Trinary snapshot of 1,333 trades, 58 traders, on Sui
-testnet; no spendable human payout. Counterexample value only.
+testnet; no spendable human payout. Counterexample value only. **Decided November 3:
+NONE, retired to the register (V4).**
 
 **C4. Human-first lending on one real order.** Issue 392: one consent-first
 request to an existing digital-work agency sent November 1 at 16:35:35 UTC;
@@ -278,7 +295,7 @@ to the register with their reason and the alternative they inspire.
 | B7 | Outcome prediction markets whose winnings fund projects | Ruled out, operational (R6) | Gambling regulation; stakes from the poor. Inspires outcome-based contracts with sponsors. |
 | B8 | Local-knowledge oracles: humans paid by agents for verified local prices, routes, availability, dialect | Kept | Demand exists inside the agent economy; the team can specify its own first need. Consent and quality rules apply; payout needs currency. |
 | B9 | Human cash-out agents for stablecoin remittances paid on commission | Ruled out, permission (R5) | Money transmission licensing. Inspires F2 as cost comparison with licensed providers. |
-| B10 | Agent as employer of first resort: an agent with a real need prepays a newcomer's first small job and publishes a detailed evaluation | Kept with conditions | Pallais (2014) is the mechanism; issue 396 names a small USDC seed in principle and a demand-trace audit. Conditions: the work must be needed, pay at or above a floor, payout route lawful, no debt, randomized offer where possible. |
+| B10 | Agent as employer of first resort: an agent with a real need prepays a newcomer's first small job and publishes a detailed evaluation | Parked November 3 (L3) | Pallais (2014) is the mechanism; issue 396 names a small USDC seed in principle and a demand-trace audit. Conditions: the work must be needed, pay at or above a floor, payout route lawful, no debt, randomized offer where possible. |
 | B11 | Worker payout guarantee against cooperative platform liquidity failure: the cooperative, not the client, is the counterparty | Kept with conditions (added from the N3 receipt) | One press-reported case of late or missed driver pay at a New York cooperative; clients already pay the platform up front. Needs a cooperative channel (L2) and the cooperative's own books before any parameter can be bounded. |
 
 ## Near-lateral paths (tier N), from revision 1
@@ -338,13 +355,13 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | --- | --- | --- | --- |
 | L1 | Direct cash transfers by this team | Currency authority, payout rails, recipient channel. GiveDirectly delivers 80 to 89 percent of funds (self-reported; GiveWell about 83 percent). | Operator-authorized sponsor funds with a named rail; otherwise cash stays the benchmark. |
 | L2 | Any first-contact outreach to workers, households, cooperatives or employers | Contact permission; existing caps. | Operator's action-specific word naming channel and cap. |
-| L3 | Hiring a human for B3 or B10 ourselves | Currency (the USDC seed is "in principle", no balance), payout route, consented worker. | A specified seed, a lawful payout route and a consented participant through an existing permitted channel. |
+| L3 | Hiring a human for B3 or B10 ourselves | Currency (the USDC seed is "in principle", no balance), payout route, consented worker. B10 parked here November 3 after its demand-trace audit. | A specified seed, a lawful payout route and a consented participant through an existing permitted channel (operator queue row). |
 | L4 | Paying panel participants for F9 or B8 | Currency and a panel account. | Same as L3; or a human-owned account on the panel. |
 | L5 | Data-work payroll in India or Kenya (F1 as operator) | Entity, payout rails, labour compliance. | Partnership with an existing vendor; otherwise tooling only. |
 | L6 | Farmer or vendor enrollment for F7, F8 | Field channel, local partner. | A partner with its own enrolled members and consent. |
 | L7 | School channel for F10 | Partner, device access, consent for minors. | Not sought; parked. |
 | L8 | Signed partnerships of any kind | No signatory or legal-entity authority recorded in this repository. | Operator signs; the team prepares terms. |
-| L9 | A standing lateral refresh | Resolved November 1: the operator approved one daily routine. | In place; re-examine only if the routine stops producing receipts. |
+| L9 | A standing lateral refresh | Resolved November 1: the operator approved one daily routine. Its November 2 run lost its receipt (no repository attached); re-pointed November 3. | In place in a repository-attached session; a run that cannot push is a same-day defect (DECISION_AUTONOMY.md rule 4). |
 
 ### Ruled out by evidence (V)
 
@@ -353,6 +370,7 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | V1 | Buying and cancelling medical debt | Two randomized experiments relieving 169 million dollars for 83,401 people found no average effect on mental health, financial wellness or utilization, with worse mental health in the most-indebted quartile (Kluender, Mahoney, Wong and Yin, QJE 2025). | Upstream prevention of the debt; appeals before denial becomes debt (F5). |
 | V2 | Subsidizing new traders to compete with incumbents | Induced entry had negligible price effects; traders pass through 22 percent of cost cuts and capture 82 percent of surplus (Bergquist and Dinerstein, AER 2020). | Collective selling or direct buyer access rather than more traders. |
 | V3 | Transport subsidies alone for job search | Early gains dissipated while certification effects persisted (Abebe et al.). | N1, N10 parked. |
+| V4 | Autonomous worlds as a human-income path (C3, Trinary) | Two snapshots (October 2, November 1): production on Sui testnet, no spendable human payout; actor parity without a payout. | Actor-parity evidence kept for D15; no path. |
 
 ## Concrete steps taken on November 1
 
@@ -373,6 +391,20 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    because PRs 10263, 10264 and 10347 remain unanswered; N3 public-terms check
    of three cooperative channels returned a bound and spawned B11. Packet:
    [evidence/lateral-n2-n3-20261101](../evidence/lateral-n2-n3-20261101/README.md).
+
+## Concrete steps taken on November 3
+
+1. Decided C1 (PARK), C3 (NONE, retired) and B10 (PARK, L3) at their dates
+   without the operator; arithmetic, sources and re-entry conditions in
+   [evidence/lateral-decisions-20261103](../evidence/lateral-decisions-20261103/README.md).
+   The issue 396 November 8 decision reduces to C2.
+2. Recorded the November 2 routine defect (receipt lost to a 403 push) and fixed
+   it: the daily run now fires into a repository-attached session.
+3. Wrote [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) and
+   [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) from the operator's direction.
+4. Next dated steps: C4 and C2 decided by Claude November 8 18:00 UTC; N1
+   partner-terms receipt re-run by the next daily run; F9 panel-terms receipt
+   November 8; N6, F4, N7 November 15.
 
 ## Proposed next actions
 
@@ -404,6 +436,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | C | Issue 392 real-orders case | https://github.com/scottonchain/microcredit-agent-testbed/issues/392 |
 | C | RoLearn third-party creator earnings analysis (unaudited) | https://rolearn.dev/insights/roblox-creator-earnings-how-much-developers-make |
 | C | Roblox Corp annual report FY2025 | https://www.sec.gov/Archives/edgar/data/1315098/000110465926044380/rblx-20251231xars.pdf |
+| C | Roblox press release, September 5, 2025: DevEx creators, median, rate | https://corp.roblox.com/newsroom/2025/09/roblox-unveils-ai-monetization-performance-innovations-creators |
+| C | Roblox 10-Q, quarter ended June 30, 2025 | https://www.sec.gov/Archives/edgar/data/1315098/000131509825000262/rblx-20250630.htm |
 | C, N7 | MDRC, Pathways to Financial Resilience | https://www.mdrc.org/work/publications/pathways-financial-resilience |
 | F1 | Time on Karya | https://time.com/6297403/india-ai-karya-startup |
 | F1 | Context, India turns to AI to capture its 121 languages | https://www.context.news/ai/india-turns-to-ai-to-capture-its-121-languages |

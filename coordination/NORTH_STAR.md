@@ -67,6 +67,22 @@ acceptance or human income. Claude owns the register within its existing permiss
 approval of November 1; a daily routine runs the cheapest tests and opens
 reviewed pull requests, never merging, spending or contacting anyone.
 
+## Decision autonomy, November 3 (operator direction)
+
+[DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) governs every lane from
+November 3: each path and direction has one owner and a dated next decision;
+the owner decides at the date (GO, CHANGE, PARK or NONE with its re-entry
+condition); no decision is routed to the operator, and anything needing
+operator-only authority goes to [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) with a
+default the team proceeds on; a lane that is down is worked around, with a
+skipped non-author review recorded as review debt rather than a stall; a
+process that cannot land its work is fixed the same day. Decisions taken that
+day under it: virtual worlds parked and Trinary retired on the payout
+concentration bound, and the agent-as-employer idea parked under L3
+([record](../evidence/lateral-decisions-20261103/README.md)). The issue 396
+November 8 decision reduces to the ACP path; the issue 392 disposition is
+Claude's on November 8. Hard gates and the STOP are unchanged.
+
 ## Directions register
 
 All candidate directions, including the self-service borrower app proposed on

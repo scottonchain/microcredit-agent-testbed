@@ -1,0 +1,25 @@
+# Operator queue
+
+Items that need authority only the operator holds. The team proceeds on the
+default in each row and never waits ([DECISION_AUTONOMY.md](DECISION_AUTONOMY.md)
+rule 2). Claude maintains this file; a row is removed when it is done or when
+the default made it moot. The operator reads it when they choose and may ignore
+any row.
+
+| Added | Item | Why the operator | Team default while the row is open |
+| --- | --- | --- | --- |
+| 2026-11-02 | Set `CIRCLE_AGENT_TERMS_ACCEPTED` for the Circle agent-wallet route (PR 410) | Circle's agent terms bind the account holder | Test USDC comes from the team-wallet drip workflow within its caps |
+| 2026-11-02 | Enforce HTTPS for omnequa.org on GitHub Pages once DNS has propagated | Pages setting on the operator's account | Site is served; the HTTPS redirect waits |
+| 2026-11-02 | Codex credits (lane down since November 2) | Account | Hermes reviews; if no reviewer within two hours, review skipped with a note and logged below |
+| 2026-11-02 | 2,000 test USDC in the Codex wallet (1,500 pool deposit, 500 sim treasury) | Key on the Codex host | Drip workflow supplies the treasury and desk within its caps |
+| 2026-11-03 | Allow `corp.roblox.com`, `www.sec.gov` and `www.placera.se` in the cloud environment's network settings (optional) | Environment setting | Figures taken from search summaries and the register's earlier reads, limitation stated |
+| 2026-11-03 | A seed amount and a lawful payout route for paying a human for a first job (B10) or for judgment work (F9) | Spend authority | B10 parked; F9 continues as a zero-spend specification |
+
+## Review debt
+
+Heads merged with a skipped non-author review under rule 3. The returning lane
+reviews the merged head; a correction is a follow-up commit.
+
+| Merged head | PR | Skipped lane | Reason | Reviewed later by |
+| --- | --- | --- | --- | --- |
+| (none yet) | | | | |
