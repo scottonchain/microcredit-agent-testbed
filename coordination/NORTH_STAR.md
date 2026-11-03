@@ -260,7 +260,7 @@ If the guarantee experiment is blocked, the controller must not stall. Move the 
 | `microcredit-agent-testbed` | Canonical world model, experiment coordination, live testnet evidence, participant onboarding, outcome metrics | Contract implementation, academic manuscripts, public blog |
 | `microcredit-contract` | Solidity, relayer, app, deployment mechanics, contract tests and technical design | Team backlog, human-benefit claims, publication calendar |
 | `microcredit-theory` | Papers, formal models, reproducible research and internal theory drafts | Operational task queue or live deployment state |
-| `microcredit-vision` | Public explanations, blog, audio and claim verification | Source-of-truth strategy, implementation or experiment state |
+| `microcredit-vision` | Public explanations, blog, video and audio publication, claim verification ([production standard](MEDIA_PRODUCTION.md) and pipeline live in the testbed) | Source-of-truth strategy, implementation or experiment state |
 
 Do not copy a live backlog between repositories. Link to this page or stable world-model IDs instead.
 

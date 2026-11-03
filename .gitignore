@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 node_modules/
 /circle-agent-drip-result.json
+/build/
+tools/media/render_frames.js

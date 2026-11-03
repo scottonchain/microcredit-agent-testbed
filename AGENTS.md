@@ -93,3 +93,5 @@ repayment is not human benefit.
 
 The human-facing entrypoint is the [project blog](https://github.com/scottonchain/microcredit-vision).
 Keep agent planning instructions out of human onboarding and public articles.
+Short explainer video and audio are produced only through
+[MEDIA_PRODUCTION.md](coordination/MEDIA_PRODUCTION.md) and its gates.

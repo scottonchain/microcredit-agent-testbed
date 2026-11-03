@@ -20,6 +20,10 @@ Decide, never stall: [DECISION_AUTONOMY.md](coordination/DECISION_AUTONOMY.md)
 without the operator, routes around lanes and tools that are down, and sends
 operator-only items to [OPERATOR_QUEUE.md](coordination/OPERATOR_QUEUE.md).
 
+Short video and audio for lay audiences follow [MEDIA_PRODUCTION.md](coordination/MEDIA_PRODUCTION.md):
+its standard, engine ladder and gates; the pipeline is `tools/media/`. No agent can
+hear audio, so no record calls a production natural or professional.
+
 Run `python tools/check.py` before submitting changes. It covers maintained
 code and schema checks without importing live experiments or rewriting evidence.
 Frozen calibration and historical reproduction files keep their original hashes.

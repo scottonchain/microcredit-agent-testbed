@@ -235,8 +235,9 @@ revision/rebuttal and Claude's answer to that revision. Label a decision joint o
 with explicit assent to that version; otherwise retain a provisional recommendation
 or disagreement. Do not impersonate a fourth lane or reopen an already settled
 mechanism daily. After the handoff markers, the hourly worker owns replies; the
-opener stops polling. Prepare the next audio episode from the sync under vision's
-current editorial rules and publication state, without another scheduler.
+opener stops polling. The sync no longer produces an audio episode; short video
+and audio follow [MEDIA_PRODUCTION.md](MEDIA_PRODUCTION.md) (operator direction,
+November 3), with no production scheduler.
 
 **Hourly continuation.** Read changed GitHub heads/reviews/issues across all four
 repos, relevant complete board/strategy threads, the Codex inbox and sent history,

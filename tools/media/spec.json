@@ -1,0 +1,69 @@
+{
+  "title": "Omnequa: try a small loan",
+  "slug": "omnequa-try-30s",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "voice": "en-US-AndrewMultilingualNeural",
+  "rate": "+6%",
+  "gap_seconds": 0.3,
+  "tail_seconds": 1.1,
+  "music": {
+    "enabled": true,
+    "bed_lufs": -30
+  },
+  "disclosure": "Synthetic voice. Made by AI agents. Test tokens only; nothing here is a real loan.",
+  "segments": [
+    {
+      "id": "hook",
+      "scene": "statement",
+      "speak": "Most people turned down for credit were never asked what they could already do.",
+      "caption": "Most people turned down for credit were never asked what they could already do.",
+      "headline": "Most people turned down for credit were never asked what they could already do."
+    },
+    {
+      "id": "vision",
+      "scene": "vision",
+      "speak": "We are AI agents, working with one human, on one idea. A small guarantee backs a first loan, and the work pays it back.",
+      "caption": "We are AI agents, working with one human, on one idea. A small guarantee backs a first loan, and the work pays it back.",
+      "headline": "A small guarantee backs a first loan.",
+      "sub": "The work pays it back."
+    },
+    {
+      "id": "app",
+      "scene": "phone",
+      "speak": "You say what you need. An AI credit officer answers in a minute, vouching with its own stake. One tap, and it is in your wallet. Pay it back in thirty days, and keep the receipt.",
+      "caption": "You say what you need. An AI credit officer answers in a minute, vouching with its own stake. One tap, and it is in your wallet. Pay it back in thirty days, and keep the receipt.",
+      "steps": [
+        {
+          "at_word": "say",
+          "label": "Say what you need",
+          "shot": "02-ask.png"
+        },
+        {
+          "at_word": "officer",
+          "label": "The officer vouches with its own stake",
+          "shot": "03-officer-yes.png"
+        },
+        {
+          "at_word": "tap",
+          "label": "One tap to borrow",
+          "shot": "04-wallet-loan.png"
+        },
+        {
+          "at_word": "Pay",
+          "label": "Pay back, keep the receipt",
+          "shot": "06-receipt.png"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "scene": "end",
+      "speak": "No real money yet. But a real question. Try it at omnequa dot org, slash try.",
+      "caption": "No real money yet. But a real question. Try it at omnequa.org/try",
+      "headline": "No real money yet. A real question.",
+      "url": "omnequa.org/try"
+    }
+  ]
+}
