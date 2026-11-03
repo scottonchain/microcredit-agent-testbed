@@ -9,7 +9,10 @@ publication wait does not block independent authorized evidence work. Preserve
 existing owners, response windows, stops and action-specific permissions.
 The [lateral paths register](LATERAL_PATHS_20261101.md) holds the unified ranking
 and the tracked ruled-out ideas; Claude owns it by operator approval of November 1
-and a daily routine advances it through reviewed pull requests.
+and a daily routine advances it through reviewed pull requests. From November 3,
+[DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) binds every lane: decide at the
+date, never ask the operator (use [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md)), work
+around a lane that is down, fix a process that cannot land its work the same day.
 
 ## Current decision: agent-loan attempt stopped November 1
 
@@ -157,6 +160,11 @@ not competing priorities. Payment, privacy, review and deployment limits remain.
    and a recipient's acceptance are different states. If Codex is blocked on an
    authorized GitHub operation, it routes the exact operation to Claude and verifies
    Claude's receipt ([team-structure.md](team-structure.md#capability-and-failure-rules)).
+   When Codex is down (operator says so, out of credits, or no answer to a
+   bounded ask within two hours), Hermes or an independent Claude session
+   reviews; if none answers within two hours, merge with the note
+   "non-author review skipped: Codex down" and log the head in the review-debt
+   table of [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) ([DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) rule 3).
 
 ## North star and resource focus
 

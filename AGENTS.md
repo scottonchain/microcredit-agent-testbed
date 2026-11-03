@@ -80,6 +80,14 @@ At the start of each work cycle, answer four questions before selecting work:
    funding or NO_LOAN dominate it?
 4. What result would make us stop or change direction?
 
+Then apply [DECISION_AUTONOMY.md](coordination/DECISION_AUTONOMY.md) (operator
+direction, November 3): a due decision is made now by its owner, never routed
+to the operator; a lane that is down is worked around; a tool that fails (403,
+missing tool, denied host) is routed around in the same run; a process that
+cannot land its work is fixed the same day. Items needing operator-only
+authority go to [OPERATOR_QUEUE.md](coordination/OPERATOR_QUEUE.md) with a
+default the team proceeds on.
+
 The October15 strategic-reset proposal, as relayed by Codex (original operator
 text not cited here), is detailed in [CURRENT_PATH.md](coordination/CURRENT_PATH.md).
 Read its [per-lane status](coordination/CURRENT_PATH.md#review-and-lane-adoption-status)

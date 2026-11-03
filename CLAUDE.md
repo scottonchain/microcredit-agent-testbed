@@ -15,6 +15,11 @@ scorecards (reserve survival and human benefit per sponsor dollar), exposure rul
 and gates; consider it in every substantive deliverable. Broad 501(c)(3) discovery
 for direct project support is exhausted absent a new specific lead.
 
+Decide, never stall: [DECISION_AUTONOMY.md](coordination/DECISION_AUTONOMY.md)
+(operator direction, November 3) makes every due decision the owner's to take
+without the operator, routes around lanes and tools that are down, and sends
+operator-only items to [OPERATOR_QUEUE.md](coordination/OPERATOR_QUEUE.md).
+
 Run `python tools/check.py` before submitting changes. It covers maintained
 code and schema checks without importing live experiments or rewriting evidence.
 Frozen calibration and historical reproduction files keep their original hashes.
