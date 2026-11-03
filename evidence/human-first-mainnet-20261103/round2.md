@@ -1,0 +1,139 @@
+# Human-first mainnet lane: rails research round two (November 3, 2026)
+
+Claude Code (AI), the dedicated D16 lane, first run. This is the November 10 "rails round two" row of [human-first-mainnet.md](../../coordination/directions/human-first-mainnet.md), done on November 3 because the research needed no wait; the counsel brief stays on November 10 and takes section 4 below as its money-transmission input. Public sources read 2026-11-03 through web search summaries. The session's network policy denies every primary host this round needed: `docs.stripe.com`, `support.stripe.com`, `apidocs.bridge.xyz`, `www.bridge.xyz`, `help.coinbase.com`, `www.fincen.gov`, `www.ecfr.gov` and the secondary `eco.com`; `developers.circle.com` is allowed but its Mint overview path returned 404. Each figure below is therefore a search summary of a named page, not a read of the page, and is to be re-read from the primary page before it prices anything (D16 acceptance criterion 3). No contact, spend, account or deployment; no sandbox key was requested.
+
+## What this round answers
+
+The round-one finding stands: the crypto-naive borrower pays and receives dollars, and the platform converts. Round two asks what the platform's conversion leg costs, who is the regulated party on it, and whether collecting one's own loan repayments in dollars and converting them is money transmission. Short answers: the conversion leg exists at 0 to 0.5 percent variable cost through a licensed intermediary (Coinbase business account or Stripe's Bridge), plus fixed monthly items; Stripe's own stablecoin products do not do this leg for a US platform; and the federal rulings separate a lender collecting its own receivable (not transmission) from a platform forwarding a borrower's dollars to someone else (transmission), which fixes a design rule for the pool.
+
+## 1. Stripe: dollars in for a platform, and what its stablecoin products do
+
+| Product | Reported terms | Reading for D16 |
+| --- | --- | --- |
+| Card acceptance (US online) | 2.9 percent plus 30 cents (third-party fee tables citing the US pricing page) | 10 dollar principal repayment: 59 cents (5.9 percent); 0.25 dollar interest: 31 cents (123 percent). Cards are for principal only, or not at all |
+| ACH Direct Debit | 0.8 percent capped at 5 dollars, standard settlement; one source adds 1.2 percent for two-day settlement (unconfirmed) | 10 dollars: 8 cents; 0.25 dollars: 0.2 cents. The cheapest pull rail found; needs bank verification (Financial Connections or micro-deposits) by the borrower |
+| Stablecoin acceptance ("Crypto" payment method) | 1.5 percent; settles in USD to the Stripe balance; US businesses only, not New York; Connect supported; no disputes, no recurring; up to 10,000 dollars per transaction and stablecoin refunds per a secondary source (unconfirmed) | Wrong direction for a borrower without USDC. Relevant only as the rail by which a USDC-holding payer (a sponsor, a backer) funds the platform's dollar balance |
+| Stablecoin payouts for Connect | Private preview; US platforms only; payouts only to individuals or sole proprietors in supported countries, not to companies or non-profits; USDC on Base and Polygon; arrives about 10 minutes after the platform initiates it once the recipient's wallet is verified; fee not published | Converts the platform's USD balance into USDC in a recipient's wallet. That is the shape of a USDC disbursement to a borrower's passkey wallet, which D16's borrower does not want, and it is not a route for the platform to fund its own pool contract. The underlying developer route is Bridge (section 2) |
+| Connect payouts to a recipient's bank | 0.25 percent of the payout, capped at 25 dollars (two secondary sources); a monthly active-account charge and a per-payout fixed fee exist on some Connect plans (Japan pricing seen; US figures not confirmed); instant payouts 0.5 to 2 percent (range from one source) | A 10 dollar disbursement by Connect payout costs at least 2.5 cents variable plus whatever fixed items apply; a bank's own ACH or Zelle from the platform's account is cheaper (section 5) |
+
+## 2. Bridge (Stripe's stablecoin subsidiary): the developer conversion route
+
+| Item | Reported terms | Source and limitation |
+| --- | --- | --- |
+| Licensing | Money services business registration and money transmitter licences in 48 US states, a VASP registration in Europe; "allows developers to serve their customers without needing their own money transmission licenses" | Bridge support article, about 441 days old per the search engine; licence count to be re-read |
+| Customer onboarding | Every end customer (individual or business) accepts Bridge's terms and completes Bridge's KYC or KYB, through a hosted link or the Customer API; no wallet or account before KYC; sanctions and PEP screening; records kept five years | Bridge docs (compliance overview, individuals, businesses) |
+| Lighter KYC tier | US individuals verified by database checks only, without photo identification, may transact up to 10,000 dollars per transaction or 100,000 dollars lifetime before photo identification is required | Bridge docs (individuals) |
+| Basic orchestration fee | 0.25 percent per transaction | Developer agreement as summarised by one secondary source; a legal wiki says no public price list existed in August 2026 and quotes integrator estimates of about 10 basis points; a third source says 10 to 25 basis points by contract |
+| Virtual-account orchestration fee | 0.50 percent per transaction | Same developer agreement summary |
+| USD virtual account charge | 2 dollars per month per active or created account | Same developer agreement summary; not found in the docs |
+| Gas | Passed through at cost | Secondary |
+| Developer fee | The developer may add its own percentage (example 1 percent) or a flat fee (beta); paid out monthly on the 5th; a fee may not push a transfer below the transaction minimum | Bridge docs (developer fees); the transaction-minimums page was not reached |
+| Virtual account (dollars in) | A per-customer ACH or wire account; dollars arriving are converted and delivered to a configured destination address on a supported chain | Bridge docs (virtual accounts, dollar access); Base is listed among supported chains in secondary summaries, to be confirmed |
+| Liquidation address (USDC out) | A permanent chain address per customer; USDC arriving is converted and paid to the customer's bank by ACH (queued and processed daily) or wire (real time); same-day ACH is listed in the USD guide without stated cutoffs | Bridge docs (offramp with liquidation addresses, USD integration guide) |
+| Sandbox | No self-serve signup: a developer account is opened by contacting Bridge support, then sandbox keys (`sk-test`) at `api.sandbox.bridge.xyz`; sandbox performs no real KYC and has a simulate-approval endpoint; Bridge recommends sandbox for schema testing only | Bridge docs (setting up sandbox). A developer account is a new account: operator-only |
+
+**Two ways to use it, and which fits D16.** (i) Platform as the customer: the lender of record completes Bridge's business KYB once, holds one virtual account (its own dollars in, converted to USDC at the pool's address) and one liquidation address (pool USDC out to its own bank). Borrowers never meet Bridge; they pay the platform by whatever dollar rail they have. Variable cost 0.25 to 0.50 percent per leg, plus 2 dollars a month, plus gas. (ii) Borrower as the customer: each borrower completes Bridge's KYC (database tier), gets a virtual account whose destination is the pool or their passkey wallet, and pays dollars straight into it. Bridge is then the transmitter for the borrower's funds and the platform never touches them, which is the cleanest legal shape; but it puts an identity check and a 2 dollar monthly account charge on each borrower, which is eight times the 0.25 dollar interest payment and exactly what the operator's requirement asked to avoid. Round two keeps (i) as the design and records (ii) as the fallback if counsel finds (i) is transmission.
+
+## 3. Coinbase business account
+
+| Item | Reported terms | Source and limitation |
+| --- | --- | --- |
+| Coinbase Business (launched 2025) | A business account for stablecoin payments: payments arrive as USDC from Base and other networks; a fee on each completed payment, visible only after login (1 percent on payment links at launch, no longer published); "auto-conversion from USDC to USD is subject to a fee" (amount unpublished); payouts on Base with no gas fee for sender or recipient; no application fee | Coinbase business pages (search summary) |
+| USD to USDC conversion | 1:1 with no fee in a Coinbase account; a 0.10 percent fee on net USDC-to-USD conversions above 5 million dollars in a rolling 30 days (one source says 2 million) | Third-party fee guides; the help-centre page was not reachable |
+| USDC withdrawal to Base | Free on all supported networks; Coinbase pays the network fee | Coinbase help centre (network fees page, search summary) |
+| ACH deposit and withdrawal | No Coinbase fee; 1 to 5 business days | Third-party guides (consumer accounts) |
+| Wire | About 25 dollars (receiving bank may charge more) | Third-party guides |
+| Instant cash-out to a debit card | 1.5 percent (one low-quality source) | Unverified |
+| Eligibility | Full identity verification; a business account needs business verification | Coinbase pages |
+
+**Reading.** If the business account carries the consumer-grade terms (ACH in free, conversion free, USDC out to Base free), the platform's conversion leg costs nothing per loan and the only cost is time (ACH 1 to 5 business days each way) and the unpublished business fee schedule. This is the cheapest leg found and must be read from the live fee page or measured before it prices anything; the round-one figure of 0.5 percent for Coinbase ACH came from the Onramp FAQ, which is a different product.
+
+## 4. Is collecting one's own loan repayments in dollars, and converting them, money transmission?
+
+This is the input to the November 10 counsel brief. It is research, not advice; every ruling cited binds only its requester.
+
+**Federal (FinCEN).** The regulation defines money transmission services as the acceptance of currency, funds or other value that substitutes for currency from one person and the transmission to another location or person by any means (31 CFR 1010.100(ff)(5)(i)(A)); convertible virtual currency is value that substitutes for currency (2013 guidance, consolidated in FIN-2019-G001 of May 9, 2019). The exclusions in (ff)(5)(ii) include the payment-processor exclusion, whose four conditions include operating through a clearance and settlement system that admits only BSA-regulated financial institutions; FinCEN says CVC payment processors generally cannot meet that condition and must register as money services businesses. A person who obtains CVC and uses it to pay for goods or services on their own behalf is a user, not a transmitter (2019 guidance). The administrative rulings on lending point both ways:
+
+| Ruling | Facts | Outcome |
+| --- | --- | --- |
+| FIN-2008-R011 (December 11, 2008) | A company accepts funds from lenders and transmits them to borrowers through its microfinance partners | Not a money transmitter: integral to the loan service |
+| FIN-2014-R005 (April 29, 2014) | A loan clearinghouse accepts and transmits the lender's funds | Not a money transmitter: integral to the clearinghouse service |
+| FIN-2008-R009 (2008) | A company accepts funds from its customers and transmits them to the installment-contract creditor | Money transmitter: not integral to any transaction other than the transmission itself |
+| FIN-2013-R002 (2013) | A company pays its customers' creditors with the customers' own funds or with credit the company extends to them | Money transmitter |
+
+**Reading for the pool, in three legs.** Leg 1: the borrower pays dollars to the lender to satisfy the borrower's own debt. The lender accepts funds as payee and transmits them to no one; that is why creditors are not money services businesses, and no exemption is needed. Leg 2: the lender converts its own dollars to USDC through a licensed exchanger (Coinbase or Bridge) and deposits them into a pool it owns. That is a purchase of CVC on its own account; the exchanger is the regulated party. Leg 3 is the trap: if the dollars are the borrower's and the platform moves them to someone else, such as backers receiving an interest share, a sponsor, or a pool whose funds belong to someone other than the collector, FIN-2008-R009 and FIN-2013-R002 describe that as transmission. Disbursement runs the same way: a lender paying out its own loan is not forwarding another person's money, and FIN-2008-R011 excused even a lender-to-borrower forwarder when integral to the service.
+
+**Design rule that follows (for D7's packet and the contract wiring).** The entity that collects dollars is the lender of record and the owner of the pool's capital; backers are paid on chain by the contract from the lender's own interest income, never by the platform forwarding a borrower's dollars; a borrower's dollar repayment is recorded as the lender's receipt and the on-chain repayment is made from the lender's own USDC. Sponsor capital (the operator's 100 USDC) is the lender's capital, not a third party's funds held for them. If the pool's legal owner and the dollar collector are different persons, the collector is a forwarder and the analysis changes.
+
+**State law.** The CSBS Money Transmission Modernization Act has been enacted in full or in part by 35 states as of August 2026 (CSBS; licensees in those states carry about 99 percent of reported activity); Louisiana's version took effect July 1, 2026 and Oklahoma's takes effect November 1, 2026. The model act exempts an agent of the payee (a person who collects and processes payments from a payor to a payee on the payee's behalf under a written contract); about half the states recognised that exemption at an older count; California has it at Financial Code 2010(l) with DFPI opinion letters narrowing it; Texas, Massachusetts and New York have one; Florida and the District of Columbia do not; some states treat the conduct as outside the definition altogether. The exemption matters only when the collector is not the payee. A lender collecting its own receivable is the payee. The conversion step is where state virtual-currency regimes bite: California's Digital Financial Assets Law licensing became operative July 1, 2026 for digital financial asset business activity with California residents, with penalties quoted at up to 100,000 dollars a day, and sources disagree on whether its stablecoin chapter was repealed by SB 97 on June 30, 2026; whether a lender exchanging USDC on its own account through a licensed exchanger is in scope was not found in the sources read. New York's BitLicense and the state lending licences (which are separate from money transmission) were not reached this round and go to the brief as open questions, with the round-one item on Kiva's zero-interest nonprofit model and nonprofit-lender exemptions.
+
+## 5. The cash-out side at pilot amounts
+
+| Route (platform dollars to the borrower, or pool USDC to dollars) | Reported cost | Timing |
+| --- | --- | --- |
+| Pool USDC to Coinbase, convert, ACH to the platform's bank | 0 (consumer-grade terms; business schedule unseen) plus Base gas paid by the pool key | ACH 1 to 5 business days |
+| Pool USDC to a Bridge liquidation address, ACH to the platform's bank | 0.25 to 0.50 percent plus gas | ACH batched daily; wire real time; same-day ACH listed |
+| Circle Mint (direct redemption) | Businesses only, by application; wire; no published minimum; a secondary source reports zero spread and about 25 dollars per wire; next business day | Not available to the borrower; usable by the lender of record if accepted |
+| Platform bank to the borrower by Zelle or the bank's own ACH | 0 to a bank-set fee; no third-party account for the borrower beyond a bank account | Zelle minutes; ACH 1 to 3 business days |
+| Stripe Connect payout to the borrower's bank | 0.25 percent of the payout (capped at 25 dollars) plus unconfirmed fixed items; instant 0.5 to 2 percent | Standard 2 business days; instant minutes |
+| Coinbase instant card cash-out | 1.5 percent (unverified) | Minutes; needs the borrower to hold a Coinbase account, so not D16's borrower |
+
+A borrower who never touches crypto therefore receives dollars by Zelle or ACH from the lender's bank account, and nothing in that leg needs a crypto account or an identity check beyond the borrower's own bank. The identity check moves to the lender's exchange or Bridge account, once.
+
+## 6. All-in estimate for one pilot loan (10 USDC principal, 0.25 USDC interest, 90 days)
+
+Variable cost only; fixed monthly items shown separately. Every figure is a reported figure, not a measured one.
+
+| Stack | Disbursement leg | Repayment leg | Variable cost per loan | Fixed |
+| --- | --- | --- | --- | --- |
+| A. Coinbase business account plus the lender's bank (Zelle or ACH) | Pool to Coinbase (gas under 1 cent), convert (0), ACH out (0), Zelle to borrower (0) | Borrower Zelle or ACH to the lender (0), ACH to Coinbase (0), convert (0), send to Base (0) | About 1 cent; 0.1 percent | None reported; business fee schedule unseen; 3 to 10 days of float each way |
+| B. Stripe ACH debit plus Bridge | Pool to liquidation address (0.25 to 0.50 percent, 2.5 to 5 cents), ACH to the lender's bank, Zelle to borrower (0) | Stripe ACH debit 0.8 percent (8 cents on 10.25 dollars), Stripe payout to bank (0), bank to virtual account 0.50 percent (5 cents) | 16 to 18 cents; 1.6 to 1.8 percent | 2 dollars a month for the virtual account (20 cents a loan at 10 loans a month) |
+| C. Stripe card plus Bridge | As B | Card 2.9 percent plus 30 cents (60 cents on 10.25 dollars), then as B | 68 to 70 cents; 6.8 to 7 percent | As B |
+| D. Bridge with the borrower as customer | Borrower's own liquidation address | Borrower's own virtual account | 5 to 10 cents | 2 dollars a month per borrower; identity check per borrower |
+
+Against the D16 stop condition (round-trip rail cost above 10 percent of a 10 USDC loan, that is 1 dollar): A, B and D pass on reported figures and C passes narrowly; D fails the operator's requirement on identity and on its fixed charge; A is cheapest but least documented. The November 24 measured round trip should run stack A if the operator opens the accounts and stack B otherwise; both need an account that only the operator can open, which is queued.
+
+## 7. Changes to the model and the direction
+
+- `ev:fiat-usdc-rails-round2-20261103` (this note), `ev:fincen-lending-rulings-20261103` (the four rulings and the 2019 guidance, as summarised) and `ev:bridge-developer-terms-20261103` (Bridge's fee and onboarding terms, as summarised).
+- `claim:platform-conversion-leg-cost-20261103`: the platform's conversion leg costs 0 to 0.5 percent variable through a licensed intermediary, so the round-one 0 to 3 percent band narrows and the stop condition is not met on reported figures.
+- `claim:collector-must-be-lender-of-record-20261103`: the design rule of section 4.
+- `action:human-first-mainnet-readiness-20261103`: round two recorded as this note; the November 10 row reduces to the counsel brief.
+- Operator queue: one row for the accounts a measured round trip needs (a Coinbase business account or a Bridge developer account, and a Stripe account in test mode) and one optional row for the denied hosts.
+
+## Sources
+
+| Topic | Source (primary unless marked) | How read |
+| --- | --- | --- |
+| Stripe stablecoin payments docs | https://docs.stripe.com/payments/accept-stablecoin-payments and https://docs.stripe.com/payments/stablecoin-payments | Search summary; host denied |
+| Stripe stablecoin payments, availability by state | https://support.stripe.com/questions/get-started-with-stablecoin-payments | Search summary; host denied |
+| Stripe stablecoin payouts for Connect | https://docs.stripe.com/connect/stablecoin-payouts and https://support.stripe.com/express/questions/stablecoin-payouts | Search summary; host denied |
+| Stripe stablecoin fee 1.5 percent (secondary) | https://www.upshift.finance/blog/stripe-stablecoin-payments | Search summary |
+| Stripe US card and ACH fees (secondary fee tables) | https://superdupr.com/blog/stripe-fees and https://dodopayments.com/blogs/stripe-ach-fees/ | Search summary |
+| Stripe Connect payout fee (secondary) | https://drop-desk.com/blog/guides/stripe-fees-for-marketplace-operators/ and https://ecomcalctools.com/blog/fees-stripe/stripe-connect-fees/ | Search summary |
+| Bridge developer agreement | https://www.bridge.xyz/legal/developer-agreement | Host denied; fees as summarised by https://eco.com/support/en/articles/15083178-bridge-xyz-stablecoin-api-for-payouts-and-orchestration (also denied) and https://wiki.private.law/en/bridge-stripe |
+| Bridge compliance overview | https://support.bridge.xyz/articles/9627830441-describe-the-regulatory-and-compliance-landscape-for-bridge-wallets | Search summary |
+| Bridge customer KYC (individuals, businesses) | https://apidocs.bridge.xyz/platform/customers/compliance/individuals and https://apidocs.bridge.xyz/platform/customers/compliance/businesses/overview | Search summary; host denied |
+| Bridge virtual accounts, dollar access, USD guide | https://apidocs.bridge.xyz/get-started/guides/move-money/virtualaccounts, https://apidocs.bridge.xyz/get-started/guides/common-use-cases/dollar-access, https://apidocs.bridge.xyz/get-started/guides/move-money/usd-integration-guide | Search summary; host denied |
+| Bridge liquidation addresses | https://apidocs.bridge.xyz/get-started/guides/move-money/offramp_liquidation | Search summary; host denied |
+| Bridge developer fees and minimums | https://apidocs.bridge.xyz/platform/orchestration/fees-and-mins/devfees | Search summary; host denied |
+| Bridge sandbox | https://apidocs.bridge.xyz/get-started/introduction/quick-start/setting-up-sandbox | Search summary; host denied |
+| Bridge pricing estimates (secondary) | https://www.spark.money/research/stablecoin-api-payout-provider-comparison | Search summary |
+| Coinbase Business payments | https://www.coinbase.com/business/payments | Search summary |
+| Coinbase Business launch (payment tools, no gas on Base) | https://www.coinbase.com/blog/introducing-a-powerful-suite-of-business-payment-tools-on-coinbase-business | Search summary |
+| Coinbase payouts from Coinbase Business | https://help.coinbase.com/en/coinbase/other-topics/business/payout | Search summary; host denied |
+| Coinbase network fees (USDC withdrawals free) | https://help.coinbase.com/en/international-exchange/trading-deposits-withdrawals/network-fees | Search summary; host denied |
+| Coinbase USDC conversion and ACH (secondary) | https://cryptofeediscount.com/academy/coinbase-fees-2026/ and https://tokenecho.io/guides/coinbase-fees-explained-every-fee-youll-pay-in-2026-and-how-to-reduce-them/ | Search summary |
+| Circle Mint eligibility and terms | https://www.circle.com/en/add-digital-dollar-accounts and https://circle.com/businesses | Search summary; developers.circle.com Mint overview path returned 404 |
+| FinCEN 2019 CVC guidance FIN-2019-G001 | https://www.fincen.gov/system/files/2019-05/FinCEN%20Guidance%20CVC%20FINAL%20508.pdf | Search summary; host denied; law-firm summaries at https://www.mofo.com/resources/insights/190521-fincen-convertible-virtual-currency and https://www.debevoise.com/insights/publications/2019/05/applying-the-bank-secrecy-act-framework |
+| FinCEN rulings FIN-2008-R011, FIN-2008-R009, FIN-2013-R002, FIN-2014-R005 | https://www.fincen.gov/system/files/administrative_ruling/fin-2008-r011.pdf, https://www.fincen.gov/sites/default/files/administrative_ruling/fin-2008-r009.pdf, https://www.fincen.gov/sites/default/files/administrative_ruling/FIN-2013-R002.pdf, https://www.fincen.gov/system/files/administrative_ruling/FIN-2014-R005.pdf | Search summary; host denied |
+| 31 CFR 1010.100(ff)(5) | https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1010/subpart-A/section-1010.100 | Host denied; definition text from the ruling summaries |
+| CSBS MTMA adoption | https://www.csbs.org/mtma-legislative-update-august-2026 | Search summary |
+| Agent-of-payee exemption (California DFPI opinion letters, ETA analysis) | https://dfpi.ca.gov/rules-enforcement/laws-and-regulations/opinion-letters-by-law-subject/receiving-money-for-transmission-and-agent-of-payee-exemption/ and https://electran.org/news/guest-analysis-the-intersection-of-payments-and-money-transmission-a-look-at-the-agent-of-the-payee-exemption/ | Search summary |
+| California DFAL operative date and SB 97 | https://www.mofo.com/resources/insights/260729-california-digital-assets-and-fintech-update and https://calmatters.digitaldemocracy.org/bills/ca_202520260sb97 | Search summary; sources disagree on the stablecoin chapter |
+
+## Next dated steps
+
+- **November 10 (this lane):** counsel brief drafted and queued, with section 4 as its money-transmission section and the open questions (state lending licences and rate caps for a USDC-denominated unsecured consumer loan; DFAL and BitLicense scope for a lender exchanging on its own account; nonprofit-lender exemptions and Kiva's US model; privacy of interview records; adverse-action reasons).
+- **November 24 (this lane):** the measured round trip. On-chain legs on Base Sepolia need no account and run first; the dollar legs need a Stripe test-mode account and a Coinbase business or Bridge developer account, which are operator-only and queued with the default that the arithmetic above stands in until then.
+- **Primary pages:** the first run after any of the denied hosts is allowed re-reads the fee pages and replaces every "search summary" row above.

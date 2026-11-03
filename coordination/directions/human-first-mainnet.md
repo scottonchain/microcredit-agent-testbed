@@ -22,7 +22,7 @@ The operator asks that an unknown borrower talk to an agent, explain the need an
 
 ## Requirement 2: repaying interest in USDC without ever holding crypto
 
-The operator asks for the most efficient way for a borrower who has never used crypto, and does not care for it, to repay interest in USDC. Round one of the research is in [evidence/human-first-mainnet-20261103](../../evidence/human-first-mainnet-20261103/README.md); the routine repeats it. The options, with the round-one finding:
+The operator asks for the most efficient way for a borrower who has never used crypto, and does not care for it, to repay interest in USDC. Round one of the research is in [evidence/human-first-mainnet-20261103](../../evidence/human-first-mainnet-20261103/README.md); the routine repeats it. Round two (November 3): [round2.md](../../evidence/human-first-mainnet-20261103/round2.md), the platform's conversion leg at 0 to 0.5 percent variable through a licensed intermediary and the rule that the dollar collector must be the lender of record and pool owner. The options, with the round-one finding:
 
 | Option | How it works | Round-one finding |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ The operator asks for the most efficient way for a borrower who has never used c
 | --- | --- | --- | --- |
 | App tested | D7 gate 2 (testnet passkey demonstration, zero money) and gate 3 (five named borrowers, five backers) | Steward session (D7) | November 8 18:00 UTC (D7 checkpoint) |
 | Trust interview | Prototype on testnet, shadow-scored, cost measured | This lane | November 17: shadow-scoring report |
-| Rails | Round two research; a measured cash-in and cash-out round trip at pilot amounts on testnet or sandbox | This lane | November 10: round two; November 24: measured round trip |
+| Rails | Round two research (done November 3, [round2.md](../../evidence/human-first-mainnet-20261103/round2.md)); a measured cash-in and cash-out round trip at pilot amounts on testnet or sandbox (the accounts it needs are queued) | This lane | November 24: measured round trip |
 | Legal | Jurisdiction named; lender of record; licensing and rate caps; plain-language disclosure; adverse-action reasons from the scorecard; privacy of interview records; whether conversion is money transmission | Operator (jurisdiction, counsel), this lane (brief) | November 10: counsel brief drafted and queued; the answer is operator-only |
 | Contract | A fixed pool (CI-30) deployed on Base mainnet; audit and bounty per `action:mainnet-readiness`; originator and officer wiring decided (contract PR 28 order router or owner-granted lines); one person, one line | This lane (packet), contract repository | November 24: deployment plan with costs |
 | Operations | Reserve custody (whose key holds the 100 USDC), monitoring, collections and default policy, borrower support channel, record-keeping, incident response, staker terms in plain words | This lane | November 24: operations note |
