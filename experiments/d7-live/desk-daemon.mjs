@@ -1,6 +1,8 @@
 // The credit officer: watches the CreditDesk for unanswered applicants, decides (an AI officer through the
 // headless Claude Code CLI, or plain rules for tests) and replies on chain with the officer key.
-// env: RPC_URL, DESK, OFFICER_KEY_FILE (or OFFICER_KEY), MODE=claude|rules, POLL (ms), LOG (file),
+// env: RPC_URL, DESK, OFFICER_KEY_FILE (or OFFICER_KEY), MODE=claude|rules|interview, POLL (ms), LOG (file),
+//      MODE=interview: the rules officer decides and replies; the deterministic trust interview (interview.mjs) is run
+//      in shadow and its score, reasons and recommended backing are logged on the 'replied' line (D16, November 2026).
 //      CLAUDE_MODEL (optional), CIRCLE_API_KEY (optional: drip test USDC to a wallet when a line is granted).
 import { createPublicClient, createWalletClient, http, formatUnits } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -10,6 +12,7 @@ import { readFileSync, writeFileSync, appendFileSync, mkdtempSync } from 'node:f
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ADDR, ABI } from './lib/chain.mjs';
+import { decide as decideInterview } from './interview.mjs';
 
 const RPC = process.env.RPC_URL, DESK = process.env.DESK, MODE = process.env.MODE || 'claude', POLL = Number(process.env.POLL || 5000);
 const LOG = process.env.LOG || 'results/desk-daemon.log';
@@ -127,7 +130,8 @@ async function handle(applicant) {
   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
-  let d; const skip = MODE === 'rules' ? 'rules' : llmAllowed(applicant);
+  let shadow = null; if (MODE === 'interview') { try { const r = decideInterview({ thread, facts, maxLine }); shadow = { score: r.score, outcome: r.outcome, backing: r.backing, reasons: r.reasons, cost: r.cost, us: r.ASSESS_US, version: r.version, reply: r.reply }; } catch (e) { shadow = { error: String(e.message).slice(0, 120) }; } }
+  let d; const skip = (MODE === 'rules' || MODE === 'interview') ? 'rules' : llmAllowed(applicant);
   if (skip) { d = decideRules({ thread, facts, maxLine }); if (skip !== 'rules') log({ ev: 'llm-skipped', applicant, why: skip, spentHour: spent(3600000).toFixed(3), spentDay: spent(86400000).toFixed(3), cooldownSeconds: Math.max(0, Math.round((cooldownUntil - Date.now()) / 1000)) }); }
   else { try { d = await decideClaude({ thread, facts, maxLine, fixed }); recordCall(applicant, d.cost, true); } catch (e) { recordCall(applicant, 0, false); log({ ev: 'llm-error', applicant, err: String(e.message).slice(0, 200), cooldownSeconds: Math.round((cooldownUntil - Date.now()) / 1000) }); d = decideRules({ thread, facts, maxLine }); } }
   if (!d.reply) d = decideRules({ thread, facts, maxLine });
@@ -148,7 +152,7 @@ async function handle(applicant) {
     rc = await pc.waitForTransactionReceipt({ hash });
   });
   let drip_ = null; if (total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
-  log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, drip: drip_ });
+  log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, drip: drip_, ...(shadow ? { shadow } : {}) });
 }
 
 log({ ev: 'start', mode: MODE, desk: DESK, officer: officer.address, rpc: RPC });
