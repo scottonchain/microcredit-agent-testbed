@@ -14,7 +14,7 @@ export const ST = { None: 0, Requested: 1, Active: 2, Repaid: 3, Defaulted: 4, C
 export const CENT = 10000n;
 export const usd = (x) => Number(formatUnits(x, 6));
 export const money = (x) => '$' + usd(x).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-export const parseUsd = (s) => { const t = String(s).trim().replace(/^\$/, ''); if (!/^\d+(\.\d{1,6})?$/.test(t)) return null; return parseUnits(t, 6); };
+export const parseUsd = (s) => { const t = String(s).replace(/[\s$]/g, '').replace(',', '.'); if (!/^\d+(\.\d{1,6})?$/.test(t)) return null; return parseUnits(t, 6); };
 export const ceilCent = (x) => ((x + CENT - 1n) / CENT) * CENT;
 
 export let cfg;

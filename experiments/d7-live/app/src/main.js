@@ -13,10 +13,10 @@ const days = (secs) => Math.max(0, Math.ceil(secs / 86400));
 const fmtDate = (ts) => new Date(ts * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 let chainNow = null; // block time, so the screens agree with the pool even when the phone clock is wrong
 const now = () => chainNow ?? Math.floor(Date.now() / 1000);
-const dueLine = (l) => { const d = l.dueAt - now(); const date = fmtDate(l.dueAt);
-  if (d >= 86400) return `Due in ${days(d)} days, by ${date}.`;
-  if (d > -86400) return `Due today (${date}). Pay back today and it is on time.`;
-  const late = Math.floor(-d / 86400); return `Late by ${late} day${late === 1 ? '' : 's'}: it was due ${date}. Pay back now.${late >= 7 ? ' After 30 days late the loan counts as a default: you could not borrow again, and the desk or friend who backed you would lose what they put up.' : ''}`; };
+const dueLine = (l) => { const day = (t) => Math.floor(t / 86400); const dd = day(l.dueAt) - day(now()); const date = fmtDate(l.dueAt); // calendar days, so the phone's date and this line agree
+  if (dd > 0) return `Due in ${dd} day${dd === 1 ? '' : 's'}, by ${date}.`;
+  if (dd === 0) return `Due today (${date}). Pay back today and it is on time.`;
+  const late = -dd; return `Late by ${late} day${late === 1 ? '' : 's'}: it was due ${date}. Pay back now.${late >= 7 ? ' After 30 days late the loan counts as a default: you could not borrow again, and the desk or friend who backed you would lose what they put up.' : ''}`; };
 
 let sheetReturnFocus = null; // where focus goes back to when the sheet closes
 function sheet({ title, body = '', actions = [] }) {
@@ -33,7 +33,7 @@ const copy = async (t, btn) => { try { await navigator.clipboard.writeText(t); i
 async function refresh() { S.snap = await C.snapshot(S.client, S.addr); try { chainNow = Number((await S.client.getBlock()).timestamp); } catch {} return S.snap; }
 
 // ---------- running an action ----------
-async function run(title, calls, { retryIds, summary } = {}) {
+async function run(title, calls, { retryIds, summary, stay: stayHere } = {}) {
   const steps = ['Approve with your fingerprint, face or screen lock', 'Sending to the test network', 'Done'];
   const draw = (i, extra = '') => sheet({ title, body: `<ul class="steps">${steps.map((s, k) => `<li class="${k < i ? 'done' : k === i ? 'on' : ''}">${k < i ? '✓ ' : ''}${s}</li>`).join('')}</ul>${extra}` });
   draw(0);
@@ -43,9 +43,9 @@ async function run(title, calls, { retryIds, summary } = {}) {
       const r = await C.send(S.bundler, S.account, calls, (st) => draw(st === 'sign' ? 0 : 1));
       if (r.success) {
         let extra = ''; try { extra = summary ? await summary(r) : ''; } catch {}
-        const stay = location.hash.startsWith('#credit');
+        const stay = stayHere || location.hash.startsWith('#credit');
         if (!stay) { location.hash = '#home'; render(); } // the fresh home screen sits behind the Done sheet, so nothing looks failed
-        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)}: done.</div>${extra}<details><summary class="muted">Receipt</summary><p class="muted">${esc(new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}: ${esc(title)}, from wallet ${esc(short(S.addr))}. Recorded on the test network as ${esc(String(r.txHash).slice(0, 10))}… (<a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">public record site</a>; it may first check that you are not a robot).</p></details>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); if (stay) render(); } }] });
+        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)}: done.</div>${extra}<details><summary class="muted">Receipt</summary><p class="muted">${esc(new Date(now() * 1000).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}: ${esc(title)}, from wallet ${esc(short(S.addr))}. Recorded on the test network as ${esc(String(r.txHash).slice(0, 10))}… (<a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">public record site</a>; it may first check that you are not a robot).</p></details>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); if (stay) render(); } }] });
         return r;
       }
       lastErr = r.reason || 'Reverted';
@@ -143,7 +143,7 @@ async function renderHome(my = renderSeq) {
     ${C.cfg.desk && !s.defaulted ? (s.limit === 0n ? '<button id="gCredit">Ask for a loan</button>' : '<button class="secondary" id="gCredit">Credit desk</button>') : ''}<p class="muted">${s.limit === 0n ? (C.cfg.desk ? 'Say how much you need and what for; an AI credit officer answers in the app.' : 'You have no credit yet. <a href="#credit">How to get credit</a>') : active || waiting ? `You can borrow again after you pay this loan back. No fees; interest about ${(apr / 12).toFixed(1)}% a month.` : `Your limit is ${C.money(s.limit)}. No fees; interest about ${(apr / 12).toFixed(1)}% a month (${apr.toFixed(2)}% a year). When you owe something, a Pay back button appears here.`}</p></div>
   ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Who vouches for you</h2><p class="muted">Backing is a promise to cover your loan if you do not pay it back.</p>${s.backedBy.length ? `<div class="muted">You are backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${C.cfg.desk && b.who.toLowerCase() === C.cfg.desk.toLowerCase() ? 'The credit desk' : esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><span><b>${C.money(b.amount)}</b> <a href="#back?to=${esc(b.who)}">Change</a></span></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
   ${waiting ? `<div class="note warn">A loan of ${C.money(waiting.principal)} was requested but not paid out.<div class="grid"><button id="finish">Finish it</button><button class="secondary" id="cancelReq">Cancel it</button></div></div>` : ''}
-  ${active ? `<div class="card"><div class="muted">You owe today</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day: about ${C.money(C.ceilCent(active.principal + (active.principal * active.rateBps * BigInt(active.term)) / (10000n * 31536000n)))} by the due date if you wait until then.</p><button id="payNow">Pay back</button></div>` : ''}
+  ${active ? `<div class="card"><div class="muted">You owe today</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day: about ${C.money(C.ceilCent(active.owed + (active.principal * active.rateBps * BigInt(Math.max(0, active.dueAt - now()))) / (10000n * 31536000n)))} by the due date if you wait until then.</p><button id="payNow">Pay back</button></div>` : ''}
   ${s.defaulted ? '<div class="note bad">This wallet has a defaulted loan and cannot borrow again.</div>' : ''}
   <div class="grid"><button id="gBorrow" ${active || waiting || s.defaulted ? 'disabled' : ''} ${C.cfg.desk && s.limit === 0n && !active && !waiting && !s.defaulted ? 'hidden' : ''}>Borrow</button><button class="secondary" id="gHelp">Help</button></div>
   <details class="card more"><summary>More</summary><div class="grid"><button class="secondary" id="gSend">Send money</button><button class="secondary" id="gReceive">Receive</button><button class="secondary" id="gBack">Back a friend</button></div></details>`;
@@ -193,11 +193,15 @@ async function renderRepay(my = renderSeq) {
   const quote = C.ceilCent(l.owed), pay = quote + C.headroom(l.principal); const short_ = quote > s.usdcBal ? quote - s.usdcBal : 0n;
   app.innerHTML = `${header('Pay back')}
   <div class="card"><div class="muted">You owe right now</div><div class="big">${C.money(quote)}</div><p class="muted">Borrowed ${C.money(l.principal)}. ${dueLine(l)} Your wallet has ${C.money(s.usdcBal)}.</p></div>
-  ${short_ > 0n ? `<div class="note warn">You are ${C.money(short_ + C.CENT)} short. The interest is not in your wallet yet. Get test USDC from the faucet, then come back.<div class="grid"><button id="faucet">Open the faucet</button><button class="secondary" id="copyA">Copy my address</button></div></div>` : ''}
+  ${short_ > 0n ? `<div class="note warn">You are ${C.money(short_ + C.CENT)} short: the interest is more than what is in your wallet.${C.cfg.desk ? ' Tap below and the credit desk sends the missing cents to this wallet (practice money). This screen then updates by itself.<div class="grid"><button id="askCents">Ask the desk for the cents</button></div><p class="muted" id="centsNote" hidden>Asked. The desk usually answers within a minute.</p>' : ''}${C.cfg.desk ? '' : `<details style="margin-top:8px"><summary>Get test dollars yourself</summary><p class="muted">Your address, for the test-dollar faucet (choose the Base Sepolia network and USDC there):</p><div class="addr">${esc(S.addr)}</div><div class="grid"><button class="secondary" id="copyA">Copy my address</button><button class="secondary" id="faucet">Open the faucet</button></div></details>`}</div>` : ''}
   <button id="all" ${short_ > 0n ? 'disabled' : ''}>Pay back everything</button>
-  <details class="card"><summary>Pay only part</summary><label for="part">Amount</label><input id="part" inputmode="decimal" placeholder="e.g. 5"><button id="partGo" class="secondary" style="margin-top:8px">Pay this part</button></details>
+  <details class="card"><summary>Pay only part</summary><label for="part">Amount</label><input id="part" inputmode="decimal" placeholder="e.g. 5"><div id="partWarn"></div><button id="partGo" class="secondary" style="margin-top:8px">Pay this part</button></details>
   <p class="muted">Only what you owe is taken. The approval is a cent or two higher so that the interest growing in the next minute is covered too.</p>`;
-  if (short_ > 0n) { $('#faucet').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); }; $('#copyA').onclick = (e) => copy(S.addr, e.target); }
+  if (short_ > 0n) { if ($('#faucet')) { $('#faucet').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); }; $('#copyA').onclick = (e) => copy(S.addr, e.target); }
+    if ($('#askCents')) $('#askCents').onclick = async () => {
+      const r = await run('Ask for the cents', [C.deskCall('say', [`I am ${C.money(short_ + C.CENT)} short to pay back my loan. Please send the cents for the interest.`])], { stay: true, summary: async () => '<p>Asked. The desk usually answers within a minute, and this screen updates by itself.</p>' });
+      if (r && r.success) { $('#askCents').disabled = true; $('#centsNote').hidden = false; const t0 = Date.now(); const poll = setInterval(async () => { if (!location.hash.startsWith('#repay') || Date.now() - t0 > 240000) return clearInterval(poll); try { const s2 = await refresh(); if (s2.usdcBal >= quote) { clearInterval(poll); render(); } } catch {} }, 4000); }
+    }; }
   const doPay = async (amount, approveAmt) => {
     const allowance = await S.client.readContract({ address: C.cfg.usdc, abi: C.erc20Abi, functionName: 'allowance', args: [S.addr, C.cfg.pool] });
     const calls = []; if (allowance < approveAmt) calls.push(C.usdcCall('approve', [C.cfg.pool, approveAmt]));
@@ -206,12 +210,12 @@ async function renderRepay(my = renderSeq) {
     await run('Pay back', calls, { summary: async () => {
       const s2 = await refresh(); const l2 = s2.loans.find((x) => x.id === l.id); const paid = before.bal - s2.usdcBal; const elapsed = BigInt(Math.max(0, now() - l.disbursedAt)); const accrued = (l.principal * l.rateBps * elapsed) / (10000n * 31536000n); const totalPaid = l.principal + accrued; // simple interest on the original principal, over the whole loan
       const dues = (await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'duesPaid', args: [S.addr] })) - before.dues;
-      const intr = totalPaid > l.principal ? totalPaid - l.principal : 0n; const cents = (x) => x === 0n ? 'no interest' : x < C.CENT ? `${(Number(x) / 1e4).toFixed(2).replace(/\.?0+$/, '')} of a cent of interest` : 'about ' + C.money(C.ceilCent(x)) + ' of interest';
-      if (l2 && l2.status === C.ST.Repaid) return `<p>Loan closed. ${totalPaid > paid + C.CENT ? `You paid <b>${C.money(paid)}</b> now and <b>${C.money(totalPaid)}</b> in total` : `You paid <b>${C.money(paid)}</b>`}: the ${C.money(l.principal)} you borrowed plus ${cents(intr)}.${dues >= C.CENT ? ` ${C.money(dues)} of that interest counts toward your own credit, so your limit is now <b>${C.money(s2.limit)}</b>.` : ''} Your wallet now has <b>${C.money(s2.usdcBal)}</b>. You owe nothing and can borrow again right away.</p>`;
+      const intr = totalPaid > l.principal ? totalPaid - l.principal : 0n; const cents = (x) => x === 0n ? 'no interest' : x < C.CENT ? `${(Number(x) / 1e4).toFixed(2).replace(/\.?0+$/, '')} of a cent of interest` : `${(Number(x) / 1e4).toFixed(2).replace(/\.?0+$/, '')} cents of interest`;
+      if (l2 && l2.status === C.ST.Repaid) return `<p>Loan closed. ${totalPaid > paid + C.CENT ? `You paid <b>${C.money(paid)}</b> now and ${C.money(totalPaid - paid)} earlier` : `You paid <b>${C.money(paid)}</b>`}: the ${C.money(l.principal)} you borrowed plus ${cents(intr)}.${dues >= C.CENT ? ` ${C.money(dues)} of that interest counts toward your own credit, so your limit is now <b>${C.money(s2.limit)}</b>.` : ''} Your wallet now has <b>${C.money(s2.usdcBal)}</b>. You owe nothing and can borrow again right away.</p>`;
       return `<p>You paid <b>${C.money(paid)}</b>. Still owed: <b>${C.money(C.ceilCent(l2 ? l2.owed : 0n))}</b>. Interest is paid first, then the amount borrowed.</p>`; } });
   };
   $('#all').onclick = () => doPay(pay, pay);
-  $('#partGo').onclick = () => { const v = C.parseUsd($('#part').value); if (!v) return; if (v > s.usdcBal) return refuse('InsufficientBalance'); doPay(v, v); };
+  $('#partGo').onclick = () => { const v = C.parseUsd($('#part').value); $('#partWarn').innerHTML = ''; if (!v) { $('#partWarn').innerHTML = '<div class="note warn">Numbers only, like 2 or 2.50.</div>'; return; } if (v > s.usdcBal) return refuse('InsufficientBalance'); doPay(v, v); };
 }
 
 function renderSend() {
@@ -233,10 +237,9 @@ function renderSend() {
 
 function renderReceive() {
   const qr = qrcode(0, 'M'); qr.addData(S.addr); qr.make();
-  app.innerHTML = `${header('Receive and get test dollars')}
-  <div class="card"><div class="qr">${qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true })}</div><div class="addr" id="addrBox">${esc(S.addr)}</div><button id="cp" class="secondary" style="margin-top:8px">Copy address</button></div>
-  <div class="card"><h2>Get test dollars (USDC)</h2><ol><li>Copy your address above.</li><li>Open the Circle faucet, choose <b>Base Sepolia</b> and <b>USDC</b>, paste your address, and request.</li><li>Come back here. Your balance updates in a minute.</li></ol>
-  <p class="muted">You need a few test dollars to pay interest when you repay. The faucet gives a small amount every couple of hours.</p><button id="fc">Open the faucet</button></div>`;
+  app.innerHTML = `${header('Receive')}
+  <div class="card"><p class="muted">A friend with this app can send you test dollars: show them this code, or send them the address.</p><div class="qr">${qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true })}</div><div class="addr" id="addrBox">${esc(S.addr)}</div><button id="cp" class="secondary" style="margin-top:8px">Copy address</button></div>
+  <div class="card"><h2>Where test dollars come from</h2><p class="muted">The credit desk puts the cents for the interest in your wallet when it says yes, and sends more if you are ever short when paying back. You never need to fetch test dollars yourself.</p><details><summary>Advanced: the public test-dollar faucet</summary><p class="muted">Anyone can also get test USDC from Circle's faucet: choose <b>Base Sepolia</b> and <b>USDC</b> there and paste this address. Only needed if the desk is away.</p><button id="fc" class="secondary">Open the faucet</button></details></div>`;
   $('#cp').onclick = (e) => copy(S.addr, e.target); $('#fc').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); };
 }
 
@@ -252,22 +255,25 @@ async function renderAsk(my = renderSeq) {
   if (s && (C.openLoans(s).length || s.limit > 0n)) return go('home');
   let d = null; try { d = await C.deskState(S.client, S.addr); } catch {} if (stale(my)) return;
   if (d && d.thread.length) return go('credit');
-  const amounts = [1, 2, 3, 5].filter((a) => a <= maxLine); if (!amounts.includes(maxLine)) amounts.push(maxLine);
+  const amounts = [1, 2, 3, 5].filter((a) => a <= maxLine); if (!amounts.includes(maxLine)) amounts.push(maxLine); const custom = prev.custom || false;
   const purposes = ['Groceries', 'Transport', 'School', 'Work tools', 'A bill', 'Something else'];
   const whens = [['In a week', 'in a week'], ['In two weeks', 'in two weeks'], ['In 30 days', 'in 30 days']];
-  const a = { amount: prev.amount || null, purpose: prev.purpose || null, when: prev.when || null };
+  const a = { amount: prev.amount || null, purpose: prev.purpose || null, when: prev.when || null, custom };
   app.innerHTML = `<h1>What do you need?</h1>
-  <div class="card"><div class="muted">How much? (up to $${maxLine} in this practice version)</div><div class="chips" id="amt">${amounts.map((v) => `<button class="chip" data-v="${v}">$${v}</button>`).join('')}</div></div>
+  <div class="card"><div class="muted">How much? (up to $${maxLine} in this practice version)</div><div class="chips" id="amt">${amounts.map((v) => `<button class="chip" data-v="${v}">$${v}</button>`).join('')}<button class="chip" data-v="other">Other</button></div><input id="amtOther" inputmode="decimal" placeholder="e.g. 3.75" maxlength="8" hidden><div id="amtWarn"></div></div>
   <div class="card"><div class="muted">What is it for? <span>(anyone on the test network can read this, so keep it general)</span></div><div class="chips" id="why">${purposes.map((p) => `<button class="chip" data-v="${esc(p)}">${esc(p)}</button>`).join('')}</div><input id="whyText" placeholder="A few words, no personal details" maxlength="120" hidden></div>
   <div class="card"><div class="muted">When do you plan to pay it back? (you have up to 30 days)</div><div class="chips" id="when">${whens.map(([l, v]) => `<button class="chip" data-v="${esc(v)}">${esc(l)}</button>`).join('')}</div></div>
   <div id="askCost" class="note ok" hidden></div>
-  <button id="askGo" disabled>Ask for this loan</button>
+  <button id="askGo" disabled>Ask for this loan</button><p class="muted" id="askHint">Choose an amount, what it is for and when you plan to pay it back.</p>
   <p class="muted">An AI credit officer reads this and answers in the app, usually within a minute.</p>
   <p class="muted"><a href="#credit">Write to the credit desk in your own words instead</a></p>`;
-  const paint = () => { for (const [id, k] of [['amt', 'amount'], ['why', 'purpose'], ['when', 'when']]) document.querySelectorAll(`#${id} .chip`).forEach((b) => b.classList.toggle('on', String(b.dataset.v) === String(a[k])));
-    $('#whyText').hidden = a.purpose !== 'Something else'; $('#askGo').disabled = !(a.amount && a.purpose && a.when);
+  const paint = () => { for (const [id, k] of [['amt', 'amount'], ['why', 'purpose'], ['when', 'when']]) document.querySelectorAll(`#${id} .chip`).forEach((b) => b.classList.toggle('on', id === 'amt' && a.custom ? b.dataset.v === 'other' : String(b.dataset.v) === String(a[k])));
+    $('#amtOther').hidden = !a.custom; $('#whyText').hidden = a.purpose !== 'Something else'; $('#askGo').disabled = !(a.amount && a.purpose && a.when); $('#askHint').hidden = !$('#askGo').disabled;
     const c = $('#askCost'); if (a.amount && s && s.rate !== undefined) { const v = C.parseUsd(String(a.amount)); const i30 = C.ceilCent((v * s.rate * 30n) / (10000n * 365n)); c.hidden = false; const dW = a.when === 'in a week' ? 7n : a.when === 'in two weeks' ? 14n : 30n; const iW = C.ceilCent((v * s.rate * dW) / (10000n * 365n)); c.innerHTML = `If the officer agrees: you get <b>${C.money(v)}</b> now. Pay it back any time within 30 days, with one tap in this app: ${dW < 30n ? `about ${C.money(iW)} of interest if you pay ${esc(a.when)}, ` : ''}${C.money(i30)} at most (after the full 30 days). No other fees.`; } else c.hidden = true; };
-  document.querySelectorAll('.chip').forEach((b) => (b.onclick = () => { const k = b.parentElement.id === 'amt' ? 'amount' : b.parentElement.id === 'why' ? 'purpose' : 'when'; a[k] = b.parentElement.id === 'amt' ? Number(b.dataset.v) : b.dataset.v; saveAsk(a); paint(); if (k === 'purpose' && a.purpose === 'Something else') $('#whyText').focus(); }));
+  document.querySelectorAll('.chip').forEach((b) => (b.onclick = () => { const k = b.parentElement.id === 'amt' ? 'amount' : b.parentElement.id === 'why' ? 'purpose' : 'when';
+    if (k === 'amount') { if (b.dataset.v === 'other') { a.custom = true; a.amount = null; saveAsk(a); paint(); $('#amtOther').focus(); return; } a.custom = false; $('#amtWarn').innerHTML = ''; }
+    a[k] = k === 'amount' ? Number(b.dataset.v) : b.dataset.v; saveAsk(a); paint(); if (k === 'purpose' && a.purpose === 'Something else') $('#whyText').focus(); }));
+  $('#amtOther').oninput = () => { const v = C.parseUsd($('#amtOther').value); const ok = v !== null && v >= 1_000_000n && v <= BigInt(maxLine) * 1_000_000n; $('#amtWarn').innerHTML = $('#amtOther').value.trim() && !ok ? `<div class="note warn">Between $1 and $${maxLine} in this practice version, like 3.75.</div>` : ''; a.amount = ok ? Number(v) / 1e6 : null; saveAsk(a); paint(); };
   paint();
   $('#askGo').onclick = async () => {
     const why = a.purpose === 'Something else' ? ($('#whyText').value.trim() || 'something I need') : a.purpose.toLowerCase();
@@ -299,7 +305,7 @@ async function renderCredit(my = renderSeq) {
     if (d.thread.length === lastLen && d.backing === lastBacking) return; lastLen = d.thread.length; lastBacking = d.backing;
     const bubbles = [{ from: 1, text: greeting }, ...d.thread].map((m) => `<div class="bub ${m.from === 0 ? 'me' : 'desk'}">${esc(m.text)}</div>`).join('');
     const askA = loadAsk().amount; const canNow = d.backing > 0n ? (askA && C.parseUsd(String(askA)) <= d.backing ? C.parseUsd(String(askA)) : d.backing) : 0n;
-    const granted = d.backing > 0n ? `<div class="note ok" id="granted">The officer agreed: you can borrow up to <b>${C.money(d.backing)}</b>. The desk also put a few cents in your wallet to cover the interest, so you pay back only what you borrow plus that interest.</div>` : '';
+    const granted = d.backing > 0n ? `<div class="note ok" id="granted">The officer agreed: you can borrow up to <b>${C.money(d.backing)}</b>. The desk also put a few cents of test dollars in your wallet so you can pay the interest (in a real loan you would pay that yourself). Borrow now makes the loan at once; your fingerprint, face or screen lock confirms it.</div>` : '';
     $('#toBorrow').textContent = canNow > 0n ? `Borrow ${C.money(canNow)} now` : 'Borrow'; $('#toBorrow').dataset.v = canNow > 0n ? String(canNow) : ''; $('#toBorrow').className = canNow > 0n ? '' : 'secondary'; $('#send').className = canNow > 0n ? 'secondary' : '';
     $('#chat').innerHTML = bubbles + granted; $('#typing').hidden = d.unanswered === 0;
     $('#toBorrow').hidden = d.backing === 0n; $('#send').disabled = d.unanswered >= 3;
@@ -353,7 +359,7 @@ async function renderBack() {
 function renderHelp() {
   const code = C.recoveryCode(S.cred);
   app.innerHTML = `${header('Help')}
-  <div class="card"><h2>How it works</h2><ol><li>Ask the credit desk (an AI credit officer, in the app). It vouches for you up to a few dollars and puts a few cents in your wallet for the interest.</li><li>Borrow up to your limit. The money is in your wallet at once.</li><li>Pay it back within 30 days, all at once or in parts. Paying back builds your history.</li></ol><p class="muted">Test dollars have no value. If you ever need more of them, Receive (under More) shows how.</p></div>
+  <div class="card"><h2>How it works</h2><ol><li>Ask the credit desk (an AI credit officer, in the app). It vouches for you up to a few dollars and puts a few cents in your wallet for the interest.</li><li>Borrow up to your limit. The money is in your wallet at once.</li><li>Pay it back within 30 days, all at once or in parts. Paying back builds your history.</li></ol><p class="muted">Test dollars have no value. The credit desk provides the few cents the interest needs, so there is nothing to fetch; in a real loan you would pay the interest yourself.</p></div>
   <div class="card"><h2>Words you may see</h2><p class="muted"><b>Wallet</b>: where this app keeps your test dollars; only your fingerprint, face or screen lock opens it. <b>Test dollars</b>: play money on a test network, worth nothing. <b>Credit officer</b>: an AI that decides whether the desk vouches for your loan with its own test dollars. <b>Backing</b>: that promise to cover a loan if it is not paid back. <b>Interest</b>: a few cents a month on what you borrow, paid when you pay back; the only cost. <b>Recovery code</b>: a long code that reopens this same wallet on another phone.</p></div>
   <div class="card"><h2>Send feedback</h2><p>Tell us what confused you: what you tapped and what you saw. No personal information, please.</p><a class="btn secondary" id="fb" href="mailto:claude-microcredit@agentmail.to?subject=Omnequa%20test%20wallet%20feedback&body=What%20I%20tapped%3A%0AWhat%20I%20saw%3A%0AWhat%20I%20expected%3A%0A">Send feedback</a></div>
   ${installCard()}
