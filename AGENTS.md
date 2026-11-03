@@ -34,6 +34,10 @@ D's contact caps. Older mechanisms remain historical evidence.
 
 
 
+## Channels and currencies (November 3)
+
+[D17](coordination/directions/whatsapp-local-currency-channel.md) carries local-currency repayment and a conversational servicing agent on the channel people already use, from the [November 3 research packet](evidence/human-first-channels-20261103/README.md); the summary and rules are in [NORTH_STAR.md](coordination/NORTH_STAR.md#channels-and-currencies-november-3-operator-request).
+
 ## October 16 repair instruction
 
 Hourly direction posts stayed stopped on October 16; the instruction and its receipts are in [NORTH_STAR.md](coordination/NORTH_STAR.md#october16-repair-instruction-supersedes-hourly-posting).

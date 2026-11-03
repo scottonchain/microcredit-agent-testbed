@@ -91,38 +91,40 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 28 paths after the November 3 decisions)
+## Unified priority list (everything not ruled out; 30 paths after the November 3 decisions and the D17 additions)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 2 | 2 | 3 | 3 | 13 | Receipt: a platform displays partner-issued credentials |
 | 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
-| 3 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
-| 5 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
-| 6 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
-| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
-| 8 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
-| 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
-| 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
-| 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
-| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown; Claude decides November 8 18:00 UTC on the Hermes trace or NONE |
-| 13 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
-| 14 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
-| 15 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
-| 16 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop (three earlier PRs unanswered) |
-| 17 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent November 1, no reply by the November 2 gate (no nudge); Claude decides November 8 18:00 UTC |
-| 18 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
-| 19 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 2 | 2 | 2 | 9 | Far; no vendor channel |
-| 20 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
-| 21 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
-| 22 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
-| 23 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
-| 24 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
-| 25 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
-| 26 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 27 | N9 | Positive payment-history reporting | 1 | 1 | 1 | 2 | 2 | 7 | Specified |
-| 28 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked |
+| 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
+| 4 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
+| 5 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
+| 6 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
+| 7 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
+| 8 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
+| 9 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
+| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
+| 11 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
+| 12 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
+| 13 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown; Claude decides November 8 18:00 UTC on the Hermes trace or NONE |
+| 14 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
+| 15 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
+| 16 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
+| 17 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop (three earlier PRs unanswered) |
+| 18 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent November 1, no reply by the November 2 gate (no nudge); Claude decides November 8 18:00 UTC |
+| 19 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
+| 20 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 2 | 2 | 2 | 9 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance |
+| 21 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 2 | 2 | 2 | 9 | Far; no vendor channel |
+| 22 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
+| 23 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
+| 24 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
+| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
+| 26 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
+| 27 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
+| 28 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
+| 29 | N9 | Positive payment-history reporting | 1 | 1 | 1 | 2 | 2 | 7 | Specified |
+| 30 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked |
 
 Reading the list: the top five need no new authority and attack the hiring
 decision or buy human judgment from the agent economy. N2 and N3 dropped on
@@ -334,6 +336,7 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | E8 | Agents posing as humans, or seeded fake demand, to demonstrate a mechanism | Fraud; also destroys the evidence value of every receipt. | F9: disclosed-AI buyer paying real humans for judgment. |
 | E9 | Charging workers placement or guarantee fees | ILO Convention 181 article 7 flag already in NORTH_STAR.md. | Employer- or sponsor-paid guarantee; capped pledge never pursued. |
 | E10 | Mass unsolicited outreach to poor households or scraped contact lists | Consent; existing contact caps. | Ride channels where the person already seeks the service (F5, F6, F7). |
+| E12 | Collection through a borrower's contacts, groups or relatives; any contact-list access; shaming or escalation language in reminders | Kenya criminalised contacting a borrower's contacts from January 1, 2025 and lenders still do it; Nigeria's FCCPC logged at least 1,300 complaints and watchlisted 88 apps; Indian cases of morphed WhatsApp photos sent to relatives ([packet](../evidence/human-first-channels-20261103/README.md), section C). | F12 with the rule that the agent messages only the borrower and a defaulted loan is a loss to the pool and the backer, never a campaign. |
 | E11 | Bots entering human skill or esports competitions for prize money | Unfair to human competitors; terms-of-service bans. | F9, B8: agents buy human judgment instead of displacing it. |
 
 ### Ruled out on operational or legal grounds (R)
@@ -347,6 +350,7 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | R5 | Money transmission, remittance cash-out agents (B9), stablecoin payout to households | Licensing and anti-money-laundering regimes; model records Ethiopia's virtual-asset notice and Kenya's lender rules. | F2 as cost comparison; re-entry through a licensed provider. |
 | R6 | Prediction or betting markets funding projects (B7) | Gambling regulation; stakes from the poor. | Outcome-based contracts with sponsors. |
 | R7 | New platform accounts (Roblox, Second Life, Upwork, panels) operated by agents | Issue 396: no new platform accounts; bot restrictions. | Read-only research; human-owned accounts. |
+| R9 | Omnequa's own lending bot on WhatsApp without a licensed lender of record, speaking of USDC, backers or staking | Meta's terms of September 23, 2026 bar AI as a business account's primary function and its messaging policy bars peer-to-peer lending, payday loans, debt collection and virtual currency as subjects irrespective of licence, in Meta's sole discretion ([packet](../evidence/human-first-channels-20261103/README.md), section D). | F12 as the licensed lender's servicing assistant on that lender's account, in local currency, with a non-Meta fallback; re-entry only through a lender of record (D16) or a partner (D17 M1). |
 | R8 | Real funds on the testnet contract | No deployment or financial authority; the contract is optional infrastructure. | Simulation (N6, F3, F4). |
 
 ### Ruled out for lack of resources: channels, permissions, currency (L)
@@ -362,6 +366,8 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 | L7 | School channel for F10 | Partner, device access, consent for minors. | Not sought; parked. |
 | L8 | Signed partnerships of any kind | No signatory or legal-entity authority recorded in this repository. | Operator signs; the team prepares terms. |
 | L9 | A standing lateral refresh | Resolved November 1: the operator approved one daily routine. Its November 2 run lost its receipt (no repository attached); re-pointed November 3. | In place in a repository-attached session; a run that cannot push is a same-day defect (DECISION_AUTONOMY.md rule 4). |
+
+| L10 | A WhatsApp Business account for a real D17 sandbox number | Needs a legal identity and a phone number that Meta's rules bind; a session cannot hold either. | Simulated transport for the agent's logic, cost and error rate; the account is an operator-queue row. |
 
 ### Ruled out by evidence (V)
 
@@ -405,6 +411,25 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 4. Next dated steps: C4 and C2 decided by Claude November 8 18:00 UTC; N1
    partner-terms receipt re-run by the next daily run; F9 panel-terms receipt
    November 8; N6, F4, N7 November 15.
+
+## Concrete steps taken on November 3, evening (D17)
+
+- The operator asked for broader thinking on the human-first direction: other
+  currencies, geographies, harms, technology people already understand, an
+  agentic conversation on WhatsApp directly or through a Friendship Bridge-type
+  partner. The research is in
+  [evidence/human-first-channels-20261103](../evidence/human-first-channels-20261103/README.md)
+  and the direction is [D17](directions/whatsapp-local-currency-channel.md).
+- Two paths added and scored: F12 (a licensed lender's conversational servicing
+  agent on the channel people already use, 12, now rank 3) and F11
+  (remittance-linked repayment through a licensed WhatsApp remitter, 9). Two
+  register entries added: R9 (an unlicensed lending bot on WhatsApp) and E12
+  (collection through contacts, groups or relatives), and L10 (a WhatsApp
+  business account needs an identity the team does not hold).
+- The geography screen (Guatemala 17, Kenya 15, Mexico 15, Brazil 15, Philippines
+  14, Ghana 13, India 13, Nigeria 12, Pakistan 12, Bangladesh 12, Ethiopia 9)
+  and the harms register are in the packet; the lateral routine re-reads the
+  F11 and F12 scores on November 15 with the rest.
 
 ## Proposed next actions
 
