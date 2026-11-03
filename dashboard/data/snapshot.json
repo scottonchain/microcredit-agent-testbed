@@ -1,0 +1,1783 @@
+{
+ "abi": {
+  "events": {
+   "0x0f5bb82176feb1b5e747e28471aa92156a04d9f3ab9f45f28e2d704232b93f75": {
+    "name": "Unstaked",
+    "params": [
+     {
+      "indexed": true,
+      "name": "account",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x2846d120b0ac120b4495cd52f69d161236e146706bc5e2b85d01884744797c80": {
+    "name": "LoanDefaulted",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "writtenOff",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "recovered",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x2c5bd1383d9ae06e59cb5d048733ea979ec14bb1ff928b9f0c25364308e12f14": {
+    "name": "LoanCancelled",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x38627d96fdacdc9af8921fda2b4a93b0a4c3d9705e8d347babab4322d34cc1d6": {
+    "name": "LoanImpaired",
+    "params": [
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "impaired",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x470e775e4fa2bd975947314dc912d0dd85338d809a6b967e36382e32a3b6f2bb": {
+    "name": "LoanRequested",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "interestRate",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x73a19dd210f1a7f902193214c0ee91dd35ee5b4d920cba8d519eca65a7b488ca": {
+    "name": "Deposited",
+    "params": [
+     {
+      "indexed": true,
+      "name": "lender",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "assets",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "shares",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x74fbfc2c048fe0211ac71c0a641600f10792646ea18663f24063d9e59cfa91da": {
+    "name": "ReserveReleased",
+    "params": [
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x79cc0b6d59d041321d365afff1d2b489f2e14c096f2e9ebd04b662c0230b0c5f": {
+    "name": "RepaymentApplied",
+    "params": [
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "interest",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "principal",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "fee",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x7dd047392ec2e181ad8bc19f76c26ae0dfa3d4a609c72da62f8f2349e87eeafe": {
+    "name": "LoanDisbursed",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "to",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x8bf46bf4cfd674fa735a3d63ec1c9ad4153f033c290341f3a588b75685141b35": {
+    "name": "Attested",
+    "params": [
+     {
+      "indexed": true,
+      "name": "recipient",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "attester",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "uid",
+      "type": "bytes32"
+     },
+     {
+      "indexed": true,
+      "name": "schemaUID",
+      "type": "bytes32"
+     }
+    ]
+   },
+   "0x91fb9d98b786c57d74c099ccd2beca1739e9f6a81fb49001ca465c4b7591bbe2": {
+    "name": "Withdrawn",
+    "params": [
+     {
+      "indexed": true,
+      "name": "lender",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "to",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "assets",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "shares",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0x9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d": {
+    "name": "Staked",
+    "params": [
+     {
+      "indexed": true,
+      "name": "account",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0xb52b99b9e83551fcbd069b559cc3e823e2a1a3bad8ece46561ea77524394c850": {
+    "name": "ReserveFunded",
+    "params": [
+     {
+      "indexed": true,
+      "name": "from",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0xbd7c266af72fcf4e1b4699580b0cde016af4780605d5691c40642c801340709a": {
+    "name": "Backed",
+    "params": [
+     {
+      "indexed": true,
+      "name": "backer",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "secured",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "unsecured",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0xc066848fc999c6226f325d664f607a1352b04ee7f6c461691a95f70c4e586774": {
+    "name": "BackerCharged",
+    "params": [
+     {
+      "indexed": true,
+      "name": "backer",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "slashed",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "charged",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0xc7ce0a35f17b490de2a317e7fecb2cae86b1abffb03800b2f492823521382698": {
+    "name": "LoanRepaid",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
+   "0xf930a6e2523c9cc298691873087a740550b8fc85a0680830414c148ed927f615": {
+    "name": "Revoked",
+    "params": [
+     {
+      "indexed": true,
+      "name": "recipient",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "attester",
+      "type": "address"
+     },
+     {
+      "indexed": false,
+      "name": "uid",
+      "type": "bytes32"
+     },
+     {
+      "indexed": true,
+      "name": "schemaUID",
+      "type": "bytes32"
+     }
+    ]
+   }
+  },
+  "selectors": {
+   "firstLossReserve()": "0x2a544a84",
+   "getAttestation(bytes32)": "0xa3112a64",
+   "getLoanRate()": "0xcab98890",
+   "getLoanTerms(uint256)": "0x0634612f",
+   "getSchema(bytes32)": "0xa2ea7c6e",
+   "getUtilisation()": "0xc8a8d293",
+   "lenderCash()": "0x6e21ccab",
+   "lenderCount()": "0xd2227acf",
+   "reservedLiquidity()": "0x9f308512",
+   "sharePrice()": "0x87269729",
+   "totalAssets()": "0x01e1d114",
+   "totalLentOut()": "0x227a09c4",
+   "totalStaked()": "0x817b1cd2"
+  }
+ },
+ "backing": [
+  {
+   "backer": "0x4c688c5d7d835cc379396b4729ee1dbdbdbb21c1",
+   "block": 53548061,
+   "borrower": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
+   "secured": 5000000,
+   "tx": "0xeb5d5719dd2e9f6507e2e502bce50bf314d27dc55cb0ac217a7bef995ae47301",
+   "unsecured": 0
+  }
+ ],
+ "caveats": [
+  "Base Sepolia testnet: test USDC only, no real funds, no real borrowers.",
+  "Every loan so far was taken by an AI agent or a team test account; none is a human outcome.",
+  "A repaid testnet loan is plumbing evidence, not human benefit (NORTH_STAR.md).",
+  "Borrower profiles appear only after the steward registers the profile schema and attests with consent."
+ ],
+ "flows": {
+  "deposited": 128000000,
+  "disbursed": 42000000,
+  "fees": 0,
+  "interest": 1520,
+  "repaid": 42001520,
+  "withdrawn": 93000000,
+  "writtenOff": 0
+ },
+ "humanMetrics": {
+  "attestedLoans": {
+   "ofLoans": 27,
+   "withProfile": 0
+  },
+  "disbursedToBorrowersWithNoOwnStake": {
+   "borrowers": 10,
+   "ofBorrowers": 10
+  },
+  "firstTimeBorrowerShare": 0.5952380952380952,
+  "netYield": {
+   "interestCollected": 1520,
+   "net": 1520,
+   "recovered": 0,
+   "writtenOff": 0
+  },
+  "repaymentRate": {
+   "closedLoans": 26,
+   "defaulted": 0,
+   "onTime": 26,
+   "rate": 1.0,
+   "repaid": 26
+  },
+  "uniqueRepayingBorrowers": {
+   "attested": 0,
+   "unattested": 10
+  }
+ },
+ "loanStatus": {
+  "Active": 0,
+  "Cancelled": 1,
+  "Defaulted": 0,
+  "Repaid": 26,
+  "Requested": 0
+ },
+ "loans": [
+  {
+   "backerCharged": 0,
+   "borrower": "0x4e23411897b1c2bc31e3db03e074c370596cd4e6",
+   "closed": {
+    "as": "Cancelled",
+    "block": 47778352,
+    "time": 1791324992,
+    "tx": "0xd7a5d8634c4dd11f97b0aab64c6daf3626e8e3f4249860878b85eeb852fc9f02"
+   },
+   "daysToRepay": null,
+   "disbursed": null,
+   "dueAt": null,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 1,
+   "impaired": 0,
+   "interest": 0,
+   "principal": 5000000,
+   "principalRepaid": 0,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 0,
+   "repayments": [],
+   "requested": {
+    "block": 47777570,
+    "time": 1791323428,
+    "tx": "0x39eda28940007f249fb4ce69afbf9f64eef5576f83bad6d3d3416fb042f9f904"
+   },
+   "status": "Cancelled",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47778226,
+    "time": 1791324740,
+    "tx": "0xd134db64ecca156ad5a3fe2b8943eb6a3b37dc942de10adb4671296d2fb62090"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47778008,
+    "time": 1791324304,
+    "tx": "0xb662212ad6848e96fa6736ae2c705d379affb43b891f85f8767e02ed0bfbeb19"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793916304,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 2,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 5000000,
+   "principalRepaid": 5000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 5000000,
+   "repayments": [
+    {
+     "amount": 5000000,
+     "block": 47778226,
+     "time": 1791324740,
+     "tx": "0xd134db64ecca156ad5a3fe2b8943eb6a3b37dc942de10adb4671296d2fb62090"
+    }
+   ],
+   "requested": {
+    "block": 47777798,
+    "time": 1791323884,
+    "tx": "0x5901c7e455ca9c916ea48a0090e41b1d3ba1fb4cc81b2d1a46702bcba2695166"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47779221,
+    "time": 1791326730,
+    "tx": "0x40185f775ebc77fa7eb5ca4d94c5eef065395575495bfb1ba608a816208ace5a"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47779201,
+    "time": 1791326690,
+    "tx": "0x0a61bf7eb3e0066ed03e160b9575a6b9fc8bbcb6675a8c586b012c9032a160c1"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793918690,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 3,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47779221,
+     "time": 1791326730,
+     "tx": "0x40185f775ebc77fa7eb5ca4d94c5eef065395575495bfb1ba608a816208ace5a"
+    }
+   ],
+   "requested": {
+    "block": 47778796,
+    "time": 1791325880,
+    "tx": "0x956c311eb7a3581e386e7bccf84864bc4d3969e2aae189eddd6db39845c08fcf"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47779744,
+    "time": 1791327776,
+    "tx": "0x3e9b979f17413851a24c0ae51719e5f60e3bd4d5ace591045c31aaf4615d1da7"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47779736,
+    "time": 1791327760,
+    "tx": "0x959f7c65b784304c43fa338c989d92dbae9fc9f24c5adf9cf29353e0e444d6d0"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793919760,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 4,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47779744,
+     "time": 1791327776,
+     "tx": "0x3e9b979f17413851a24c0ae51719e5f60e3bd4d5ace591045c31aaf4615d1da7"
+    }
+   ],
+   "requested": {
+    "block": 47779252,
+    "time": 1791326792,
+    "tx": "0xfb0dcfad7587c259c148ac25adaca84638ac285c8084654ff74d2834abd69aaa"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47780259,
+    "time": 1791328806,
+    "tx": "0x71a9ea8f4abf9ec39f9b1eb4e6f68c6a84bd22b22754b07e06573e6a4c436433"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47780239,
+    "time": 1791328766,
+    "tx": "0xa5ed8e10c15e796d6b86d1ca5fced8ea8e76d68d57f8b0f86a63275cf7fa2eb7"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793920766,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 5,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47780259,
+     "time": 1791328806,
+     "tx": "0x71a9ea8f4abf9ec39f9b1eb4e6f68c6a84bd22b22754b07e06573e6a4c436433"
+    }
+   ],
+   "requested": {
+    "block": 47779811,
+    "time": 1791327910,
+    "tx": "0x78ef07e9af786d19bd7da106fad63f505c5c67b6fdab65e361e010f8431c6072"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47780697,
+    "time": 1791329682,
+    "tx": "0xa6a01d19dec2c9c28c742ef0d590e357c19a8bad0865814ae80bdcda4dc2bacd"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47780689,
+    "time": 1791329666,
+    "tx": "0xa5339c648f00ee5f9b4ede18e60a989dfdaecc48dd45cc4df7893b484b1ba6af"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793921666,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 6,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47780697,
+     "time": 1791329682,
+     "tx": "0xa6a01d19dec2c9c28c742ef0d590e357c19a8bad0865814ae80bdcda4dc2bacd"
+    }
+   ],
+   "requested": {
+    "block": 47780310,
+    "time": 1791328908,
+    "tx": "0xbec6a8f317bde45a1a9edeafc4fa6c45b7066e82e474dd2914e1d38f7e3a503c"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47780961,
+    "time": 1791330210,
+    "tx": "0xcb777303856af394848798239f6337661ff930a21a4eeeb55dffc0e9a1143ed0"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47780952,
+    "time": 1791330192,
+    "tx": "0x0c218d8c901e0b770dbe1a798ace0ba5225e23cf81421435aa4cb88fe3da95dc"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793922192,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 7,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47780961,
+     "time": 1791330210,
+     "tx": "0xcb777303856af394848798239f6337661ff930a21a4eeeb55dffc0e9a1143ed0"
+    }
+   ],
+   "requested": {
+    "block": 47780948,
+    "time": 1791330184,
+    "tx": "0xb85c251f624a8e4167d0cb0789af3f5579779417568402d6d06dc315b5af9918"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781000,
+    "time": 1791330288,
+    "tx": "0x837a26dcc55830191803b2ef8e7c28ef2e88136c0e2307b7f95dd51fd4bb5592"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47780991,
+    "time": 1791330270,
+    "tx": "0x7d6b239dc807a291fa0ced55f5d4646871fbec54425c184631e42437a1834705"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793922270,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 8,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781000,
+     "time": 1791330288,
+     "tx": "0x837a26dcc55830191803b2ef8e7c28ef2e88136c0e2307b7f95dd51fd4bb5592"
+    }
+   ],
+   "requested": {
+    "block": 47780987,
+    "time": 1791330262,
+    "tx": "0xcf184d7f283040bc0a9e56e73e469b2740881ee7c875d0ffb999de6ecf59ddd9"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781040,
+    "time": 1791330368,
+    "tx": "0xc04a1e094954b5fc00c83e8f9c54f49edf977ad9e6d2363b36955283b9aad2d0"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47781031,
+    "time": 1791330350,
+    "tx": "0x4f42f210d2856d90239a31b33d7624fd161f90502d27dd1c543740b094f2fdec"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793922350,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 9,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781040,
+     "time": 1791330368,
+     "tx": "0xc04a1e094954b5fc00c83e8f9c54f49edf977ad9e6d2363b36955283b9aad2d0"
+    }
+   ],
+   "requested": {
+    "block": 47781027,
+    "time": 1791330342,
+    "tx": "0x4fcfdfa7891cbc415e1e5d805397e64b848e68bff7868eacaa8c852696115e8c"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781184,
+    "time": 1791330656,
+    "tx": "0x397ccdf972a6a9b845a9babbee46cdc1244e0832013e4332eac3de4549eed67b"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47781072,
+    "time": 1791330432,
+    "tx": "0xb3915b25274cc1a297f482d93d0f91e86769ce64a7c88f3f61635747910288ee"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793922432,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 10,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781184,
+     "time": 1791330656,
+     "tx": "0x397ccdf972a6a9b845a9babbee46cdc1244e0832013e4332eac3de4549eed67b"
+    }
+   ],
+   "requested": {
+    "block": 47781067,
+    "time": 1791330422,
+    "tx": "0x30879e790132938ddbfc406f399e40dc478830a59c50feae634e202ea974c114"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781302,
+    "time": 1791330892,
+    "tx": "0x5ceca2c2efcad6e6a257b1fc9b4029a91eba3bd3cc2e1a23e5fa791ce5c714b0"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47781217,
+    "time": 1791330722,
+    "tx": "0x33e7bf54ceca58a33f6da0a85a7680bb0be5d75d5f267f172498b725df522ec5"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793922722,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 11,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781302,
+     "time": 1791330892,
+     "tx": "0x5ceca2c2efcad6e6a257b1fc9b4029a91eba3bd3cc2e1a23e5fa791ce5c714b0"
+    }
+   ],
+   "requested": {
+    "block": 47781213,
+    "time": 1791330714,
+    "tx": "0x8986151bbe5c477092fb854c10ebd66a0e02adba72136a531e88330469f4280e"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781880,
+    "time": 1791332048,
+    "tx": "0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47781751,
+    "time": 1791331790,
+    "tx": "0x8925496dbb96b6cbf5f54c8219a59d3131c7777a894af472cb3fe94ebcce1b0e"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793923790,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 12,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781880,
+     "time": 1791332048,
+     "tx": "0x6297e2d797cd3717a58261c101b52022b3d996a793e2f48d1e522b59333b4813"
+    }
+   ],
+   "requested": {
+    "block": 47781747,
+    "time": 1791331782,
+    "tx": "0x678b2dfbb239688461805fa8d51d66cd9ef5a39804350b1aa522cb38f0ffcf49"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47781923,
+    "time": 1791332134,
+    "tx": "0xa234b5630fab418d0e57eef9e7ab258cf38f1b7adb41d97f5fb242abbfeb9236"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47781914,
+    "time": 1791332116,
+    "tx": "0x9f97de9196ae70824ba920277de06808a5ad1d8e07e7ef3eecfcd6333dd21ba4"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793924116,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 13,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47781923,
+     "time": 1791332134,
+     "tx": "0xa234b5630fab418d0e57eef9e7ab258cf38f1b7adb41d97f5fb242abbfeb9236"
+    }
+   ],
+   "requested": {
+    "block": 47781910,
+    "time": 1791332108,
+    "tx": "0x422573691636a754f5e39d6a78b739bd51c3ffb591daac2d722707938ab4d1d3"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47782161,
+    "time": 1791332610,
+    "tx": "0xdeb14586614076cc443a8f6073f7a615d1e1e650eb0a337af0f0c5879502387d"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47782151,
+    "time": 1791332590,
+    "tx": "0x86bfdf71fa188f7102af0dc5142995d56f58f5e7b655755f8cf98d71ba9a528c"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793924590,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 14,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47782161,
+     "time": 1791332610,
+     "tx": "0xdeb14586614076cc443a8f6073f7a615d1e1e650eb0a337af0f0c5879502387d"
+    }
+   ],
+   "requested": {
+    "block": 47782147,
+    "time": 1791332582,
+    "tx": "0x584539ae8d15204fce989c1b5a9b126dbf479b06083f904241e60f5ae49308e5"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47782451,
+    "time": 1791333190,
+    "tx": "0x6de1f7f809447a8a783be0dc5626f320fc6dc61eb1821e49fe9bb3b1f6f65962"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47782441,
+    "time": 1791333170,
+    "tx": "0x0f10c0765ccf2a8097da54aa1ac4adfab59fd0c55a159c48fe54a36bec756825"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793925170,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 15,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47782451,
+     "time": 1791333190,
+     "tx": "0x6de1f7f809447a8a783be0dc5626f320fc6dc61eb1821e49fe9bb3b1f6f65962"
+    }
+   ],
+   "requested": {
+    "block": 47782437,
+    "time": 1791333162,
+    "tx": "0x475fc5107e17bbd17cb466514f9c81096f628132dcff7a1cedf8068acf1404cd"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47782609,
+    "time": 1791333506,
+    "tx": "0x55aa78d0bac4c6504efc769b067f8767ce178816d08ce654623ccb18dba857ad"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47782488,
+    "time": 1791333264,
+    "tx": "0x623c4b9e709e30614c325bedb33c7f394b298ceaf2ac6addf5fcc3ba4f686616"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793925264,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 16,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47782609,
+     "time": 1791333506,
+     "tx": "0x55aa78d0bac4c6504efc769b067f8767ce178816d08ce654623ccb18dba857ad"
+    }
+   ],
+   "requested": {
+    "block": 47782484,
+    "time": 1791333256,
+    "tx": "0xfdd7d78c276fb459254d44e1f051137910f8dcc67a91e001e90286eb786ca402"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "closed": {
+    "as": "Repaid",
+    "block": 47785192,
+    "time": 1791338672,
+    "tx": "0x09900c63432e0d7dd7ef465ddd4ca3b8a58a14dc856156273fd75fbde46d49b2"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47785183,
+    "time": 1791338654,
+    "tx": "0xccc233871238623919c8da4831ee773beddc4b6fef5d169364d4cc8a0a4da4bf"
+   },
+   "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
+   "dueAt": 1793930654,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 17,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47785192,
+     "time": 1791338672,
+     "tx": "0x09900c63432e0d7dd7ef465ddd4ca3b8a58a14dc856156273fd75fbde46d49b2"
+    }
+   ],
+   "requested": {
+    "block": 47785179,
+    "time": 1791338646,
+    "tx": "0xd183b11cd91936e3ad6f3a178352ff29a14989cc36949887bc0489263d6f94d3"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0xd3a74aed54c7c5aa90983c7447310d84201d8d3d",
+   "closed": {
+    "as": "Repaid",
+    "block": 47852770,
+    "time": 1791473828,
+    "tx": "0x00313d6f7f01bc3d6aa5c9e712a0aa3d7ac335bda627b26021de9217b3a69ed0"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47852758,
+    "time": 1791473804,
+    "tx": "0x4bd62e8ac82c31bd8310fe9beda5f39372a4a0f93234944e536bf5847885ab15"
+   },
+   "disbursedTo": "0xd3a74aed54c7c5aa90983c7447310d84201d8d3d",
+   "dueAt": 1794065804,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 18,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47852770,
+     "time": 1791473828,
+     "tx": "0x00313d6f7f01bc3d6aa5c9e712a0aa3d7ac335bda627b26021de9217b3a69ed0"
+    }
+   ],
+   "requested": {
+    "block": 47852756,
+    "time": 1791473800,
+    "tx": "0xaa9f10ed072383353c2a97c97cc6191e9cc36536cf4db14404793430ff39ebf6"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x05fda08765e884eadf17fe4a37ac181ca9dcb193",
+   "closed": {
+    "as": "Repaid",
+    "block": 47852840,
+    "time": 1791473968,
+    "tx": "0x5fde479912b0a6e87e25dc344a9b95f8eac3c66333fcebe41e64c3bfbf4fa67c"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47852831,
+    "time": 1791473950,
+    "tx": "0x4184c638d468a16ebd028be316905d666a6712eecaeb007e0015d7ceca2f95de"
+   },
+   "disbursedTo": "0x05fda08765e884eadf17fe4a37ac181ca9dcb193",
+   "dueAt": 1794065950,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 19,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47852840,
+     "time": 1791473968,
+     "tx": "0x5fde479912b0a6e87e25dc344a9b95f8eac3c66333fcebe41e64c3bfbf4fa67c"
+    }
+   ],
+   "requested": {
+    "block": 47852828,
+    "time": 1791473944,
+    "tx": "0xfaa93032e15c09098bb8690481c4c7b359f231c6c61bfbe149e2bae71b0b87a6"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x329218eaa9bf0edf1af280f15b783bb42133f438",
+   "closed": {
+    "as": "Repaid",
+    "block": 47852906,
+    "time": 1791474100,
+    "tx": "0xda1cb976f60ab101665414b2079067216b3ed26a3d33c65a995383fe9b45f9f9"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47852897,
+    "time": 1791474082,
+    "tx": "0x05b9b4bcffa4f9c00d181b40f80803e17549d7b5b44c445f7ab3945e07fc2eb1"
+   },
+   "disbursedTo": "0x329218eaa9bf0edf1af280f15b783bb42133f438",
+   "dueAt": 1794066082,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 20,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47852906,
+     "time": 1791474100,
+     "tx": "0xda1cb976f60ab101665414b2079067216b3ed26a3d33c65a995383fe9b45f9f9"
+    }
+   ],
+   "requested": {
+    "block": 47852894,
+    "time": 1791474076,
+    "tx": "0x4b97651ee7a59f7d4d8d18baaf2207aeb044e091e3ecaf81e40da568e7640f6a"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x46e9799dfd1b2e19e692c5b0ae72954fc8776bd1",
+   "closed": {
+    "as": "Repaid",
+    "block": 47853487,
+    "time": 1791475262,
+    "tx": "0xf88bcede0cc84611bfa577146cffe6e53c853cad2fd1d58ed03075aa72227020"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47853476,
+    "time": 1791475240,
+    "tx": "0x7e23777ac91b5a3ff262f05ac7ddf009e62c692a185e521222c7c0e313fc99cc"
+   },
+   "disbursedTo": "0x46e9799dfd1b2e19e692c5b0ae72954fc8776bd1",
+   "dueAt": 1794067240,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 21,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47853487,
+     "time": 1791475262,
+     "tx": "0xf88bcede0cc84611bfa577146cffe6e53c853cad2fd1d58ed03075aa72227020"
+    }
+   ],
+   "requested": {
+    "block": 47853473,
+    "time": 1791475234,
+    "tx": "0xac9f39bd4e602bf5fe15bcf984e9b3922d87d501890031cac1c84ae46f4df26f"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x7e56ccfc4aebcbe2aafc37ccb3e19567446e9aa2",
+   "closed": {
+    "as": "Repaid",
+    "block": 47853555,
+    "time": 1791475398,
+    "tx": "0x1e330146d80ab42054385272d04324f0715d4fc3576734c1882273f46ec1137e"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47853546,
+    "time": 1791475380,
+    "tx": "0x4c773326c7af63bd8d3ae45eeb3b2921217e4657692d0cee5ca76b1150d9fbf6"
+   },
+   "disbursedTo": "0x7e56ccfc4aebcbe2aafc37ccb3e19567446e9aa2",
+   "dueAt": 1794067380,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 22,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47853555,
+     "time": 1791475398,
+     "tx": "0x1e330146d80ab42054385272d04324f0715d4fc3576734c1882273f46ec1137e"
+    }
+   ],
+   "requested": {
+    "block": 47853543,
+    "time": 1791475374,
+    "tx": "0x19cc14e38f1fe221198874fd05ffe2f1af9b52d09a53f63f6a93875bef6fbef7"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x86e2c1666d382c89d3f41ec00577b659defee74e",
+   "closed": {
+    "as": "Repaid",
+    "block": 47853622,
+    "time": 1791475532,
+    "tx": "0x6ab957c8b189982d0992f98df4158ec062883581fabc9dcfeb852223ecf1d25d"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47853613,
+    "time": 1791475514,
+    "tx": "0xb3b9332ae561194591cd91bd7c8328e09b02de5aef285306be2236bdf10a7da5"
+   },
+   "disbursedTo": "0x86e2c1666d382c89d3f41ec00577b659defee74e",
+   "dueAt": 1794067514,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 23,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 1000000,
+   "principalRepaid": 1000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 1000000,
+   "repayments": [
+    {
+     "amount": 1000000,
+     "block": 47853622,
+     "time": 1791475532,
+     "tx": "0x6ab957c8b189982d0992f98df4158ec062883581fabc9dcfeb852223ecf1d25d"
+    }
+   ],
+   "requested": {
+    "block": 47853610,
+    "time": 1791475508,
+    "tx": "0x4a89ced6a2439597b055375025531c56a82b50fda54cf37d6e055fdaa10aa8b6"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x9ecdaae8635f06a26cd27f686697e97aa293af04",
+   "closed": {
+    "as": "Repaid",
+    "block": 47902417,
+    "time": 1791573122,
+    "tx": "0x35a959af3a05474c724e9ae3d3661a34257579cde9fffebfe851aa86cd4a9bd0"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 47902411,
+    "time": 1791573110,
+    "tx": "0x8282a4406c66dbf7692881d9864c5fe90d8489e2f85b57ced4e2ebaabdb1f7f0"
+   },
+   "disbursedTo": "0x9ecdaae8635f06a26cd27f686697e97aa293af04",
+   "dueAt": 1794165110,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 24,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 5000000,
+   "principalRepaid": 5000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 5000000,
+   "repayments": [
+    {
+     "amount": 5000000,
+     "block": 47902417,
+     "time": 1791573122,
+     "tx": "0x35a959af3a05474c724e9ae3d3661a34257579cde9fffebfe851aa86cd4a9bd0"
+    }
+   ],
+   "requested": {
+    "block": 47902409,
+    "time": 1791573106,
+    "tx": "0x7b0524a2d1eb2acc495771227d123c4640d149f5bf60e8eb45e5f9db19d64ca2"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
+   "closed": {
+    "as": "Repaid",
+    "block": 53242807,
+    "time": 1793570430,
+    "tx": "0xb8605fe94461c36d1e78729a094673625dbfc4842ce17634d6d2571da3971da4"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 53242802,
+    "time": 1793570429,
+    "tx": "0x9ea3f2d3830989efade4ebe0e645800cf7b0ae02b647ac8a1f2d261f06b16245"
+   },
+   "disbursedTo": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
+   "dueAt": 1796162429,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 25,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 4000000,
+   "principalRepaid": 4000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 4000000,
+   "repayments": [
+    {
+     "amount": 4000000,
+     "block": 53242807,
+     "time": 1793570430,
+     "tx": "0xb8605fe94461c36d1e78729a094673625dbfc4842ce17634d6d2571da3971da4"
+    }
+   ],
+   "requested": {
+    "block": 53242802,
+    "time": 1793570429,
+    "tx": "0x9ea3f2d3830989efade4ebe0e645800cf7b0ae02b647ac8a1f2d261f06b16245"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
+   "closed": {
+    "as": "Repaid",
+    "block": 53242813,
+    "time": 1793570431,
+    "tx": "0x3b334878db0213642688ca88e468f13a4ab4f9f0e5d785995aa11fa8d291847a"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 53242810,
+    "time": 1793570430,
+    "tx": "0x7aca45662befde95a78b9a187310c6c4dd9100a3171d8bc023d95e8e46209cb2"
+   },
+   "disbursedTo": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
+   "dueAt": 1796162430,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 26,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 2000000,
+   "principalRepaid": 2000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 2000000,
+   "repayments": [
+    {
+     "amount": 2000000,
+     "block": 53242813,
+     "time": 1793570431,
+     "tx": "0x3b334878db0213642688ca88e468f13a4ab4f9f0e5d785995aa11fa8d291847a"
+    }
+   ],
+   "requested": {
+    "block": 53242810,
+    "time": 1793570430,
+    "tx": "0x7aca45662befde95a78b9a187310c6c4dd9100a3171d8bc023d95e8e46209cb2"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
+   "closed": {
+    "as": "Repaid",
+    "block": 54062387,
+    "time": 1793734346,
+    "tx": "0x26c6f4a53acbda87217468f0b82d149cdbc49ee6f29d0113cb22a21b85ae903b"
+   },
+   "daysToRepay": 1.2,
+   "disbursed": {
+    "block": 53548488,
+    "time": 1793631566,
+    "tx": "0x03724c78d7ac5c29f0979528cea4d35db79c0a93c87ce8e0868611f0c763e8fb"
+   },
+   "disbursedTo": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
+   "dueAt": 1796223566,
+   "fee": 0,
+   "firstLoan": true,
+   "id": 27,
+   "impaired": 0,
+   "interest": 1520,
+   "onTime": true,
+   "principal": 5000000,
+   "principalRepaid": 5000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 5001520,
+   "repayments": [
+    {
+     "amount": 5001520,
+     "block": 54062387,
+     "time": 1793734346,
+     "tx": "0x26c6f4a53acbda87217468f0b82d149cdbc49ee6f29d0113cb22a21b85ae903b"
+    }
+   ],
+   "requested": {
+    "block": 53548488,
+    "time": 1793631566,
+    "tx": "0x03724c78d7ac5c29f0979528cea4d35db79c0a93c87ce8e0868611f0c763e8fb"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
+  }
+ ],
+ "monthly": [
+  {
+   "cumulative": {
+    "deposited": 108000000,
+    "disbursed": 31000000,
+    "interest": 0,
+    "loans": 23,
+    "repaid": 31000000,
+    "withdrawn": 93000000
+   },
+   "deposited": 108000000,
+   "disbursed": 31000000,
+   "interest": 0,
+   "loans": 23,
+   "month": "2026-10",
+   "repaid": 31000000,
+   "withdrawn": 93000000
+  },
+  {
+   "cumulative": {
+    "deposited": 128000000,
+    "disbursed": 42000000,
+    "interest": 1520,
+    "loans": 26,
+    "repaid": 42001520,
+    "withdrawn": 93000000
+   },
+   "deposited": 20000000,
+   "disbursed": 11000000,
+   "interest": 1520,
+   "loans": 3,
+   "month": "2026-11",
+   "repaid": 11001520,
+   "withdrawn": 0
+  }
+ ],
+ "pool": {
+  "borrowers": [
+   "0x4e23411897b1c2bc31e3db03e074c370596cd4e6",
+   "0x108450c748eef7aef23e64739bc508f56e596247",
+   "0xd3a74aed54c7c5aa90983c7447310d84201d8d3d",
+   "0x05fda08765e884eadf17fe4a37ac181ca9dcb193",
+   "0x329218eaa9bf0edf1af280f15b783bb42133f438",
+   "0x46e9799dfd1b2e19e692c5b0ae72954fc8776bd1",
+   "0x7e56ccfc4aebcbe2aafc37ccb3e19567446e9aa2",
+   "0x86e2c1666d382c89d3f41ec00577b659defee74e",
+   "0x9ecdaae8635f06a26cd27f686697e97aa293af04",
+   "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
+   "0xab05723f95e191b74710c909dcfb8c5cc8180e68"
+  ],
+  "firstLossReserve": 684,
+  "getLoanRate": 933,
+  "lenderCash": 35001520,
+  "lenderCount": 9,
+  "lenders": [
+   "0x5e4dc7639d2b94006c51ad5373173f5e01c248f9",
+   "0x108450c748eef7aef23e64739bc508f56e596247",
+   "0x9da4d8d544aae656fe7eba4a526828b511fcb1e5",
+   "0x75c91cee867f0a479bbdd2d6ad32e3f04f06cf61",
+   "0xb20de1dd4529010a75c076e792ff3f85f5d0140c",
+   "0x6c0ce74bc5292023fd9e129fa2e18185057470d5",
+   "0xeaaf18c5e60af19da84b82c6fe48afb0c48d042f",
+   "0x7a7290679129511c0c3432ed813ae49e7ad53012",
+   "0x2aa4069f65931e8b35ed11ac493b1c3ab9917212"
+  ],
+  "protocolFees": 0,
+  "reservedLiquidity": 0,
+  "sharePrice": 1000023,
+  "totalAssets": 35000836,
+  "totalDuesPaid": 684,
+  "totalImpaired": 0,
+  "totalLentOut": 0,
+  "totalShares": 35000000000000,
+  "totalStaked": 20000000,
+  "utilisationBps": 0
+ },
+ "profileBreakdown": {
+  "byCountry": {},
+  "byIncomeBand": {},
+  "byOccupation": {},
+  "byPurpose": {}
+ },
+ "profileSchema": {
+  "eas": "0x4200000000000000000000000000000000000021",
+  "registered": false,
+  "registry": "0x4200000000000000000000000000000000000020",
+  "resolver": "0x0000000000000000000000000000000000000000",
+  "revocable": true,
+  "schema": "uint256 loanId,string country,string region,string occupation,string purpose,uint8 incomeBand,uint8 consentVersion",
+  "uid": "0x78e5c1a245b3903ea6b1bcb536e414ffe940b789941a4e9ec66d0afb28113199"
+ },
+ "profiles": [],
+ "snapshot": {
+  "blockHash": "0x5ef5fa716e66603860cd8436c786c08450d15d21fb33f8c1dfa132d1831736fd",
+  "blockNumber": 54062828,
+  "blockTime": "2026-11-03T19:33:54+00:00",
+  "blockTimestamp": 1793734434,
+  "chainId": 84532,
+  "collector": "metrics/lending_dashboard.py",
+  "collectorCommit": "58b24a9",
+  "eventCount": 213,
+  "explorer": "https://sepolia.basescan.org",
+  "fromBlock": 47776780,
+  "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
+  "logsRpc": "https://base-sepolia.gateway.tenderly.co",
+  "network": "base-sepolia",
+  "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
+  "rpcCalls": 246,
+  "scores": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
+  "stateRpc": "https://sepolia.base.org",
+  "token": {
+   "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+   "decimals": 6,
+   "symbol": "USDC",
+   "test_token": true
+  }
+ },
+ "stake": {
+  "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462": 15000000,
+  "0x4c688c5d7d835cc379396b4729ee1dbdbdbb21c1": 5000000
+ }
+}
