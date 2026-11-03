@@ -9,14 +9,15 @@ try {
   let wallet;
   await R.step('D01 create wallet, home offers the credit desk', async () => { wallet = await p.create(); await p.expectText(/Ask for a loan/); }, page);
   await R.step('D02 credit screen shows the officer greeting and no backing', async () => { await page.goto('/#credit'); await page.waitForSelector('.bub.desk', { timeout: 20000 }); if ((await page.locator('.bub.desk').count()) !== 1) throw new Error('greeting missing'); if (await page.locator('#toBorrow').isVisible()) throw new Error('Borrow offered before any grant'); await shot('01-greeting'); }, page);
+  const sentQuietly = () => page.waitForFunction(() => document.querySelector('#overlay').hidden && !/Sending to the test network/.test(document.body.innerText), null, { timeout: 60000 }); // chat lines send without a Done box
   await R.step('D03 first message (no amount) is answered by the officer with a question or a grant', async () => {
-    await page.fill('#msg', 'I want to buy seed for my garden and sell vegetables at the market. I will pay back after the harvest in three weeks.'); await page.locator('#send').click(); await p.tapDone();
+    await page.fill('#msg', 'I want to buy seed for my garden and sell vegetables at the market. I will pay back after the harvest in three weeks.'); await page.locator('#send').click(); await sentQuietly();
     await page.waitForFunction(() => document.querySelectorAll('.bub.me').length === 1); await waitReply(2); await shot('02-first-reply');
     const t = await p.text(); console.log('   officer:', (await page.locator('.bub.desk').last().innerText()).slice(0, 200));
   }, page);
   await R.step('D04 second message with an amount leads to a grant of at most $5 and the Borrow button', async () => {
     const granted = await page.locator('#granted').count();
-    if (!granted) { await page.fill('#msg', 'I need 5 dollars.'); await page.locator('#send').click(); await p.tapDone(); await waitReply(3); }
+    if (!granted) { await page.fill('#msg', 'I need 5 dollars.'); await page.locator('#send').click(); await sentQuietly(); await waitReply(3); }
     await page.waitForFunction(() => document.querySelector('#granted'), null, { timeout: MODE === 'claude' ? 240000 : 40000 });
     const b = await read('getBorrowLimit', [wallet]); if (usd(b[0]) < 1 || usd(b[0]) > 5) throw new Error('limit ' + usd(b[0])); if (!(await page.locator('#toBorrow').isVisible())) throw new Error('no Borrow button'); await shot('03-granted');
     const { pc: pc_, ADDR: A_, ABI: AB_ } = await import('./lib/sim.mjs'); const t0 = Date.now(); let got = 0n; while (Date.now() - t0 < 30000) { got = await pc_.readContract({ address: A_.usdc, abi: AB_.erc20, functionName: 'balanceOf', args: [wallet] }); if (got >= 100000n) break; await new Promise((r) => setTimeout(r, 1000)); } if (got < 100000n) throw new Error('no pre-fund for the interest: wallet holds ' + usd(got));
@@ -27,7 +28,7 @@ try {
   await R.step('D07 spam guard: a fourth unanswered message is refused before any signature', async () => {
     // stop the officer, write three, the fourth is disabled
     try { w.daemon?.kill('SIGKILL'); } catch {}
-    await page.goto('/#credit'); for (let i = 0; i < 3; i++) { await page.fill('#msg', 'hello ' + i); await page.locator('#send').click(); await p.tapDone(); }
+    await page.goto('/#credit'); for (let i = 0; i < 3; i++) { await page.fill('#msg', 'hello ' + i); await page.locator('#send').click(); await sentQuietly(); }
     await page.waitForFunction(() => document.querySelector('#send').disabled, null, { timeout: 20000 }); await p.expectText(/wait for the officer/i); await shot('04-wait');
   }, page);
   await R.step('D08 a message over 1000 characters is refused locally', async () => { await page.evaluate(() => { document.querySelector('#send').disabled = false; document.querySelector('#msg').removeAttribute('maxlength'); document.querySelector('#msg').value = 'x'.repeat(1001); }); await page.locator('#send').click(); await p.expectText(/under 1000/); }, page);
