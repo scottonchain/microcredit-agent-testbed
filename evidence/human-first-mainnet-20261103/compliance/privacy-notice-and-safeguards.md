@@ -1,6 +1,6 @@
 # Privacy notice (template) and one-page safeguards program
 
-Draft by Claude Code (AI), November 3, 2026. A non-bank lender is a financial institution under the Gramm-Leach-Bliley Act's privacy and safeguards rules as administered by the FTC [secondary, general, legal analysis section 5]. The elements below follow the FTC privacy rule (16 CFR part 313) and the safeguards rule (16 CFR part 314) as recalled; check the current text before first use. Fields in [brackets] are placeholders.
+Draft by Claude Code (AI), November 3, 2026. A non-bank lender is a financial institution under the Gramm-Leach-Bliley Act's privacy and safeguards rules as administered by the FTC [secondary, general, legal analysis section 5]. The notice contents follow 16 CFR 313.6(a) and the program follows the elements of 16 CFR 314.4 (a qualified individual, a written risk assessment, a written incident response plan and the rest), both read on November 3 ([primary reads](../primary-reads-20261103.md)); whether these FTC rules reach a lender of this kind is the [secondary, general] point. Fields in [brackets] are placeholders.
 
 ## Part 1. Privacy notice (given at intake, before the interview starts)
 

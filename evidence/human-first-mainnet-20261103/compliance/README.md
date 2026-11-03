@@ -1,6 +1,6 @@
 # D16 compliance checklist and artefacts (drafted November 3, 2026)
 
-Claude Code (AI), the dedicated D16 lane. These are the artefacts the [legal analysis](../legal-analysis.md) section 6 calls for, drafted the same day so that the November 10 row has them before the trust-interview and rails work needs them. They are drafts for the lender of record to adopt, not legal advice, and nothing here is in force until the operator names the lender of record ([OPERATOR_QUEUE.md](../../../coordination/OPERATOR_QUEUE.md)). Every bracketed field is a placeholder; no borrower, backer or lender is named anywhere in this folder. Labels: **[primary]** rests on a statute or regulation the maintainer session read directly on November 3 (legal analysis sources table); **[recalled]** is standard text or practice reproduced from memory and must be checked against the cited section before first use; **[secondary]** rests on a summary.
+Claude Code (AI), the dedicated D16 lane. These are the artefacts the [legal analysis](../legal-analysis.md) section 6 calls for, drafted the same day so that the November 10 row has them before the trust-interview and rails work needs them. They are drafts for the lender of record to adopt, not legal advice, and nothing here is in force until the operator names the lender of record ([OPERATOR_QUEUE.md](../../../coordination/OPERATOR_QUEUE.md)). Every bracketed field is a placeholder; no borrower, backer or lender is named anywhere in this folder. Labels: **[primary]** rests on a statute or regulation read directly on November 3 (the legal analysis sources table, and this lane's [primary reads](../primary-reads-20261103.md) through the session proxy the same evening); **[recalled]** is standard text or practice reproduced from memory and must be checked against the cited section before first use (none remain after the re-read except where a row says so); **[secondary]** rests on a summary.
 
 ## The ten constraints and where each one lives
 
@@ -37,10 +37,11 @@ Claude Code (AI), the dedicated D16 lane. These are the artefacts the [legal ana
 
 | Item | Basis | Label |
 | --- | --- | --- |
-| ECOA notice wording and the agency line | 12 CFR 1002.9(b)(1) and Appendix A to Regulation B | [recalled]; check before first use |
-| Adverse-action timing (30 days) and content | 12 CFR 1002.9(a)(1) and (a)(2) | [primary] via the legal analysis for (a)(3); [recalled] for the 30-day figure |
+| ECOA notice wording and the agency line | Appendix C to part 1002, Form C-1 (the sample notice text) and Appendix A to part 1002 ("Finance Companies, and All Other Creditors Not Listed Above: Federal Trade Commission, Consumer Response Center, 600 Pennsylvania Avenue NW, Washington, DC 20580") | [primary], read November 3 ([primary reads](../primary-reads-20261103.md)) |
+| Adverse-action timing (30 days) and content | 12 CFR 1002.9(a)(1) and (a)(2); specific reasons (b)(2); incomplete applications (c) | [primary], read November 3 |
 | Business-credit notice simplification (revenues of one million dollars or less) | 12 CFR 1002.9(a)(3)(i) | [primary] via the legal analysis |
-| GLBA privacy notice elements and the safeguards rule's elements | 16 CFR part 313 (Privacy of Consumer Financial Information) and 16 CFR part 314 (Standards for Safeguarding Customer Information) | [recalled]; the FTC rules apply to non-bank lenders; check the current text |
-| OFAC SDN search and list download | OFAC Sanctions List Search (sanctionssearch.ofac.treas.gov) and the SDN list files on ofac.treasury.gov | [recalled]; host denied to this session |
-| Colorado UCCC provisions | C.R.S. 5-1-301(15), (37), (47); 5-2-201; 5-2-301; 5-6-201(2) | [primary] via the legal analysis |
-| Regulation Z thresholds | 12 CFR 1026.2(a)(17)(v); 1026.3(a) | [primary] via the legal analysis |
+| GLBA privacy notice elements and the safeguards rule's elements | 16 CFR 313.6(a) (notice contents) and 16 CFR 314.4 (qualified individual, written risk assessment, written incident response plan and the other elements) | [primary], read November 3; that the FTC rules reach this lender is [secondary, general] |
+| OFAC SDN search, list download and reports | OFAC Sanctions List Search (sanctionssearch.ofac.treas.gov, with a minimum name score setting; SDN list last updated October 28, 2026 at the read); list formats on ofac.treasury.gov (Advanced Sanctions Data Model, legacy flat files); 31 CFR 501.603 (blocked-property reports within 10 business days) | [primary], read November 3 |
+| Colorado UCCC provisions | C.R.S. 5-1-301(15), (25), (37), (47); 5-2-201(1); 5-2-301(1); 5-6-201(2) | [primary], read by the legal analysis and again by this lane on November 3 |
+| Regulation Z thresholds | 12 CFR 1026.2(a)(17)(v); 1026.3(a) | [primary]; 1026.2 re-read by this lane |
+| Regulation B record retention | 12 CFR 1002.12(b)(1): 25 months, 12 months for business credit | [primary], read November 3 |

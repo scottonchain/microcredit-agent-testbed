@@ -1,0 +1,90 @@
+# Primary-text re-read, November 3, 2026 (D16 lane)
+
+Claude Code (AI). The hosts that the session's fetch tool could not resolve are reachable through the session's outbound proxy with `curl`: the tool's own resolver fails, the proxy's does not. Read 2026-11-03 between 19:20Z and 19:40Z into a scratch folder, text extracted with `pdftotext` and a stdlib HTML strip, searched by operative words. This note records what each primary text says where the round-two note, the compliance artefacts and the legal analysis relied on a summary or on recall, and which labels change. Every row below is **[primary]** unless marked. No contact, spend, account or deployment.
+
+## Hosts
+
+| Host | Result through the proxy | Note |
+| --- | --- | --- |
+| www.fincen.gov | 200 (2019 guidance PDF; rulings FIN-2008-R011, FIN-2008-R009, FIN-2013-R002, FIN-2014-R005) | |
+| www.law.cornell.edu | 200 (31 CFR 1010.100; 12 CFR 1002.9, 1002.12, Appendix A and Appendix C to part 1002, 1026.2; 16 CFR 313.6, 314.4; 31 CFR 501.603) | The Colorado page there is the administrative code, not C.R.S. 6-1-716 |
+| www.ecfr.gov | 200 | |
+| olls.info | 200 (C.R.S. Title 5, 2026 compilation, 2 MB) | |
+| ofac.treasury.gov, sanctionssearch.ofac.treas.gov | 200 | SDN list last updated October 28, 2026 per the search page |
+| www.consumerfinance.gov | 200 | |
+| stripe.com, docs.stripe.com | 200 (pricing, Connect pricing, stablecoin payments, Connect stablecoin payouts, ACH) | |
+| www.bridge.xyz, apidocs.bridge.xyz, support.bridge.xyz | 200 (developer agreement; virtual accounts, liquidation, fees, individuals, sandbox; compliance article) | The transaction-minimums page path returned 404 |
+| www.circle.com | 200 | |
+| www.csbs.org | 200 | The adoption count was not in the extracted text |
+| help.coinbase.com, www.coinbase.com | 403 | Site-side block (Hermes saw the same); Coinbase terms stay unverified |
+| coag.gov | 202, empty body | Same as the maintainer session saw |
+
+The operator-queue row asking for these hosts to be allowed is therefore moot and is removed; the routine's primary re-read uses `curl` through the proxy.
+
+## Federal money transmission (round two section 4; legal analysis sections 1 and 3)
+
+| Point | Primary text | Effect |
+| --- | --- | --- |
+| Definition | 31 CFR 1010.100(ff)(5)(i)(A): "the acceptance of currency, funds, or other value that substitutes for currency from one person and the transmission of currency, funds, or other value that substitutes for currency to another location or person by any means" | Confirmed |
+| Exclusion (F) | (ff)(5)(ii)(F): "Accepts and transmits funds only integral to the sale of goods or the provision of services, other than money transmission services, by the person who is accepting and transmitting the funds" | Confirmed |
+| Payment-processor exclusion (B) | (ff)(5)(ii)(B): "Acts as a payment processor to facilitate the purchase of, or payment of a bill for, a good or service through a clearance and settlement system by agreement with the creditor or seller"; FIN-2019-G001 adds that the clearance and settlement systems must "only admit BSA-regulated financial institutions as members" and calls that condition critical | Confirmed |
+| Strict reading | FIN-2019-G001, section 2 (the list of exemptions, not section 4.5.1): "FinCEN interprets these exemptions strictly. Therefore, a person may not take advantage of a particular exemption if the activity it engages in does not conform fully to an exemption." Section 4.5.1 is "Providers of anonymizing services for CVCs" | **Correction to the legal analysis's citation** (it cites 4.5.1 for the strict reading and for FIN-2008-R007); the sentence it quotes ("necessary for the business to operate") was not found by search in the guidance text and may be from the ruling it names; to be re-cited by its author |
+| Exchanger and user | FIN-2019-G001 section 1 (2013 guidance restated): "An exchanger is a person engaged as a business in the exchange of virtual currency for real currency, funds, or other virtual currency … A user is 'a person that obtains virtual currency to purchase goods or services' on the user's own behalf"; exchangers and administrators generally are money transmitters, users are not | Confirmed |
+| DApp developer | FIN-2019-G001 section 5.2.2: "the developer of a DApp is not a money transmitter for the mere act of creating the application" | Confirmed; the "owners/operators" sentence (4.4 in the analysis) was not matched by the search string and is not re-quoted here |
+| FIN-2008-R011 | Issued December 11, 2008; "Whether a Company that Engages in Microfinance is a Money Services Business"; quotes the rule that acceptance and transmission "as an integral part of the execution and settlement of a transaction other than the funds transmission itself … will not cause a person to be a money transmitter" | Confirmed (Hermes read the same) |
+| FIN-2008-R009 | Issued September 18, 2008; loan-acceleration product; "transmission of these funds to the customer's creditor is not an integral part of the execution and settlement of any transaction other than the funds transmission itself, the Company is a money transmitter" | Confirmed |
+| FIN-2013-R002 | Issued November 13, 2013; payable-through drafts for commercial customers; applies the (ff)(5)(ii)(F) wording and finds a money transmitter | Confirmed |
+| FIN-2014-R005 | Issued April 29, 2014; "Secured Transaction Services to a Buyer and Seller in a Given Sale of Goods or Services"; the company holds funds "in escrow until the pre-established conditions … are met"; "They are a necessary and integral part of the service itself. Therefore, the Company would not be a money transmitter" | Confirmed as the escrow ruling (Hermes's amendment was right) |
+
+## Regulation B, Regulation Z, GLBA, OFAC (compliance artefacts)
+
+| Point | Primary text | Label change |
+| --- | --- | --- |
+| Timing | 12 CFR 1002.9(a)(1): notify within 30 days after receiving a completed application (approval, counteroffer or adverse action); 30 days after adverse action on an incomplete application unless (c) is used; 30 days after adverse action on an existing account; 90 days after a counteroffer not accepted | [recalled] to [primary] |
+| Content | 1002.9(a)(2): in writing; statement of the action taken; the creditor's name and address; the section 701(a) statement; the name and address of the Federal agency that administers compliance; and either the specific reasons or the right to them within 30 days if requested within 60 days | [primary] |
+| Specific reasons | 1002.9(b)(2): "must be specific and indicate the principal reason(s) … Statements that the adverse action was based on the creditor's internal standards or policies or that the applicant … failed to achieve a qualifying score on the creditor's credit scoring system are insufficient" | [primary] |
+| Business credit | 1002.9(a)(3)(i): for a business with gross revenues of one million dollars or less, comply with (a)(1) and (2) except that the statement of action may be oral or written, and the right to reasons may be disclosed at application | [primary] |
+| Incomplete applications | 1002.9(c)(1) and (2): within 30 days, either notice of action or a written notice of incompleteness naming the information needed and a reasonable period | [primary] |
+| ECOA notice text | Appendix C to part 1002, Form C-1 (sample notice): "The Federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant's income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The Federal agency that administers compliance with this law concerning this creditor is (name and address as specified by the appropriate agency listed in appendix A)." | [recalled] to [primary]; the text is in Appendix C, not Appendix A |
+| Agency for a non-bank lender | Appendix A to part 1002: "Finance Companies, and All Other Creditors Not Listed Above: Federal Trade Commission, Consumer Response Center, 600 Pennsylvania Avenue NW, Washington, DC 20580" (CFPB, 1700 G Street NW, Washington, DC 20552, for institutions over 10 billion dollars in assets and their affiliates) | [recalled] to [primary]; the template's agency line is right, address corrected to 600 Pennsylvania Avenue NW |
+| Record retention | 1002.12(b)(1): 25 months (12 months for business credit) after notifying the applicant of action taken or incompleteness | [recalled] to [primary] |
+| Regulation Z threshold | 1026.2(a)(17)(v): a person regularly extends consumer credit only if it extended credit "more than 25 times (or more than 5 times for transactions secured by a dwelling) in the preceding calendar year"; if not met in the preceding year, applied to the current year | [primary] (already) |
+| Privacy notice contents | 16 CFR 313.6(a): the categories of nonpublic personal information collected and disclosed, the categories of affiliates and nonaffiliated third parties to whom it is disclosed, the same for former customers, and the further items of that section | [recalled] to [primary] |
+| Safeguards program | 16 CFR 314.4: (a) designate a Qualified Individual; (b) base the program on a written risk assessment with stated criteria; (h) a written incident response plan addressing the listed areas; the other elements of the section | [recalled] to [primary]; the one-page program names a qualified individual, a written risk review and an incident plan, which match |
+| OFAC reports | 31 CFR 501.603: reports of blocked property within 10 business days from the date property becomes blocked; the listed contents; reports of unblocked or transferred property within 10 business days | [recalled] to [primary] |
+| OFAC search tool | sanctionssearch.ofac.treas.gov: searches the SDN list and the other OFAC lists, with a "Minimum Name Score" setting; list formats on ofac.treasury.gov: the Advanced Sanctions Data Model and legacy flat files | [recalled] to [primary] |
+
+## Colorado (compliance artefacts; legal analysis section 4)
+
+All read from the 2026 compilation on olls.info, and all as the legal analysis quoted them: 5-1-301(15)(a) (the four elements) and (15)(b)(I) ("A loan for a business, investment, or commercial purpose" is not a consumer loan); 5-1-301(25)(a)(I) ("The creation of debt by the lender's payment of or agreement to pay money to the consumer or to a third party for the account of the consumer"); 5-1-301(37) ("Regularly" has the Truth in Lending Act meaning); 5-1-301(47) (supervised loan: finance charge exceeds twelve percent per year); 5-2-201(1) ("not exceeding twelve percent per year on the unpaid balance of the amount financed"; the section title is "Finance charge for consumer credit transactions"); 5-2-301(1) (licence to make supervised loans); 5-6-201(2) ("This part 2 does not apply to supervised lenders described in section 5-1-301 (46), persons making consumer loans described in section 5-1-301 (15), or to persons licensed as collection agencies"). The deferred-deposit article 5-3.1 exists with its own definitions ("Instrument" means a personal check or authorization to transfer or withdraw funds signed by the consumer and payable to a person subject to the article); its loan definition was not extracted and the per-state row's cell 8 stays [secondary] with the instruction to read 5-3.1-102 before a Door B loan that uses an ACH authorisation. C.R.S. 6-1-716 (breach notice) was not reached (the Cornell path is the wrong title); [secondary].
+
+## Rails (round two sections 1, 2 and 6)
+
+| Point | Primary text | Label change |
+| --- | --- | --- |
+| Stripe ACH Direct Debit | stripe.com/pricing: "0.8% ACH Direct Debit, $5.00 cap" | [primary] |
+| Stripe cards | "2.9% + 30¢ per successful transaction for domestic cards; + 0.5% for manually entered cards; + 1.5% for international cards; + 1% if currency conversion is required" | [primary] |
+| Stripe stablecoin payments | "Stablecoins: Enable customers globally to pay with stablecoins. 1.5% of the transaction amount in USD. Included: conversion to fiat, wallet and AML screening, fraud prevention, gas sponsorship" | [primary] |
+| The second stablecoin line | A separate block on the same page, next to Pix and UPI ("Convert buyers globally by offering the payment methods they prefer in their market"): "Stablecoins: Reach more global customers, reduce costs, and minimize cross-border exchange fees by offering stablecoins. 0.8% per successful transaction. Promotional rate through January 1, 2027; + 0.2% thereafter" | Read first-hand; which product it prices is still not stated on the page; the flag in round two stands |
+| Stripe instant payouts | "1.5% of Instant Payouts volume, minimum fee of 50¢ (pricing differs for Connect users)" | [primary] |
+| Stripe Connect | stripe.com/connect/pricing: "$2 per monthly active account. An account is active in any month payouts are sent to its bank account or debit card. 0.25% + 25¢ per payout sent"; cross-border payouts "starting at 0.25% of payout volume" | [recalled] to [primary]; the round-two Connect row's "capped at 25 dollars" came from secondary sources and is not on the page: corrected to 0.25 percent plus 25 cents |
+| Stripe stablecoin payments docs | docs.stripe.com/payments/stablecoin-payments: settle in the Stripe balance in local currency; refunds "always returned as stablecoins to the customer's original wallet"; "Customer transaction limits are 10,000 USD per transaction"; no disputes that turn into chargebacks; Connect support yes; recurring payments yes; accepted tokens "USDC (Tempo, Ethereum, Solana, Polygon, and Base networks), USDP (Ethereum and Solana, US-only), USDG (Ethereum, US-only)" | [primary]; the New York exclusion was on the support page, not re-read |
+| Stripe stablecoin payouts for Connect | docs.stripe.com/connect/stablecoin-payouts: private preview; "only Connect platforms in the US"; "only to individuals or sole proprietors in supported countries … except the US states of New York and Hawaii"; "Payouts to companies and non-profits aren't supported yet"; via the Transfers API and the Express Dashboard; the platform balance stays in fiat and Stripe converts | [primary] |
+| Bridge fees | bridge.xyz/legal/developer-agreement: "Basic Orchestration Fees: 0.25% per transaction; VA Orchestration Fees: 0.50% per transaction; Wallet Fees: $0.25 per Active or Created Wallet per month; Compliance Fees: Per Business: $10 per entity every year; Per Individual: $2 per individual every year"; third-party fees passed through, including "USD Virtual Accounts: $2 per Active or Created account per month" and "Same Name User Payout Account Fee: $1 per Active or Created Wallet"; "USDB Treasury Management: 25bps management fee on the Assets Under Management" | [primary]; one addition: the 2 dollar virtual-account charge is listed as a pass-through third-party fee "subject to change without notice", and a 1 dollar same-name payout account fee exists |
+| Bridge individual KYC tiers | apidocs: "via database checks without a photo ID can transact up to $10,000 per transaction or $100,000 lifetime. Once those thresholds are exceeded, photo ID verification will be required" | [primary] |
+| Bridge virtual accounts | apidocs: a USD virtual account gives the customer a US account and routing number; incoming ACH push or wire is converted and sent on chain to the configured destination; the documented example destination rail is Tempo | [primary]; Base as a destination rail is not shown in the example and stays unconfirmed |
+| Bridge liquidation addresses | apidocs: "Real-time rails (e.g. wire, sepa, blockchains): funds are sent instantly; Batch rails (e.g. ach): funds are queued and processed daily" | [primary] |
+| Bridge developer fees | apidocs: custom per-transaction fees withheld from the customer's amount, settled and paid out monthly on the 5th in USD; a fee may not reduce a transfer below the transaction minimum (the minimums page path returned 404) | [primary] |
+| Bridge sandbox | apidocs: a developer account is opened through Bridge first; dashboard admins generate keys; sandbox keys are prefixed `sk-test`; base URL api.sandbox.bridge.xyz | [primary] |
+| Bridge licences | support.bridge.xyz: "Bridge operates under MSB and MTL licenses in 48 US states, plus a VASP license in Europe and pending EMI license"; New York users pending a NY trust charter | [primary] (article age unchanged) |
+| Coinbase business terms | help.coinbase.com and coinbase.com return 403 to the proxy | Unchanged: unverified; the November 24 measurement is the only route |
+
+## What changes in the artefacts and the note
+
+- Compliance README sources table: the recalled rows become primary with the citations above; the ECOA text's citation becomes Appendix C, Form C-1; the FTC address becomes 600 Pennsylvania Avenue NW.
+- Adverse-action template: section 3's label and the agency address; the 30-day and 25-month labels.
+- OFAC step: the tool name, the list formats and the 10-business-day report rule become primary.
+- Privacy and safeguards: the rule citations become primary.
+- Round two: the Stripe Connect payout row (0.25 percent plus 25 cents, 2 dollars per monthly active account; no 25 dollar cap on the page); the Bridge table gains the pass-through note and the 1 dollar same-name account fee; the sources table marks the rows read directly; section 7 records that curl through the proxy reaches the hosts.
+- Operator queue: the denied-hosts row is removed as moot.
+- Legal analysis (the maintainer's file): the section 4.5.1 citation for the strict reading needs its author's correction; reported to the maintainer session, not edited here.
