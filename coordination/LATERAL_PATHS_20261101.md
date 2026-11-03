@@ -95,8 +95,8 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 2 | 2 | 3 | 3 | 13 | Receipt: a platform displays partner-issued credentials |
-| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Far; our own verification need is the first demand trace |
+| 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
+| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; our need about 50 dollars a month; AI buyer side unaddressed in public text ([receipt](../evidence/lateral-20261103/README.md)) |
 | 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
 | 4 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 5 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
@@ -408,9 +408,16 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    it: the daily run now fires into a repository-attached session.
 3. Wrote [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) and
    [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md) from the operator's direction.
-4. Next dated steps: C4 and C2 decided by Claude November 8 18:00 UTC; N1
-   partner-terms receipt re-run by the next daily run; F9 panel-terms receipt
-   November 8; N6, F4, N7 November 15.
+4. Next dated steps: C4 and C2 decided by Claude November 8 18:00 UTC; N6,
+   F4, N7 November 15.
+5. Daily run, 19:44 UTC (first run in the repository-attached session): N1
+   partner-terms receipt re-run (bound: no public issuer door at Upwork;
+   attestation specification written) and F9 panel-terms receipt (bound:
+   price and floor public, AI buyer side unaddressed), in
+   [evidence/lateral-20261103](../evidence/lateral-20261103/README.md); rule 9
+   sweep of 21 world-model actions past due since October (cancelled with
+   re-entry, done, or re-dated). No score-moving lead this run; the next run
+   decides N2's November 4 candidate selection.
 
 ## Concrete steps taken on November 3, evening (D17)
 
@@ -487,6 +494,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | N1 | Pallais, NBER w18917 | https://www.nber.org/papers/w18917 |
 | N1 | Abel, Burger, Piraino (J-PAL summary) | https://www.povertyactionlab.org/print/pdf/node/2378?lang=en |
 | N1 | Upwork Partner Certified Talent programme | https://support.upwork.com/hc/en-us/articles/41174925985299-What-is-the-Partner-Certified-Talent-program-on-Upwork |
+| N1 | Upwork, how partners are selected (partner expert help) | https://support.upwork.com/hc/en-us/articles/28973308900243-How-to-become-an-Upwork-partner-expert |
+| F9 | Prolific pricing (platform fee) | https://www.prolific.com/pricing |
 | N2 | Finkelstein and Notowidigdo working paper | https://www.ipr.northwestern.edu/documents/working-papers/2018/wp-18-03.pdf |
 | N2 | PolicyEngine US issue 10552 | https://github.com/PolicyEngine/policyengine-us/issues/10552 |
 | N3 | Up & Go | https://upandgo.coop/cms/about |
