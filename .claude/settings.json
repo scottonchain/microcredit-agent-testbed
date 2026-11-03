@@ -1,6 +1,6 @@
 {
   "permissions": {
-    "allow": ["Bash(git push *)"]
+    "allow": ["Bash(git push *)", "mcp__claude-code-remote__add_repo"]
   },
   "attribution": {
     "commit": "Co-Authored-By: Claude <noreply@anthropic.com>",
