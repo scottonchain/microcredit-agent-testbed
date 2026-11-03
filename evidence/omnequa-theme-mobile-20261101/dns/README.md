@@ -36,7 +36,19 @@ credentials to `write-results.json`, and saves the final zone as `zone-after.jso
 
 ## Status
 
-The first run on 2026-11-03 was refused by Claude Code's auto-mode permission
-classifier ("DNS / Domain / Cert Changes") before any request was sent. No DNS
-record has been changed by this record. Receipts are added here when the writes
-run.
+The first run on 2026-11-03 (about 16:58Z) was refused by Claude Code's auto-mode
+permission classifier ("DNS / Domain / Cert Changes") before any request was sent.
+The operator then switched the session out of auto mode and said "run it". At
+17:06Z the script's opening guard stopped it: the zone no longer matched the
+snapshot. `zone-after-20261103.json` is that read: 20 records, with every planned
+change already present (four GitHub A records at the apex, www CNAME to
+scottonchain.github.io, the four Sites TXT records gone) and the 15 untouched
+records identical to the snapshot including their record IDs. The script wrote
+nothing; the changes were made outside this session between the 05:1xZ snapshot
+and 17:06Z, consistent with the table above being applied in the GoDaddy panel.
+
+Live check at 17:09Z: https://omnequa.org and https://www.omnequa.org both reach
+GitHub Pages, which still presents its `*.github.io` certificate, so the custom
+domain certificate is pending; the site serves once GitHub issues it and
+"Enforce HTTPS" can then be enabled in the repository's Pages settings. Plain
+HTTP cannot be tested from this container.
