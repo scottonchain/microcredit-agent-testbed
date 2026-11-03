@@ -15,6 +15,8 @@ export const standalone = () => { try { return (window.matchMedia && window.matc
 export const isIOS = () => /iP(hone|ad|od)/.test(ua()) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 // Chromium exposes the install event (whether or not it will fire); WebKit never does.
 export const supportsPrompt = () => 'onbeforeinstallprompt' in window;
+// Android phones and tablets (Chrome, Samsung Internet, Edge); the launcher there decides where a new icon lands.
+export const isAndroid = () => /Android/.test(ua());
 // WebKit family: iPhone, iPad and Mac Safari. Their home-screen and Dock apps keep their own copy of this site's data.
 export const appleWebKit = () => isIOS() || (/Safari\//.test(ua()) && !/Chrome|Chromium|CriOS|Edg|Firefox|FxiOS/.test(ua()) && !supportsPrompt());
 export const canPrompt = () => deferred !== null;

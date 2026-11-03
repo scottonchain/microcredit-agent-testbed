@@ -64,17 +64,20 @@ const closeInstall = () => { endInstallWatch(); closeSheet(); };
 const walletNote = (hasWallet) => { if (!I.appleWebKit()) return ''; const b = I.browserName(); return hasWallet
   ? `<p>Copy your recovery code first (it is on the Help screen). The home-screen app will not see the wallet you made in ${b}: in the new app tap <b>I already have a recovery code</b> and paste it. A second wallet there would be separate, with its own test dollars.</p>`
   : `<p>Add it first, then create your wallet from the new icon. A wallet created in ${b} does not show up in the home-screen app.</p>`; };
+// Android installs the web app like any app: the phone's launcher decides whether the icon also lands on the Home
+// screen. Samsung's One UI puts it in the Apps list only, unless Home screen settings says otherwise; a page cannot change that.
+const androidWhereLine = () => `<p>Android puts the new icon in your <b>Apps</b> list (swipe up from the Home screen; it is on the last page, or search <b>Omnequa</b>). To put it on the Home screen: hold the icon, then tap <b>Add to Home</b>. On Samsung phones, <b>Home screen settings</b> has a switch, <b>Add new apps to Home screen</b>, that does this for every new app.</p>`;
 const inAppLine = () => `<p>Opened this inside another app (Messages, WhatsApp, Gmail)? First choose <b>Open in ${I.isIOS() ? 'Safari' : 'Chrome'}</b> (or <b>Open in browser</b>) from that app's menu, then tap Add to home screen again.</p>`;
 function installContent(k, hasWallet) {
   const inApp = I.inAppView();
   if (k === 'prompt') return { body: '<p>Your browser will ask to install the Omnequa test wallet. It then opens from its own icon, without the browser bars. There is nothing to download from an app store.</p>', actions: [{ label: 'Install', onClick: doInstall }, { label: 'Not now', secondary: true, onClick: closeInstall }] };
   if (k === 'ios') return { body: `${inApp ? inAppLine() : ''}<ol class="howto"><li>Tap the <b>Share</b> button (the square with an arrow pointing up), usually at the bottom of the screen; on iPad it is at the top.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p>Then open the app from its new icon. If it is already there, just open it.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
-  return { body: `${inApp ? inAppLine() : ''}<p>In your browser’s menu look for <b>Install app</b>, <b>Add to Home screen</b>, <b>Add to phone</b> or <b>Add to Dock</b>, then open the app from its new icon.</p><p class="muted">If it is already installed, open it from your home screen or app list. If there is nothing like that in the menu, keep using it here in the browser: nothing is lost.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
+  return { body: `${inApp ? inAppLine() : ''}<p>In your browser’s menu look for <b>Install app</b>, <b>Add to Home screen</b>, <b>Add page to</b> (Samsung Internet), <b>Add to phone</b> or <b>Add to Dock</b>, then open the app from its new icon.</p>${I.isAndroid() ? androidWhereLine() : ''}<p class="muted">If it is already installed, open it from your home screen or app list. If there is nothing like that in the menu, keep using it here in the browser: nothing is lost.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
 }
 function showInstalled() {
   endInstallWatch(); installToken++;
   if (I.standalone()) sheet({ title: 'Installed', body: '<p>You are now in the app. Carry on here; later, open it from your Dock, Start menu or app launcher.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
-  else sheet({ title: 'Adding it now', body: '<p>In a few seconds, look for an icon named <b>Omnequa test</b> on your home screen or in your app list. You can keep using this tab or close it.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
+  else sheet({ title: 'Adding it now', body: I.isAndroid() ? androidWhereLine() : '<p>In a few seconds, look for an icon named <b>Omnequa test</b> on your home screen or in your app list. You can keep using this tab or close it.</p>', actions: [{ label: 'OK', onClick: () => { closeSheet(); render(); } }] });
 }
 async function doInstall() {
   if (I.isInstalled()) return showInstalled();
