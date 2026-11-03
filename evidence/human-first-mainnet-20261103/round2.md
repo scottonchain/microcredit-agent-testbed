@@ -2,9 +2,13 @@
 
 Claude Code (AI), the dedicated D16 lane, first run. This is the November 10 "rails round two" row of [human-first-mainnet.md](../../coordination/directions/human-first-mainnet.md), done on November 3 because the research needed no wait; the counsel brief stays on November 10 and takes section 4 below as its money-transmission input. Public sources read 2026-11-03 through web search summaries. The session's network policy denies every primary host this round needed: `docs.stripe.com`, `support.stripe.com`, `apidocs.bridge.xyz`, `www.bridge.xyz`, `help.coinbase.com`, `www.fincen.gov`, `www.ecfr.gov` and the secondary `eco.com`; `developers.circle.com` is allowed but its Mint overview path returned 404. Each figure below is therefore a search summary of a named page, not a read of the page, and is to be re-read from the primary page before it prices anything (D16 acceptance criterion 3). No contact, spend, account or deployment; no sandbox key was requested.
 
+## Compliance design this round builds on
+
+The maintainer session's legal analysis of the same day (evidence/human-first-mainnet-20261103/legal-analysis.md and `decision:d16-compliance-design-20261103`, on the maintainer's branch at the time of writing, pending its own pull request) settles the frame: lending is not money transmission; the only transmission risk is converting for others; so **the lender disburses and collects dollars from its own accounts and converts only its own treasury through a licensed exchange**, under a named lender of record (default: the operator as sole proprietor in Colorado), with two licence-free doors (business-purpose loans; Colorado consumer loans at or below 12 percent after the 200-dollar UCCC notification), Regulation B reasons from the scorecard, no yield to backers, and under 25 consumer loans a year. Section 4 below reaches the same rule from the FinCEN rulings and is the rails-side input to it; the earlier phrase "the platform converts for the borrower" is retired. Routes in which a third party converts the borrower's own dollars (Bridge with the borrower as customer, section 2 option (ii); stack D in section 6) are therefore not candidates but recorded fallbacks, and the cost tables price the lender's own treasury conversion only.
+
 ## What this round answers
 
-The round-one finding stands: the crypto-naive borrower pays and receives dollars, and the platform converts. Round two asks what the platform's conversion leg costs, who is the regulated party on it, and whether collecting one's own loan repayments in dollars and converting them is money transmission. Short answers: the conversion leg exists at 0 to 0.5 percent variable cost through a licensed intermediary (Coinbase business account or Stripe's Bridge), plus fixed monthly items; Stripe's own stablecoin products do not do this leg for a US platform; and the federal rulings separate a lender collecting its own receivable (not transmission) from a platform forwarding a borrower's dollars to someone else (transmission), which fixes a design rule for the pool.
+The round-one finding stands: the crypto-naive borrower pays and receives dollars, and the lender converts its own treasury. Round two asks what the platform's conversion leg costs, who is the regulated party on it, and whether collecting one's own loan repayments in dollars and converting them is money transmission. Short answers: the conversion leg exists at 0 to 0.5 percent variable cost through a licensed intermediary (Coinbase business account or Stripe's Bridge), plus fixed monthly items; Stripe's own stablecoin products do not do this leg for a US platform; and the federal rulings separate a lender collecting its own receivable (not transmission) from a platform forwarding a borrower's dollars to someone else (transmission), which fixes a design rule for the pool.
 
 ## 1. Stripe: dollars in for a platform, and what its stablecoin products do
 
@@ -93,13 +97,17 @@ Variable cost only; fixed monthly items shown separately. Every figure is a repo
 
 Against the D16 stop condition (round-trip rail cost above 10 percent of a 10 USDC loan, that is 1 dollar): A, B and D pass on reported figures and C passes narrowly; D fails the operator's requirement on identity and on its fixed charge; A is cheapest but least documented. The November 24 measured round trip should run stack A if the operator opens the accounts and stack B otherwise; both need an account that only the operator can open, which is queued.
 
-## 7. Changes to the model and the direction
+## 7. Host probe (November 3, for the primary-text re-read)
+
+Every primary host tried from this session fails to resolve (outside the session's allowed network domains): `docs.stripe.com`, `support.stripe.com`, `stripe.com`, `apidocs.bridge.xyz`, `www.bridge.xyz`, `support.bridge.xyz`, `help.coinbase.com`, `www.coinbase.com`, `www.fincen.gov`, `www.ecfr.gov`, `www.law.cornell.edu`, `www.govinfo.gov`, `www.federalregister.gov`, `www.consumerfinance.gov`, `ofac.treasury.gov`, `leg.colorado.gov`, `coag.gov`, `www.csbs.org`, `dfpi.ca.gov`, `eco.com`. `developers.circle.com` resolves (the Mint overview path returned 404). The primary-text re-read waits on the optional operator-queue row; until then every figure stays a search summary.
+
+## 8. Changes to the model and the direction
 
 - `ev:fiat-usdc-rails-round2-20261103` (this note), `ev:fincen-lending-rulings-20261103` (the four rulings and the 2019 guidance, as summarised) and `ev:bridge-developer-terms-20261103` (Bridge's fee and onboarding terms, as summarised).
 - `claim:platform-conversion-leg-cost-20261103`: the platform's conversion leg costs 0 to 0.5 percent variable through a licensed intermediary, so the round-one 0 to 3 percent band narrows and the stop condition is not met on reported figures.
 - `claim:collector-must-be-lender-of-record-20261103`: the design rule of section 4.
 - `action:human-first-mainnet-readiness-20261103`: round two recorded as this note; the November 10 row reduces to the counsel brief.
-- Operator queue: one row for the accounts a measured round trip needs (a Coinbase business account or a Bridge developer account, and a Stripe account in test mode) and one optional row for the denied hosts.
+- Operator queue: one row for the accounts a measured round trip needs (a Coinbase business account or a Bridge developer account, and a Stripe account in test mode) and one optional row for the denied hosts (the full list is section 7).
 
 ## Sources
 
