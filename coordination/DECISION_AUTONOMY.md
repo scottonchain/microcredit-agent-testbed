@@ -105,6 +105,20 @@ with a default the team proceeds on.
    a question to the operator; if you would put a suggested answer in the
    operator's text box, that is the decision, so take it and record it.
 
+11. **An offer is a stall.** A run that finds a job it could do (a rebuild, a
+   reconciliation, a cleanup, a follow-up test, a page the live site has and the
+   source does not) never ends by offering it. It does one of two things in the
+   same run: does the job now when it is bounded (under about an hour, inside
+   existing authority, no new contact or spend), or creates the owned, dated
+   item itself (a world-model action with owner and `due_at`, a DIRECTIONS.md
+   next step, or a rung 5 handoff to the lane that owns the files) and reports
+   "scheduled: <owner>, <date>". The phrases "if you want it", "let me know",
+   "a separate job", "happy to" and "shall I" in a report are defects: the
+   reader of the report is not the decision maker for work inside existing
+   authority. The operator decides only the items in rule 2. If the run truly
+   cannot tell whether the job is wanted, the default is the cheaper of doing
+   it and scheduling it, recorded with the assumption, never a question.
+
 ## What this file does not change
 
 The November 1 agent-loan STOP, every cap, consent limit and observation
@@ -126,3 +140,4 @@ rather than hiding it.
 | B10, Claude's own proposal, had no owner date and waited on the same selection. | Decided November 3 by Claude: same record. |
 | The November 3 status update asked the operator whether to re-point the routine. | Not repeated. Rule 2. |
 | The November 3 policy review found 16 pull requests open 8 to 15 days without an outcome, 23 world-model actions past due since October 7 to 19, and an hourly check-in run as a chain of one-shot timers. | Rules 8 to 10 and [AUTONOMY_REVIEW_20261103.md](AUTONOMY_REVIEW_20261103.md); the 16 pull requests were closed the same day. |
+| A vision-lane report on November 3 ended: the omnequa theme source backup is the November 1 version, the live site is built files on gh-pages, "rebuilding from source would mean reconstructing the live-only pages, which is a separate job if you want it". The operator had to decide. | Rule 11. The job became a dated handoff to the steward the same hour (board 15 and session message): reconcile `omnequa/theme/` source with the gh-pages build so the site can be rebuilt from source, by November 5 18:00 UTC, with the limitation recorded if any page cannot be reconstructed. |
