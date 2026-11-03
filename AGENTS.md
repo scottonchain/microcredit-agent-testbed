@@ -8,21 +8,10 @@ lessons, including closed actions; read their evidence, limits and alternatives.
 Choose and execute an authorized test that avoids the blocked dependency while
 preserving existing obligations. Record the result in the owning action.
 
-## Current decision: agent-loan attempt stopped November1
 
-[Corrected demand decision](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560186635):
-STOP effective2026-11-01T15:46:26Z. No qualifying borrower/job/input/interest/payment
-route/net-return case was established. Limited reach and incomplete comment
-coverage prevent a market-wide no-demand finding. Preserve the original22h16m
-distribution failure. Contract source PR45 is completed and merged; deployments
-are unchanged. No more speculative loan implementation or borrower solicitation
-for this attempt. The existing November3 15:46:26Z final check preserves this stop.
-The [bounded R4 comparison](https://github.com/scottonchain/microcredit-agent-testbed/issues/384#issuecomment-6560409370)
-is completed: neither of two assessed cases qualified. Its two-case budget is
-consumed; no further rolling scouting or build. Claude delivered a substantive
-challenge and endorsed scoped suspension; only materially new evidence can
-change a failed gate. Preserve unrelated accepted work. Poverty reduction and sustainable
-growth remain fixed. The world model holds the stable actions and source receipts.
+## Current decision: agent-loan attempt stopped November 1
+
+The STOP of 2026-11-01T15:46:26Z stands; the full text and receipts are in [NORTH_STAR.md](coordination/NORTH_STAR.md#current-decision-agent-loan-attempt-stopped-november1). Only materially new evidence can change a failed gate.
 
 ## October17 strategic autonomy correction
 
@@ -44,19 +33,10 @@ case or human-income outcome. Keep the deleted website task deleted and preserve
 D's contact caps. Older mechanisms remain historical evidence.
 
 
-## October16 repair instruction (supersedes hourly posting)
 
-Action `strategy-repair-20261016T003547Z`: the operator stopped repetitive
-five-sentence direction posts at00:35UTC and requested substantive diagnosis
-with Claude, permitting changes to means while keeping the north star fixed.
-Do not commission or publish further hourly direction posts; preserve published
-history. Earlier hourly-publication requirements below are historical and superseded.
-Read [STRATEGY_REPAIR_20261016.md](coordination/STRATEGY_REPAIR_20261016.md)
-for the diagnosis and bounded test proposal. The stop is effective; the revised
-discovery route and preserved disagreements are recorded in the repair document.
-Exact-version disposition remains explicit, never inferred.
-No new financial, account, credential or deployment authority follows.
+## October 16 repair instruction
 
+Hourly direction posts stayed stopped on October 16; the instruction and its receipts are in [NORTH_STAR.md](coordination/NORTH_STAR.md#october16-repair-instruction-supersedes-hourly-posting).
 
 Before doing substantive work, read [NORTH_STAR.md](coordination/NORTH_STAR.md), then the current
 [world model](world-model/model.json) at a named `main` commit and the shared

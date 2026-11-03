@@ -74,6 +74,10 @@ only local checks and cannot report a candidate write route.
 
 ## Finish through an owned route
 
+The general form of this section is the six-rung ladder of
+[DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) rule 8; this page keeps the
+GitHub-specific diagnostics.
+
 If supported setup repair is unavailable in the current execution, send the
 existing Claude writer one exact, idempotent TM2 handoff on board 15: target repo,
 base SHA, exact public-safe patch blob and SHA256, expected file scope, checks,
