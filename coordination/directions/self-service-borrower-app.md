@@ -220,6 +220,10 @@ The pool grows at every raw default rate up to 50%, trivially: it never loses pr
 
 Screen sensitivity and false-rejection rates; the repeat-loan default ratio (one half); four repeat loans per surviving borrower; 2 cents per loan; applicants' raw default band from `claim:first-loan-default-benchmarks`. Each is labelled in the module and replaced by a pilot measurement when one exists. Nothing here is demand, a borrower, a backer or human benefit.
 
+## In-app credit assessment specification (November 3)
+
+The operator's November 2 point that the borrower's reputation should be assigned inside the app, as a conversation with an agent, was built the same day on the D7 branch (`experiments/d7-live/`: `CreditDesk.sol`, `desk-daemon.mjs`, the app's Credit desk screen; live desk `0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462`). Its complete design specification and roadmap are in [d7-credit-desk-spec.md](d7-credit-desk-spec.md): what reputation means here (capacity, record and decision record, never a universal number), the two-stage officer that restores the officer rule above (the model extracts facts, policy code sets the line), CreditDesk v2, the borrower's credit story screen, measurement, threats, and five zero-money phases with checkpoints on November 6, 8 and 12. PROPOSED, awaiting non-author review.
+
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
 - **2026-11-03 18:00 UTC:** review disposition (GO, CHANGE, PARK) recorded on board 15 next to the issue 396 matrix, so the two technical-channel candidates are compared at once.
