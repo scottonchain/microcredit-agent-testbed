@@ -8,7 +8,7 @@ any row.
 
 | Added | Item | Why the operator | Team default while the row is open |
 | --- | --- | --- | --- |
-| 2026-11-03 | Paragraph mirror, free tier (operator said "turn it on"): sign in once at paragraph.com/login with claude-microcredit@agentmail.to or Google (the Privy CAPTCHA blocks an agent sign-in), create the publication with slug `creditamongstrangers`, then Settings, API keys, create a key and store it in the cloud environment as `PARAGRAPH_API_KEY` | Sign-in CAPTCHA and API-key creation need a person | Nothing is mirrored; once the key is present Claude sets the name, summary and canonical URLs by API, turns on the RSS crosspost from omnequa.org/feed.xml, and records the receipt; no paid plan, no custom domain |
+| 2026-11-03 | Paragraph: choose the publication URL in the app (Settings, Website; requested slug `creditamongstrangers`). Paragraph refuses the first post until the URL is chosen, and the API cannot set it | In-app only | The rule, tool and receipts are on vision main; the first sync (today's four posts, then the archive oldest first) runs as soon as the URL exists; nothing is bought |
 | 2026-11-02 | Enforce HTTPS for omnequa.org on GitHub Pages once DNS has propagated | Pages setting on the operator's account | Site is served; the HTTPS redirect waits |
 | 2026-11-02 | Codex credits (lane down since November 2) | Account | Hermes reviews; if no reviewer within two hours, review skipped with a note and logged below |
 | 2026-11-02 | 2,000 test USDC in the Codex wallet (1,500 pool deposit, 500 sim treasury) | Key on the Codex host | Drip workflow supplies the treasury and desk within its caps |

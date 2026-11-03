@@ -306,7 +306,7 @@ past or a shorter runbook never cancel a promise. In particular:
 | Agent card | Testbed `agent-card.json` | The four `.well-known/agent-card.json` and legacy `agent.json` copies are checked mirrors |
 | Contract, ABI and relayer implementation | `microcredit-contract` | Site `pool/` is a generated release, not editable source |
 | Models behind the papers | Contract `analysis/`, at each paper's recorded revision | Paper data and source snapshots remain reproducible historical evidence |
-| Papers and public explanations | `microcredit-theory`; `microcredit-vision` | Blog README/feed/tags and site `listen/` are generated artifacts |
+| Papers and public explanations | `microcredit-theory`; `microcredit-vision` | Blog README/feed/tags, `omnequa/feed.json` and site `listen/` are generated artifacts; every post is mirrored to omnequa.org and Paragraph (vision CLAUDE.md, 'Three places'; receipts in `editorial/paragraph-mirror.json`) |
 
 With the five checkouts side by side, run
 `python microcredit-agent-testbed/coordination/check_workspace.py --root .`
