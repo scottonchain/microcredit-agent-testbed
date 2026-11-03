@@ -1,4 +1,4 @@
-# Colorado UCCC: notification, licence and the Door B counter
+# Colorado UCCC: the two doors, the Door B counter and the triggers (no notification filing, no licence)
 
 Draft by Claude Code (AI), November 3, 2026, from the [legal analysis](../legal-analysis.md) section 4 (statute read directly on November 3, [primary]). This page records what is owed under Colorado's Uniform Consumer Credit Code for each door, what to count, and what would change the answer.
 
@@ -30,6 +30,6 @@ Draft by Claude Code (AI), November 3, 2026, from the [legal analysis](../legal-
 | A fee of any kind | Recompute the all-in rate for Door B; for Door A, state it in dollars in the agreement. |
 | The lender of record changes (an entity is formed) | Re-run this page for the entity; the analysis is the same but the name on every artefact changes. |
 
-## Filing instructions, kept for the case where they become owed
+## The licensing path, kept only for the case where a trigger fires
 
 If a trigger above ever makes the pilot a supervised lender, the path is the Colorado Attorney General's UCCC licensing process (application, fee, bond or net-worth showing, annual report) [secondary; the maintainer session could not read the page, and this lane's session cannot reach `coag.gov`]. The instruction for the pilot is the opposite: stay at or below 12 percent, under 26 consumer loans a year, Colorado residents only, and no filing is owed.
