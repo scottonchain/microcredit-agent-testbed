@@ -21,7 +21,7 @@ import { tmpdir, homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadAllowlist, parseAmount } from './drip_rules.mjs';
-import { USDC_BASE_SEPOLIA, DEFAULT_LOGIN_EMAIL, CLI_PACKAGE, AGENT_WALLET_HOST, extractRequestId, extractOtp, pickOtpMessages, parseAgentWallet, parseTransferId, parseCliOutput, idempotencyKey, decodeUsdc, decideAgentDrip } from './circle_agent_rules.mjs';
+import { USDC_BASE_SEPOLIA, DEFAULT_LOGIN_EMAIL, CLI_PACKAGE, AGENT_WALLET_HOST, extractRequestId, otpFromMessage, pickOtpMessages, parseAgentWallet, parseTransferId, parseCliOutput, idempotencyKey, decodeUsdc, decideAgentDrip } from './circle_agent_rules.mjs';
 
 // Node's fetch ignores HTTPS_PROXY unless NODE_USE_ENV_PROXY is set (Node 22.21+); the container's hosts are only
 // reachable through that proxy, so the runner restarts itself with the switch and passes it to the CLI as well.
@@ -131,7 +131,7 @@ async function login(bin) {
     for (const m of candidates) {
       seen.add(m.message_id);
       const d = await inbox(`/messages/${encodeURIComponent(m.message_id)}`);
-      const otp = extractOtp(d.text || d.extracted_text || d.preview || '');
+      const otp = otpFromMessage(d);
       if (!otp) continue;
       const done = circle(bin, ['wallet', 'login', '--request', requestId, '--otp', otp, '--type', 'agent', '--testnet']);
       if (done.status === 0 && /logged in/i.test(String(done.data?.message || ''))) { note('login', { ok: true }); return true; }

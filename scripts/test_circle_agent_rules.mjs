@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { loadAllowlist } from './drip_rules.mjs';
-import { extractRequestId, extractOtp, pickOtpMessages, parseAgentWallet, parseTransferId, parseCliOutput, idempotencyKey, decodeUsdc, decideAgentDrip } from './circle_agent_rules.mjs';
+import { extractRequestId, extractOtp, otpFromMessage, pickOtpMessages, parseAgentWallet, parseTransferId, parseCliOutput, idempotencyKey, decodeUsdc, decideAgentDrip } from './circle_agent_rules.mjs';
 
 const list = loadAllowlist(JSON.parse(readFileSync(new URL('./drip_allowlist.json', import.meta.url), 'utf8')));
 const treasury = list.get('0x2aa4069f65931e8b35ed11ac493b1c3ab9917212');
@@ -20,6 +20,15 @@ test('one-time password is parsed in the full head-dash-digits form only', () =>
   assert.equal(extractOtp('code: xyz-654321'), 'XYZ-654321');
   assert.equal(extractOtp('just 123456'), null);
   assert.equal(extractOtp(''), null);
+});
+
+test('one-time password is read from the message as AgentMail returns it: subject, text fields, or HTML', () => {
+  // Shape seen on 2026-11-03: subject and html only, no text field.
+  assert.equal(otpFromMessage({ subject: 'QRS-246810 is your Circle Agent Wallet verification code (Testnet)', html: '<p>QRS-246810</p>' }), 'QRS-246810');
+  assert.equal(otpFromMessage({ subject: 'Your code', text: 'Your code is TUV-135791.' }), 'TUV-135791');
+  assert.equal(otpFromMessage({ subject: 'Your code', html: '<html><body><b>WXY</b>-<i>000000</i> no; <span>WXY-000001</span></body></html>' }), 'WXY-000001');
+  assert.equal(otpFromMessage({ subject: 'Your code', html: '<p>nothing here</p>' }), null);
+  assert.equal(otpFromMessage(null), null);
 });
 
 test('OTP candidates: after the request, from Circle, newest first', () => {
