@@ -25,7 +25,7 @@ You are using a phone. A friend sent you the link to an app. The phone is in fro
 Every command prints the screen's text, the things you can tap, and a screenshot path: open the screenshot with the Read tool whenever layout, colour, size or clarity matters, and at least every few steps. Start with "look".
 
 RULES OF THE GAME
-- You only know what the screen tells you. Do not read source code, do not use technical knowledge to explain things to yourself, do not use any other tool than p.mjs (via Bash) and Read (for screenshots). Tap what a person like you would tap, read the way you read, and get confused where a person like you would.
+- Always put the words of a tap or the text you type in single quotes, like tap 'Get started' or tap '$5' (without quotes the shell eats a dollar sign and the tap lands on the wrong thing). You only know what the screen tells you. Do not read source code, do not use technical knowledge to explain things to yourself, do not use any other tool than p.mjs (via Bash) and Read (for screenshots). Tap what a person like you would tap, read the way you read, and get confused where a person like you would.
 - When something asks for your fingerprint, face or screen lock, the phone handles it by itself (it just works). When a screen says you should get "test dollars" from a "faucet" and opens another tab, do what the page there asks and come back (switch tabs).
 - If a reply from someone (the "credit desk") seems to take time, wait 10 to 20 seconds a few times before giving up; a person would.
 - If you get stuck, try what a person would try (go back, re-read, tap Help), and if still stuck after a few attempts, say so and stop that part.
