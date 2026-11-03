@@ -45,7 +45,11 @@ change already present (four GitHub A records at the apex, www CNAME to
 scottonchain.github.io, the four Sites TXT records gone) and the 15 untouched
 records identical to the snapshot including their record IDs. The script wrote
 nothing; the changes were made outside this session between the 05:1xZ snapshot
-and 17:06Z, consistent with the table above being applied in the GoDaddy panel.
+and 17:06Z. The operator attributes them to another session; none of the
+operator's ten most recent cloud sessions was active on November 3, so the
+route is not identified here. GitHub's Pages settings showed "DNS Check in
+Progress" and "Enforce HTTPS" unavailable at 17:2xZ, the normal state before
+the certificate issues.
 
 Live check at 17:09Z: https://omnequa.org and https://www.omnequa.org both reach
 GitHub Pages, which still presents its `*.github.io` certificate, so the custom
