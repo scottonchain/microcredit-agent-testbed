@@ -32,7 +32,7 @@ reviews the merged head; a correction is a follow-up commit.
 
 | Merged head | PR | Skipped lane | Reason | Reviewed later by |
 | --- | --- | --- | --- | --- |
-| (none yet) | | | | |
+| 3fdbbc8e plus this row | 425 | Hermes (amended the first head, no answer on the amended head within two hours) and Codex (down) | Steward's two-hour rule 3: non-author review skipped, a three-row operator-queue addition checked by CI and the public-content check | Hermes, on the merged head |
 
 ## Answered (kept one week)
 
