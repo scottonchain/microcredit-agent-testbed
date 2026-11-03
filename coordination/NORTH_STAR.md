@@ -83,6 +83,37 @@ concentration bound, and the agent-as-employer idea parked under L3
 November 8 decision reduces to the ACP path; the issue 392 disposition is
 Claude's on November 8. Hard gates and the STOP are unchanged.
 
+## Channels and currencies, November 3 (operator request)
+
+The operator asked on November 3 for broader thinking on the human-first
+direction: repayment in other currencies, the geographies with the least
+friction and the most need, the harms (money laundering, help to illicit
+actors and the rest), technology the people already understand, and an agentic
+conversation on WhatsApp reaching people directly or through a partner of the
+Friendship Bridge type. The research is in
+[evidence/human-first-channels-20261103](../evidence/human-first-channels-20261103/README.md)
+and the direction is [D17](directions/whatsapp-local-currency-channel.md),
+recorded as `action:whatsapp-local-currency-channel-20261103`. Three rules
+follow: the borrower never sees a dollar, a token or the word crypto (loans are
+priced, paid and repaid in local currency, converted in bulk on the platform's
+or a licensed partner's side, with exchange-rate risk on the pool and capped at
+a fifth of the reserve per currency); Guatemala leads the partner route and
+Kenya the rails measurement, while Ethiopia and Bangladesh are closed for the
+stablecoin leg and Nigeria and Ghana wait on currency; and the agent is the
+licensed lender's servicing assistant on that lender's own account, voice
+first, never messaging anyone but the borrower, with a non-Meta fallback,
+because Meta's rules bar peer-to-peer lending, debt collection, virtual
+currency and AI-as-primary-function as subjects of a business account. The
+fifteen questions the team added, the harms register and the dated plan are in
+the packet; the cheapest tests (a priced round trip, a Spanish voice servicing
+agent on the test app) need no money, contact or account. Friendship Bridge is
+named as the public model of a partner type; it has not been contacted and has
+agreed to nothing. D16's legal analysis of the same day (Colorado first, a named lender of
+record, dollars converted only on the lender's side) is the first mainnet
+pilot; D17's partner route is the stage after it and shares the rule. The
+human-readable explanation is the blog post
+[Money that speaks your language](https://github.com/scottonchain/microcredit-vision/blob/main/posts/2026-11-03-money-that-speaks-your-language.md).
+
 ## Directions register
 
 All candidate directions, including the self-service borrower app proposed on

@@ -36,18 +36,38 @@ Rules that apply to every row ([DECISION_AUTONOMY.md](DECISION_AUTONOMY.md), Nov
 | D13 | Agent earns, person spends: an agent operated for a low-income person earns in agent markets and remits | 1, 4 | CLOSED at its October 15 endpoint without a buyer; reopenable | Hermes (channel) | `decision:agent-commerce-human-path-20261014-v2`, [evidence](../evidence/agent-commerce-human-path-20261014/README.md) | Re-entry: a buyer-funded order with a lawful payee for the person. |
 | D14 | Direct-cash comparator arm run beside any pilot, to measure the multiplier against the reference to beat | 2 | PROPOSED (method, unreviewed) | Unassigned | `claim:multiplier-not-donation-20261011` | Attach to the first pilot that reaches a funding-ready packet; no stand-alone spend. |
 | D16 | Human-first lending on Base mainnet: 100 USDC after the app is tested; agentic trust interview with an explainable scorecard; repayment and disbursement in dollars with conversion on the platform side | 2, 3 | ACTIVE November 3 (operator direction); research and build lane; the one operator checkpoint is the mainnet packet | Dedicated Claude session (daily routine 15:41 America/Denver); steward keeps D7 | [directions/human-first-mainnet.md](directions/human-first-mainnet.md), [round one](../evidence/human-first-mainnet-20261103/README.md), `action:human-first-mainnet-readiness-20261103` | November 10: rails round two and counsel brief; November 17: trust-interview shadow-scoring report; November 24: measured round trip, deployment plan, operations note; then the packet. |
+| D17 | Local-currency repayment and a conversational servicing agent on the channel people already use (WhatsApp first, with a non-Meta fallback): the borrower never sees a dollar, a token or the word crypto; conversion in bulk on the platform's or a licensed partner's side; the agent is the lender of record's between-meeting assistant, voice-first, in the borrower's language | 1, 2, 3 | ACTIVE November 3 (operator request, opened by Claude under DECISION_AUTONOMY.md); research and sandbox lane, zero money, zero contact | Claude (owner); D16 lane (rails); steward session (sandbox agent); Hermes (reviews, holds the partner packet) | [directions/whatsapp-local-currency-channel.md](directions/whatsapp-local-currency-channel.md), [research packet](../evidence/human-first-channels-20261103/README.md), `action:whatsapp-local-currency-channel-20261103`, `decision:channels-currencies-go-20261103` | November 10: priced 25 USDC round trip into GTQ and KES; November 12: geography GO (Guatemala first for the partner route, Kenya for rails) or CHANGE; November 17: Spanish voice servicing agent on the test app ledger, five testers, cost and error rate; November 24: harms register reviewed, Meta-policy memo, fallback shown; December 1: partner packet held for the operator's word; December 8: GO, CHANGE or PARK |
 | D15 | Emergent-AI alignment candidates: agent communities answering public questions with dated cases (Moltbook), agent-to-agent payments (x402, ACP), agent identities (ERC-8004), agent-operated creator accounts | 4 | PROPOSED; evidence gathered inside D6 and the companion queue, no bounded capability comparison yet | Codex (research), Hermes (channel reads), Claude (challenge) | Issue 396 packet, Hermes companion receipts on board 15 | Within the operator's 24-hour window: one bounded comparison of a current capability against the existing method on one real task, with its outside application named. |
 
 ## Reading the register against the four outcomes
 
 | Outcome | Directions carrying it today | Honest state |
 | --- | --- | --- |
-| 1. Outside engagement | D3, D4, D12, D13, D15 | Observations open, one request sent, no accepted next step with an outside party yet. |
-| 2. Lending ready for funding | D1, D2, D7, D8, D9, D10, D12, D14 | No funding-ready packet. D7 is the only written-up candidate for the operator's seed; its first two gates cost nothing. |
-| 3. Technical channel | D6, D7 (smart-wallet half), D9 | D6 has a roadmap and a November 3 matrix. D7's wallet demonstration is executable on testnet now. |
+| 1. Outside engagement | D3, D4, D12, D13, D15, D17 | Observations open, one request sent, no accepted next step with an outside party yet. D17's partner packet is prepared and held; no contact. |
+| 2. Lending ready for funding | D1, D2, D7, D8, D9, D10, D12, D14, D16, D17 | No funding-ready packet. D7 is the only written-up candidate for the operator's seed; its first two gates cost nothing. D16 and D17 supply the dollar and local-currency rails, the trust interview and the channel that packet needs. |
+| 3. Technical channel | D6, D7 (smart-wallet half), D9, D17 | D6 has a roadmap and a November 3 matrix. D7's wallet demonstration is executable on testnet now. D17's servicing-agent sandbox and priced round trip are executable with zero authority. |
 | 4. Emergent AI | D6, D11, D15 | Evidence collected, no bounded comparison completed. |
 
 A direction may carry more than one outcome; a row may not be counted as progress in a lane until the lane's definition above is met with a receipt.
+
+## Programme plan, November to December 2026 (the project at a glance)
+
+A view across the active directions so that no date passes unowned ([DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) rule 1). The three strands run in parallel and share one measurement rule: a receipt is a lead, a bound or NONE, never demand, acceptance or human income. The long pole is legal (jurisdiction, lender of record), not code.
+
+| Date (UTC) | D7 app (steward) | D16 human-first mainnet (Claude lane) | D17 currency and channel (Claude) | Lateral register (Claude routine) |
+| --- | --- | --- | --- | --- |
+| November 8 | Gate 2 testnet passkey demonstration; gate 3 five borrowers and five backers named | Read D7 gate state | | C2 and C4 dispositions; N1 partner terms; F9 panel terms |
+| November 10 | | Rails round two (dollar and local currency); counsel brief drafted and queued | Priced 25 USDC round trip into GTQ and KES | |
+| November 12 | | | Geography GO or CHANGE | |
+| November 15 | | | | N6 and F4 simulations; N7 note; F11 and F12 scores re-read |
+| November 17 | Shares its testers | Trust-interview shadow-scoring report | Spanish voice servicing agent on the test ledger: completion, cost, error rate | |
+| November 24 | | Measured cash round trip; deployment plan; operations note (now with the currency-exposure cap and the frozen-address scenario) | Harms register reviewed; Meta-policy memo; fallback channel shown; comparator set | |
+| December 1 | | | Partner packet complete, held for the operator's word | |
+| December 3 | | Action due: funding-ready packet assembled or re-dated with reasons | | |
+| December 8 | | | D17 GO, CHANGE or PARK | |
+| When every gate has its receipt | Gates 4 to 6 (operator) | The one operator checkpoint: the mainnet packet | Folded into that packet | |
+
+What is not on this plan: any contact, spend, account, credential or deployment; any publicity before D7 gates 4 and 5; the November 1 agent-loan STOP, which stands.
 
 ## Maintenance
 
