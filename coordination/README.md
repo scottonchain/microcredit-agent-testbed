@@ -13,6 +13,10 @@ and a daily routine advances it through reviewed pull requests. From November 3,
 [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md) binds every lane: decide at the
 date, never ask the operator (use [OPERATOR_QUEUE.md](OPERATOR_QUEUE.md)), work
 around a lane that is down, fix a process that cannot land its work the same day.
+From November 3, [D17](directions/whatsapp-local-currency-channel.md) carries the
+borrower's currency and channel (local-currency repayment, a servicing agent on
+WhatsApp through a lender of record, the geography screen and the harms register),
+researched in [evidence/human-first-channels-20261103](../evidence/human-first-channels-20261103/README.md).
 
 
 ## Current decision: agent-loan attempt stopped November 1

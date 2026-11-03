@@ -1,0 +1,22 @@
+{
+ "mode": "fund-only",
+ "startedAt": "2026-11-03T17:30:39.389Z",
+ "chain": "BASE-SEPOLIA",
+ "loginEmail": "claude-microcredit@agentmail.to",
+ "termsAcceptance": "accepted 2026-11-03 by the operator",
+ "steps": [
+  {
+   "step": "login-init",
+   "at": "2026-11-03T17:30:43.893Z",
+   "ok": true,
+   "codeSentTo": "claude-microcredit@agentmail.to"
+  },
+  {
+   "step": "login",
+   "at": "2026-11-03T17:33:41.795Z",
+   "failed": "no usable one-time password from Circle within 180s"
+  }
+ ],
+ "finishedAt": "2026-11-03T17:33:41.796Z",
+ "summary": "login failed"
+}

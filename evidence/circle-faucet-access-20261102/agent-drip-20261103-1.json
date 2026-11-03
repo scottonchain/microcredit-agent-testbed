@@ -1,0 +1,37 @@
+{
+ "mode": "fund-only",
+ "startedAt": "2026-11-03T17:34:51.283Z",
+ "chain": "BASE-SEPOLIA",
+ "loginEmail": "claude-microcredit@agentmail.to",
+ "termsAcceptance": "accepted 2026-11-03 by the operator",
+ "steps": [
+  {
+   "step": "login-init",
+   "at": "2026-11-03T17:34:55.902Z",
+   "ok": true,
+   "codeSentTo": "claude-microcredit@agentmail.to"
+  },
+  {
+   "step": "login",
+   "at": "2026-11-03T17:35:06.060Z",
+   "ok": true
+  },
+  {
+   "step": "faucet",
+   "at": "2026-11-03T17:35:10.704Z",
+   "status": 0,
+   "detail": "Faucet drip requested. Check `circle wallet balance --address 0x55ae55b4ffb36ad97bd5392fbbaee5afc8e7ff24 --chain BASE-SEPOLIA` in a few seconds.",
+   "agentBalanceBefore": 0
+  },
+  {
+   "step": "faucet",
+   "at": "2026-11-03T17:35:17.209Z",
+   "received": 20,
+   "after": 20,
+   "seconds": 6
+  }
+ ],
+ "agentWallet": "0x55ae55b4ffb36ad97bd5392fbbaee5afc8e7ff24",
+ "finishedAt": "2026-11-03T17:35:17.210Z",
+ "summary": "faucet gave 20 test USDC in 6s"
+}
