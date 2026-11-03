@@ -38,7 +38,7 @@ async function open({ device, standalone = false, iosStandalone = false, ipad = 
   if (ipad) await page.addInitScript(() => { Object.defineProperty(navigator, 'platform', { get: () => 'MacIntel' }); Object.defineProperty(navigator, 'maxTouchPoints', { get: () => 5 }); });
   if (webkit || (device && /iPhone|iPad/.test(device.userAgent || ''))) await page.addInitScript(() => { delete window.onbeforeinstallprompt; }); // WebKit has no install event
   if (installedApps) await page.addInitScript((apps) => { navigator.getInstalledRelatedApps = () => Promise.resolve(apps); }, installedApps);
-  const t0 = Date.now(); await page.goto(path); await page.waitForFunction(() => /Create my wallet/.test(document.body.innerText) && window.__d7 && window.__d7.I); const bootMs = Date.now() - t0;
+  const t0 = Date.now(); await page.goto(path); await page.waitForFunction(() => /Get started/.test(document.body.innerText) && window.__d7 && window.__d7.I); const bootMs = Date.now() - t0;
   const text = () => page.locator('body').innerText(); const sheetText = async () => (await page.locator('#overlay').isVisible()) ? page.locator('#overlay').innerText() : '';
   const waitSheet = (re, t = 6000) => page.waitForFunction((src) => { const o = document.querySelector('#overlay'); return o && !o.hidden && new RegExp(src, 'i').test(o.innerText); }, re.source, { timeout: t });
   const firePrompt = (outcome = 'accepted', reject = false) => page.evaluate(`${FIRE}(${JSON.stringify(outcome)}, ${reject})`);
@@ -61,7 +61,7 @@ await step('I02 Chromium path: after beforeinstallprompt (default prevented) the
 
 await step('I03 Chromium path, dismissed: a Not installed sheet, card stays, welcome intact', async () => {
   const p = await open({ device: PIXEL }); await p.firePrompt('dismissed'); await p.button().click(); await p.waitSheet(/Your browser will ask/); await p.action('Install').click();
-  await p.waitSheet(/Not installed/); must(/browser’s menu|browser's menu/.test(await p.sheetText()), 'menu hint missing'); await p.action('OK').click(); must((await p.card().count()) === 1, 'card should stay'); must(/Create my wallet/.test(await p.text()), 'welcome lost'); });
+  await p.waitSheet(/Not installed/); must(/browser’s menu|browser's menu/.test(await p.sheetText()), 'menu hint missing'); await p.action('OK').click(); must((await p.card().count()) === 1, 'card should stay'); must(/Get started/.test(await p.text()), 'welcome lost'); });
 
 await step('I04 Not now closes the sheet and keeps the captured prompt for later; focus returns to the card button', async () => {
   const p = await open({ device: PIXEL }); await p.firePrompt('accepted'); await p.button().click(); await p.waitSheet(/Your browser will ask/);
@@ -74,7 +74,7 @@ await step('I05 link flag ?install=1: the sheet opens at once with menu steps, u
   await p.page.waitForTimeout(400); await p.firePrompt('accepted'); await p.waitSheet(/Your browser will ask to install/, 1500); await p.action('Install').click(); await p.waitSheet(/Adding it now/); must((await p.page.evaluate(() => window.__prompted)) === 1, 'prompt() count'); });
 
 await step('I06 link flag without an install event: menu steps immediately, nothing else changes', async () => {
-  const p = await open({ device: PIXEL, path: '/?install=1' }); await p.waitSheet(/Install app/, 1500); must(/menu/i.test(await p.sheetText()), 'expected menu steps'); await p.action('OK').click(); must(/Create my wallet/.test(await p.text()), 'welcome not shown'); });
+  const p = await open({ device: PIXEL, path: '/?install=1' }); await p.waitSheet(/Install app/, 1500); must(/menu/i.test(await p.sheetText()), 'expected menu steps'); await p.action('OK').click(); must(/Get started/.test(await p.text()), 'welcome not shown'); });
 
 await step('I07 iPhone Safari: Share, Add to Home Screen, Add; the wallet note names Safari; the in-app hint is present; no wait', async () => {
   const p = await open({ device: IPHONE }); must(await p.page.evaluate(() => window.__d7.I.isIOS() && !window.__d7.I.supportsPrompt()), 'iOS emulation wrong'); must((await p.card().count()) === 1, 'no card on iPhone');
@@ -97,13 +97,13 @@ await step('I11 iPad (Mac user agent, MacIntel platform, five touch points) coun
   const p = await open({ device: { ...IPHONE, userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15', viewport: { width: 820, height: 1180 } }, ipad: true, webkit: true });
   must(await p.page.evaluate(() => window.__d7.I.isIOS()), 'iPad not detected'); });
 
-await step('I12 desktop Chromium without touch: not iOS, menu steps mention Add to Dock and the nothing-is-lost line', async () => {
-  const p = await open({}); must(!(await p.page.evaluate(() => window.__d7.I.isIOS())), 'desktop detected as iOS'); await p.button().click(); await p.waitSheet(/Add to Dock/); must(/nothing is lost/i.test(await p.sheetText()), 'exit line missing'); });
+await step('I12 desktop Chromium without touch: not iOS, the menu line names Install app and Add to Home screen', async () => {
+  const p = await open({}); must(!(await p.page.evaluate(() => window.__d7.I.isIOS())), 'desktop detected as iOS'); await p.button().click(); await p.waitSheet(/Install app/); must(/Add to Home screen/i.test(await p.sheetText()), 'menu line missing'); });
 
 await step('I13 beforeinstallprompt fired before the app module loaded is kept by index.html (default prevented) and adopted by the module', async () => {
   const ctx = await browser.newContext({ ...PIXEL, baseURL: `http://localhost:${PORT}` }); const page = await ctx.newPage(); cur = { ctx, page };
   await page.route('**/dist/app.js', async (route) => { await page.waitForFunction(() => document.readyState !== 'loading', null, { polling: 20, timeout: 10000 }); await page.evaluate(`${FIRE}('accepted', false)`); await route.continue(); });
-  await page.goto('/'); await page.waitForFunction(() => /Create my wallet/.test(document.body.innerText) && window.__d7 && window.__d7.I);
+  await page.goto('/'); await page.waitForFunction(() => /Get started/.test(document.body.innerText) && window.__d7 && window.__d7.I);
   must(await page.evaluate(() => !!window.__bip && window.__bipEvt.defaultPrevented), 'index.html did not keep the early event with preventDefault'); must(await page.evaluate(() => window.__d7.I.canPrompt()), 'module did not adopt the early event');
   await page.getByRole('button', { name: 'Add to home screen' }).click(); await page.waitForFunction(() => /Your browser will ask to install/.test(document.querySelector('#overlay').innerText)); });
 

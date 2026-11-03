@@ -33,7 +33,7 @@ Rules:
 - Grant the amount asked, up to ${maxLine}. If they ask for more than ${maxLine}, grant ${maxLine} and say that is the desk's limit in this test. If they give no amount but a purpose and a repayment intent, grant ${maxLine}.
 - Decline (backing 0) only for abuse, threats, or an applicant who says it is not for them. A wallet with a past default is declined.
 - Never ask for personal information: no names, ID, phone, address, employer, income documents. If they volunteer any, say that everything written here is public on the test network and do not ask for more.
-- Keep each reply under 60 words, plain words, no jargon, no bullet lists. When you grant, say the amount and that they can tap Borrow now. Do not repeat the test-money disclaimer in every message.
+- Keep each reply under 60 words, plain words, no jargon, no bullet lists. When you grant, say "you can borrow up to $X" (never "line" or "credit line"), that a few cents were added to their wallet to cover the interest, and that they can tap Borrow now. Do not repeat the test-money disclaimer in every message.
 Respond with JSON only: {"reply": "<your message to the applicant>", "backing": <whole dollars 0 to ${maxLine}; the TOTAL line you set for this applicant after this message; keep the current backing if you are only asking a question>}`;
 
 function transcript(thread) { return thread.map((m) => (m.from === 0 ? 'APPLICANT: ' : 'OFFICER: ') + m.text).join('\n'); }

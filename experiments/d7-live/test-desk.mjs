@@ -7,7 +7,7 @@ const shot = (n) => page.screenshot({ path: `results/screens/desk-${n}.png` });
 const waitReply = async (n, t = MODE === 'claude' ? 240000 : 40000) => page.waitForFunction((k) => document.querySelectorAll('.bub.desk').length >= k, n, { timeout: t });
 try {
   let wallet;
-  await R.step('D01 create wallet, home offers the credit desk', async () => { wallet = await p.create(); await p.expectText(/Ask the credit desk/); }, page);
+  await R.step('D01 create wallet, home offers the credit desk', async () => { wallet = await p.create(); await p.expectText(/Ask for a loan/); }, page);
   await R.step('D02 credit screen shows the officer greeting and no backing', async () => { await page.goto('/#credit'); await page.waitForSelector('.bub.desk', { timeout: 20000 }); if ((await page.locator('.bub.desk').count()) !== 1) throw new Error('greeting missing'); if (await page.locator('#toBorrow').isVisible()) throw new Error('Borrow offered before any grant'); await shot('01-greeting'); }, page);
   await R.step('D03 first message (no amount) is answered by the officer with a question or a grant', async () => {
     await page.fill('#msg', 'I want to buy seed for my garden and sell vegetables at the market. I will pay back after the harvest in three weeks.'); await page.locator('#send').click(); await p.tapDone();
@@ -23,7 +23,7 @@ try {
     console.log('   officer:', (await page.locator('.bub.desk').last().innerText()).slice(0, 200), '| limit', usd(b[0]));
   }, page);
   await R.step('D05 desk stake is committed by the backing (desk is the backer)', async () => { const bk = await read('getBacking', [w.desk.address, wallet]); if (bk[0] + bk[1] === 0n) throw new Error('desk not backing'); }, page);
-  await R.step('D06 borrow against the desk line works from the chat', async () => { await page.locator('#toBorrow').click(); await p.expectText(/Available to borrow/); const b = await read('getBorrowLimit', [wallet]); await page.fill('#amt', String(Math.min(5, Math.floor(usd(b[1]))))); await p.expectText(/You receive/); await page.locator('#go').click(); await p.tapDone(); await page.goto('/#home'); await page.reload(); await p.expectText(/You owe/); }, page);
+  await R.step('D06 borrow against the desk line works from the chat in one tap (no second screen)', async () => { await p.expectText(/Borrow \$\d/); await page.locator('#toBorrow').click(); await p.tapDone(); await page.goto('/#home'); await page.reload(); await p.expectText(/You owe/); }, page);
   await R.step('D07 spam guard: a fourth unanswered message is refused before any signature', async () => {
     // stop the officer, write three, the fourth is disabled
     try { w.daemon?.kill('SIGKILL'); } catch {}

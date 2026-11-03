@@ -27,10 +27,13 @@ export const MESSAGES = {
   'ERC20: transfer amount exceeds balance': 'Not enough USDC in your wallet.',
 };
 export function friendly(e) {
-  const raw = (e && (e.reason || e.errorName || e.shortMessage || e.message)) || String(e);
+  // Read every field an error may carry: a passkey refusal arrives as a DOMException (name NotAllowedError, message
+  // "The operation either timed out or was not allowed"), and a wrapped error keeps the cause in details or cause.
+  const parts = e ? [e.reason, e.errorName, e.shortMessage, e.message, e.details, e.name, e.cause && e.cause.message, e.cause && e.cause.name] : [String(e)];
+  const raw = parts.filter((x) => typeof x === 'string' && x).join(' | ') || String(e);
   const key = Object.keys(MESSAGES).find((k) => raw.includes(k));
   if (key) return MESSAGES[key];
-  if (/NotAllowedError|credential request failed|cancel|timed out/i.test(raw)) return 'Cancelled. Nothing was sent. Try again and approve with your fingerprint, face or screen lock.';
+  if (/NotAllowedError|credential request failed|cancel|timed out|not allowed|AbortError|user denied|rejected/i.test(raw)) return 'Cancelled. Nothing was sent. Try again and approve with your fingerprint, face or screen lock.';
   if (/rate limit|429|Too Many/i.test(raw)) return 'The test network is busy (rate limited). Wait a few seconds and try again.';
   if (/Failed to fetch|NetworkError|fetch failed/i.test(raw)) return 'Cannot reach the test network. Check your connection and try again.';
   return 'Something went wrong. Nothing was lost. Try again; if it repeats, copy the details below into your feedback.';

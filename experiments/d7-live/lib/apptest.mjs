@@ -39,7 +39,7 @@ export async function phone(w, { device = 'iPhone 13', colorScheme } = {}) {
   const addr = () => page.evaluate(() => window.__d7.S.addr);
   const tapDone = async () => { await page.waitForFunction(() => /\bDone\b|did not go through/.test(document.body.innerText), null, { timeout: 60000 }); if (/did not go through/.test(await text())) { const d = await page.locator('#overlay').innerText(); throw new Error('op failed: ' + d.replace(/\s+/g, ' ').slice(0, 400)); } await page.locator('#overlayActions button', { hasText: 'OK' }).click(); };
   const closeSheet = async () => { if (await page.locator('#overlay').isVisible()) await page.locator('#overlayActions button').first().click(); };
-  const create = async () => { await page.goto('/'); await page.getByRole('button', { name: 'Create my wallet' }).click(); await expectText(/Your wallet/); await expectText(/\$\d/); return addr(); };
+  const create = async () => { await page.goto('/'); await page.getByRole('button', { name: 'Get started' }).click(); await expectText(/What do you need|Your wallet/); await page.goto('/#home'); await expectText(/Your wallet/); await expectText(/\$\d/); return addr(); };
   return { browser, ctx, page, cdp, authId: va.authenticatorId, logs, text, expectText, addr, tapDone, closeSheet, create };
 }
 

@@ -15,9 +15,10 @@
 <script>window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;});</script>
 </head>
 <body>
-<div id="banner" class="banner" role="note">TEST NETWORK. The dollars here are test tokens with no real value. Nothing here is a real loan.</div>
-<main id="app" aria-live="polite"></main>
+<div id="banner" class="banner" role="note">Practice version: the dollars here are test tokens, not real money. Nothing here is a real loan.</div>
+<div class="frame"><main id="app" aria-live="polite"><h1>A small test loan</h1><p class="muted">Loading…</p></main><aside id="side" class="side" aria-label="Open on your phone" hidden></aside></div>
 <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="overlayTitle" hidden><div class="sheet"><h2 id="overlayTitle" class="sheet-title"></h2><div id="overlayBody" class="sheet-body"></div><div id="overlayActions" class="sheet-actions"></div></div></div>
 <script type="module" src="dist/app.js"></script>
+<script>setTimeout(function(){if(!window.__d7){var m=document.getElementById('app');m.innerHTML='<h1>A small test loan</h1><div class="note bad">The app could not load. Check your connection and try again.</div><button onclick="location.reload()">Try again</button>';}},12000);</script>
 </body>
 </html>

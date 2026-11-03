@@ -10,9 +10,13 @@ const S = { client: null, cred: null, account: null, addr: null, bundler: null, 
 I.watch();
 const short = (a) => a.slice(0, 6) + '…' + a.slice(-4);
 const days = (secs) => Math.max(0, Math.ceil(secs / 86400));
+const fmtDate = (ts) => new Date(ts * 1000).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
 let chainNow = null; // block time, so the screens agree with the pool even when the phone clock is wrong
 const now = () => chainNow ?? Math.floor(Date.now() / 1000);
-const dueLine = (l) => { const d = l.dueAt - now(); if (d >= 0) return `Due in ${days(d)} days (${new Date(l.dueAt * 1000).toLocaleDateString()}).`; const late = Math.max(1, Math.floor(-d / 86400)); return `Overdue by ${late} day${late === 1 ? '' : 's'}. Pay now. After 30 more days late the loan can be marked defaulted and anyone who backed you can lose their stake.`; };
+const dueLine = (l) => { const d = l.dueAt - now(); const date = fmtDate(l.dueAt);
+  if (d >= 86400) return `Due in ${days(d)} days, by ${date}.`;
+  if (d > -86400) return `Due today (${date}). Pay back today and it is on time.`;
+  const late = Math.floor(-d / 86400); return `Late by ${late} day${late === 1 ? '' : 's'}: it was due ${date}. Pay back now.${late >= 7 ? ' After 30 days late the loan counts as a default: you could not borrow again, and the desk or friend who backed you would lose what they put up.' : ''}`; };
 
 let sheetReturnFocus = null; // where focus goes back to when the sheet closes
 function sheet({ title, body = '', actions = [] }) {
@@ -39,7 +43,9 @@ async function run(title, calls, { retryIds, summary } = {}) {
       const r = await C.send(S.bundler, S.account, calls, (st) => draw(st === 'sign' ? 0 : 1));
       if (r.success) {
         let extra = ''; try { extra = summary ? await summary(r) : ''; } catch {}
-        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)} went through.</div>${extra}<p class="muted"><a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">View on the block explorer</a></p>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); if (!location.hash.startsWith('#credit')) render(); } }] });
+        const stay = location.hash.startsWith('#credit');
+        if (!stay) { location.hash = '#home'; render(); } // the fresh home screen sits behind the Done sheet, so nothing looks failed
+        sheet({ title: 'Done', body: `<div class="note ok">${esc(title)}: done.</div>${extra}<details><summary class="muted">Receipt</summary><p class="muted">${esc(new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }))}: ${esc(title)}, from wallet ${esc(short(S.addr))}. Recorded on the test network as ${esc(String(r.txHash).slice(0, 10))}… (<a href="${C.cfg.explorer}/tx/${r.txHash}" target="_blank" rel="noopener">public record site</a>; it may first check that you are not a robot).</p></details>`, actions: [{ label: 'OK', onClick: () => { closeSheet(); if (stay) render(); } }] });
         return r;
       }
       lastErr = r.reason || 'Reverted';
@@ -66,13 +72,13 @@ const walletNote = (hasWallet) => { if (!I.appleWebKit()) return ''; const b = I
   : `<p>Add it first, then create your wallet from the new icon. A wallet created in ${b} does not show up in the home-screen app.</p>`; };
 // Android installs the web app like any app: the phone's launcher decides whether the icon also lands on the Home
 // screen. Samsung's One UI puts it in the Apps list only, unless Home screen settings says otherwise; a page cannot change that.
-const androidWhereLine = () => `<p>Android puts the new icon in your <b>Apps</b> list (swipe up from the Home screen; it is on the last page, or search <b>Omnequa</b>). To put it on the Home screen: hold the icon, then tap <b>Add to Home</b>. On Samsung phones, <b>Home screen settings</b> has a switch, <b>Add new apps to Home screen</b>, that does this for every new app.</p>`;
+const androidWhereLine = () => `<p>Done. It is now one of your apps, called <b>Omnequa test</b>: open it from your app list or your Home screen.</p>`;
 const inAppLine = () => `<p>Opened this inside another app (Messages, WhatsApp, Gmail)? First choose <b>Open in ${I.isIOS() ? 'Safari' : 'Chrome'}</b> (or <b>Open in browser</b>) from that app's menu, then tap Add to home screen again.</p>`;
 function installContent(k, hasWallet) {
   const inApp = I.inAppView();
   if (k === 'prompt') return { body: '<p>Your browser will ask to install the Omnequa test wallet. It then opens from its own icon, without the browser bars. There is nothing to download from an app store.</p>', actions: [{ label: 'Install', onClick: doInstall }, { label: 'Not now', secondary: true, onClick: closeInstall }] };
   if (k === 'ios') return { body: `${inApp ? inAppLine() : ''}<ol class="howto"><li>Tap the <b>Share</b> button (the square with an arrow pointing up), usually at the bottom of the screen; on iPad it is at the top.</li><li>Scroll down and tap <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b>.</li></ol><p>Then open the app from its new icon. If it is already there, just open it.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
-  return { body: `${inApp ? inAppLine() : ''}<p>In your browser’s menu look for <b>Install app</b>, <b>Add to Home screen</b>, <b>Add page to</b> (Samsung Internet), <b>Add to phone</b> or <b>Add to Dock</b>, then open the app from its new icon.</p>${I.isAndroid() ? androidWhereLine() : ''}<p class="muted">If it is already installed, open it from your home screen or app list. If there is nothing like that in the menu, keep using it here in the browser: nothing is lost.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
+  return { body: `${inApp ? inAppLine() : ''}<p>In your browser’s menu tap <b>Install app</b> or <b>Add to Home screen</b> (Samsung Internet: <b>Add page to</b>, then <b>Home screen</b>).</p><p class="muted">If it is already installed, open it from your home screen or app list. If there is nothing like that in the menu, keep using it here in the browser: nothing is lost.</p>${walletNote(hasWallet)}${inApp ? '' : inAppLine()}`, actions: [{ label: 'OK', onClick: closeInstall }] };
 }
 function showInstalled() {
   endInstallWatch(); installToken++;
@@ -107,19 +113,18 @@ const wireInstall = () => { const b = $('#install'); if (b) b.onclick = installS
 function header(title, back = true) { return `${back ? '<a class="back" href="#home">‹ Back</a>' : ''}<h1>${esc(title)}</h1>`; }
 
 function renderWelcome() {
-  app.innerHTML = `${header('Omnequa test wallet', false)}
-  <p>A practice wallet for small test loans. It opens with your fingerprint, face or screen lock. No password, no seed words, no fees to pay.</p>
+  app.innerHTML = `${header('Try a small loan', false)}
+  <p><b>Borrow up to $${Number(C.cfg.maxLine || 5)} of test dollars, pay it back, and tell us how it went.</b> Practice money only: nothing here is a real loan, and there is nothing to buy with it.</p>
   <div class="card">${I.appleWebKit() ? (I.standalone()
     ? '<div class="note warn"><b>Already made a wallet in a browser on this device?</b> Tapping Create my wallet here makes a second, separate wallet; the first one’s test dollars stay in the first wallet. Instead, in that browser open Help, copy the recovery code, then tap <b>I already have a recovery code</b> below and paste it.</div>'
-    : '<p class="muted">Made a wallet in the home-screen app already? Restore it with its recovery code (below) instead of creating a new one: a new wallet here would be a separate wallet with its own test dollars.</p>') : ''}<button id="create">Create my wallet</button><p class="muted">Your phone will ask you to create a passkey. It stays on your device and, if you use one, your password manager.</p></div>
-  <details class="card"><summary>I already have a recovery code</summary><label for="rc">Recovery code</label><textarea id="rc" rows="3" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea><button id="import" class="secondary" style="margin-top:8px">Restore wallet</button></details>
-  ${installCard()}
-  <p class="muted">Test network only. The dollars are test tokens with no real value.</p>`;
+    : '<p class="muted">Made a wallet in the home-screen app already? Restore it with its recovery code (below) instead of creating a new one: a new wallet here would be a separate wallet with its own test dollars.</p>') : ''}<button id="create">Get started</button><p class="muted">Your fingerprint, face or screen lock is the key: no password, nothing to download, nothing to sign up for.</p></div>
+  <details class="card"><summary>I have a recovery code from another phone</summary><label for="rc">Recovery code</label><textarea id="rc" rows="3" autocapitalize="off" autocorrect="off" spellcheck="false"></textarea><button id="import" class="secondary" style="margin-top:8px">Restore wallet</button></details>
+  ${installCard()}`;
   wireInstall();
   $('#create').onclick = async () => {
-    sheet({ title: 'Creating your wallet', body: '<p>Approve the passkey prompt on your phone.</p>' });
-    try { const cred = await C.createPasskey('Omnequa test wallet'); C.saveCred(cred); await boot(); closeSheet(); go('home'); render(); }
-    catch (e) { sheet({ title: 'Could not create the wallet', body: `<div class="note bad">${esc(friendly(e))}</div><details><summary>Technical details</summary><pre>${esc(String(e.message || e).slice(0, 400))}</pre></details>`, actions: [{ label: 'Close', onClick: closeSheet }] }); }
+    $('#create').disabled = true; sheet({ title: 'Setting up your wallet', body: '<p>Approve the prompt on your phone (fingerprint, face or screen lock). This takes a few seconds.</p>' });
+    try { const cred = await C.createPasskey('Omnequa test wallet'); C.saveCred(cred); await boot(); closeSheet(); go(C.cfg.desk ? 'ask' : 'home'); render(); }
+    catch (e) { if ($('#create')) $('#create').disabled = false; sheet({ title: 'Could not set up', body: `<div class="note bad">${esc(friendly(e))}</div><details><summary>Technical details</summary><pre>${esc(String(e.message || e).slice(0, 400))}</pre></details>`, actions: [{ label: 'Close', onClick: closeSheet }] }); }
   };
   $('#import').onclick = async () => {
     try { const c = C.parseRecovery($('#rc').value); C.saveCred(c); await boot(); go('home'); render(); }
@@ -133,55 +138,53 @@ async function renderHome(my = renderSeq) {
   const loans = C.openLoans(s); const active = loans.find((l) => l.status === C.ST.Active); const waiting = loans.find((l) => l.status === C.ST.Requested);
   const apr = Number(s.rate) / 100;
   app.innerHTML = `<h1>Your wallet</h1>
-  <div class="card"><div class="muted">Test USDC in your wallet</div><div class="big" id="bal">${C.money(s.usdcBal)}</div>
-    <div class="row" style="margin-top:8px"><span class="muted">${short(S.addr)}</span><button class="link" id="copyAddr">Copy address</button></div></div>
+  <div class="card"><div class="muted">Test dollars in your wallet</div><div class="big" id="bal">${C.money(s.usdcBal)}</div>${C.cfg.desk && s.backedBy.some((b) => b.who.toLowerCase() === C.cfg.desk.toLowerCase()) && s.usdcBal > 0n ? '<p class="muted">Includes the few cents the credit desk put here to cover your interest.</p>' : ''}</div>
   <div class="card"><div class="muted">${active || waiting ? 'Your credit limit' : 'You can borrow up to'}</div><div class="big" id="avail">${C.money(active || waiting ? s.limit : s.available)}</div>
-    ${C.cfg.desk && !s.defaulted ? (s.limit === 0n ? '<button id="gCredit">Ask the credit desk</button>' : '<button class="secondary" id="gCredit">Credit desk</button>') : ''}<p class="muted">${s.limit === 0n ? (C.cfg.desk ? 'You have no credit yet. Ask the credit desk: an AI officer answers in the app.' : 'You have no credit yet. <a href="#credit">How to get credit</a>') : active || waiting ? `You can borrow again after you pay this loan back. Interest is ${apr.toFixed(2)}% a year.` : `Your credit limit is ${C.money(s.limit)}. Interest is ${apr.toFixed(2)}% a year.`}</p></div>
-  ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Backing</h2>${s.backedBy.length ? `<div class="muted">Backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><span><b>${C.money(b.amount)}</b> <a href="#back?to=${esc(b.who)}">Change</a></span></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
+    ${C.cfg.desk && !s.defaulted ? (s.limit === 0n ? '<button id="gCredit">Ask for a loan</button>' : '<button class="secondary" id="gCredit">Credit desk</button>') : ''}<p class="muted">${s.limit === 0n ? (C.cfg.desk ? 'Say how much you need and what for; an AI credit officer answers in the app.' : 'You have no credit yet. <a href="#credit">How to get credit</a>') : active || waiting ? `You can borrow again after you pay this loan back. No fees; interest about ${(apr / 12).toFixed(1)}% a month.` : `Your limit is ${C.money(s.limit)}. No fees; interest about ${(apr / 12).toFixed(1)}% a month (${apr.toFixed(2)}% a year). When you owe something, a Pay back button appears here.`}</p></div>
+  ${s.backedBy.length || s.youBack.length ? `<div class="card"><h2>Who vouches for you</h2><p class="muted">Backing is a promise to cover your loan if you do not pay it back.</p>${s.backedBy.length ? `<div class="muted">You are backed by</div>${s.backedBy.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${C.cfg.desk && b.who.toLowerCase() === C.cfg.desk.toLowerCase() ? 'The credit desk' : esc(short(b.who))}</span><b>${C.money(b.amount)}</b></div>`).join('')}` : ''}${s.youBack.length ? `<div class="muted" style="margin-top:8px">You back</div>${s.youBack.map((b) => `<div class="row"><span class="addr" style="border:0;padding:2px 0">${esc(short(b.who))}</span><span><b>${C.money(b.amount)}</b> <a href="#back?to=${esc(b.who)}">Change</a></span></div>`).join('')}<p class="muted">What you back is locked as a guarantee until your friend repays.</p>` : ''}</div>` : ''}
   ${waiting ? `<div class="note warn">A loan of ${C.money(waiting.principal)} was requested but not paid out.<div class="grid"><button id="finish">Finish it</button><button class="secondary" id="cancelReq">Cancel it</button></div></div>` : ''}
-  ${active ? `<div class="card"><div class="muted">You owe</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day.</p><button id="payNow">Pay back</button></div>` : ''}
+  ${active ? `<div class="card"><div class="muted">You owe today</div><div class="big" id="owed">${C.money(C.ceilCent(active.owed))}</div><p class="${active.dueAt < now() ? 'note bad' : 'muted'}">${dueLine(active)} Interest grows a little each day: about ${C.money(C.ceilCent(active.principal + (active.principal * active.rateBps * BigInt(active.term)) / (10000n * 31536000n)))} by the due date if you wait until then.</p><button id="payNow">Pay back</button></div>` : ''}
   ${s.defaulted ? '<div class="note bad">This wallet has a defaulted loan and cannot borrow again.</div>' : ''}
-  <div class="grid"><button id="gBorrow" ${active || waiting || s.defaulted ? 'disabled' : ''}>Borrow</button><button class="secondary" id="gRepay" ${active ? '' : 'disabled'}>Pay back</button>
-  <button class="secondary" id="gSend">Send</button><button class="secondary" id="gReceive">Receive / get test dollars</button>
-  <button class="secondary" id="gBack">Back a friend</button><button class="secondary" id="gHelp">Help</button></div>
-  <p class="muted">${s.deployed ? '' : 'Your wallet is created on the network the first time you use it. '}Network fees are paid for you during the test.</p>`;
-  $('#copyAddr').onclick = (e) => copy(S.addr, e.target);
-  $('#gBorrow').onclick = () => go('borrow'); $('#gRepay').onclick = () => go('repay'); $('#gSend').onclick = () => go('send'); $('#gReceive').onclick = () => go('receive'); $('#gBack').onclick = () => go('back'); $('#gHelp').onclick = () => go('help');
+  <div class="grid"><button id="gBorrow" ${active || waiting || s.defaulted ? 'disabled' : ''} ${C.cfg.desk && s.limit === 0n && !active && !waiting && !s.defaulted ? 'hidden' : ''}>Borrow</button><button class="secondary" id="gHelp">Help</button></div>
+  <details class="card more"><summary>More</summary><div class="grid"><button class="secondary" id="gSend">Send money</button><button class="secondary" id="gReceive">Receive</button><button class="secondary" id="gBack">Back a friend</button></div></details>`;
+  $('#gBorrow').onclick = () => go('borrow'); $('#gSend').onclick = () => go('send'); $('#gReceive').onclick = () => go('receive'); $('#gBack').onclick = () => go('back'); $('#gHelp').onclick = () => go('help');
   if (active) $('#payNow').onclick = () => go('repay');
-  if ($('#gCredit')) $('#gCredit').onclick = () => go('credit');
+  if ($('#gCredit')) $('#gCredit').onclick = () => go(s.limit === 0n ? 'ask' : 'credit');
   if (waiting) {
     $('#finish').onclick = () => run('Finish loan', [C.poolCall('disburseLoan', [waiting.id])]);
     $('#cancelReq').onclick = () => run('Cancel request', [C.poolCall('cancelLoan', [waiting.id])]);
   }
 }
 
+// One borrow path for the Borrow screen and the credit desk's "Borrow $X now" button (one tap, no second screen).
+async function startBorrow(v, { thenHome = false } = {}) {
+  sheet({ title: 'Borrow ' + C.money(v), body: '<p>Checking with the pool…</p>' }); const err = await C.preflight(S.client, S.addr, 'requestLoan', [v]);
+  if (err) { refuse(err); return null; }
+  const build = async () => { const id = await C.nextLoanId(S.client); return [C.poolCall('requestLoan', [v]), C.poolCall('disburseLoan', [id])]; };
+  const r = await run('Borrow ' + C.money(v), await build(), { retryIds: build, summary: async () => { const s2 = await refresh(); const l = C.openLoans(s2).find((x) => x.status === C.ST.Active); return l ? `<p>You now owe <b>${C.money(C.ceilCent(l.owed))}</b>, due by <b>${fmtDate(l.dueAt)}</b>. Pay it back any time before then, with one tap on your wallet screen. Interest grows a little each day; the few cents the desk put in your wallet cover it.</p>` : ''; } });
+  if (thenHome && r && r.success) go('home');
+  return r;
+}
 async function renderBorrow(my = renderSeq) {
   let s; try { s = await refresh(); } catch { s = S.snap; if (!s) throw new Error('Cannot reach the test network'); } if (stale(my)) return; const apr = Number(s.rate) / 100;
   app.innerHTML = `${header('Borrow')}
   <div class="card"><div class="muted">Available to borrow</div><div class="big">${C.money(s.available)}</div></div>
-  <label for="amt">How much?</label><input id="amt" inputmode="decimal" placeholder="e.g. 10" autocomplete="off">
-  <div class="grid" style="grid-template-columns:repeat(3,1fr)"><button class="secondary" data-p="0.25">25%</button><button class="secondary" data-p="0.5">50%</button><button class="secondary" data-p="1">Max</button></div>
+  <label for="amt">How much?</label><input id="amt" inputmode="decimal" placeholder="e.g. 3" autocomplete="off">
   <div id="terms" class="note ok" hidden></div><div id="warn"></div>
   <button id="go" disabled>Borrow</button>
-  <p class="muted">Term: 30 days. Interest: ${apr.toFixed(2)}% a year, simple. You get the money right away and repay it all at once or in parts.</p>`;
+  <p class="muted">You get the money right away. Pay it back any time within 30 days, all at once or in parts. Interest about ${(apr / 12).toFixed(1)}% a month (${apr.toFixed(2)}% a year), no other fees.</p>`;
   const amt = $('#amt'), terms = $('#terms'), go_ = $('#go');
+  const pre = new URLSearchParams((location.hash.split('?')[1]) || '').get('amt'); if (pre && C.parseUsd(String(Number(pre) / 1e6))) amt.value = (Number(pre) / 1e6).toFixed(2).replace(/\.00$/, '');
   const upd = () => {
     const v = C.parseUsd(amt.value); go_.disabled = true; terms.hidden = true; $('#warn').innerHTML = '';
-    if (v === null || v === 0n) return;
+    if (v === null) { if (amt.value.trim()) $('#warn').innerHTML = '<div class="note warn">Numbers only, like 3 or 3.50.</div>'; return; } if (v === 0n) return;
     if (v > s.available) { $('#warn').innerHTML = `<div class="note warn">${s.available === 0n ? esc(friendly({ reason: 'NoCredit' })) : 'That is more than you can borrow right now (' + C.money(s.available) + ').'}</div>`; return; }
     const interest = (v * s.rate * 30n) / (10000n * 365n);
-    terms.hidden = false; terms.innerHTML = `You receive <b>${C.money(v)}</b> now. In 30 days you owe about <b>${C.money(C.ceilCent(v + interest))}</b> (interest about ${C.money(C.ceilCent(interest))}). You will need that interest in your wallet to repay: get it from the faucet if you do not have it.`;
+    terms.hidden = false; const ci = C.ceilCent(interest); terms.innerHTML = `You receive <b>${C.money(v)}</b> now. If you wait the full 30 days you owe about <b>${C.money(C.ceilCent(v + interest))}</b> (interest about ${C.money(ci)}); less if you pay sooner.${s.usdcBal >= ci ? ' The interest is already covered by what is in your wallet.' : ` You will need about ${C.money(ci)} more in your wallet by then; the app tells you where to get it.`}`;
     go_.disabled = false;
   };
-  amt.oninput = upd;
-  document.querySelectorAll('[data-p]').forEach((b) => (b.onclick = () => { const p = Number(b.dataset.p); const v = (s.available * BigInt(Math.round(p * 100))) / 100n; amt.value = (Number(v) / 1e6).toFixed(2).replace(/\.00$/, ''); upd(); }));
-  go_.onclick = async () => {
-    const v = C.parseUsd(amt.value); if (!v) return;
-    go_.disabled = true; const err = await C.preflight(S.client, S.addr, 'requestLoan', [v]);
-    if (err) { refuse(err); go_.disabled = false; return; }
-    const build = async () => { const id = await C.nextLoanId(S.client); return [C.poolCall('requestLoan', [v]), C.poolCall('disburseLoan', [id])]; };
-    await run('Borrow ' + C.money(v), await build(), { retryIds: build, summary: async () => { const s2 = await refresh(); const l = C.openLoans(s2).find((x) => x.status === C.ST.Active); return l ? `<p>You now owe about <b>${C.money(C.ceilCent(l.owed))}</b>. It is due on <b>${new Date(l.dueAt * 1000).toLocaleDateString()}</b>. Interest grows a little each day, so pay back a few days early and keep a few dollars of test USDC for the interest.</p>` : ''; } });
-  };
+  amt.oninput = upd; upd();
+  go_.onclick = async () => { const v = C.parseUsd(amt.value); if (!v) return; go_.disabled = true; await startBorrow(v); go_.disabled = false; };
 }
 
 async function renderRepay(my = renderSeq) {
@@ -193,7 +196,7 @@ async function renderRepay(my = renderSeq) {
   ${short_ > 0n ? `<div class="note warn">You are ${C.money(short_ + C.CENT)} short. The interest is not in your wallet yet. Get test USDC from the faucet, then come back.<div class="grid"><button id="faucet">Open the faucet</button><button class="secondary" id="copyA">Copy my address</button></div></div>` : ''}
   <button id="all" ${short_ > 0n ? 'disabled' : ''}>Pay back everything</button>
   <details class="card"><summary>Pay only part</summary><label for="part">Amount</label><input id="part" inputmode="decimal" placeholder="e.g. 5"><button id="partGo" class="secondary" style="margin-top:8px">Pay this part</button></details>
-  <p class="muted">A small buffer is approved so the interest that builds up while this is sent is covered. Only what you owe is taken.</p>`;
+  <p class="muted">Only what you owe is taken. The approval is a cent or two higher so that the interest growing in the next minute is covered too.</p>`;
   if (short_ > 0n) { $('#faucet').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); }; $('#copyA').onclick = (e) => copy(S.addr, e.target); }
   const doPay = async (amount, approveAmt) => {
     const allowance = await S.client.readContract({ address: C.cfg.usdc, abi: C.erc20Abi, functionName: 'allowance', args: [S.addr, C.cfg.pool] });
@@ -201,9 +204,10 @@ async function renderRepay(my = renderSeq) {
     calls.push(C.poolCall('repayLoan', [l.id, amount]));
     const before = { bal: s.usdcBal, dues: await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'duesPaid', args: [S.addr] }), limit: s.limit };
     await run('Pay back', calls, { summary: async () => {
-      const s2 = await refresh(); const l2 = s2.loans.find((x) => x.id === l.id); const paid = before.bal - s2.usdcBal; const interest = paid > l.principal ? paid - l.principal : (l2 && l2.status === C.ST.Repaid ? 0n : null);
+      const s2 = await refresh(); const l2 = s2.loans.find((x) => x.id === l.id); const paid = before.bal - s2.usdcBal; const elapsed = BigInt(Math.max(0, now() - l.disbursedAt)); const accrued = (l.principal * l.rateBps * elapsed) / (10000n * 31536000n); const totalPaid = l.principal + accrued; // simple interest on the original principal, over the whole loan
       const dues = (await S.client.readContract({ address: C.cfg.pool, abi: C.poolAbi, functionName: 'duesPaid', args: [S.addr] })) - before.dues;
-      if (l2 && l2.status === C.ST.Repaid) return `<p>Loan closed. You paid <b>${C.money(paid)}</b>: ${C.money(l.principal)} borrowed plus about ${C.money(paid - l.principal)} interest.${dues > 0n ? ` ${C.money(dues)} of that interest counts toward your own credit, so your limit is now <b>${C.money(s2.limit)}</b>.` : ''} You can borrow again right away.</p>`;
+      const intr = totalPaid > l.principal ? totalPaid - l.principal : 0n; const cents = (x) => x === 0n ? 'no interest' : x < C.CENT ? `${(Number(x) / 1e4).toFixed(2).replace(/\.?0+$/, '')} of a cent of interest` : 'about ' + C.money(C.ceilCent(x)) + ' of interest';
+      if (l2 && l2.status === C.ST.Repaid) return `<p>Loan closed. ${totalPaid > paid + C.CENT ? `You paid <b>${C.money(paid)}</b> now and <b>${C.money(totalPaid)}</b> in total` : `You paid <b>${C.money(paid)}</b>`}: the ${C.money(l.principal)} you borrowed plus ${cents(intr)}.${dues >= C.CENT ? ` ${C.money(dues)} of that interest counts toward your own credit, so your limit is now <b>${C.money(s2.limit)}</b>.` : ''} Your wallet now has <b>${C.money(s2.usdcBal)}</b>. You owe nothing and can borrow again right away.</p>`;
       return `<p>You paid <b>${C.money(paid)}</b>. Still owed: <b>${C.money(C.ceilCent(l2 ? l2.owed : 0n))}</b>. Interest is paid first, then the amount borrowed.</p>`; } });
   };
   $('#all').onclick = () => doPay(pay, pay);
@@ -214,7 +218,7 @@ function renderSend() {
   const s = S.snap;
   app.innerHTML = `${header('Send')}
   <div class="card muted">Available: ${C.money(s?.usdcBal ?? 0n)}</div>
-  <label for="to">To (wallet address)</label><input id="to" placeholder="0x…" autocapitalize="off" autocorrect="off" spellcheck="false">
+  <label for="to">To: your friend's address (from the Receive screen in their app; it starts with 0x)</label><input id="to" placeholder="0x…" autocapitalize="off" autocorrect="off" spellcheck="false">
   <label for="amt">Amount</label><input id="amt" inputmode="decimal" placeholder="e.g. 3">
   <div id="warn"></div><button id="go" style="margin-top:12px">Send</button>`;
   $('#go').onclick = async () => {
@@ -236,35 +240,75 @@ function renderReceive() {
   $('#cp').onclick = (e) => copy(S.addr, e.target); $('#fc').onclick = () => { copy(S.addr); window.open(C.cfg.faucet, '_blank', 'noopener'); };
 }
 
-let chatTimer = null;
+const ASK_KEY = 'd7.ask';
+const loadAsk = () => { try { return JSON.parse(localStorage.getItem(ASK_KEY)) || {}; } catch { return {}; } };
+const saveAsk = (a) => { try { localStorage.setItem(ASK_KEY, JSON.stringify(a)); } catch {} };
+// The first screen after set-up: how much, what for, when. Three taps and one approval, then the credit officer answers.
+async function renderAsk(my = renderSeq) {
+  if (!C.cfg.desk) return go('home');
+  const maxLine = Number(C.cfg.maxLine || 5); const prev = loadAsk();
+  app.innerHTML = '<h1>What do you need?</h1><div class="card"><div class="muted">One moment…</div></div>'; // paint at once: the wallet was just created and the reads below take a few seconds
+  let s = S.snap; try { s = await refresh(); } catch {} if (stale(my)) return;
+  if (s && (C.openLoans(s).length || s.limit > 0n)) return go('home');
+  let d = null; try { d = await C.deskState(S.client, S.addr); } catch {} if (stale(my)) return;
+  if (d && d.thread.length) return go('credit');
+  const amounts = [1, 2, 3, 5].filter((a) => a <= maxLine); if (!amounts.includes(maxLine)) amounts.push(maxLine);
+  const purposes = ['Groceries', 'Transport', 'School', 'Work tools', 'A bill', 'Something else'];
+  const whens = [['In a week', 'in a week'], ['In two weeks', 'in two weeks'], ['In 30 days', 'in 30 days']];
+  const a = { amount: prev.amount || null, purpose: prev.purpose || null, when: prev.when || null };
+  app.innerHTML = `<h1>What do you need?</h1>
+  <div class="card"><div class="muted">How much? (up to $${maxLine} in this practice version)</div><div class="chips" id="amt">${amounts.map((v) => `<button class="chip" data-v="${v}">$${v}</button>`).join('')}</div></div>
+  <div class="card"><div class="muted">What is it for? <span>(anyone on the test network can read this, so keep it general)</span></div><div class="chips" id="why">${purposes.map((p) => `<button class="chip" data-v="${esc(p)}">${esc(p)}</button>`).join('')}</div><input id="whyText" placeholder="A few words, no personal details" maxlength="120" hidden></div>
+  <div class="card"><div class="muted">When do you plan to pay it back? (you have up to 30 days)</div><div class="chips" id="when">${whens.map(([l, v]) => `<button class="chip" data-v="${esc(v)}">${esc(l)}</button>`).join('')}</div></div>
+  <div id="askCost" class="note ok" hidden></div>
+  <button id="askGo" disabled>Ask for this loan</button>
+  <p class="muted">An AI credit officer reads this and answers in the app, usually within a minute.</p>
+  <p class="muted"><a href="#credit">Write to the credit desk in your own words instead</a></p>`;
+  const paint = () => { for (const [id, k] of [['amt', 'amount'], ['why', 'purpose'], ['when', 'when']]) document.querySelectorAll(`#${id} .chip`).forEach((b) => b.classList.toggle('on', String(b.dataset.v) === String(a[k])));
+    $('#whyText').hidden = a.purpose !== 'Something else'; $('#askGo').disabled = !(a.amount && a.purpose && a.when);
+    const c = $('#askCost'); if (a.amount && s && s.rate !== undefined) { const v = C.parseUsd(String(a.amount)); const i30 = C.ceilCent((v * s.rate * 30n) / (10000n * 365n)); c.hidden = false; const dW = a.when === 'in a week' ? 7n : a.when === 'in two weeks' ? 14n : 30n; const iW = C.ceilCent((v * s.rate * dW) / (10000n * 365n)); c.innerHTML = `If the officer agrees: you get <b>${C.money(v)}</b> now. Pay it back any time within 30 days, with one tap in this app: ${dW < 30n ? `about ${C.money(iW)} of interest if you pay ${esc(a.when)}, ` : ''}${C.money(i30)} at most (after the full 30 days). No other fees.`; } else c.hidden = true; };
+  document.querySelectorAll('.chip').forEach((b) => (b.onclick = () => { const k = b.parentElement.id === 'amt' ? 'amount' : b.parentElement.id === 'why' ? 'purpose' : 'when'; a[k] = b.parentElement.id === 'amt' ? Number(b.dataset.v) : b.dataset.v; saveAsk(a); paint(); if (k === 'purpose' && a.purpose === 'Something else') $('#whyText').focus(); }));
+  paint();
+  $('#askGo').onclick = async () => {
+    const why = a.purpose === 'Something else' ? ($('#whyText').value.trim() || 'something I need') : a.purpose.toLowerCase();
+    const text = `I need $${a.amount} for ${why}. I can pay it back ${a.when}.`;
+    saveAsk(a);
+    const r = await run('Ask for the loan', [C.deskCall('say', [text])], { summary: async () => '<p>Your request is with the credit officer. The answer appears in the app, usually within a minute.</p>' });
+    if (r && r.success) { go('credit'); render(); }
+  };
+}
+let chatTimer = null, chatToken = 0;
 function stopChat() { if (chatTimer) { clearInterval(chatTimer); chatTimer = null; } }
 async function renderCredit(my = renderSeq) {
-  stopChat();
+  stopChat(); const tok = ++chatToken;
   if (!C.cfg.desk) return renderCreditManual();
   const maxLine = C.cfg.maxLine || 5;
   app.innerHTML = `${header('Credit desk')}
-  <div class="card"><p class="muted">An AI credit officer reads what you write and answers here, usually within a minute or two. Everything written here is public on the test network, so no personal details, please.</p>
+  <div class="card"><p class="muted">The credit officer (an AI) answers here, usually within a minute. What you write is public on the test network: no names or personal details.</p>
   <div id="chat" class="chat"><div class="muted">Loading…</div></div><div id="typing" class="muted" hidden>The credit officer is reading your message…</div></div>
   <div class="card" id="askBox"><label for="msg" class="muted">Your message</label><textarea id="msg" rows="3" maxlength="1000" placeholder="What is it for, how much (up to $${maxLine}), and when will you pay it back?"></textarea>
-  <div class="grid"><button id="send">Send to the desk</button><button class="secondary" id="toBorrow" hidden>Borrow</button></div><div id="warn"></div></div>
+  <div class="grid"><button id="send">Send</button><button class="secondary" id="toBorrow" hidden>Borrow</button></div><div id="warn"></div></div>
   <details class="card"><summary>Or ask a friend to back you</summary><p>Send them your address. In their app they open <b>Back a friend</b> and enter it. What they lock becomes your limit.</p><div class="addr">${esc(S.addr)}</div><button class="secondary" id="cp" style="margin-top:8px">Copy address</button></details>`;
-  $('#cp').onclick = (e) => copy(S.addr, e.target); $('#toBorrow').onclick = () => go('borrow');
-  const greeting = `Hello, I am the credit officer at the Omnequa credit desk, an AI agent. Tell me what you would use a small loan for, how much you need (up to $${maxLine} in this test), and when you would pay it back.`;
+  $('#cp').onclick = (e) => copy(S.addr, e.target); $('#toBorrow').onclick = () => { const v = $('#toBorrow').dataset.v; if (v) startBorrow(BigInt(v), { thenHome: true }); else go('borrow'); };
+  const greeting = `Hello, I am the credit officer, an AI. Tell me what the loan is for, how much you need (up to $${maxLine} in this test) and when you will pay it back.`;
   let lastLen = -1, lastBacking = -1n;
   const draw = async () => {
-    let d; try { d = await C.deskState(S.client, S.addr); } catch (e) { if (stale(my)) return; $('#chat').innerHTML = `<div class="note bad">${esc(friendly(e))}</div>`; return; }
-    if (stale(my)) { stopChat(); return; }
+    if (tok !== chatToken || !$('#chat')) return;
+    let d; try { d = await C.deskState(S.client, S.addr); } catch (e) { if (tok !== chatToken || !$('#chat')) return; if (lastLen < 0) $('#chat').innerHTML = `<div class="note bad">${esc(friendly(e))}</div>`; return; }
+    if (tok !== chatToken || !$('#chat')) return;
     if (d.thread.length === lastLen && d.backing === lastBacking) return; lastLen = d.thread.length; lastBacking = d.backing;
     const bubbles = [{ from: 1, text: greeting }, ...d.thread].map((m) => `<div class="bub ${m.from === 0 ? 'me' : 'desk'}">${esc(m.text)}</div>`).join('');
-    const granted = d.backing > 0n ? `<div class="note ok" id="granted">The desk backs you with <b>${C.money(d.backing)}</b>. Your limit on the home screen includes it.</div>` : '';
+    const askA = loadAsk().amount; const canNow = d.backing > 0n ? (askA && C.parseUsd(String(askA)) <= d.backing ? C.parseUsd(String(askA)) : d.backing) : 0n;
+    const granted = d.backing > 0n ? `<div class="note ok" id="granted">The officer agreed: you can borrow up to <b>${C.money(d.backing)}</b>. The desk also put a few cents in your wallet to cover the interest, so you pay back only what you borrow plus that interest.</div>` : '';
+    $('#toBorrow').textContent = canNow > 0n ? `Borrow ${C.money(canNow)} now` : 'Borrow'; $('#toBorrow').dataset.v = canNow > 0n ? String(canNow) : ''; $('#toBorrow').className = canNow > 0n ? '' : 'secondary'; $('#send').className = canNow > 0n ? 'secondary' : '';
     $('#chat').innerHTML = bubbles + granted; $('#typing').hidden = d.unanswered === 0;
     $('#toBorrow').hidden = d.backing === 0n; $('#send').disabled = d.unanswered >= 3;
     $('#warn').innerHTML = d.unanswered >= 3 ? '<div class="note warn">Please wait for the officer to answer before writing again.</div>' : d.freeStake === 0n && d.backing === 0n ? '<div class="note warn">The desk has no free stake right now, so it cannot grant new lines until some is added.</div>' : '';
   };
-  await draw(); chatTimer = setInterval(() => { if (location.hash.startsWith('#credit')) draw(); else stopChat(); }, 4000);
+  chatTimer = setInterval(() => { if (tok !== chatToken) return; if (location.hash.startsWith('#credit')) draw(); else stopChat(); }, 3000); await draw();
   $('#send').onclick = async () => {
     const text = $('#msg').value.trim(); if (!text) return; if (text.length > 1000) { $('#warn').innerHTML = '<div class="note warn">Please keep it under 1000 characters.</div>'; return; }
-    const r = await run('Send to the credit desk', [C.deskCall('say', [text])]); if (r && r.success) { $('#msg').value = ''; }
+    const r = await run('Send your message', [C.deskCall('say', [text])], { summary: async () => '<p>Sent. The officer answers here, usually within a minute.</p>' }); if (r && r.success) { $('#msg').value = ''; }
   };
 }
 function renderCreditManual() {
@@ -309,18 +353,28 @@ async function renderBack() {
 function renderHelp() {
   const code = C.recoveryCode(S.cred);
   app.innerHTML = `${header('Help')}
-  <div class="card"><h2>How it works</h2><ol><li>You get test USDC from a faucet.</li><li>The credit desk (an AI credit officer, in the app) backs you with a small line, or a friend backs you.</li><li>You borrow up to your limit. You get the money at once.</li><li>You pay it back with a little interest. Paying back builds your history.</li></ol></div>
-  <div class="card"><h2>Your recovery code</h2><p class="muted">Save this somewhere private. With it you can reopen this wallet on a new phone if your passkey syncs.</p><div class="addr" style="max-height:90px;overflow:auto">${esc(code)}</div><button id="cp" class="secondary" style="margin-top:8px">Copy recovery code</button></div>
+  <div class="card"><h2>How it works</h2><ol><li>Ask the credit desk (an AI credit officer, in the app). It vouches for you up to a few dollars and puts a few cents in your wallet for the interest.</li><li>Borrow up to your limit. The money is in your wallet at once.</li><li>Pay it back within 30 days, all at once or in parts. Paying back builds your history.</li></ol><p class="muted">Test dollars have no value. If you ever need more of them, Receive (under More) shows how.</p></div>
+  <div class="card"><h2>Words you may see</h2><p class="muted"><b>Wallet</b>: where this app keeps your test dollars; only your fingerprint, face or screen lock opens it. <b>Test dollars</b>: play money on a test network, worth nothing. <b>Credit officer</b>: an AI that decides whether the desk vouches for your loan with its own test dollars. <b>Backing</b>: that promise to cover a loan if it is not paid back. <b>Interest</b>: a few cents a month on what you borrow, paid when you pay back; the only cost. <b>Recovery code</b>: a long code that reopens this same wallet on another phone.</p></div>
+  <div class="card"><h2>Send feedback</h2><p>Tell us what confused you: what you tapped and what you saw. No personal information, please.</p><a class="btn secondary" id="fb" href="mailto:claude-microcredit@agentmail.to?subject=Omnequa%20test%20wallet%20feedback&body=What%20I%20tapped%3A%0AWhat%20I%20saw%3A%0AWhat%20I%20expected%3A%0A">Send feedback</a></div>
   ${installCard()}
-  <div class="card"><h2>Send feedback</h2><p>Tell us what confused you. Include what you tapped and what you saw. Never include real personal information.</p><button class="secondary" id="reset">Remove this wallet from this phone</button></div>
-  <p class="muted">Wallet address: ${esc(S.addr)}</p>`;
+  <details class="card"><summary>Use this wallet on another phone</summary><p class="muted">This code reopens the same wallet elsewhere. Keep it private.</p><div class="addr" style="max-height:90px;overflow:auto">${esc(code)}</div><button id="cp" class="secondary" style="margin-top:8px">Copy recovery code</button></details>
+  <details class="card"><summary>Done testing?</summary><p class="muted">This removes the wallet from this phone only. Save the code above first if you want it back.</p><button class="secondary" id="reset">Remove this wallet from this phone</button></details>
+  `;
   wireInstall();
   $('#cp').onclick = (e) => copy(code, e.target);
-  $('#reset').onclick = () => sheet({ title: 'Remove wallet from this phone?', body: '<p>Make sure you saved your recovery code. Nothing on the network is deleted.</p>', actions: [{ label: 'Remove', onClick: () => { C.forget(); location.hash = ''; location.reload(); } }, { label: 'Keep it', secondary: true, onClick: closeSheet }] });
+  $('#reset').onclick = () => sheet({ title: 'Remove wallet from this phone?', body: '<p>Make sure you saved your recovery code. Nothing on the network is deleted.</p>', actions: [{ label: 'Keep it', onClick: closeSheet }, { label: 'Remove it', secondary: true, onClick: () => { C.forget(); location.hash = ''; location.reload(); } }] });
 }
 
+// On a wide screen the same link works here with Windows Hello or Touch ID; the panel offers the phone as the easier place.
+function sidePanel() {
+  const el = $('#side'); if (!el) return; const link = location.origin + location.pathname;
+  const qr = qrcode(0, 'M'); qr.addData(link); qr.make();
+  el.innerHTML = `<h2>Also on your phone</h2><p>Scan this with your phone's camera to open the same app there. Here it works too: your computer's fingerprint, face or PIN is the key.</p><div class="qr">${qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true })}</div><p>${esc(link)}</p>`;
+  el.hidden = !window.matchMedia('(min-width: 900px)').matches;
+  try { window.matchMedia('(min-width: 900px)').addEventListener('change', (e) => { el.hidden = !e.matches; }); } catch {}
+}
 let renderSeq = 0; const stale = (my) => my !== renderSeq;
-const routes = { home: renderHome, borrow: renderBorrow, repay: renderRepay, send: renderSend, receive: renderReceive, back: renderBack, help: renderHelp, credit: renderCredit };
+const routes = { home: renderHome, ask: renderAsk, borrow: renderBorrow, repay: renderRepay, send: renderSend, receive: renderReceive, back: renderBack, help: renderHelp, credit: renderCredit };
 export function render() {
   if (!S.cred) return renderWelcome();
   const r = (location.hash || '#home').slice(1).split('?')[0]; window.scrollTo(0, 0); const my = ++renderSeq;
@@ -334,9 +388,9 @@ async function boot() {
   try {
     if ('serviceWorker' in navigator && (location.protocol === 'https:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname))) navigator.serviceWorker.register('sw.js').catch(() => {});
     await C.loadConfig(); S.client = C.makeClient(); await boot();
-    window.addEventListener('hashchange', render); render();
+    window.addEventListener('hashchange', render); render(); sidePanel();
     I.onChange(() => document.querySelectorAll('[data-install]').forEach((el) => { el.hidden = !I.available(); }));
-    window.__d7 = { S, C, I }; // test hook
+    window.__d7 = { S, C, I, now }; // test hook
     if (I.askedByLink()) { I.dropLinkFlag(); if (I.available()) installSheet(); }
   } catch (e) { app.innerHTML = `<h1>Cannot start</h1><div class="note bad">${esc(friendly(e))}</div><pre>${esc(String(e.message || e).slice(0, 400))}</pre>`; }
 })();
