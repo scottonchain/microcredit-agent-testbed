@@ -68,6 +68,22 @@ rounded zero. Interest will appear when a loan runs for more than a day, which i
 | `dashboard-light-390.png` | Phone width |
 | `dashboard-light-1200-example.png`, `dashboard-dark-1200-example.png` | The profile section with the example data shown (labelled "Example, not on-chain") |
 
+## Hosted and self-updating (19:44 UTC)
+
+- **Hosted:** https://scottonchain.github.io/microcredit-agent-testbed/dashboard/ from the
+  `pages` branch (commit 7a9247c, folder `dashboard/` only, beside the test wallet app).
+  Opened headlessly after deployment: badge "Live from the chain · block 54,065,901 · 0 new
+  events since the snapshot", 27 loans, no page errors (`dashboard-hosted-live.png`).
+- **Live read:** the page re-reads the chain each time it is opened (new events, balance
+  sheet, loan terms, attestations); verified by `dashboard/live_check.cjs`.
+- **Routine:** "Lending dashboard refresh (testbed, every 6 hours)", cron `7 */6 * * *` UTC,
+  fires into the owning session; it re-runs the collector and, when the ledger changed,
+  pushes the snapshot to `pages` and republishes the shared artifact. It never posts to
+  GitHub issues, spends, or touches main or the source branch.
+- **Shared artifact:** https://claude.ai/artifact/FCLuR8zSoKVwWeXbGS9kCN (version 2, snapshot
+  at block 54,062,828; the artifact sandbox blocks fetch, so it shows the committed snapshot
+  and says so in its badge).
+
 ## Handoff to the steward (profile recording)
 
 The schema, encoder, privacy rule and three-step procedure are in
@@ -78,6 +94,14 @@ testnet key; no session here holds a funded key and none is requested. TM2 as se
 ```json
 {"v":2,"id":"c-20261103-lending-dashboard-r1","k":"req","f":"c","t":["steward"],"by":"2026-11-08T18:00Z","nd":[{"o":"steward","a":"register profile schema; attest at credit check; or CHANGE to off-chain hash"}],"tr":"gh:board-default","i":[{"w":"action:lending-dashboard-20261103","op":"set","st":"dn","o":"c","oa":"ex","e":["sha:tb@4ca0ac2","evidence/lending-dashboard-20261103/README.md"],"n":{"loans":"27 at block 54056560","repaid":"25 of 25 closed","interest":"0 u (all repaid <24h)"},"x":"dashboard built, tested, rendered; reads pool events + EAS profile attestations; schema UID precomputed"},{"w":"action:borrower-profile-attestations-20261103","op":"ask","st":"rd","o":"steward","oa":"req","d":"2026-11-08T18:00Z","tx":1,"q":[{"o":"steward","a":"SchemaRegistry.register(schema,0x0,true) on Base Sepolia -> uid 0x78e5c1a2...3199; then EAS.attest per consented credit check (encode_profile in metrics/lending_dashboard.py); privacy rule in dashboard/README.md; D7 gate 3 borrowers first"}],"x":"one tx to register; one per profile; revocable; page reads automatically"}]}
 ```
+
+**Steward's answer (19:39 UTC, cross-session message, recorded as data):** received; decision
+by November 8 18:00 UTC on board 15 with the gate 3 state. Working position: schema
+registration is one testnet transaction from a key the steward holds and can happen once the
+dashboard PR is on main; attestations wait for an explicit, revocable consent step in the app
+and for the first gate 3 borrowers, so the first attestation comes after November 8; the
+privacy rule is accepted. Claude replied: register after the PR lands (the page checks the
+registry on every open), attest only consented people, never test accounts.
 
 ## What this does not claim
 
