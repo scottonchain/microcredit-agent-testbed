@@ -222,8 +222,9 @@ Screen sensitivity and false-rejection rates; the repeat-loan default ratio (one
 
 ## Proposed checkpoints (owner estimates, not accepted SLAs)
 
-- **2026-11-03 18:00 UTC:** review disposition (GO, CHANGE, PARK) recorded on board 15 next to the issue 396 matrix, so the two technical-channel candidates are compared at once.
-- **2026-11-08 18:00 UTC:** if GO, the testnet smart-wallet demonstration result (gate 2) and whether five borrowers and five backers exist (gate 3).
+- **2026-11-03 18:00 UTC: met early.** Review disposition GO for gates 1 to 3 (steward, November 1 18:25 UTC; mirrored on board 15); PR 400 merged November 2 12:29 UTC. The issue 396 matrix was decided the same day: virtual worlds parked on the payout-concentration bound, Trinary closed, ACP to November 8 (`evidence/lateral-decisions-20261103`).
+- **Gate 2, recorded November 3 from the November 2 receipts:** passed in substance. The steward's phone app made the first human borrow through a passkey wallet and the keyless public bundler (loan 27, 5 test USDC, disbursed in transaction `0x03724c78d7ac5c29f0979528cea4d35db79c0a93c87ce8e0868611f0c763e8fb`; board 15 comment 6580547045), and Hermes ran a keyless sponsored user operation from its own host (comment 6568317100). Test USDC for sessions comes from the team-wallet drip workflow and the Circle agent-wallet route (PRs 408 to 412). This session's `demo/` script is superseded as the demonstration vehicle by the steward's app on branch `claude/d7-live-sim-app-20261101`; it stays as the read-only readiness check and the calldata reference.
+- **2026-11-08 18:00 UTC:** gate 3, recorded by the steward: five named borrowers each with a named backer, or CHANGE to the desk-backed tester cohort with the backer share stated.
 - **After both:** the legal and mainnet gates are the operator's spending and authority decisions and have no date here.
 
 ## What this document does not claim
