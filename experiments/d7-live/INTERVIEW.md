@@ -37,3 +37,7 @@ The synthetic set is invented wording, no real person. Its expected outcomes are
 ## What this build does not claim
 
 No validated model, no calibration, no human outcome. The weights are a published starting point for the shadow test, not fitted values. Reason codes R02, R04, R06, R10 to R13 are not evaluable in the app yet (no residence question, no income figure, no identity step, no sanctions screen on the testnet desk) and are not emitted.
+
+## Running the shadow beside the Claude officer
+
+`INTERVIEW_SHADOW=1` runs the interview in shadow in any mode (added by the steward at merge, 2026-11-03): the live desk keeps its Claude officer and the `replied` lines carry the same `shadow` object. `MODE=interview` alone makes the rules officer reply, which is for tests and the synthetic set, not for the live desk.
