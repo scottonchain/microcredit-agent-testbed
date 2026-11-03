@@ -69,6 +69,10 @@ it that sounds or looks synthetic to a casual listener. Concretely:
   -28 LUFS and ducked under speech, or no bed.
 - **Disclosure** on screen and in the provenance file: synthetic voice, made by AI
   agents, test tokens only. No cloned voice, no real person depicted.
+- **Say "we are AI agents" and nothing about the operator** in any video,
+  channel text or video description (operator direction, November 3). No "one
+  human", no "under human direction": an operator behind agents is obvious and
+  does not need saying.
 
 ## The pipeline (`tools/media/`, this repository)
 
@@ -129,9 +133,48 @@ record; it reports the measurements and the approval status.
   and a passed audition.
 - It does not change publication authority, holds, disclosure or claims rules.
 
-## First piece
+## Branding
 
-`tools/media/spec.json` is the 30 second review cut "Omnequa: try a small loan"
-(hook, vision, four real screens from the walkthrough post, close), built with
-`en-US-AndrewMultilingualNeural`. It is for the operator's G0 and G3 review, not
-for publication. Three voice samples of the same script accompany it.
+Every piece uses the Omnequa identity, not the blog's illustration palette:
+`tools/media/brand.json` carries the tokens from the omnequa.org theme (navy
+`#103747`, teal `#007d88`, aqua rules, pale teal `#edf7f8`, white; Georgia for
+headlines, Arial/Helvetica for everything else; eyebrows uppercase in teal). The
+approved logo (`tools/media/assets/brand/omnequa-logo.png`) appears complete and
+unmodified on white: brand bar on light scenes, centered on the end card; never on
+the navy band. The end card carries the name, the tagline "New technology. More
+opportunity.", the URL in teal and the disclosure. The operator flagged the
+branding of the first cut on November 3 (it used cream, amber and an invented
+word mark); this section is the fix and `scene.html` implements it.
+
+## Decisions on record
+
+| Date | Gate | Decision |
+| --- | --- | --- |
+| 2026-11-03 | G0 | Narrator for the app and vision series: `en-US-AvaMultilingualNeural` (operator chose Ava over Andrew and Ryan from 15 second samples) |
+| 2026-11-03 | G3 | The first cut "Omnequa: try a small loan" (Andrew voice, pre-brand) was judged publication quality by the operator; the published version is the same cut rebuilt with Ava and the brand fix |
+
+## YouTube channel
+
+The operator asked on November 3 whether the team can run a YouTube channel
+with these pieces autonomously. Production, captions, metadata, the measured QA
+and the journal post run without the operator. Upload needs the channel's own
+Google account, which only the operator can create and consent for. Once done it
+runs on its own. The plan is `tools/media/channel.json` (one piece a week, formats,
+gates, measures, stop rule); the uploader is `tools/media/youtube_upload.py`.
+
+Operator setup, once (about twenty minutes), in the operator queue:
+
+1. Create the channel on a Google account the project controls (name Omnequa,
+   avatar the approved logo, about text from `channel.json`).
+2. In Google Cloud: a project, enable the YouTube Data API v3, create an OAuth
+   client of type Desktop app, add the channel's account as a test user.
+3. Consent once for the scope `https://www.googleapis.com/auth/youtube.upload`
+   (and `youtube.force-ssl` for captions) and keep the refresh token.
+4. Put `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET` and `YOUTUBE_REFRESH_TOKEN`
+   in the cloud environment's secrets. The hosts `www.googleapis.com` and
+   `oauth2.googleapis.com` already answer from the container.
+
+Until Google verifies the OAuth app, every API upload is locked to private;
+the operator makes each one public in YouTube Studio (one click), or submits the
+app for verification so the team can publish directly. The uploader marks every
+video as synthetic media, category Education, with the VTT as English captions.

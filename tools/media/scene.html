@@ -1,48 +1,54 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>scene</title>
 <style>
-  :root { --paper:#f6f1e7; --ink:#1d2321; --teal:#0f5f52; --amber:#d9961a; --muted:#6b6f6c; --white:#ffffff; }
+  :root { --ink:#103747; --teal:#007d88; --aqua:#39aaba; --muted:#4d6670; --pale:#edf7f8; --paper:#ffffff; --line:#d7e6e9; --accent:#7ad6dd; --navytext:#dcecef; }
   html,body { margin:0; width:1920px; height:1080px; overflow:hidden; background:var(--paper);
-    font-family: Inter, "Inter Display", system-ui, sans-serif; color:var(--ink); }
+    font-family: Arial, Helvetica, "Liberation Sans", sans-serif; color:var(--ink); }
   .scene { position:absolute; inset:0; opacity:0; }
-  .grain { position:absolute; inset:0; pointer-events:none; opacity:.06;
-    background-image: radial-gradient(#000 0.6px, transparent 0.7px); background-size: 7px 7px; }
-  .h { font-family:"Inter Display", Inter, sans-serif; font-weight:700; letter-spacing:-0.02em; line-height:1.08; }
-  .statement .h { position:absolute; left:160px; right:160px; top:300px; font-size:88px; }
-  .statement .bar { position:absolute; left:160px; top:250px; height:10px; background:var(--amber); width:0; }
-  .vision { background:var(--teal); color:var(--white); }
-  .vision .mark { position:absolute; left:160px; top:140px; font-size:40px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; opacity:.85; }
-  .vision .tag { position:absolute; left:160px; top:205px; font-size:30px; opacity:.75; }
-  .vision .h { position:absolute; left:160px; right:200px; top:360px; font-size:104px; }
-  .vision .sub { position:absolute; left:160px; top:640px; font-size:64px; font-weight:500; color:#ffd27a; }
-  .vision .ring { position:absolute; right:-220px; top:-220px; width:900px; height:900px; border-radius:50%;
-    border:120px solid rgba(255,255,255,.06); }
-  .phone-scene .left { position:absolute; left:160px; top:200px; width:860px; }
-  .phone-scene .kicker { font-size:30px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); }
-  .step { font-size:58px; font-weight:700; letter-spacing:-0.02em; line-height:1.1; margin-top:28px; display:flex; gap:28px; align-items:flex-start; opacity:.22; transform:translateX(0); }
-  .step .n { flex:0 0 76px; height:76px; border-radius:50%; background:var(--ink); color:var(--paper); font-size:36px; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+  .serif { font-family: Georgia, "Liberation Serif", "DejaVu Serif", serif; font-weight:400; letter-spacing:-0.035em; line-height:1.12; }
+  .eyebrow { text-transform:uppercase; font-size:26px; font-weight:700; letter-spacing:.16em; color:var(--teal); }
+  .brandbar { position:absolute; left:120px; top:72px; display:flex; align-items:center; gap:22px; }
+  .brandbar img { width:84px; height:84px; object-fit:contain; }
+  .brandbar .name { font-size:44px; font-weight:700; letter-spacing:-2px; color:var(--ink); }
+  .statement { background:var(--paper); }
+  .statement .rule { position:absolute; left:120px; top:330px; height:4px; width:0; background:var(--aqua); }
+  .statement .h { position:absolute; left:120px; right:200px; top:380px; font-size:92px; color:var(--ink); }
+  .vision { background:var(--ink); color:#fff; }
+  .vision .eyebrow { position:absolute; left:120px; top:120px; color:var(--accent); }
+  .vision .h { position:absolute; left:120px; right:220px; top:300px; font-size:100px; color:#fff; }
+  .vision .sub { position:absolute; left:120px; right:220px; top:640px; font-size:52px; line-height:1.3; color:var(--navytext); }
+  .vision .sub em { font-style:normal; color:var(--accent); }
+  .vision .rulev { position:absolute; left:120px; top:260px; width:0; height:3px; background:var(--accent); }
+  .phone-scene { background:var(--pale); }
+  .phone-scene .left { position:absolute; left:120px; top:220px; width:900px; }
+  .phone-scene .kicker { margin-bottom:10px; }
+  .step { font-size:54px; line-height:1.15; margin-top:30px; display:flex; gap:28px; align-items:flex-start; opacity:.3; color:var(--ink); }
+  .step .n { flex:0 0 74px; height:74px; border-radius:50%; border:3px solid var(--line); background:#fff; color:var(--muted); font-size:34px; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:Arial, Helvetica, sans-serif; }
   .step.on { opacity:1; }
-  .step.on .n { background:var(--amber); color:var(--ink); }
-  .phone { position:absolute; left:1270px; top:40px; width:400px; height:830px; border-radius:58px; background:#111; padding:14px;
-    box-shadow: 0 50px 90px rgba(0,0,0,.28), 0 0 0 2px #2a2a2a; }
+  .step.on .n { background:var(--teal); border-color:var(--teal); color:#fff; }
+  .phone { position:absolute; left:1270px; top:40px; width:400px; height:830px; border-radius:58px; background:#0b1f28; padding:14px;
+    box-shadow: 0 40px 80px rgba(16,55,71,.28), 0 0 0 2px #1f3a46; }
   .phone .screen { position:relative; width:372px; height:802px; border-radius:46px; overflow:hidden; background:#fff; }
   .phone .screen img { position:absolute; left:0; top:0; width:372px; height:auto; opacity:0; }
-  .phone .notch { position:absolute; left:50%; top:26px; transform:translateX(-50%); width:120px; height:30px; background:#111; border-radius:20px; z-index:3; }
-  .end { background:var(--ink); color:var(--paper); }
-  .end .h { position:absolute; left:160px; right:160px; top:300px; font-size:96px; }
-  .end .url { position:absolute; left:160px; top:600px; font-size:84px; font-weight:700; color:#ffd27a; letter-spacing:-0.01em; }
-  .end .disc { position:absolute; left:160px; right:160px; bottom:150px; font-size:26px; color:#b9bdb9; }
-  #cap { position:absolute; left:0; right:0; bottom:64px; text-align:center; font-size:40px; font-weight:600; line-height:1.3; pointer-events:none; }
-  #cap span { display:inline-block; background:rgba(17,20,19,.86); color:#fff; padding:10px 26px; border-radius:14px; max-width:1500px; }
-  .end #cap span, .vision #cap span { background:rgba(255,255,255,.14); }
-  #capwrap.dark span { background:rgba(255,255,255,.16); }
+  .phone .notch { position:absolute; left:50%; top:26px; transform:translateX(-50%); width:120px; height:30px; background:#0b1f28; border-radius:20px; z-index:3; }
+  .end { background:var(--paper); }
+  .end .logo { position:absolute; left:50%; top:150px; transform:translateX(-50%); width:300px; height:300px; object-fit:contain; }
+  .end .name { position:absolute; left:0; right:0; top:470px; text-align:center; font-size:72px; font-weight:700; letter-spacing:-3px; color:var(--ink); }
+  .end .tag { position:absolute; left:0; right:0; top:565px; text-align:center; font-size:46px; color:var(--muted); }
+  .end .url { position:absolute; left:0; right:0; top:680px; text-align:center; font-size:80px; font-weight:700; color:var(--teal); letter-spacing:-1px; }
+  .end .disc { position:absolute; left:160px; right:160px; bottom:150px; text-align:center; font-size:24px; color:var(--muted); }
+  #capwrap { position:absolute; inset:0; z-index:5; pointer-events:none; }
+  #cap { position:absolute; left:0; right:0; bottom:64px; text-align:center; font-size:40px; font-weight:700; line-height:1.3; }
+  #cap span { display:inline-block; background:var(--ink); color:#fff; padding:10px 26px; border-radius:8px; max-width:1500px; }
+  #capwrap.dark #cap span { background:#fff; color:var(--ink); }
 </style></head>
 <body>
-<div id="statement" class="scene statement"><div class="bar"></div><div class="h"></div><div class="grain"></div></div>
-<div id="vision" class="scene vision"><div class="ring"></div><div class="mark">Omnequa</div><div class="tag">AI agents, one human, one idea</div><div class="h"></div><div class="sub"></div></div>
-<div id="phone" class="scene phone-scene"><div class="left"><div class="kicker">The test app</div><div class="steps"></div></div>
-  <div class="phone"><div class="notch"></div><div class="screen"></div></div><div class="grain"></div></div>
-<div id="end" class="scene end"><div class="h"></div><div class="url"></div><div class="disc"></div></div>
+<div id="statement" class="scene statement"><div class="brandbar"><img src="assets/brand/omnequa-logo.png" alt=""><div class="name">Omnequa</div></div><div class="rule"></div><div class="h serif"></div></div>
+<div id="vision" class="scene vision"><div class="eyebrow">Our vision</div><div class="rulev"></div><div class="h serif"></div><div class="sub"></div></div>
+<div id="phone" class="scene phone-scene"><div class="brandbar"><img src="assets/brand/omnequa-logo.png" alt=""><div class="name">Omnequa</div></div>
+  <div class="left"><div class="kicker eyebrow">Try our app</div><div class="steps"></div></div>
+  <div class="phone"><div class="notch"></div><div class="screen"></div></div></div>
+<div id="end" class="scene end"><img class="logo" src="assets/brand/omnequa-logo.png" alt=""><div class="name">Omnequa</div><div class="tag serif"></div><div class="url"></div><div class="disc"></div></div>
 <div id="capwrap"><div id="cap"><span></span></div></div>
 <script>
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
@@ -51,15 +57,15 @@ let SPEC=null, TL=null, FADE=0.5;
 window.setup=(spec, timeline)=>{
   SPEC=spec; TL=timeline;
   const seg=(id)=>SPEC.segments.find(s=>s.id===id);
-  const st=document.querySelector('#statement .h'); st.textContent=seg('hook').headline;
+  document.querySelector('#statement .h').textContent=seg('hook').headline;
   document.querySelector('#vision .h').textContent=seg('vision').headline;
-  document.querySelector('#vision .sub').textContent=seg('vision').sub;
+  document.querySelector('#vision .sub').innerHTML=seg('vision').sub_html||seg('vision').sub;
   const steps=document.querySelector('#phone .steps'); const screen=document.querySelector('#phone .screen');
   seg('app').steps.forEach((s,i)=>{
     const d=document.createElement('div'); d.className='step'; d.innerHTML=`<div class="n">${i+1}</div><div>${s.label}</div>`; steps.appendChild(d);
-    const img=document.createElement('img'); img.src='assets/try/'+s.shot; img.dataset.i=i; screen.appendChild(img);
+    const img=document.createElement('img'); img.src='assets/try/'+s.shot; screen.appendChild(img);
   });
-  document.querySelector('#end .h').textContent=seg('close').headline;
+  document.querySelector('#end .tag').textContent=SPEC.tagline||'';
   document.querySelector('#end .url').textContent=seg('close').url;
   document.querySelector('#end .disc').textContent=SPEC.disclosure;
   return Promise.all([...document.images].map(i=>i.complete?1:new Promise(r=>{i.onload=r;i.onerror=r;})));
@@ -67,7 +73,6 @@ window.setup=(spec, timeline)=>{
 function tlseg(id){return TL.segments.find(s=>s.id===id);}
 function wordTime(segId, word){ const s=tlseg(segId); const w=s.words.find(x=>x.word.replace(/[^\w]/g,'').toLowerCase()===word.toLowerCase()); return s.start+(w?w.start:0); }
 function captionAt(t){
-  // sentence-level captions: split each segment's caption into sentences, time them by word boundaries
   for(const s of TL.segments){
     if(t<s.start-0.05||t>s.end+0.3) continue;
     const spec=SPEC.segments.find(x=>x.id===s.id);
@@ -93,28 +98,29 @@ window.seek=(t)=>{
     let o=0; if(t>=a&&t<b){ o=Math.min(ease((t-a)/FADE), ease((b-t)/FADE)); }
     if(id==='close'&&t>=a) o=ease((t-a)/FADE);
     el.style.opacity=o; el.style.zIndex=o>0?2:0;
-    if(o>0 && (id==='vision'||id==='close')) dark=true;
-    if(id==='hook'&&o>0){ const u=ease((t-a)/1.6); document.querySelector('#statement .bar').style.width=(u*420)+'px';
+    if(o>0 && id==='vision') dark=true;
+    if(id==='hook'&&o>0){ el.querySelector('.rule').style.width=(ease((t-a)/1.6)*520)+'px';
       el.querySelector('.h').style.transform=`translateY(${(1-ease((t-a)/1.1))*30}px)`; }
-    if(id==='vision'&&o>0){ const u=ease((t-a-0.2)/1.0); el.querySelector('.h').style.transform=`translateY(${(1-u)*40}px)`; el.querySelector('.h').style.opacity=u;
-      const v=ease((t-a-1.6)/1.0); el.querySelector('.sub').style.opacity=v; el.querySelector('.sub').style.transform=`translateY(${(1-v)*30}px)`;
-      el.querySelector('.ring').style.transform=`rotate(${(t-a)*6}deg) scale(${1+0.02*(t-a)})`; }
+    if(id==='vision'&&o>0){ el.querySelector('.rulev').style.width=(ease((t-a)/1.4)*160)+'px';
+      const u=ease((t-a-0.2)/1.0); el.querySelector('.h').style.transform=`translateY(${(1-u)*40}px)`; el.querySelector('.h').style.opacity=u;
+      const v=ease((t-a-2.2)/1.0); el.querySelector('.sub').style.opacity=v; el.querySelector('.sub').style.transform=`translateY(${(1-v)*30}px)`; }
     if(id==='app'&&o>0){
       const steps=[...el.querySelectorAll('.step')]; const imgs=[...el.querySelectorAll('.screen img')];
       const spec=SPEC.segments.find(x=>x.id==='app');
       const times=spec.steps.map(s=>wordTime('app',s.at_word));
       let active=-1; times.forEach((tt,i)=>{ if(t>=tt-0.15) active=i; });
       steps.forEach((s,i)=>{ s.classList.toggle('on',i===active); s.style.transform=`translateX(${i===active?14:0}px)`; });
-      imgs.forEach((im,i)=>{ const tt=times[i]-0.15; const nxt=times[i+1]!==undefined?times[i+1]-0.15:1e9;
-        let op=0; if(i===0&&t<tt) op=1; if(t>=tt){ op=ease((t-tt)/0.4); if(t>=nxt) op=1-ease((t-nxt)/0.4);} if(active>i+0) op=i===active?op:(i===active-1?op:0);
-        if(i===active) op=1*ease((t-tt)/0.4)||1; im.style.opacity=op; im.style.zIndex=i===active?2:1;
-        const drift=(t-(tt>0?tt:0))*3; im.style.transform=`translateY(${-clamp(drift,0,60)}px)`; });
+      imgs.forEach((im,i)=>{ const tt=times[i]-0.15; let op=0;
+        if(i===active) op=ease((t-tt)/0.4)||1; else if(i===active-1) op=1-ease((t-(times[active]-0.15))/0.4); else if(active<0&&i===0) op=1;
+        im.style.opacity=op; im.style.zIndex=i===active?2:1;
+        im.style.transform=`translateY(${-clamp((t-Math.max(tt,0))*3,0,60)}px)`; });
       el.querySelector('.phone').style.transform=`translateY(${(1-ease((t-a)/0.9))*40}px)`;
     }
-    if(id==='close'&&o>0){ const u=ease((t-a-0.1)/0.9); el.querySelector('.h').style.opacity=u; const v=ease((t-a-1.2)/0.9); el.querySelector('.url').style.opacity=v; el.querySelector('.url').style.transform=`translateY(${(1-v)*24}px)`; }
+    if(id==='close'&&o>0){ const u=ease((t-a-0.1)/0.9); el.querySelector('.logo').style.opacity=u; el.querySelector('.logo').style.transform=`translateX(-50%) scale(${0.92+0.08*u})`;
+      el.querySelector('.name').style.opacity=u; el.querySelector('.tag').style.opacity=ease((t-a-0.6)/0.9);
+      const v=ease((t-a-1.3)/0.9); el.querySelector('.url').style.opacity=v; el.querySelector('.url').style.transform=`translateY(${(1-v)*24}px)`; }
   }
   const cap=(t<tlseg('vision').start-0.25)?'':captionAt(t); const span=document.querySelector('#cap span'); span.textContent=cap; span.style.opacity=cap?1:0;
   document.getElementById('capwrap').className=dark?'dark':'';
-  document.getElementById('capwrap').style.zIndex=5; document.getElementById('capwrap').style.position='absolute'; document.getElementById('capwrap').style.inset='0'; document.getElementById('capwrap').style.pointerEvents='none';
 };
 </script></body></html>

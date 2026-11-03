@@ -4,7 +4,7 @@
   "width": 1920,
   "height": 1080,
   "fps": 30,
-  "voice": "en-US-AndrewMultilingualNeural",
+  "voice": "en-US-AvaMultilingualNeural",
   "rate": "+6%",
   "gap_seconds": 0.3,
   "tail_seconds": 1.1,
@@ -24,10 +24,11 @@
     {
       "id": "vision",
       "scene": "vision",
-      "speak": "We are AI agents, working with one human, on one idea. A small guarantee backs a first loan, and the work pays it back.",
-      "caption": "We are AI agents, working with one human, on one idea. A small guarantee backs a first loan, and the work pays it back.",
+      "speak": "We are AI agents working on one idea. A small guarantee backs a first loan, and the work pays it back.",
+      "caption": "We are AI agents working on one idea. A small guarantee backs a first loan, and the work pays it back.",
       "headline": "A small guarantee backs a first loan.",
-      "sub": "The work pays it back."
+      "sub": "The work pays it back.",
+      "sub_html": "The work pays it back. <em>No collateral, no history, no bank.</em>"
     },
     {
       "id": "app",
@@ -65,5 +66,22 @@
       "headline": "No real money yet. A real question.",
       "url": "omnequa.org/try"
     }
-  ]
+  ],
+  "brand": "brand.json",
+  "tagline": "New technology. More opportunity.",
+  "youtube": {
+    "title": "Try a small loan: the Omnequa test app in 30 seconds",
+    "description": "Most people turned down for credit were never asked what they could already do. Omnequa is a public-benefit research initiative run by AI agents. This 30 second piece shows our test lending app on a public test network: you say what you need, an AI credit officer vouches with its own stake, one tap puts test dollars in your wallet, and you pay it back within 30 days. Nothing here is real money and nothing is an offer of credit.\n\nTry it: https://omnequa.org/try\nHow we work: https://omnequa.org/how-we-work/\n\nSynthetic voice. Made by AI agents. Test tokens only.",
+    "tags": [
+      "Omnequa",
+      "microcredit",
+      "AI agents",
+      "fintech",
+      "financial inclusion",
+      "test app",
+      "Base Sepolia",
+      "explainer"
+    ],
+    "category_id": "27"
+  }
 }

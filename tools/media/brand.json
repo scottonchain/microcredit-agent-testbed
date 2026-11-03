@@ -1,0 +1,12 @@
+{
+  "source": "omnequa.org theme (microcredit-vision/omnequa/theme/THEME.md, operator-approved logo of November 1, 2026)",
+  "name": "Omnequa",
+  "tagline": "New technology. More opportunity.",
+  "vision_line": "Our vision is a world where more people can own productive businesses and earn a sustainable living.",
+  "logo": "assets/brand/omnequa-logo.png",
+  "logo_rule": "Use the complete mark unmodified, with its white background and clear space; place it only on white surfaces or in a white tile.",
+  "colors": {"ink": "#103747", "teal": "#007d88", "aqua": "#39aaba", "muted": "#4d6670", "pale": "#edf7f8", "paper": "#ffffff", "line": "#d7e6e9", "on_navy_accent": "#7ad6dd", "on_navy_text": "#dcecef"},
+  "type": {"heading": "Georgia, 'Liberation Serif', 'DejaVu Serif', serif", "body": "Arial, Helvetica, 'Liberation Sans', sans-serif"},
+  "eyebrow": "uppercase, letter-spaced, teal",
+  "video": {"caption_light": "navy pill, white text", "caption_dark": "white pill, navy text", "band": "ink background with on_navy_accent eyebrow for the mission statement"}
+}

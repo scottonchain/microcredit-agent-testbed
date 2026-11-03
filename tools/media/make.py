@@ -123,10 +123,13 @@ def main():
         "voice": timeline["voice"], "engine": timeline["engine"], "synthetic_voice": True, "cloned_real_person": False,
         "music": "original generated bed (tools/media/music.py), no samples" if use_music else "none",
         "screens": sorted(p.name for p in (HERE / "assets/try").glob("*.png")),
+        "brand": json.loads((HERE / spec["brand"]).read_text())["source"] if spec.get("brand") else None,
         "spoken_text": [s["speak"] for s in spec["segments"]],
         "human_listening_review": "pending: the operator reviews before any publication",
     }
     (out / f"{slug}.provenance.json").write_text(json.dumps(prov, indent=2))
+    if spec.get("youtube"):
+        (out / "youtube.json").write_text(json.dumps(spec["youtube"], indent=2))
     qa = run([sys.executable, HERE / "qa.py", str(final), "--vtt", str(out / f"{slug}.vtt"), "--max-seconds", "32"]).stdout
     (out / "qa.json").write_text(qa)
     print(qa)

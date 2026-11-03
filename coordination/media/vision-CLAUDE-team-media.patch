@@ -1,8 +1,8 @@
 diff --git a/CLAUDE.md b/CLAUDE.md
-index 559a22f..63144f2 100644
+index 559a22f..ee6b94d 100644
 --- a/CLAUDE.md
 +++ b/CLAUDE.md
-@@ -296,36 +296,32 @@ change priorities, category experiments and weights from evidence, recording the
+@@ -296,36 +296,37 @@ change priorities, category experiments and weights from evidence, recording the
  reason. Until data exists, rotation chooses. Engagement is a publishing measure,
  not proof of human welfare.
  
@@ -38,30 +38,35 @@ index 559a22f..63144f2 100644
 -
 +## Team media: short video and audio
 +
-+Production standard, diagnosis, pipeline and gates: the testbed's
++Production standard, diagnosis, pipeline, branding and gates: the testbed's
 +[MEDIA_PRODUCTION.md](https://github.com/scottonchain/microcredit-agent-testbed/blob/main/coordination/MEDIA_PRODUCTION.md)
 +(operator direction, November 3, 2026: the earlier audio and video were far below
-+the bar). The pipeline is `tools/media/` in the testbed. The default piece is a 20 to
-+30 second explainer: one narrator voice cast by the operator from samples, a script
-+of at most 90 words, real app screens in a phone frame, burned-in captions and a VTT,
-+1080p30, -14 LUFS, synthetic-voice disclosure on screen and in provenance. The
-+two-voice episode format "Two Agents, No Collateral" is not produced again in its
-+old form; a dialogue format returns only with a dialogue-trained engine and a passed
-+20 second audition. No agent can hear audio: no record calls a production natural or
-+professional; records carry measurements and the operator's approval status.
++the bar; the first 30 second cut of the new pipeline was judged publication quality
++the same day). The pipeline is `tools/media/` in the testbed; the channel plan is
++`tools/media/channel.json`. The default piece is a 20 to 30 second explainer: one
++narrator (Ava, `en-US-AvaMultilingualNeural`, chosen by the operator), a script of at
++most 90 words, the Omnequa identity from `omnequa/theme/THEME.md` (navy, teal, the
++approved logo unmodified on white, Georgia headlines), real app screens in a phone
++frame, burned-in captions and a VTT, 1080p30, -14 LUFS, synthetic-voice disclosure
++on screen and in provenance. The two-voice episode format "Two Agents, No Collateral"
++is not produced again in its old form. No agent can hear audio: no record calls a
++production natural or professional; records carry measurements and approval status.
 +
-+Gates before publication: operator audition of the voice (once per series), measured
-+QA (`tools/media/qa.py`), claims check with VERIFY rows for spoken figures, the
-+operator's written approval of the cut for the first three pieces per format, then
-+spot checks. Never invent customers, revenue, outside repayment or human benefit;
-+no real person's voice or likeness.
++Gates: measured QA (`tools/media/qa.py`), claims check with VERIFY rows for spoken
++figures, operator approval for the second and third pieces of a format, then spot
++checks. Never invent customers, revenue, outside repayment or human benefit; no real
++person's voice or likeness. Never say "one human" or describe the operator in a video
++(operator, November 3): "we are AI agents" is enough. One piece a week at most, always from a published post.
 +
-+Metadata for a published video post: `video: <path>.mp4`, `video_seconds`, `tags`
-+with the true categories, a matching `.vtt` and `.provenance.json` beside the file,
-+and a `## Transcript` section. Existing audio episodes, their `audio:` metadata,
-+`tools/podcast_feed.py`, the feed at https://scottonchain.github.io/listen/feed.xml
-+and the published production receipts are preserved as history. The daily sync no
-+longer produces an episode and has no production scheduler.
++Publication: a journal post with `video: <path>.mp4`, `video_seconds`, true `tags`,
++a matching `.vtt` and `.provenance.json` beside the file and a `## Transcript`
++section; the YouTube upload through `tools/media/youtube_upload.py` once the
++operator's channel secrets exist (uploads are private until the operator makes them
++public or Google verifies the app); the omnequa.org mirror through the shared feed.
++Existing audio episodes, `tools/podcast_feed.py`, the feed at
++https://scottonchain.github.io/listen/feed.xml and the production receipts are
++preserved as history. The daily sync no longer produces an episode and has no
++production scheduler.
  
  ## Operator-requested shared journal, 2026-11-01
  
