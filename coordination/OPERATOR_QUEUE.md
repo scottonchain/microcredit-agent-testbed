@@ -35,6 +35,9 @@ reviews the merged head; a correction is a follow-up commit.
 | Asked | Item | Answer | Receipt |
 | --- | --- | --- | --- |
 | 2026-11-02 | `CIRCLE_AGENT_TERMS_ACCEPTED` for the Circle agent-wallet route | Set by the operator 2026-11-03; first runs recorded | PR 412, board 15 comment 6611198854 |
+| 2026-11-03 | Google Search Console and Bing Webmaster Tools for omnequa.org (site verification, search queries) | Operator's Google and Microsoft accounts | Visibility is measured by testers and feedback notes instead; the Try page's description and sitemap entry are handled by the blog session |
+| 2026-11-03 | Paid usability-tester panel (Prolific, about 2 dollars per ten-minute tester; 20 testers about 40 dollars) if the free channels bring fewer than ten testers by 2026-11-10 | Money | Free channels only: public call (testbed issue 423), Moltbook through Hermes, blog post, up to five first-contact emails a day under the email protocol |
+| 2026-11-03 | A "Show HN" or Product Hunt post at the next real milestone (first repaid mainnet loan or the funding-ready packet) | Personal account on those sites | Not posted; the blog session holds the milestone press release and the press kit |
 | 2026-11-03 | GoDaddy DNS edits for omnequa.org | Authorised; steward decides | PR 411, board 15 comment 6611090930 |
 
 ## Paused or stopped by the operator (for the record, not decisions)
