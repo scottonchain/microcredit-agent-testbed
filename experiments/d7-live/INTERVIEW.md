@@ -40,4 +40,22 @@ No validated model, no calibration, no human outcome. The weights are a publishe
 
 ## Running the shadow beside the Claude officer
 
+### November 4 extraction correction (interview-0.2)
+
+The completed offline regression pass addresses Hermes's reported negation,
+self/third-party and unrelated-dollar-amount failures. Repayment sources now
+need an affirmative repayment clause or a short answer to an officer's source
+question; denied income clears an earlier source claim. Requested amounts are
+compared with requested amounts, preserving cent differences, rather than with
+historical fees or wages. The structured Tomorrow option is recognized.
+
+Run `node test-interview.mjs` and `node test-interview-regressions.mjs`: the
+original 13 tests and 12 invented-wording cases are separate controls. An
+unproductive purpose remains a stated purpose under the published scorecard;
+this correction does not invent a new purpose restriction or change frozen
+weights, tiers or live admission policy. Positive words remain applicant claims,
+not verified earnings. The extractor is still a bounded English pattern parser,
+not a general language model or a validated credit-risk model. The November 17
+human/backer and repayment comparison remains due; no synthetic result replaces it.
+
 `INTERVIEW_SHADOW=1` runs the interview in shadow in any mode (added by the steward at merge, 2026-11-03): the live desk keeps its Claude officer and the `replied` lines carry the same `shadow` object. `MODE=interview` alone makes the rules officer reply, which is for tests and the synthetic set, not for the live desk.

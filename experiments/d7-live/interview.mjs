@@ -14,7 +14,7 @@
 // Shadow mode (MODE=interview in desk-daemon.mjs): the daemon logs this module's score, reasons and recommended
 // backing on the 'replied' line and keeps the rules officer's backing and reply until the November 17 check.
 
-export const VERSION = 'interview-0.1';
+export const VERSION = 'interview-0.2';
 
 // Published weights. Score runs 0 to 100 after clamping.
 export const WEIGHTS = Object.freeze({
@@ -46,11 +46,30 @@ export const REASONS = Object.freeze({
 const PRODUCTIVE = /\b(stock|inventory|supplies|materials?|tools?|machine|equipment|licen[cs]e|permit|deposit|rent for (the|my) (shop|stall|kiosk)|ingredients|seeds?|fertili[sz]er|parts|repair|phone for (work|my business)|boda|fuel for (work|deliver)|wholesale|goods to sell|resell|market stall|shop|business|customers?|orders?)\b/i;
 const REPAY_SOURCE = /\b(sales?|customers?|orders?|wages?|salary|pay ?cheque|paycheck|pay ?day|job|work|income|profits?|harvest|tips|clients?|contract|invoice|commission|allowance|pension|remittance|gig)\b/i;
 const TERM = /\b(in (a|one|two|three) weeks?|in \d+ days?|in 30 days|within (a|one|two|three) (weeks?|months?)|by (friday|monday|tuesday|wednesday|thursday|saturday|sunday|the end of the month|month end|next week|next month)|next (week|month|pay ?day|friday)|end of (the )?month|when (i|we) (get|am|are) paid|after (the|my) (harvest|sale|job|order))\b/i;
-const TEMPLATE = /^I need \$(\d+(?:\.\d+)?) for (.{1,160})\. I can pay it back (in a week|in two weeks|in 30 days)\.$/;
+const TEMPLATE = /^I need \$(\d+(?:\.\d+)?) for (.{1,160})\. I can pay it back (tomorrow|in a week|in two weeks|in 30 days)\.$/;
 const DECLINE_SELF = /\b(not for me|for (someone|somebody) else|my (friend|brother|sister|cousin|boss) (needs|wants|asked)|on behalf of)\b/i;
 
 const clean = (t) => String(t ?? '').replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 500);
-const amountsIn = (t) => [...t.matchAll(/\$\s*(\d+(?:\.\d+)?)|\b(\d+(?:\.\d+)?)\s*(?:dollars?|usd|bucks)\b/gi)].map((m) => Number(m[1] ?? m[2])).filter((n) => Number.isFinite(n) && n > 0);
+// Only loan requests supply the amount field. A fee, wage or old purchase is a different field.
+const requestedAmounts = (t) => [...t.matchAll(/\b(?:need|borrow|get|lend me|request(?:ing)?|ask(?:ing)? for)\s+\$?\s*(\d+(?:\.\d+)?)(?:\s*(?:dollars?|usd|bucks))?\b/gi)].map(m => Number(m[1])).filter(n => Number.isFinite(n) && n > 0);
+const deniesRepayment = t => /\b(?:cannot|can't|can not|will not|won't|unable to)\s+(?:pay|repay)\b/i.test(t);
+const deniesSource = t => REPAY_SOURCE.test(t) && /\b(?:no|without|not have|don't have|do not have|won't have|will not have)\b/i.test(t);
+function repaymentSource(thread) {
+  let source = { text: null, tag: 'none' }, asked = false;
+  for (const message of thread || []) {
+    const text = clean(message.text);
+    if (Number(message.from) !== 0) { asked = /\b(where|from|source)\b/i.test(text); continue; }
+    for (const clause of text.split(/[.!?;|]|\b(?:but|however|instead)\b/i).map(x => x.trim()).filter(Boolean)) {
+      if (deniesRepayment(clause) || deniesSource(clause)) { source = { text: null, tag: 'none' }; continue; }
+      if (!REPAY_SOURCE.test(clause)) continue;
+      const linked = /\b(?:pay (?:it )?back|repay|pay you)[^|]{0,80}?\b(?:from|with|when|after|out of)\b/i.test(clause);
+      const response = asked && clause.split(/\s+/).length <= 16 && (/^(?:from |with )?(?:my |the |our )?(?:sales?|wages?|salary|pay ?cheque|paycheck|pay ?day|job|income|profits?|harvest|tips|clients?|orders?|customers?|contract|invoice|commission|allowance|pension|remittance|gig)\b/i.test(clause) || /\b(?:from|with)\s+(?:my |the |our )?(?:sales?|wages?|salary|harvest|orders?|customers?)\b/i.test(clause));
+      if (linked || response) source = { text: clause, tag: 'stated' };
+    }
+    asked = false;
+  }
+  return source;
+}
 
 // Build the dossier from the applicant's messages only (from === 0). Each field carries a tag: 'stated' (from the
 // applicant's words), 'verified' (from the chain), or 'none'.
@@ -62,15 +81,15 @@ export function dossier(thread, facts) {
   const tm = mine.map((t) => TEMPLATE.exec(t)).filter(Boolean);
   if (tm.length) { const last = tm[tm.length - 1]; d.amount = { value: Number(last[1]), tag: 'stated' }; d.purpose = { text: last[2], tag: 'stated', productive: PRODUCTIVE.test(last[2]) }; d.term = { text: last[3], tag: 'stated' }; }
   // Free text fills what the template did not.
-  const amts = amountsIn(all);
+  const amts = mine.flatMap(requestedAmounts);
   if (d.amount.value === null && amts.length) d.amount = { value: amts[amts.length - 1], tag: 'stated' };
   if (d.purpose.text === null) { const m = all.match(/\b(?:for|to buy|to pay for|to get|so (?:i|we) can)\s+([^.|!?]{3,120})/i); if (m) d.purpose = { text: m[1].trim(), tag: 'stated', productive: PRODUCTIVE.test(m[1]) }; }
   if (d.term.text === null) { const m = all.match(TERM); if (m) d.term = { text: m[0], tag: 'stated' }; }
-  { const m = all.match(/\b(?:pay (?:it )?back|repay|pay you)[^.|]{0,80}?\b(from|with|when|after|out of)\s+([^.|]{3,100})/i) || all.match(/\b(from|with)\s+(my|the|our)\s+([^.|]{3,80}?)\b(sales?|wages?|salary|income|job|customers?|orders?|profits?|harvest|tips|clients?|pay)\b/i); if (m && REPAY_SOURCE.test(m[0])) d.repayment_source = { text: m[0].trim(), tag: 'stated' }; else if (REPAY_SOURCE.test(all) && /\b(pay|repay)\b/i.test(all)) d.repayment_source = { text: (all.match(REPAY_SOURCE) || [''])[0], tag: 'stated' }; }
-  // Contradictions: more than one distinct amount, or two template asks with different purposes.
-  const distinct = [...new Set(amts.map((n) => Math.round(n)))]; if (distinct.length > 1) d.contradictions.push({ field: 'amount', values: distinct });
+  d.repayment_source = repaymentSource(thread);
+  // Contradictions compare the same requested field, keeping cent differences.
+  const distinct = [...new Set(amts)]; if (distinct.length > 1) d.contradictions.push({ field: 'amount', values: distinct });
   if (tm.length > 1) { const ps = [...new Set(tm.map((m) => m[2].toLowerCase()))]; if (ps.length > 1) d.contradictions.push({ field: 'purpose', values: ps }); }
-  d.not_for_self = DECLINE_SELF.test(all);
+  d.not_for_self = DECLINE_SELF.test(all.replace(/\bnot for (?:someone|somebody) else\b/gi, 'for myself'));
   return d;
 }
 
