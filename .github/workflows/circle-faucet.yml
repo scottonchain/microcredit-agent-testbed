@@ -1,8 +1,10 @@
-name: Probe Base Sepolia read-only RPC availability
+name: Inventory test USDC without signing
 on:
+  workflow_dispatch:
   push:
     paths:
       - ".github/workflows/circle-faucet.yml"
+      - "scripts/test_wallet_inventory.mjs"
 permissions:
   contents: read
 jobs:
@@ -10,33 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Compare RPC receipts and contract state without a signing key
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned read-only runtime
+        run: npm install --prefix /tmp/test-wallet-inventory --no-audit --no-fund ethers@6.15.0
+      - name: Inventory both test networks and the recorded cohort
         run: |
-          npm install --prefix /tmp/gt-rpc-probe --no-audit --no-fund ethers@6.15.0
-          cd /tmp/gt-rpc-probe
-          node - <<'NODE'
-          const {JsonRpcProvider,Contract}=require('ethers');
-          (async()=>{
-            const root='0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1';
-            const GT='0x7eD9B2B67E598fd2a1f384CC885c0C860bfD0466';
-            const token='0x036CbD53842c5426634e7929541eC2318f3dCF7e';
-            const result=[];
-            for(const rpc of ['https://sepolia.base.org','https://base-sepolia-rpc.publicnode.com']){
-              const p=new JsonRpcProvider(rpc,undefined,{cacheTimeout:0,batchMaxCount:20});
-              const row={rpc,successes:0,errors:[]};
-              try{
-                row.chainId=Number((await p.getNetwork()).chainId);if(row.chainId!==84532)throw Error('Wrong chain');
-                const g=new Contract(GT,['function reserve() view returns(uint256)','function totalStake() view returns(uint256)','function guaranteeCount() view returns(uint256)','function outstanding() view returns(uint256)'],p);
-                const t=new Contract(token,['function balanceOf(address) view returns(uint256)'],p);
-                const r=await p.getTransactionReceipt('0xe64950dfe0720da64fecffbeea0e1e9c9391f39e8ee1242908e1e65bf5e42365');
-                row.receipt={hash:r.hash,status:r.status,block:r.blockNumber};
-                const historical={blockTag:48059812};row.historicalReserve=(await g.reserve(historical)).toString();
-                row.nonceLatest=await p.getTransactionCount(root,'latest');row.noncePending=await p.getTransactionCount(root,'pending');
-                row.rootBalance=(await t.balanceOf(root)).toString();row.reserve=(await g.reserve()).toString();row.stake=(await g.totalStake()).toString();row.guarantees=(await g.guaranteeCount()).toString();row.outstanding=(await g.outstanding()).toString();
-                for(let n=0;n<40;n++){try{await Promise.all([g.reserve(historical),p.getTransactionReceipt(r.hash)]);row.successes++;}catch(e){row.errors.push({code:e.code,rpcCode:e.info?.error?.code||e.error?.code||null,reason:e.shortMessage||null});}await new Promise(r=>setTimeout(r,300));}
-              }catch(e){row.errors.push({code:e.code,rpcCode:e.info?.error?.code||e.error?.code||null,reason:e.shortMessage||null});}
-              p.destroy();result.push(row);
-            }
-            console.log('RPC_PROBE='+JSON.stringify({atUTC:new Date().toISOString(),result}));
-          })();
-          NODE
+          cp -R scripts experiments /tmp/test-wallet-inventory/
+          cd /tmp/test-wallet-inventory
+          node scripts/test_wallet_inventory.mjs
+      - name: Preserve public balances
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-wallet-inventory
+          path: /tmp/test-wallet-inventory/test-wallet-inventory.json
+          if-no-files-found: error
