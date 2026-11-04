@@ -376,6 +376,14 @@
    "secured": 5000000,
    "tx": "0xeb5d5719dd2e9f6507e2e502bce50bf314d27dc55cb0ac217a7bef995ae47301",
    "unsecured": 0
+  },
+  {
+   "backer": "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462",
+   "block": 54072012,
+   "borrower": "0x9e7a9f068e0c56e28c3a3cec5bebbf4838e1351c",
+   "secured": 3000000,
+   "tx": "0xf320dadf409d4c5aaf84a7d6fc0300a2d8fa88fd03724bff4667fa8127c220af",
+   "unsecured": 0
   }
  ],
  "caveats": [
@@ -386,23 +394,23 @@
  ],
  "flows": {
   "deposited": 128000000,
-  "disbursed": 42000000,
+  "disbursed": 45000000,
   "fees": 0,
   "interest": 1520,
-  "repaid": 42001520,
+  "repaid": 45001520,
   "withdrawn": 93000000,
   "writtenOff": 0
  },
  "humanMetrics": {
   "attestedLoans": {
-   "ofLoans": 27,
+   "ofLoans": 28,
    "withProfile": 0
   },
   "disbursedToBorrowersWithNoOwnStake": {
    "borrowers": 10,
    "ofBorrowers": 10
   },
-  "firstTimeBorrowerShare": 0.5952380952380952,
+  "firstTimeBorrowerShare": 0.5555555555555556,
   "netYield": {
    "interestCollected": 1520,
    "net": 1520,
@@ -410,11 +418,11 @@
    "writtenOff": 0
   },
   "repaymentRate": {
-   "closedLoans": 26,
+   "closedLoans": 27,
    "defaulted": 0,
-   "onTime": 26,
+   "onTime": 27,
    "rate": 1.0,
-   "repaid": 26
+   "repaid": 27
   },
   "uniqueRepayingBorrowers": {
    "attested": 0,
@@ -425,7 +433,7 @@
   "Active": 0,
   "Cancelled": 1,
   "Defaulted": 0,
-  "Repaid": 26,
+  "Repaid": 27,
   "Requested": 0
  },
  "loans": [
@@ -1657,6 +1665,52 @@
    "termDays": 30,
    "txs": {},
    "writtenOff": 0
+  },
+  {
+   "backerCharged": 0,
+   "borrower": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
+   "closed": {
+    "as": "Repaid",
+    "block": 54081626,
+    "time": 1793738194,
+    "tx": "0x8ac27b14dfc45e878443f6875d6dda52c08229ec39ab2ef4fd3b9da7d67b8e35"
+   },
+   "daysToRepay": 0.0,
+   "disbursed": {
+    "block": 54081567,
+    "time": 1793738182,
+    "tx": "0xbe217e96017e486f023a8314b8f169bc7987f44d9e07f44c6a5b12418a1fe84e"
+   },
+   "disbursedTo": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
+   "dueAt": 1796330182,
+   "fee": 0,
+   "firstLoan": false,
+   "id": 28,
+   "impaired": 0,
+   "interest": 0,
+   "onTime": true,
+   "principal": 3000000,
+   "principalRepaid": 3000000,
+   "rateBps": 933,
+   "recovered": 0,
+   "repaid": 3000000,
+   "repayments": [
+    {
+     "amount": 3000000,
+     "block": 54081626,
+     "time": 1793738194,
+     "tx": "0x8ac27b14dfc45e878443f6875d6dda52c08229ec39ab2ef4fd3b9da7d67b8e35"
+    }
+   ],
+   "requested": {
+    "block": 54081567,
+    "time": 1793738182,
+    "tx": "0xbe217e96017e486f023a8314b8f169bc7987f44d9e07f44c6a5b12418a1fe84e"
+   },
+   "status": "Repaid",
+   "termDays": 30,
+   "txs": {},
+   "writtenOff": 0
   }
  ],
  "monthly": [
@@ -1680,18 +1734,18 @@
   {
    "cumulative": {
     "deposited": 128000000,
-    "disbursed": 42000000,
+    "disbursed": 45000000,
     "interest": 1520,
-    "loans": 26,
-    "repaid": 42001520,
+    "loans": 27,
+    "repaid": 45001520,
     "withdrawn": 93000000
    },
    "deposited": 20000000,
-   "disbursed": 11000000,
+   "disbursed": 14000000,
    "interest": 1520,
-   "loans": 3,
+   "loans": 4,
    "month": "2026-11",
-   "repaid": 11001520,
+   "repaid": 14001520,
    "withdrawn": 0
   }
  ],
@@ -1752,21 +1806,21 @@
  },
  "profiles": [],
  "snapshot": {
-  "blockHash": "0x5ef5fa716e66603860cd8436c786c08450d15d21fb33f8c1dfa132d1831736fd",
-  "blockNumber": 54062828,
-  "blockTime": "2026-11-03T19:33:54+00:00",
-  "blockTimestamp": 1793734434,
+  "blockHash": "0xfea54699114883de0e6407992dae167999e4165293e7c439ee20f4432e44c77c",
+  "blockNumber": 54145172,
+  "blockTime": "2026-11-04T00:08:23+00:00",
+  "blockTimestamp": 1793750903,
   "chainId": 84532,
   "collector": "metrics/lending_dashboard.py",
-  "collectorCommit": "58b24a9",
-  "eventCount": 213,
+  "collectorCommit": "737f68c",
+  "eventCount": 218,
   "explorer": "https://sepolia.basescan.org",
   "fromBlock": 47776780,
   "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
   "logsRpc": "https://base-sepolia.gateway.tenderly.co",
   "network": "base-sepolia",
   "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
-  "rpcCalls": 246,
+  "rpcCalls": 250,
   "scores": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
   "stateRpc": "https://sepolia.base.org",
   "token": {
