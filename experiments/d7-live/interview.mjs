@@ -51,9 +51,10 @@ const DECLINE_SELF = /\b(not for me|for (someone|somebody) else|my (friend|broth
 
 const clean = (t) => String(t ?? '').replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 500);
 // Only loan requests supply the amount field. A fee, wage or old purchase is a different field.
-const requestedAmounts = (t) => [...t.matchAll(/\b(?:need|borrow|get|lend me|request(?:ing)?|ask(?:ing)? for)\s+\$?\s*(\d+(?:\.\d+)?)(?:\s*(?:dollars?|usd|bucks))?\b/gi)].map(m => Number(m[1])).filter(n => Number.isFinite(n) && n > 0);
+const requestedAmounts = (t) => [...t.matchAll(/\b(?:need|borrow|get|lend me|request(?:ing)?|ask(?:ing)? for)\s+(?:\$\s*(\d+(?:\.\d+)?)\b|(\d+(?:\.\d+)?)\s*(?:dollars?|usd|bucks)\b)/gi)].map(m => Number(m[1] ?? m[2])).filter(n => Number.isFinite(n) && n > 0);
 const deniesRepayment = t => /\b(?:cannot|can't|can not|will not|won't|unable to)\s+(?:pay|repay)\b/i.test(t);
-const deniesSource = t => REPAY_SOURCE.test(t) && /\b(?:no|without|not have|don't have|do not have|won't have|will not have)\b/i.test(t);
+// Conservatively abstain when source language is negated; this is not a general grammar parser.
+const deniesSource = t => REPAY_SOURCE.test(t) && /\b(?:no|not|never|without|unable|cannot|can't|don't|won't|isn't|haven't)\b/i.test(t);
 function repaymentSource(thread) {
   let source = { text: null, tag: 'none' }, asked = false;
   for (const message of thread || []) {
@@ -157,6 +158,9 @@ export function decide({ thread, facts, maxLine }) {
   // Not enough said yet and no hard rule: ask (at most two questions, so up to three applicant messages), keep the
   // current backing as the rules officer does; the score is still logged.
   if (!sc.hard.length && (d.purpose.tag !== 'stated' || d.repayment_source.tag !== 'stated') && d.messages < 3) verdict = { backing: Math.round(d.backing.value), outcome: 'ask', reasons: [] };
+  // A score must not manufacture a repayment source after the question budget expires.
+  // Shadow recommendations only: frozen weights and the live officer remain unchanged.
+  if (!sc.hard.length && d.repayment_source.tag !== 'stated' && d.messages >= 3) verdict = { backing: 0, outcome: 'decline', reasons: ['R01'] };
   const reply = phrase(d, verdict, ml);
   const backing = Math.max(0, Math.min(ml, Math.round(Number(verdict.backing) || 0)));
   const assessUs = Number((process.hrtime.bigint() - t0) / 1000n);

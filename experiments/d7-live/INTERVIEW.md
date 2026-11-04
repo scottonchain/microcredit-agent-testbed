@@ -50,10 +50,15 @@ compared with requested amounts, preserving cent differences, rather than with
 historical fees or wages. The structured Tomorrow option is recognized.
 
 Run `node test-interview.mjs` and `node test-interview-regressions.mjs`: the
-original 13 tests and 12 invented-wording cases are separate controls. An
+original 13 tests and 19 invented-wording cases are separate controls. An
 unproductive purpose remains a stated purpose under the published scorecard;
 this correction does not invent a new purpose restriction or change frozen
-weights, tiers or live admission policy. Positive words remain applicant claims,
+weights, tiers or live admission policy. A shadow recommendation now declines
+with R01 when its question budget expires without a stated repayment source;
+other score factors cannot substitute for that missing source. This additional
+shadow guard is not enabled as a live officer rule. Negated source clauses are
+handled conservatively and can require clarification even when a person means
+something more nuanced. Positive words remain applicant claims,
 not verified earnings. The extractor is still a bounded English pattern parser,
 not a general language model or a validated credit-risk model. The November 17
 human/backer and repayment comparison remains due; no synthetic result replaces it.

@@ -3,6 +3,13 @@
   "cases": [
     {"id":"negated-income", "messages":["I need $10 for stock. I have no job and no income, so I cannot pay it back from sales or wages."], "source":"none"},
     {"id":"negated-sales", "messages":["I need $10 for tools. I will not have any sales and cannot repay."], "source":"none"},
+    {"id":"not-from-sales", "messages":["I need $10 for tools. I will repay, not from sales."], "source":"none"},
+    {"id":"not-able-to-repay", "messages":["I need $5 for stock. I will not be able to repay from wages."], "source":"none"},
+    {"id":"never-repay", "messages":["I need $5 for stock. I never repay from wages."], "source":"none"},
+    {"id":"wages-not-received", "messages":["I need $5 for stock. I will repay from wages that I do not receive."], "source":"none"},
+    {"id":"duration-is-not-money", "messages":["I need 30 days to pay back the $5 loan for stock. I will repay from wages."], "amount":null},
+    {"id":"tool-count-is-not-money", "messages":["I need 2 tools for my shop. They cost $10. I will repay from wages."], "amount":null},
+    {"id":"denial-after-question-budget", "messages":["I need $5 for stock. I can pay it back in a week.", "I have no wages.", "I cannot repay from sales."], "source":"none"},
     {"id":"not-someone-else", "messages":["I need $10 for stock. This is not for someone else, it is for me. I will repay from my wages."], "self":true, "source":"stated"},
     {"id":"historical-fee", "messages":["I need $10 for stock. Last month I paid a $5 fee. I will repay from my wages."], "amount":10, "amountConflict":false, "source":"stated"},
     {"id":"stuffed-keywords", "messages":["I need $10 for stock tools customers orders sales. I can pay it back in a week."], "source":"none"},
