@@ -105,7 +105,8 @@ def budget(case):
         if cost is not None:
             integer(cost, name)
     total = None if unknown else sum(costs.values())
-    rail_items = ("disbursement", "collection", "treasury_conversion", "gas")
+    # Fixed provider charges belong to the rail as well as the all-in budget.
+    rail_items = ("disbursement", "collection", "treasury_conversion", "gas", "allocated_overhead")
     rail = None if any(costs[k] is None for k in rail_items) else sum(costs[k] for k in rail_items)
     basis = case["cost_basis"]
     if basis not in ("unknown", "reported", "measured"):

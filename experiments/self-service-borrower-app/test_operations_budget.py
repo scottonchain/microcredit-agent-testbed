@@ -87,10 +87,24 @@ class OperationsBudgetTests(unittest.TestCase):
         self.assertNotIn("ABOVE_D7_15_CENT_COST_STOP", budget(example(costs_cents=costs))["findings"])
         costs["allocated_overhead"] = 1
         self.assertIn("ABOVE_D7_15_CENT_COST_STOP", budget(example(costs_cents=costs))["findings"])
+        costs["allocated_overhead"] = 0
         costs["collection"] = 100
         self.assertNotIn("ABOVE_D16_10_PERCENT_RAIL_STOP", budget(example(costs_cents=costs))["findings"])
         costs["collection"] = 101
         self.assertIn("ABOVE_D16_10_PERCENT_RAIL_STOP", budget(example(costs_cents=costs))["findings"])
+
+    def test_fixed_provider_charges_count_in_both_cost_gates(self):
+        costs = {key: 0 for key in COST_ITEMS}
+        costs.update(collection=16, allocated_overhead=31)
+        out = budget(example(costs_cents=costs, cost_basis="reported"))
+        self.assertEqual(out["rail_cost_cents"], 47)
+        self.assertEqual(out["all_in_lender_cost_cents"], 47)
+        self.assertIn("ABOVE_D7_15_CENT_COST_STOP", out["findings"])
+        self.assertNotIn("ABOVE_D16_10_PERCENT_RAIL_STOP", out["findings"])
+        costs["collection"] = 70
+        out = budget(example(costs_cents=costs, cost_basis="reported"))
+        self.assertEqual(out["rail_cost_cents"], 101)
+        self.assertIn("ABOVE_D16_10_PERCENT_RAIL_STOP", out["findings"])
 
     def test_consumer_counter_stops_before_25th_not_after(self):
         flag = "CONSUMER_COUNTER_REQUIRES_CHANGE_BEFORE_LOAN_25"

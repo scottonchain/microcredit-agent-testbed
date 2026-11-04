@@ -77,6 +77,10 @@ The tool requires `allocation_basis` (`funded_first_loan` or
 `completed_cohort_loan`) and `volume_basis` (`assumed` or `observed`). Claimed
 measured prices with assumed volume still return `VOLUME_MEASUREMENT_REQUIRED`;
 the caller's labels do not themselves authenticate invoices or receipts.
+`allocated_overhead` means the allocated **fixed provider charges** and is
+included in both rail and all-in totals; operating overhead goes under support.
+Thus a 70-cent variable rail plus 31 cents provider overhead is a $1.01 rail,
+not a 70-cent rail. Unknown fixed charges keep that subtotal unknown as well.
 
 D7's assumed 10-cent screen at 65% admission costs `10 / 0.65 = 15.3846`
 cents per funded first loan, before its assumed two cents servicing or fiat
