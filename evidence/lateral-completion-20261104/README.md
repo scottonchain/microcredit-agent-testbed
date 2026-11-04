@@ -51,3 +51,52 @@ Treasury transfer:0x5db5c2e1b3c2d1a69f406570b77669878a88efe00f660683f49ef1af79b4
 ## Completion boundary
 
 These receipts are completed code/evidence tests. They do not turn a natural response window into a failed experiment or declare real-world outcomes that did not occur. Continuing real-order and mainnet gates remain with their original owners and dates. No new timer, contact campaign, funding budget, bridge, wallet recovery or admission policy is created. The new public essay explains the Roblox decision and two more grounded directions in human language.
+
+
+## Current-phase delivery and operator inputs
+
+The operator's completion standard is every action currently executable, including
+external channels, with only actual assistance left. This record does not turn
+preparation into a real loan, employment outcome or funding-ready packet.
+
+| Workstream | Completed current preparation and decision | Actual remaining input or gate |
+| --- | --- | --- |
+| Human-first | App purpose documented; useful20test-USDC refill; reviewed interview-0.2 source; exact-cent operations and [deployment/configuration plan](../human-first-mainnet-20261103/deployment-plan.md). NO_GO unrestricted public pool; CHANGE private dollar servicing and named lender treasury first | Name/adopt the eligible lender and onboard accounts under terms permitting the actual purpose. Provider-specific work follows those real terms; no speculative adapter remains queued. Live shadow load receipt still unverified at this record's checkpoint |
+| Virtual worlds | D6 bounded assessment and [issue396](https://github.com/scottonchain/microcredit-agent-testbed/issues/396#issuecomment-6638810592) closed; technical settlement reproduced, finance NOT_QUALIFIED; evidence-based re-entry replaces the stale ACP clock. Requested essay published with two adjacent directions | No repeat scan, speculative service or loan. Case392/D12 retains its separate protected November8 window |
+| Claude's employer proposal | B10 parked on its demand audit; adjacent F9 feasibility and the [complete copyable three-reader study](f9-reader-study.md) prepared | Up toUS$15 all-in authority and an existing eligible researcher account operated by a responsible human/entity; normal UI, no credential transfer. No invitation or payment before those inputs |
+
+The essay is available on [Paragraph](https://paragraph.com/@creditamongstrangers/2026-11-04-the-world-beyond-the-game),
+the [journal](https://omnequa.org/journal/read/?slug=2026-11-04-the-world-beyond-the-game)
+and [GitHub](https://github.com/scottonchain/microcredit-vision/issues/24#issuecomment-6638382902).
+Fresh authoritative DNS confirms the GitHub Pages host; the published reader
+fetches the public canonical feed containing the exact essay body. Direct custom-domain
+browser rendering was not exercised here. Hermes posted and challenge-verified
+one exact Moltbook companion, but the platform marked it spam and omitted it
+from public feeds. The bounded attempt ends NOT_PUBLIC_DELIVERED_PLATFORM_MODERATION;
+working channels are the fallback. Its registry WATCHING state records external
+moderation, with no agent retry queue, repost or replacement account. The
+[actual delivery record](https://github.com/scottonchain/microcredit-vision/blob/d5cad89932ead201e12d376ad55a45ef3b1e5eee/editorial/moltbook/2026-11-04-the-world-beyond-the-game-delivery.json)
+includes exact source, DNS, reader, feed and attempt receipts.
+
+Eight merged scratch branches from this work were removed after exact-head,
+merged-state and canonical-ancestor checks under the shared lease. Their source
+commits remain reachable from main or the app branch and their pull requests.
+No active app branch, unrelated work or user checkout was deleted. Superseded
+vision PR49 is closed; the integrated requested essay is PR50.
+
+The exact HTTPS enforcement PUT was rejected by the GitHub integration; the
+certificate is approved and the [operator queue](../../coordination/OPERATOR_QUEUE.md)
+names the existing Pages UI toggle. Optional source limitations, paused routines
+and the future funding/deployment checkpoint are separate from assistance requested
+now. No100USDC funding, new ADMIN/deployer account or deployment is requested
+before the actual readiness packet exists. Test USDC and earmarked calibration
+funds cannot pay the editorial study.
+
+**Runtime checkpoint:** the reviewed shadow application was requested through the
+existing service owner at [board6638383696](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6638383696),
+with one [bounded escalation](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6639215535).
+The selected execution environment has no local officer process or attached
+service route. A sent handoff is not a loaded-runtime receipt; no restart,
+shadow promotion or full execution completion is claimed here while it is
+unverified. The actual officer/admission is unchanged; no duplicate financial
+writer is started.
