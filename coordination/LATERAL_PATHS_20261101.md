@@ -91,27 +91,27 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 3 decisions and the D17 additions)
+## Unified priority list (everything not ruled out; 30 paths after the November 4 receipts)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
 | 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; our need about 50 dollars a month; AI buyer side unaddressed in public text ([receipt](../evidence/lateral-20261103/README.md)) |
 | 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
-| 4 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 5 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 2 | 2 | 3 | 11 | Boundary, kept |
-| 6 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 2 | 2 | 3 | 2 | 11 | Release status recorded |
-| 7 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
-| 8 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
-| 9 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
-| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
-| 11 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
-| 12 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
-| 13 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | Current; one indexed settlement, payer unknown; Claude decides November 8 18:00 UTC on the Hermes trace or NONE |
+| 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4: Vangrid runs a live rail where an agent pays a USDC bounty by one HTTP call and a person is paid money for a verified local capture ([receipt](../evidence/lateral-20261104/README.md)); demand volume and cash-out unmeasured |
+| 5 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
+| 6 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
+| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
+| 8 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
+| 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
+| 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
+| 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
+| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
+| 13 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
 | 14 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
 | 15 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
 | 16 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
-| 17 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop (three earlier PRs unanswered) |
+| 17 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
 | 18 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | Current; one request sent November 1, no reply by the November 2 gate (no nudge); Claude decides November 8 18:00 UTC |
 | 19 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
 | 20 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 2 | 2 | 2 | 9 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance |
@@ -419,6 +419,18 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 4 (daily run)
+
+- Decided N2's November 4 candidate selection: no new candidate, parked at its
+  stop (the three earlier PolicyEngine corrections are unmerged in a 400-commit
+  read of main to November 3). N4 returned NONE and is parked (Direct File not
+  available for the 2026 season; repository archived). B8 returned a lead:
+  Vangrid's agent-bounty rail pays people in USDC for verified local captures
+  (evidence 2 to 3, total 12, rank 4). Receipts in
+  [evidence/lateral-20261104](../evidence/lateral-20261104/README.md). C2 row
+  updated to Codex's November 4 closeout. Next run: Vangrid board count and
+  on-chain payment trace; Prolific researcher terms by another route.
+
 ## Concrete steps taken on November 3, evening (D17)
 
 - The operator asked for broader thinking on the human-first direction: other
@@ -494,6 +506,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | N1 | Pallais, NBER w18917 | https://www.nber.org/papers/w18917 |
 | N1 | Abel, Burger, Piraino (J-PAL summary) | https://www.povertyactionlab.org/print/pdf/node/2378?lang=en |
 | N1 | Upwork Partner Certified Talent programme | https://support.upwork.com/hc/en-us/articles/41174925985299-What-is-the-Partner-Certified-Talent-program-on-Upwork |
+| B8 | Vangrid, bounties for agents and contributor pages | https://docs.vangrid.io/api/agent-bounties.md |
+| N4 | IRS-Public/direct-file (archived) | https://github.com/IRS-Public/direct-file |
 | N1 | Upwork, how partners are selected (partner expert help) | https://support.upwork.com/hc/en-us/articles/28973308900243-How-to-become-an-Upwork-partner-expert |
 | F9 | Prolific pricing (platform fee) | https://www.prolific.com/pricing |
 | N2 | Finkelstein and Notowidigdo working paper | https://www.ipr.northwestern.edu/documents/working-papers/2018/wp-18-03.pdf |
