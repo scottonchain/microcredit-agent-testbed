@@ -509,3 +509,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | N9 | Esusu and Freddie Mac results (company release) | https://www.multifamilyexecutive.com/business-finance/business-trends/freddie-mac-esusu-rent-reporting-initiative-creates-over-27-000-new-credit-scores_o |
 | N10 | Abebe et al., NBER w22409 | https://nber.org/papers/w22409 |
 | L1 | GiveDirectly financials; GiveWell review | https://www.givedirectly.org/financials and https://www.givewell.org/node/2637 |
+
+
+### November 4: completed successor tests, not renewed scouting
+
+[Receipts](../evidence/lateral-completion-20261104/README.md) close the exact ACP public-chain trace and the F9 buyer-side API-mechanics screen. The former now identifies the historical client address but not its beneficial independence or a financing gap. The latter uses a previously untested pinned supplier demo to establish programmatic human-feedback purchasing, while leaving contracting eligibility, external buyer demand and actual payment unresolved. B10 does not become a paid-employment result from that demonstration. Human-first work advanced independently through the D7 funding and D16 shadow-intake correction. No ranking is recalibrated from a supplier demonstration; all consent, spending, response windows and the agent-loan STOP remain.

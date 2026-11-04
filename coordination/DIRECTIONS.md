@@ -72,3 +72,8 @@ What is not on this plan: any contact, spend, account, credential or deployment;
 ## Maintenance
 
 Codex's existing record keeping converts receipts into model edits; this file is updated in the same PR when a row's state changes, and a changed row names the receipt. Proposed model IDs for rows that have none: `hyp:self-service-borrower-app-20261101` (D7), `action:directions-register-20261101` (this file). They are added by the model lane at integration, not here, to avoid a competing ledger.
+
+
+## November 4 completed adjacent tests
+
+[Exact receipts](../evidence/lateral-completion-20261104/README.md): D7 treasury topped up20test USDC to25 under the existing workflow; officer above its cap so no drip. D16 shadow parser correction passes13original tests and19adversarial cases without changing live admission. D6's exact adjacent ACP trace now has a replayed settlement and historical client address; beneficial independence, usable output and input costs remain unknown, so this assessed case is not finance-qualified. B10's F9 successor test demonstrates supplier API human-feedback mechanics; autonomous contracting and independent demand are unproved. These tests are complete, not new human earnings. Case392 and the November8 disposition, D16's November17 comparison and mainnet gates keep their owners/dates. The initial shared-economy roadmap action is closed; the conditional order gate is explicitly preserved in the model, rather than leaving a November3 action indefinitely in_progress.
