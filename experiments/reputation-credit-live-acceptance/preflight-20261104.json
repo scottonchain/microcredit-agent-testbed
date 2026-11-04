@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "kind": "LIVE_READ_ONLY_PREFLIGHT",
+  "transactions_sent": 0,
+  "observed_at": "2026-11-04T17:33:17.790584+00:00",
+  "new_scoring_acceptance": "NOT_RUN",
+  "verdict": "BLOCKED",
+  "reason": "RPC_ACCESS_UNAVAILABLE: no live observation"
+}
