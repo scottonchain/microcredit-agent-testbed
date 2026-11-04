@@ -36,3 +36,5 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}pre{white-space
 .more{padding:10px 16px}.more summary{font:600 16px system-ui;color:var(--ink);min-height:40px;display:flex;align-items:center;justify-content:space-between}.more summary::after{content:'▾';color:var(--muted)}.more[open] summary::after{content:'▴'}.more .grid{margin-top:10px}
 /* chips: big tap targets that read as choices */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{width:auto;min-height:44px;padding:8px 14px;font-weight:600;background:var(--card);color:var(--ink);border:1px solid var(--line)}.chip.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+
+.app-brand{padding:8px 16px;background:#fff}.app-brand a{display:flex;align-items:center;gap:8px;width:fit-content;color:#103747;text-decoration:none;font:600 20px system-ui}.app-brand img{display:block;flex-shrink:0}
