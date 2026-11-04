@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/circle-faucet.yml"
       - "scripts/test_wallet_inventory.mjs"
+      - "scripts/acp_trace_readonly.mjs"
 permissions:
   contents: read
 jobs:
@@ -22,10 +23,16 @@ jobs:
           cp -R scripts experiments /tmp/test-wallet-inventory/
           cd /tmp/test-wallet-inventory
           node scripts/test_wallet_inventory.mjs
+      - name: Reproduce the one historical ACP trace without signing
+        run: |
+          cd /tmp/test-wallet-inventory
+          node scripts/acp_trace_readonly.mjs
       - name: Preserve public balances
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-wallet-inventory
-          path: /tmp/test-wallet-inventory/test-wallet-inventory.json
+          path: |
+            /tmp/test-wallet-inventory/test-wallet-inventory.json
+            /tmp/test-wallet-inventory/acp-trace-readonly.json
           if-no-files-found: error
