@@ -1,0 +1,142 @@
+{
+  "draft_kind": "MANUAL_UI_STUDY_CREATION_NOT_API_REQUEST",
+  "state": "PREPARED_UNPUBLISHED_UNFUNDED",
+  "prepared_at": "2026-11-04",
+  "funding_authorized": false,
+  "account_route_confirmed": false,
+  "approval_needed": "Authorize up to US$15 all-in for three readers at US$3 each through an existing eligible researcher account operated by its responsible human or entity.",
+  "provider_assumption": "Existing eligible researcher account only; account owner uses its ordinary UI. No agent-operated account, API entitlement, new account or credential transfer is assumed.",
+  "ui_fields": {
+    "title": "Help us make a short article clearer",
+    "participants": 3,
+    "currency": "USD",
+    "reward_per_participant": "3.00",
+    "estimated_completion_minutes": 15,
+    "task_time_limit_minutes": 15,
+    "eligibility": "Adults who can read English; use existing panel settings only. No additional demographic or identity questions, unpaid screening or specialist knowledge required.",
+    "participant_brief": "Help us make a short article clearer. The article was written by an AI\ncontributor; a human or organisation is responsible for this study and its\npayments. Read the supplied essay and answer five questions in your own\nwords. We want your understanding and honest reactions, not agreement with\nthe author. \"I don't know\", \"unclear\" and \"no change needed\" are useful\nanswers. No specialist finance, gaming or AI knowledge is needed.\nLinks are optional; you do not need to read other pages.\n\nAllow up to 15 minutes. Your payment is US$3 for a good-faith attempt. You may\nskip a question or stop at any time; stopping after beginning does not reduce\nthis payment. If the article will not load, say so and finish. No revision,\nqualification test or later follow-up is required. Please do not give your\nname, contact details, account addresses, financial circumstances or other\npersonal information in your answers.\n\nWe will use the feedback to decide whether and how to edit the article. We\nwill keep only a brief aggregate editorial note and will not publish your\nindividual answers. The provider and its account holder process participation\nand payment records under their own terms. You can participate without\nagreeing to a public quotation or research follow-up; neither is requested.",
+    "article_title": "The world beyond the game",
+    "article_text": "A shop inside a video game can have a familiar problem: the bills arrive before the money does.\n\nThat was the appeal of Roblox to us. People make games, clothing and other digital goods there. Artificial intelligence might help with the work. A small advance might cover a genuine expense while a creator waits to be paid. Something built in a virtual world could help pay an ordinary household bill.\n\nFor a project trying to widen access to income, that was a promising connection. We wanted to know whether useful work, AI assistance and a modest loan could reinforce one another.\n\nBut a plausible story is only a starting point.\n\nAs our [earlier explanation](https://github.com/scottonchain/microcredit-vision/blob/ec7d7806a774b753cea42adf60a360aaabfbf9fd/posts/2026-11-03-roblox-where-a-game-becomes-a-paycheck.md) describes, earning money on Roblox and being able to withdraw it are different steps. Creators face payout requirements and waiting periods. Those delays can matter. They do not, by themselves, tell us that a loan would help.\n\nThe warning from our research was that creator payouts are highly concentrated. That makes lending to a newcomer on the strength of hoped-for sales especially difficult to justify. More decisively, we had no specific creator with an accepted order, an eligible payout account and an expense that actually prevented delivery.\n\nWe could not answer the simplest question: whose earnings would this loan improve?\n\nSo we set aside the Roblox lending route. Roblox itself is continuing, and this is no verdict against making a living there. We did not run a lending trial and watch borrowers fail. We stopped before lending, because the evidence did not justify putting debt in front of uncertain earnings.\n\nTwo directions now look more grounded.\n\n**Start with an existing livelihood.** Find a real order at a small business, establish what it costs to fulfil, and compare a loan with a customer deposit or direct purchase of the needed materials. Someone who knows the borrower may provide better evidence than a score assembled from a stranger's words. Our [practice lending app](https://github.com/scottonchain/microcredit-vision/blob/ec7d7806a774b753cea42adf60a360aaabfbf9fd/posts/2026-11-03-try-our-test-lending-app.md) tests the borrowing experience; it does not yet make real loans.\n\n**Pay for judgment that AI needs.** A person can check whether an automated answer is useful, spot an error or compare competing results. [A provider's published demonstration](https://github.com/prolific-oss/human-feedback-demo/tree/c162ba24800d97f444efd0504d02ae83500ca5bd) shows how software can request human feedback. That makes the mechanism concrete. The next requirement is an accountable buyer with a real need and fair, usable payment, rather than work invented merely to create a job.\n\nBoth paths begin with something outside our technology: an actual need. That is the lesson we are taking out of the game.",
+    "questions": [
+      {
+        "number": 1,
+        "response_type": "free_text",
+        "required": false,
+        "text": "In one or two sentences, what did the project hope to accomplish with Roblox?"
+      },
+      {
+        "number": 2,
+        "response_type": "free_text",
+        "required": false,
+        "text": "Why did the project set that idea aside? Say what you understood, including anything that remained unclear."
+      },
+      {
+        "number": 3,
+        "response_type": "free_text",
+        "required": false,
+        "text": "What two future directions does the article propose?"
+      },
+      {
+        "number": 4,
+        "response_type": "free_text",
+        "required": false,
+        "text": "What would you expect the linked practice lending app to do today?"
+      },
+      {
+        "number": 5,
+        "response_type": "free_text",
+        "required": false,
+        "text": "Copy one short passage you found unclear and suggest a clearer version, or write \"none\". Do not include personal information."
+      }
+    ],
+    "recruitment_cap": "Three started attempts in total, including withdrawals. Do not replace withdrawals or allow automatic replacement recruitment. Leave unpublished if the account cannot enforce this cap."
+  },
+  "frozen_source": {
+    "repository": "scottonchain/microcredit-vision",
+    "commit": "ec7d7806a774b753cea42adf60a360aaabfbf9fd",
+    "path": "posts/2026-11-04-the-world-beyond-the-game.md",
+    "git_blob": "c928936e9886a729f041595fea17ccd406c33d33",
+    "sha256": "65f58b8c7788e22ee33a6de2a6142e5e516abe08e42b84a4a40a397dbb3b00bd",
+    "url": "https://github.com/scottonchain/microcredit-vision/blob/ec7d7806a774b753cea42adf60a360aaabfbf9fd/posts/2026-11-04-the-world-beyond-the-game.md",
+    "excerpt_scope": "Complete essay body; navigation, response instructions and surrounding publication boilerplate omitted.",
+    "essay_body_original_sha256": "e665ee7c7a6754500263ab42f5a0618fea3bbf5b106407520b9d2f3ae7889278",
+    "ui_article_text_sha256": "7139d545fb92c4afdd3ad8d0607a907198e4690447eefa6ff92eef9badbbbad7",
+    "link_normalization": "Only relative Markdown links expanded to the same pinned commit and posts directory; essay prose unchanged."
+  },
+  "budget": {
+    "all_in_hard_cap_usd": "15.00",
+    "rewards_total_usd": "9.00",
+    "reported_pricing_observed_on": "2026-11-03",
+    "reported_corporate_fee_fraction": "0.428",
+    "reported_academic_nonprofit_fee_fraction": "0.333",
+    "reported_corporate_unrounded_total_usd": "12.852",
+    "reported_academic_nonprofit_unrounded_total_usd": "11.997",
+    "current_account_quote_usd": null,
+    "quote_status": "NOT_A_CURRENT_ACCOUNT_QUOTE",
+    "cap_includes": [
+      "participant rewards including full payment after withdrawal",
+      "all provider fees",
+      "tax",
+      "FX and other charged costs"
+    ],
+    "publish_only_if": "Funding and existing eligible account route are authorized; current all-in quote is no more than US$15 and account supports every payment promise.",
+    "stop_if": [
+      "final all-in quote exceeds US$15",
+      "account cannot honour full US$3 payment for good-faith attempts and withdrawals",
+      "task requires a new account or unapproved credentials",
+      "survey UI cannot preserve optional questions and frozen content",
+      "account cannot enforce three started attempts including withdrawals without automatic replacements"
+    ],
+    "no_workarounds": [
+      "do not reduce participant pay",
+      "do not increase unpaid time",
+      "do not create a new account",
+      "do not publish before approval"
+    ]
+  },
+  "payment_terms": {
+    "guaranteed_reward_usd_per_good_faith_attempt": "3.00",
+    "includes": [
+      "negative feedback",
+      "misunderstood or incorrect answers",
+      "skipped questions",
+      "technical inability to open the article",
+      "withdrawal after beginning"
+    ],
+    "requires_no": [
+      "correctness score",
+      "agreement with the author",
+      "unpaid qualification",
+      "revision",
+      "follow-up",
+      "identity or financial information in answers"
+    ],
+    "administration": "Existing account owner uses supported full-payment handling, including withdrawals. Keep required provider payment identifiers private.",
+    "income_limit": "A platform reward does not establish settled spendable human income; provider cash-out terms apply."
+  },
+  "data_handling": {
+    "request_identity_fields": false,
+    "request_public_quotation_consent": false,
+    "request_research_followup": false,
+    "individual_answers_public": false,
+    "team_output": "Only aggregate editorial notes: attempt count; understanding of original idea, stopping reason and two alternatives; expectations of practice app; unclear passages.",
+    "no_repository_export": [
+      "participant IDs",
+      "individual answers",
+      "profiles",
+      "contact details",
+      "account addresses",
+      "payment details"
+    ],
+    "raw_local_export_retention": "Delete after aggregation and within 30 days. Provider retention remains under its terms."
+  },
+  "editor_action": "Address concrete misunderstandings with a minimal correction, or record why no correction is warranted. Keep actual cost/payment status separate from editorial findings.",
+  "stop_after": "Three attempts; no automatic repeat panel or extra budget.",
+  "claims_not_supported": [
+    "representative NPR-audience validation",
+    "first-job or employment programme completion",
+    "independent buyer demand",
+    "self-sustaining market",
+    "causal income or poverty benefit"
+  ]
+}
