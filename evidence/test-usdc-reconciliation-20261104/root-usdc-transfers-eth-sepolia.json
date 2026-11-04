@@ -1,0 +1,54 @@
+{
+ "chain": 11155111,
+ "token": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+ "wallet": "0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1",
+ "scanned_blocks": [
+  11473000,
+  12063857
+ ],
+ "inflows": [
+  {
+   "block": 11901343,
+   "tx": "0x1a51b1923a1123a9bcbb3b2cce4f3bdd8594d6d34df3c012cb4e4d542ec707e3",
+   "counterparty": "0x3c3380cdfb94dfeeaa41cad9f58254ae380d752d",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 11904612,
+   "tx": "0x54f39df5027c084129c5060c06b028ab2719eb666871348fca4e6698a4ff86b0",
+   "counterparty": "0x75c0c372da875a4fc78e8a37f58618a6d18904e8",
+   "amount_usdc": 2000.0
+  }
+ ],
+ "outflows": [],
+ "unreadable_ranges_pruned_by_node": {
+  "inflows": [
+   [
+    11523000,
+    11572999
+   ],
+   [
+    11773000,
+    11822999
+   ],
+   [
+    11923000,
+    11972999
+   ],
+   [
+    11973000,
+    12022999
+   ]
+  ],
+  "outflows": [
+   [
+    11873000,
+    11922999
+   ]
+  ]
+ },
+ "balance_now_usdc": 1020.0,
+ "eth_now": 0.147249106204866,
+ "nonce_now": 3,
+ "read_at_utc": "2026-11-04T17:23:08Z"
+}
