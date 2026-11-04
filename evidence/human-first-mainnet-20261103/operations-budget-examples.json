@@ -1,0 +1,46 @@
+[
+  {
+    "label": "Fictional first-loan budget; unknown costs, not a borrower or provider quote",
+    "principal_cents": 1000,
+    "rate_bps": 933,
+    "term_days": 90,
+    "discounted": true,
+    "door": "consumer",
+    "consumer_loans_this_year": 0,
+    "cost_basis": "unknown",
+    "allocation_basis": "funded_first_loan",
+    "volume_basis": "assumed",
+    "costs_cents": {
+      "disbursement": null,
+      "collection": null,
+      "treasury_conversion": null,
+      "gas": null,
+      "assessment": null,
+      "support": null,
+      "allocated_overhead": null,
+      "capital_lock": null
+    }
+  },
+  {
+    "label": "Fictional ceiling counterexample; 12 percent nominal with prepaid interest",
+    "principal_cents": 1000,
+    "rate_bps": 1200,
+    "term_days": 90,
+    "discounted": true,
+    "door": "consumer",
+    "consumer_loans_this_year": 24,
+    "cost_basis": "unknown",
+    "allocation_basis": "funded_first_loan",
+    "volume_basis": "assumed",
+    "costs_cents": {
+      "disbursement": null,
+      "collection": null,
+      "treasury_conversion": null,
+      "gas": null,
+      "assessment": null,
+      "support": null,
+      "allocated_overhead": null,
+      "capital_lock": null
+    }
+  }
+]
