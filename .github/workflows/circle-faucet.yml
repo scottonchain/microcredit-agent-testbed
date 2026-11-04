@@ -6,6 +6,7 @@ on:
       - ".github/workflows/circle-faucet.yml"
       - "scripts/test_wallet_inventory.mjs"
       - "scripts/acp_trace_readonly.mjs"
+      - "scripts/acp-trace-abi.json"
 permissions:
   contents: read
 jobs:
