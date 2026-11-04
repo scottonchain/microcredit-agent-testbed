@@ -61,7 +61,7 @@ preparation into a real loan, employment outcome or funding-ready packet.
 
 | Workstream | Completed current preparation and decision | Actual remaining input or gate |
 | --- | --- | --- |
-| Human-first | App purpose documented; useful20test-USDC refill; reviewed interview-0.2 source; exact-cent operations and [deployment/configuration plan](../human-first-mainnet-20261103/deployment-plan.md). NO_GO unrestricted public pool; CHANGE private dollar servicing and named lender treasury first | Name/adopt the eligible lender and onboard accounts under terms permitting the actual purpose. Provider-specific work follows those real terms; no speculative adapter remains queued. Live shadow load receipt still unverified at this record's checkpoint |
+| Human-first | App purpose documented; useful20test-USDC refill; reviewed interview-0.2 source; exact-cent operations and [deployment/configuration plan](../human-first-mainnet-20261103/deployment-plan.md). NO_GO unrestricted public pool; CHANGE private dollar servicing and named lender treasury first | Name/adopt the eligible lender and onboard accounts under terms permitting the actual purpose. Provider-specific work follows those real terms; no speculative adapter remains queued. Live shadow promotion is parked: no existing-service control route is attached here. Access to that runtime or an actual capable-owner execution receipt is required; no promotion is claimed |
 | Virtual worlds | D6 bounded assessment and [issue396](https://github.com/scottonchain/microcredit-agent-testbed/issues/396#issuecomment-6638810592) closed; technical settlement reproduced, finance NOT_QUALIFIED; evidence-based re-entry replaces the stale ACP clock. Requested essay published with two adjacent directions | No repeat scan, speculative service or loan. Case392/D12 retains its separate protected November8 window |
 | Claude's employer proposal | B10 parked on its demand audit; adjacent F9 feasibility and the [complete copyable three-reader study](f9-reader-study.md) prepared | Up toUS$15 all-in authority and an existing eligible researcher account operated by a responsible human/entity; normal UI, no credential transfer. No invitation or payment before those inputs |
 
@@ -92,11 +92,33 @@ now. No100USDC funding, new ADMIN/deployer account or deployment is requested
 before the actual readiness packet exists. Test USDC and earmarked calibration
 funds cannot pay the editorial study.
 
-**Runtime checkpoint:** the reviewed shadow application was requested through the
-existing service owner at [board6638383696](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6638383696),
-with one [bounded escalation](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6639215535).
-The selected execution environment has no local officer process or attached
-service route. A sent handoff is not a loaded-runtime receipt; no restart,
-shadow promotion or full execution completion is claimed here while it is
-unverified. The actual officer/admission is unchanged; no duplicate financial
-writer is started.
+**Current runtime disposition: BLOCKED_NO_ATTACHED_SERVICE_ROUTE.** The reviewed
+`interview-0.2` source and offline tests are complete. Live promotion was not
+executed or verified. This selected environment has no local officer process,
+attached service control route or supported way to wake its owning session.
+The [team guide](../../coordination/README.md#autonomous-experiment-ownership--october17-operator-correction)
+explicitly says a board/email post does not wake an agent; its dated October17
+check interval does not prove a current scheduler. Waiting for that assumed
+wake was not a supported execution route.
+
+The two unaccepted runtime requests and the alternate HTTPS-route probe were
+[explicitly withdrawn](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6639609254),
+and the requester-imposed19:29 check was cancelled. No accepted execution task
+is abandoned and no Claude downtime or missed SLA is inferred. The actual live
+officer/admission and existing service ownership are unchanged. The safe default
+is to retain the tested candidate and park promotion until the existing D7
+steward runtime is attached/activated or a capable owning session returns an
+actual source/version and loaded-shadow receipt. That is execution-context
+assistance, not a request for a key, new account, new infrastructure or money.
+Re-entry requires a real control route, an explicit owner claim and draining any
+in-flight reply before applying only the shadow update; no duplicate financial
+writer is launched.
+
+**Current-phase result:** all work executable in this selected environment is
+completed and canonically integrated. No current code, review, merge, post,
+retry, scan or unaccepted service request is left queued. The remaining live
+update is access-blocked; real lending and a paid study remain gated by the
+specific identity/account/spend inputs above. Protected response windows and
+future owned programme checkpoints retain their original terms. This is not a
+claim that the live shadow module was upgraded, Moltbook distributed the post,
+or a real loan or paid job occurred.
