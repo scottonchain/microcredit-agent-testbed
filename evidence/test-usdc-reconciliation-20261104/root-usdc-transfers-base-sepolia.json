@@ -1,0 +1,386 @@
+{
+ "chain": 84532,
+ "token": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+ "wallet": "0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1",
+ "scanned_blocks": [
+  48059142,
+  54454080
+ ],
+ "failed_ranges": [],
+ "inflows": [
+  {
+   "block": 48059142,
+   "tx": "0x91db8f0a9784fab6756f0825adee79b83fabf0fca7bb2e87af009e267ae92637",
+   "counterparty": "0x0000000000000000000000000000000000000000",
+   "amount_usdc": 1000.0
+  }
+ ],
+ "outflows": [
+  {
+   "block": 48059711,
+   "tx": "0x87356258e4a391a80d40e159ddd0a05aed13d82fc12795f8202969f1ae0b67a7",
+   "counterparty": "0xbb8f0694a412b93b7e9d002a0a9c7e8876edff36",
+   "amount_usdc": 0.75
+  },
+  {
+   "block": 48059719,
+   "tx": "0xbc5b3b9b1058c9389ec2739b260676026c3be1cc89107dde6d810fc14d1ad0d5",
+   "counterparty": "0x3e400d0da2e8a2cae982afdbf32693768621151f",
+   "amount_usdc": 0.75
+  },
+  {
+   "block": 48059724,
+   "tx": "0xd7dabbd87d9e1a8fd4bb919bde421c7bbfea2d28890e36b017a76bfaeabb4a07",
+   "counterparty": "0x9b6b763acbc91740b3b36580cd29d2d6d8f18577",
+   "amount_usdc": 0.75
+  },
+  {
+   "block": 48059729,
+   "tx": "0xcdf01a259b869274ff664a31da0c771334b3a3aaa802fd90720a4c14538d468d",
+   "counterparty": "0x8d4ce0e6e4153b3251af1a5cd7166fae14707027",
+   "amount_usdc": 0.75
+  },
+  {
+   "block": 48059733,
+   "tx": "0x4a1f2a57dcc37a018e9fa14ce133212b9d1e93a10ff58c7d957f336bce546858",
+   "counterparty": "0x89cae3da9724fc803d27a720902448e9c1f30227",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059743,
+   "tx": "0x9c7cf5a4c6526f482abea142f48132c691f8e66eb1dbdf2cf6d7bb1189b51dea",
+   "counterparty": "0x4ffddacac6ba06cb39dd505f8642bc69bd9f212b",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059754,
+   "tx": "0x862a2616ca23f98fc1574f22bb59141a1da7e18f31b7a30aad88b3c65ac01319",
+   "counterparty": "0xc4efdb1fae6f7d043b96a5e4b799dde1575a8b2d",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059766,
+   "tx": "0xdd131b5ff194c882ad1a4dd55ec249020449828e9196e70da2228ffc9bc6216d",
+   "counterparty": "0x4d8ff96da205d07449706ac2a175706730c51340",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059779,
+   "tx": "0xe80043dd1d7ff4a053b958afded71517740b434b6db57f4afd42e6775d1206dc",
+   "counterparty": "0xa2b34dc2f892e4f6c4fc430c1353263038e3d47c",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059791,
+   "tx": "0x2caee00564122b4af48e193e091fcba17456bbe53fb3b806a6586e44a83aa586",
+   "counterparty": "0x40a0ae175151c989ca41e7b5f3e3fd52e1b8ffd8",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059802,
+   "tx": "0xbb4c01cee1b7c769f351f7b97f6cbb71e755422978f84ee1c514484aee238d62",
+   "counterparty": "0xf3c986492cb095b4ac96382ad099c9dc988d0724",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48059812,
+   "tx": "0xe64950dfe0720da64fecffbeea0e1e9c9391f39e8ee1242908e1e65bf5e42365",
+   "counterparty": "0xf9cdd695b8d9f07d705c49a54dfa2e6f3c37395c",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48060976,
+   "tx": "0x0c0f492f2be939a603a12dacd5f8f2731bb513a83a4236dfe35ac0f96838768b",
+   "counterparty": "0x2ce025c8a2d1285844cbb165dc2e9750628879fb",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48060986,
+   "tx": "0x686f5e74f1e9d5771efd638f4a18cb60296cbd4dd095a8be3b9ad6afc1f062dd",
+   "counterparty": "0x5a74f2a518846b85d70a738ecb1db009bdc537ce",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48060995,
+   "tx": "0xfc04ba6c9bc65dfa2f98e108fef23ed0f769f47827b29abe82583ac51e5cf8ef",
+   "counterparty": "0xf31ad6d6f30fe630b0dd719f6a9b6f6d68aaa1b3",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48061004,
+   "tx": "0xe8cd49b5c24c65ec2013a77a9c2a1dfcd3d00182bae9c8d76ca5a0589d569779",
+   "counterparty": "0x8fea7bc3d7dd1988ab156794e6cfa9d4da0fc082",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48061014,
+   "tx": "0x7e9a15ea7c892053391bd372317028c0ee2fa98eb8159dcd6be05f656ebdafa6",
+   "counterparty": "0x00d23fc21b9e79d929d1f2ba5d632b278a7d128d",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48061027,
+   "tx": "0x23978504ca34d18104f43fda18d5cfe6ec5782e833d82081012764cf50cff65c",
+   "counterparty": "0xc55bc54dd598892415df8b952db7ae4484cf2571",
+   "amount_usdc": 1.2
+  },
+  {
+   "block": 48061049,
+   "tx": "0xec4b3e9a320c92178a295124d0c04598db49ca3a81a040e07cb478d41ffcf7b2",
+   "counterparty": "0xdd6982cb8e8048dd60da676e5235ab6498c8df7e",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061051,
+   "tx": "0x92105811007a718490205a3f82912773882e7b8a6f29867880a50bbb25bf1b64",
+   "counterparty": "0xdf2b082674817a336492f2b74569eef5f26d4bfb",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061055,
+   "tx": "0xd9705e7915e25e3e54ea7d881e36559fce11ffe8fa96f429c62ef25e88339a68",
+   "counterparty": "0xdbeb5c125d4f294664d06b0b6a63e17bb4d87450",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061058,
+   "tx": "0x6c965d6d0f6dae644560b8f18ce8e3926be31407fb23af6abeb3be872860a60d",
+   "counterparty": "0xeeaf0b65b7eb1b896d1f18636dc1f1217c13ebb1",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061061,
+   "tx": "0xf2f4c30389841f6ef137e8b4eef1568c1ed8c8de403df8891245e18099daa663",
+   "counterparty": "0x30bec471fc1dfda2bac41b5c4e53a05f16db456f",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061065,
+   "tx": "0x3fb18569d54b385360c4430ff8593218571d09ca3aa448f6c2e0d7c655edd205",
+   "counterparty": "0xd2922a668a2f919b526bdedf350eddb1d7b8d320",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061068,
+   "tx": "0x906705a75c4e4674cebbc77c5e0088ceb9f251703af2712552d169d3f9901f2f",
+   "counterparty": "0xbe72245baf65794a21e6e683bf1a10e57c0ca065",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061071,
+   "tx": "0x13940475477fa472cbe62547ed43d75be2a0dabc5e2a00d416a8ac26befe9cb5",
+   "counterparty": "0xc9bef717651de6a6734d0996c7a02691f9bc3a6b",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061075,
+   "tx": "0xe17a797a3a300e88581c26a98424667b397dbc47d7eeffb03839a7b7431f401b",
+   "counterparty": "0xc5ab5ab551a1b7eb9dfc9b73685933754dbedf5d",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061079,
+   "tx": "0x341616d6c460151a27e413e2e354573bcb9861669204c4fb690c53402ad7133f",
+   "counterparty": "0x65399238a63e88820a34edad45e8fdd05dbb2cbb",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061081,
+   "tx": "0xe1350a70f0f79feb43322f4b3e4a0ad29f4cf180611425bf368bbf226ed4dd3b",
+   "counterparty": "0x1c24746b28fe106f885feef1e25d67076d65bb7e",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061083,
+   "tx": "0x4a9d82cde4f7ac422da5181e601ddb330341bdde063bcc4444dab6872f3cc424",
+   "counterparty": "0x7a79be5160da24f307db66fe2a3b507be8f30764",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061085,
+   "tx": "0x962816da5c53d3575d384053601f74a953b0bd02522a0d49da6caed32024a8ca",
+   "counterparty": "0xdba46c6b9e34af2aedcc6d81b011f79e3dd4712d",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061088,
+   "tx": "0xf3200fa31b0a8547c903b4952019f4a80ffdf720aa91928e1eb63ac99c80bbdc",
+   "counterparty": "0x666237aa63d2acc09867f1302b8d6eda591872b2",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061092,
+   "tx": "0xdabe61e3a89feaa3ecdf928ab559d9e2439e8332f9afbb5518feb9879ca1c08f",
+   "counterparty": "0xc2a870e9be225c111797b467c16e8461e2763869",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061095,
+   "tx": "0xe1d6d421b965ff4c4c8dcd22b38695a0ede77d133f5534ea509f5c527fbed4ce",
+   "counterparty": "0x9d88c6859d944972d5cffcaae14e7c346f3c3c70",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061098,
+   "tx": "0x9e1c7de863e47b5d781b9d829cf971ecf96e8cc1de517d90bda7dcfd957ca9d9",
+   "counterparty": "0x353cae68923b658f4c4c257f797a1fb32d14c0bd",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061102,
+   "tx": "0x0c2392ca2e4969430d2b1fcbb02ad45b52768b8de1dfedfc8aefb7a645505891",
+   "counterparty": "0xd4a683c6fe5555fee19f62229425ab7f017a6199",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061106,
+   "tx": "0xab1d4060101eb692ff35e1e726dfa09b530cebc79f355bc57b3901abd6668c28",
+   "counterparty": "0x9665cc453b50fabb8690a17e821c418f7d9d235c",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061110,
+   "tx": "0x7b7d9b39788c5645df4f06b72010caa69e88e4d81da15d61280bf01dceb9afdf",
+   "counterparty": "0x4bacb8d3c41ddfd8c41c2f10d740c9c1cce47880",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061112,
+   "tx": "0x7ee43fdb6843383c1ce12650a51538d0415db3eb81f68fc24a663a411f28863d",
+   "counterparty": "0x05395e6eeb5d4bad00fde7240729d1676dda03ab",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061114,
+   "tx": "0xa799cf9e6c5d49b3e5002bf1ce1421f4cb3ed4f06c0b3f8d21630779249206f3",
+   "counterparty": "0x615550db53d2e716da50e78251ed9da7eb58a5a5",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061117,
+   "tx": "0x0a8736dc5201223ce15509b96c78f3d1262bda23d7846aea7169c1d3b16ff82d",
+   "counterparty": "0xfccd2d6a52f3f5b10562fe79dafc9b3f7560e314",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061119,
+   "tx": "0xced210d86424b5f5956648ca344cba5fe15c5de20c14cf38464765250c5f8fc9",
+   "counterparty": "0x7e910f07ce98cf1a24bde7cb747577333f63a3e7",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061121,
+   "tx": "0xb85e174f0731a3450105a9527c1abe45bf0e9d7dfa94f539861cb8a607f36be9",
+   "counterparty": "0xa92ed58cdb7b26926b3815f16a6931eef38598c9",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061124,
+   "tx": "0x1551d838cf2303f16f4581cd5246ca476e90ba0f0c73abe2d0a62e77478e5dae",
+   "counterparty": "0x1063420e5515fdd39b083b9103aaae77311fe7ad",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061126,
+   "tx": "0x65c58fbaf7ff68cd2648437fce4b4ac4cefb7ba0c8613563acc5a53315687306",
+   "counterparty": "0x04abc8c55b1dff59531ba55809a0424063370bfa",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061128,
+   "tx": "0x2e68ebc6f165986b80c2a2f8dae08c19299c9ecebf8c84ea151ce43d97a2270d",
+   "counterparty": "0xd2c518a32954d15b195c5dff01b32bf917da3e72",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061131,
+   "tx": "0x1a0722555520aa1a58b1f36d59bacd549ad4d243c97e6bc4a3430587260cff40",
+   "counterparty": "0x0970aaabefc7c15c0571c2bcfece81c45f2b525c",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061133,
+   "tx": "0xa38c3a8d58a25646feb3a4f27aa550304a6943336d332058a8198b3d86e247cd",
+   "counterparty": "0x7c2f94ef98fb63d5c20c3f8fc18b62371b28a466",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061136,
+   "tx": "0x07a0b058de75e82e4a006cf54dfd2941361ab57f9cae419ed702299bf2e9593c",
+   "counterparty": "0xfe99c8348b3418b1205ae764fb8b62c49fd77dc0",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061138,
+   "tx": "0xde70dd193c79ca576758e528f1e8cbbfcf22ae402ec7f0e832903d09ae63ffc7",
+   "counterparty": "0x776d23efa87c397aa126fae4682d6a29aa3cf6f1",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061140,
+   "tx": "0xd370667a42933c1468fe5b9080ce51e673404f13ea922ede1c56f01b0c53c9ea",
+   "counterparty": "0xb60834d2fc716f6d3a5f784903e1416cd02f29d5",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061142,
+   "tx": "0xc20cc0f1834cb2ecf4bb133f7bc3d3edc4efcd3cd1b6886ea2d2fa119953cd3c",
+   "counterparty": "0xb8238237cf033c55d16a237387c12fbabf0df2b7",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061144,
+   "tx": "0xaafa99a6ad57b464306b316b2780985fd81886f0132616c2faeddb76f5445862",
+   "counterparty": "0x5c0ac30a0f39f135be5fc7d49df9a988bc7822f5",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061146,
+   "tx": "0xdc233533634a608e49936713f173e96cdc1f54e3ae9b0fd362a02738f8cf4665",
+   "counterparty": "0xd41f9cc49a3953215b3f634a1921fe78d6ef3df8",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061148,
+   "tx": "0x89b89e29aa8a3bc1958de72952e65f4fbd273143c40571eea01b5db04a2918cb",
+   "counterparty": "0xe4f6362b138a926ed9b8e0b63539f0d48edd2cbd",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061150,
+   "tx": "0x17124aed7456c03bbad2a7d603e81fdca8e83604ec67488ef55e281a82eac087",
+   "counterparty": "0xd38166a3f760e2e21e15947d0f76a37a3892c677",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061154,
+   "tx": "0x0e499a53cf733a46e54ff2f11ca1591a3287fd55a8325106a82f118ab170c10a",
+   "counterparty": "0x3a3a51af5e46d52fafce580a517c81cb8681f9a2",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 48061157,
+   "tx": "0x416088e78aa3ea5011a0ed6d9e557031ec01e1b54eb6d946708eaff72aef503c",
+   "counterparty": "0x549269dff0b97b8fac251071d4f4728ba7d6cae1",
+   "amount_usdc": 20.0
+  },
+  {
+   "block": 53608783,
+   "tx": "0x0f50e465c7c1fe06ac097fb20fb6b3469e13be20ad01a5a24b08422dd32b2658",
+   "counterparty": "0x2aa4069f65931e8b35ed11ac493b1c3ab9917212",
+   "amount_usdc": 25.0
+  },
+  {
+   "block": 53608900,
+   "tx": "0xcd36fc917d36b3dfb3061a51a98319b13f087f2490fad9a03bfc991b7aafa5cc",
+   "counterparty": "0xb88dc88d538a754f57cab344c1e09d02c129fcf2",
+   "amount_usdc": 5.0
+  },
+  {
+   "block": 54442771,
+   "tx": "0x5db5c2e1b3c2d1a69f406570b77669878a88efe00f660683f49ef1af79b4207b",
+   "counterparty": "0x2aa4069f65931e8b35ed11ac493b1c3ab9917212",
+   "amount_usdc": 20.0
+  }
+ ]
+}
