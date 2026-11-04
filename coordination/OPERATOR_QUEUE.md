@@ -23,6 +23,16 @@ limitations and existing operator pauses are recorded separately below.
 | 2026-11-03 | Paid usability-tester panel (Prolific, about 2 dollars per ten-minute tester; 20 testers about 40 dollars) if the free channels bring fewer than ten testers by 2026-11-10 | Money | Free channels only: public call (testbed issue 423), Moltbook through Hermes, blog post, up to five first-contact emails a day under the email protocol |
 | 2026-11-03 | A "Show HN" or Product Hunt post at the next real milestone (first repaid mainnet loan or the funding-ready packet) | Personal account on those sites | Not posted; the blog session holds the milestone press release and the press kit |
 
+## Execution context required for the live shadow update
+
+This is a missing execution connection, not missing financial authority or a
+claim that only the operator can perform the operation. A capable existing
+service owner can also supply the result.
+
+| Needed context | Evidence and actual assistance | Safe current default |
+| --- | --- | --- |
+| Existing D7 app steward runtime for reviewed `interview-0.2` | This selected environment has no local officer process or attached control/wake route. Board publication does not wake the owning session. Attach/activate that existing runtime, or have its capable owning session return an actual source/version and loaded-shadow receipt ([closeout](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6639609254)) | Source and offline tests complete; live promotion PARKED/BLOCKED_NO_ATTACHED_SERVICE_ROUTE. Unaccepted handoffs withdrawn. Preserve actual officer/admission and service ownership. No key, money, new account or new infrastructure requested; a real route, owner claim and in-flight drain precede any update |
+
 ## Optional source limitations — no current assistance requested
 
 These are dated access observations, not current authority requests. Their
