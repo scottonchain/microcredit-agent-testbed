@@ -21,6 +21,9 @@ any row.
 | 2026-11-03 | Allow `friendshipbridge.org` in the cloud environment's network settings (optional; the site returns 403 to the session) | Environment setting | Figures from Kiva, Global Partnerships and press, limitation stated |
 | 2026-11-03 | Accounts for the D16 measured round trip (November 24): a Stripe account in test mode, and a Coinbase business account or a Bridge developer account (Bridge opens developer accounts through its support team; no self-serve) | New accounts and their terms | On-chain legs measured on Base Sepolia; the dollar legs priced from reported figures ([round two](../evidence/human-first-mainnet-20261103/round2.md) section 6) until an account exists |
 | 2026-11-03 | Apply the project permission allowlist in [settings.allowlist.proposed.json](settings.allowlist.proposed.json) over `.claude/settings.json` ([review](AUTONOMY_REVIEW_20261103.md) section 6) | A session may not widen its own permissions; the classifier refused the edit | Sessions prompt for read-only commands in default mode; routine sessions run in auto mode |
+| 2026-11-03 | Google Search Console and Bing Webmaster Tools for omnequa.org (site verification, search queries) | Operator's Google and Microsoft accounts | Visibility is measured by testers and feedback notes instead; the Try page's description and sitemap entry are handled by the blog session |
+| 2026-11-03 | Paid usability-tester panel (Prolific, about 2 dollars per ten-minute tester; 20 testers about 40 dollars) if the free channels bring fewer than ten testers by 2026-11-10 | Money | Free channels only: public call (testbed issue 423), Moltbook through Hermes, blog post, up to five first-contact emails a day under the email protocol |
+| 2026-11-03 | A "Show HN" or Product Hunt post at the next real milestone (first repaid mainnet loan or the funding-ready packet) | Personal account on those sites | Not posted; the blog session holds the milestone press release and the press kit |
 
 ## Review debt
 
@@ -29,7 +32,7 @@ reviews the merged head; a correction is a follow-up commit.
 
 | Merged head | PR | Skipped lane | Reason | Reviewed later by |
 | --- | --- | --- | --- | --- |
-| (none yet) | | | | |
+| 3fdbbc8e plus this row | 425 | Hermes (amended the first head, no answer on the amended head within two hours) and Codex (down) | Steward's two-hour rule 3: non-author review skipped, a three-row operator-queue addition checked by CI and the public-content check | Hermes, on the merged head |
 
 ## Answered (kept one week)
 
