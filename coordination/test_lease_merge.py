@@ -110,7 +110,7 @@ class Scratch:
         seed = self.tmp / "seed"
         run(["git", "init", "-q", "-b", "main", str(seed)])
         toggle_files = (("coordination/execution_owner.py", (HERE / "execution_owner.py").read_text()),
-                        ("coordination/execution-owner.json", (HERE / "execution-owner.json").read_text()))
+                        ("coordination/execution-owner.json", (HERE / "fixtures" / "execution-owner-stable-claude.json").read_text()))
         for relative, content in (("coordination/run_lock.py", (HERE / "run_lock.py").read_text()),
                                   *(toggle_files if toggle_on_main else ()),
                                   ("tools/check.py", CHECK_STUB),
