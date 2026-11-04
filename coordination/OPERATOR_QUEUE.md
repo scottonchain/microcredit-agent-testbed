@@ -8,7 +8,7 @@ any row.
 
 | Added | Item | Why the operator | Team default while the row is open |
 | --- | --- | --- | --- |
-| 2026-11-02 | Enforce HTTPS for omnequa.org on GitHub Pages once DNS has propagated | Pages setting on the operator's account | Site is served; the HTTPS redirect waits |
+| 2026-11-04 | Enable **Enforce HTTPS** in [microcredit-vision Settings → Pages](https://github.com/scottonchain/microcredit-vision/settings/pages) for omnequa.org | Existing integration's exact one-field PUT `{https_enforced:true}` was rejected403 “Resource not accessible by integration”; GET confirms approved certificate, correct domain/source and enforcement still false | Site remains served; no DNS/source change required. Existing capable team route is asked once; absent such a route, the account owner toggles this one setting |
 | 2026-11-04 | Authorize up to US$15 all-in for one F9 editorial check: three readers at US$3 each, through an existing eligible researcher account operated by its responsible human/entity ([complete copyable draft](../evidence/lateral-completion-20261104/f9-reader-study.md)) | New real spend and the account holder's terms; test USDC and earmarked calibration funds cannot pay it | Preparation complete; no new account or credential transfer. Account owner uses normal UI only after authorization; stop if quote exceeds US$15 or full withdrawal payments/three-start cap cannot be honoured. B10 remains parked; no invitation or payment |
 | 2026-11-02 | Blog routines paused: YouTube watch, AI news watch, scheduled post (operator said "pause" to the blog session at 16:52Z) | The operator paused them | Stay paused; the blog session resumes all three on the word "resume". While paused, no new watch findings; PR 386 (the three accepted YouTube findings) was merged forward onto the current model on November 3 after the steward's non-author ACCEPT |
 | 2026-11-03 | Name the lender of record for the human-first mainnet pilot (D16): the operator as sole proprietor, or an entity (LLC or nonprofit corporation) formed for it; confirm Colorado as the first state ([legal analysis](../evidence/human-first-mainnet-20261103/legal-analysis.md), section 6) | Only the operator can be, or form, the lender | The packet defaults to Colorado/business-purpose loans, but no lender is named or has adopted it. November4 architecture decision selects private dollar servicing and the named lender's own treasury first; unrestricted public pool is NO_GO ([completed plan](../evidence/human-first-mainnet-20261103/deployment-plan.md)); no deployment or100USDC funding is requested now |
@@ -30,12 +30,13 @@ reviews the merged head; a correction is a follow-up commit.
 
 | Merged head | PR | Skipped lane | Reason | Reviewed later by |
 | --- | --- | --- | --- | --- |
-| 3fdbbc8e plus this row | 425 | Hermes (amended the first head, no answer on the amended head within two hours) and Codex (down) | Steward's two-hour rule 3: non-author review skipped, a three-row operator-queue addition checked by CI and the public-content check | Hermes, on the merged head |
+
 
 ## Answered (kept one week)
 
 | Asked | Item | Answer | Receipt |
 | --- | --- | --- | --- |
+| 2026-11-03 | PR425 review debt | Resolved: Hermes ACCEPTed source07069bae, which is the actual merged source, at comment6617956455 | [Independent ACCEPT](https://github.com/scottonchain/microcredit-agent-testbed/pull/425#issuecomment-6617956455), main merge39a95a39 |
 | 2026-11-02 | Codex lane credits/down status | Moot November4: this lane has executed, reviewed and integrated the current work; no credit assistance requested by this session | Testbed PR431/434 and current completion receipts |
 | 2026-11-02 | Locate and control the historical test USDC | Resolved November4: existing Actions signing route, not an operator-supplied key. Fresh root balances1020 on Ethereum Sepolia and130.2 on Base Sepolia after20 treasury top-up; historical allocation request remains withdrawn | [Inventory and mined receipt](../evidence/lateral-completion-20261104/README.md) |
 | 2026-11-02 | `CIRCLE_AGENT_TERMS_ACCEPTED` for the Circle agent-wallet route | Set by the operator 2026-11-03; first runs recorded | PR 412, board 15 comment 6611198854 |
