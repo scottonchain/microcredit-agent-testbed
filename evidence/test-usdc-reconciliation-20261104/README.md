@@ -6,7 +6,7 @@ Wallet: `0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1` (the root and funding walle
 
 ## Result in one paragraph
 
-Nothing is lost on the evidence. The 2,000 test USDC arrived on Ethereum Sepolia in October (2,020 with a 20 faucet drop); 1,000 was bridged to Base Sepolia; the other 1,020 is still in the root wallet on Ethereum Sepolia today. Of the 1,000 on Base, 819.8 went to the cold-start roles, 50.0 went to project infrastructure wallets after the run, and 130.2 is still in the root wallet. The roles were never swept: 799.22 sits in 98 wallets exactly as the run left it, and 20.58 sits in the GuaranteeTrust contract.
+Balances are accounted for in these snapshots, and no irreversible loss is demonstrated, but current signer access and contract recovery remain unverified. The 2,000 test USDC arrived on Ethereum Sepolia in October (2,020 with a 20 faucet drop); 1,000 was bridged to Base Sepolia; the other 1,020 is in the root wallet on Ethereum Sepolia in the current-state read. Of the 1,000 on Base, 819.8 went to the cold-start roles, 50.0 was transferred to project infrastructure addresses after the run (their current balances are not part of this snapshot), and 130.2 is in the root wallet in the current-state read. The roles were never swept: 799.22 sits in 98 wallets exactly as the run left it, and 20.58 sits in the GuaranteeTrust contract.
 
 ## Base Sepolia (chain 84532), block 54454080, token `0x036CbD53842c5426634e7929541eC2318f3dCF7e`
 
@@ -39,9 +39,9 @@ Gas. The 98 role wallets hold 0.004467 ETH in total (largest 0.00008; of the 78 
 | Sum 2,020.0 equals `before.sourceUSDC` in `bridge-verified.json` | |
 | 1,000 was burned for the bridge (receipt status 1, block 11905319) | burn tx `0xe0083d59...dd98` |
 | Balance now: 1,020.0 test USDC, 0.1472 ETH | `balanceOf` and `getBalance` at the head |
-| Nonce now: 3 = the three transactions the bridge record lists (bridge-test-ETH, approve-CCTP, burn-CCTP) | `eth_getTransactionCount` |
+| Nonce now: 3, consistent with the three transactions the bridge record lists (bridge-test-ETH, approve-CCTP, burn-CCTP). A nonce counts only transactions the wallet itself sent, so it does not exclude an allowance-based `transferFrom` by another address | `eth_getTransactionCount` |
 
-So the "other 1,000" was never sent anywhere: it is still in the root wallet on Ethereum Sepolia. Unknown: the node prunes old history, so four inflow ranges (11523000 to 11572999, 11773000 to 11822999, 11923000 to 12022999) and one outflow range (11873000 to 11922999, which contains the burn) were unreadable in a log scan. The facts above do not depend on them: the balance and nonce are current-state reads, and the two inflows were found.
+So the "other 1,000" is not shown to have gone anywhere: the root holds 1,020.0 there now. That is a current-state read; the historical flow is not exhaustive, because the node prunes old history and the nonce does not exclude allowance-based transfers. Unknown: the node prunes old history, so four inflow ranges (11523000 to 11572999, 11773000 to 11822999, 11923000 to 12022999) and one outflow range (11873000 to 11922999, which contains the burn) were unreadable in a log scan. The balance read and the two inflows found do not depend on them; a claim that no other flow ever happened would.
 
 ## Custody and control (nonsecret)
 
@@ -52,11 +52,11 @@ So the "other 1,000" was never sent anywhere: it is still in the root wallet on 
 
 | Class | Test USDC | Where |
 | --- | ---: | --- |
-| Available, control not in doubt on this evidence | 130.2 Base, 1,020.0 Ethereum Sepolia | root wallet |
+| In the root wallet in the current-state read; current signer control unverified (the independent access check is pending) | 130.2 Base, 1,020.0 Ethereum Sepolia | root wallet |
 | Not yet recovered, control inferred from the derivation and unverified | 799.22 (of which 264.92 in 20 wallets with no gas) | 78 role wallets with a balance |
 | Locked in a contract | 20.58 | GuaranteeTrust. The ABI has `unstake`, `withdrawBacking` and `releaseReserve` (owner); the README says worker dues have no withdrawal function. I did not read their conditions in the source and tried none of them |
-| Demonstrably unrecoverable | none shown | |
-| Moved to project infrastructure, not lost | 50.0 | sim treasury 45.0, desk officer 5.0 |
+| Demonstrably unrecoverable | none shown; this is absence of a demonstration, not proof of recoverability | |
+| Transferred to project infrastructure addresses; current balances there are not part of this snapshot, so availability is not asserted | 50.0 | sim treasury 45.0, desk officer 5.0 |
 
 ## What a recovery would need (not authorized, not done)
 
