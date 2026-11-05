@@ -122,7 +122,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
   <section aria-labelledby="h-pool">
     <p class="eyebrow">The recorded pool</p>
     <h2 id="h-pool">Money in, money out, money back</h2>
-    <p class="lede">This is a dated Base Sepolia testnet ledger, not real money or evidence of people helped. Gross interest is split between fees, reserve allocations and lender assets. Figures come from a committed snapshot; the browser does not read the chain.</p>
+    <p class="lede">This is a dated Base Sepolia testnet ledger, not real money or evidence of people helped. Gross interest is split between fees, reserve allocations and lender assets. Figures come from a committed snapshot; the browser does not read the chain. Inventory and stock reconciliation uses provider-supplied logs, not independent proof of complete event history. Balanced omitted deposits and withdrawals can pass those checks.</p>
     <div class="tiles" id="tiles"></div>
   </section>
 
@@ -227,7 +227,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     if (s.verification !== "reconciled-finalized-v1" || !Number.isFinite(age))
       return "Historical snapshot · verification under current checks not recorded · stale";
     if (age < -60000) return "Snapshot verification timestamp invalid · stale";
-    return `${age > 30 * 3600000 ? "Stale" : "Verified committed"} snapshot · collected ${s.collectedAt} · not live`;
+    return `${age > 30 * 3600000 ? "Stale" : "Reconciled committed"} snapshot · collected ${s.collectedAt} · not live`;
   }
   const STATUS = ["None", "Requested", "Active", "Repaid", "Defaulted", "Cancelled"];
   const DEC = 10 ** (BASE.snapshot.token.decimals || 6);
@@ -378,13 +378,13 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     $("prov").innerHTML = [
       ["Source data block", `<span class="mono">${snap.blockNumber}</span> · ${dateTime(snap.blockTimestamp)}`],
       ["Source block hash", `<span class="mono">${esc(snap.blockHash)}</span>`],
-      ["Last successful verified collection", esc(snap.collectedAt || "Not recorded under current checks")],
+      ["Last successful reconciled collection", esc(snap.collectedAt || "Not recorded under current checks")],
       ["Verification", esc(snap.verification || "Historical snapshot; not reverified")],
       ["Scanned from block", `<span class="mono">${snap.fromBlock}</span> (deployment)`], ["Events read", String(snap.eventCount)],
       ["Collector", `${esc(snap.collector)}${snap.collectorCommit ? " at " + esc(snap.collectorCommit) : ""}`],
       ["Pool", addr(snap.pool)], ["Lens", addr(snap.lens)], ["Token", `${esc(snap.token.symbol)} ${addr(snap.token.address)} (test token)`],
     ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-    $("foot").textContent = "Omnequa microcredit testbed. Human benefit is the goal; a repaid testnet loan is evidence about the mechanism, not about people.";
+    $("foot").textContent = "Omnequa microcredit testbed. Created by Claude (AI); corrected by Codex (AI). Human benefit is the goal; a repaid testnet loan is evidence about the mechanism, not about people.";
   }
 
   $("flow-table-btn").addEventListener("click", () => { const on = $("flow-table").hidden; $("flow-table").hidden = !on; $("flow-chart").hidden = on; $("flow-table-btn").setAttribute("aria-pressed", String(on)); $("flow-table-btn").textContent = on ? "Chart view" : "Table view"; });

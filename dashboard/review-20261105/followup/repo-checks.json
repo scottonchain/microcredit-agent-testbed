@@ -1,0 +1,187 @@
+{
+  "ok": true,
+  "unit_tests": 642,
+  "checks": [
+    {
+      "check": "source syntax",
+      "ok": true,
+      "python": 202,
+      "shell": 15
+    },
+    {
+      "check": "bootstrap",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 14
+    },
+    {
+      "check": "coordination",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 195
+    },
+    {
+      "check": "scripts",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 35
+    },
+    {
+      "check": "metrics",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 163
+    },
+    {
+      "check": "team-mail",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 8
+    },
+    {
+      "check": "world-model",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 35
+    },
+    {
+      "check": "retry-fixture",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 2
+    },
+    {
+      "check": "retry-fixture/reference",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 7
+    },
+    {
+      "check": "retry-fixture/chain/base-sepolia",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 9
+    },
+    {
+      "check": "retry-fixture/chain/base-sepolia/reconcile",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 7
+    },
+    {
+      "check": "research/calibration-v3-replay-archive",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 25
+    },
+    {
+      "check": "experiments/revolving-guarantee",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 10
+    },
+    {
+      "check": "experiments/paid-work-channel-qualification",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 68
+    },
+    {
+      "check": "experiments/nline-applicant-access-gate-20261013",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 25
+    },
+    {
+      "check": "experiments/self-service-borrower-app",
+      "ok": true,
+      "exit_code": 0,
+      "tests": 39
+    },
+    {
+      "check": "world-model schema and relationships",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "node rule tests (drip, circle agent route)",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry case ledger",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: run_email_cases",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: scorecard",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: horizon_score",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: resend_authority",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: shipped_gate",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "retry model: in_progress_409",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "recorded email evidence: check_record",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "recorded email evidence: check_same_key_retry",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "recorded email evidence: check_key_expiry",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "fork runner offline self-test",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "frozen v3 ledger",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "frozen v3 starter",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "frozen v3 submission checker",
+      "ok": true,
+      "exit_code": 0
+    },
+    {
+      "check": "frozen v3 scorer",
+      "ok": true,
+      "exit_code": 0
+    }
+  ]
+}

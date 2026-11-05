@@ -63,7 +63,7 @@ endpoint only where permitted. No key or transaction is involved. It requires:
 1. Matching expected chain IDs on both providers; the lower finalized height;
    matching deployment/boundary numbers, hashes and timestamps on both providers.
    Explicit older blocks must also be finalized. No latest-head fallback.
-2. Full history from deployment block 47776780, chunked ranges with bounded
+2. Request the entire range from deployment block 47776780, using chunked ranges with bounded
    timeouts, retries and a ten-minute provider budget. Duplicate logs are counted
    once; conflicting duplicates, wrong addresses, removed/out-of-range logs fail.
    Each event block hash must match both providers.
@@ -73,17 +73,28 @@ endpoint only where permitted. No key or transaction is involved. It requires:
    includes the contract's fixed-principal interest calculation. Pool cash,
    outstanding principal, reserved liquidity, shares, stake, impairment, reserve
    and NAV must reconcile. The ABI exposes no per-loan cumulative repayment
-   getter: repayment completeness therefore also depends on aggregate cash and
-   principal reconciliation, not a fabricated private-storage getter.
+   getter: production reconciliation uses aggregate cash/principal and active
+   outstanding instead. The populated per-loan repayment values in the original
+   unit fixtures are stronger synthetic oracles, not production observations.
 4. Rechecking both boundary hashes after all reads. Only then is `collectedAt`
    advanced, even if amounts did not change. Provider URLs/errors are not emitted
    into published output. Finality/provider claims are not independent consensus
-   proofs; equally compromised providers are outside this trust model.
+   proofs. This is inventory and stock reconciliation against provider-supplied
+   logs, **not independent proof of event completeness**. A balanced omitted
+   deposit and equal withdrawal at unchanged share price can pass while understating
+   gross flows, even with correct state/header responses. The new production-getter
+   regression demonstrates this counterexample. No independent second log comparison
+   or receipt-inclusion proof is implemented. Equally compromised providers are also
+   outside this trust model. The `reconciled-finalized-v1` marker means these bounded
+   reconciliation checks passed, not that all historical events were independently proven.
 
 Conservative limitation: a repaid loan with forgiven sub-cent principal fails
 closed because the ABI does not expose the historical reserve allocation needed
 for exact reserve replay. Preserve the last good snapshot and report this to the
-owner; never silently treat the forgiveness as cash or sponsor spending.
+owner; never silently treat the forgiveness as cash or sponsor spending. Because
+all later runs rescan the full range, **every subsequent daily collection will
+also fail after such an event until exact forgiveness accounting is supported**.
+It is not a transient, one-attempt failure or something a later block cures.
 
 `refresh-status.json` records attemptedAt and success/failed, independently of
 source block/time and last successful collection. Failed collection does not
@@ -95,8 +106,8 @@ snapshot. Never gate successful publication only on changed ledger amounts.
 The browser never performs RPC replay, so it cannot combine an old base with
 inconsistent new state. It reloads only published snapshot JSON with an eight-second
 timeout, retains its dated snapshot on failure, and distinguishes browser fetch
-attempts from collector attempts and success. More than 30 hours since verified
-collection is stale. Historical snapshots without a verified collection timestamp
+attempts from collector attempts and success. More than 30 hours since reconciled
+collection is stale. Historical snapshots without a reconciled collection timestamp
 are always labelled stale/unverified. Missing data is unavailable, not zero.
 `live_check.cjs` now directs callers to offline checks and performs no live calls.
 

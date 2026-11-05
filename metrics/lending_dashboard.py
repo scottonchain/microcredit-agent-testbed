@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Read-only testnet ledger collector. No profiles, keys or transactions.
 
-A successful collection reconciles full event history against pinned contract state
-on two providers at a finalized boundary. Failure preserves the last good snapshot.
+A successful collection reconciles inventory and stocks against provider-supplied
+logs requested over the deployment-to-finalized range. Matching provider headers
+and state do not independently prove event completeness; balanced omissions can pass. Failure preserves the last good snapshot.
 Ledger activity establishes neither human identity nor incremental human benefit.
 """
 import argparse
@@ -483,8 +484,13 @@ def git_head():
 def reconcile(events, loans, records, pool):
     """Contract 1812e7d: lifecycle, cash, shares, stake, reserve and principal.
 
-    Public getLoan/getLoanTerms state is independent of logs. Sub-cent principal forgiveness is a loss,
-    not a repayment. Default recovery includes reserve absorption, not only cash.
+    Public getLoan/getLoanTerms state is read separately from provider-supplied logs.
+    This is inventory/stock reconciliation, not independent proof of complete history:
+    balanced omitted deposits/withdrawals can leave all checked stocks unchanged.
+    Production records have repaid/principal_repaid=None (no public getters).
+    Populated values in unit fixtures are stronger synthetic oracles only.
+    Sub-cent principal forgiveness is a loss, not a repayment. Default recovery
+    includes reserve absorption, not only cash.
     """
     def require(ok):
         if not ok:
@@ -543,6 +549,8 @@ def reconcile(events, loans, records, pool):
     # Reserve absorption of forgiven dust is capped by the reserve at that moment;
     # replay cash allocations to preserve that cap rather than assume all dust is covered.
     # If dust exists, exact reserve reconciliation needs allocation events not in this ABI.
+    # Every later full-range collection still contains this event and fails too,
+    # until an exact, separately reviewed forgiveness accounting method is supported.
     require(forgiven == 0)  # conservative refusal; never publish a guessed reserve flow
     reserve = (total("ReserveFunded", "amount") + pool["totalDuesPaid"] - total("ReserveReleased", "amount")
                - total("LoanDefaulted", "recovered") + total("BackerCharged", "slashed"))
@@ -553,7 +561,7 @@ def reconcile(events, loans, records, pool):
 
 def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_BLOCK):
     if from_block != DEPLOYMENT_BLOCK:
-        raise RpcError("full deployment history required")
+        raise RpcError("deployment-to-boundary log range required")
     chain = deployment["chain_id"]
     for provider in (rpc, logs_rpc):
         if as_int(provider.request("eth_chainId", [])) != chain:
@@ -635,6 +643,7 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
         "humanMetrics": human_metrics(loans, [], {}),
         "caveats": ["Base Sepolia testnet; test USDC has no real monetary value.",
                     "Loan and repayment events do not establish human borrowers or human benefit.",
+                    "Inventory and stock reconciliation uses provider-supplied logs; it is not independent proof of event completeness. Balanced omissions can pass.",
                     "Sponsor expenditure and incremental human benefit are NOT MEASURED.",
                     "Profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent; revocation cannot erase history."],
     }

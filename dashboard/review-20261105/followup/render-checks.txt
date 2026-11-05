@@ -1,0 +1,135 @@
+ok light 1200: no page errors
+ok light 1200: visible AI disclosure
+ok light 1200: visible event-completeness limit
+ok light 1200: no false live claim
+ok light 1200: unknown verification is stale
+ok light 1200: six accounting tiles
+ok light 1200: preserved ledger
+ok light 1200: two series
+ok light 1200: small NAV change visible
+ok light 1200: reserve distinct
+ok light 1200: gross interest distinct
+ok light 1200: no human benefit claim
+ok light 1200: no first request proxy
+ok light 1200: refresh failure preserves data
+ok light 1200: no chain requests
+ok light 1200: table toggle 0
+ok light 1200: chart toggle 0
+ok light 1200: synthetic example toggle 0
+ok light 1200: synthetic example closes 0
+ok light 1200: table toggle 1
+ok light 1200: chart toggle 1
+ok light 1200: synthetic example toggle 1
+ok light 1200: synthetic example closes 1
+ok light 1200: table toggle 2
+ok light 1200: chart toggle 2
+ok light 1200: synthetic example toggle 2
+ok light 1200: synthetic example closes 2
+ok light 1200: table toggle 3
+ok light 1200: chart toggle 3
+ok light 1200: synthetic example toggle 3
+ok light 1200: synthetic example closes 3
+ok light 1200: no horizontal overflow
+ok light 1200: unchanged ledger fresh verification
+ok light 1200: verification still not live
+ok light 1200: profiles rejected
+ok light 1200: profiles no private error/profile display
+ok light 1200: profiles keeps last good ledger
+ok light 1200: hash rejected
+ok light 1200: hash no private error/profile display
+ok light 1200: hash keeps last good ledger
+ok light 1200: failure rejected
+ok light 1200: failure no private error/profile display
+ok light 1200: failure keeps last good ledger
+ok dark 1200: no page errors
+ok dark 1200: visible AI disclosure
+ok dark 1200: visible event-completeness limit
+ok dark 1200: no false live claim
+ok dark 1200: unknown verification is stale
+ok dark 1200: six accounting tiles
+ok dark 1200: preserved ledger
+ok dark 1200: two series
+ok dark 1200: small NAV change visible
+ok dark 1200: reserve distinct
+ok dark 1200: gross interest distinct
+ok dark 1200: no human benefit claim
+ok dark 1200: no first request proxy
+ok dark 1200: refresh failure preserves data
+ok dark 1200: no chain requests
+ok dark 1200: table toggle 0
+ok dark 1200: chart toggle 0
+ok dark 1200: synthetic example toggle 0
+ok dark 1200: synthetic example closes 0
+ok dark 1200: table toggle 1
+ok dark 1200: chart toggle 1
+ok dark 1200: synthetic example toggle 1
+ok dark 1200: synthetic example closes 1
+ok dark 1200: table toggle 2
+ok dark 1200: chart toggle 2
+ok dark 1200: synthetic example toggle 2
+ok dark 1200: synthetic example closes 2
+ok dark 1200: table toggle 3
+ok dark 1200: chart toggle 3
+ok dark 1200: synthetic example toggle 3
+ok dark 1200: synthetic example closes 3
+ok dark 1200: no horizontal overflow
+ok dark 1200: unchanged ledger fresh verification
+ok dark 1200: verification still not live
+ok dark 1200: profiles rejected
+ok dark 1200: profiles no private error/profile display
+ok dark 1200: profiles keeps last good ledger
+ok dark 1200: hash rejected
+ok dark 1200: hash no private error/profile display
+ok dark 1200: hash keeps last good ledger
+ok dark 1200: failure rejected
+ok dark 1200: failure no private error/profile display
+ok dark 1200: failure keeps last good ledger
+ok light 390: no page errors
+ok light 390: visible AI disclosure
+ok light 390: visible event-completeness limit
+ok light 390: no false live claim
+ok light 390: unknown verification is stale
+ok light 390: six accounting tiles
+ok light 390: preserved ledger
+ok light 390: two series
+ok light 390: small NAV change visible
+ok light 390: reserve distinct
+ok light 390: gross interest distinct
+ok light 390: no human benefit claim
+ok light 390: no first request proxy
+ok light 390: refresh failure preserves data
+ok light 390: no chain requests
+ok light 390: table toggle 0
+ok light 390: chart toggle 0
+ok light 390: synthetic example toggle 0
+ok light 390: synthetic example closes 0
+ok light 390: table toggle 1
+ok light 390: chart toggle 1
+ok light 390: synthetic example toggle 1
+ok light 390: synthetic example closes 1
+ok light 390: table toggle 2
+ok light 390: chart toggle 2
+ok light 390: synthetic example toggle 2
+ok light 390: synthetic example closes 2
+ok light 390: table toggle 3
+ok light 390: chart toggle 3
+ok light 390: synthetic example toggle 3
+ok light 390: synthetic example closes 3
+ok light 390: no horizontal overflow
+ok light 390: unchanged ledger fresh verification
+ok light 390: verification still not live
+ok light 390: profiles rejected
+ok light 390: profiles no private error/profile display
+ok light 390: profiles keeps last good ledger
+ok light 390: hash rejected
+ok light 390: hash no private error/profile display
+ok light 390: hash keeps last good ledger
+ok light 390: failure rejected
+ok light 390: failure no private error/profile display
+ok light 390: failure keeps last good ledger
+ok missing: unavailable, not zero
+ok missing: no asserted totals
+ok profile: unavailable, not zero
+ok profile: no asserted totals
+ok old verified snapshot stale
+134/134 render checks passed

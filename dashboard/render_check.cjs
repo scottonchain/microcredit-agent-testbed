@@ -28,6 +28,8 @@ for (const [scheme,width] of [['light',1200],['dark',1200],['light',390]]) {
   await page.goto(url); await page.waitForFunction(()=>window.LENDING_REFRESH_DONE);
   const label=`${scheme} ${width}`;
   check(!errors.length,`${label}: no page errors`);
+  check((await page.locator('#foot').innerText()).includes('Claude (AI); corrected by Codex (AI)'),`${label}: visible AI disclosure`);
+  check((await page.locator('body').innerText()).includes('Balanced omitted deposits and withdrawals can pass'),`${label}: visible event-completeness limit`);
   check((await page.locator('#live').innerText()).includes('Historical snapshot'),`${label}: no false live claim`);
   check((await page.locator('#live').innerText()).includes('stale'),`${label}: unknown verification is stale`);
   check(await page.locator('.tile').count()===6,`${label}: six accounting tiles`);
@@ -60,7 +62,7 @@ for (const [scheme,width] of [['light',1200],['dark',1200],['light',390]]) {
     window.LENDING_REFRESH_DONE=false; document.getElementById('refresh-btn').click();
   },verified);
   await page.waitForFunction(()=>window.LENDING_REFRESH_DONE);
-  check((await page.locator('#live').innerText()).includes('Verified committed'),`${label}: unchanged ledger fresh verification`);
+  check((await page.locator('#live').innerText()).includes('Reconciled committed'),`${label}: unchanged ledger fresh verification`);
   check(!(await page.locator('#live').innerText()).includes('Live from'),`${label}: verification still not live`);
   verified.snapshot.collectedAt=new Date(Date.now()-31*3600000).toISOString();
   await page.evaluate(data=>{window.LENDING_SNAPSHOT=data;},verified);

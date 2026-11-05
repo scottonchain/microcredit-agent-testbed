@@ -244,3 +244,158 @@ class EndToEndCollectionTests(unittest.TestCase):
             if e['event'] == 'LoanRepaid': e['event'] = 'MetaLoanRepaid'
         result = ld.collect(DEPLOYMENT, FullProvider(), logs)
         self.assertEqual(result['flows']['repaid'], 15_100_000)
+
+class AccountingProvider(FullProvider):
+    """Hand-specified 1812e7d accounting, exposed ONLY through public getters.
+
+    No cumulative repayment or principalRepaid getter is provided. FullProvider's
+    old populated records are useful unit oracles, not production observations.
+    """
+    borrower = '0x' + 'aa' * 20
+    backer = '0x' + 'cc' * 20
+    day = 86400
+    epoch = 1_700_000_000
+
+    def __init__(self, principal=10_000_000, rate=1000, final_days=2):
+        Provider.__init__(self)
+        self.ids = [1]
+        self.principal, self.rate = principal, rate
+        self.status, self.term = 2, 365 * self.day
+        self.finalized = ld.DEPLOYMENT_BLOCK + 200
+        self.final_days = final_days
+        # Expected public outstanding is set explicitly by each repayment fixture.
+        self.outstanding = principal + (principal * rate // 10000) * final_days // 365
+        self.events = []
+        self.add('Deposited', 100, lender=self.backer, assets=100_000_000, shares=100_000_000_000_000)
+        self.add('ReserveFunded', 100, amount=10_000_000)
+        self.add('Staked', 100, account=self.backer, amount=10_000_000)
+        self.add('LoanRequested', 110, borrower=self.borrower, loanId=1, amount=principal, interestRate=rate)
+        self.add('LoanDisbursed', 111, borrower=self.borrower, loanId=1, to=self.borrower, amount=principal)
+        self.pool.update(totalAssets=100_000_000, lenderCash=110_000_000-principal,
+                         totalLentOut=principal, totalShares=100_000_000_000_000,
+                         totalStaked=10_000_000, firstLossReserve=10_000_000)
+
+    def add(self, name, block, **args):
+        self.events.append(dict(event=name, block=block, logIndex=len(self.events),
+                                tx='0x'+format(block,'064x'), address=POOL, args=args))
+
+    def timestamp(self, n):
+        elapsed = {100: -2, 110: -1, 111: 0, 120: 2*self.day,
+                   121: 31*self.day, 122: 32*self.day, 130: 61*self.day,
+                   200: self.final_days*self.day}[n]
+        return self.epoch + elapsed
+
+    def block(self, n):
+        n = self.finalized if n == 'finalized' else n
+        offset = n - ld.DEPLOYMENT_BLOCK
+        # Deployment boundary precedes the first event.
+        ts = self.epoch - 100 if offset == 0 else self.timestamp(offset)
+        return dict(number=hex(n), hash=self.hash, timestamp=hex(ts))
+
+    def call(self, to, sig, *args, **kw):
+        if sig == 'getLoan(uint256)':
+            return [self.principal, self.outstanding, self.borrower, self.rate, self.status in (1,2)]
+        if sig == 'getLoanTerms(uint256)':
+            return [self.status, self.term, self.epoch-1, self.epoch, self.epoch+self.term]
+        if sig in ('sharePrice()', 'getUtilisation()'): return [0]
+        if sig in {k+'()' for k in ld.POOL_FIELDS} or sig in ('usdc()', 'getAllLoanIds()', 'getLenders()', 'getBorrowers()'):
+            return Provider.call(self, to, sig, *args, **kw)
+        raise AssertionError('unavailable public getter: '+sig)
+
+
+class AccountingAndTrustBoundaryTests(unittest.TestCase):
+    def collect(self, p, logs=None):
+        return ld.collect(DEPLOYMENT, p, copy.deepcopy(p) if logs is None else logs)
+
+    def test_nonzero_fee_and_reserve_allocation(self):
+        p = AccountingProvider()
+        # 10 USDC, 10% APR, 2 days: floor(1_000_000 * 2 / 365) = 5479.
+        # Fee 10% = 547; reserve 45% = 2465; 2 USDC principal repaid.
+        p.add('RepaymentApplied', 120, loanId=1, interest=5479, principal=2_000_000, fee=547)
+        p.add('LoanRepaid', 120, loanId=1, borrower=p.borrower, amount=2_005_479)
+        p.outstanding = 8_000_000
+        p.pool.update(lenderCash=102_004_932, totalLentOut=8_000_000,
+                      protocolFees=547, totalDuesPaid=2465, firstLossReserve=10_002_465,
+                      totalAssets=100_002_467)
+        s = self.collect(p)
+        self.assertEqual(s['flows']['fees'], 547)
+        self.assertEqual(s['flows']['interest'], 5479)
+        self.assertEqual(s['pool']['totalAssets']-100_000_000, 2467)
+
+    def test_reserve_release_changes_nav_not_cash(self):
+        p = AccountingProvider()
+        p.add('ReserveReleased', 120, amount=2_000_000)
+        p.pool.update(firstLossReserve=8_000_000, totalAssets=102_000_000)
+        s = self.collect(p)
+        self.assertEqual(s['flows']['reserveReleased'], 2_000_000)
+        self.assertEqual(s['pool']['lenderCash'], 100_000_000)
+
+    def test_backer_slashing_and_reserve_default_recovery(self):
+        p = AccountingProvider(final_days=62)
+        p.term = 30*p.day  # default at 61 days, after term plus 30-day late period
+        p.add('Backed', 110, backer=p.backer, borrower=p.borrower, secured=4_000_000, unsecured=0)
+        p.add('BackerCharged', 130, backer=p.backer, loanId=1, slashed=4_000_000, charged=0)
+        p.add('LoanDefaulted', 130, borrower=p.borrower, loanId=1, writtenOff=10_000_000, recovered=10_000_000)
+        p.status, p.outstanding = 4, 0
+        p.pool.update(lenderCash=104_000_000, totalLentOut=0, totalStaked=6_000_000,
+                      firstLossReserve=4_000_000, totalAssets=100_000_000)
+        s = self.collect(p)
+        self.assertEqual(s['stake'][p.backer], 6_000_000)
+        self.assertEqual(s['flows']['writtenOff'], 10_000_000)
+        self.assertEqual(s['loans'][0]['recovered'], 10_000_000)
+
+    def test_active_impairment_reduces_by_principal_not_interest(self):
+        p = AccountingProvider(final_days=32)
+        p.term = 30*p.day
+        p.add('LoanImpaired', 121, loanId=1, impaired=10_000_000)
+        # 32 days at 10% => 87671 interest. Repayment reduces impairment by 2 USDC only.
+        p.add('RepaymentApplied', 122, loanId=1, interest=87671, principal=2_000_000, fee=8767)
+        p.add('LoanRepaid', 122, loanId=1, borrower=p.borrower, amount=2_087_671)
+        p.outstanding = 8_000_000
+        p.pool.update(lenderCash=102_078_904, totalLentOut=8_000_000, totalImpaired=8_000_000,
+                      protocolFees=8767, totalDuesPaid=39451, firstLossReserve=10_039_451,
+                      totalAssets=100_039_453)
+        s = self.collect(p)
+        self.assertEqual(s['loans'][0]['impaired'], 8_000_000)
+        self.assertEqual(s['pool']['totalAssets'], 100_039_453)
+
+    def test_interest_after_first_day_uses_contract_integer_order(self):
+        p = AccountingProvider(principal=10_000_009, rate=933, final_days=364)
+        # Contract floors principal*rate/10000 BEFORE multiplying elapsed time:
+        # floor(933000*364/365)=930443; a combined division would produce 930444.
+        p.outstanding = 10_930_452
+        s = self.collect(p)
+        self.assertEqual(s['flows']['interest'], 0)  # accrued is not collected
+        self.assertEqual(s['loans'][0]['status'], 'Active')
+        p.outstanding += 1
+        with self.assertRaises(ld.RpcError): self.collect(p)
+
+    def test_balanced_omitted_deposit_withdrawal_evades_stock_reconciliation(self):
+        p = AccountingProvider()
+        # Before any lending/interest, same share price, existing lender: stocks
+        # and lender inventory end unchanged, while gross flows differ by 1 USDC.
+        p.add('Deposited', 100, lender=p.backer, assets=1_000_000, shares=1_000_000_000_000)
+        p.add('Withdrawn', 100, lender=p.backer, to=p.backer, assets=1_000_000, shares=1_000_000_000_000)
+        complete = self.collect(p)
+        omitted = copy.deepcopy(p)
+        omitted.events = omitted.events[:-2]
+        reduced = self.collect(p, omitted)
+        self.assertEqual(complete['pool'], reduced['pool'])
+        self.assertEqual(complete['loans'], reduced['loans'])
+        self.assertEqual(complete['flows']['deposited']-reduced['flows']['deposited'], 1_000_000)
+        self.assertEqual(complete['flows']['withdrawn']-reduced['flows']['withdrawn'], 1_000_000)
+        # Both pass with production public getters (no populated repayment fields).
+        # Passing is the documented trust-boundary counterexample, NOT completeness.
+        self.assertEqual(reduced['snapshot']['verification'], 'reconciled-finalized-v1')
+
+    def test_forgiven_principal_blocks_every_subsequent_full_history_collection(self):
+        p = AccountingProvider()
+        p.add('RepaymentApplied', 120, loanId=1, interest=5479, principal=9_999_999, fee=547)
+        p.add('LoanRepaid', 120, loanId=1, borrower=p.borrower, amount=10_005_478)
+        p.status, p.outstanding = 3, 0
+        # One micro-unit is forgiven and charged to the reserve, not paid cash.
+        p.pool.update(lenderCash=110_004_931, totalLentOut=0, protocolFees=547,
+                      totalDuesPaid=2465, firstLossReserve=10_002_464, totalAssets=100_002_467)
+        for days in (2, 3, 30, 365):
+            p.final_days = days
+            with self.subTest(days=days), self.assertRaises(ld.RpcError): self.collect(p)

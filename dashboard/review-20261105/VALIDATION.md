@@ -48,7 +48,7 @@ blocked. No chain endpoint or excluded network destination was accessed.
 
 The historical hosted snapshot's loan and money observations are preserved at
 block 54145172, November 4 00:08:23 UTC. Its collector success time was not
-recorded and its completeness was not reverified here. It is labelled historical,
+recorded and its provider-supplied records were not reconciled under the new checks here. It is labelled historical,
 stale, and not verified under the new checks; collectedAt remains null. No human
 count or benefit is inferred. Sponsor expenditure remains NOT MEASURED.
 
@@ -66,3 +66,12 @@ Pages publication under current drain/ownership gates. See `../README.md` for
 the exact scoped file-copy, atomic Git publication and hosted-byte equivalence
 procedure. Do not cherry-pick this commit onto the app branch; target the actual
 dashboard source or explicitly coordinate an integration of its missing history.
+
+## Follow-up qualification
+
+See `FOLLOWUP.md` for the successor tests and receipts. Passing inventory/stock
+reconciliation does not independently prove complete event history, even when
+provider headers and state are correct: a balanced omitted deposit and withdrawal
+can evade it. Populated repayment fields in the original synthetic unit fixtures
+are not exposed by production getters. Forgiven principal blocks every subsequent
+full-range daily collection until supported, not merely the first attempt.
