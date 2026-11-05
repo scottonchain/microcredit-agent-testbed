@@ -1,0 +1,45 @@
+{
+  "kind": "OFFLINE_REAL_SOURCE_PROBE",
+  "source": "2490b5ea1661b828e44f9c337e4c7a2ca35940a6",
+  "version": "interview-0.2",
+  "model_calls": 0,
+  "transactions": 0,
+  "script_executed": false,
+  "results": [
+    {
+      "id": "explicit-no-backing",
+      "outcome": "decline",
+      "backing": 0,
+      "repayment_tag": "stated",
+      "reply": "I am not able to back a loan right now. The main reasons: No person has placed a deposit to back your loan, and you did not place a deposit of your own. If something changes or you can tell us more, write again any time."
+    },
+    {
+      "id": "missing-facts",
+      "outcome": "grant",
+      "backing": 10,
+      "repayment_tag": "stated",
+      "reply": "Thanks. The desk backs you with $10 of test credit. Tap Borrow when you are ready; you pay it back within 30 days."
+    },
+    {
+      "id": "zero-cap",
+      "outcome": "counter",
+      "backing": 1,
+      "repayment_tag": "stated",
+      "reply": "Thanks. The desk can back you with $1 of test credit for now, less than you asked. Tap Borrow when you are ready; you pay it back within 30 days."
+    },
+    {
+      "id": "quoted-claim",
+      "outcome": "grant",
+      "backing": 10,
+      "repayment_tag": "stated",
+      "reply": "Thanks. The desk backs you with $10 of test credit. Tap Borrow when you are ready; you pay it back within 30 days."
+    },
+    {
+      "id": "script-text",
+      "outcome": "grant",
+      "backing": 10,
+      "repayment_tag": "stated",
+      "reply": "Thanks. The desk backs you with $10 of test credit. Tap Borrow when you are ready; you pay it back within 30 days."
+    }
+  ]
+}
