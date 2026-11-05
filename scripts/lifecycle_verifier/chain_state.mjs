@@ -1,37 +1,39 @@
-// Chain-state gate for the wallet lifecycle: what the signed bytes cannot show. It runs AFTER the cryptographic
-// decoder (verify_prepared.mjs) and BEFORE every send and rebroadcast, and reconciles the receipt AFTER.
+// Chain-state gate for the wallet lifecycle: what the signed bytes cannot show. DELIVERED CODE, NOT YET CALLED by
+// wallet_lifecycle.mjs or lifecycle_runner.mjs: it guards nothing until a later step consumes it as a mandatory port.
 //
-// It holds no key, signs nothing and opens no connection of its own: every read goes through an injected `rpc` port,
-// and every read is pinned to ONE block hash taken at the start, so the answers describe a single state of the chain.
-// Local tests use an in-memory rpc. A real provider adapter is a separate, reviewed deliverable; this module is not
-// evidence that any live provider was read.
+// It holds no key, signs nothing and opens no connection of its own: every read goes through an injected `rpc` port.
+// Local tests use an in-memory rpc. A real provider adapter is a separate, reviewed deliverable; nothing here is evidence
+// that any live provider was read, and no policy value is evidence about Base Sepolia.
 //
-// What it checks (any failure, unknown value or missing configuration HOLDS the send; nothing is assumed):
-//   provenance  the provider identifies itself with an approved id, reports the pinned chain id, and the anchor block
-//               is fresh and still canonical when re-read at the end
-//   code        sender and recipient must have NO code: an EIP-7702 delegation designator (0xef0100 + address) is state a
-//               type-2 envelope cannot show, so it is classified and held, as is any contract; the token's runtime code
-//               hash must equal the pinned hash and, for an EIP-1967 proxy, so must its implementation address and code
-//   nonce       latest and pending transaction counts both equal the intent's nonce (a gap, a used nonce or a
-//               conflicting pending transaction holds)
-//   balances    token balance covers the amount; native balance covers the all-in fee envelope (plus the value for a
-//               native transfer)
-//   fee         the all-in envelope is the execution ceiling (gas * fee cap, from the decoder) PLUS the L1 data fee
-//               quoted at the anchor block for the exact serialized payload (times a stated multiple) PLUS an explicit
-//               operator-fee bound from configuration. A multiple is a safety margin on an estimate, not a protocol cap;
-//               a missing oracle answer, a missing operator bound or an envelope above the separately authorized
-//               maximum exposure holds the send.
-// After a send, `reconcileReceipt` checks status, canonical inclusion and confirmations, exactly one matching Transfer
-// log, that the fee components fit the envelope, and that the sender's native balance moved by the fee (and value).
+// PROVENANCE LIMIT: `rpc.providerId()` is an assertion by the injected port, not independent proof of which route
+// answered; the real provider adapter must prove the approved route and the block-hash semantics. Every state read of a
+// pass is pinned to ONE block hash (EIP-1898) EXCEPT the pending transaction count, which a node cannot pin; that read is
+// a separate freshness and race limit, and the control for it is exclusive custody (one signer for these wallets).
+//
+// preflight(intent) - before every send and rebroadcast. Any failure, thrown or returned, missing, null, malformed, zero
+// where a value is required, or different from what is pinned, HOLDS the send. ok:true needs every read and a complete
+// envelope. Checks: provider id and chain; anchor fresh and not in the future beyond a stated skew, re-read at the end;
+// no code on sender or recipient (an EIP-7702 delegation designator is classified and held); token runtime code hash
+// (and EIP-1967 implementation) pinned; latest and pending nonce equal the intent's; token balance; all-in fee envelope
+// = decoder execution ceiling + L1 data fee quoted at the anchor for the exact payload times a stated margin + an
+// explicit operator-fee bound, bounded by a separately authorized maximum exposure, and covered by the native balance.
+//
+// reconcileReceipt(...) - after inclusion. Binds the receipt to THIS transaction (hash, sender, outer target, and the
+// transaction fetched by hash: nonce, value and calldata), requires the envelope that preflight produced for this
+// intent, provider, chain, anchor and policy, requires the actual fee components (an unreported operator fee counts as
+// zero only when the policy states verified-not-applicable evidence), and re-validates inclusion and head at the end.
 
 import { keccak256, encodeFunctionData, parseAbi, hexToBigInt, decodeEventLog, isAddress } from 'viem';
 
 export const EIP7702_PREFIX = '0xef0100';
 export const IMPLEMENTATION_SLOT = '0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc'; // EIP-1967
 export const L1_ORACLE = '0x420000000000000000000000000000000000000f'; // OP-stack GasPriceOracle predeploy
-const erc20 = parseAbi(['function balanceOf(address) view returns (uint256)', 'event Transfer(address indexed from, address indexed to, uint256 value)']);
+const erc20 = parseAbi(['function balanceOf(address) view returns (uint256)', 'function transfer(address,uint256) returns (bool)', 'event Transfer(address indexed from, address indexed to, uint256 value)']);
 const oracle = parseAbi(['function getL1Fee(bytes) view returns (uint256)']);
 const lc = x => String(x).toLowerCase();
+const HASH = /^0x[0-9a-f]{64}$/;
+const WORD = /^0x[0-9a-fA-F]{64}$/;
+const MAX_SKEW_SEC = 60;
 const big = x => { const v = BigInt(x); if (v < 0n) throw new Error('negative'); return v; };
 
 // 'eoa' | 'delegated' (a 23-byte EIP-7702 designator) | 'contract' | 'invalid'
@@ -43,6 +45,27 @@ export function classifyCode(code) {
   return 'contract';
 }
 
+// Strict parsers: a missing, null or malformed answer is NOT a value. They throw a bare marker; callers turn it into a
+// sanitized hold reason and never echo provider text.
+const bad = () => { throw new Error('invalid'); };
+const wordToBig = v => (typeof v === 'string' && WORD.test(v) ? hexToBigInt(v) : bad());
+const count = v => {
+  if (typeof v === 'bigint' && v >= 0n && v <= BigInt(Number.MAX_SAFE_INTEGER)) return Number(v);
+  if (Number.isSafeInteger(v) && v >= 0) return v;
+  if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v) && v.length <= 16) return Number(hexToBigInt(v));
+  return bad();
+};
+const quantity = v => {
+  if (typeof v === 'bigint' && v >= 0n) return v;
+  if (Number.isSafeInteger(v) && v >= 0) return BigInt(v);
+  if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v)) return hexToBigInt(v);
+  return bad();
+};
+const blockFields = b => {
+  if (!b || typeof b !== 'object' || typeof b.hash !== 'string' || !HASH.test(b.hash)) bad();
+  return { number: count(b.number), hash: b.hash, timestamp: count(b.timestamp) };
+};
+
 // What a configuration must state. Returns problems; a gate built from an incomplete policy refuses every send.
 export function policyProblems(p) {
   const out = [];
@@ -50,6 +73,7 @@ export function policyProblems(p) {
   if (!Number.isInteger(p.chainId)) out.push('chainId');
   if (!Array.isArray(p.approvedProviderIds) || p.approvedProviderIds.length === 0) out.push('approvedProviderIds');
   if (!Number.isInteger(p.maxAnchorAgeSec) || p.maxAnchorAgeSec <= 0) out.push('maxAnchorAgeSec');
+  if (!Number.isInteger(p.maxFutureSkewSec) || p.maxFutureSkewSec < 0 || p.maxFutureSkewSec > MAX_SKEW_SEC) out.push('maxFutureSkewSec');
   if (!Number.isInteger(p.confirmations) || p.confirmations < 1) out.push('confirmations');
   const t = p.token;
   if (!t || !isAddress(t.address || '', { strict: false }) || !/^0x[0-9a-f]{64}$/.test(t.codeHash || '')) out.push('token.address/codeHash');
@@ -57,128 +81,200 @@ export function policyProblems(p) {
   const f = p.fee;
   try {
     if (!f) throw new Error('fee');
-    big(f.maxExposureWei); big(f.operatorFeeBoundWei);
+    big(f.maxExposureWei); const op = big(f.operatorFeeBoundWei);
     if (!Number.isInteger(f.l1MultiplePpm) || f.l1MultiplePpm < 1_000_000) throw new Error('multiple');
     if (f.reserveWei !== undefined) big(f.reserveWei);
-  } catch { out.push('fee.maxExposureWei/operatorFeeBoundWei/l1MultiplePpm'); }
+    // an operator-fee bound of zero is a claim about the chain, so it must name its evidence
+    if (op === 0n && !(f.operatorFeeEvidence === 'verified_not_applicable' && typeof f.operatorFeeEvidenceRef === 'string' && f.operatorFeeEvidenceRef.length > 0)) throw new Error('operator evidence');
+  } catch { out.push('fee.maxExposureWei/operatorFeeBoundWei/l1MultiplePpm/operatorFeeEvidence'); }
   return out;
+}
+
+// A stable digest of the policy, so an envelope can be bound to the policy it was computed under.
+export function policyDigest(p) {
+  const norm = v => (typeof v === 'bigint' ? v.toString() : Array.isArray(v) ? v.map(norm) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, norm(v[k])])) : v);
+  return keccak256(new TextEncoder().encode(JSON.stringify(norm(p))));
 }
 
 export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now() / 1000) }) {
   const problems = policyProblems(policy);
+  const digest = problems.length ? null : policyDigest(policy);
 
   async function anchored() {
     const providerId = await rpc.providerId();
-    if (!policy.approvedProviderIds.includes(providerId)) throw hold('provider_not_approved');
-    if (Number(await rpc.chainId()) !== policy.chainId) throw hold('chain_differs');
-    const b = await rpc.getBlock('latest');
-    if (!b || !/^0x[0-9a-f]{64}$/.test(b.hash || '') || !Number.isSafeInteger(Number(b.number)) || !Number.isSafeInteger(Number(b.timestamp))) throw hold('anchor_invalid');
-    if (now() - Number(b.timestamp) > policy.maxAnchorAgeSec) throw hold('anchor_stale');
-    return { providerId, number: Number(b.number), hash: b.hash, timestamp: Number(b.timestamp) };
+    if (typeof providerId !== 'string' || !policy.approvedProviderIds.includes(providerId)) throw hold('provider_not_approved');
+    let chain; try { chain = count(await rpc.chainId()); } catch { throw hold('chain_invalid'); }
+    if (chain !== policy.chainId) throw hold('chain_differs');
+    let b; try { b = blockFields(await rpc.getBlock('latest')); } catch { throw hold('anchor_invalid'); }
+    if (b.timestamp > now() + policy.maxFutureSkewSec) throw hold('anchor_in_future');
+    if (now() - b.timestamp > policy.maxAnchorAgeSec) throw hold('anchor_stale');
+    return { providerId, ...b };
   }
 
-  // intent: { kind: 'erc20'|'native', from, recipient, amount, nonce, raw, maxFeeWei, contract?, value? } (decoder output plus raw)
+  // intent: { kind: 'erc20'|'native', hash, from, recipient, amount, nonce, raw, maxFeeWei, contract? } (decoder output plus raw)
   async function preflight(intent) {
-    const reasons = [];
     if (problems.length) return { ok: false, reasons: ['policy_incomplete:' + problems.join(',')] };
-    let anchor;
-    try { anchor = await anchored(); } catch (e) { return { ok: false, reasons: [e.holdReason || 'anchor_read_failed'] }; }
-    const at = anchor.hash;
-    const read = async (name, fn) => { try { return await fn(); } catch { reasons.push(name + '_read_failed'); return undefined; } };
+    const reasons = [];
+    try {
+      let anchor;
+      try { anchor = await anchored(); } catch (e) { return { ok: false, reasons: [e.holdReason || 'anchor_read_failed'] }; }
+      const at = anchor.hash;
+      const need = async (name, fn, parse = x => x) => {
+        let raw;
+        try { raw = await fn(); } catch { reasons.push(name + '_read_failed'); return undefined; }
+        try { return parse(raw); } catch { reasons.push(name + '_invalid'); return undefined; }
+      };
+      if (typeof intent.hash !== 'string' || !HASH.test(lc(intent.hash))) reasons.push('intent_hash_missing');
+      let amount; try { amount = big(intent.amount); } catch { reasons.push('intent_amount_invalid'); }
+      let exec; try { exec = big(intent.maxFeeWei); } catch { reasons.push('intent_fee_invalid'); }
+      if (typeof intent.raw !== 'string' || !/^0x(?:[0-9a-fA-F]{2})+$/.test(intent.raw)) reasons.push('intent_raw_invalid');
 
-    const senderClass = classifyCode(await read('sender_code', () => rpc.getCode(intent.from, at)));
-    const recipClass = classifyCode(await read('recipient_code', () => rpc.getCode(intent.recipient, at)));
-    if (senderClass !== 'eoa') reasons.push('sender_code_' + senderClass);
-    if (recipClass !== 'eoa') reasons.push('recipient_code_' + recipClass);
+      const senderCode = await need('sender_code', () => rpc.getCode(intent.from, at), x => (classifyCode(x) === 'invalid' ? bad() : x));
+      const recipCode = await need('recipient_code', () => rpc.getCode(intent.recipient, at), x => (classifyCode(x) === 'invalid' ? bad() : x));
+      if (senderCode !== undefined && classifyCode(senderCode) !== 'eoa') reasons.push('sender_code_' + classifyCode(senderCode));
+      if (recipCode !== undefined && classifyCode(recipCode) !== 'eoa') reasons.push('recipient_code_' + classifyCode(recipCode));
 
-    const latest = await read('nonce', () => rpc.getTransactionCount(intent.from, 'latest', at));
-    const pending = await read('pending_nonce', () => rpc.getTransactionCount(intent.from, 'pending'));
-    if (latest !== undefined && pending !== undefined) {
-      if (Number(latest) !== Number(intent.nonce)) reasons.push(Number(latest) > Number(intent.nonce) ? 'nonce_already_used' : 'nonce_gap');
-      else if (Number(pending) !== Number(latest)) reasons.push('conflicting_pending_transaction');
-    }
-
-    let tokenBalanceOk = true;
-    if (intent.kind === 'erc20') {
-      if (lc(intent.contract) !== lc(policy.token.address)) reasons.push('token_differs');
-      const code = await read('token_code', () => rpc.getCode(policy.token.address, at));
-      if (code !== undefined && keccak256(code) !== policy.token.codeHash) reasons.push('token_code_hash_differs');
-      if (policy.token.proxy) {
-        const slot = await read('token_implementation', () => rpc.getStorageAt(policy.token.address, IMPLEMENTATION_SLOT, at));
-        const impl = slot === undefined ? undefined : '0x' + String(slot).slice(-40);
-        if (impl !== undefined && lc(impl) !== lc(policy.token.proxy.implementation)) reasons.push('token_implementation_differs');
-        const ic = await read('implementation_code', () => rpc.getCode(policy.token.proxy.implementation, at));
-        if (ic !== undefined && keccak256(ic) !== policy.token.proxy.implementationCodeHash) reasons.push('implementation_code_hash_differs');
+      const latest = await need('nonce', () => rpc.getTransactionCount(intent.from, 'latest', at), count);
+      const pending = await need('pending_nonce', () => rpc.getTransactionCount(intent.from, 'pending'), count);
+      let intentNonce; try { intentNonce = count(intent.nonce); } catch { reasons.push('intent_nonce_invalid'); }
+      if (latest !== undefined && pending !== undefined && intentNonce !== undefined) {
+        if (latest !== intentNonce) reasons.push(latest > intentNonce ? 'nonce_already_used' : 'nonce_gap');
+        else if (pending !== latest) reasons.push('conflicting_pending_transaction');
       }
-      const data = encodeFunctionData({ abi: erc20, functionName: 'balanceOf', args: [intent.from] });
-      const out = await read('token_balance', () => rpc.call({ to: policy.token.address, data }, at));
-      if (out !== undefined) tokenBalanceOk = hexToBigInt(out) >= big(intent.amount); else tokenBalanceOk = false;
-      if (!tokenBalanceOk && out !== undefined) reasons.push('insufficient_token_balance');
-    }
 
-    // all-in fee envelope
-    let envelope;
-    const l1Out = await read('l1_fee', () => rpc.call({ to: L1_ORACLE, data: encodeFunctionData({ abi: oracle, functionName: 'getL1Fee', args: [intent.raw] }) }, at));
-    const nativeBalance = await read('native_balance', () => rpc.getBalance(intent.from, at));
-    if (l1Out !== undefined) {
-      const l1 = hexToBigInt(l1Out);
-      const l1Margined = (l1 * BigInt(policy.fee.l1MultiplePpm) + 999_999n) / 1_000_000n;
-      const exec = big(intent.maxFeeWei); const op = big(policy.fee.operatorFeeBoundWei);
-      envelope = { executionCeilingWei: exec, l1QuoteWei: l1, l1MarginedWei: l1Margined, operatorBoundWei: op, allInWei: exec + l1Margined + op };
-      if (envelope.allInWei > big(policy.fee.maxExposureWei)) reasons.push('fee_exposure_exceeds_authorization');
-      if (nativeBalance !== undefined) {
-        const need = envelope.allInWei + (intent.kind === 'native' ? big(intent.amount) : 0n) + big(policy.fee.reserveWei ?? 0);
-        if (big(nativeBalance) < need) reasons.push('insufficient_native_reserve');
+      if (intent.kind === 'erc20') {
+        if (typeof intent.contract !== 'string' || lc(intent.contract) !== lc(policy.token.address)) reasons.push('token_differs');
+        const code = await need('token_code', () => rpc.getCode(policy.token.address, at), x => (classifyCode(x) === 'invalid' || x === '0x' ? bad() : x));
+        if (code !== undefined && keccak256(code) !== policy.token.codeHash) reasons.push('token_code_hash_differs');
+        if (policy.token.proxy) {
+          const slot = await need('token_implementation', () => rpc.getStorageAt(policy.token.address, IMPLEMENTATION_SLOT, at), x => (typeof x === 'string' && WORD.test(x) ? x : bad()));
+          if (slot !== undefined && lc('0x' + slot.slice(-40)) !== lc(policy.token.proxy.implementation)) reasons.push('token_implementation_differs');
+          const ic = await need('implementation_code', () => rpc.getCode(policy.token.proxy.implementation, at), x => (classifyCode(x) === 'invalid' || x === '0x' ? bad() : x));
+          if (ic !== undefined && keccak256(ic) !== policy.token.proxy.implementationCodeHash) reasons.push('implementation_code_hash_differs');
+        }
+        let data; try { data = encodeFunctionData({ abi: erc20, functionName: 'balanceOf', args: [intent.from] }); } catch { reasons.push('intent_sender_invalid'); }
+        const bal = data === undefined ? undefined : await need('token_balance', () => rpc.call({ to: policy.token.address, data }, at), wordToBig);
+        if (bal !== undefined && amount !== undefined && bal < amount) reasons.push('insufficient_token_balance');
+      } else if (intent.kind !== 'native') reasons.push('intent_kind_invalid');
+
+      // all-in fee envelope: every part must be present
+      let l1data; try { l1data = encodeFunctionData({ abi: oracle, functionName: 'getL1Fee', args: [intent.raw] }); } catch { reasons.push('intent_raw_invalid'); }
+      const l1 = l1data === undefined ? undefined : await need('l1_fee', () => rpc.call({ to: L1_ORACLE, data: l1data }, at), wordToBig);
+      const nativeBalance = await need('native_balance', () => rpc.getBalance(intent.from, at), quantity);
+      let envelope;
+      if (l1 !== undefined && exec !== undefined) {
+        const l1Margined = (l1 * BigInt(policy.fee.l1MultiplePpm) + 999_999n) / 1_000_000n;
+        const op = big(policy.fee.operatorFeeBoundWei);
+        envelope = {
+          executionCeilingWei: exec, l1QuoteWei: l1, l1MarginedWei: l1Margined, operatorBoundWei: op, allInWei: exec + l1Margined + op,
+          binding: { intentHash: lc(intent.hash ?? ''), providerId: anchor.providerId, chainId: policy.chainId, anchorHash: anchor.hash, anchorNumber: anchor.number, policyDigest: digest },
+        };
+        if (envelope.allInWei > big(policy.fee.maxExposureWei)) reasons.push('fee_exposure_exceeds_authorization');
+        if (nativeBalance !== undefined && amount !== undefined) {
+          const needWei = envelope.allInWei + (intent.kind === 'native' ? amount : 0n) + big(policy.fee.reserveWei ?? 0);
+          if (nativeBalance < needWei) reasons.push('insufficient_native_reserve');
+        }
       }
+      if (envelope === undefined) reasons.push('envelope_incomplete');
+      if (nativeBalance === undefined && !reasons.includes('native_balance_read_failed') && !reasons.includes('native_balance_invalid')) reasons.push('native_balance_missing');
+
+      // the anchor must still be canonical after every read (a reorg or a rolled-back read set holds the send)
+      const again = await need('anchor_recheck', () => rpc.getBlock(anchor.number), blockFields);
+      if (again !== undefined && (again.hash !== anchor.hash || again.number !== anchor.number)) reasons.push('anchor_changed');
+
+      return reasons.length ? { ok: false, reasons: [...new Set(reasons)], anchor } : { ok: true, anchor, envelope, balances: { native: nativeBalance.toString() } };
+    } catch {
+      return { ok: false, reasons: ['preflight_error'] }; // a conversion that escaped the validators is still a hold, never provider text
     }
-
-    // the anchor must still be canonical after every read (a reorg or a rolled-back read set holds the send)
-    const again = await read('anchor_recheck', () => rpc.getBlock(anchor.number));
-    if (again !== undefined && (!again || again.hash !== anchor.hash)) reasons.push('anchor_changed');
-
-    return reasons.length ? { ok: false, reasons, anchor } : { ok: true, anchor, envelope, balances: { native: big(nativeBalance).toString() } };
   }
 
-  // receipt: { status, from, to, blockHash, blockNumber, gasUsed, effectiveGasPrice, l1Fee?, operatorFee?, logs: [{address, topics, data}] }
-  // balances: { before, after } native balances of the sender in wei, read at pinned blocks by the caller
+  // receipt: { status, transactionHash, from, to, blockHash, blockNumber, gasUsed, effectiveGasPrice, l1Fee?, operatorFee?, logs }
+  // envelope: exactly what preflight returned for this intent. balances: { before, after } native, sender, wei.
+  // rpc.getTransaction(hash) -> { hash, from, to, nonce, value, input, blockHash }
   async function reconcileReceipt({ intent, receipt, envelope, balances }) {
+    if (problems.length) return { ok: false, reasons: ['policy_incomplete:' + problems.join(',')] };
     const reasons = [];
-    if (!receipt || receipt.status !== 1) return { ok: false, reasons: ['receipt_not_successful'] };
-    if (lc(receipt.from) !== lc(intent.from)) reasons.push('receipt_sender_differs');
-    let blk;
-    try { blk = await rpc.getBlock(Number(receipt.blockNumber)); } catch { return { ok: false, reasons: ['block_read_failed'] }; }
-    if (!blk || blk.hash !== receipt.blockHash) reasons.push('block_not_canonical');
-    let head;
-    try { head = await rpc.getBlock('latest'); } catch { return { ok: false, reasons: [...reasons, 'head_read_failed'] }; }
-    if (Number(head.number) - Number(receipt.blockNumber) + 1 < policy.confirmations) reasons.push('not_enough_confirmations');
-
-    const transfers = []; let foreign = 0;
-    for (const log of receipt.logs || []) {
-      if (lc(log.address) !== lc(policy.token.address)) { foreign++; continue; }
-      try { transfers.push(decodeEventLog({ abi: erc20, data: log.data, topics: log.topics })); } catch { reasons.push('undecodable_token_log'); }
-    }
-    if (intent.kind === 'erc20') {
-      const t = transfers.filter(x => x.eventName === 'Transfer');
-      if (transfers.length !== 1 || t.length !== 1) reasons.push('transfer_log_count');
-      else if (lc(t[0].args.from) !== lc(intent.from) || lc(t[0].args.to) !== lc(intent.recipient) || t[0].args.value !== big(intent.amount)) reasons.push('transfer_log_differs');
-      if (foreign) reasons.push('foreign_logs');
-    } else if (transfers.length || foreign) reasons.push('unexpected_logs_on_native_transfer');
-
-    let fee;
     try {
-      const l2 = big(receipt.gasUsed) * big(receipt.effectiveGasPrice);
-      const l1 = receipt.l1Fee === undefined ? 0n : big(receipt.l1Fee);
-      const op = receipt.operatorFee === undefined ? 0n : big(receipt.operatorFee);
-      fee = { l2Wei: l2, l1Wei: l1, operatorWei: op, totalWei: l2 + l1 + op };
-      if (receipt.l1Fee === undefined) reasons.push('l1_fee_not_reported');
-      if (envelope && fee.totalWei > envelope.allInWei) reasons.push('actual_fee_exceeds_envelope');
-    } catch { reasons.push('fee_fields_invalid'); }
-    if (fee && balances) {
-      const moved = big(balances.before) - big(balances.after);
-      const expected = fee.totalWei + (intent.kind === 'native' ? big(intent.amount) : 0n);
-      if (moved !== expected) reasons.push('sender_balance_delta_differs');
-    } else if (!balances) reasons.push('balances_missing');
-    return reasons.length ? { ok: false, reasons, fee } : { ok: true, fee };
+      if (!receipt || receipt.status !== 1) return { ok: false, reasons: ['receipt_not_successful'] };
+      if (!envelope || !envelope.binding) return { ok: false, reasons: ['envelope_missing'] };
+      const bnd = envelope.binding;
+      if (bnd.intentHash !== lc(intent.hash ?? '') || bnd.chainId !== policy.chainId || bnd.policyDigest !== digest) reasons.push('envelope_not_bound_to_this_intent_or_policy');
+      let providerId; try { providerId = await rpc.providerId(); } catch { return { ok: false, reasons: [...reasons, 'provider_read_failed'] }; }
+      if (!policy.approvedProviderIds.includes(providerId) || providerId !== bnd.providerId) reasons.push('provider_differs_from_envelope');
+      if (!/^0x[0-9a-f]{64}$/.test(bnd.anchorHash || '')) reasons.push('envelope_anchor_missing');
+
+      // bind the receipt to the intended transaction
+      if (lc(receipt.transactionHash ?? '') !== lc(intent.hash ?? '')) reasons.push('receipt_hash_differs');
+      if (lc(receipt.from ?? '') !== lc(intent.from)) reasons.push('receipt_sender_differs');
+      const target = intent.kind === 'erc20' ? policy.token.address : intent.recipient;
+      if (lc(receipt.to ?? '') !== lc(target)) reasons.push('receipt_target_differs');
+      let tx; try { tx = await rpc.getTransaction(receipt.transactionHash); } catch { tx = undefined; }
+      if (!tx) reasons.push('transaction_read_failed');
+      else {
+        if (lc(tx.hash ?? '') !== lc(intent.hash ?? '')) reasons.push('transaction_hash_differs');
+        if (lc(tx.from ?? '') !== lc(intent.from)) reasons.push('transaction_sender_differs');
+        if (lc(tx.to ?? '') !== lc(target)) reasons.push('transaction_target_differs');
+        try {
+          if (count(tx.nonce) !== count(intent.nonce)) reasons.push('transaction_nonce_differs');
+          const wantValue = intent.kind === 'native' ? big(intent.amount) : 0n;
+          if (quantity(tx.value) !== wantValue) reasons.push('transaction_value_differs');
+        } catch { reasons.push('transaction_fields_invalid'); }
+        const wantInput = intent.kind === 'erc20' ? encodeFunctionData({ abi: erc20, functionName: 'transfer', args: [intent.recipient, big(intent.amount)] }) : '0x';
+        if (typeof tx.input !== 'string' || lc(tx.input) !== lc(wantInput)) reasons.push('transaction_calldata_differs');
+        if (tx.blockHash !== undefined && lc(tx.blockHash) !== lc(receipt.blockHash ?? '')) reasons.push('transaction_block_differs');
+      }
+
+      // inclusion and head, re-validated at the end so a mid-check reorg cannot pass
+      let incl1; try { incl1 = blockFields(await rpc.getBlock(count(receipt.blockNumber))); } catch { return { ok: false, reasons: [...reasons, 'block_read_failed'] }; }
+      if (incl1.hash !== receipt.blockHash) reasons.push('block_not_canonical');
+      let head1; try { head1 = blockFields(await rpc.getBlock('latest')); } catch { return { ok: false, reasons: [...reasons, 'head_invalid'] }; }
+      if (head1.number < incl1.number) reasons.push('head_before_inclusion');
+
+      const transfers = []; let foreign = 0;
+      for (const log of receipt.logs || []) {
+        if (lc(log.address) !== lc(policy.token.address)) { foreign++; continue; }
+        try { transfers.push(decodeEventLog({ abi: erc20, data: log.data, topics: log.topics })); } catch { reasons.push('undecodable_token_log'); }
+      }
+      if (intent.kind === 'erc20') {
+        const t = transfers.filter(x => x.eventName === 'Transfer');
+        if (transfers.length !== 1 || t.length !== 1) reasons.push('transfer_log_count');
+        else if (lc(t[0].args.from) !== lc(intent.from) || lc(t[0].args.to) !== lc(intent.recipient) || t[0].args.value !== big(intent.amount)) reasons.push('transfer_log_differs');
+        if (foreign) reasons.push('foreign_logs');
+      } else if (transfers.length || foreign) reasons.push('unexpected_logs_on_native_transfer');
+
+      // actual cost: every component must be reported, or stated not applicable by the policy
+      let fee;
+      try {
+        const l2 = big(receipt.gasUsed) * big(receipt.effectiveGasPrice);
+        if (receipt.l1Fee === undefined) reasons.push('l1_fee_not_reported');
+        const l1 = receipt.l1Fee === undefined ? 0n : big(receipt.l1Fee);
+        let op = 0n;
+        if (receipt.operatorFee !== undefined) op = big(receipt.operatorFee);
+        else if (policy.fee.operatorFeeEvidence !== 'verified_not_applicable') reasons.push('operator_fee_not_reported');
+        fee = { l2Wei: l2, l1Wei: l1, operatorWei: op, totalWei: l2 + l1 + op };
+        const ceiling = big(envelope.allInWei); const authorized = big(policy.fee.maxExposureWei);
+        if (fee.totalWei > ceiling) reasons.push('actual_fee_exceeds_envelope');
+        if (fee.totalWei > authorized) reasons.push('actual_fee_exceeds_authorization');
+      } catch { reasons.push('fee_fields_invalid'); }
+      if (fee && balances) {
+        try {
+          const moved = big(balances.before) - big(balances.after);
+          if (moved !== fee.totalWei + (intent.kind === 'native' ? big(intent.amount) : 0n)) reasons.push('sender_balance_delta_differs');
+        } catch { reasons.push('balances_invalid'); }
+      } else if (!balances) reasons.push('balances_missing');
+
+      let incl2; try { incl2 = blockFields(await rpc.getBlock(incl1.number)); } catch { return { ok: false, reasons: [...reasons, 'block_read_failed'] }; }
+      let head2; try { head2 = blockFields(await rpc.getBlock('latest')); } catch { return { ok: false, reasons: [...reasons, 'head_invalid'] }; }
+      if (incl2.hash !== receipt.blockHash) reasons.push('inclusion_changed_during_check');
+      if (head2.number < head1.number || (head2.number === head1.number && head2.hash !== head1.hash)) reasons.push('head_changed_during_check');
+      if (head2.number - incl2.number + 1 < policy.confirmations) reasons.push('not_enough_confirmations');
+      if (head2.timestamp > now() + policy.maxFutureSkewSec) reasons.push('head_in_future');
+
+      const uniq = [...new Set(reasons)];
+      return uniq.length ? { ok: false, reasons: uniq, fee } : { ok: true, fee };
+    } catch {
+      return { ok: false, reasons: ['reconcile_error'] };
+    }
   }
 
   // The amount a gas return may move: balance minus the all-in reserve, never balance minus the L2 ceiling alone.
@@ -188,7 +284,7 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
     return amount > big(gasDustWei) ? amount : 0n;
   }
 
-  return { preflight, reconcileReceipt, gasReturnAmount, policyProblems: problems };
+  return { preflight, reconcileReceipt, gasReturnAmount, policyProblems: problems, policyDigest: digest };
 }
 
 function hold(reason) { const e = new Error(reason); e.holdReason = reason; return e; }
