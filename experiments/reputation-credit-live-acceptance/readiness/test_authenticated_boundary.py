@@ -317,7 +317,7 @@ class AssemblyTests(unittest.TestCase):
         try:
             root=Path(__file__).parent
             files=['authenticated_reader.py','boundary_service.py','canonical_adapter.py','durable.py','bounds.py','service_binding.py',
-                   'pending_journal.py','local_boundary.py','release_guard.py','submission.py',
+                   'pending_journal.py','local_boundary.py','release_guard.py','submission.py','runtime_inventory.py',
                    'signed-validator/bridge.cjs','signed-validator/verify.cjs','signed-validator/sign-fd.cjs','signed-validator/package-lock.json']
             digest='0x'+hashlib.sha256(bytes.fromhex('6000')).hexdigest()
             c={'policy':asdict(fixture.policy),'ledger_path':str(fixture.path),'rpc':{'primary':'https://sepolia.base.org','witness':None,'approved_origins':['https://sepolia.base.org']},

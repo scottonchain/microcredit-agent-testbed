@@ -81,3 +81,13 @@ The retained D7 process and two-hour relaunch belong to Claude's steward runtime
 Hermes declined release ownership. No live installation or release manifest exists
 here. Complete authoritative inventory/budget and lease probes, retained writer
 drain, actual deployment identity and receipt-backed rehearsal remain release gates.
+
+## Canonical inventory and local receipt rehearsal
+
+[REHEARSAL.md](REHEARSAL.md) specifies installed inventory/lease contracts and a
+reproducible full-pool local receipt rehearsal. Six new Python checks and two
+actual EVM integration regressions cover stale/changed leases, exact private
+baselines, receipt transfers, unknown inventory, and repayment versus cash-loss
+default. The latter fixes an independently reproduced missing-state counterexample.
+The existing PR441 owner has the local runner integration request; no competing
+wallet writer or installed live release is created.

@@ -38,7 +38,7 @@ def assemble(config_path,expected_sha256,*,lease_probe=None,inventory_probe=None
     # The supervisor separately authenticates Node/Python and installed dependencies.
     # No caller-provided script/module path.
     code_files=['authenticated_reader.py','boundary_service.py','canonical_adapter.py','durable.py','bounds.py','service_binding.py',
-                'pending_journal.py','local_boundary.py','release_guard.py','submission.py',
+                'pending_journal.py','local_boundary.py','release_guard.py','submission.py','runtime_inventory.py',
                 'signed-validator/bridge.cjs','signed-validator/verify.cjs','signed-validator/sign-fd.cjs','signed-validator/package-lock.json']
     if set(c['source_hashes'])!=set(code_files):raise ValueError('complete source pins required')
     for name in code_files:

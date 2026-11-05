@@ -154,3 +154,57 @@ test('parity: below-cap lifecycle accounting matches unmodified canonical optimi
  }finally{await s.p.disconnect();}}
  assert.deepEqual(await scenario(false),await scenario(true));
 });
+
+test('receipt-backed local rehearsal exports actual canonical inventory to Python reader',async()=>{
+ const s=await setup();try{
+ await s.grant();const requested=await s.call(s.pool,'requestLoan',[5n*unit],'borrower');
+ const funded=await s.call(s.pool,'disburseLoan',[1n]);
+ await s.call(s.token,'approve',[s.pool.address,5n*unit],'borrower');
+ const repaid=await s.call(s.pool,'repayLoan',[1n,5n*unit],'borrower');
+ const {execFileSync}=require('node:child_process');const tape=await captureInventory(s);
+ const out=JSON.parse(execFileSync('python',[require('node:path').join(__dirname,'../replay_inventory.py')],{input:JSON.stringify(tape),encoding:'utf8',timeout:10000}));
+ assert.equal(out.unknown_borrower_rejected,true);
+ // Receipts and cash transfers are independently checked, not inferred from inventory.
+ const transfer=r=>r.logs.filter(x=>x.address.toLowerCase()===s.token.address.toLowerCase()).map(x=>decodeEventLog({abi:s.token.abi,data:x.data,topics:x.topics})).filter(x=>x.eventName==='Transfer');
+ assert.ok(transfer(funded).some(x=>x.args.from.toLowerCase()===s.pool.address.toLowerCase()&&x.args.to.toLowerCase()===s.borrower.address.toLowerCase()&&x.args.value===5n*unit));
+ assert.ok(transfer(repaid).some(x=>x.args.from.toLowerCase()===s.borrower.address.toLowerCase()&&x.args.to.toLowerCase()===s.pool.address.toLowerCase()&&x.args.value===5n*unit));
+ assert.equal(await s.read(s.token,'balanceOf',[s.borrower.address]),0n);
+ console.log('LOCAL_REHEARSAL',JSON.stringify({scope:'ephemeral in-process EVM only',inventory:out,request:requested.transactionHash,funding:funded.transactionHash,repayment:repaid.transactionHash}));
+ }finally{await s.p.disconnect();}
+});
+
+async function captureInventory(s){
+ const {encodeFunctionData}=require('viem'),{createHash}=require('node:crypto');
+ const responses={};
+ const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
+ const record=async(method,params)=>{const out=await s.p.request({method,params});responses[JSON.stringify(canonical([method,params]))]=out;return out;};
+ await record('eth_chainId',[]);const height=await record('eth_blockNumber',[]);
+ const block=await record('eth_getBlockByNumber',[height,false]),anchor={blockHash:block.hash,requireCanonical:true};
+ const pins={};for(const c of [s.pool,s.token,s.budget]){const a=c.address.toLowerCase(),code=await record('eth_getCode',[a,anchor]);pins[a]='0x'+createHash('sha256').update(Buffer.from(code.slice(2),'hex')).digest('hex');}
+ const read=async(c,functionName,args=[])=>record('eth_call',[{to:c.address.toLowerCase(),data:encodeFunctionData({abi:c.abi,functionName,args})},anchor]);
+ for(const name of ['originationBudget','getAllLoanIds','getBackedBorrowers','totalLentOut','reservedLiquidity','lenderCash','firstLossReserve','totalImpaired','protocolFees','totalStaked','totalUnclaimedPayouts'])await read(s.pool,name);
+ await read(s.token,'balanceOf',[s.pool.address]);await read(s.pool,'getLoan',[1n]);await read(s.pool,'getLoanTerms',[1n]);await read(s.pool,'getBackings',[s.borrower.address]);
+ for(const name of ['pool','totalCap','controllerCap','groupCap','totalUsed','stopped'])await read(s.budget,name);
+ await read(s.budget,'grants',[s.borrower.address]);await read(s.budget,'revoked',[s.borrower.address]);
+ await read(s.budget,'controllerUsed',[identity(1)]);await read(s.budget,'groupUsed',[identity(1)]);
+ const tape={responses,pins,pool:s.pool.address.toLowerCase(),token:s.token.address.toLowerCase(),budget:s.budget.address.toLowerCase(),borrower:s.borrower.address.toLowerCase()};
+ return tape;
+}
+
+test('inventory distinguishes repayment from equal-gross cash-loss default',async()=>{
+ // Regression contributed by independent review: getLoan alone collapses closures.
+ const s=await setup();try{
+ await s.call(s.budget,'grant',[s.borrower.address,identity(1),identity(1),20n*unit,s.deadline]);
+ await s.call(s.pool,'setScoreOverride',[s.borrower.address,unit]);
+ await s.call(s.pool,'requestLoan',[5n*unit],'borrower');await s.call(s.pool,'disburseLoan',[1n]);
+ const checkpoint=await s.p.request({method:'evm_snapshot',params:[]});
+ const replay=async()=>{const tape=await captureInventory(s);tape.snapshot_only=true;return JSON.parse(require('node:child_process').execFileSync('python',[require('node:path').join(__dirname,'../replay_inventory.py')],{input:JSON.stringify(tape),encoding:'utf8',timeout:10000}));};
+ await s.call(s.token,'approve',[s.pool.address,5n*unit],'borrower');await s.call(s.pool,'repayLoan',[1n,5n*unit],'borrower');
+ const paid=await replay();
+ await s.p.request({method:'evm_revert',params:[checkpoint]});await s.p.request({method:'evm_increaseTime',params:[61*86400]});await s.p.request({method:'evm_mine',params:[]});await s.call(s.pool,'markDefaulted',[1n]);
+ const failed=await replay();
+ assert.equal(paid.state.budget.totalUsed,failed.state.budget.totalUsed);
+ assert.notEqual(paid.digest,failed.digest);assert.equal(paid.state.loans['1'].terms[0],3);assert.equal(failed.state.loans['1'].terms[0],4);
+ assert.equal(paid.state.cash.lenderCash-failed.state.cash.lenderCash,5000000);
+ }finally{await s.p.disconnect();}
+});
