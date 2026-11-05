@@ -96,6 +96,26 @@ window.LENDING_SNAPSHOT = {
      }
     ]
    },
+   "0x6a98ca468ea5d9147722dfafae51433ca117e982700440582a1b3d3aebffc16e": {
+    "name": "MetaLoanRepaid",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
    "0x73a19dd210f1a7f902193214c0ee91dd35ee5b4d920cba8d519eca65a7b488ca": {
     "name": "Deposited",
     "params": [
@@ -368,29 +388,13 @@ window.LENDING_SNAPSHOT = {
    "totalStaked()": "0x817b1cd2"
   }
  },
- "backing": [
-  {
-   "backer": "0x4c688c5d7d835cc379396b4729ee1dbdbdbb21c1",
-   "block": 53548061,
-   "borrower": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
-   "secured": 5000000,
-   "tx": "0xeb5d5719dd2e9f6507e2e502bce50bf314d27dc55cb0ac217a7bef995ae47301",
-   "unsecured": 0
-  },
-  {
-   "backer": "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462",
-   "block": 54072012,
-   "borrower": "0x9e7a9f068e0c56e28c3a3cec5bebbf4838e1351c",
-   "secured": 3000000,
-   "tx": "0xf320dadf409d4c5aaf84a7d6fc0300a2d8fa88fd03724bff4667fa8127c220af",
-   "unsecured": 0
-  }
- ],
+ "backing": [],
  "caveats": [
-  "Base Sepolia testnet: test USDC only, no real funds, no real borrowers.",
-  "Every loan so far was taken by an AI agent or a team test account; none is a human outcome.",
-  "A repaid testnet loan is plumbing evidence, not human benefit (NORTH_STAR.md).",
-  "Borrower profiles appear only after the steward registers the profile schema and attests with consent."
+  "Base Sepolia testnet; test USDC has no real monetary value.",
+  "Loan and repayment events do not establish human borrowers or human benefit.",
+  "Inventory and stock reconciliation uses provider-supplied logs; it is not independent proof of event completeness. Balanced omissions can pass.",
+  "Sponsor expenditure and incremental human benefit are NOT MEASURED.",
+  "Profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent; revocation cannot erase history."
  ],
  "flows": {
   "deposited": 128000000,
@@ -398,25 +402,15 @@ window.LENDING_SNAPSHOT = {
   "fees": 0,
   "interest": 1520,
   "repaid": 45001520,
+  "reserveFunded": 0,
+  "reserveReleased": 0,
   "withdrawn": 93000000,
   "writtenOff": 0
  },
  "humanMetrics": {
-  "attestedLoans": {
-   "ofLoans": 28,
-   "withProfile": 0
-  },
-  "disbursedToBorrowersWithNoOwnStake": {
-   "borrowers": 10,
-   "ofBorrowers": 10
-  },
-  "firstTimeBorrowerShare": 0.5555555555555556,
-  "netYield": {
-   "interestCollected": 1520,
-   "net": 1520,
-   "recovered": 0,
-   "writtenOff": 0
-  },
+  "humanBorrowers": null,
+  "incrementalHumanBenefit": null,
+  "profileIngestion": "disabled",
   "repaymentRate": {
    "closedLoans": 27,
    "defaulted": 0,
@@ -424,10 +418,7 @@ window.LENDING_SNAPSHOT = {
    "rate": 1.0,
    "repaid": 27
   },
-  "uniqueRepayingBorrowers": {
-   "attested": 0,
-   "unattested": 10
-  }
+  "sponsorExpenditure": null
  },
  "loanStatus": {
   "Active": 0,
@@ -450,7 +441,7 @@ window.LENDING_SNAPSHOT = {
    "disbursed": null,
    "dueAt": null,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 1,
    "impaired": 0,
    "interest": 0,
@@ -488,7 +479,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793916304,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 2,
    "impaired": 0,
    "interest": 0,
@@ -534,7 +525,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793918690,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 3,
    "impaired": 0,
    "interest": 0,
@@ -580,7 +571,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793919760,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 4,
    "impaired": 0,
    "interest": 0,
@@ -626,7 +617,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793920766,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 5,
    "impaired": 0,
    "interest": 0,
@@ -672,7 +663,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793921666,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 6,
    "impaired": 0,
    "interest": 0,
@@ -718,7 +709,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793922192,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 7,
    "impaired": 0,
    "interest": 0,
@@ -764,7 +755,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793922270,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 8,
    "impaired": 0,
    "interest": 0,
@@ -810,7 +801,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793922350,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 9,
    "impaired": 0,
    "interest": 0,
@@ -856,7 +847,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793922432,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 10,
    "impaired": 0,
    "interest": 0,
@@ -902,7 +893,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793922722,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 11,
    "impaired": 0,
    "interest": 0,
@@ -948,7 +939,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793923790,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 12,
    "impaired": 0,
    "interest": 0,
@@ -994,7 +985,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793924116,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 13,
    "impaired": 0,
    "interest": 0,
@@ -1040,7 +1031,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793924590,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 14,
    "impaired": 0,
    "interest": 0,
@@ -1086,7 +1077,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793925170,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 15,
    "impaired": 0,
    "interest": 0,
@@ -1132,7 +1123,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793925264,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 16,
    "impaired": 0,
    "interest": 0,
@@ -1178,7 +1169,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x108450c748eef7aef23e64739bc508f56e596247",
    "dueAt": 1793930654,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 17,
    "impaired": 0,
    "interest": 0,
@@ -1224,7 +1215,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0xd3a74aed54c7c5aa90983c7447310d84201d8d3d",
    "dueAt": 1794065804,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 18,
    "impaired": 0,
    "interest": 0,
@@ -1270,7 +1261,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x05fda08765e884eadf17fe4a37ac181ca9dcb193",
    "dueAt": 1794065950,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 19,
    "impaired": 0,
    "interest": 0,
@@ -1316,7 +1307,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x329218eaa9bf0edf1af280f15b783bb42133f438",
    "dueAt": 1794066082,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 20,
    "impaired": 0,
    "interest": 0,
@@ -1362,7 +1353,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x46e9799dfd1b2e19e692c5b0ae72954fc8776bd1",
    "dueAt": 1794067240,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 21,
    "impaired": 0,
    "interest": 0,
@@ -1408,7 +1399,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x7e56ccfc4aebcbe2aafc37ccb3e19567446e9aa2",
    "dueAt": 1794067380,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 22,
    "impaired": 0,
    "interest": 0,
@@ -1454,7 +1445,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x86e2c1666d382c89d3f41ec00577b659defee74e",
    "dueAt": 1794067514,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 23,
    "impaired": 0,
    "interest": 0,
@@ -1500,7 +1491,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x9ecdaae8635f06a26cd27f686697e97aa293af04",
    "dueAt": 1794165110,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 24,
    "impaired": 0,
    "interest": 0,
@@ -1546,7 +1537,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
    "dueAt": 1796162429,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 25,
    "impaired": 0,
    "interest": 0,
@@ -1592,7 +1583,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0x4c5efd2583d6f231ccc8a2b2f4a7f63969569bf6",
    "dueAt": 1796162430,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 26,
    "impaired": 0,
    "interest": 0,
@@ -1638,7 +1629,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
    "dueAt": 1796223566,
    "fee": 0,
-   "firstLoan": true,
+   "firstLoan": null,
    "id": 27,
    "impaired": 0,
    "interest": 1520,
@@ -1684,7 +1675,7 @@ window.LENDING_SNAPSHOT = {
    "disbursedTo": "0xab05723f95e191b74710c909dcfb8c5cc8180e68",
    "dueAt": 1796330182,
    "fee": 0,
-   "firstLoan": false,
+   "firstLoan": null,
    "id": 28,
    "impaired": 0,
    "interest": 0,
@@ -1789,46 +1780,35 @@ window.LENDING_SNAPSHOT = {
   "totalStaked": 20000000,
   "utilisationBps": 0
  },
- "profileBreakdown": {
-  "byCountry": {},
-  "byIncomeBand": {},
-  "byOccupation": {},
-  "byPurpose": {}
- },
+ "profileBreakdown": {},
  "profileSchema": {
-  "eas": "0x4200000000000000000000000000000000000021",
-  "registered": false,
-  "registry": "0x4200000000000000000000000000000000000020",
-  "resolver": "0x0000000000000000000000000000000000000000",
-  "revocable": true,
-  "schema": "uint256 loanId,string country,string region,string occupation,string purpose,uint8 incomeBand,uint8 consentVersion",
+  "enabled": false,
   "uid": "0x78e5c1a245b3903ea6b1bcb536e414ffe940b789941a4e9ec66d0afb28113199"
  },
  "profiles": [],
  "snapshot": {
-  "blockHash": "0xfea54699114883de0e6407992dae167999e4165293e7c439ee20f4432e44c77c",
-  "blockNumber": 54145172,
-  "blockTime": "2026-11-04T00:08:23+00:00",
-  "blockTimestamp": 1793750903,
+  "blockHash": "0x8b3fcc9574cb4f311281e612df268d73c1afea8430ec8ac88c46aa4105856edf",
+  "blockNumber": 54899527,
+  "blockTime": "2026-11-05T18:02:54+00:00",
+  "blockTimestamp": 1793901774,
   "chainId": 84532,
+  "collectedAt": "2026-11-05T18:28:35.010892+00:00",
   "collector": "metrics/lending_dashboard.py",
-  "collectorCommit": "737f68c",
+  "collectorCommit": "b51474a957867ac54596251d40301f81a2e745e3",
   "eventCount": 218,
   "explorer": "https://sepolia.basescan.org",
   "fromBlock": 47776780,
+  "fromBlockHash": "0x1591e9e5e890641020c51b873a1aa3e39ca3c0722b824df6e04df5fbcca53741",
   "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
-  "logsRpc": "https://base-sepolia.gateway.tenderly.co",
   "network": "base-sepolia",
   "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
-  "rpcCalls": 250,
-  "scores": "0x554c6bB61eDF0CAfB90ff31813540369Cb0105e4",
-  "stateRpc": "https://sepolia.base.org",
   "token": {
    "address": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
    "decimals": 6,
    "symbol": "USDC",
    "test_token": true
-  }
+  },
+  "verification": "reconciled-finalized-v1"
  },
  "stake": {
   "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462": 15000000,
