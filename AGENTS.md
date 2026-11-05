@@ -1,5 +1,47 @@
 # Microcredit agent entrypoint
 
+
+## Check existing authorization before asking again (November 5, 2026)
+
+Before asking for permission, read the current task instructions, applicable
+project guidance and recorded action-specific decisions. Identify the exact
+repository, action and scope, then check whether existing authorization already
+covers it. Do not request the same authorization again merely because a session
+changed, a tool is unfamiliar or an older instruction says to ask.
+
+Within the authorized scottonchain project scope, reading, inspecting and
+evaluating work are authorized. Proceed autonomously with other already-authorized
+project work, including routine PR submission, review comments, publishing and
+merging, when the applicable requirements are satisfied. A technical capability
+problem is not by itself missing user permission. Use existing approved access;
+verify actual results rather than asking the operator to perform routine work.
+
+Existing authorization does not waive independent review, execution ownership,
+leases, protected-record rules, safe author/committer identities, privacy,
+contact limits, financial restrictions, deployment restrictions, security controls
+or action-specific confirmation requirements. Reading and evaluation do not
+authorize a transaction or mutation. Formal GitHub approval and new credentials
+or expanded access retain their specific gates. Do not bypass a denial through
+another tool or worker, and inspect uncertain outcomes before retrying.
+
+If an action is still blocked, name the exact action, target, missing authority
+or capability, and whether it is pending, denied or uncertain. Complete the
+unblocked authorized work first. Ask only for genuinely missing information or
+an applicable action-specific confirmation, not a renewed blanket authorization.
+The current execution-owner gate still applies to compute-intensive work; this
+instruction does not transfer ownership or activate a paused runner.
+
+## Separate external-repository restriction: gambit/gambit
+
+Do not submit new AI-assisted pull requests to `gambit/gambit`, or pursue its
+SMP scheduler bounty (issue 760), including claims or follow-up solicitation.
+Leave existing contributions unchanged under this restriction; it does not direct
+closure, withdrawal, merging or modification of existing PRs. Do not contact the
+maintainer or make a public announcement on the basis of this policy update.
+This repository-specific restriction is not a general pause on PRs to other
+repositories; their existing authorization and safeguards continue to apply.
+
+
 ## Retrieve lessons before choosing work
 
 Before selecting a mechanism or declaring a blocker, follow the [learning and
