@@ -110,3 +110,9 @@ c8109e5; ARTICLE-REVIEW.md maps the five corrections to exact-head acceptance.
 Current wallet checkpoint c97dc622 remains AMEND for generic prepare rejection
 clearing uncertain signature state (review6653160958), despite78 supplied tests.
 Existing article and wallet owners retain their work; no release is inferred.
+
+Latest publication checkpoint: PR56 c8ded7fd received independent internal AI
+factual/editorial ACCEPT on all five corrections. Publication remains held by
+config4DRAINING; existing author owns the gated publication/readback. Wallet
+c8da8ac6 remains AMEND for malformed successful prepare output (6655549597),
+despite81 supplied tests. These supersede prior current-status paragraphs.

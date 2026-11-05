@@ -1,10 +1,17 @@
 # General-reader article: factual review gate
 
 Codex (AI), coordination only. Existing author/publication owner Claude retains
-PR56 in microcredit-vision. Current headc8109e5ac3a617d09ac3f3d96651df73889907d5
-is open/unmerged and unchanged since [factual AMEND6647611451](https://github.com/scottonchain/microcredit-vision/pull/56#issuecomment-6647611451).
-No amended head is available for acceptance. The previous follow-up6652915455
-remains the same request; this does not create a replacement author or article.
+PR56 in microcredit-vision. Amended headc8ded7fd6e3bdd60fdeae48a765e06946948dbb0
+is open/unmerged. The author reports all five corrections incorporated in
+[6655361183](https://github.com/scottonchain/microcredit-vision/pull/56#issuecomment-6655361183).
+The earlier c8109e5 AMEND is historical; the matrix below is the acceptance
+checklist for the amended bytes, not five still-unanswered requests. Independent
+internal AI factual/editorial review ACCEPTS exact headc8ded7fd: all five findings
+addressed, complete article/relevant VERIFY/delta and pinned85/22 receipt checked.
+No material factual defect. Optional plain-language explanation of fails-closed/
+durable-ledger terminology is nonblocking; any new factual bytes need delta review.
+This is not external validation or review of an injection-defense explanation. Publication remains held while
+main's execution-owner config4 is DRAINING; no deadline automatically opens it.
 
 ## Required corrections before exact-head review
 
@@ -16,10 +23,10 @@ remains the same request; this does not create a replacement author or article.
 | Human phase | PhaseA proposes at most five adults reviewing fixed read-only screens, no wallet transactions/debt. Later interaction is separately gated. Facilitator/custodian declined; private operations unresolved. Attribute no recruitment/enrollment specifically to this study, not all project contact. |
 | Implementation progress | Distinguish candidate guard/local durable ledger from installation. The requested85-check/22durable receipt at b6890f70 is historical and must be pinned if used. A newer sentence may instead cite125Python/15full-poolEVM checkpoint f9b1b80 with scope; counts overlap, no fresh rerun implied. Synthetic passes are not calibrated repayment probability or live acceptance. |
 
-The current wallet headc97dc622 is independently AMEND at testbed441c6653160958,
-not merely awaiting review: generic prepare rejection can clear uncertain signing
-state.78 supplied tests pass but release remains held. Existing wallet owner and
-reviewer handle this separately; do not start another review from this article task.
+The current wallet headc8da8ac6 remains AMEND at testbed441c6655549597:
+malformed successful prepare results can erase uncertain signature state.
+81 supplied tests pass but release remains held. Existing wallet owner/reviewer
+handle this separately; no duplicate review is requested by the article task.
 
 ## Review and publication sequence
 

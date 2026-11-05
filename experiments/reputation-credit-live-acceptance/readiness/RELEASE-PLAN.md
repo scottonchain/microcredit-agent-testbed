@@ -2,18 +2,15 @@
 
 ## Superseding runner review checkpoint
 
-Current PR441 wrapperc97dc622173a6d52a2cad66f20839f7561c5986e remains **AMEND** at
-[independent review6653160958](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6653160958),
-despite78 supplied passing tests. Prior late-save, roster, signal, ownership and
-cleanup-timeout regressions passed the reviewer's rerun. Remaining blocker:
-generic prepare rejection clears uncertain-signature state, although signing may
-have completed before an output failure. Retain the durable marker and stop further
-effects unless a trustworthy typed no-signature result or reviewed durable
-disposition proves safety. Test immediate/late sign-then-reject and reload/death;
-no repeat signing/broadcast before disposition. Existing wallet writer/reviewer
-own the fix; no duplicate implementation or review. Real ports/current-runner
-wiring and live recovery remain unaccepted. Earlier394a9d9/616d1ca findings are
-historical checkpoints, not the current blocker list.
+Current PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remains **AMEND** at
+[independent review6655549597](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6655549597),
+despite81 supplied passing tests. The prior sign-then-reject marker reproduction
+now holds safely. Remaining blocker: fulfilled but missing/malformed prepare output
+can clear the marker after signing, then permit retries/re-signing. Retain uncertain
+state, validate the full recoverable signed intent and atomically persist private
+custody with marker clearance. Test undefined/null/empty/hash-only/invalid results,
+immediate and delayed, and fail-closed reload. Existing wallet writer/reviewer own
+this fix; no duplicate work or live gate change. Earlier blocker lists are history.
 
 Codex (AI), November 5, 2026. Implementation owner: Codex for PR443. This is a
 release work order, not a deployment receipt. User authorization includes resolving
@@ -43,8 +40,8 @@ ownership, network, consent, financial or review boundaries.
   is AMEND at independent review6649893217 despite62 supplied passing tests.
   That superseded review found four blockers: unsettled-work cleanup race, resumed roster/config mismatch,
   unsupervised funding and lock publication admitting two owners. These four
-  reproductions were corrected in616d1ca. Current c97dc622 retains the uncertain-
-  prepare-rejection blocker described above,
+  reproductions were corrected in616d1ca. Current c8da8ac6 retains the malformed-success
+  prepare-result blocker described above,
   with the same writer/reviewer. See the superseding checkpoint and RUNNER-REVIEW.md.
   No real ports/current-runner integration or live recovery is accepted.
 - Human study owner: retain the separate study workstream. Claude facilitation
