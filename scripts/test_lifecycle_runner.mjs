@@ -119,12 +119,31 @@ test('scenario exception: cleanup enters once, the failure is preserved, never a
   assert.ok(!JSON.stringify(r).includes('postgres://')); assert.ok(!fs.readFileSync(t.cfg.journalPath, 'utf8').includes('postgres://'));
 });
 
-test('timeout: a scenario that ignores the abort is left behind, cleanup still runs, success is not reported', async () => {
-  const t = setup({ over: { timeoutMs: 50, settleGraceMs: 50 }, scenario: () => new Promise(() => {}) });
+test('timeout: a scenario that ignores the abort is waited for; its late effects are swept before closure', async () => {
+  // Codex repro: ignores AbortSignal, sleeps 80ms, then a deposit lands in a scenario wallet
+  const t = setup({ n: 1, over: { timeoutMs: 5, settleGraceMs: 5, quiesceMs: 2000 }, scenario: async (_c, { chain }) => { await sleep(80); chain.deposit(addr(1), 5n, 1000n); } });
   const r = await runWithLifecycle(t.cfg);
   assert.equal(r.scenario, 'timeout'); assert.equal(r.ok, false);
-  assert.equal(loadJournal(t.cfg.journalPath).runner.scenarioNotSettled, true);
-  assert.equal(r.status, 'closed'); assert.equal(t.chain.state().fund, '1000');
+  assert.equal(r.status, 'closed'); // only after the scenario really stopped, and the late deposit was swept too
+  assert.equal(t.chain.state().fund, '1005'); assert.equal(t.chain.state().tokens[addr(1)], '0');
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
+});
+
+test('timeout: a scenario that never settles leaves an unresolved state, no cleanup, no closure, and ownership kept', async () => {
+  let release; const gate = new Promise(r => { release = r; });
+  const t = setup({ n: 1, over: { timeoutMs: 5, quiesceMs: 40 }, scenario: () => gate });
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.status, 'unquiesced'); assert.equal(r.unresolved, 'scenario'); assert.equal(r.ok, false); assert.equal(exitCodeFor(r), 2);
+  assert.equal(t.chain.state().signs, 0);                                   // nothing swept while the scenario may still act
+  const j = loadJournal(t.cfg.journalPath);
+  assert.equal(j.status, 'failed_cleanup'); assert.equal(j.runner.phase, 'unquiesced_scenario');
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true);           // ownership is NOT released
+  assert.equal((await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() })).status, 'refused_concurrent');
+  assert.equal(t.calls.fund, 1);
+  release(); await sleep(30);                                               // only now has it actually stopped
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
+  const again = await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() });
+  assert.equal(again.resumed, true); assert.equal(again.status, 'closed'); assert.equal(t.chain.state().fund, '1000');
 });
 
 test('SIGTERM during the scenario cancels it; cleanup enters once even with a second signal', async () => {
@@ -234,7 +253,7 @@ test('lost signer, no gas, an unapproved contract: explicit open status, never c
 test('the first journal write failing refuses funding; a lock is not left behind', async () => {
   const t = setup();
   const real = fs.openSync;
-  fs.openSync = (p, ...a) => { if (String(p).includes('journal.json.') && String(p).endsWith('.tmp')) throw new Error('EACCES'); return real(p, ...a); };
+  fs.openSync = (p, ...a) => { if (String(p).includes('journal.json.') && String(p).endsWith('.tmp') && !String(p).includes('.lock.')) throw new Error('EACCES'); return real(p, ...a); };
   let r; try { r = await runWithLifecycle(t.cfg); } finally { fs.openSync = real; }
   assert.equal(r.status, 'refused_not_persistent'); assert.equal(t.calls.fund, 0);
   assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
@@ -286,11 +305,142 @@ test('concurrent start: the second runner is refused and funds nothing; a stale 
   // a lock from a process that no longer exists is reclaimed
   const t2 = setup();
   fs.mkdirSync(path.dirname(t2.cfg.journalPath), { recursive: true });
-  fs.writeFileSync(t2.cfg.journalPath + '.lock', JSON.stringify({ pid: 2 ** 22 + 12345 }));
+  fs.writeFileSync(t2.cfg.journalPath + '.lock', JSON.stringify({ pid: 2 ** 22 + 12345, token: 'deadbeef' }));
   assert.equal((await runWithLifecycle(t2.cfg)).ok, true);
   // a closed journal cannot be run over
   const again = await runWithLifecycle(t2.cfg);
   assert.equal(again.status, 'refused_already_closed'); assert.equal(t2.calls.fund, 1);
+});
+
+// ---------- Codex review 6649893217: identity, supervised funding, hung ports, lock races ----------
+test('resume refuses a changed roster, address, chain, token or recovery policy with zero effects', async () => {
+  const t = setup({ n: 1, chain: { lost: ['w1'] } });
+  assert.equal((await runWithLifecycle(t.cfg)).status, 'refused_control');           // a journal now exists for roster(1)
+  t.chain.state().lost.length = 0; const used = t.calls.ports;
+  const variants = [
+    { roster: roster(2) },                                                           // Codex repro: w2 added and funded
+    { roster: [{ id: 'w1', address: addr(9), role: 'client' }] },
+    { chainId: 1 }, { token: OTHER }, { dust: 5n }, { approvedContracts: [addr(1)] },
+  ];
+  for (const v of variants) {
+    t.chain.deposit(addr(2), 7n);
+    const r = await runWithLifecycle({ ...t.cfg, ...v, signals: new EventEmitter() });
+    assert.equal(r.status, 'refused_identity_mismatch', JSON.stringify(Object.keys(v)));
+  }
+  assert.equal(t.calls.ports, used); assert.equal(t.calls.fund, 0);                  // not one port call, nothing funded
+  assert.equal(t.chain.state().signs, 0);
+  // the same identity resumes normally
+  assert.equal((await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() })).resumed, true);
+});
+
+test('a journal written without an identity is refused, and chain and token are mandatory', async () => {
+  const t = setup({ n: 1, chain: { lost: ['w1'] } });
+  await runWithLifecycle(t.cfg);
+  const j = JSON.parse(fs.readFileSync(t.cfg.journalPath, 'utf8')); delete j.runner.identity; fs.writeFileSync(t.cfg.journalPath, JSON.stringify(j));
+  assert.equal((await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() })).status, 'refused_identity_mismatch');
+  for (const bad of [{ chainId: undefined }, { token: undefined }, { token: 'USDC' }, { chainId: '84532' }]) {
+    assert.equal((await runWithLifecycle({ ...t.cfg, ...bad })).status, 'refused_config');
+  }
+});
+
+test('funding that never returns is supervised: unresolved state, no cleanup, ownership kept; a signal does not race it', async () => {
+  let release; const gate = new Promise(r => { release = r; });
+  const t = setup({ n: 1, over: { timeoutMs: 20, quiesceMs: 40 } });
+  const placed = t.cfg.fund;
+  t.cfg.fund = async () => { await gate; await placed(); };                          // the transfer can still land later
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.status, 'unquiesced'); assert.equal(r.unresolved, 'funding');
+  assert.equal(loadJournal(t.cfg.journalPath).runner.phase, 'unquiesced_funding');
+  assert.equal(t.chain.state().signs, 0); assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true);
+  release(); await sleep(30);                                                        // it lands after we stopped waiting
+  assert.equal(t.chain.state().fund, '990');
+  const again = await runWithLifecycle({ ...t.cfg, fund: placed, signals: new EventEmitter() });
+  assert.equal(again.resumed, true); assert.equal(again.status, 'closed'); assert.equal(t.chain.state().fund, '1000'); // the late funds were found and swept
+  // the same with a SIGTERM instead of a deadline
+  const t2 = setup({ n: 1, over: { timeoutMs: 5000, quiesceMs: 30 } });
+  t2.cfg.fund = async () => { setTimeout(() => t2.signals.emit('SIGTERM'), 10); await new Promise(() => {}); };
+  const r2 = await runWithLifecycle(t2.cfg);
+  assert.equal(r2.status, 'unquiesced'); assert.equal(r2.interrupted, 'SIGTERM'); assert.equal(t2.chain.state().signs, 0);
+});
+
+test('funding that settles late, inside the quiesce window, is followed by cleanup', async () => {
+  const t = setup({ n: 1, over: { timeoutMs: 10, quiesceMs: 500 } });
+  const placed = t.cfg.fund;
+  t.cfg.fund = async () => { await sleep(60); await placed(); };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.scenario, 'fund_failed'); assert.equal(r.ok, false); assert.equal(t.calls.scenario, 0);
+  assert.equal(r.status, 'closed'); assert.equal(t.chain.state().fund, '1000');
+});
+
+test('a hung cleanup port is bounded: the wallet stays unknown, nothing is closed, the run returns', async () => {
+  const t = setup({ n: 2, over: { portTimeoutMs: 30 } });
+  const real = t.cfg.ports.tokenBalance;
+  let hang = false; const fundFn = t.cfg.fund;
+  t.cfg.fund = async () => { await fundFn(); hang = true; };
+  t.cfg.ports = { ...t.cfg.ports, tokenBalance: (a) => (hang && String(a).toLowerCase() === addr(1) ? new Promise(() => {}) : real(a)) };
+  const started = Date.now();
+  const r = await runWithLifecycle(t.cfg);
+  assert.ok(Date.now() - started < 3000);
+  assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+  assert.equal(r.checkpoint.unresolved.find(u => u.id === 'w1').state, 'unknown');
+  // a hung broadcast keeps its durable intent and is never signed again
+  const t2 = setup({ n: 1, over: { portTimeoutMs: 30 } });
+  const rb = t2.cfg.ports.broadcast; let hung = true;
+  t2.cfg.ports = { ...t2.cfg.ports, broadcast: (raw) => (hung ? new Promise(() => {}) : rb(raw)) };
+  const r2 = await runWithLifecycle(t2.cfg);
+  assert.equal(r2.ok, false);
+  const hash = loadJournal(t2.cfg.journalPath).wallets.w1.sweep.hash;
+  assert.ok(hash);
+  const signs = t2.chain.state().signs; hung = false;
+  await runWithLifecycle({ ...t2.cfg, signals: new EventEmitter() });
+  assert.equal(t2.chain.state().signs, signs + 1 /* only the gas return, never a second token signature */);
+});
+
+test('lock creation window: an entrant sees no half-written lock, so there is exactly one owner', async () => {
+  const t = setup({ n: 1 });
+  const cfg2 = { ...t.cfg, signals: new EventEmitter() };
+  let second = null; let armed = true;
+  const real = fs.writeSync;
+  fs.writeSync = (fd, ...a) => {
+    if (armed && String(a[0]).includes('"pid"') && !String(a[0]).includes('"schema"')) { armed = false; second = runWithLifecycle(cfg2); } // a second entrant starts mid-publication
+    return real(fd, ...a);
+  };
+  let first; try { first = await runWithLifecycle(t.cfg); } finally { fs.writeSync = real; }
+  const other = await second;
+  const statuses = [first.status, other.status];
+  assert.equal(statuses.filter(x => x === 'refused_concurrent').length, 1, JSON.stringify(statuses));
+  assert.equal(t.calls.fund, 1);
+});
+
+test('stale reclamation with competing entrants has one owner; malformed locks fail closed; release never removes a successor', async () => {
+  const t = setup({ n: 1 });
+  fs.mkdirSync(path.dirname(t.cfg.journalPath), { recursive: true });
+  fs.writeFileSync(t.cfg.journalPath + '.lock', JSON.stringify({ pid: 2 ** 22 + 777, token: 'stale' }));
+  const [a, b] = await Promise.all([runWithLifecycle(t.cfg), runWithLifecycle({ ...t.cfg, signals: new EventEmitter() })]);
+  assert.equal(t.calls.fund, 1, JSON.stringify([a.status, b.status]));
+  assert.ok([a.status, b.status].includes('closed'));
+  assert.ok(!(a.ok && b.ok));
+  // malformed or partial locks are never treated as stale
+  for (const junk of ['', '{', '{"pid":1}', 'null', '{"pid":"x","token":1}']) {
+    const u = setup({ n: 1 });
+    fs.mkdirSync(path.dirname(u.cfg.journalPath), { recursive: true });
+    fs.writeFileSync(u.cfg.journalPath + '.lock', junk);
+    assert.equal((await runWithLifecycle(u.cfg)).status, 'refused_concurrent', JSON.stringify(junk));
+    assert.equal(fs.readFileSync(u.cfg.journalPath + '.lock', 'utf8'), junk); assert.equal(u.calls.fund, 0);
+  }
+  // a lock replaced by a successor is not removed by the previous owner's release
+  const v = setup({ n: 1, scenario: async () => { fs.writeFileSync(v.cfg.journalPath + '.lock', JSON.stringify({ pid: process.pid, token: 'successor' })); } });
+  const r = await runWithLifecycle(v.cfg);
+  assert.equal(r.status, 'closed');
+  assert.equal(JSON.parse(fs.readFileSync(v.cfg.journalPath + '.lock', 'utf8')).token, 'successor');
+  // a reclaim guard left by a dead process is cleared, never wedges the journal forever
+  const w = setup({ n: 1 });
+  fs.mkdirSync(path.dirname(w.cfg.journalPath), { recursive: true });
+  fs.writeFileSync(w.cfg.journalPath + '.lock', JSON.stringify({ pid: 2 ** 22 + 5, token: 'old' }));
+  fs.writeFileSync(w.cfg.journalPath + '.lock.reclaim', JSON.stringify({ pid: 2 ** 22 + 6, token: 'g' }));
+  const first = await runWithLifecycle(w.cfg);
+  const second = await runWithLifecycle({ ...w.cfg, signals: new EventEmitter() });
+  assert.ok([first.status, second.status].includes('closed'), JSON.stringify([first.status, second.status]));
 });
 
 // ---------- real processes: signals and crashes at each durable boundary ----------
