@@ -119,8 +119,8 @@ class AggregationTest(unittest.TestCase):
         self.assertEqual(by_id[1]["status"], "Repaid")
         self.assertTrue(by_id[1]["onTime"])
         self.assertEqual(by_id[1]["interest"], 100_000)
-        self.assertTrue(by_id[1]["firstLoan"])
-        self.assertFalse(by_id[3]["firstLoan"])
+        self.assertIsNone(by_id[1]["firstLoan"])
+        self.assertIsNone(by_id[3]["firstLoan"])
         self.assertEqual(by_id[2]["closed"]["as"], "Defaulted")
         self.assertEqual(by_id[2]["writtenOff"], 15_000_000)
         self.assertEqual(by_id[3]["status"], "Active")
@@ -130,17 +130,12 @@ class AggregationTest(unittest.TestCase):
         stake = ld.stake_by_account(self.events)
         metrics = ld.human_metrics(self.loans, [], stake)
         self.assertEqual(metrics["repaymentRate"], {"closedLoans": 2, "repaid": 1, "defaulted": 1, "onTime": 1, "rate": 0.5})
-        self.assertEqual(metrics["uniqueRepayingBorrowers"], {"attested": 0, "unattested": 1})
-        self.assertAlmostEqual(metrics["firstTimeBorrowerShare"], 30 / 42)
-        self.assertEqual(metrics["disbursedToBorrowersWithNoOwnStake"], {"borrowers": 1, "ofBorrowers": 2})
-        self.assertEqual(metrics["netYield"]["net"], 100_000 - 15_000_000 + 5_000_000)
-        profile = {"loanId": 1, "borrower": "0x" + "aa" * 20, "country": "GT", "region": "", "occupation": "farmer",
-                   "purpose": "inputs", "incomeBand": 1, "incomeBandLabel": ld.INCOME_BANDS[1]}
-        attested = ld.human_metrics(self.loans, [profile], stake)
-        self.assertEqual(attested["uniqueRepayingBorrowers"], {"attested": 1, "unattested": 0})
-        self.assertEqual(attested["attestedLoans"], {"withProfile": 1, "ofLoans": 3})
-        self.assertEqual(ld.profile_breakdown([profile])["byCountry"], {"GT": 1})
-        self.assertEqual(ld.profile_breakdown([profile])["byOccupation"], {"farmer": 1})
+        self.assertIsNone(metrics["humanBorrowers"])
+        self.assertIsNone(metrics["sponsorExpenditure"])
+        self.assertNotIn("netYield", metrics)
+        self.assertNotIn("firstTimeBorrowerShare", metrics)
+        self.assertEqual(ld.human_metrics(self.loans, [{"loanId": 1, "borrower": "unverified"}], stake), metrics)
+        self.assertEqual(ld.profile_breakdown([{"country": "private"}]), {})
 
     def test_backing_and_monthly(self):
         self.assertEqual(ld.backing_edges(self.events), [])  # the second Backed event cleared the edge

@@ -1,0 +1,42 @@
+test_decode_dynamic_values (metrics.test_lending_dashboard.AbiTest.test_decode_dynamic_values) ... ok
+test_decode_log_backed (metrics.test_lending_dashboard.AbiTest.test_decode_log_backed) ... ok
+test_profile_roundtrip (metrics.test_lending_dashboard.AbiTest.test_profile_roundtrip) ... ok
+test_backing_and_monthly (metrics.test_lending_dashboard.AggregationTest.test_backing_and_monthly) ... ok
+test_human_metrics (metrics.test_lending_dashboard.AggregationTest.test_human_metrics) ... ok
+test_loans (metrics.test_lending_dashboard.AggregationTest.test_loans) ... ok
+test_known_vectors (metrics.test_lending_dashboard.KeccakTest.test_known_vectors) ... ok
+test_profile_schema_uid_is_deterministic (metrics.test_lending_dashboard.KeccakTest.test_profile_schema_uid_is_deterministic) ... ok
+test_selector_and_topics_match_the_contract (metrics.test_lending_dashboard.KeccakTest.test_selector_and_topics_match_the_contract) ... ok
+test_logs_give_up_below_the_public_cap (metrics.test_lending_dashboard.RpcTest.test_logs_give_up_below_the_public_cap) ... ok
+test_logs_split_until_the_node_accepts (metrics.test_lending_dashboard.RpcTest.test_logs_split_until_the_node_accepts) ... ok
+test_no_network_on_import_or_schema_uid (metrics.test_lending_dashboard.RpcTest.test_no_network_on_import_or_schema_uid) ... ok
+test_committed_snapshot_shape (metrics.test_lending_dashboard.SnapshotFileTest.test_committed_snapshot_shape) ... ok
+test_boundary_mismatch_fails (metrics.test_lending_dashboard_safety.CollectionTests.test_boundary_mismatch_fails) ... ok
+test_either_wrong_chain_fails (metrics.test_lending_dashboard_safety.CollectionTests.test_either_wrong_chain_fails) ... ok
+test_empty_inventory_and_zero_pool_is_valid (metrics.test_lending_dashboard_safety.CollectionTests.test_empty_inventory_and_zero_pool_is_valid) ... ok
+test_failure_preserves_snapshot_and_records_only_attempt (metrics.test_lending_dashboard_safety.CollectionTests.test_failure_preserves_snapshot_and_records_only_attempt) ... Collection failed; last successful snapshot preserved.
+ok
+test_final_hash_change_on_either_provider_fails (metrics.test_lending_dashboard_safety.CollectionTests.test_final_hash_change_on_either_provider_fails) ... ok
+test_incomplete_start_or_unfinalized_block_fails (metrics.test_lending_dashboard_safety.CollectionTests.test_incomplete_start_or_unfinalized_block_fails) ... ok
+test_inventory_one_empty_history_fails (metrics.test_lending_dashboard_safety.CollectionTests.test_inventory_one_empty_history_fails) ... ok
+test_profile_publication_rejected (metrics.test_lending_dashboard_safety.CollectionTests.test_profile_publication_rejected) ... ok
+test_unchanged_ledger_gets_new_success_time (metrics.test_lending_dashboard_safety.CollectionTests.test_unchanged_ledger_gets_new_success_time) ... ok
+test_meta_repayment_normalizes_once (metrics.test_lending_dashboard_safety.EndToEndCollectionTests.test_meta_repayment_normalizes_once) ... ok
+test_missing_repayment_fails_full_collection (metrics.test_lending_dashboard_safety.EndToEndCollectionTests.test_missing_repayment_fails_full_collection) ... ok
+test_nonempty_full_collection_actual_public_abi (metrics.test_lending_dashboard_safety.EndToEndCollectionTests.test_nonempty_full_collection_actual_public_abi) ... ok
+test_wrong_event_block_hash_fails (metrics.test_lending_dashboard_safety.EndToEndCollectionTests.test_wrong_event_block_hash_fails) ... ok
+test_conflicting_duplicate_fails (metrics.test_lending_dashboard_safety.LogTests.test_conflicting_duplicate_fails) ... ok
+test_duplicates_count_once (metrics.test_lending_dashboard_safety.LogTests.test_duplicates_count_once) ... ok
+test_wrong_address_range_or_removed_fails (metrics.test_lending_dashboard_safety.LogTests.test_wrong_address_range_or_removed_fails) ... ok
+test_complete_synthetic_ledger (metrics.test_lending_dashboard_safety.ReconcileTests.test_complete_synthetic_ledger) ... ok
+test_empty_logs_with_actual_inventory_fails (metrics.test_lending_dashboard_safety.ReconcileTests.test_empty_logs_with_actual_inventory_fails) ... ok
+test_forgiven_dust_holds_instead_of_guessing_reserve (metrics.test_lending_dashboard_safety.ReconcileTests.test_forgiven_dust_holds_instead_of_guessing_reserve) ... ok
+test_missing_each_financial_event_fails (metrics.test_lending_dashboard_safety.ReconcileTests.test_missing_each_financial_event_fails) ... ok
+test_pool_stock_mismatches_fail (metrics.test_lending_dashboard_safety.ReconcileTests.test_pool_stock_mismatches_fail) ... ok
+test_profile_ingestion_never_calls_provider (metrics.test_lending_dashboard_safety.ReconcileTests.test_profile_ingestion_never_calls_provider) ... ok
+test_wrong_borrower_amount_time_and_paid_state_fail (metrics.test_lending_dashboard_safety.ReconcileTests.test_wrong_borrower_amount_time_and_paid_state_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.348s
+
+OK

@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
-"""Lending dashboard collector: one on-chain snapshot of the pool's lending economy.
+"""Read-only testnet ledger collector. No profiles, keys or transactions.
 
-Reads the recorded Base Sepolia pool (deployments/current.json) with plain JSON-RPC and
-no external packages: every loan's events, the pool's balance sheet at one block, and the
-anonymized borrower profiles attested on-chain under the Omnequa profile schema (EAS).
-Writes dashboard/data/snapshot.json plus snapshot.js for dashboard/index.html.
-
-No transaction is sent and no key is read. Exit 0 means a complete snapshot at one block
-hash; the block is re-read at the end and a changed hash discards the snapshot.
-
-Event-based human-benefit metrics (METRICS.md 1 to 4, 8 and 10) are recomputed here from
-the public ledger. A testnet repayment is not human benefit; "attested" counts come only
-from profile attestations, and there are none until the steward registers the schema.
+A successful collection reconciles inventory and stocks against provider-supplied
+logs requested over the deployment-to-finalized range. Matching provider headers
+and state do not independently prove event completeness; balanced omissions can pass. Failure preserves the last good snapshot.
+Ledger activity establishes neither human identity nor incremental human benefit.
 """
 import argparse
 from datetime import datetime, timezone
@@ -21,6 +14,7 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+import tempfile
 import urllib.error
 import urllib.request
 
@@ -51,6 +45,7 @@ POOL_EVENTS = (
     "BackerCharged(address indexed backer,uint256 indexed loanId,uint256 slashed,uint256 charged)",
     "Backed(address indexed backer,address indexed borrower,uint256 secured,uint256 unsecured)",
     "LoanRepaid(address indexed borrower,uint256 indexed loanId,uint256 amount)",
+    "MetaLoanRepaid(address indexed borrower,uint256 indexed loanId,uint256 amount)",
     "RepaymentApplied(uint256 indexed loanId,uint256 interest,uint256 principal,uint256 fee)",
     "ReserveFunded(address indexed from,uint256 amount)",
     "ReserveReleased(uint256 amount)",
@@ -194,14 +189,17 @@ class RpcError(RuntimeError):
 
 
 class Rpc:
-    def __init__(self, url, timeout=60, retries=4):
+    def __init__(self, url, timeout=15, retries=2):
         self.url, self.timeout, self.retries = url, timeout, retries
         self.calls = 0
+        self.deadline = time.monotonic() + 600
 
     def request(self, method, params):
         body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
         last = None
         for attempt in range(self.retries):
+            if time.monotonic() >= self.deadline:
+                raise RpcError("collection time budget exceeded")
             try:
                 # Cloudflare in front of sepolia.base.org rejects the default Python user agent with 403.
                 headers = {"content-type": "application/json", "user-agent": "microcredit-lending-dashboard/1"}
@@ -210,12 +208,12 @@ class Rpc:
                     payload = json.load(response)
                 self.calls += 1
                 if "error" in payload:
-                    raise RpcError(f"{method}: {payload['error'].get('message', payload['error'])}")
+                    raise RpcError("provider rejected request")
                 return payload["result"]
             except (urllib.error.URLError, TimeoutError, ValueError) as error:
                 last = error
                 time.sleep(2 ** attempt)
-        raise RpcError(f"{method} failed after {self.retries} attempts: {last}")
+        raise RpcError("provider request failed")
 
     def block(self, number="latest"):
         tag = number if isinstance(number, str) else hex(number)
@@ -232,7 +230,7 @@ class Rpc:
         raw = self.request("eth_call", [{"to": to, "data": data}, tag])
         return decode_values(types, raw) if types else raw
 
-    def logs(self, addresses, from_block, to_block, topics=None, chunk=500_000):
+    def logs(self, addresses, from_block, to_block, topics=None, chunk=10_000):
         """eth_getLogs over a range, splitting the range when the node refuses it."""
         found, start = [], from_block
         while start <= to_block:
@@ -295,41 +293,31 @@ def decode_profile(data):
 
 
 def read_attestations(rpc, logs_rpc, block, from_block, pool_address, schema):
-    events = {parse_event(s)["topic"]: parse_event(s) for s in EAS_EVENTS}
-    raw = logs_rpc.logs([EAS], from_block, block, topics=[[e["topic"] for e in events.values()], None, None, schema["uid"]])
-    revoked = set()
-    attested = []
-    for log in sorted(raw, key=lambda l: (as_int(l["blockNumber"]), as_int(l["logIndex"]))):
-        decoded = decode_log(events, log)
-        if decoded is None:
-            continue
-        if decoded["event"] == "Revoked":
-            revoked.add(decoded["args"]["uid"])
-        else:
-            attested.append(decoded)
-    profiles = []
-    types = ["bytes32", "bytes32", "uint64", "uint64", "uint64", "bytes32", "address", "address", "bool", "bytes"]
-    for item in attested:
-        uid = item["args"]["uid"]
-        raw_attestation = rpc.call(EAS, "getAttestation(bytes32)", uid, block=block)
-        fields = decode_values(types, "0x" + raw_attestation[2 + 64:])
-        if fields[4] or uid in revoked:
-            continue  # revoked: the borrower withdrew consent
-        try:
-            profile = decode_profile(fields[9])
-        except (ValueError, IndexError):
-            continue
-        profile.update({"uid": uid, "attester": fields[7].lower(), "borrower": fields[6].lower(),
-                        "attestedAt": fields[2], "tx": item["tx"], "block": item["block"]})
-        profiles.append(profile)
-    return profiles
+    # Disabled irrespective of attester, consent claims, expiry or loan linkage.
+    # Do not fetch or publish personal attributes, even if supplied by a provider.
+    return []
 
 
 def read_pool_logs(logs_rpc, pool_address, from_block, block):
     events = {parse_event(s)["topic"]: parse_event(s) for s in POOL_EVENTS}
     raw = logs_rpc.logs([pool_address], from_block, block)
-    decoded = [decode_log(events, log) for log in raw]
-    decoded = [d for d in decoded if d is not None]
+    seen, decoded = {}, []
+    for log in raw:
+        if (log.get("removed") or log["address"].lower() != pool_address.lower()
+                or not from_block <= as_int(log["blockNumber"]) <= block):
+            raise RpcError("invalid log boundary")
+        key = (as_int(log["blockNumber"]), as_int(log["logIndex"]))
+        if key in seen:
+            if seen[key] != log:
+                raise RpcError("conflicting duplicate log")
+            continue
+        seen[key] = log
+        item = decode_log(events, log)
+        if item is not None:
+            if item["event"] == "MetaLoanRepaid":
+                item["event"] = "LoanRepaid"
+            item["blockHash"] = log["blockHash"].lower()
+            decoded.append(item)
     decoded.sort(key=lambda d: (d["block"], d["logIndex"]))
     return decoded
 
@@ -359,18 +347,19 @@ def build_loans(events, times, loan_terms):
         if name == "LoanRequested":
             loan.update(borrower=args["borrower"].lower(), principal=args["amount"], rateBps=args["interestRate"],
                         requested=when)
-            loan["firstLoan"] = loan["borrower"] not in first_seen
+            loan["firstLoan"] = None
             first_seen.setdefault(loan["borrower"], args["loanId"])
         elif name == "LoanDisbursed":
             loan["disbursed"] = when
             loan["disbursedTo"] = args["to"].lower()
-        elif name == "LoanRepaid":
+        elif name == "LoanRepaid" and args["amount"] > 0:
             loan["repayments"].append({**when, "amount": args["amount"]})
             loan["repaid"] += args["amount"]
         elif name == "RepaymentApplied":
             loan["interest"] += args["interest"]
             loan["principalRepaid"] += args["principal"]
             loan["fee"] += args["fee"]
+            loan["impaired"] = max(0, loan["impaired"] - args["principal"])
         elif name == "LoanCancelled":
             loan["closed"] = {**when, "as": "Cancelled"}
         elif name == "LoanDefaulted":
@@ -384,6 +373,8 @@ def build_loans(events, times, loan_terms):
     for ident, loan in loans.items():
         status, term, requested_at, disbursed_at, due_at = loan_terms[ident]
         loan["status"] = STATUS[status] if 0 <= status < len(STATUS) else f"unknown({status})"
+        if loan["status"] in ("Repaid", "Defaulted", "Cancelled"):
+            loan["impaired"] = 0
         loan["termDays"] = term // 86400
         loan["dueAt"] = due_at or None
         if loan["status"] == "Repaid" and loan["repayments"]:
@@ -446,48 +437,29 @@ def stake_by_account(events):
     for item in events:
         if item["event"] == "Staked":
             stake[item["args"]["account"].lower()] = stake.get(item["args"]["account"].lower(), 0) + item["args"]["amount"]
+        elif item["event"] == "BackerCharged":
+            a = item["args"]["backer"].lower()
+            stake[a] = stake.get(a, 0) - item["args"]["slashed"]
         elif item["event"] == "Unstaked":
             stake[item["args"]["account"].lower()] = stake.get(item["args"]["account"].lower(), 0) - item["args"]["amount"]
     return stake
 
 
 def human_metrics(loans, profiles, stake):
-    """METRICS.md 1 to 4, 8 and 10, split attested (profile on-chain) versus unattested."""
-    attested_loans = {p["loanId"] for p in profiles}
-    attested_borrowers = {p["borrower"] for p in profiles}
+    """Loan outcomes only. Neither wallets nor profiles establish human counts."""
     repaid = [l for l in loans if l["status"] == "Repaid"]
     closed = [l for l in loans if l["status"] in ("Repaid", "Defaulted")]
-    disbursed = [l for l in loans if l["disbursed"]]
-    unique_repaying = {l["borrower"] for l in repaid}
-    first_principal = sum(l["principal"] for l in disbursed if l["firstLoan"])
-    total_principal = sum(l["principal"] for l in disbursed)
-    no_stake_borrowers = {l["borrower"] for l in disbursed if stake.get(l["borrower"], 0) <= 0}
-    interest = sum(l["interest"] for l in loans)
-    written_off = sum(l["writtenOff"] for l in loans)
-    recovered = sum(l["recovered"] for l in loans)
-    return {
-        "uniqueRepayingBorrowers": {"attested": len(unique_repaying & attested_borrowers),
-                                    "unattested": len(unique_repaying - attested_borrowers)},
-        "firstTimeBorrowerShare": (first_principal / total_principal) if total_principal else None,
-        "disbursedToBorrowersWithNoOwnStake": {"borrowers": len(no_stake_borrowers), "ofBorrowers": len({l["borrower"] for l in disbursed})},
-        "repaymentRate": {"closedLoans": len(closed), "repaid": len(repaid),
-                          "defaulted": len([l for l in closed if l["status"] == "Defaulted"]),
-                          "onTime": len([l for l in repaid if l.get("onTime")]),
-                          "rate": (len(repaid) / len(closed)) if closed else None},
-        "attestedLoans": {"withProfile": len([l for l in loans if l["id"] in attested_loans]), "ofLoans": len(loans)},
-        "netYield": {"interestCollected": interest, "writtenOff": written_off, "recovered": recovered,
-                     "net": interest - written_off + recovered},
-    }
+    return {"repaymentRate": {"closedLoans": len(closed), "repaid": len(repaid),
+             "defaulted": len(closed) - len(repaid),
+             "onTime": sum(bool(l.get("onTime")) for l in repaid),
+             "rate": len(repaid) / len(closed) if closed else None},
+            "humanBorrowers": None, "sponsorExpenditure": None,
+            "incrementalHumanBenefit": None, "profileIngestion": "disabled"}
 
 
 def profile_breakdown(profiles):
-    def count(key):
-        out = {}
-        for p in profiles:
-            out[p[key] or "not stated"] = out.get(p[key] or "not stated", 0) + 1
-        return dict(sorted(out.items(), key=lambda kv: (-kv[1], kv[0])))
-    return {"byCountry": count("country"), "byOccupation": count("occupation"), "byPurpose": count("purpose"),
-            "byIncomeBand": count("incomeBandLabel")}
+    # Do not derive demographic buckets from supplied personal data.
+    return {}
 
 
 PAGE_CALLS = ("totalAssets()", "lenderCash()", "totalLentOut()", "reservedLiquidity()", "firstLossReserve()",
@@ -503,84 +475,207 @@ def abi_for_page():
 
 def git_head():
     try:
-        return subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True,
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True,
                               check=True).stdout.strip()
     except (OSError, subprocess.CalledProcessError):
         return None
 
 
-def collect(deployment, rpc, logs_rpc, block="latest", from_block=DEPLOYMENT_BLOCK):
-    chain = as_int(rpc.request("eth_chainId", []))
-    if chain != deployment["chain_id"]:
-        raise RpcError(f"RPC chain is {chain}; expected {deployment['chain_id']}")
-    header = rpc.block(block)
-    number = as_int(header["number"])
-    pool_address = deployment["pool"]
-    wired = rpc.call(pool_address, "usdc()", block=number, types=["address"])[0]
-    if wired.lower() != deployment["token"]["address"].lower():
-        raise RpcError("pool token wiring does not match the deployment descriptor")
+def reconcile(events, loans, records, pool):
+    """Contract 1812e7d: lifecycle, cash, shares, stake, reserve and principal.
 
+    Public getLoan/getLoanTerms state is read separately from provider-supplied logs.
+    This is inventory/stock reconciliation, not independent proof of complete history:
+    balanced omitted deposits/withdrawals can leave all checked stocks unchanged.
+    Production records have repaid/principal_repaid=None (no public getters).
+    Populated values in unit fixtures are stronger synthetic oracles only.
+    Sub-cent principal forgiveness is a loss, not a repayment. Default recovery
+    includes reserve absorption, not only cash.
+    """
+    def require(ok):
+        if not ok:
+            raise RpcError("incomplete or inconsistent ledger")
+    require({l["id"] for l in loans} == set(records))
+    for loan in loans:
+        ident = loan["id"]
+        principal, repaid, principal_repaid, borrower, rate, term, requested, disbursed, status, impaired = records[ident][:10]
+        items = [e for e in events if e["args"].get("loanId") == ident]
+        names = [e["event"] for e in items]
+        require(names.count("LoanRequested") == 1)
+        require(1 <= status <= 5)
+        require(names.count("LoanDisbursed") == (1 if disbursed else 0))
+        require(names.count("LoanCancelled") == (1 if status == 5 else 0))
+        require(names.count("LoanDefaulted") == (1 if status == 4 else 0))
+        require((status in (2, 3, 4)) == bool(disbursed))
+        require(loan["principal"] == principal and loan["borrower"] == borrower.lower())
+        require(repaid is None or loan["repaid"] == repaid)
+        require(principal_repaid is None or loan["principalRepaid"] == principal_repaid)
+        repaid, principal_repaid = loan["repaid"], loan["principalRepaid"]
+        if len(records[ident]) > 10 and status in (1, 2):
+            timestamp, outstanding = records[ident][11], records[ident][10]
+            elapsed = timestamp - disbursed if disbursed else 0
+            interest = (principal * rate // 10000) * elapsed // (365 * 86400) if elapsed >= 86400 else 0
+            require(outstanding == max(0, principal + interest - repaid))
+        require(loan["interest"] + principal_repaid == repaid and loan["rateBps"] == rate)
+        require(loan["requested"]["time"] == requested)
+        require(not disbursed or loan["disbursed"]["time"] == disbursed)
+        require(not disbursed or requested <= disbursed)
+        require(status != 3 or (bool(loan["repayments"]) and principal - principal_repaid < 10_000))
+        require(0 <= principal_repaid <= principal)
+        if status == 4:
+            require(loan["writtenOff"] == principal - principal_repaid)
+        # Each applied payment must have its paid event in the same transaction.
+        for tx in {e["tx"] for e in items}:
+            paid = sum(e["args"]["amount"] for e in items if e["tx"] == tx and e["event"] == "LoanRepaid")
+            applied = sum(e["args"]["principal"] + e["args"]["interest"] for e in items
+                          if e["tx"] == tx and e["event"] == "RepaymentApplied")
+            require(paid == applied)
+        for e in items:
+            args = e["args"]
+            require("borrower" not in args or args["borrower"].lower() == borrower.lower())
+            require(e["event"] != "LoanDisbursed" or args["amount"] == principal)
+    def total(name, field):
+        return sum(e["args"][field] for e in events if e["event"] == name)
+    require(pool["totalLentOut"] == sum(l["principal"] - l["principalRepaid"] for l in loans if l["status"] == "Active"))
+    require(pool["reservedLiquidity"] == sum(r[0] for r in records.values() if r[8] == 1))
+    require(pool["totalImpaired"] == sum(l["impaired"] for l in loans))
+    cash = (total("Deposited", "assets") - total("Withdrawn", "assets") + total("ReserveFunded", "amount")
+            - total("LoanDisbursed", "amount") + total("LoanRepaid", "amount")
+            - total("RepaymentApplied", "fee") + total("BackerCharged", "slashed"))
+    require(cash == pool["lenderCash"])
+    require(pool["totalShares"] == total("Deposited", "shares") - total("Withdrawn", "shares"))
+    require(pool["totalStaked"] == sum(stake_by_account(events).values()))
+    forgiven = sum(l["principal"] - l["principalRepaid"] for l in loans if l["status"] == "Repaid")
+    # Reserve absorption of forgiven dust is capped by the reserve at that moment;
+    # replay cash allocations to preserve that cap rather than assume all dust is covered.
+    # If dust exists, exact reserve reconciliation needs allocation events not in this ABI.
+    # Every later full-range collection still contains this event and fails too,
+    # until an exact, separately reviewed forgiveness accounting method is supported.
+    require(forgiven == 0)  # conservative refusal; never publish a guessed reserve flow
+    reserve = (total("ReserveFunded", "amount") + pool["totalDuesPaid"] - total("ReserveReleased", "amount")
+               - total("LoanDefaulted", "recovered") + total("BackerCharged", "slashed"))
+    require(pool["firstLossReserve"] == reserve)
+    require(pool["totalAssets"] == max(0, cash + pool["totalLentOut"]
+                                       - max(pool["firstLossReserve"], pool["totalImpaired"])))
+
+
+def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_BLOCK):
+    if from_block != DEPLOYMENT_BLOCK:
+        raise RpcError("deployment-to-boundary log range required")
+    chain = deployment["chain_id"]
+    for provider in (rpc, logs_rpc):
+        if as_int(provider.request("eth_chainId", [])) != chain:
+            raise RpcError("provider chain mismatch")
+    finalized = [p.block("finalized") for p in (rpc, logs_rpc)]
+    ceiling = min(as_int(h["number"]) for h in finalized)
+    number = ceiling if block in ("latest", "finalized") else as_int(block)
+    if not from_block <= number <= ceiling:
+        raise RpcError("block outside finalized history")
+    header = rpc.block(number)
+    if as_int(header["number"]) != number:
+        raise RpcError("wrong state boundary")
+    def match(number, expected):
+        for provider in (rpc, logs_rpc):
+            h = provider.block(number)
+            if (as_int(h["number"]) != number or h["hash"].lower() != expected["hash"].lower()
+                    or as_int(h["timestamp"]) != as_int(expected["timestamp"])):
+                raise RpcError("provider block mismatch")
+    match(number, header)
+    start = rpc.block(from_block)
+    match(from_block, start)
+    pool_address = deployment["pool"]
+    if rpc.call(pool_address, "usdc()", block=number, types=["address"])[0].lower() != deployment["token"]["address"].lower():
+        raise RpcError("pool token wiring mismatch")
     pool = {name: rpc.call(pool_address, f"{name}()", block=number, types=["uint256"])[0] for name in POOL_FIELDS}
     pool["sharePrice"] = rpc.call(deployment["lens"], "sharePrice()", block=number, types=["uint256"])[0]
     pool["utilisationBps"] = rpc.call(deployment["lens"], "getUtilisation()", block=number, types=["uint256"])[0]
-    pool["lenders"] = [a.lower() for a in rpc.call(pool_address, "getLenders()", block=number, types=["address[]"])[0]]
-    pool["borrowers"] = [a.lower() for a in rpc.call(pool_address, "getBorrowers()", block=number, types=["address[]"])[0]]
-
+    for key, sig in (("lenders", "getLenders()"), ("borrowers", "getBorrowers()")):
+        pool[key] = [a.lower() for a in rpc.call(pool_address, sig, block=number, types=["address[]"])[0]]
     events = read_pool_logs(logs_rpc, pool_address, from_block, number)
-    times = block_times(rpc, [e["block"] for e in events], {number: as_int(header["timestamp"])})
-    loan_ids = rpc.call(pool_address, "getAllLoanIds()", block=number, types=["uint256[]"])[0]
-    terms = {ident: rpc.call(pool_address, "getLoanTerms(uint256)", ident, block=number,
-                             types=["uint8", "uint256", "uint256", "uint256", "uint256"]) for ident in loan_ids}
-    for ident in {e["args"]["loanId"] for e in events if "loanId" in e["args"]} - set(terms):
-        terms[ident] = rpc.call(pool_address, "getLoanTerms(uint256)", ident, block=number,
-                                types=["uint8", "uint256", "uint256", "uint256", "uint256"])
+    times = {}
+    for n in sorted({e["block"] for e in events}):
+        h = rpc.block(n)
+        match(n, h)
+        if any(e["blockHash"] != h["hash"].lower() for e in events if e["block"] == n):
+            raise RpcError("log block mismatch")
+        times[n] = as_int(h["timestamp"])
+    ids = rpc.call(pool_address, "getAllLoanIds()", block=number, types=["uint256[]"])[0]
+    if len(ids) != len(set(ids)) or set(ids) != {e["args"]["loanId"] for e in events if "loanId" in e["args"]}:
+        raise RpcError("loan inventory mismatch")
+    records, terms = {}, {}
+    for i in ids:
+        principal, outstanding, borrower, rate, active = rpc.call(
+            pool_address, "getLoan(uint256)", i, block=number,
+            types=["uint256", "uint256", "address", "uint256", "bool"])
+        terms[i] = rpc.call(pool_address, "getLoanTerms(uint256)", i, block=number,
+                            types=["uint8", "uint256", "uint256", "uint256", "uint256"])
+        status, term, requested, disbursed, due = terms[i]
+        if active != (status in (1, 2)) or due != (disbursed + term if disbursed else 0):
+            raise RpcError("loan state mismatch")
+        records[i] = [principal, None, None, borrower, rate, term, requested, disbursed,
+                      status, None, outstanding, as_int(header["timestamp"])]
     loans = build_loans(events, times, terms)
-    schema = profile_schema_state(rpc, number)
-    profiles = read_attestations(rpc, logs_rpc, number, from_block, pool_address, schema) if schema["registered"] else []
-    stake = stake_by_account(events)
-
-    if rpc.block(number)["hash"].lower() != header["hash"].lower():
-        raise RpcError("block changed during collection; discard this snapshot and read again")
+    reconcile(events, loans, records, pool)
+    match(from_block, start)
+    match(number, header)
     deposits = sum(e["args"]["assets"] for e in events if e["event"] == "Deposited")
     withdrawals = sum(e["args"]["assets"] for e in events if e["event"] == "Withdrawn")
     return {
         "snapshot": {"chainId": chain, "network": deployment["network"], "blockNumber": number, "blockHash": header["hash"],
                      "blockTimestamp": as_int(header["timestamp"]),
                      "blockTime": datetime.fromtimestamp(as_int(header["timestamp"]), timezone.utc).isoformat(),
-                     "fromBlock": from_block, "pool": pool_address, "lens": deployment["lens"],
-                     "scores": deployment["scores"], "token": deployment["token"],
-                     "explorer": deployment["explorer_url"], "stateRpc": rpc.url, "logsRpc": logs_rpc.url,
-                     "collector": "metrics/lending_dashboard.py", "collectorCommit": git_head(),
-                     "eventCount": len(events), "rpcCalls": rpc.calls + logs_rpc.calls},
-        "abi": abi_for_page(),
-        "pool": pool,
+                     "collectedAt": datetime.now(timezone.utc).isoformat(), "verification": "reconciled-finalized-v1",
+                     "fromBlock": from_block, "fromBlockHash": start["hash"], "pool": pool_address, "lens": deployment["lens"],
+                     "token": deployment["token"], "explorer": deployment["explorer_url"],
+                     "collector": "metrics/lending_dashboard.py", "collectorCommit": git_head(), "eventCount": len(events)},
+        "abi": abi_for_page(), "pool": pool,
         "flows": {"deposited": deposits, "withdrawn": withdrawals,
                   "disbursed": sum(l["principal"] for l in loans if l["disbursed"]),
                   "repaid": sum(l["repaid"] for l in loans), "interest": sum(l["interest"] for l in loans),
-                  "fees": sum(l["fee"] for l in loans), "writtenOff": sum(l["writtenOff"] for l in loans)},
-        "loans": loans,
-        "loanStatus": {name: len([l for l in loans if l["status"] == name]) for name in STATUS[1:]},
+                  "fees": sum(l["fee"] for l in loans), "writtenOff": sum(l["writtenOff"] for l in loans),
+                  "reserveFunded": sum(e["args"]["amount"] for e in events if e["event"] == "ReserveFunded"),
+                  "reserveReleased": sum(e["args"]["amount"] for e in events if e["event"] == "ReserveReleased")},
+        "loans": loans, "loanStatus": {name: sum(l["status"] == name for l in loans) for name in STATUS[1:]},
         "monthly": monthly_series(loans, events, times),
-        "backing": backing_edges(events),
-        "stake": {k: v for k, v in stake.items() if v},
-        "profileSchema": schema,
-        "profiles": profiles,
-        "profileBreakdown": profile_breakdown(profiles),
-        "humanMetrics": human_metrics(loans, profiles, stake),
-        "caveats": [
-            "Base Sepolia testnet: test USDC only, no real funds, no real borrowers.",
-            "Every loan so far was taken by an AI agent or a team test account; none is a human outcome.",
-            "A repaid testnet loan is plumbing evidence, not human benefit (NORTH_STAR.md).",
-            "Borrower profiles appear only after the steward registers the profile schema and attests with consent.",
-        ],
+        # Backed events alone do not reflect implicit releases and slashing. Do not present current edges.
+        "backing": [], "stake": {k: v for k, v in stake_by_account(events).items() if v},
+        "profileSchema": {"uid": schema_uid(), "enabled": False}, "profiles": [], "profileBreakdown": {},
+        "humanMetrics": human_metrics(loans, [], {}),
+        "caveats": ["Base Sepolia testnet; test USDC has no real monetary value.",
+                    "Loan and repayment events do not establish human borrowers or human benefit.",
+                    "Inventory and stock reconciliation uses provider-supplied logs; it is not independent proof of event completeness. Balanced omissions can pass.",
+                    "Sponsor expenditure and incremental human benefit are NOT MEASURED.",
+                    "Profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent; revocation cannot erase history."],
     }
 
 
+def atomic_text(path, text):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as f:
+        name = f.name
+        f.write(text)
+        f.flush()
+        os.fsync(f.fileno())
+    try:
+        os.replace(name, path)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+
+
+def write_attempt(out_dir, status):
+    atomic_text(out_dir / "refresh-status.json", json.dumps({"attemptedAt": datetime.now(timezone.utc).isoformat(),
+                                                          "status": status}) + "\n")
+
+
 def write_outputs(report, out_dir):
-    out_dir.mkdir(parents=True, exist_ok=True)
+    # Both payloads must be reviewed/published in one Git commit. Browser consumes
+    # JSON only on refresh and JS only at boot: it never combines their state.
+    if report.get("profiles") or report.get("profileBreakdown"):
+        raise ValueError("profile publication disabled")
     text = json.dumps(report, indent=1, sort_keys=True)
-    (out_dir / "snapshot.json").write_text(text + "\n", encoding="utf-8")
-    (out_dir / "snapshot.js").write_text("window.LENDING_SNAPSHOT = " + text + ";\n", encoding="utf-8")
+    atomic_text(out_dir / "snapshot.json", text + "\n")
+    atomic_text(out_dir / "snapshot.js", "window.LENDING_SNAPSHOT = " + text + ";\n")
 
 
 def print_summary(report):
@@ -593,14 +688,12 @@ def print_summary(report):
     print("  loans: " + ", ".join(f"{k} {v}" for k, v in report["loanStatus"].items() if v))
     r = h["repaymentRate"]
     print(f"  repayment: {r['repaid']} of {r['closedLoans']} closed loans repaid ({r['onTime']} on time), {r['defaulted']} defaulted")
-    print(f"  profiles: {h['attestedLoans']['withProfile']} of {h['attestedLoans']['ofLoans']} loans; schema "
-          f"{'registered' if report['profileSchema']['registered'] else 'NOT registered'} ({report['profileSchema']['uid']})")
-    print(f"  attested repaying borrowers {h['uniqueRepayingBorrowers']['attested']}, unattested {h['uniqueRepayingBorrowers']['unattested']}")
+    print("  profiles disabled; human benefit and sponsor expenditure NOT MEASURED")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--block", default="latest", help="read at a specific block instead of latest")
+    parser.add_argument("--block", default="finalized", help="finalized boundary, or an older block")
     parser.add_argument("--from-block", type=int, default=DEPLOYMENT_BLOCK, help="first block to scan for events")
     parser.add_argument("--logs-rpc", default=os.environ.get("LOGS_RPC", DEFAULT_LOGS_RPC),
                         help="RPC for eth_getLogs over wide ranges (the recorded RPC caps ranges at 200 blocks)")
@@ -615,13 +708,16 @@ def main(argv=None):
         return 0
     try:
         deployment = load_deployment()
-        block = args.block if args.block == "latest" else as_int(args.block)
-        report = collect(deployment, Rpc(deployment["rpc_url"]), Rpc(args.logs_rpc, timeout=120), block, args.from_block)
-    except (RpcError, ValueError, OSError, KeyError) as error:
-        print(f"ERROR: {error}", file=sys.stderr)
+        block = args.block if args.block in ("latest", "finalized") else as_int(args.block)
+        report = collect(deployment, Rpc(deployment["rpc_url"]), Rpc(args.logs_rpc), block, args.from_block)
+    except (RpcError, ValueError, OSError, KeyError, IndexError, TypeError) as error:
+        if not args.no_write:
+            write_attempt(Path(args.out), "failed")
+        print("Collection failed; last successful snapshot preserved.", file=sys.stderr)
         return 1
     if not args.no_write:
         write_outputs(report, Path(args.out))
+        write_attempt(Path(args.out), "success")
     print(json.dumps(report, indent=1, sort_keys=True)) if args.json else print_summary(report)
     return 0
 

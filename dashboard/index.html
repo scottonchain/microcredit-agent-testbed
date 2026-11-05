@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Omnequa Lending Ledger</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="What the Omnequa microcredit pool is doing on-chain: money in, loans out, repayments back, and who the money reaches, read from the public ledger at one block.">
+<meta name="description" content="What the Omnequa microcredit pool is doing on-chain: money in, loans out, repayments back, at a dated testnet block; human benefit is not measured.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -56,7 +56,7 @@ h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.005e
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
 .tile .v { font-size: 26px; font-weight: 600; line-height: 1.1; margin: 2px 0 4px; }
-.tile .v small { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.tile .v small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 4px; }
 .tile .n { color: var(--ink-2); font-size: 13px; }
 .row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 16px; }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; overflow-wrap: anywhere; }
@@ -75,6 +75,8 @@ h2 { font-size: 17px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.005e
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-weight: 600; color: var(--ink-2); font-size: 12px; letter-spacing: 0.02em; white-space: nowrap; }
+#ledger table { min-width: 900px; }
+#ledger td { white-space: nowrap; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .scroll { overflow-x: auto; }
 .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
@@ -83,7 +85,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .bars { display: grid; gap: 8px; margin-top: 10px; }
 .bar { display: grid; grid-template-columns: 110px minmax(0, 1fr) 44px; align-items: center; gap: 10px; font-size: 13px; }
 .bar .track { height: 14px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
-.bar .fill { height: 100%; background: var(--s1); border-radius: 4px; min-width: 2px; }
+.bar .fill { height: 100%; background: var(--s1); border-radius: 4px; min-width: 0; }
 .bar .fill.good { background: var(--good); } .bar .fill.crit { background: var(--crit); } .bar .fill.mute { background: var(--axis); } .bar .fill.warn { background: var(--warn); }
 .bar .cnt { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
 .kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 13px; margin-top: 12px; }
@@ -118,9 +120,9 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
   </header>
 
   <section aria-labelledby="h-pool">
-    <p class="eyebrow">The pool today</p>
+    <p class="eyebrow">The recorded pool</p>
     <h2 id="h-pool">Money in, money out, money back</h2>
-    <p class="lede">Lenders put test USDC into one pool on Base. Borrowers draw small loans from it and repay with interest; interest that comes back grows the pool. Every figure here is read from the public ledger: a committed snapshot first, then the chain itself each time the page is opened.</p>
+    <p class="lede">This is a dated Base Sepolia testnet ledger, not real money or evidence of people helped. Gross interest is split between fees, reserve allocations and lender assets. Figures come from a committed snapshot; the browser does not read the chain. Inventory and stock reconciliation uses provider-supplied logs, not independent proof of complete event history. Balanced omitted deposits and withdrawals can pass those checks.</p>
     <div class="tiles" id="tiles"></div>
   </section>
 
@@ -146,8 +148,8 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
 
   <section aria-labelledby="h-who">
     <p class="eyebrow">Who the money reaches</p>
-    <h2 id="h-who">Anonymized borrower profiles, on-chain</h2>
-    <p class="lede">With the borrower's consent, the credit check records a coarse profile on-chain as an attestation tied to the loan: country, region, occupation group, loan purpose and an income band. No name, no exact place, no wallet-to-person link. Each borrower can revoke it.</p>
+    <h2 id="h-who">Human outcomes are not measured</h2>
+    <p class="lede">Real-person profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent. Removing a display or revoking an attestation cannot erase history. A profile is not proof of a human borrower or valid consent.</p>
     <div id="who"></div>
   </section>
 
@@ -159,7 +161,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
   <section aria-labelledby="h-ledger">
     <p class="eyebrow">Loan by loan</p>
     <h2 id="h-ledger">The ledger</h2>
-    <p class="lede">Every loan the pool has ever made, newest first. Borrowers are shown by address only. Each transaction links to the block explorer so anyone can check it.</p>
+    <p class="lede">Loan records through the displayed block, including cancelled requests, newest first. Borrowers are shown by address only. Each transaction links to the block explorer so anyone can check it.</p>
     <div class="panel scroll" id="ledger"></div>
   </section>
 
@@ -173,6 +175,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     <ul class="caveats" id="caveats"></ul>
     <p class="note" style="margin-top:12px">Recompute this page from the chain:</p>
     <pre>python metrics/lending_dashboard.py</pre>
+    <button class="ghost" id="refresh-btn">Reload published snapshot</button><p id="refresh-note" class="note" aria-live="polite"></p>
     <dl class="kv" id="prov"></dl>
   </section>
 
@@ -183,8 +186,49 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
-  const BASE = window.LENDING_SNAPSHOT;
-  if (!BASE) { $("sub").textContent = "No snapshot found. Run python metrics/lending_dashboard.py to create data/snapshot.js."; return; }
+  let BASE = window.LENDING_SNAPSHOT;
+  function valid(S) {
+    try {
+      const s = S.snapshot, p = S.pool, num = v => Number.isSafeInteger(v) && v >= 0;
+      const hash = v => /^0x[0-9a-f]{64}$/i.test(v), address = v => /^0x[0-9a-f]{40}$/i.test(v);
+      const when = v => v === null || (v && num(v.time) && num(v.block) && hash(v.tx));
+      return s.chainId === 84532 && s.token.decimals === 6
+        && s.pool.toLowerCase() === "0x73872b8fb7f1771c67911f03edc75abdc9514973"
+        && s.explorer === "https://sepolia.basescan.org" && address(s.lens) && address(s.token.address)
+        && hash(s.blockHash) && num(s.blockNumber) && num(s.blockTimestamp) && num(s.fromBlock) && num(s.eventCount)
+        && ["totalAssets","lenderCash","totalLentOut","reservedLiquidity","firstLossReserve","totalImpaired",
+            "protocolFees","totalDuesPaid","sharePrice","totalStaked","lenderCount","utilisationBps","getLoanRate"].every(k=>num(p[k]))
+        && ["deposited","withdrawn","disbursed","repaid","interest","fees","writtenOff"].every(k=>num(S.flows[k]))
+        && p.lenderCash >= p.reservedLiquidity
+        && Array.isArray(S.loans) && Array.isArray(S.profiles) && S.profiles.length === 0
+        && Object.keys(S.profileBreakdown || {}).length === 0
+        && S.humanMetrics?.profileIngestion === "disabled" && S.humanMetrics.repaymentRate
+        && ["closedLoans","repaid","defaulted","onTime"].every(k=>num(S.humanMetrics.repaymentRate[k]))
+        && (S.humanMetrics.repaymentRate.rate === null || (Number.isFinite(S.humanMetrics.repaymentRate.rate)
+          && S.humanMetrics.repaymentRate.rate >= 0 && S.humanMetrics.repaymentRate.rate <= 1))
+        && ["Requested","Active","Repaid","Defaulted","Cancelled"].every(k=>num(S.loanStatus[k]))
+        && Object.values(S.loanStatus).reduce((a,b)=>a+b,0) === S.loans.length
+        && Array.isArray(S.monthly) && S.monthly.every(m=>/^\d{4}-\d{2}$/.test(m.month)
+          && ["loans","disbursed","repaid","interest","deposited","withdrawn"].every(k=>num(m[k])))
+        && Array.isArray(S.caveats) && S.caveats.every(c=>typeof c === "string")
+        && S.loans.every(l => address(l.borrower) && num(l.id) && num(l.principal) && num(l.repaid) && num(l.interest)
+          && ["Requested","Active","Repaid","Defaulted","Cancelled"].includes(l.status)
+          && when(l.requested) && when(l.disbursed) && when(l.closed)
+          && (l.dueAt === null || num(l.dueAt))
+          && (l.daysToRepay === null || (Number.isFinite(l.daysToRepay) && l.daysToRepay >= 0))
+          && Array.isArray(l.repayments) && l.repayments.every(r=>when(r) && num(r.amount)))
+        && p.totalAssets === Math.max(0, p.lenderCash + p.totalLentOut - Math.max(p.firstLossReserve, p.totalImpaired));
+    } catch (_) { return false; }
+  }
+  if (!valid(BASE)) { $("sub").textContent = "No usable snapshot. Ledger unavailable; no totals asserted."; return; }
+  let liveBadge = "";
+  function freshness(S) {
+    const s = S.snapshot, age = Date.now() - Date.parse(s.collectedAt);
+    if (s.verification !== "reconciled-finalized-v1" || !Number.isFinite(age))
+      return "Historical snapshot · verification under current checks not recorded · stale";
+    if (age < -60000) return "Snapshot verification timestamp invalid · stale";
+    return `${age > 30 * 3600000 ? "Stale" : "Reconciled committed"} snapshot · collected ${s.collectedAt} · not live`;
+  }
   const STATUS = ["None", "Requested", "Active", "Repaid", "Defaulted", "Cancelled"];
   const DEC = 10 ** (BASE.snapshot.token.decimals || 6);
   const usdc = (u, places = 2) => (Number(u) / DEC).toLocaleString("en-US", { minimumFractionDigits: places, maximumFractionDigits: places });
@@ -201,24 +245,25 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     { country: "HN", region: "Copán", occupation: "food vendor", purpose: "inventory", incomeBandLabel: "2.15 to 3.65 USD a day" },
     { country: "GT", region: "Huehuetenango", occupation: "motorcycle taxi", purpose: "repair", incomeBandLabel: "3.65 to 6.85 USD a day" },
   ];
-  const INCOME_BANDS = { 0: "not stated", 1: "under 2.15 USD a day", 2: "2.15 to 3.65 USD a day", 3: "3.65 to 6.85 USD a day", 4: "over 6.85 USD a day" };
+
 
   // ------------------------------------------------------------------ rendering
   function render(S) {
     const snap = S.snapshot, P = S.pool, F = S.flows, H = S.humanMetrics;
+    liveBadge = freshness(S);
     const tx = (hash, label) => `<a class="mono" href="${snap.explorer}/tx/${hash}" target="_blank" rel="noopener">${label || short(hash)}</a>`;
     const addr = (a) => `<a class="mono" href="${snap.explorer}/address/${a}" target="_blank" rel="noopener">${short(a)}</a>`;
 
     $("sub").innerHTML = `${esc(snap.network)} · block <span class="mono">${snap.blockNumber.toLocaleString("en-US")}</span> · ${dateTime(snap.blockTimestamp)} · pool ${addr(snap.pool)}`;
-    $("badges").innerHTML = `<span class="badge testnet"><span class="dot"></span>Testnet, test USDC, no real funds</span><span class="badge" id="live">${liveBadge}</span><span class="badge">${S.loans.length} loans · ${P.lenderCount} lenders</span>`;
+    $("badges").innerHTML = `<span class="badge testnet"><span class="dot"></span>Testnet, test USDC, no real funds</span><span class="badge" id="live">${esc(liveBadge)}</span><span class="badge">${S.loans.length} loans · ${P.lenderCount} lenders</span>`;
 
     const tiles = [
-      ["Pool today", usdc(P.totalAssets), "all lenders' money, lent or waiting"],
-      ["Ready to lend", usdc(P.lenderCash - P.reservedLiquidity), "cash in the pool right now"],
-      ["Out on loan", usdc(P.totalLentOut), "principal borrowers still owe"],
+      ["Lender assets", usdc(P.totalAssets, 6), "NAV after the larger of reserve or impairment"],
+      ["Unreserved pool cash", usdc(P.lenderCash - P.reservedLiquidity, 6), "includes reserve; lending limits and queued withdrawals still apply"],
+      ["Out on loan", usdc(P.totalLentOut), "principal still outstanding"],
       ["Lent to date", usdc(F.disbursed), `${S.loans.filter(l => l.disbursed).length} loans disbursed`],
-      ["Paid back to date", usdc(F.repaid), "principal and interest returned"],
-      ["Interest kept by the pool", usdc(F.interest, F.interest && F.interest < 10000 ? 4 : 2), F.interest ? "this is what grows the pool" : "none yet: every loan was repaid inside the 24-hour no-interest window"],
+      ["Paid back to date", usdc(F.repaid, 6), "principal and gross interest returned"],
+      ["Gross interest collected", usdc(F.interest, 6), "before fees and reserve allocations; not lender return"],
     ];
     $("tiles").innerHTML = tiles.map(([n, v, s]) => `<div class="tile"><div class="n">${n}</div><div class="v">${v}<small>USDC</small></div><div class="n">${esc(s)}</div></div>`).join("");
 
@@ -232,7 +277,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     let out = 0, back = 0;
     const series = points.map(p => ({ t: p.t, out: (out += p.out), back: (back += p.back), what: p.what }));
     const t0 = series.length ? series[0].t : snap.blockTimestamp - 86400, t1 = snap.blockTimestamp;
-    series.push({ t: t1, out, back, what: "Latest block" });
+    series.push({ t: t1, out, back, what: "Snapshot block" });
     const W = 720, Hh = 260, m = { l: 48, r: 110, t: 14, b: 30 };
     const maxY = Math.max(out, back, 1) * 1.08;
     const x = (t) => m.l + (t - t0) / Math.max(1, t1 - t0) * (W - m.l - m.r);
@@ -267,7 +312,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     };
     hit.addEventListener("mousemove", show); hit.addEventListener("touchstart", (e) => show(e.touches[0]), { passive: true });
     hit.addEventListener("mouseleave", () => { tip.hidden = true; xh.setAttribute("visibility", "hidden"); });
-    $("flow-table").innerHTML = `<table><thead><tr><th>Month</th><th class="num">Loans</th><th class="num">Lent out</th><th class="num">Paid back</th><th class="num">Interest</th><th class="num">Lender deposits</th><th class="num">Withdrawals</th></tr></thead><tbody>${S.monthly.map(mo => `<tr><td class="mono">${mo.month}</td><td class="num">${mo.loans}</td><td class="num">${usdc(mo.disbursed)}</td><td class="num">${usdc(mo.repaid)}</td><td class="num">${usdc(mo.interest)}</td><td class="num">${usdc(mo.deposited)}</td><td class="num">${usdc(mo.withdrawn)}</td></tr>`).join("")}</tbody></table>`;
+    $("flow-table").innerHTML = `<table><thead><tr><th>Month</th><th class="num">Loans</th><th class="num">Lent out</th><th class="num">Paid back</th><th class="num">Interest</th><th class="num">Lender deposits</th><th class="num">Withdrawals</th></tr></thead><tbody>${S.monthly.map(mo => `<tr><td class="mono">${mo.month}</td><td class="num">${mo.loans}</td><td class="num">${usdc(mo.disbursed)}</td><td class="num">${usdc(mo.repaid)}</td><td class="num">${usdc(mo.interest, 6)}</td><td class="num">${usdc(mo.deposited)}</td><td class="num">${usdc(mo.withdrawn)}</td></tr>`).join("")}</tbody></table>`;
 
     // Repayment outcomes
     const R = H.repaymentRate;
@@ -280,209 +325,112 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
       ["Repayment rate", pct(R.rate)], ["Defaults", String(R.defaulted)],
       ["Median days to repay", dtr.length ? dtr[Math.floor(dtr.length / 2)].toFixed(1) : "no data"],
       ["Loan rate (APR)", (P.getLoanRate / 100).toFixed(2) + "%"], ["Written off", usdc(F.writtenOff) + " USDC"],
-      ["First-time borrowers' share of lending", pct(H.firstTimeBorrowerShare)],
-      ["Borrowers with no stake of their own", `${H.disbursedToBorrowersWithNoOwnStake.borrowers} of ${H.disbursedToBorrowersWithNoOwnStake.ofBorrowers}`],
     ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 
     // Who the money reaches
     const breakdown = (list, key) => { const o = {}; for (const p of list) { const k = p[key] || "not stated"; o[k] = (o[k] || 0) + 1; } return Object.entries(o).sort((a, b) => b[1] - a[1]); };
     const barBlock = (title, rows) => { const mx = Math.max(1, ...rows.map(r => r[1])); return `<div class="panel"><h2 style="font-size:14px">${title}</h2><div class="bars">${rows.map(([k, v]) => `<div class="bar"><span title="${esc(k)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(k)}</span><div class="track"><div class="fill" style="width:${v / mx * 100}%"></div></div><span class="cnt">${v}</span></div>`).join("")}</div></div>`; };
     const profilesHtml = (list) => `<div class="grid3">${barBlock("By country", breakdown(list, "country"))}${barBlock("By occupation", breakdown(list, "occupation"))}${barBlock("By loan purpose", breakdown(list, "purpose"))}${barBlock("By income band", breakdown(list, "incomeBandLabel"))}</div>`;
-    const sch = S.profileSchema, A = H.attestedLoans;
     function renderWho(showExample) {
-      if (S.profiles.length) { $("who").innerHTML = `<p class="note">${A.withProfile} of ${A.ofLoans} loans carry a consented profile.</p>${profilesHtml(S.profiles)}`; return; }
-      $("who").innerHTML = `
-        <div class="empty">
-          <h3>${A.withProfile} of ${A.ofLoans} loans carry a profile yet</h3>
-          <p style="margin:0">Profiles arrive once the steward registers the profile schema on Base and attests a borrower's consented answers at the credit check. The schema is fixed now, so its on-chain ID is already known; this page starts reading the moment the first attestation lands.</p>
-          <ol>
-            <li>Schema <span class="mono">${esc(sch.schema)}</span></li>
-            <li>Schema ID <span class="mono">${sch.uid}</span>, ${sch.registered ? "registered" : "not yet registered"} in the registry at <span class="mono">${sch.registry}</span></li>
-            <li>Attester: the steward's credit-desk key; recipient: the borrower's address; revocable by the borrower.</li>
-          </ol>
-          <p style="margin:12px 0 0"><button class="ghost" id="example-btn" aria-pressed="${showExample}">${showExample ? "Hide the example" : "Show what this section looks like with profiles (example data)"}</button></p>
-        </div>
+      $("who").innerHTML = `<div class="empty"><h3>Profiles disabled</h3>
+        <p>No real-person profiles are fetched, counted or published. Human borrower counts, sponsor expenditure and incremental human benefit are NOT MEASURED.</p>
+        <p>Synthetic examples below have no wallet or loan association and never enter ledger totals.</p>
+        <button class="ghost" id="example-btn" aria-pressed="${showExample}">${showExample ? "Hide synthetic example" : "Show synthetic example"}</button></div>
         ${showExample ? `<div class="example" style="margin-top:22px">${profilesHtml(EXAMPLE)}</div>` : ""}`;
-      $("example-btn").addEventListener("click", () => renderWho(!showExample));
+      $("example-btn").onclick = () => renderWho(!showExample);
     }
     renderWho(false);
 
     // Scorecards
     const net = F.deposited - F.withdrawn, growth = P.totalAssets - net;
-    $("score-reserve").className = "panel score " + (growth >= 0 ? "good" : "none");
-    $("score-reserve").innerHTML = `<p class="eyebrow">Scorecard 1</p><h2>Reserve survival</h2><div class="state">${growth > 0 ? "Growing" : growth === 0 ? "Holding, not growing" : "Shrinking"}</div>
-      <dl class="kv"><dt>Lenders' money in, net of withdrawals</dt><dd>${usdc(net)} USDC</dd><dt>Pool today</dt><dd>${usdc(P.totalAssets)} USDC</dd><dt>Change from lending</dt><dd>${growth >= 0 ? "+" : ""}${usdc(growth)} USDC (${net ? ((growth / net) * 100).toFixed(2) : "0.00"}%)</dd><dt>Share price</dt><dd>${usdc(P.sharePrice, 4)}</dd><dt>First-loss reserve</dt><dd>${usdc(P.firstLossReserve)} USDC</dd><dt>Largest single loan vs pool</dt><dd>${S.loans.length ? (Math.max(...S.loans.map(l => l.principal)) / Math.max(1, P.totalAssets) * 100).toFixed(0) : 0}% (rule: at most 20%)</dd></dl>`;
-    const hb = H.uniqueRepayingBorrowers;
+    $("score-reserve").className = "panel score";
+    $("score-reserve").innerHTML = `<p class="eyebrow">Pool accounting</p><h2>Lender assets and first-loss reserve</h2>
+      <dl class="kv"><dt>Net lender deposits</dt><dd>${usdc(net, 6)} USDC</dd>
+      <dt>Lender assets (NAV)</dt><dd>${usdc(P.totalAssets, 6)} USDC</dd>
+      <dt>NAV minus net deposits</dt><dd>${growth >= 0 ? "+" : ""}${usdc(growth, 6)} USDC</dd>
+      <dt>Gross interest collected</dt><dd>${usdc(F.interest, 6)} USDC</dd>
+      <dt>Fees charged on repayments</dt><dd>${usdc(F.fees, 6)} USDC</dd>
+      <dt>Protocol fees currently held</dt><dd>${usdc(P.protocolFees, 6)} USDC</dd>
+      <dt>Cumulative interest allocated to reserve</dt><dd>${usdc(P.totalDuesPaid, 6)} USDC</dd>
+      <dt>First-loss reserve balance</dt><dd>${usdc(P.firstLossReserve, 6)} USDC</dd>
+      <dt>Impaired principal</dt><dd>${usdc(P.totalImpaired, 6)} USDC</dd>
+      <dt>Share price</dt><dd>${usdc(P.sharePrice, 6)}</dd></dl>
+      <p class="note">NAV = max(0, pool cash + outstanding principal − max(first-loss reserve, impairment)). The difference from net deposits is not a return rate: reserve funding, allocations, releases, fees and losses matter. Historical loan size divided by today's assets does not establish origination-limit compliance.</p>`;
     $("score-human").className = "panel score none";
-    $("score-human").innerHTML = `<p class="eyebrow">Scorecard 2</p><h2>Human benefit per sponsor dollar</h2><div class="state">Not measurable yet</div>
-      <dl class="kv"><dt>Attested human borrowers who repaid</dt><dd>${hb.attested}</dd><dt>Unattested repaying borrowers (agents and test accounts)</dt><dd>${hb.unattested}</dd><dt>Sponsor money consumed</dt><dd>${usdc(F.writtenOff)} USDC</dd><dt>Incremental earnings reported</dt><dd>none recorded</dd></dl>
-      <p class="note">This number exists only when a consenting person borrows, repays, and the follow-up records what the loan changed for them. Until then the dashboard shows the plumbing working, not people helped.</p>`;
+    $("score-human").innerHTML = `<p class="eyebrow">Human outcomes</p><h2>Human benefit per sponsor dollar</h2><div class="state">NOT MEASURED</div>
+      <dl class="kv"><dt>Verified human borrowers</dt><dd>NOT MEASURED</dd><dt>Sponsor expenditure</dt><dd>NOT MEASURED</dd><dt>Incremental human benefit</dt><dd>NOT MEASURED</dd></dl>
+      <p class="note">Write-offs are loan accounting, not sponsor spending. Wallets and attestations do not prove people, consent or impact. Incremental benefit requires a measured comparison, including costs, displacement and harms.</p>`;
 
     // Ledger
     const rows = [...S.loans].sort((a, b) => b.id - a.id).map(l => {
       const when = l.disbursed || l.requested;
       const closedAt = l.closed ? dateOf(l.closed.time) : (l.dueAt ? "due " + dateOf(l.dueAt) : "");
-      return `<tr><td class="mono">${l.id}</td><td>${when ? dateOf(when.time) : ""}</td><td>${addr(l.borrower)}${l.firstLoan ? ' <span class="pill" title="First loan for this borrower">first</span>' : ""}</td><td class="num">${usdc(l.principal)}</td><td><span class="pill ${l.status}"><i></i>${l.status}</span></td><td class="num">${usdc(l.repaid)}</td><td class="num">${usdc(l.interest)}</td><td>${closedAt}${l.daysToRepay != null ? ` <span style="color:var(--muted)">(${l.daysToRepay} d)</span>` : ""}</td><td>${l.disbursed ? tx(l.disbursed.tx, "disburse") : (l.requested ? tx(l.requested.tx, "request") : "")}${l.closed && l.closed.as === "Repaid" ? " · " + tx(l.closed.tx, "repay") : ""}</td></tr>`;
+      return `<tr><td class="mono">${l.id}</td><td>${when ? dateOf(when.time) : ""}</td><td>${addr(l.borrower)}</td><td class="num">${usdc(l.principal)}</td><td><span class="pill ${l.status}"><i></i>${l.status}</span></td><td class="num">${usdc(l.repaid)}</td><td class="num">${usdc(l.interest, 6)}</td><td>${closedAt}${l.daysToRepay != null ? ` <span style="color:var(--muted)">(${l.daysToRepay} d)</span>` : ""}</td><td>${l.disbursed ? tx(l.disbursed.tx, "disburse") : (l.requested ? tx(l.requested.tx, "request") : "")}${l.closed && l.closed.as === "Repaid" ? " · " + tx(l.closed.tx, "repay") : ""}</td></tr>`;
     });
     $("ledger").innerHTML = `<table><thead><tr><th>Loan</th><th>Date</th><th>Borrower</th><th class="num">Principal</th><th>Status</th><th class="num">Repaid</th><th class="num">Interest</th><th>Closed</th><th>Transactions</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
 
     // Backing and lenders
-    $("backing").innerHTML = `<h2>Who stands behind whom</h2><p class="note">A backer commits part of their own stake or credit to a borrower; backing moves credit, it never creates it.</p>` +
-      (S.backing.length ? `<div class="scroll"><table><thead><tr><th>Backer</th><th>Borrower</th><th class="num">From stake</th><th class="num">From credit</th><th></th></tr></thead><tbody>${S.backing.map(b => `<tr><td>${addr(b.backer)}</td><td>${addr(b.borrower)}</td><td class="num">${usdc(b.secured)}</td><td class="num">${usdc(b.unsecured)}</td><td>${tx(b.tx, "tx")}</td></tr>`).join("")}</tbody></table></div>` : `<p class="note">No active backing.</p>`);
-    const stakers = Object.entries(S.stake).filter(([, v]) => v > 0);
-    $("lenders").innerHTML = `<h2>Lenders and stakers</h2><dl class="kv"><dt>Lenders with a position</dt><dd>${P.lenderCount}</dd><dt>Total deposited to date</dt><dd>${usdc(F.deposited)} USDC</dd><dt>Total withdrawn to date</dt><dd>${usdc(F.withdrawn)} USDC</dd><dt>Staked as credit</dt><dd>${usdc(P.totalStaked)} USDC by ${stakers.length} accounts</dd><dt>Utilisation</dt><dd>${(P.utilisationBps / 100).toFixed(1)}%</dd></dl>`;
+    $("backing").innerHTML = `<h2>Backing</h2><p class="note">Current backing is not reported here. Historical backing events alone miss implicit releases and slashing. This ledger does not infer lending capacity from those events.</p>`;
+    $("lenders").innerHTML = `<h2>Lenders and stakers</h2><dl class="kv"><dt>Lender addresses recorded</dt><dd>${P.lenderCount}</dd><dt>Total deposited to date</dt><dd>${usdc(F.deposited)} USDC</dd><dt>Total withdrawn to date</dt><dd>${usdc(F.withdrawn)} USDC</dd><dt>Staked as credit</dt><dd>${usdc(P.totalStaked)} USDC</dd><dt>Utilisation</dt><dd>${(P.utilisationBps / 100).toFixed(1)}%</dd></dl>`;
 
     // Provenance
-    const live = snap.live;
     $("caveats").innerHTML = S.caveats.map(c => `<li>${esc(c)}</li>`).join("");
     $("prov").innerHTML = [
-      ["Shown at block", `<span class="mono">${snap.blockNumber}</span> · <a class="mono" href="${snap.explorer}/block/${snap.blockNumber}" target="_blank" rel="noopener">${short(snap.blockHash)}</a>${live ? " (read by this page just now)" : ""}`],
-      ["Committed snapshot", `block <span class="mono">${BASE.snapshot.blockNumber}</span>, ${dateTime(BASE.snapshot.blockTimestamp)}${live ? `, plus ${live.newEvents} event${live.newEvents === 1 ? "" : "s"} read live since` : ""}`],
+      ["Source data block", `<span class="mono">${snap.blockNumber}</span> · ${dateTime(snap.blockTimestamp)}`],
+      ["Source block hash", `<span class="mono">${esc(snap.blockHash)}</span>`],
+      ["Last successful reconciled collection", esc(snap.collectedAt || "Not recorded under current checks")],
+      ["Verification", esc(snap.verification || "Historical snapshot; not reverified")],
       ["Scanned from block", `<span class="mono">${snap.fromBlock}</span> (deployment)`], ["Events read", String(snap.eventCount)],
-      ["State RPC", esc(snap.stateRpc)], ["Logs RPC", esc(snap.logsRpc)],
-      ["Collector", `${esc(snap.collector)}${snap.collectorCommit ? " at " + snap.collectorCommit : ""}`],
+      ["Collector", `${esc(snap.collector)}${snap.collectorCommit ? " at " + esc(snap.collectorCommit) : ""}`],
       ["Pool", addr(snap.pool)], ["Lens", addr(snap.lens)], ["Token", `${esc(snap.token.symbol)} ${addr(snap.token.address)} (test token)`],
     ].map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-    $("foot").textContent = "Omnequa microcredit testbed. Human benefit is the goal; a repaid testnet loan is evidence about the mechanism, not about people.";
+    $("foot").textContent = "Omnequa microcredit testbed. Created by Claude (AI); corrected by Codex (AI). Human benefit is the goal; a repaid testnet loan is evidence about the mechanism, not about people.";
   }
 
   $("flow-table-btn").addEventListener("click", () => { const on = $("flow-table").hidden; $("flow-table").hidden = !on; $("flow-chart").hidden = on; $("flow-table-btn").setAttribute("aria-pressed", String(on)); $("flow-table-btn").textContent = on ? "Chart view" : "Table view"; });
 
-  // ------------------------------------------------------------------ live read from the chain
-  // The page re-reads the chain when opened: new events since the committed snapshot, the balance
-  // sheet at the latest block, loan terms, and profile attestations. Topics and selectors come from
-  // the snapshot (computed by the collector), so no hashing code runs here. If the fetch is blocked
-  // (an offline copy, a sandbox), the committed snapshot stands and the badge says so.
-  const hexWord = (kind, value) => kind === "address" ? value.slice(2).toLowerCase().padStart(64, "0") : kind === "bytes32" ? value.slice(2).padStart(64, "0") : BigInt(value).toString(16).padStart(64, "0");
-  const decWord = (kind, w) => kind === "address" ? "0x" + w.slice(-40) : kind === "bool" ? BigInt("0x" + w) !== 0n : kind === "bytes32" ? "0x" + w : Number(BigInt("0x" + w));
-  function decodeValues(types, data) {
-    const words = data.startsWith("0x") ? data.slice(2) : data, outv = [];
-    types.forEach((kind, i) => {
-      const head = words.slice(64 * i, 64 * i + 64);
-      if (kind === "string" || kind === "bytes") {
-        const off = Number(BigInt("0x" + head)) * 2, len = Number(BigInt("0x" + words.slice(off, off + 64))) * 2, hex = words.slice(off + 64, off + 64 + len);
-        outv.push(kind === "bytes" ? "0x" + hex : new TextDecoder().decode(Uint8Array.from(hex.match(/../g) || [], (h) => parseInt(h, 16))));
-      } else outv.push(decWord(kind, head));
-    });
-    return outv;
+  // Only reload committed files. No wallet, RPC replay or profile ingestion in the browser.
+  let refreshing = false;
+  async function readJSON(path) {
+    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch(path, {cache: "no-store", signal: controller.signal});
+      if (!response.ok) throw new Error("unavailable");
+      return await response.json();
+    } finally { clearTimeout(timer); }
   }
-  async function rpc(url, method, params) {
-    const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) });
-    const j = await r.json(); if (j.error) throw new Error(method + ": " + (j.error.message || JSON.stringify(j.error))); return j.result;
-  }
-  function decodeLog(events, log) {
-    const ev = events[log.topics[0].toLowerCase()]; if (!ev) return null;
-    const args = {}, topics = log.topics.slice(1), un = ev.params.filter(p => !p.indexed);
-    const data = un.length ? decodeValues(un.map(p => p.type), log.data) : [];
-    let ti = 0, di = 0;
-    for (const p of ev.params) args[p.name] = p.indexed ? decWord(p.type, topics[ti++].slice(2)) : data[di++];
-    return { event: ev.name, args, block: Number(BigInt(log.blockNumber)), logIndex: Number(BigInt(log.logIndex)), tx: log.transactionHash };
-  }
-  const setBadge = (text) => { const b = $("live"); if (b) b.textContent = text; };
-  let liveBadge = `Committed snapshot, block ${BASE.snapshot.blockNumber.toLocaleString("en-US")}`;
-
-  async function goLive() {
-    const S = JSON.parse(JSON.stringify(BASE)), snap = S.snapshot, abi = S.abi, sel = abi.selectors;
-    if (!abi || typeof fetch !== "function") return;
-    setBadge("Reading the chain…");
-    const call = (to, sig, arg, types, block) => rpc(snap.stateRpc, "eth_call", [{ to, data: sel[sig] + (arg != null ? hexWord(sig.includes("bytes32") ? "bytes32" : "uint256", arg) : "") }, block]).then(r => decodeValues(types, r));
-    const head = Number(BigInt(await rpc(snap.stateRpc, "eth_blockNumber", [])));
-    const tag = "0x" + head.toString(16);
-    const raw = head > snap.blockNumber ? await rpc(snap.logsRpc, "eth_getLogs", [{ address: snap.pool, fromBlock: "0x" + (snap.blockNumber + 1).toString(16), toBlock: tag }]) : [];
-    const fresh = raw.map(l => decodeLog(abi.events, l)).filter(Boolean).sort((a, b) => a.block - b.block || a.logIndex - b.logIndex);
-    const headBlock = await rpc(snap.stateRpc, "eth_getBlockByNumber", [tag, false]);
-    const times = {};
-    for (const b of new Set(fresh.map(e => e.block))) times[b] = Number(BigInt((await rpc(snap.stateRpc, "eth_getBlockByNumber", ["0x" + b.toString(16), false])).timestamp));
-
-    // Balance sheet at the head block.
-    const u = ["uint256"];
-    for (const name of ["totalAssets", "lenderCash", "totalLentOut", "reservedLiquidity", "firstLossReserve", "totalStaked", "lenderCount", "getLoanRate"]) S.pool[name] = (await call(snap.pool, name + "()", null, u, tag))[0];
-    S.pool.sharePrice = (await call(snap.lens, "sharePrice()", null, u, tag))[0];
-    S.pool.utilisationBps = (await call(snap.lens, "getUtilisation()", null, u, tag))[0];
-
-    // Apply new events to the loans, flows, stake and backing exactly as the collector does.
-    const byId = new Map(S.loans.map(l => [l.id, l]));
-    const seen = new Set(S.loans.map(l => l.borrower));
-    const stake = S.stake, edges = new Map(S.backing.map(b => [b.backer + "|" + b.borrower, b]));
-    const month = (ts) => new Date(ts * 1000).toISOString().slice(0, 7);
-    const monthly = new Map(S.monthly.map(mo => [mo.month, mo]));
-    const bucket = (ts) => { const k = month(ts); if (!monthly.has(k)) monthly.set(k, { month: k, disbursed: 0, repaid: 0, interest: 0, deposited: 0, withdrawn: 0, loans: 0 }); return monthly.get(k); };
-    const touched = new Set();
-    for (const e of fresh) {
-      const a = e.args, when = { block: e.block, time: times[e.block], tx: e.tx };
-      if (e.event === "Deposited") { S.flows.deposited += a.assets; bucket(when.time).deposited += a.assets; }
-      else if (e.event === "Withdrawn") { S.flows.withdrawn += a.assets; bucket(when.time).withdrawn += a.assets; }
-      else if (e.event === "Staked") stake[a.account] = (stake[a.account] || 0) + a.amount;
-      else if (e.event === "Unstaked") stake[a.account] = (stake[a.account] || 0) - a.amount;
-      else if (e.event === "Backed") { const k = a.backer + "|" + a.borrower; if (a.secured + a.unsecured) edges.set(k, { backer: a.backer, borrower: a.borrower, secured: a.secured, unsecured: a.unsecured, tx: e.tx, block: e.block }); else edges.delete(k); }
-      if (!("loanId" in a)) continue;
-      touched.add(a.loanId);
-      let l = byId.get(a.loanId);
-      if (!l) { l = { id: a.loanId, borrower: null, principal: 0, rateBps: null, status: null, requested: null, disbursed: null, closed: null, repayments: [], repaid: 0, interest: 0, principalRepaid: 0, fee: 0, writtenOff: 0, recovered: 0, backerCharged: 0, impaired: 0, firstLoan: null, txs: {} }; byId.set(a.loanId, l); S.loans.push(l); }
-      if (e.event === "LoanRequested") { l.borrower = a.borrower; l.principal = a.amount; l.rateBps = a.interestRate; l.requested = when; l.firstLoan = !seen.has(a.borrower); seen.add(a.borrower); }
-      else if (e.event === "LoanDisbursed") { l.disbursed = when; l.disbursedTo = a.to; S.flows.disbursed += a.amount; const b = bucket(when.time); b.disbursed += a.amount; b.loans += 1; }
-      else if (e.event === "LoanRepaid") { l.repayments.push({ ...when, amount: a.amount }); l.repaid += a.amount; S.flows.repaid += a.amount; bucket(when.time).repaid += a.amount; }
-      else if (e.event === "RepaymentApplied") { l.interest += a.interest; l.principalRepaid += a.principal; l.fee += a.fee; S.flows.interest += a.interest; S.flows.fees += a.fee; bucket(when.time).interest += a.interest; }
-      else if (e.event === "LoanCancelled") l.closed = { ...when, as: "Cancelled" };
-      else if (e.event === "LoanDefaulted") { l.closed = { ...when, as: "Defaulted" }; l.writtenOff = a.writtenOff; l.recovered = a.recovered; S.flows.writtenOff += a.writtenOff; }
-      else if (e.event === "BackerCharged") l.backerCharged += a.slashed + a.charged;
-      else if (e.event === "LoanImpaired") l.impaired = a.impaired;
+  async function refresh() {
+    if (refreshing) return;
+    refreshing = true;
+    const attempted = new Date().toISOString();
+    $("refresh-btn").disabled = true;
+    try {
+      const next = await readJSON("data/snapshot.json");
+      if (!valid(next) || next.snapshot.verification !== "reconciled-finalized-v1"
+          || next.snapshot.blockNumber < BASE.snapshot.blockNumber
+          || (next.snapshot.blockNumber === BASE.snapshot.blockNumber && next.snapshot.blockHash !== BASE.snapshot.blockHash)
+          || !Number.isFinite(Date.parse(next.snapshot.collectedAt))
+          || Date.parse(next.snapshot.collectedAt) > Date.now() + 60000
+          || (BASE.snapshot.collectedAt && Date.parse(next.snapshot.collectedAt) < Date.parse(BASE.snapshot.collectedAt)))
+        throw new Error("unverified snapshot");
+      BASE = next;
+      render(BASE);
+      $("refresh-note").textContent = `Published snapshot reloaded at ${attempted}. This is a browser fetch, not a new chain verification.`;
+    } catch (_) {
+      $("refresh-note").textContent = `Published refresh unavailable or unverified at ${attempted}; retained dated snapshot. No collection success asserted.`;
     }
-    for (const l of S.loans) if (touched.has(l.id) || l.status === "Active" || l.status === "Requested") {
-      const [st, term, , disbursedAt, dueAt] = await call(snap.pool, "getLoanTerms(uint256)", l.id, ["uint8", "uint256", "uint256", "uint256", "uint256"], tag);
-      l.status = STATUS[st] || `unknown(${st})`; l.termDays = Math.floor(term / 86400); l.dueAt = dueAt || null;
-      if (l.status === "Repaid" && l.repayments.length) { const last = l.repayments[l.repayments.length - 1]; l.closed = { block: last.block, time: last.time, tx: last.tx, as: "Repaid" }; l.onTime = !!dueAt && last.time <= dueAt; }
-      l.daysToRepay = l.closed && l.disbursed && l.closed.as === "Repaid" ? Math.round((l.closed.time - l.disbursed.time) / 86400 * 10) / 10 : null;
-    }
-    S.loans.sort((a, b) => a.id - b.id);
-    S.backing = [...edges.values()];
-    S.loanStatus = Object.fromEntries(STATUS.slice(1).map(s => [s, S.loans.filter(l => l.status === s).length]));
-    let run = { disbursed: 0, repaid: 0, interest: 0, deposited: 0, withdrawn: 0, loans: 0 };
-    S.monthly = [...monthly.keys()].sort().map(k => { const mo = monthly.get(k); for (const n of Object.keys(run)) run[n] += mo[n]; return { ...mo, cumulative: { ...run } }; });
-
-    // Profiles: register check, then attestations under the schema.
-    const sch = S.profileSchema;
-    if (!sch.registered) { const rec = await rpc(snap.stateRpc, "eth_call", [{ to: sch.registry, data: sel["getSchema(bytes32)"] + hexWord("bytes32", sch.uid) }, tag]); sch.registered = rec.length > 2 + 64 * 4 && decodeValues(["bytes32"], "0x" + rec.slice(2 + 64))[0].toLowerCase() === sch.uid.toLowerCase(); }
-    if (sch.registered) {
-      const topics = Object.entries(abi.events).filter(([, e]) => e.name === "Attested" || e.name === "Revoked").map(([t]) => t);
-      const from = BASE.profileSchema.registered ? snap.blockNumber + 1 : snap.fromBlock;
-      const logs = await rpc(snap.logsRpc, "eth_getLogs", [{ address: sch.eas, fromBlock: "0x" + from.toString(16), toBlock: tag, topics: [topics, null, null, sch.uid] }]);
-      const revoked = new Set(), attested = [];
-      for (const l of logs.map(l => decodeLog(abi.events, l)).filter(Boolean).sort((a, b) => a.block - b.block || a.logIndex - b.logIndex)) (l.event === "Revoked" ? revoked.add(l.args.uid) : attested.push(l));
-      const profiles = S.profiles.filter(p => !revoked.has(p.uid));
-      for (const item of attested) {
-        const r = await rpc(snap.stateRpc, "eth_call", [{ to: sch.eas, data: sel["getAttestation(bytes32)"] + hexWord("bytes32", item.args.uid) }, tag]);
-        const f = decodeValues(["bytes32", "bytes32", "uint64", "uint64", "uint64", "bytes32", "address", "address", "bool", "bytes"], "0x" + r.slice(2 + 64));
-        if (f[4] || revoked.has(item.args.uid)) continue;
-        try { const [loanId, country, region, occupation, purpose, incomeBand, consentVersion] = decodeValues(["uint256", "string", "string", "string", "string", "uint8", "uint8"], f[9]);
-          profiles.push({ loanId, country, region, occupation, purpose, incomeBand, incomeBandLabel: INCOME_BANDS[incomeBand] || "unknown band", consentVersion, uid: item.args.uid, attester: f[7], borrower: f[6], attestedAt: f[2], tx: item.tx, block: item.block }); } catch (err) { /* malformed data: skip */ }
-      }
-      S.profiles = profiles;
-    }
-
-    // Human metrics (METRICS.md 1 to 4, 8, 10), as the collector computes them.
-    const attLoans = new Set(S.profiles.map(p => p.loanId)), attB = new Set(S.profiles.map(p => p.borrower));
-    const repaid = S.loans.filter(l => l.status === "Repaid"), closed = S.loans.filter(l => l.status === "Repaid" || l.status === "Defaulted"), disb = S.loans.filter(l => l.disbursed);
-    const uniq = new Set(repaid.map(l => l.borrower)), totalP = disb.reduce((s, l) => s + l.principal, 0), firstP = disb.filter(l => l.firstLoan).reduce((s, l) => s + l.principal, 0);
-    const noStake = new Set(disb.filter(l => (stake[l.borrower] || 0) <= 0).map(l => l.borrower));
-    const interest = S.loans.reduce((s, l) => s + l.interest, 0), wo = S.loans.reduce((s, l) => s + l.writtenOff, 0), rec = S.loans.reduce((s, l) => s + l.recovered, 0);
-    S.humanMetrics = {
-      uniqueRepayingBorrowers: { attested: [...uniq].filter(b => attB.has(b)).length, unattested: [...uniq].filter(b => !attB.has(b)).length },
-      firstTimeBorrowerShare: totalP ? firstP / totalP : null,
-      disbursedToBorrowersWithNoOwnStake: { borrowers: noStake.size, ofBorrowers: new Set(disb.map(l => l.borrower)).size },
-      repaymentRate: { closedLoans: closed.length, repaid: repaid.length, defaulted: closed.filter(l => l.status === "Defaulted").length, onTime: repaid.filter(l => l.onTime).length, rate: closed.length ? repaid.length / closed.length : null },
-      attestedLoans: { withProfile: S.loans.filter(l => attLoans.has(l.id)).length, ofLoans: S.loans.length },
-      netYield: { interestCollected: interest, writtenOff: wo, recovered: rec, net: interest - wo + rec },
-    };
-    Object.assign(snap, { blockNumber: head, blockHash: headBlock.hash, blockTimestamp: Number(BigInt(headBlock.timestamp)), eventCount: snap.eventCount + fresh.length, live: { sinceBlock: BASE.snapshot.blockNumber, newEvents: fresh.length } });
-    snap.blockTime = new Date(snap.blockTimestamp * 1000).toISOString();
-    liveBadge = `Live from the chain · block ${head.toLocaleString("en-US")} · ${fresh.length} new event${fresh.length === 1 ? "" : "s"} since the snapshot`;
-    render(S);
-    window.LENDING_LIVE = S;
+    try {
+      const status = await readJSON("data/refresh-status.json");
+      if (["success", "failed"].includes(status.status) && Number.isFinite(Date.parse(status.attemptedAt)))
+        $("refresh-note").textContent += ` Last reported collector attempt: ${new Date(status.attemptedAt).toISOString()} (${status.status}).`;
+    } catch (_) { /* No reported collector attempt; never expose provider errors. */ }
+    $("refresh-btn").disabled = false;
+    refreshing = false;
+    window.LENDING_REFRESH_DONE = true;
   }
-
+  $("refresh-btn").onclick = refresh;
   render(BASE);
-  goLive().catch((err) => { liveBadge = `Committed snapshot, block ${BASE.snapshot.blockNumber.toLocaleString("en-US")} (live read unavailable here)`; setBadge(liveBadge); window.LENDING_LIVE_ERROR = String(err); });
+  refresh();
 })();
 </script>
 </body>
