@@ -45,11 +45,22 @@ November5 source-write evidence: the existing managed-shell Git route pushed
 [PR443 revision3fa65cc](https://github.com/scottonchain/microcredit-agent-testbed/commit/3fa65ccee87f985b766b6e3be8e750cde774e581)
 without fresh interactive sign-in. Command-scoped noreply author/committer
 identities were used and verified through the GitHub commit API. A fresh fetch
-confirmed the exact remote source hash matched the reviewed local file. No credential value was inspected or copied, and no credential was created or
+confirmed the exact remote source hash matched the reviewed local file. No
+credential value was inspected or copied, and no credential was created or
 configured for this work.
 This is a working route in one execution, not a permanent authentication repair
 or a portable credential-setup recipe. The existing branding handoff remains
 with its owner; this correction creates no second branding writer.
+
+The [branding owner's amended receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646444159)
+identifies the interruption as ordinary GitHub website sign-in to inspect the
+edit/commit UI for safe identity handling. The browser reported partial passkey
+support and awaited interaction; no signed-in state was obtained. An alternative
+sign-in also ended incomplete. The login tab was closed without retry; the
+existing connector remained authenticated. No account, credential, linking or
+persistent access was created. The [routing correction](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646498819)
+preserves the existing owned branding handoff. This is evidence of an incomplete
+browser attempt, not completed authentication or loss of connector access.
 
 ## Verified capability matrix
 
