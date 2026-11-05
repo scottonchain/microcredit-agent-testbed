@@ -205,24 +205,29 @@ test('preflight hold: an impossible future anchor is rejected under the stated s
 });
 
 // ---- receipt reconciliation ----
+// A real lineage: A (499, the preflight anchor) <- B500 (inclusion) <- B501 (head). Every block carries parentHash.
+const A = { number: 499, hash: '0x' + 'a9'.repeat(32), parentHash: '0x' + 'a8'.repeat(32), timestamp: NOW - 30 };
+const B500 = { number: 500, hash: '0x' + 'b0'.repeat(32), parentHash: A.hash, timestamp: NOW - 20 };
+const B501 = { number: 501, hash: '0x' + 'b1'.repeat(32), parentHash: B500.hash, timestamp: NOW - 10 };
 const topics = (from, to) => encodeEventTopics({ abi, eventName: 'Transfer', args: { from, to } });
 const log = (o = {}) => ({ address: TOKEN, topics: topics(FROM, TO), data: encodeAbiParameters([{ type: 'uint256' }], [8n]), ...o });
 const FEE = 40_000n * 1000n + 30_000n;
-const receipt = (o = {}) => ({ status: 1, transactionHash: HASH1, from: FROM, to: TOKEN, blockHash: BLOCK.hash, blockNumber: 500, gasUsed: 40_000n, effectiveGasPrice: 1000n, l1Fee: 30_000n, operatorFee: 0n, logs: [log()], ...o });
+const receipt = (o = {}) => ({ status: 1, transactionHash: HASH1, from: FROM, to: TOKEN, blockHash: B500.hash, blockNumber: 500, gasUsed: 40_000n, effectiveGasPrice: 1000n, l1Fee: 30_000n, operatorFee: 0n, logs: [log()], ...o });
 const bal = (fee, extra = 0n) => ({ before: 10n ** 16n, after: 10n ** 16n - fee - extra });
 const transferInput = (to = TO, amount = 8n) => encodeFunctionData({ abi, functionName: 'transfer', args: [to, amount] });
-const txFor = (i, o = {}) => ({ hash: HASH1, from: FROM, to: i.kind === 'erc20' ? TOKEN : TO, nonce: 3, value: i.kind === 'native' ? i.amount : 0n, input: i.kind === 'erc20' ? transferInput(TO, i.amount) : '0x', blockHash: BLOCK.hash, ...o });
-// A chain whose head is two blocks ahead, plus the envelope preflight produced for this intent.
-async function setup(i = intent(), o = {}) {
-  const B501 = { ...BLOCK, number: 501, hash: '0x' + '0b'.repeat(32) };
-  const c = chain({ block: { ...B501 }, blocks: { 500: { ...BLOCK }, 501: { ...B501 } }, ...o });
-  const pre = await gate(c).preflight(i); assert.equal(pre.ok, true, JSON.stringify(pre.reasons));
-  c.s.tx = txFor(i); return { c, envelope: pre.envelope };
+const txFor = (i, o = {}) => ({ hash: HASH1, from: FROM, to: i.kind === 'erc20' ? TOKEN : TO, nonce: 3, value: i.kind === 'native' ? i.amount : 0n, input: i.kind === 'erc20' ? transferInput(TO, i.amount) : '0x', blockHash: B500.hash, ...o });
+// preflight at the anchor (block 499), then the chain advances: inclusion in 500, head 501. The SAME gate instance
+// retains the envelope, as it must in production.
+async function setup(i = intent(), { pol = policy(), o = {} } = {}) {
+  const c = chain({ block: { ...A }, blocks: { 499: { ...A } }, ...o });
+  const g = createChainGate({ rpc: c.rpc, policy: pol, now: () => NOW });
+  const pre = await g.preflight(i); assert.equal(pre.ok, true, JSON.stringify(pre.reasons));
+  c.s.block = { ...B501 }; c.s.blocks = { 499: { ...A }, 500: { ...B500 }, 501: { ...B501 } }; c.s.tx = txFor(i);
+  return { c, g, envelope: pre.envelope };
 }
-async function REC(i, r, { b = bal(FEE), mutateChain, envelope, policyOverride } = {}) {
-  const { c, envelope: env } = await setup(i);
-  if (mutateChain) mutateChain(c);
-  return gate(c, policyOverride).reconcileReceipt({ intent: i, receipt: r, envelope: envelope === undefined ? env : envelope, balances: b });
+async function REC(i, r, { b = bal(FEE), mutate, envelope, pol } = {}) {
+  const s = await setup(i, { pol }); if (mutate) mutate(s.c);
+  return s.g.reconcileReceipt({ intent: i, receipt: r, envelope: envelope === undefined ? s.envelope : envelope, balances: b });
 }
 
 test('receipt: a matching, bound, canonical, confirmed transfer reconciles with fee components and the balance delta', async () => {
@@ -252,12 +257,11 @@ for (const [label, r, reason] of RECEIPT_HOLDS) {
   });
 }
 
-// ---- finding 2: bound to the transaction, its outer target and its fields, fetched by hash ----
-test('receipt hold: the Codex repro, a native intent whose receipt is a DIFFERENT transaction to the token with a matching fee and value', async () => {
-  const i = intent({ kind: 'native', amount: 777n, contract: undefined });
-  const fee = 21_000n * 1000n + 30_000n;
+// bound to the transaction, its outer target and its fields, fetched by hash
+test('receipt hold: the earlier repro, a native intent whose receipt is a DIFFERENT transaction to the token with a matching fee and value', async () => {
+  const i = intent({ kind: 'native', amount: 777n, contract: undefined }); const fee = 21_000n * 1000n + 30_000n;
   const out = await REC(i, receipt({ transactionHash: HASH2, to: TOKEN, gasUsed: 21_000n, logs: [] }), { b: bal(fee, 777n) });
-  assert.equal(out.ok, false); assert.ok(out.reasons.includes('receipt_hash_differs') && out.reasons.includes('receipt_target_differs'), JSON.stringify(out.reasons));
+  assert.ok(out.reasons.includes('receipt_hash_differs') && out.reasons.includes('receipt_target_differs'), JSON.stringify(out.reasons));
 });
 test('receipt: a native transfer binds to the recipient as outer target and reconciles value plus fee', async () => {
   const i = intent({ kind: 'native', amount: 777n, contract: undefined }); const fee = 21_000n * 1000n + 30_000n;
@@ -266,10 +270,8 @@ test('receipt: a native transfer binds to the recipient as outer target and reco
   assert.ok((await REC(i, receipt({ to: TO, gasUsed: 21_000n, logs: [log()] }), { b: bal(fee, 777n) })).reasons.includes('unexpected_logs_on_native_transfer'));
 });
 const TX_HOLDS = [
-  ['the fetched transaction has another hash', { hash: HASH2 }, 'transaction_hash_differs'],
-  ['another sender', { from: TO }, 'transaction_sender_differs'],
-  ['another target', { to: '0x' + '99'.repeat(20) }, 'transaction_target_differs'],
-  ['another nonce', { nonce: 9 }, 'transaction_nonce_differs'],
+  ['the fetched transaction has another hash', { hash: HASH2 }, 'transaction_hash_differs'], ['another sender', { from: TO }, 'transaction_sender_differs'],
+  ['another target', { to: '0x' + '99'.repeat(20) }, 'transaction_target_differs'], ['another nonce', { nonce: 9 }, 'transaction_nonce_differs'],
   ['native value on a token transfer', { value: 1n }, 'transaction_value_differs'],
   ['other calldata (another recipient)', { input: transferInput('0x' + 'ee'.repeat(20)) }, 'transaction_calldata_differs'],
   ['other calldata (another amount)', { input: transferInput(TO, 9n) }, 'transaction_calldata_differs'],
@@ -277,76 +279,165 @@ const TX_HOLDS = [
 ];
 for (const [label, o, reason] of TX_HOLDS) {
   test(`receipt hold: ${label}`, async () => {
-    const out = await REC(intent(), receipt(), { mutateChain: c => { c.s.tx = txFor(intent(), o); } });
+    const out = await REC(intent(), receipt(), { mutate: c => { c.s.tx = txFor(intent(), o); } });
     assert.ok(out.reasons.includes(reason), JSON.stringify(out.reasons));
   });
 }
 test('receipt hold: the transaction cannot be fetched', async () => {
-  const out = await REC(intent(), receipt(), { mutateChain: c => { c.rpc.getTransaction = async () => { throw new Error('gone'); }; } });
-  assert.ok(out.reasons.includes('transaction_read_failed'));
-  const out2 = await REC(intent(), receipt(), { mutateChain: c => { c.s.tx = null; } });
-  assert.ok(out2.reasons.includes('transaction_read_failed'));
+  assert.ok((await REC(intent(), receipt(), { mutate: c => { c.rpc.getTransaction = async () => { throw new Error('gone'); }; } })).reasons.includes('transaction_read_failed'));
+  assert.ok((await REC(intent(), receipt(), { mutate: c => { c.s.tx = null; } })).reasons.includes('transaction_read_failed'));
 });
 
-// ---- finding 3: inclusion and head re-validated at the end ----
-test('receipt hold: the inclusion block is replaced while the head is read (the Codex repro)', async () => {
-  const out = await REC(intent(), receipt(), { mutateChain: c => {
-    const f = c.rpc.getBlock; let swapped = false;
-    c.rpc.getBlock = async x => { const r = await f(x); if (x === 'latest' && !swapped) { swapped = true; c.s.blocks[500] = { ...BLOCK, hash: '0x' + '0e'.repeat(32) }; } return r; };
-  } });
-  assert.equal(out.ok, false); assert.ok(out.reasons.includes('inclusion_changed_during_check'), JSON.stringify(out.reasons));
+// ---- Codex B1 delta review 6670289006 ----
+test('finding 1: the chain id and provider are read again at reconciliation (the repro: chainId() becomes 1 after a valid preflight)', async () => {
+  const out = await REC(intent(), receipt(), { mutate: c => { c.rpc.chainId = async () => 1; } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('chain_differs'), JSON.stringify(out.reasons));
+  const prov = await REC(intent(), receipt(), { mutate: c => { c.rpc.providerId = async () => 'provider-b'; } });
+  assert.ok(prov.reasons.includes('provider_differs_from_envelope'));
+  const flip = await REC(intent(), receipt(), { mutate: c => { const f = c.rpc.chainId; let n = 0; c.rpc.chainId = async () => (++n === 1 ? f() : 1); } });
+  assert.ok(flip.reasons.includes('provenance_changed_during_check'), JSON.stringify(flip.reasons));
 });
-test('receipt hold: the head moves backwards, or changes hash at the same height, during the check', async () => {
-  const back = await REC(intent(), receipt(), { mutateChain: c => { const f = c.rpc.getBlock; let n = 0; c.rpc.getBlock = async x => { const r = await f(x); if (x === 'latest' && ++n === 2) return { ...r, number: 500 }; return r; }; } });
-  assert.ok(back.reasons.includes('head_changed_during_check'));
-  const swap = await REC(intent(), receipt(), { mutateChain: c => { const f = c.rpc.getBlock; let n = 0; c.rpc.getBlock = async x => { const r = await f(x); if (x === 'latest' && ++n === 2) return { ...r, hash: '0x' + '0f'.repeat(32) }; return r; }; } });
-  assert.ok(swap.reasons.includes('head_changed_during_check'));
+
+test('finding 2: a hash-shaped anchor is not evidence: a caller envelope with another anchor is refused, and a restored one is checked against the chain', async () => {
+  const { c, g, envelope } = await setup();
+  const forged = { ...envelope, binding: { ...envelope.binding, anchorHash: '0x' + '77'.repeat(32), anchorNumber: 999999 } };
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: forged, balances: bal(FEE) });
+  assert.ok(out.reasons.includes('envelope_differs_from_retained'), JSON.stringify(out.reasons)); assert.equal(out.ok, false);
+  // restore path (after a restart): the anchor must be canonical on the chain NOW
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  const bad = await g2.restoreEnvelope(intent(), forged); assert.equal(bad.ok, false); assert.ok(bad.reasons.includes('anchor_not_canonical'), JSON.stringify(bad.reasons));
+  const good = await g2.restoreEnvelope(intent(), envelope); assert.equal(good.ok, true, JSON.stringify(good.reasons));
+  const rec = await g2.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: good.envelope, balances: bal(FEE) });
+  assert.equal(rec.ok, true, JSON.stringify(rec.reasons));
 });
-test('receipt hold: a missing, NaN or future head never satisfies confirmations', async () => {
-  for (const [label, break_] of [['undefined head', c => { c.rpc.getBlock = async x => (x === 'latest' ? undefined : c.s.blocks[x]); }], ['NaN head number', c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? { ...(await f(x)), number: NaN } : f(x)); }]]) {
-    const out = await REC(intent(), receipt(), { mutateChain: break_ });
-    assert.equal(out.ok, false, label);
+test('finding 2: the anchor must precede the inclusion block in number and time', async () => {
+  const { c, g, envelope } = await setup();
+  c.s.blocks[499] = { ...A, timestamp: NOW - 5 }; // anchor stamped after the inclusion block: impossible
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) });
+  assert.ok(out.reasons.includes('anchor_not_canonical') || out.reasons.includes('anchor_not_before_inclusion'), JSON.stringify(out.reasons));
+  // an envelope whose anchor is the inclusion block itself (not before it)
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  const same = { ...envelope, binding: { ...envelope.binding, anchorHash: B500.hash, anchorNumber: 500 } };
+  const r = await g2.restoreEnvelope(intent(), same); assert.equal(r.ok, true);
+  const out2 = await g2.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: r.envelope, balances: bal(FEE) });
+  assert.ok(out2.reasons.includes('anchor_not_before_inclusion'), JSON.stringify(out2.reasons));
+});
+
+test('finding 3: only allInWei changed (the repro), with an actual fee of 800,030,000 and a matching balance delta', async () => {
+  const { g, envelope } = await setup();
+  const inflated = { ...envelope, allInWei: 1_000_000_000n };
+  const big = receipt({ gasUsed: 800_000n, effectiveGasPrice: 1000n, l1Fee: 30_000n }); // 800,000,000 execution + 30,000 L1
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: big, envelope: inflated, balances: bal(800_030_000n) });
+  assert.equal(out.ok, false);
+  for (const r of ['envelope_differs_from_retained', 'actual_execution_exceeds_signed_ceiling', 'actual_fee_exceeds_envelope']) assert.ok(out.reasons.includes(r), r + ' ' + JSON.stringify(out.reasons));
+  // even with the retained envelope, the same actual fee is above the signed execution ceiling and the envelope
+  const honest = await g.reconcileReceipt({ intent: intent(), receipt: big, envelope, balances: bal(800_030_000n) });
+  assert.ok(honest.reasons.includes('actual_execution_exceeds_signed_ceiling') && honest.reasons.includes('actual_fee_exceeds_envelope'), JSON.stringify(honest.reasons));
+});
+test('finding 3: a restored envelope must follow from the signed intent and the policy (ceiling, margin, operator bound, sum)', async () => {
+  const { c, envelope } = await setup();
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  for (const [label, o, reason] of [
+    ['execution ceiling swapped', { executionCeilingWei: 10n ** 12n, allInWei: 10n ** 12n + envelope.l1MarginedWei + envelope.operatorBoundWei }, 'envelope_execution_ceiling_differs_from_signed'],
+    ['L1 margin changed', { l1MarginedWei: envelope.l1MarginedWei + 1n, allInWei: envelope.allInWei + 1n }, 'envelope_l1_margin_inconsistent'],
+    ['operator bound changed', { operatorBoundWei: 5n, allInWei: envelope.allInWei - 995n }, 'envelope_operator_bound_differs_from_policy'],
+    ['total changed', { allInWei: envelope.allInWei + 1n }, 'envelope_total_inconsistent'],
+    ['over the authorization', { allInWei: 10n ** 16n }, 'envelope_exceeds_authorization'],
+  ]) {
+    const r = await g2.restoreEnvelope(intent(), { ...envelope, ...o });
+    assert.equal(r.ok, false, label); assert.ok(r.reasons.includes(reason), label + ' ' + JSON.stringify(r.reasons));
   }
-  const future = await REC(intent(), receipt(), { mutateChain: c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? { ...(await f(x)), timestamp: NOW + 99999 } : f(x)); } });
+});
+test('finding 3: component bounds apply to the actual cost on their own (L1 above the margined quote, operator above its bound)', async () => {
+  const l1 = await REC(intent(), receipt({ l1Fee: 60_000n }), { b: bal(40_000n * 1000n + 60_000n) });
+  assert.ok(l1.reasons.includes('actual_l1_exceeds_envelope'), JSON.stringify(l1.reasons));
+  const op = await REC(intent(), receipt({ operatorFee: 2000n }), { b: bal(FEE + 2000n) });
+  assert.ok(op.reasons.includes('actual_operator_exceeds_bound'), JSON.stringify(op.reasons));
+});
+
+test('finding 4: the inclusion block is replaced and the head advances to 502 on the LAST head read (the repro): not ok', async () => {
+  const out = await REC(intent(), receipt(), { mutate: c => {
+    const f = c.rpc.getBlock; let heads = 0;
+    c.rpc.getBlock = async x => {
+      if (x === 'latest' && ++heads === 1) { // the (only, final) head read triggers a reorg: new 500, new 501, new head 502
+        const n500 = { ...B500, hash: '0x' + 'c0'.repeat(32) }; const n501 = { ...B501, hash: '0x' + 'c1'.repeat(32), parentHash: n500.hash }; const n502 = { number: 502, hash: '0x' + 'c2'.repeat(32), parentHash: n501.hash, timestamp: NOW - 5 };
+        c.s.blocks[500] = n500; c.s.blocks[501] = n501; c.s.blocks[502] = n502; return n502;
+      }
+      return f(x);
+    };
+  } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('inclusion_not_in_head_lineage') || out.reasons.includes('block_not_canonical'), JSON.stringify(out.reasons));
+});
+test('finding 4: the confirmation proof is a hash lineage: a head whose parent chain skips the inclusion block, a broken parent link and a short head all hold', async () => {
+  const unrelated = await REC(intent(), receipt(), { mutate: c => { c.s.block = { ...B501, parentHash: '0x' + 'dd'.repeat(32) }; } });
+  assert.ok(unrelated.reasons.includes('inclusion_not_in_head_lineage'), JSON.stringify(unrelated.reasons));
+  const broken = await REC(intent(), receipt(), { pol: policy({ confirmations: 3 }), mutate: c => { const b502 = { number: 502, hash: '0x' + 'f2'.repeat(32), parentHash: B501.hash, timestamp: NOW - 4 }; c.s.blocks[502] = b502; c.s.blocks[501] = { ...B501, parentHash: '0x' + 'ee'.repeat(32) }; c.s.block = { ...b502 }; } });
+  assert.ok(broken.reasons.includes('head_lineage_broken') || broken.reasons.includes('inclusion_not_in_head_lineage'), JSON.stringify(broken.reasons));
+  const short = await REC(intent(), receipt(), { mutate: c => { c.s.block = { ...B500 }; c.s.blocks[501] = undefined; } });
+  assert.ok(short.reasons.includes('not_enough_confirmations'));
+  const longChain = await REC(intent(), receipt(), { pol: policy({ confirmations: 4 }), mutate: c => {
+    let prev = B501; for (let n = 502; n <= 510; n++) { const b = { number: n, hash: '0x' + (n - 502 + 0x20).toString(16).padStart(2, '0').repeat(32), parentHash: prev.hash, timestamp: NOW - 4 }; c.s.blocks[n] = b; prev = b; } c.s.block = { ...prev };
+  } });
+  assert.equal(longChain.ok, true, JSON.stringify(longChain.reasons)); // a head far ahead is proven by the same walk
+});
+test('a missing, NaN, future or parent-less head never satisfies confirmations', async () => {
+  for (const [label, brk] of [
+    ['undefined head', c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? undefined : f(x)); }],
+    ['NaN head number', c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? { ...(await f(x)), number: NaN } : f(x)); }],
+    ['head without a parentHash', c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? { ...(await f(x)), parentHash: undefined } : f(x)); }],
+  ]) assert.equal((await REC(intent(), receipt(), { mutate: brk })).ok, false, label);
+  const future = await REC(intent(), receipt(), { mutate: c => { const f = c.rpc.getBlock; c.rpc.getBlock = async x => (x === 'latest' ? { ...(await f(x)), timestamp: NOW + 99999 } : f(x)); } });
   assert.ok(future.reasons.includes('head_in_future'));
 });
-test('receipt hold: too few confirmations, and a balance that moved by something else', async () => {
-  const { c, envelope } = await setup(); c.s.block = { ...BLOCK };
-  c.s.blocks[500] = { ...BLOCK };
-  assert.ok((await gate(c).reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) })).reasons.includes('not_enough_confirmations'));
+
+test('receipt hold: a balance that moved by something else, and missing balances', async () => {
   assert.ok((await REC(intent(), receipt(), { b: bal(FEE, 1n) })).reasons.includes('sender_balance_delta_differs'));
-  const { c: c2, envelope: e2 } = await setup();
-  assert.ok((await gate(c2).reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: e2 })).reasons.includes('balances_missing'));
+  const { g, envelope } = await setup();
+  assert.ok((await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope })).reasons.includes('balances_missing'));
 });
 
-// ---- finding 4: reconciliation needs the bound envelope and every actual cost component ----
-test('receipt hold: no envelope (the Codex repro), or one bound to another intent, policy or provider', async () => {
+// ---- envelope required, retained, bound ----
+test('receipt hold: no envelope, a bare object, an envelope never retained by this gate, and one bound to another intent or policy', async () => {
   assert.deepEqual((await REC(intent(), receipt(), { envelope: null })).reasons, ['envelope_missing']);
   assert.deepEqual((await REC(intent(), receipt(), { envelope: { allInWei: 10n ** 18n } })).reasons, ['envelope_missing']);
   const { c, envelope } = await setup();
-  const mk = o => ({ ...envelope, binding: { ...envelope.binding, ...o } });
-  for (const [label, o, reason] of [['another intent', { intentHash: HASH2 }, 'envelope_not_bound_to_this_intent_or_policy'], ['another policy', { policyDigest: '0x' + '00'.repeat(32) }, 'envelope_not_bound_to_this_intent_or_policy'], ['another chain', { chainId: 1 }, 'envelope_not_bound_to_this_intent_or_policy'], ['another provider', { providerId: 'provider-b' }, 'provider_differs_from_envelope'], ['no anchor', { anchorHash: undefined }, 'envelope_anchor_missing']]) {
-    const out = await gate(c).reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: mk(o), balances: bal(FEE) });
-    assert.ok(out.reasons.includes(reason), label + ' ' + JSON.stringify(out.reasons));
-  }
+  const fresh = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW }); // never ran this preflight
+  assert.deepEqual((await fresh.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) })).reasons, ['envelope_not_retained']);
+  const other = createChainGate({ rpc: c.rpc, policy: policy({ confirmations: 3 }), now: () => NOW });
+  const r = await other.restoreEnvelope(intent(), envelope); assert.ok(r.reasons.includes('envelope_not_bound_to_this_intent_or_policy'));
+  const r2 = await createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW }).restoreEnvelope(intent({ hash: HASH2 }), envelope);
+  assert.ok(r2.reasons.includes('envelope_not_bound_to_this_intent_or_policy'));
 });
-test('receipt: an operator fee that the receipt does not report is not silently zero', async () => {
+test('the retained envelope is frozen: mutating the returned object does not change what reconcile uses', async () => {
+  const { g, envelope } = await setup();
+  assert.throws(() => { 'use strict'; envelope.allInWei = 1n; }, TypeError);
+  assert.throws(() => { 'use strict'; envelope.binding.anchorHash = '0x' + '00'.repeat(32); }, TypeError);
+  assert.equal((await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) })).ok, true);
+});
+test('receipt: an operator fee that the receipt does not report is not silently zero, unless the policy names verified-not-applicable evidence', async () => {
   const out = await REC(intent(), receipt({ operatorFee: undefined }));
   assert.ok(out.reasons.includes('operator_fee_not_reported'), JSON.stringify(out.reasons));
-  // only a policy that names verified-not-applicable evidence lets an unreported operator fee count as zero
   const zero = policy({ fee: { ...policy().fee, operatorFeeBoundWei: 0n, operatorFeeEvidence: 'verified_not_applicable', operatorFeeEvidenceRef: 'a recorded observation of the pinned chain at a named block' } });
-  const B501 = { ...BLOCK, number: 501, hash: '0x' + '0b'.repeat(32) };
-  const c = chain({ block: { ...B501 }, blocks: { 500: { ...BLOCK }, 501: { ...B501 } } });
-  const g = createChainGate({ rpc: c.rpc, policy: zero, now: () => NOW }); const pre = await g.preflight(intent()); assert.equal(pre.ok, true, JSON.stringify(pre.reasons));
-  c.s.tx = txFor(intent());
-  const ok = await g.reconcileReceipt({ intent: intent(), receipt: receipt({ operatorFee: undefined }), envelope: pre.envelope, balances: bal(FEE) });
+  const ok = await REC(intent(), receipt({ operatorFee: undefined }), { pol: zero });
   assert.equal(ok.ok, true, JSON.stringify(ok.reasons));
 });
-test('receipt hold: an actual fee above the authorized exposure even when the envelope is generous, and an incomplete policy', async () => {
+test('receipt hold: an incomplete policy refuses reconciliation too', async () => {
   const { c, envelope } = await setup();
-  const roomy = { ...envelope, allInWei: 10n ** 30n };
-  const out = await gate(c).reconcileReceipt({ intent: intent(), receipt: receipt({ effectiveGasPrice: 10n ** 13n }), envelope: roomy, balances: bal(40_000n * 10n ** 13n + 30_000n) });
-  assert.ok(out.reasons.includes('actual_fee_exceeds_authorization'), JSON.stringify(out.reasons));
-  const bad = await gate(c, { ...policy(), confirmations: 0 }).reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) });
-  assert.ok(bad.reasons[0].startsWith('policy_incomplete'));
+  const bad = createChainGate({ rpc: c.rpc, policy: { ...policy(), confirmations: 0 }, now: () => NOW });
+  assert.ok((await bad.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) })).reasons[0].startsWith('policy_incomplete'));
+});
+
+test('the anchor must still be canonical at reconciliation (a reorg below the anchor after preflight holds)', async () => {
+  const { c, g, envelope } = await setup();
+  c.s.blocks[499] = { ...A, hash: '0x' + 'a7'.repeat(32) };
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) });
+  assert.ok(out.reasons.includes('anchor_not_canonical'), JSON.stringify(out.reasons));
+});
+test('the whole span from the head down to the confirming block is a parent-hash lineage (a broken link far above inclusion holds)', async () => {
+  const out = await REC(intent(), receipt(), { pol: policy({ confirmations: 2 }), mutate: c => {
+    let prev = B501;
+    for (let n = 502; n <= 508; n++) { const b = { number: n, hash: '0x' + (n - 502 + 0x30).toString(16).padStart(2, '0').repeat(32), parentHash: n === 505 ? '0x' + '99'.repeat(32) : prev.hash, timestamp: NOW - 4 }; c.s.blocks[n] = b; prev = b; }
+    c.s.block = { ...prev };
+  } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('head_lineage_broken'), JSON.stringify(out.reasons));
 });

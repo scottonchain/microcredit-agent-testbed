@@ -18,10 +18,16 @@
 // = decoder execution ceiling + L1 data fee quoted at the anchor for the exact payload times a stated margin + an
 // explicit operator-fee bound, bounded by a separately authorized maximum exposure, and covered by the native balance.
 //
-// reconcileReceipt(...) - after inclusion. Binds the receipt to THIS transaction (hash, sender, outer target, and the
-// transaction fetched by hash: nonce, value and calldata), requires the envelope that preflight produced for this
-// intent, provider, chain, anchor and policy, requires the actual fee components (an unreported operator fee counts as
-// zero only when the policy states verified-not-applicable evidence), and re-validates inclusion and head at the end.
+// reconcileReceipt(...) - after inclusion. The caller's envelope is never authority: the gate retains the complete frozen
+// preflight result and uses only that (a caller copy that differs in any field holds; after a restart the record comes
+// back only through restoreEnvelope, which re-derives its numbers from the signed intent, the policy and the oracle
+// quote, and checks that its anchor block is canonical on the pinned chain now). It reads the provider and chain id
+// again, binds the receipt to THIS transaction (hash, sender, outer target, and the transaction fetched by hash: nonce,
+// value, calldata), checks the anchor precedes inclusion in number and time, requires every actual fee component (an
+// unreported operator fee is zero only with named verified-not-applicable evidence) and bounds each component: execution
+// cost by the signed ceiling, L1 by the margined quote, operator by its bound, the total by the envelope and the
+// authorization. Confirmations rest on a parent-hash lineage walked from the head just read down to the inclusion block,
+// so a reorg that the last head read triggers cannot pass.
 
 import { keccak256, encodeFunctionData, parseAbi, hexToBigInt, decodeEventLog, isAddress } from 'viem';
 
@@ -61,10 +67,13 @@ const quantity = v => {
   if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v)) return hexToBigInt(v);
   return bad();
 };
-const blockFields = b => {
+const blockFields = (b, withParent = false) => {
   if (!b || typeof b !== 'object' || typeof b.hash !== 'string' || !HASH.test(b.hash)) bad();
-  return { number: count(b.number), hash: b.hash, timestamp: count(b.timestamp) };
+  const out = { number: count(b.number), hash: b.hash, timestamp: count(b.timestamp) };
+  if (withParent) { if (typeof b.parentHash !== 'string' || !HASH.test(b.parentHash)) bad(); out.parentHash = b.parentHash; }
+  return out;
 };
+const deepFreeze = o => { if (o && typeof o === 'object' && !Object.isFrozen(o)) { Object.freeze(o); Object.values(o).forEach(deepFreeze); } return o; };
 
 // What a configuration must state. Returns problems; a gate built from an incomplete policy refuses every send.
 export function policyProblems(p) {
@@ -99,6 +108,9 @@ export function policyDigest(p) {
 export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now() / 1000) }) {
   const problems = policyProblems(policy);
   const digest = problems.length ? null : policyDigest(policy);
+  // The complete preflight result stays INSIDE the gate, frozen. A caller-held copy is never authority: reconcile uses
+  // the retained envelope and refuses a caller envelope that differs from it in any field.
+  const retained = new Map();
 
   async function anchored() {
     const providerId = await rpc.providerId();
@@ -182,26 +194,77 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       const again = await need('anchor_recheck', () => rpc.getBlock(anchor.number), blockFields);
       if (again !== undefined && (again.hash !== anchor.hash || again.number !== anchor.number)) reasons.push('anchor_changed');
 
-      return reasons.length ? { ok: false, reasons: [...new Set(reasons)], anchor } : { ok: true, anchor, envelope, balances: { native: nativeBalance.toString() } };
+      if (reasons.length) return { ok: false, reasons: [...new Set(reasons)], anchor };
+      const kept = deepFreeze(JSON.parse(JSON.stringify(envelope, (k, v) => (typeof v === 'bigint' ? { __big: v.toString() } : v)), (k, v) => (v && typeof v === 'object' && '__big' in v ? BigInt(v.__big) : v)));
+      retained.set(lc(intent.hash), kept);
+      return { ok: true, anchor, envelope: kept, balances: { native: nativeBalance.toString() } };
     } catch {
       return { ok: false, reasons: ['preflight_error'] }; // a conversion that escaped the validators is still a hold, never provider text
     }
   }
 
+  // The numbers of an envelope must follow from the signed intent, the policy and the oracle quote: nothing in them is a
+  // free input. Returns reasons (empty when consistent).
+  function envelopeProblems(intent, env) {
+    const out = [];
+    try {
+      if (!env || typeof env !== 'object' || !env.binding) return ['envelope_missing'];
+      const exec = big(intent.maxFeeWei); const op = big(policy.fee.operatorFeeBoundWei);
+      if (env.executionCeilingWei !== exec) out.push('envelope_execution_ceiling_differs_from_signed');
+      if (env.operatorBoundWei !== op) out.push('envelope_operator_bound_differs_from_policy');
+      const margined = (big(env.l1QuoteWei) * BigInt(policy.fee.l1MultiplePpm) + 999_999n) / 1_000_000n;
+      if (env.l1MarginedWei !== margined) out.push('envelope_l1_margin_inconsistent');
+      if (env.allInWei !== exec + margined + op) out.push('envelope_total_inconsistent');
+      if (env.allInWei > big(policy.fee.maxExposureWei)) out.push('envelope_exceeds_authorization');
+      const b = env.binding;
+      if (b.intentHash !== lc(intent.hash ?? '') || b.chainId !== policy.chainId || b.policyDigest !== digest) out.push('envelope_not_bound_to_this_intent_or_policy');
+      if (!policy.approvedProviderIds.includes(b.providerId)) out.push('envelope_provider_not_approved');
+      if (!HASH.test(b.anchorHash || '') || !Number.isSafeInteger(b.anchorNumber)) out.push('envelope_anchor_malformed');
+    } catch { out.push('envelope_malformed'); }
+    return out;
+  }
+  const same = (x, y) => JSON.stringify(x, (k, v) => (typeof v === 'bigint' ? v.toString() + 'n' : v)) === JSON.stringify(y, (k, v) => (typeof v === 'bigint' ? v.toString() + 'n' : v));
+
+  // A durable record of a preflight envelope (the journal owner saved it before the send) can be brought back after a
+  // restart ONLY through this verification: consistency with the signed intent and the policy, and an anchor that is
+  // actually canonical on the pinned chain right now. Returns the frozen retained envelope.
+  async function restoreEnvelope(intent, record) {
+    if (problems.length) return { ok: false, reasons: ['policy_incomplete:' + problems.join(',')] };
+    const reasons = envelopeProblems(intent, record);
+    if (reasons.length) return { ok: false, reasons };
+    try {
+      const providerId = await rpc.providerId();
+      if (providerId !== record.binding.providerId || !policy.approvedProviderIds.includes(providerId)) return { ok: false, reasons: ['provider_differs_from_envelope'] };
+      if (count(await rpc.chainId()) !== policy.chainId) return { ok: false, reasons: ['chain_differs'] };
+      let at; try { at = blockFields(await rpc.getBlock(record.binding.anchorNumber)); } catch { return { ok: false, reasons: ['anchor_not_canonical'] }; }
+      if (at.hash !== record.binding.anchorHash || at.number !== record.binding.anchorNumber) return { ok: false, reasons: ['anchor_not_canonical'] };
+    } catch { return { ok: false, reasons: ['restore_read_failed'] }; }
+    const kept = deepFreeze(JSON.parse(JSON.stringify(record, (k, v) => (typeof v === 'bigint' ? { __big: v.toString() } : v)), (k, v) => (v && typeof v === 'object' && '__big' in v ? BigInt(v.__big) : v)));
+    retained.set(lc(intent.hash), kept);
+    return { ok: true, envelope: kept };
+  }
+
   // receipt: { status, transactionHash, from, to, blockHash, blockNumber, gasUsed, effectiveGasPrice, l1Fee?, operatorFee?, logs }
-  // envelope: exactly what preflight returned for this intent. balances: { before, after } native, sender, wei.
-  // rpc.getTransaction(hash) -> { hash, from, to, nonce, value, input, blockHash }
+  // envelope: what preflight (or restoreEnvelope) returned; it is compared with the copy the gate retained, and the
+  // retained copy decides. balances: { before, after } native, sender, wei. rpc.getTransaction(hash) -> { hash, from, to,
+  // nonce, value, input, blockHash }. Blocks must carry parentHash: the confirmations are proven by a hash lineage walk.
   async function reconcileReceipt({ intent, receipt, envelope, balances }) {
     if (problems.length) return { ok: false, reasons: ['policy_incomplete:' + problems.join(',')] };
     const reasons = [];
     try {
       if (!receipt || receipt.status !== 1) return { ok: false, reasons: ['receipt_not_successful'] };
+      const kept = retained.get(lc(intent.hash ?? ''));
       if (!envelope || !envelope.binding) return { ok: false, reasons: ['envelope_missing'] };
-      const bnd = envelope.binding;
-      if (bnd.intentHash !== lc(intent.hash ?? '') || bnd.chainId !== policy.chainId || bnd.policyDigest !== digest) reasons.push('envelope_not_bound_to_this_intent_or_policy');
-      let providerId; try { providerId = await rpc.providerId(); } catch { return { ok: false, reasons: [...reasons, 'provider_read_failed'] }; }
+      if (!kept) return { ok: false, reasons: ['envelope_not_retained'] };
+      if (!same(envelope, kept)) reasons.push('envelope_differs_from_retained');
+      reasons.push(...envelopeProblems(intent, kept));
+      const bnd = kept.binding;
+
+      // current provenance, read again now rather than trusted from the caller's binding
+      let providerId; let chainNow;
+      try { providerId = await rpc.providerId(); chainNow = count(await rpc.chainId()); } catch { return { ok: false, reasons: [...reasons, 'provenance_read_failed'] }; }
       if (!policy.approvedProviderIds.includes(providerId) || providerId !== bnd.providerId) reasons.push('provider_differs_from_envelope');
-      if (!/^0x[0-9a-f]{64}$/.test(bnd.anchorHash || '')) reasons.push('envelope_anchor_missing');
+      if (chainNow !== policy.chainId) reasons.push('chain_differs');
 
       // bind the receipt to the intended transaction
       if (lc(receipt.transactionHash ?? '') !== lc(intent.hash ?? '')) reasons.push('receipt_hash_differs');
@@ -224,11 +287,14 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
         if (tx.blockHash !== undefined && lc(tx.blockHash) !== lc(receipt.blockHash ?? '')) reasons.push('transaction_block_differs');
       }
 
-      // inclusion and head, re-validated at the end so a mid-check reorg cannot pass
-      let incl1; try { incl1 = blockFields(await rpc.getBlock(count(receipt.blockNumber))); } catch { return { ok: false, reasons: [...reasons, 'block_read_failed'] }; }
-      if (incl1.hash !== receipt.blockHash) reasons.push('block_not_canonical');
-      let head1; try { head1 = blockFields(await rpc.getBlock('latest')); } catch { return { ok: false, reasons: [...reasons, 'head_invalid'] }; }
-      if (head1.number < incl1.number) reasons.push('head_before_inclusion');
+      // inclusion block, the envelope's anchor, and a hash lineage from the confirming block back to inclusion
+      let incl; try { incl = blockFields(await rpc.getBlock(count(receipt.blockNumber)), true); } catch { return { ok: false, reasons: [...reasons, 'block_read_failed'] }; }
+      if (incl.hash !== receipt.blockHash) reasons.push('block_not_canonical');
+      try {
+        const an = blockFields(await rpc.getBlock(bnd.anchorNumber));
+        if (an.hash !== bnd.anchorHash || an.number !== bnd.anchorNumber) reasons.push('anchor_not_canonical');
+        else if (!(an.number < incl.number && an.timestamp <= incl.timestamp)) reasons.push('anchor_not_before_inclusion');
+      } catch { reasons.push('anchor_read_failed'); }
 
       const transfers = []; let foreign = 0;
       for (const log of receipt.logs || []) {
@@ -242,7 +308,7 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
         if (foreign) reasons.push('foreign_logs');
       } else if (transfers.length || foreign) reasons.push('unexpected_logs_on_native_transfer');
 
-      // actual cost: every component must be reported, or stated not applicable by the policy
+      // actual cost, component by component, against the retained envelope and the signed ceiling
       let fee;
       try {
         const l2 = big(receipt.gasUsed) * big(receipt.effectiveGasPrice);
@@ -252,9 +318,11 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
         if (receipt.operatorFee !== undefined) op = big(receipt.operatorFee);
         else if (policy.fee.operatorFeeEvidence !== 'verified_not_applicable') reasons.push('operator_fee_not_reported');
         fee = { l2Wei: l2, l1Wei: l1, operatorWei: op, totalWei: l2 + l1 + op };
-        const ceiling = big(envelope.allInWei); const authorized = big(policy.fee.maxExposureWei);
-        if (fee.totalWei > ceiling) reasons.push('actual_fee_exceeds_envelope');
-        if (fee.totalWei > authorized) reasons.push('actual_fee_exceeds_authorization');
+        if (l2 > kept.executionCeilingWei) reasons.push('actual_execution_exceeds_signed_ceiling');
+        if (l1 > kept.l1MarginedWei) reasons.push('actual_l1_exceeds_envelope');
+        if (op > kept.operatorBoundWei) reasons.push('actual_operator_exceeds_bound');
+        if (fee.totalWei > kept.allInWei) reasons.push('actual_fee_exceeds_envelope');
+        if (fee.totalWei > big(policy.fee.maxExposureWei)) reasons.push('actual_fee_exceeds_authorization');
       } catch { reasons.push('fee_fields_invalid'); }
       if (fee && balances) {
         try {
@@ -263,12 +331,36 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
         } catch { reasons.push('balances_invalid'); }
       } else if (!balances) reasons.push('balances_missing');
 
-      let incl2; try { incl2 = blockFields(await rpc.getBlock(incl1.number)); } catch { return { ok: false, reasons: [...reasons, 'block_read_failed'] }; }
-      let head2; try { head2 = blockFields(await rpc.getBlock('latest')); } catch { return { ok: false, reasons: [...reasons, 'head_invalid'] }; }
-      if (incl2.hash !== receipt.blockHash) reasons.push('inclusion_changed_during_check');
-      if (head2.number < head1.number || (head2.number === head1.number && head2.hash !== head1.hash)) reasons.push('head_changed_during_check');
-      if (head2.number - incl2.number + 1 < policy.confirmations) reasons.push('not_enough_confirmations');
-      if (head2.timestamp > now() + policy.maxFutureSkewSec) reasons.push('head_in_future');
+      // LAST: the head, then the confirming block and its parent lineage, read after the head so that nothing the head read
+      // triggered can pass; the whole confirmation proof rests on block hashes, not on a number compared with a count
+      let head; try { head = blockFields(await rpc.getBlock('latest'), true); } catch { return { ok: false, reasons: [...reasons, 'head_invalid'] }; }
+      if (head.timestamp > now() + policy.maxFutureSkewSec) reasons.push('head_in_future');
+      const confNumber = incl.number + policy.confirmations - 1;
+      if (head.number < confNumber) reasons.push('not_enough_confirmations');
+      else {
+        try {
+          // walk from the confirming block down to the inclusion block by parentHash; the confirming block must be the
+          // head's ancestor (or the head itself), proven the same way, so the lineage ends at the head just read
+          let cursor = head; let steps = 0;
+          while (cursor.number > confNumber) {
+            if (++steps > 256) throw new Error('walk');
+            const parent = blockFields(await rpc.getBlock(cursor.number - 1), true);
+            if (parent.hash !== cursor.parentHash || parent.number !== cursor.number - 1) { reasons.push('head_lineage_broken'); break; }
+            cursor = parent;
+          }
+          if (!reasons.includes('head_lineage_broken')) {
+            while (cursor.number > incl.number) {
+              const parent = blockFields(await rpc.getBlock(cursor.number - 1), true);
+              if (parent.hash !== cursor.parentHash || parent.number !== cursor.number - 1) { reasons.push('inclusion_not_in_head_lineage'); break; }
+              cursor = parent;
+            }
+            if (!reasons.includes('inclusion_not_in_head_lineage') && cursor.hash !== receipt.blockHash) reasons.push('inclusion_not_in_head_lineage');
+          }
+        } catch { reasons.push('lineage_read_failed'); }
+      }
+      let providerEnd; let chainEnd;
+      try { providerEnd = await rpc.providerId(); chainEnd = count(await rpc.chainId()); } catch { reasons.push('provenance_read_failed'); }
+      if (providerEnd !== undefined && (providerEnd !== providerId || chainEnd !== chainNow)) reasons.push('provenance_changed_during_check');
 
       const uniq = [...new Set(reasons)];
       return uniq.length ? { ok: false, reasons: uniq, fee } : { ok: true, fee };
@@ -284,7 +376,7 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
     return amount > big(gasDustWei) ? amount : 0n;
   }
 
-  return { preflight, reconcileReceipt, gasReturnAmount, policyProblems: problems, policyDigest: digest };
+  return { preflight, restoreEnvelope, reconcileReceipt, gasReturnAmount, policyProblems: problems, policyDigest: digest };
 }
 
 function hold(reason) { const e = new Error(reason); e.holdReason = reason; return e; }
