@@ -96,6 +96,26 @@
      }
     ]
    },
+   "0x6a98ca468ea5d9147722dfafae51433ca117e982700440582a1b3d3aebffc16e": {
+    "name": "MetaLoanRepaid",
+    "params": [
+     {
+      "indexed": true,
+      "name": "borrower",
+      "type": "address"
+     },
+     {
+      "indexed": true,
+      "name": "loanId",
+      "type": "uint256"
+     },
+     {
+      "indexed": false,
+      "name": "amount",
+      "type": "uint256"
+     }
+    ]
+   },
    "0x73a19dd210f1a7f902193214c0ee91dd35ee5b4d920cba8d519eca65a7b488ca": {
     "name": "Deposited",
     "params": [
@@ -370,10 +390,11 @@
  },
  "backing": [],
  "caveats": [
-  "Dated Base Sepolia testnet snapshot; test USDC has no real monetary value.",
-  "This historical snapshot has not passed the new dual-provider and inventory reconciliation checks. No live refresh was performed for this patch.",
-  "Human borrowers, sponsor expenditure and incremental human benefit are NOT MEASURED.",
-  "Real-person profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent; revocation cannot erase history."
+  "Base Sepolia testnet; test USDC has no real monetary value.",
+  "Loan and repayment events do not establish human borrowers or human benefit.",
+  "Inventory and stock reconciliation uses provider-supplied logs; it is not independent proof of event completeness. Balanced omissions can pass.",
+  "Sponsor expenditure and incremental human benefit are NOT MEASURED.",
+  "Profile ingestion and publication are disabled. Wallet-linked chain data is pseudonymous and permanent; revocation cannot erase history."
  ],
  "flows": {
   "deposited": 128000000,
@@ -381,6 +402,8 @@
   "fees": 0,
   "interest": 1520,
   "repaid": 45001520,
+  "reserveFunded": 0,
+  "reserveReleased": 0,
   "withdrawn": 93000000,
   "writtenOff": 0
  },
@@ -1764,18 +1787,18 @@
  },
  "profiles": [],
  "snapshot": {
-  "blockHash": "0xfea54699114883de0e6407992dae167999e4165293e7c439ee20f4432e44c77c",
-  "blockNumber": 54145172,
-  "blockTime": "2026-11-04T00:08:23+00:00",
-  "blockTimestamp": 1793750903,
+  "blockHash": "0x8b3fcc9574cb4f311281e612df268d73c1afea8430ec8ac88c46aa4105856edf",
+  "blockNumber": 54899527,
+  "blockTime": "2026-11-05T18:02:54+00:00",
+  "blockTimestamp": 1793901774,
   "chainId": 84532,
-  "collectedAt": null,
+  "collectedAt": "2026-11-05T18:28:35.010892+00:00",
   "collector": "metrics/lending_dashboard.py",
-  "collectorCommit": "737f68c",
+  "collectorCommit": "b51474a957867ac54596251d40301f81a2e745e3",
   "eventCount": 218,
   "explorer": "https://sepolia.basescan.org",
   "fromBlock": 47776780,
-  "historicalSource": "pages@3b5aceb460d3cb787498e0d3687b1480959dd02c",
+  "fromBlockHash": "0x1591e9e5e890641020c51b873a1aa3e39ca3c0722b824df6e04df5fbcca53741",
   "lens": "0xe47BAea70DC68D6bDeFE08FD8021F84F69FdF8F4",
   "network": "base-sepolia",
   "pool": "0x73872B8fB7F1771C67911f03edc75aBdc9514973",
@@ -1785,7 +1808,7 @@
    "symbol": "USDC",
    "test_token": true
   },
-  "verification": "historical-not-reverified"
+  "verification": "reconciled-finalized-v1"
  },
  "stake": {
   "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462": 15000000,
