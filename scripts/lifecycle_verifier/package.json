@@ -1,0 +1,7 @@
+{
+  "name": "lifecycle-verifier",
+  "private": true,
+  "type": "module",
+  "description": "Local-only decoder for the wallet lifecycle verifyPrepared port. No keys, no network.",
+  "dependencies": { "viem": "2.57.14" }
+}
