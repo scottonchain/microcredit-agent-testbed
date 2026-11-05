@@ -441,3 +441,69 @@ test('the whole span from the head down to the confirming block is a parent-hash
   } });
   assert.equal(out.ok, false); assert.ok(out.reasons.includes('head_lineage_broken'), JSON.stringify(out.reasons));
 });
+
+// ---- Codex third B1 review 6671519470 ----
+test('finding 1: a restored envelope with a fabricated, self-consistent L1 quote is refused (the repro)', async () => {
+  const { c, envelope } = await setup();
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  const forged = { ...envelope, l1QuoteWei: 800_000_000n, l1MarginedWei: 1_000_000_000n, allInWei: 1_060_001_000n };
+  const r = await g2.restoreEnvelope(intent(), forged);
+  assert.equal(r.ok, false); assert.deepEqual(r.reasons, ['l1_quote_differs_from_oracle_at_anchor']);
+  // and it cannot be promoted into reconcile authority: a gate that never retained it holds
+  const rec = await g2.reconcileReceipt({ intent: intent(), receipt: receipt({ l1Fee: 900_000_000n }), envelope: forged, balances: bal(40_000n * 1000n + 900_000_000n) });
+  assert.equal(rec.ok, false); assert.deepEqual(rec.reasons, ['envelope_not_retained']);
+});
+test('finding 1: the quote is verified AT the retained anchor block, and an unreadable or malformed oracle answer holds', async () => {
+  const { c, envelope } = await setup();
+  const at = []; const f = c.rpc.call;
+  c.rpc.call = async (tx, blk) => { if (tx.to.toLowerCase() === L1_ORACLE) at.push(blk); return f(tx, blk); };
+  const ok = await createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW }).restoreEnvelope(intent(), envelope);
+  assert.equal(ok.ok, true, JSON.stringify(ok.reasons)); assert.deepEqual(at, [envelope.binding.anchorHash]);
+  for (const [label, brk] of [['throws', async () => { throw new Error('non-archive'); }], ['undefined', async () => undefined], ['short word', async () => '0x01']]) {
+    c.rpc.call = async (tx, blk) => (tx.to.toLowerCase() === L1_ORACLE ? brk() : f(tx, blk));
+    const r = await createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW }).restoreEnvelope(intent(), envelope);
+    assert.deepEqual(r.reasons, ['l1_quote_unverifiable_at_anchor'], label);
+  }
+});
+
+test('finding 2: the anchor must lie in the same checked lineage as inclusion and head (the repro: block 500 claims another parent)', async () => {
+  const out = await REC(intent(), receipt(), { mutate: c => { c.s.blocks[500] = { ...B500, parentHash: '0x' + 'ee'.repeat(32) }; } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('anchor_not_in_head_lineage'), JSON.stringify(out.reasons));
+});
+test('finding 2: a fork below inclusion (mixed responses: the number lookup says one thing, the parent walk another) holds', async () => {
+  const out = await REC(intent(), receipt(), { mutate: c => {
+    const f = c.rpc.getBlock; let n499 = 0;
+    c.rpc.getBlock = async x => { if (x === 499 && ++n499 >= 2) return { ...A, hash: '0x' + 'a6'.repeat(32) }; return f(x); }; // the walk sees another block 499 than the canonical lookup
+  } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('anchor_not_in_head_lineage'), JSON.stringify(out.reasons));
+});
+test('finding 2: an anchor far below inclusion is refused rather than walked without bound; a distant but intact anchor within the cap passes', async () => {
+  const { c, envelope } = await setup();
+  const deepAnchor = { ...envelope, binding: { ...envelope.binding, anchorNumber: 100, anchorHash: '0x' + '10'.repeat(32) } };
+  c.s.blocks[100] = { number: 100, hash: deepAnchor.binding.anchorHash, parentHash: '0x' + '0f'.repeat(32), timestamp: NOW - 400 };
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  const r = await g2.restoreEnvelope(intent(), deepAnchor); assert.equal(r.ok, true, JSON.stringify(r.reasons));
+  const out = await g2.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: r.envelope, balances: bal(FEE) });
+  assert.ok(out.reasons.includes('anchor_too_far_below_inclusion'), JSON.stringify(out.reasons));
+});
+test('finding 2: an intact anchor a few blocks below inclusion passes the full lineage', async () => {
+  // rebuild: anchor 497 <- 498 <- 499 <- 500 <- 501, preflight at 497
+  const a497 = { number: 497, hash: '0x' + '97'.repeat(32), parentHash: '0x' + '96'.repeat(32), timestamp: NOW - 50 };
+  const a498 = { number: 498, hash: '0x' + '98'.repeat(32), parentHash: a497.hash, timestamp: NOW - 40 };
+  const a499 = { ...A, parentHash: a498.hash };
+  const c2 = chain({ block: { ...a497 }, blocks: { 497: { ...a497 } } });
+  const g = createChainGate({ rpc: c2.rpc, policy: policy(), now: () => NOW });
+  const pre = await g.preflight(intent()); assert.equal(pre.ok, true, JSON.stringify(pre.reasons));
+  c2.s.block = { ...B501 }; c2.s.blocks = { 497: a497, 498: a498, 499: a499, 500: { ...B500 }, 501: { ...B501 } }; c2.s.tx = txFor(intent());
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: pre.envelope, balances: bal(FEE) });
+  assert.equal(out.ok, true, JSON.stringify(out.reasons));
+});
+test('finding 2: a self-consistent fork below inclusion that ends at another block than the retained anchor holds (mixed responses at the anchor height)', async () => {
+  const X = '0x' + '5a'.repeat(32);
+  const out = await REC(intent(), receipt(), { mutate: c => {
+    c.s.blocks[500] = { ...B500, parentHash: X };
+    const f = c.rpc.getBlock; let n499 = 0;
+    c.rpc.getBlock = async x => { if (x === 499 && ++n499 >= 2) return { ...A, hash: X }; return f(x); }; // first lookup canonical, the walk sees a consistent fork
+  } });
+  assert.equal(out.ok, false); assert.ok(out.reasons.includes('anchor_not_in_head_lineage') || out.reasons.includes('inclusion_not_in_head_lineage'), JSON.stringify(out.reasons));
+});

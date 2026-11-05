@@ -20,8 +20,9 @@
 //
 // reconcileReceipt(...) - after inclusion. The caller's envelope is never authority: the gate retains the complete frozen
 // preflight result and uses only that (a caller copy that differs in any field holds; after a restart the record comes
-// back only through restoreEnvelope, which re-derives its numbers from the signed intent, the policy and the oracle
-// quote, and checks that its anchor block is canonical on the pinned chain now). It reads the provider and chain id
+// back only through restoreEnvelope, which re-derives its numbers from the signed intent and the policy, asks the oracle for
+// the exact payload's L1 quote AT the retained anchor and requires the same answer, and checks that the anchor block is
+// canonical on the pinned chain now). It reads the provider and chain id
 // again, binds the receipt to THIS transaction (hash, sender, outer target, and the transaction fetched by hash: nonce,
 // value, calldata), checks the anchor precedes inclusion in number and time, requires every actual fee component (an
 // unreported operator fee is zero only with named verified-not-applicable evidence) and bounds each component: execution
@@ -238,6 +239,11 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       if (count(await rpc.chainId()) !== policy.chainId) return { ok: false, reasons: ['chain_differs'] };
       let at; try { at = blockFields(await rpc.getBlock(record.binding.anchorNumber)); } catch { return { ok: false, reasons: ['anchor_not_canonical'] }; }
       if (at.hash !== record.binding.anchorHash || at.number !== record.binding.anchorNumber) return { ok: false, reasons: ['anchor_not_canonical'] };
+      // the L1 quote is a chain fact, not arithmetic: ask the oracle for the exact payload AT the retained anchor and require
+      // the same answer; an unreadable, malformed or different answer (including a non-archive provider) holds
+      let quote;
+      try { quote = wordToBig(await rpc.call({ to: L1_ORACLE, data: encodeFunctionData({ abi: oracle, functionName: 'getL1Fee', args: [intent.raw] }) }, record.binding.anchorHash)); } catch { return { ok: false, reasons: ['l1_quote_unverifiable_at_anchor'] }; }
+      if (quote !== record.l1QuoteWei) return { ok: false, reasons: ['l1_quote_differs_from_oracle_at_anchor'] };
     } catch { return { ok: false, reasons: ['restore_read_failed'] }; }
     const kept = deepFreeze(JSON.parse(JSON.stringify(record, (k, v) => (typeof v === 'bigint' ? { __big: v.toString() } : v)), (k, v) => (v && typeof v === 'object' && '__big' in v ? BigInt(v.__big) : v)));
     retained.set(lc(intent.hash), kept);
@@ -355,6 +361,18 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
               cursor = parent;
             }
             if (!reasons.includes('inclusion_not_in_head_lineage') && cursor.hash !== receipt.blockHash) reasons.push('inclusion_not_in_head_lineage');
+            // and on down to the preflight anchor: the anchor must be an ancestor in the SAME checked lineage, not a separate number lookup
+            if (!reasons.includes('inclusion_not_in_head_lineage')) {
+              if (incl.number - bnd.anchorNumber > 256) reasons.push('anchor_too_far_below_inclusion');
+              else {
+                while (cursor.number > bnd.anchorNumber) {
+                  const parent = blockFields(await rpc.getBlock(cursor.number - 1), true);
+                  if (parent.hash !== cursor.parentHash || parent.number !== cursor.number - 1) { reasons.push('anchor_not_in_head_lineage'); break; }
+                  cursor = parent;
+                }
+                if (!reasons.includes('anchor_not_in_head_lineage') && cursor.hash !== bnd.anchorHash) reasons.push('anchor_not_in_head_lineage');
+              }
+            }
           }
         } catch { reasons.push('lineage_read_failed'); }
       }
