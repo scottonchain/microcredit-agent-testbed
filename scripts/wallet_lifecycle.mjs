@@ -175,7 +175,9 @@ async function settle(ports, intent, expect) {
   if (r.status !== 1) return 'failed';
   const same = x => String(x).toLowerCase();
   if (same(r.from) !== same(expect.from) || same(r.to) !== same(expect.to) || BigInt(r.amount) !== BigInt(expect.amount) || Number(r.nonce) !== Number(expect.nonce)) return 'mismatch';
-  if (expect.token && r.token !== undefined && same(r.token) !== same(expect.token)) return 'mismatch';
+  // when the caller names a token or a chain, a receipt that does not state the same one is not accepted
+  if (expect.token && (r.token === undefined || same(r.token) !== same(expect.token))) return 'mismatch';
+  if (expect.chainId !== undefined && expect.chainId !== null && (r.chainId === undefined || Number(r.chainId) !== Number(expect.chainId))) return 'mismatch';
   return 'swept';
 }
 
@@ -197,7 +199,7 @@ async function cleanOne(w, journal, ports, opts) {
   }
   // 1) a recorded, unsettled sweep is settled first, from the recorded intent; it is never signed again
   if (w.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(w.sweep.outcome)) {
-    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token }, journal, opts);
+    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token, chainId: opts.chainId }, journal, opts);
     if (o === 'unknown') { w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: w.sweep.hash }); durable(journal, opts); return; }
     w.sweep.outcome = o;
     ev(w, { ev: 'sweep_settled', hash: w.sweep.hash, outcome: o });
@@ -230,7 +232,7 @@ async function cleanOne(w, journal, ports, opts) {
   ev(w, { ev: 'sweep_prepared', hash: prepared.hash, amount: tokens.toString(), nonce });
   if (!durable(journal, opts)) { w.state = 'unknown'; ev(w, { ev: 'intent_not_durable_not_sent' }); return; }
   try { await ports.broadcast(prepared.raw); } catch { /* the receipt decides, not this error */ }
-  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token }, journal, opts);
+  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token, chainId: opts.chainId }, journal, opts);
   if (o === 'unknown') { w.sweep.outcome = 'unknown'; w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   w.sweep.outcome = o;
   ev(w, { ev: 'sweep_settled', hash: prepared.hash, outcome: o });
@@ -245,7 +247,7 @@ async function gasOne(w, journal, ports, opts) {
   w.gas = w.gas || { state: 'pending' };
   const g = w.gas;
   if (g.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(g.sweep.outcome)) {
-    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce }, journal, opts);
+    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce, chainId: opts.chainId }, journal, opts);
     if (o === 'unknown') { g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: g.sweep.hash }); durable(journal, opts); return; }
     g.sweep.outcome = o;
     ev(w, { ev: 'gas_return_settled', hash: g.sweep.hash, outcome: o });
@@ -266,7 +268,7 @@ async function gasOne(w, journal, ports, opts) {
   ev(w, { ev: 'gas_return_prepared', hash: prepared.hash, amount: amount.toString(), nonce });
   if (!durable(journal, opts)) { g.state = 'unknown'; ev(w, { ev: 'gas_intent_not_durable_not_sent' }); return; }
   try { await ports.broadcast(prepared.raw); } catch { /* receipt decides */ }
-  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce }, journal, opts);
+  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce, chainId: opts.chainId }, journal, opts);
   if (o === 'unknown') { g.sweep.outcome = 'unknown'; g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   g.sweep.outcome = o;
   ev(w, { ev: 'gas_return_settled', hash: prepared.hash, outcome: o });
@@ -375,7 +377,11 @@ export async function terminalVerify(journal, ports, options = {}) {
     let t;
     try { t = await ports.tokenBalance(w.address); } catch { w.state = 'unknown'; found.push({ id: w.id, read: 'failed' }); continue; }
     const approved = (await ports.isContract(w.address)) && opts.approvedContracts.has(String(w.address).toLowerCase());
-    if (t > opts.dust && !approved) { w.state = 'pending'; found.push({ id: w.id, tokens: t.toString() }); }
+    if (t > opts.dust && !approved) {
+      // reopen a wallet that was counted as done; an explicit open reason (lost signer, no gas, failed, unknown) is kept
+      if (['empty', 'swept', 'dust_accepted', 'locked_contract', 'pending'].includes(w.state)) w.state = 'pending';
+      found.push({ id: w.id, tokens: t.toString() });
+    }
   }
   journal.terminalCheck = { found };
   if (found.length) { journal.gasPhase = 'not_run'; journal.reconciliation = null; }
