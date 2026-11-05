@@ -86,8 +86,8 @@ support burden; it cannot validate repayment prediction or long-run fraud losses
 Pending journal and common-audit reorg controls now have seven local Python cases.
 A standalone immutable cumulative budget has six local EVM test groups and a
 source-pinned origination patch covering the three source entry paths. The optimizer-only
-correction produces23272 bytes,1304 under EIP170; independent rebuild and all13
-budget/full-pool EVM groups pass. The original signature logic and controls remain.
+correction produces23246 bytes,1330 under EIP170; independent rebuild and all19
+budget/full-pool EVM groups pass with exact vendored dependencies and Cancun. The original signature logic and controls remain.
 Codex owns the remaining integration with the accepted pool source owner. Owner
 acceptance remains unreceived at this checkpoint. The existing
 canonical deployment is untouched; this is not an upgrade mechanism for it.

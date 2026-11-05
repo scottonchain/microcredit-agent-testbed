@@ -31,52 +31,42 @@ the same pool getter. No existing service is wired to this contract.
 
 ## Reproduction
 
-Dependencies are pinned in package.json. With installed dependencies, run:
+JavaScript dependencies are pinned in package.json/package-lock.json. Supply the
+canonical OpenZeppelin submodule contracts directory as the fourth argument:
 
 ```
-node compile.cjs /path/to/canonical1812/DecentralizedMicrocredit.sol /path/to/interfaces /tmp/budget-artifact.json
-BUDGET_ARTIFACT=/tmp/budget-artifact.json node --test test_budget.cjs
+node compile.cjs /path/to/canonical1812/DecentralizedMicrocredit.sol /path/to/interfaces /tmp/budget-artifact.json /path/to/canonical-openzeppelin/contracts
+BUDGET_ARTIFACT=/tmp/budget-artifact.json node --test test_budget.cjs test_pool.cjs
 ```
 
-The compiler verifies the original and patched source SHA256, applies only the
-recorded patch, compiles the pool and rejects runtime over EIP170's24576-byte
-limit. A compiler success does not verify the canonical deployed build. The
-interface input must come from the reviewed source; current test uses the existing
-project interface. The canonical1812 submodule record is OpenZeppelin5.3.0 at
-f9f7db03f3df020aace3958b8fb7de8891d133e5; npm5.3.0 is pinned for the candidate.
-Source/build dependency parity with the deployed runtime is still unverified.
+The compiler pins solc0.8.33 and verifies original/patched source, interface,
+settings and imported dependency hashes. It rejects runtime over EIP170's24576
+bytes. The canonical library revision isf9f7db03f3df020aace3958b8fb7de8891d133e5;
+its contents differ from npm5.3.0 despite that version label. No npm replacement
+is used by the selected build. See [BUILD-PARITY.md](BUILD-PARITY.md).
 
-Thirteen EVM test groups pass: six standalone budget groups and seven full-pool
-integration groups. Tests deploy the actual candidate pool with normal EIP170
-limits. They cover repeated backed loans and repayments without allowance refill,
-direct/meta/combined paths, replay/expiry/invalid signatures, caller-sensitive
-ERC1271, authority/rebinding, pool-check and post-origination transfer failure
-rollback (including nonce and loan inventory), and signed repayment after stop.
-The test token deliberately supports a failing transfer; it is not production USDC
-or permit validation. Complete wallet/service/canonical deployment acceptance is
-still separate. Ganache runs in-process without a listening RPC port, remote
-provider or externally funded wallet. Ephemeral keys are generated only in memory.
+Nineteen EVM groups pass independently: six budget and thirteen full-pool groups.
+The full pool runs on pinned Hardhat2.26.3's in-process Cancun provider, with normal
+size limits and no fork URL/listening socket. Standalone budget tests use Ganache
+Shanghai. Coverage includes signed/direct lifecycle, cancellation, exact interest
+and fee allocation, secured/unsecured default, atomic failure recovery, signature
+compatibility and a limited differential canonical-baseline scenario. The mock
+token is not production USDC; permit/service/runtime acceptance remains separate.
 
 ## Size correction and verified scope
 
-The selected compiler-settings.json uses solc0.8.33, viaIR, runs1 and an explicit
-Yul optimizer sequence without the full inliner. It preserves the Solidity source
-and original signature call path. Shanghai is the selected EVM target, tested on
-Ganache's Shanghai fork; it is a deliberate candidate build setting, not a claim
-about the existing deployment settings. Settings and source/interface hashes are
-pinned. The original canonical1812 settings (solc0.8.33,viaIR,runs200) are verified
-from its foundry.toml; compiling the baseline for Cancun reproduces24377 bytes.
-Matching that SIZE does not establish deployed runtime identity.
+Selected settings:solc0.8.33,viaIR,runs1, explicit Yul sequence without full inliner,
+Cancun. The exact vendored candidate is23246 bytes,1330 below EIP170. The original
+canonical1812 foundry settings (solc0.8.33,viaIR,runs200) contain no explicit EVM
+fork; using Cancun reproduces a24377-byte baseline. Matching size does not prove
+live runtime identity. The previous npm/Shanghai23272-byte result is historical.
 
-BUILD-RESULT.json records the comparison. The prior default-sequence candidate
-was25721 bytes; the selected full pool is23272, with1304 bytes of headroom. The
-compiler rejects oversized outputs; no unlimited-size EVM setting is used. An
-independent AI reviewer rebuilt the candidate and reproduced all13 EVM tests.
-No feature, guard or signature logic was removed to meet the limit. This resolves
-the size blocker for this candidate only. New isolated deployment, exact runtime
-identity, owner/lease, consent/journal/executor and human-readiness gates remain.
+An independent AI reviewer reproduced the entire build artifact byte-for-byte and
+all19 EVM groups. The selected optimization preserves the source and signature
+call path; no feature or guard was removed. New isolated deployment, exact runtime
+identity, accepted owner/lease, consent/journal/executor and human-study gates remain.
 
 Optimizer rationale: [Solidity optimizer documentation](https://docs.soliditylang.org/en/latest/internals/optimizer.html)
-describes how inlining can increase code size. The selected configuration is
-validated by explicit measurements and tests, not assumed equivalent from that
-explanation alone. These tests do not constitute a complete compiler audit.
+explains that inlining can increase size. Changed gas usage and external-call gas
+availability still require review; passing these tests is not a complete proof of
+compiler equivalence. Build measurements, tests and limits are in BUILD-PARITY.md.

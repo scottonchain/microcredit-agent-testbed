@@ -72,8 +72,14 @@ acceptance remain required. New requests consume irreversible borrower/controlle
 group/portfolio allowance, so repayment cannot restore it. Consent withdrawal
 requires confirmed revocation and reconciliation of already-requested commitments.
 
-The subsequent optimizer-only build resolves EIP170:23272-byte pool,1304-byte
+The subsequent optimizer-only build resolves EIP170:23246-byte pool,1330-byte
 headroom, independently rebuilt with pinned settings. Seven full-pool EVM groups
 now exercise direct/meta/combined issuance, cumulative reuse, atomic failure
 rollback, signature compatibility and servicing after stop. This adds seven to
 the earlier134 checks. No canonical or service deployment has occurred.
+
+The exact canonical dependency follow-up supersedes npm5.3.0 parity assumptions.
+The vendored Cancun build is23246 bytes and independently byte-identical; all19
+EVM groups pass, including thirteen full-pool lifecycle/parity groups. Exact
+interest/fees, secured versus credit-only default and cancellation are covered.
+Accumulated checks147. See scoped-budget/BUILD-PARITY.md for scope and exclusions.

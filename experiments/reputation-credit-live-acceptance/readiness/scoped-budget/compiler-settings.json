@@ -9,5 +9,5 @@
     }
   },
   "viaIR": true,
-  "evmVersion": "shanghai"
+  "evmVersion": "cancun"
 }

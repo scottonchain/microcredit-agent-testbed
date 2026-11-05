@@ -1,17 +1,17 @@
 {
   "compiler": "0.8.33+commit.64118f21.Emscripten.clang",
-  "openzeppelin": "5.3.0",
+  "openzeppelin": "canonical submodule f9f7db03f3df020aace3958b8fb7de8891d133e5; content-hash pinned imports",
   "settingsFile": "compiler-settings.json",
-  "settingsSha256": "59de2193164288b9b1c65163c619b8a8410b000c9aded6cd536d681287545b21",
-  "poolEVM": "shanghai",
-  "poolRuntimeBytes": 23272,
+  "settingsSha256": "108424e5a3145e7c440ef4b59ea8dc51fdf003580c5780f1af1ec1706e7ba15d",
+  "poolEVM": "cancun",
+  "poolRuntimeBytes": 23246,
   "EIP170Limit": 24576,
-  "headroomBytes": 1304,
+  "headroomBytes": 1330,
   "sizeGate": "PASS",
   "releaseAccepted": false,
   "deployed": false,
   "standaloneBudgetTestsPassed": 6,
-  "fullPoolTestsPassed": 7,
+  "fullPoolTestsPassed": 13,
   "independentRebuildAndTests": true,
   "comparisons": [
     {
@@ -55,6 +55,17 @@
       "optimizerSequence": "explicit no full inliner",
       "EVM": "shanghai",
       "runtimeBytes": 23272
+    },
+    {
+      "candidate": "selected exact canonical vendor",
+      "runs": 1,
+      "optimizerSequence": "explicit no full inliner",
+      "EVM": "cancun",
+      "runtimeBytes": 23246
     }
-  ]
+  ],
+  "baselineRuntimeBytes": 24377,
+  "combinedEVMTestsPassed": 19,
+  "independentArtifactSha256": "fb5f210a93bc9878d99786df40ef15f627eb168615472a03c7db7fc4ba7d14ab",
+  "comparisonsNote": "Earlier comparison rows use npm OpenZeppelin5.3.0, not exact canonical vendor; retained as historical optimization experiments."
 }
