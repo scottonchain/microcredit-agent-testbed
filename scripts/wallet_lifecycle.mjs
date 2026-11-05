@@ -27,6 +27,8 @@
 // reconciliation matches.
 
 import fs from 'node:fs';
+import nodePath from 'node:path';
+import crypto from 'node:crypto';
 
 export const SCHEMA = 1;
 export const walletStates = new Set(['pending', 'empty', 'swept', 'needs_gas', 'signer_lost', 'locked_contract', 'dust_accepted', 'failed', 'unknown']);
@@ -78,16 +80,39 @@ export function newJournal(runId, fundingWallet, wallets, now) {
 }
 
 // Journals are written before the effect they describe. Written atomically, fsynced, owner-only.
+// The temp file has a unique unpredictable name and is created exclusively (O_EXCL, which also refuses a
+// pre-placed file or symlink), forced to 0600 whatever the umask or any existing file, and the containing
+// directory is fsynced after the rename so the published intent survives a crash.
 export function saveJournal(path, journal) {
-  const tmp = path + '.tmp';
-  const fd = fs.openSync(tmp, 'w', 0o600);
-  try { fs.writeSync(fd, JSON.stringify(journal, null, 1)); fs.fsyncSync(fd); } finally { fs.closeSync(fd); }
-  fs.renameSync(tmp, path);
+  const dir = nodePath.dirname(path);
+  const tmp = path + '.' + process.pid + '.' + crypto.randomBytes(8).toString('hex') + '.tmp';
+  const fd = fs.openSync(tmp, 'wx', 0o600);
+  try {
+    try {
+      fs.fchmodSync(fd, 0o600);
+      if ((fs.fstatSync(fd).mode & 0o077) !== 0) throw new Error('journal temp file is not private');
+      fs.writeSync(fd, JSON.stringify(journal, null, 1));
+      fs.fsyncSync(fd);
+    } finally { fs.closeSync(fd); }
+    fs.renameSync(tmp, path);
+  } catch (e) {
+    try { fs.unlinkSync(tmp); } catch { /* already renamed or gone */ }
+    throw e;
+  }
+  const dfd = fs.openSync(dir, 'r');
+  try { fs.fsyncSync(dfd); } finally { fs.closeSync(dfd); }
 }
 export function loadJournal(path) {
   const j = JSON.parse(fs.readFileSync(path, 'utf8'));
   const problems = validateJournal(j);
   if (problems.length) throw new Error('invalid journal: ' + problems[0]);
+  // Journals written before reconciliations carried a fingerprint cannot be shown to describe the current
+  // state. Move such a reconciliation aside: the run is pending until a fresh cumulative one is recorded.
+  if (j.reconciliation && !j.reconciliation.fingerprint) {
+    (j.staleReconciliations = j.staleReconciliations || []).push({ ...j.reconciliation, legacy: true });
+    j.reconciliation = null;
+    if (j.status === 'closed' || j.status === 'closed_with_exceptions') j.status = 'pending_reconciliation';
+  }
   return j;
 }
 
@@ -304,7 +329,7 @@ export function finalize(journal, options = {}) {
   journal.summary = { counts, openWallets: open, exceptions };
   let rec = journal.reconciliation;
   const fp = fingerprint(journal);
-  if (rec && rec.fingerprint && rec.fingerprint !== fp) {
+  if (rec && rec.fingerprint !== fp) { // includes a legacy reconciliation that has no fingerprint
     // the state changed after this reconciliation: it no longer describes the run
     (journal.staleReconciliations = journal.staleReconciliations || []).push(rec);
     journal.reconciliation = null; rec = null;
@@ -313,7 +338,10 @@ export function finalize(journal, options = {}) {
   else if (!rec) journal.status = 'pending_reconciliation';
   else if (!rec.matches) journal.status = 'failed_cleanup'; // sticky: only a later matching reconciliation can change this
   else journal.status = exceptions.length === 0 ? 'closed' : 'closed_with_exceptions';
-  if (typeof options.save === 'function') durable(journal, { save: options.save });
+  if (typeof options.save === 'function' && !durable(journal, { save: options.save })) {
+    // The terminal status must be durable before a caller can see it. A failed final save is never a success.
+    journal.status = 'failed_cleanup';
+  }
   return journal;
 }
 

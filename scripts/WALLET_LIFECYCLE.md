@@ -4,11 +4,11 @@ Claude (AI), 2026-11-05. Answers the board request x-20261104-scenario-wallet-li
 
 **Scope: this is a mock-tested component, not completion of the requirement.** No current runner calls it. The obligation stays open until a runner is wired (see the integration proposal below).
 
-`wallet_lifecycle.mjs` is decision and journal logic with injected ports. It imports no network library, holds no key, never signs and sends nothing itself. A runner supplies ports that wrap its own signer. `test_wallet_lifecycle.mjs` (24 tests, in-memory chain, no network) runs with `node --test scripts/test_wallet_lifecycle.mjs` and is part of `tools/check.py`.
+`wallet_lifecycle.mjs` is decision and journal logic with injected ports. It imports no network library, holds no key, never signs and sends nothing itself. A runner supplies ports that wrap its own signer. `test_wallet_lifecycle.mjs` (29 tests, in-memory chain, no network) runs with `node --test scripts/test_wallet_lifecycle.mjs` and is part of `tools/check.py`.
 
 ## The journal is private, not public evidence
 
-It stores the signed raw transaction of every unsettled sweep, on purpose: a retry rebroadcasts the identical bytes and never signs again. Keep the file private (it is written mode 0600, atomically, with fsync). `publicView(journal)` drops the raw bytes and is the only form that may leave the runner. Errors from providers or signers are never stored, because their text can carry credentials or private endpoints; only a short code is (`port_error`, `save_error`). A test checks a credential-bearing error message does not reach the journal.
+It stores the signed raw transaction of every unsettled sweep, on purpose: a retry rebroadcasts the identical bytes and never signs again. Keep the file private (it is written mode 0600, atomically, with fsync of the file and of its directory). `publicView(journal)` drops the raw bytes and is the only form that may leave the runner. Errors from providers or signers are never stored, because their text can carry credentials or private endpoints; only a short code is (`port_error`, `save_error`). A test checks a credential-bearing error message does not reach the journal.
 
 ## Before a run
 
@@ -37,6 +37,9 @@ Run status: `failed_cleanup` while anything is open, the gas phase was skipped o
 - No rebroadcast happens unless the journal can be saved first: a retry that cannot persist returns `unknown` and sends nothing (tokens and gas, any number of passes).
 - A receipt `mismatch` is sticky. Later passes, a reload or a zero reconciliation do not clear it; only `resolveMismatch(journal, id, {evidence, decidedBy})` records a human disposition (`dispositioned`) and that is stored and persisted.
 - A reconciliation is bound to a fingerprint of the journal. If a later sweep changes the journal, the stored reconciliation moves to `staleReconciliations`, the status returns to `pending_reconciliation`, and a new cumulative reconciliation is required.
+- A terminal status is never returned unless its final save succeeded: if the last write fails, `finalize`, `reconcile` and `terminalVerify` return `failed_cleanup`, and the last durable file is the recovery point.
+- A journal written by an earlier version (reconciliation without a fingerprint) is migrated on load: the old reconciliation is kept as a legacy stale record and the run is `pending_reconciliation` until a fresh cumulative one is recorded.
+- The journal is saved through a unique, exclusively created temp file forced to 0600 (an existing or world-readable `.tmp` is never reused), renamed into place, and the directory is fsynced.
 - An error from `broadcast` is never read as failure. A sweep not yet mined after one identical rebroadcast stays `unknown`.
 - Persistence is required. `runCleanup`, `verifyControl` and `reconcile` throw unless given a `save` function (an explicit `ephemeral: true` exists for tests only).
 

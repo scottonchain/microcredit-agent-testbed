@@ -409,3 +409,94 @@ test('a reconciliation goes stale when a later sweep happens, across a reload; a
   assert.equal(re.status, 'closed');
   assert.equal(re.reconciliation.swept, '13');
 });
+
+test('a failed final save never returns a terminal status; the last durable journal recovers', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('f1', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  assert.equal(j.status, 'pending_reconciliation');
+  reconcile(j, 0n, st.fund, { save: () => { throw new Error('disk'); } });
+  assert.equal(j.status, 'failed_cleanup');
+  assert.equal(j.persistence.failed, true);
+  finalize(j, { save: () => { throw new Error('disk'); } });
+  assert.equal(j.status, 'failed_cleanup');
+  // the last durable file never claimed closure; reloading it and reconciling with working storage closes
+  const re = loadJournal(p);
+  assert.equal(re.status, 'pending_reconciliation');
+  assert.equal(re.persistence.failed, false);
+  reconcile(re, 0n, st.fund, { save });
+  assert.equal(re.status, 'closed');
+  assert.equal(loadJournal(p).status, 'closed');
+});
+
+test('a final terminalVerify save failure is not a success either', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('f2', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  reconcile(j, 0n, st.fund, { save });
+  assert.equal(j.status, 'closed');
+  await terminalVerify(j, ports, { save: () => { throw new Error('disk'); } });
+  assert.equal(j.status, 'failed_cleanup');
+});
+
+test('a journal written before reconciliations had a fingerprint cannot close a changed run', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('l1', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  reconcile(j, 0n, st.fund, { save });
+  assert.equal(j.status, 'closed');
+  // rewrite the file exactly as the previous version laid it out: no fingerprint, no history
+  const old = JSON.parse(fs.readFileSync(p, 'utf8'));
+  delete old.reconciliation.fingerprint; delete old.reconciliationHistory; delete old.staleReconciliations;
+  fs.writeFileSync(p, JSON.stringify(old));
+  const re = loadJournal(p);
+  assert.equal(re.reconciliation, null);                 // migrated aside on load
+  assert.equal(re.status, 'pending_reconciliation');     // an old "closed" is no longer trusted
+  assert.equal(re.staleReconciliations[0].legacy, true);
+  st.tokens[key(addr(1))] = 5n; st.gas[key(addr(1))] = 1000n;
+  await runCleanup(re, ports, { save });
+  assert.equal(st.fund, 13n);
+  assert.equal(re.status, 'pending_reconciliation');
+  reconcile(re, 0n, st.fund, { save });
+  assert.equal(re.status, 'closed');
+  assert.equal(re.reconciliation.swept, '13');
+  // finalize alone also refuses a fingerprint-less reconciliation handed to it directly
+  const j2 = loadJournal(p);
+  j2.reconciliation = { swept: '8', fundingGain: '8', matches: true };
+  finalize(j2, { save });
+  assert.equal(j2.status, 'pending_reconciliation');
+});
+
+test('saveJournal is private even when a world-readable temp file already exists, and it fsyncs the directory', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-perm-'));
+  const p = path.join(dir, 'journal.json');
+  fs.writeFileSync(p + '.tmp', 'stale', { mode: 0o644 });
+  fs.chmodSync(p + '.tmp', 0o644);
+  fs.writeFileSync(p, 'old', { mode: 0o644 });
+  fs.chmodSync(p, 0o644);
+  const j = newJournal('p1', FUND, roster(1), 't0');
+  const fsyncs = []; const real = fs.fsyncSync;
+  fs.fsyncSync = fd => { fsyncs.push(fs.fstatSync(fd).isDirectory()); return real(fd); };
+  try { saveJournal(p, j); } finally { fs.fsyncSync = real; }
+  assert.equal(fs.statSync(p).mode & 0o777, 0o600);
+  assert.deepEqual(fsyncs, [false, true]);               // file content, then the containing directory
+  assert.equal(fs.readFileSync(p + '.tmp', 'utf8'), 'stale'); // the predictable name is never used or leaked into
+  assert.deepEqual(fs.readdirSync(dir).sort(), ['journal.json', 'journal.json.tmp']); // no temp file left behind
+  assert.equal(JSON.parse(fs.readFileSync(p, 'utf8')).runId, 'p1');
+});
+
+test('saveJournal removes its temp file when the write fails', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-fail-'));
+  const p = path.join(dir, 'journal.json');
+  const j = newJournal('p2', FUND, roster(1), 't0');
+  const real = fs.renameSync;
+  fs.renameSync = () => { throw new Error('rename'); };
+  try { assert.throws(() => saveJournal(p, j)); } finally { fs.renameSync = real; }
+  assert.deepEqual(fs.readdirSync(dir), []);
+});
