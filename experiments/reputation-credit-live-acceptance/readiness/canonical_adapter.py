@@ -2,7 +2,7 @@
 
 An independently authenticated provider must supply complete block/receipt/state
 snapshots. This code checks consistency, not RPC authenticity or receipt-trie
-proofs. It conservatively supports direct repayLoan ONLY; complex cases HOLD.
+proofs. It supports direct repayLoan/disburseLoan only; complex cases HOLD.
 Selectors/topics derived using Ethereum Keccak256, never SHA3-256.
 """
 from decimal import Decimal
@@ -14,6 +14,8 @@ REPAID='0xc7ce0a35f17b490de2a317e7fecb2cae86b1abffb03800b2f492823521382698'
 APPLIED='0x79cc0b6d59d041321d365afff1d2b489f2e14c096f2e9ebd04b662c0230b0c5f'
 REPAY='8a700b53'
 REPLY='3c034716'
+DISBURSE='b73e4da0'
+DISBURSED='0x7dd047392ec2e181ad8bc19f76c26ae0dfa3d4a609c72da62f8f2349e87eeafe'
 
 
 def quantity(value):
@@ -40,14 +42,8 @@ def decimal_units(value):
     return str(Decimal(value)/Decimal(1_000_000))
 
 
-def repayment_observation(bundle, policy, requested_tx, requested_event, now):
-    """Require a complete block and unambiguous net pool cash for one direct repay.
-
-    Parent/end-block balance difference is transaction-local only because EVERY
-    other transaction receipt is checked for pool activity and token movements.
-    Same-transaction withdrawals, refunds, donations and batched repayments hold.
-    Caller supplies a lookup key, never an amount or fabricated approval flag.
-    """
+def snapshot_context(bundle,policy,requested_tx,now):
+    """Shared complete-block provenance checks; provider authenticity is external."""
     chain=quantity(bundle['chainId'])
     if chain!=policy.chain: raise ValueError('wrong chain')
     block=bundle['block']; head=bundle['head']; transaction=bundle['transaction']
@@ -62,11 +58,6 @@ def repayment_observation(bundle, policy, requested_tx, requested_event, now):
     if address(transaction['to'])!=address(policy.pool): raise ValueError('not direct pool call')
     payer=address(transaction['from'])
     if payer==address(policy.pool): raise ValueError('self payment')
-    data=transaction['input']
-    if not isinstance(data,str) or not data.lower().startswith('0x'+REPAY): raise ValueError('unsupported method')
-    call=words('0x'+data[10:],2)
-    loan,maximum=map(lambda w:int(w,16),call)
-    if maximum==0: raise ValueError('zero request')
     hashes=[txhash(h) for h in block['transactions']]
     if len(hashes)!=len(set(hashes)) or txhash(requested_tx) not in hashes: raise ValueError('invalid block inventory')
     receipts=bundle['receipts']
@@ -79,7 +70,7 @@ def repayment_observation(bundle, policy, requested_tx, requested_event, now):
         status=quantity(receipt['status'])
         if status not in (0,1): raise ValueError('invalid receipt status')
         if h==txhash(requested_tx):
-            if status!=1: raise ValueError('failed repayment')
+            if status!=1: raise ValueError('failed transaction')
             candidate=receipt
         for log in receipt['logs']:
             index=quantity(log['logIndex'])
@@ -99,6 +90,17 @@ def repayment_observation(bundle, policy, requested_tx, requested_event, now):
     if (quantity(transaction['transactionIndex'])!=hashes.index(txhash(requested_tx)) or
         txhash(transaction['blockHash'])!=block_hash or quantity(transaction['blockNumber'])!=number):
         raise ValueError('transaction block mismatch')
+    return chain,block,number,block_hash,transaction,candidate,payer
+
+
+def repayment_observation(bundle, policy, requested_tx, requested_event, now):
+    """Conservative direct repayment; ambiguous cash movement holds."""
+    chain,block,number,block_hash,transaction,candidate,payer=snapshot_context(bundle,policy,requested_tx,now)
+    data=transaction['input']
+    if not isinstance(data,str) or not data.lower().startswith('0x'+REPAY): raise ValueError('unsupported method')
+    call=words('0x'+data[10:],2)
+    loan,maximum=map(lambda w:int(w,16),call)
+    if maximum==0: raise ValueError('zero request')
     repaid=[]; applied=[]; cash=[]
     for log in candidate['logs']:
         topics=log['topics']; emitter=address(log['address']); tag=topics[0].lower()
@@ -122,15 +124,52 @@ def repayment_observation(bundle, policy, requested_tx, requested_event, now):
         paid>maximum or transferred!=paid or src!=payer or dst!=address(policy.pool) or
         not quantity(tl['logIndex'])<quantity(al['logIndex'])<quantity(rl['logIndex'])):
         raise ValueError('loan/principal/transfer binding mismatch')
-    for state,expected_hash in [(bundle['before'],txhash(block['parentHash'])),(bundle['after'],block_hash)]:
-        if (txhash(state['blockHash'])!=expected_hash or address(state['token'])!=address(policy.token) or
-            address(state['account'])!=address(policy.pool)):
-            raise ValueError('balance snapshot binding mismatch')
+    check_balance_anchors(bundle,policy,block,block_hash)
     if quantity(bundle['after']['balance'])-quantity(bundle['before']['balance'])!=paid:
         raise ValueError('net pool cash does not match paid amount')
     return Observation(chain,txhash(requested_tx),number,block_hash,1,'repayment',address(policy.pool),
                        address(policy.token),borrower,str(loan),decimal_units(principal),dst,
                        decimal_units(paid),requested_event,quantity(tl['logIndex']),src)
+
+
+def check_balance_anchors(bundle,policy,block,block_hash):
+    for state,expected_hash in [(bundle['before'],txhash(block['parentHash'])),(bundle['after'],block_hash)]:
+        if (txhash(state['blockHash'])!=expected_hash or address(state['token'])!=address(policy.token) or
+            address(state['account'])!=address(policy.pool)):
+            raise ValueError('balance snapshot binding mismatch')
+
+
+def funding_observation(bundle,policy,requested_tx,requested_event,now):
+    """Direct disburseLoan is callable by ANY sender, but pays the borrower."""
+    chain,block,number,block_hash,transaction,candidate,_=snapshot_context(bundle,policy,requested_tx,now)
+    data=transaction['input']
+    if not isinstance(data,str) or not data.lower().startswith('0x'+DISBURSE): raise ValueError('unsupported funding call')
+    loan=int(words('0x'+data[10:],1)[0],16)
+    events=[];cash=[]
+    for log in candidate['logs']:
+        topics=log['topics']; emitter=address(log['address']); tag=topics[0].lower()
+        if emitter==address(policy.pool) and tag==DISBURSED:
+            if len(topics)!=3: raise ValueError('bad LoanDisbursed ABI')
+            recipient,principal=words(log['data'],2)
+            events.append((log,topic_address(topics[1]),int(words(topics[2],1)[0],16),topic_address('0x'+recipient),int(principal,16)))
+        if emitter==address(policy.token) and tag==TRANSFER:
+            if len(topics)!=3: raise ValueError('bad transfer ABI')
+            src,dst=topic_address(topics[1]),topic_address(topics[2])
+            value=int(words(log['data'],1)[0],16)
+            if address(policy.pool) in (src,dst): cash.append((log,src,dst,value))
+    if len(events)!=1 or len(cash)!=1: raise ValueError('ambiguous funding/cash allocation')
+    event,borrower,event_loan,recipient,principal=events[0]
+    transfer,src,dst,paid=cash[0]
+    if (type(requested_event) is not int or requested_event!=quantity(event['logIndex']) or loan!=event_loan or
+        principal<=0 or principal!=paid or borrower!=recipient or dst!=recipient or src!=address(policy.pool) or
+        dst==src or quantity(transfer['logIndex'])>=quantity(event['logIndex'])):
+        raise ValueError('funding borrower/principal/transfer mismatch')
+    check_balance_anchors(bundle,policy,block,block_hash)
+    if quantity(bundle['before']['balance'])-quantity(bundle['after']['balance'])!=principal:
+        raise ValueError('net pool outflow mismatch')
+    return Observation(chain,txhash(requested_tx),number,block_hash,1,'funding',address(policy.pool),
+                       address(policy.token),borrower,str(loan),decimal_units(principal),dst,
+                       decimal_units(paid),requested_event,quantity(transfer['logIndex']),src)
 
 
 class CanonicalReader:
@@ -145,4 +184,7 @@ class CanonicalReader:
     def observe(self,transaction,event_index):
         bundle=self.provider.bundle(transaction)
         if bundle is None: return None
+        data=bundle['transaction']['input']
+        if isinstance(data,str) and data.lower().startswith('0x'+DISBURSE):
+            return funding_observation(bundle,self.policy,transaction,event_index,self.clock())
         return repayment_observation(bundle,self.policy,transaction,event_index,self.clock())

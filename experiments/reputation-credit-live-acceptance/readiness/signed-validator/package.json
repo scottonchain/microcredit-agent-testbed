@@ -1,0 +1,1 @@
+{"name":"credit-offline-signed-validator","private":true,"version":"0.0.1","dependencies":{"viem":"2.21.55"},"scripts":{"test":"node --test test_signed.cjs"}}

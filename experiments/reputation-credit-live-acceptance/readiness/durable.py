@@ -155,8 +155,17 @@ class Ledger:
         return {'net':sum(r['principal']-r['recovered'] for r in rows if r['state']!='REVERTED'),
                 'gross':sum(r['principal'] for r in rows)}
 
+    def has_chain_history(self):
+        if self.db.execute('SELECT 1 FROM loans WHERE funding_block IS NOT NULL LIMIT 1').fetchone(): return True
+        if self.db.execute('SELECT 1 FROM receipts LIMIT 1').fetchone(): return True
+        for table in ('draws','backing_anchors'):
+            if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",(table,)).fetchone():
+                query='SELECT 1 FROM '+table+(' WHERE funding_block IS NOT NULL' if table=='draws' else '')+' LIMIT 1'
+                if self.db.execute(query).fetchone(): return True
+        return False
+
     def reserve(self, intent, case, borrower, loan, principal, now):
-        if self.db.execute('SELECT 1 FROM loans WHERE funding_block IS NOT NULL LIMIT 1').fetchone():
+        if self.has_chain_history():
             if not self.audit_canonical(): raise ValueError('canonical audit failed; hold')
         intent, loan = identifier(intent), identifier(loan)
         borrower, principal = address(borrower), units(principal)
@@ -167,6 +176,8 @@ class Ledger:
         for value in (case.controller, case.group, case.evidence_id): identifier(value)
         payload = json.dumps([asdict(case),borrower,loan,principal], sort_keys=True)
         with self.atomic():
+            if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='book_mode'").fetchone() and not loan.startswith('commitment:'):
+                raise ValueError('commitment-book database cannot mix direct loan accounting')
             if self.db.execute('SELECT 1 FROM incidents LIMIT 1').fetchone():
                 raise ValueError('reconciliation incident; issuance held')
             old = self.db.execute('SELECT payload FROM loans WHERE intent=?', (intent,)).fetchone()
@@ -191,7 +202,7 @@ class Ledger:
         No signing/broadcast here. Repeated calls never authorize another send.
         """
         funding_tx = txhash(funding_tx)
-        if self.db.execute('SELECT 1 FROM loans WHERE funding_block IS NOT NULL LIMIT 1').fetchone():
+        if self.has_chain_history():
             if not self.audit_canonical(): raise ValueError('canonical audit failed; hold')
         with self.atomic():
             if self.db.execute('SELECT 1 FROM incidents LIMIT 1').fetchone():
@@ -200,6 +211,7 @@ class Ledger:
             if r['funding_tx']:
                 if r['funding_tx']!=funding_tx: raise ValueError('changed transaction')
                 return False
+            if r['loan'].startswith('commitment:'): raise ValueError('backing commitment is not a funding transaction')
             evidence=json.loads(r['payload'])[0]
             if type(now) is not int or now>=evidence['expires']:
                 raise ValueError('expired case; no new attempt')
@@ -299,5 +311,10 @@ class Ledger:
             for r in self.db.execute('SELECT observation FROM receipts').fetchall():
                 o=json.loads(r['observation'])
                 if self.reader.block_hash(o['block'])!=o['block_hash']: bad.append('repayment reorg:'+o['tx'])
+            for table,query in [('draws','SELECT funding_block AS block,funding_hash AS hash,loan AS name FROM draws WHERE funding_block IS NOT NULL'),
+                                ('backing_anchors','SELECT block,hash,intent AS name FROM backing_anchors')]:
+                if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",(table,)).fetchone():
+                    for r in self.db.execute(query).fetchall():
+                        if self.reader.block_hash(r['block'])!=r['hash']: bad.append(table+' reorg:'+r['name'])
             for reason in bad: self.db.execute('INSERT OR IGNORE INTO incidents VALUES(?)',(reason,))
             return not bad and not self.db.execute('SELECT 1 FROM incidents LIMIT 1').fetchone()
