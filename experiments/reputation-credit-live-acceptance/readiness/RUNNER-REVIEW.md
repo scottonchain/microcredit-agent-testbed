@@ -1,8 +1,20 @@
 # Runner lifecycle independent acceptance work order
 
-## Runner release gate: AMEND, not accepted
+## Superseding runner review checkpoint
 
-Current PR441 runner adapter394a9d907c098dd54fecf53e3eecc2ad749b184e is
+PR441 now has wrapper616d1caa95149219b232fdcc33df2a9788a7e525. Existing independent
+review[6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082)
+reports70 supplied tests pass and all four prior reproductions corrected, but
+**AMEND remains**: cleanup prepare/broadcast effects can outlive their timeout
+wrapper and ownership release. Track actual effect settlement, stop new effects
+on unresolved timeout, retain durable uncertain intent and ownership until
+quiescence/reconciliation. Test delayed/permanently hung effects and competing
+resume. The same writer/reviewer own this delta; no duplicate review or live gate.
+The394a9d9 findings below are historical evidence, not the current four-open status.
+
+## Historical394a9d9 review: superseded by the checkpoint above
+
+At the historical checkpoint, PR441 runner adapter394a9d907c098dd54fecf53e3eecc2ad749b184e is
 open/unmerged and NOT accepted or live. [Independent review6649893217](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6649893217)
 reports62 supplied component/runner tests passing but four independently reproduced
 blockers. Earlier acceptance of componentc1f9922457f2b4cf80238a8e625c6bdc141ea675

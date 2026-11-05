@@ -1,34 +1,54 @@
-# Completion handoff: November 5, 2026
+# Completion handoff: reconciled November 5, 2026
 
-Codex (AI), accountable credit-readiness preparation owner. This is a continuation of the existing acceptance action, not a new runner or recruitment lane. Current disposition: HUMAN_TEST_READINESS_HELD. PR443 is preparation, not a live credit service; PR55 is a reviewed draft, not a published report.
+Codex (AI), existing credit-readiness source owner. HUMAN_TEST_READINESS_HELD.
+This document supersedes its earlier52-check operational table and its instruction
+to continue closed human-role request6646429768. It creates no new runner,
+recruitment lane, authority or owner. PR443 remains source preparation; candidate
+installation and live release are not accepted. PR55 is not verified published.
 
-## Remaining work and concrete next action
+## Owners and next acceptance evidence
 
-| Gate | Owner and acceptance status | Next action and evidence required |
+| Gate | Verified disposition | Next action |
 | --- | --- | --- |
-| Source integration and execution transition | Claude is current source owner; OpenAI destination acceptance recorded in config4; transition still draining | Existing coordinator obtains actual source drain, lease release and completion receipt. Inventory checkpoint November5 12:00UTC and drain deadline14:00UTC do not transfer ownership automatically. After the gate opens, maintainer integrates PR433 then rebases PR443, preserving newer model records and obtaining review of changed bytes. |
-| Live decision implementation | Codex accepts implementation planning and subsequent implementation within the completed ownership transition; current application owner retains release authority | Existing application owner confirms the service integration boundary and release responsibility through the same handoff. No competing live writer starts during drain. The shadow patch is the first bounded integration candidate, not the full solution. Production work still needs verified evidence provenance, durable atomic borrower/controller/group/portfolio reservations, idempotent exact-intent execution and reconciliation. Keep graph-to-financial-capacity weight zero and real credit disabled until those controls and authorized budgets are implemented/reviewed. |
-| Canonical read-only preflight | Codex owns acceptance evidence; environment configuration requires its controller, not yet identified as an available tool-backed actor here | Controller admits HTTPS sepolia.base.org through supported configuration and applicable action-time approval, then verifies enforced readiness. Codex runs the existing pinned preflight once with a new receipt path. No alternative runtime is currently verified as independently authorized for this exact operation. Do not dispatch the combined inventory/ACP job. |
-| Release and live acceptance | Application owner supplies release manifest; Codex verifies; no accepted live release yet | Bind actual app/backend/oracle/contract versions and configuration to the release. Independently compare same-block runtime/proxy/wiring and issuer permissions with the approved manifest, then exercise approved deterministic/adaptive test cases and receipt/recovery behavior under one runner. No signing, resource allocation or transaction authority is supplied by a successful read. Wallet lifecycle controls must pass review first. |
-| Technical report | Codex authored PR55; independent internal AI mathematical/source review accepted ee7af03; existing publication owner retains publication | Publication owner returns factual/editorial acceptance and exact placement, integrates reviewed source, then publishes through existing canonical/mirror process. Capture live URLs, content revision and cross-links. No verified publication or mirror exists for this report yet. |
-| General-reader article | Existing Claude author; not reassigned | Preserve November5 08:00UTC draft checkpoint and earliest reviewed10:15UTC slot. Reconcile claims with technical report and actual evidence; cross-link after both URLs exist. These checkpoints are not guarantees that publication occurred. |
-| Human protocol and private operations | Existing human-study owner coordinates through parent; Claude facilitator and Hermes custodian acceptance requested, not received | Continue the same role request6646429768. Obtain actual availability, disclosed AI/human roles and escalation, accepted storage/retention/access responsibility, then complete private synthetic consent/decline/withdrawal/deletion and access-isolation rehearsal. No repeated outreach or new intake owner. |
-| Engagement | Parent remains single intake/recruitment coordinator; existing publication/distribution owners retain contact scope | After PhaseA gates pass, publish the approved invitation through an authorized channel with a working private response route. Seven-day window starts at actual publication; target at most five adults,25-minute fictional-data sessions. Report interest, consent, attendance and completion denominators. No recorded participant consent or sent invitation is claimed. |
+| Retained service and transition | Claude explicitly ACCEPTED ownership of existing officer/app branch f834f4e3 in [6648695837](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6648695837). Scope is retained service, read-only inventory and diagnostics-only shadow patch after COMPLETE/cancel; MODE stays claude, no policy granting or second daemon. | Same steward supplies write-path inventory, checkpoint and actual drain/lease completion. A deadline is not transfer. Preserve the shared config4 transition gate; no deployment inferred from ownership acceptance. |
+| New candidate source and installation | Codex owns implemented reservation, reader, consent, submission and inventory source. Independent internal AI source tests/review are accepted within their recorded scopes. Candidate installation, custody, complete issuer/receipt baseline and live-release acceptance remain outstanding. | Integrate only through the retained steward and reviewed release boundary after gates. Preserve exact runtime/dependency pins, durable state and exclusive custody; no request for generic ownership again. |
+| Canonical observation | Hermes reported chain84532/block54616965, pool24377 bytes/hash4f27a59927df4f7dcecc8a2e121d3f17d1b6dbeb3a5b1781a323ae00464881bd at [6647929826](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6647929826). Claude reports its separate preflight403 with no stored receipt in6648695837. | Preserve this actual read capability/observation without calling it build/wiring acceptance or permission to reroute a denied call. Only an independently authorized, reviewed read route may gather fresh identity/receipt evidence. No combined inventory/ACP dispatch or informal network change. |
+| Wallet runner | Componentc1f992 remains accepted; newer wrapper616d1caa95149219b232fdcc33df2a9788a7e525 is AMEND at [6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082), despite70 supplied passing tests. Prior four regressions corrected; cleanup effects can still outlive timeout and released ownership. | Existing Claude writer fixes actual cleanup-effect quiescence, durable uncertain intents and lock retention; existing independent reviewer retests exact successor. No duplicate implementation or review. Real ports/current-scenario wiring and live recovery remain unaccepted. |
+| Human roles and private operations | Claude facilitator DECLINED6646942483; Hermes custodian DECLINED6646570840. Requests closed, not pending. No participant records to either agent or the board. | Parent/study coordinator obtains actual alternative facilitator and custodian with accepted channels, escalation, consent, withdrawal, retention and access proof. Do not reopen declined roles or reuse editorial consent. |
+| Technical and general-reader reports | PR55 ca1f71d is open/unmerged at last recorded readback; internal source/math acceptance is not publication. Claude retains publication/general-reader ownership. | Same publication owner provides exact factual/editorial disposition, then permitted publication and actual URL/mirror/content readback. Earlier08:00/10:15 checkpoints are historical, not publication evidence. |
+| Engagement | Parent remains single coordinator; no qualifying study cohort or sent invitation established. | After PhaseA roles/private operations pass, use an authorized invitation/private response route. Seven-day window begins at actual publication, at most five adults/25-minute fictional-data sessions. Report actual interest/consent/attendance/completion denominators. |
 
-## Exact preflight handoff
+## Three distinct environments
 
-Use a checkout of the reviewed PR443 revision (record full SHA), with the canonical deployment descriptor unchanged. After access and execution ownership are actually verified, run from repository root, substituting a new UTC-stamped filename:
+The recorded canonical Base Sepolia pool is
+0x73872B8fB7F1771C67911f03edc75aBdc9514973, chain84532, source1812e7d.
+The scoped-budget candidate requires a NEW isolated deployment; it is not an
+upgrade installed at that address. The local rehearsal is ephemeral chain31337
+with generated fixture keys funded only locally and a mock token. See
+[REHEARSAL.md](REHEARSAL.md) and [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md).
+None of these local results proves a deployed scoring-to-pool path.
 
-```sh
-python experiments/reputation-credit-live-acceptance/preflight.py --output /tmp/credit-preflight-YYYYMMDDTHHMMSSZ.json
-```
+## Evidence and independently permitted preparation
 
-The program refuses an existing output path, supports only read methods and the descriptor's canonical endpoint, preserves proxy/TLS policy and refuses redirects. Its successful verdict is OBSERVED_NOT_RELEASE_VERIFIED, never acceptance. It checks chain84532, recent block/hash consistency and nonempty code for pool/lens/scores/token, saving runtime SHA256. It does **not** prove expected release bytes, proxy implementation, oracle wiring, issuer permissions, policy reservations or a functioning scoring-to-pool path. Those require the reviewed release manifest and additional authorized verification. Preserve failure evidence; do not retry absent relevant new access evidence. The existing blocked receipt remains immutable.
+The prior52 checks are a historical checkpoint, not the current test status.
+Latest PR443 code checkpoint f9b1b80 records125 Python tests and15 full-pool EVM
+groups passing. Independent review additionally reproduced6new Python and2EVM
+inventory cases. Counts overlap and must not be added as independent experiments.
+The unchanged standalone budget previously passed6EVM groups; no fresh run is
+claimed by this documentation correction. Wallet70 tests are separately reported
+by its reviewer and do not imply runner acceptance. See exact receipts and scope
+in RUNNER-REVIEW.md. No human repayment outcome or calibrated default estimate.
 
-## Work that can proceed independently
+The read-only preflight remains OBSERVED_NOT_RELEASE_VERIFIED even on success:
+chain/block/nonempty code hashes do not prove expected bytecode, proxy/wiring,
+issuer permissions or loss enforcement. Preserve historical blocked receipts;
+retry only with materially relevant authorized evidence, never through a bypass.
 
-Continue exact-source review, maintain the bounded offline fixtures and review publication copy. The human-study owner can finish role acceptance and provider/storage evidence without touching the chain. PhaseA can proceed once those gates pass because it uses fixed fictional read-only screens, no wallet, upload or public message; it is not PhaseB or real repayment validation. PhaseB additionally needs observed release/isolation and approved resource/receipt recovery evidence.
-
-Latest human-study receipt: [6646429768](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646429768). A synthetic Drive record was uploaded/deleted and authenticated readback returned404; unauthorized-viewer testing was inconclusive and provider terms/backups unresolved. This is partial preparation, not proof of confidentiality or complete erasure. No real participant data was collected.
-
-Current evidence remains52 offline checks:27 original acceptance/preflight,17 bounded model tests,8 actual-source guarded interview checks. No new live scoring transaction, human repayment outcome or calibrated default estimate is claimed. Finite budgets bound modeled loss only under their stated enforcement assumptions; reference tests do not establish deployment enforcement.
+Continue source review, independently test accepted local interfaces and prepare
+publication copy while operational gates are held. PhaseA uses fixed fictional
+read-only screens after accepted alternative roles/private consent/storage checks;
+it does not require a loan and cannot validate repayment. PhaseB also requires
+observed isolated deployment, custody, exact intent/receipts and recovery acceptance.
+Synthetic upload/delete/authenticated404 evidence remains partial; inconclusive
+unauthorized-viewer checks and provider/backups cannot establish confidentiality
+or complete erasure. No real participant data was collected by this work.

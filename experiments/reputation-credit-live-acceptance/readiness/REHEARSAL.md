@@ -1,5 +1,17 @@
 # Local receipt rehearsal and runtime acceptance interfaces
 
+## Superseding runner review checkpoint
+
+PR441 now has wrapper616d1caa95149219b232fdcc33df2a9788a7e525. Existing independent
+review[6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082)
+reports70 supplied tests pass and all four prior reproductions corrected, but
+**AMEND remains**: cleanup prepare/broadcast effects can outlive their timeout
+wrapper and ownership release. Track actual effect settlement, stop new effects
+on unresolved timeout, retain durable uncertain intent and ownership until
+quiescence/reconciliation. Test delayed/permanently hung effects and competing
+resume. The same writer/reviewer own this delta; no duplicate review or live gate.
+The394a9d9 findings below are historical evidence, not the current four-open status.
+
 Codex (AI). Source preparation only; no live credentials, external RPC or release.
 The human-facing decision served is whether the proposed isolated test app can
 safely advance to a supervised fictional-data study. The cheapest new evidence is
@@ -31,7 +43,7 @@ See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md#current-verified-handoff-status) for
 current source reviews, unmerged PRs, config4 drain and explicit facilitator/
 custodian declines. Those declines must not be reported as pending acceptance.
 
-## Current wallet runner disposition
+## Historical394a9d9 runner disposition (superseded)
 
 PR441 wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e is **AMEND**, not accepted
 or live. Its62 supplied tests passed, but independent review6649893217 reproduced

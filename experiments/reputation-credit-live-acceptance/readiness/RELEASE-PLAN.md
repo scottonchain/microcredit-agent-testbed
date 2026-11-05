@@ -1,5 +1,17 @@
 # Controlled testnet integration and release
 
+## Superseding runner review checkpoint
+
+PR441 now has wrapper616d1caa95149219b232fdcc33df2a9788a7e525. Existing independent
+review[6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082)
+reports70 supplied tests pass and all four prior reproductions corrected, but
+**AMEND remains**: cleanup prepare/broadcast effects can outlive their timeout
+wrapper and ownership release. Track actual effect settlement, stop new effects
+on unresolved timeout, retain durable uncertain intent and ownership until
+quiescence/reconciliation. Test delayed/permanently hung effects and competing
+resume. The same writer/reviewer own this delta; no duplicate review or live gate.
+The394a9d9 findings below are historical evidence, not the current four-open status.
+
 Codex (AI), November 5, 2026. Implementation owner: Codex for PR443. This is a
 release work order, not a deployment receipt. User authorization includes resolving
 integration and redeploying the test application when necessary; it does not remove
@@ -10,7 +22,10 @@ ownership, network, consent, financial or review boundaries.
 - Source implementation owner: Codex owns authenticated acquisition, local consent
   and submission boundary in PR443. The retained D7 runtime is Claude's tracked
   background process with a two-hour relaunch, not a repository service. Claude
-  must checkpoint and drain that writer/relaunch before installation; Hermes has
+  explicitly accepted retained-service ownership in6648695837, bounded to read-only
+  inventory and diagnostics-only shadow work after COMPLETE/cancel; MODE stays
+  claude with no policy granting. That does not accept installation/live release
+  of this new candidate. Claude must checkpoint/drain before installation; Hermes has
   declined release ownership. [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md) provides the
   concrete sequence and mandatory probes. No competing writer is authorized.
 - Canonical read capability: Hermes reports one read-only observation at
@@ -21,11 +36,12 @@ ownership, network, consent, financial or review boundaries.
   Hermes has not accepted deployment responsibility. The selected Codex runtime's
   denied RPC route remains unused; no permission/configuration workaround.
 - Wallet PR441: componentc1f9922457f2b4cf80238a8e625c6bdc141ea675 remains
-  accepted within component scope. New wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e
+  accepted within component scope. Historical wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e
   is AMEND at independent review6649893217 despite62 supplied passing tests.
-  Four blockers: unsettled-work cleanup race, resumed roster/config mismatch,
-  unsupervised funding and lock publication admitting two owners. Existing owner
-  Claude must amend; Codex independently reviews the exact fixes. See RUNNER-REVIEW.md.
+  That superseded review found four blockers: unsettled-work cleanup race, resumed roster/config mismatch,
+  unsupervised funding and lock publication admitting two owners. These four
+  reproductions are corrected in616d1ca; the current cleanup-effect blocker remains
+  with the same writer/reviewer. See the superseding checkpoint and RUNNER-REVIEW.md.
   No real ports/current-runner integration or live recovery is accepted.
 - Human study owner: retain the separate study workstream. Claude facilitation
   and Hermes custody are explicitly declined (6646942483/6646570840), not pending.
@@ -96,6 +112,7 @@ A standalone immutable cumulative budget has six local EVM test groups and a
 source-pinned origination patch covering the three source entry paths. The optimizer-only
 correction produces23246 bytes,1330 under EIP170; independent rebuild and all19
 budget/full-pool EVM groups pass with exact vendored dependencies and Cancun. The original signature logic and controls remain.
-Codex owns the remaining integration with the accepted pool source owner. Owner
-acceptance remains unreceived at this checkpoint. The existing
+Codex owns candidate source integration. Claude accepted retained-service ownership
+and diagnostics-only scope in6648695837; new candidate installation, custody and
+live-release acceptance remain unreceived. The existing
 canonical deployment is untouched; this is not an upgrade mechanism for it.

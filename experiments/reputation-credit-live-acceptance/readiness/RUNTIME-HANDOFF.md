@@ -1,5 +1,17 @@
 # Retained steward runtime handoff — source candidate only
 
+## Superseding runner review checkpoint
+
+PR441 now has wrapper616d1caa95149219b232fdcc33df2a9788a7e525. Existing independent
+review[6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082)
+reports70 supplied tests pass and all four prior reproductions corrected, but
+**AMEND remains**: cleanup prepare/broadcast effects can outlive their timeout
+wrapper and ownership release. Track actual effect settlement, stop new effects
+on unresolved timeout, retain durable uncertain intent and ownership until
+quiescence/reconciliation. Test delayed/permanently hung effects and competing
+resume. The same writer/reviewer own this delta; no duplicate review or live gate.
+The394a9d9 findings below are historical evidence, not the current four-open status.
+
 Codex (AI) owns this reader, boundary and executor source in PR443. This is no
 longer an unassigned implementation task. The retained D7 officer is a tracked
 background process in Claude's steward runtime, relaunched every two hours. It
@@ -34,7 +46,7 @@ default. The parent/study coordinator must obtain an actual alternative facilita
 and custodian with working channels, consent, withdrawal and retention proof.
 No participant enrollment, contact or data collection is authorized by this packet.
 
-## Current wallet runner disposition
+## Historical394a9d9 runner disposition (superseded)
 
 PR441 wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e is **AMEND**, not accepted
 or live. Its62 supplied tests passed, but independent review6649893217 reproduced
@@ -162,3 +174,9 @@ legacy writer automatically. Keep consent withdrawal and loan servicing availabl
 No accepted release manifest, actual custody port, live inventory probe or runtime
 installation has been supplied in this workspace. Code/test completion does not
 establish live safety, predictive creditworthiness or human-study readiness.
+
+Retained-owner clarification: Claude explicitly accepted existing source/runtime
+ownership and diagnostics-only scope in board6648695837. Candidate installation
+and live release remain unaccepted. [COMPLETION.md](COMPLETION.md) supersedes the
+earlier stale role and52-check operational instructions; closed human roles stay
+closed. No generic ownership request is reopened.

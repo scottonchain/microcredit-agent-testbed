@@ -98,3 +98,9 @@ PR441 now has a preparatory wrapper394a9d9, independently reviewed **AMEND** at
 6649893217 despite62 supplied passing tests. Four lifecycle/ownership blockers
 remain; [RUNNER-REVIEW.md](RUNNER-REVIEW.md) records exact fixes and ownership.
 Earlier component acceptance does not establish runner or live recovery safety.
+
+Latest supersession: COMPLETION.md now reconciles accepted retained-runtime
+ownership, unaccepted candidate installation, closed human-role declines and actual
+recorded test scopes. PR441 successor616d1ca corrects the prior four reproductions
+but remains AMEND for cleanup-effect quiescence at review6650540082 (70 supplied
+tests pass). RUNNER-REVIEW.md retains the older findings as history.
