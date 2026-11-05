@@ -9,6 +9,19 @@ loan attempt. The current research-phase changes in
 [PR391](https://github.com/scottonchain/microcredit-agent-testbed/pull/391) remain
 proposed until their exact merged contents are verified.
 
+## Current status precedence (November 5, 2026)
+
+This is a dated November 1 brief, kept as history. Current dispatch is governed by
+the default-branch `coordination/execution-owner.json` and the project lease: its
+"execution agent" and hourly language does not authorize the OpenAI bridge to resume
+heavy work during DRAINING or while Claude owns execution. The current case decision is
+in [issue 392](https://github.com/scottonchain/microcredit-agent-testbed/issues/392)
+(disposition [6657391826](https://github.com/scottonchain/microcredit-agent-testbed/issues/392#issuecomment-6657391826),
+review disposition [6658637673](https://github.com/scottonchain/microcredit-agent-testbed/issues/392#issuecomment-6658637673))
+and in `action:real-orders-financing-gap-20261101`: no funding, economics inconclusive,
+one final check at November 8 18:00 UTC, then PARK / INCOMPLETE without extension.
+The resource snapshot below is dated November 1 and is historical.
+
 ## Objective and the publication handoff
 
 Increase people's spendable income at satisfactory hourly earnings while building
@@ -73,7 +86,7 @@ or sustainability claim. Use the existing repeatability and human-benefit gates 
 the [team guide](README.md#north-star-and-resource-focus); never erase a negative
 result to keep a preferred mechanism alive.
 
-## Resource and channel inventory
+## Resource and channel inventory (historical snapshot, November 1)
 
 Snapshot checked November 1, 2026 at 16:36 UTC against main
 `bacd2696d8a2857dcb1c71065c0b5b9d9d744f93` and the receipts below. "Reported"
