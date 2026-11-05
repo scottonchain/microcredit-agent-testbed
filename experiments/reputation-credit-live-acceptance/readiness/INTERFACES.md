@@ -1,0 +1,39 @@
+# Actual-interface verification and binding prototype
+
+Codex (AI), November5 2026. This extends the local ledger; nothing is deployed. No RPC transport, signer, broadcast, key access or live executor is installed. The existing source owner retains application/release responsibility and the ownership transition remains a gate.
+
+## Sources inspected, not deployment inferred
+
+- [App source f834f4e](https://github.com/scottonchain/microcredit-agent-testbed/tree/f834f4e349a7df349b4ad1bf9104438e848929ab/experiments/d7-live): CreditDesk.sol, CreditDesk/pool ABIs, lib/chain.mjs and desk-daemon.mjs. Current branch freshly fetched; branding unchanged.
+- [Recorded canonical pool source1812e7d](https://github.com/scottonchain/microcredit-contract/blob/1812e7d/packages/foundry/contracts/DecentralizedMicrocredit.sol): repayment, backing allocation and withdrawal-queue semantics. INTERFACE-SOURCE.json records hashes. This is not a fresh deployed-bytecode comparison.
+- Ethereum event/function signatures were derived with PyCryptodome3.23.0 Keccak256. Actual app ABIs were independently encoded with viem2.21.55 (within the app's declared version range); both reply and repayLoan encodings exactly match the Python output. Permanent abi-encoding-fixtures.json supports regression checks without adding runtime dependencies. Package installs were isolated to temporary development directories; no provider/client was initialized.
+
+## Repayment reader: implemented and deliberately narrow
+
+canonical_adapter.py implements Ledger's reader interface using an injected snapshot provider. It decodes raw ABI logs and direct repayLoan calldata, rather than accepting a caller's proposed principal amount. In this contract, LoanRepaid.amount is total payment and RepaymentApplied separates interest, principal and protocol fee. Only principal reduces the ledger's remaining principal. Fee is a component of interest, not an additional principal recovery.
+
+Checks bind the chain, requested transaction, exact direct pool call, receipt success, block/hash/index, log provenance and unique indices; expected token emitter, payer and pool destination; loan/event/calldata agreement; event order; principal/interest/fee consistency; confirmation depth, freshness and current canonical hash. The returned repayment event and transfer-log identifiers feed the durable unique-allocation constraints.
+
+Net-cash evidence uses parent-block and end-block token balances, both bound to their block hashes and the pool/token. This is attributable to the candidate transaction only under a restrictive condition: a complete ordered receipt inventory for the entire block shows no other pool event or pool-token movement. Within the candidate transaction exactly one relevant token transfer must exist and its amount must equal the balance increase and the LoanRepaid amount. Missing/duplicate receipts, wrong anchors, a donation, refund, same-transaction outflow or ambiguous repayment events fail closed.
+
+The actual _repay function can fill queued withdrawals. A legitimate repayment with that outflow is therefore HELD by this conservative reader; it is not classified as fraud. Supporting it requires independently reconstructed transaction-local principal allocation and the corresponding liquidity/withdrawal accounting. Permits, meta-transactions, smart-wallet batches and interest-only receipts are also unsupported and held. The current app's smart-wallet/permit routes are not certified by the direct-call tests. Source1812e7d can close tiny residual balances; loan closure never substitutes for observed principal cash in this reader.
+
+**Authentication boundary:** a provider must independently obtain authentic complete receipts, headers and token state. The tests use constructed raw-RPC-shaped snapshots, not real chain observations. Consistency checks do not verify receipt-trie proofs or defend against a colluding/compromised provider inventing a complete matching snapshot. No trusted live provider is supplied. Release still requires verified runtime/proxy/wiring/token behavior, authenticated acquisition and independent reconciliation. Standard-token transfer logs plus consistent balances do not certify arbitrary token behavior.
+
+## Consent and exact reply binding
+
+service_binding.py encodes the real reply(address,string,uint256) ABI and persists bindings in the same SQLite ledger. It consumes only explicitly reviewed public-message templates; applicant text is never executed or copied into reply calldata. It checks the current applicant, desk/pool/token/officer, snapshot freshness/canonical hash, known applicant, thread capacity, default status, maxLine, minimum backing and self-backing prohibition.
+
+The pool spends free granted credit BEFORE stake. A freeStake check alone would falsely label some backing as cash-secured. This candidate requires freeCredit=0, unsecured=0 and secured+unsecured=backing. Snapshot amounts and nonce are exact integers, not floating-point USD. Both binding and validation audit prior ledger chain observations and check incident holds inside the database transaction.
+
+Private fictional-practice consent is versioned monotonically. A withdrawal invalidates existing bindings; old revisions cannot restore consent, and later reconsent does not revive an old transaction. Consent updates are trusted consent-controller operations, not a public applicant endpoint or evidence that a human consented. No genuine consent record is supplied or collected here.
+
+Bindings cover the exact unsigned chain ID, sender, nonce, desk destination, zero native value and complete calldata, plus a policy/message fingerprint, borrower, consent revision, reservation and expiry. A changed transaction, backing state, nonce, policy, consent or expiry holds; current service-limit violations also hold. Nonce and reservation uniqueness persist through restart. Validation returns binding_valid=true only for the tested local conditions and ALWAYS execution_allowed=false. It does not recover a signer from a signed transaction or authenticate an officer key. Gas/fee budgets, signed-envelope decoding, submission-time consent/affordability/evidence revalidation and the final exact transaction execution gate remain future requirements.
+
+## Actual service integration gaps retained
+
+CreditDesk.reply sets TOTAL backing; it is not LoanDisbursed and must never close a funding reservation. Backing can remain available across future loans; the local loan ledger is not yet a complete persistent backing-commitment book. The service must map commitments to actual loan lifecycles, retain reservations while backing remains usable, reconcile prior backing before enabling issuance, and prevent reused backing from escaping controller/group/global budgets. The current tests bind a fictional reservation; they do not solve that deployment mapping.
+
+There is no canonical funding-event adapter in this change. The existing ledger funding tests still use synthetic observations. There is also no installed JS-daemon/Python-ledger IPC or transaction executor; the daemon's actual write paths, drip funding and retry fallback must be reviewed as one execution boundary before wiring this in. No live call, Pages change, wallet sweep or signature was made. PR441 wallet recovery remains separately owned and gated on exact reviewed fixes.
+
+Twenty-one interface tests cover raw decoding, net-cash ambiguity, full-block completeness, principal/interest separation, adapter-to-ledger reconciliation, current consent and withdrawal/reconsent, transaction tampering, actual service preconditions, secured-only backing, historical reorgs, persistence and policy/message changes. These are synthetic implementation tests, not predictive repayment evidence, verified deployed behavior or readiness for humans.

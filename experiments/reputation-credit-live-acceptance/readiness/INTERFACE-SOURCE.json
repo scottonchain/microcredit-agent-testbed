@@ -1,0 +1,21 @@
+{
+  "kind": "OFFLINE_SOURCE_INTERFACE_PROVENANCE_NOT_DEPLOYMENT_VERIFICATION",
+  "chain_id": 84532,
+  "app_commit": "f834f4e349a7df349b4ad1bf9104438e848929ab",
+  "contract_recorded_commit": "1812e7d",
+  "files": {
+    "contract_source": {
+      "sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360"
+    },
+    "pool_abi": {
+      "sha256": "c1d07aef95748a4440a28f1d63944c43df9806d7e048719e95cb882d41fdf953"
+    },
+    "desk_source": {
+      "sha256": "d4ca47f96939162faf9dd473ca64b57ce35399e640a36f471e74176b565033fa"
+    },
+    "desk_abi": {
+      "sha256": "813531d5e5438b6461a5ff99957a32eb80ad31b5234d63f9e3fbfbb30672e46f"
+    }
+  },
+  "note": "Pool ABI and desk source/ABI inspected from pinned app; contract1812e7d fetched via GitHub. No deployed bytecode or RPC read. Temporary shadow-patched daemon excluded."
+}

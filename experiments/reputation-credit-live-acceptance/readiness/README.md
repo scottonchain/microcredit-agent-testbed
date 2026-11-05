@@ -49,3 +49,7 @@ Completion criteria: reviewed deployed end-to-end decision path, live receipt-ba
 [DURABLE.md](DURABLE.md) describes the separate SQLite prototype and its crash/retry, receipt-allocation and repayment-farming defenses. No live reader or sender is installed, and execution_permission remains false. Historical reference failures remain in bounds.py/test_stress.py; the new tests exercise fixes in durable.py rather than redefining those old counterexamples as solved in deployment.
 
 The durable suite now contains22 passing cases, including three regressions contributed by the independent AI reviewer. Accumulated offline coverage is85 checks (27 original,17 bounds,11 stress,8 guard,22 durable); earlier counts remain historical checkpoints. This does not count a live acceptance campaign or human observations.
+
+## Actual service interface candidates
+
+[INTERFACES.md](INTERFACES.md) documents the raw-ABI repayment reader and persistent consent/unsigned-reply binding, source hashes, independent ABI encoding check and conservative unsupported cases.21 additional interface tests bring accumulated offline coverage to106 checks. Actual granting remains disabled; complete backing-commitment/funding reconciliation and authenticated live acquisition are not implemented.
