@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { runWithLifecycle, exitCodeFor } from './lifecycle_runner.mjs';
-import { makeChain, roster, addr, FUND, TOKEN, CHAIN_ID } from './lifecycle_fixtures.mjs';
+import { makeChain, roster, addr, FUND, TOKEN, CHAIN_ID, MAX_FEE } from './lifecycle_fixtures.mjs';
 
 const E = process.env;
 const dir = E.WORK_DIR; const n = Number(E.N || 2);
@@ -28,7 +28,7 @@ const chain = makeChain({
 
 const result = await runWithLifecycle({
   enabled: E.ENABLED !== '0', runId: 'child-run', fundingWallet: FUND, roster: roster(n), ports: chain.ports,
-  journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, timeoutMs: 20000, settleGraceMs: 200,
+  journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, maxFeeWei: MAX_FEE, timeoutMs: 20000, settleGraceMs: 200,
   fund: async () => {
     const tokens = {}; const gas = {};
     for (let i = 1; i <= n; i++) { tokens[addr(i)] = BigInt(10 * i); gas[addr(i)] = 1000n; }

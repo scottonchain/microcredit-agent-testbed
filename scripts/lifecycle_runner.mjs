@@ -29,7 +29,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import nodePath from 'node:path';
 import {
-  newJournal, saveJournal, loadJournal, publicView, verifyControl, runCleanup, finalize, reconcile, terminalVerify,
+  newJournal, saveJournal, loadJournal, publicView, verifyControl, runCleanup, finalize, reconcile, terminalVerify, canonicalRaw,
 } from './wallet_lifecycle.mjs';
 
 export const ENV_FLAG = 'OMNEQUA_WALLET_LIFECYCLE';
@@ -41,7 +41,7 @@ export const ENV_FLAG = 'OMNEQUA_WALLET_LIFECYCLE';
 export class PrepareNotStarted extends Error {}
 export function lifecycleEnabled(env = process.env) { return env[ENV_FLAG] === '1'; }
 
-const PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'receipt'];
+const PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'verifyPrepared', 'receipt'];
 const CLOSED = new Set(['closed', 'closed_with_exceptions']);
 
 // What may leave the process: no raw bytes, no error text.
@@ -145,6 +145,7 @@ function checkConfig(cfg) {
   if (!Array.isArray(cfg.roster) || cfg.roster.length === 0) problems.push('roster');
   if (!Number.isInteger(cfg.chainId)) problems.push('chainId');
   if (!addrRe.test(cfg.token || '')) problems.push('token');
+  if (typeof cfg.maxFeeWei !== 'bigint' || cfg.maxFeeWei < 0n) problems.push('maxFeeWei');
   if (!cfg.journalPath || !nodePath.isAbsolute(cfg.journalPath)) problems.push('journalPath must be absolute');
   else if (/(^|[\\/])evidence([\\/]|$)/.test(cfg.journalPath)) problems.push('journalPath must be outside the evidence folder');
   if (typeof cfg.fund !== 'function') problems.push('fund');
@@ -160,7 +161,7 @@ function identityOf(cfg) {
   return JSON.stringify({
     v: 1,
     roster: cfg.roster.map(w => [String(w.id), low(w.address)]).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)),
-    funding: low(cfg.fundingWallet), chainId: cfg.chainId, token: low(cfg.token),
+    funding: low(cfg.fundingWallet), chainId: cfg.chainId, token: low(cfg.token), maxFeeWei: String(cfg.maxFeeWei),
     policy: { dust: String(cfg.dust ?? 0n), gasDust: String(cfg.gasDust ?? 0n), gasReserveMultiple: cfg.gasReserveMultiple ?? 2, approved: [...(cfg.approvedContracts || [])].map(low).sort() },
   });
 }
@@ -171,14 +172,15 @@ function identityOf(cfg) {
 // transaction that comes back late from a prepare that already "failed" is kept as an orphaned intent (private
 // bytes) that blocks closure. Reads may simply time out into 'unknown'.
 const EFFECT_PORTS = new Set(['prepareSweep', 'prepareGasSweep', 'broadcast']);
-// A prepare result counts only if it carries a complete signed-intent record: a non-empty hash and non-empty raw
-// signed bytes. Anything else (undefined, null, {}, a hash without bytes, wrong types) is NOT proof that nothing
-// was signed, so it can never clear the in-flight marker.
+// A prepare result counts only if it carries a complete signed-intent record: a non-empty hash and signed bytes in
+// the one canonical form (0x + hex of whole bytes; a Uint8Array is converted, see canonicalRaw). Anything else
+// (undefined, null, {}, a hash without bytes, text that is not hex, wrong types) is NOT proof that nothing was
+// signed, so it can never clear the in-flight marker. Whether the bytes carry the REQUESTED transfer is a separate,
+// later question the component's mandatory verifier answers before any broadcast.
 function validPrepared(v) {
   if (!v || typeof v !== 'object') return false;
   if (typeof v.hash !== 'string' || v.hash.length === 0 || v.hash.length > 200) return false;
-  const rawOk = (typeof v.raw === 'string' && v.raw.length > 0) || ((v.raw instanceof Uint8Array) && v.raw.length > 0);
-  return rawOk;
+  return canonicalRaw(v.raw) !== null;
 }
 function boundedPorts(ports, ms, hooks) {
   const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [], lateRejected: false, prepareUncertain: false };
@@ -195,7 +197,7 @@ function boundedPorts(ports, ms, hooks) {
       if (isEffect) {
         const done = underlying.then(v => {
           if (timedOut && isPrepare) {
-            if (validPrepared(v)) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: typeof v.raw === 'string' ? v.raw : Buffer.from(v.raw).toString('hex'), amount: String(a[2]), nonce: a[3] });
+            if (validPrepared(v)) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: canonicalRaw(v.raw), amount: String(a[2]), nonce: a[3] });
             else { t.prepareUncertain = true; t.halted = true; } // a late malformed result: still not proof of anything
           }
         }, e => { if (timedOut && isPrepare) { if (e instanceof PrepareNotStarted) t.lateRejected = true; else { t.prepareUncertain = true; t.halted = true; } } }).then(() => { t.outstanding.delete(done); });
@@ -283,7 +285,7 @@ export async function runWithLifecycle(cfg) {
       prepareEnd: () => { if (cur.journal && cur.journal.runner) cur.journal.runner.prepareInFlight = null; },
     });
     const base = {
-      save, token: cfg.token, chainId: cfg.chainId, dust: cfg.dust ?? 0n, gasDust: cfg.gasDust ?? 0n,
+      save, token: cfg.token, chainId: cfg.chainId, maxFeeWei: cfg.maxFeeWei, dust: cfg.dust ?? 0n, gasDust: cfg.gasDust ?? 0n,
       approvedContracts: cfg.approvedContracts || [], gasReserveMultiple: cfg.gasReserveMultiple ?? 2,
     };
     const setPhase = (j, phase, extra = {}) => { j.runner = { ...(j.runner || {}), phase, ...extra }; save(j); };

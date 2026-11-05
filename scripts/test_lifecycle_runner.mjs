@@ -8,7 +8,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { runWithLifecycle, lifecycleEnabled, checkpoint, publicReport, exitCodeFor, ENV_FLAG, PrepareNotStarted } from './lifecycle_runner.mjs';
 import { loadJournal } from './wallet_lifecycle.mjs';
-import { makeChain, roster, addr, FUND, OTHER, TOKEN, CHAIN_ID } from './lifecycle_fixtures.mjs';
+import { makeChain, roster, addr, FUND, OTHER, TOKEN, CHAIN_ID, MAX_FEE, encodeRaw, decodeRaw } from './lifecycle_fixtures.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'lr-'));
@@ -23,7 +23,7 @@ function setup({ n = 2, chain: co = {}, over = {}, fundGas = 1000n, scenario = a
   const signals = new EventEmitter();
   const cfg = {
     enabled: true, runId: 'r1', fundingWallet: FUND, roster: roster(n), ports, signals,
-    journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, timeoutMs: 5000, settleGraceMs: 100,
+    journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, maxFeeWei: MAX_FEE, timeoutMs: 5000, settleGraceMs: 100,
     fund: async () => {
       calls.fund++;
       const tokens = {}; const gas = {};
@@ -105,8 +105,8 @@ test('success: terminal cleanup then an exact reconciliation closes the run; pri
   assert.equal(fs.statSync(t.cfg.journalPath).mode & 0o777, 0o600);
   assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false); // single-owner lock released
   const pub = JSON.stringify(r.report) + JSON.stringify(r.checkpoint);
-  assert.ok(!pub.includes('raw:')); assert.ok(!/priv|secret|mnemonic/i.test(pub));
-  assert.ok(JSON.stringify(j).includes('raw:') || Object.values(j.wallets).every(w => !w.sweep)); // raw bytes live only in the private file
+  assert.ok(!pub.includes('7261773a')); assert.ok(!/priv|secret|mnemonic/i.test(pub));
+  assert.ok(JSON.stringify(j).includes('7261773a') || Object.values(j.wallets).every(w => !w.sweep)); // raw bytes live only in the private file
   assert.deepEqual(r.checkpoint.unresolved, []);
 });
 
@@ -225,7 +225,7 @@ test('a later deposit during cleanup reopens the wallet, is swept, and the closu
   const t = setup({ n: 1 });
   const chainHooks = t.chain;
   const real = t.cfg.ports.broadcast;
-  t.cfg.ports = { ...t.cfg.ports, broadcast: async (raw) => { await real(raw); if (!deposited && raw.includes('0xg')) { deposited = true; chainHooks.deposit(addr(1), 5n, 1000n); } } };
+  t.cfg.ports = { ...t.cfg.ports, broadcast: async (raw) => { await real(raw); if (!deposited && decodeRaw(raw).includes('0xg')) { deposited = true; chainHooks.deposit(addr(1), 5n, 1000n); } } };
   const r = await runWithLifecycle(t.cfg);
   assert.equal(deposited, true);
   assert.equal(r.status, 'closed');
@@ -320,7 +320,7 @@ test('resume refuses a changed roster, address, chain, token or recovery policy 
   const variants = [
     { roster: roster(2) },                                                           // Codex repro: w2 added and funded
     { roster: [{ id: 'w1', address: addr(9), role: 'client' }] },
-    { chainId: 1 }, { token: OTHER }, { dust: 5n }, { approvedContracts: [addr(1)] },
+    { chainId: 1 }, { token: OTHER }, { dust: 5n }, { approvedContracts: [addr(1)] }, { maxFeeWei: MAX_FEE + 1n },
   ];
   for (const v of variants) {
     t.chain.deposit(addr(2), 7n);
@@ -435,8 +435,8 @@ test('a delayed prepare that returns after its timeout is kept as an orphaned in
   assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
   assert.equal(r.checkpoint.orphanedIntents, 1);
   const j = loadJournal(t.cfg.journalPath);
-  assert.equal(j.runner.orphans.length, 1); assert.ok(j.runner.orphans[0].raw.startsWith('raw:'));   // private file keeps the bytes
-  assert.ok(!JSON.stringify(r).includes('raw:'));                                                      // nothing public does
+  assert.equal(j.runner.orphans.length, 1); assert.ok(j.runner.orphans[0].raw.startsWith('0x7261773a'));   // private file keeps the bytes
+  assert.ok(!JSON.stringify(r).includes('7261773a'));                                                      // nothing public does
   assert.ok(!t.chain.state().broadcasts.includes(j.runner.orphans[0].hash));                           // we never sent it
   const again = await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() });
   const signsNow = t.chain.state().signs;
@@ -496,7 +496,7 @@ test('late prepare with storage back in time: the orphan is made durable first, 
   } finally { restore(); }
   assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);   // released only after the orphan was durably stored
   const j = loadJournal(t.cfg.journalPath);
-  assert.equal(j.runner.orphans.length, 1); assert.equal(j.runner.prepareInFlight, null); assert.ok(j.runner.orphans[0].raw.startsWith('raw:'));
+  assert.equal(j.runner.orphans.length, 1); assert.equal(j.runner.prepareInFlight, null); assert.ok(j.runner.orphans[0].raw.startsWith('0x7261773a'));
   assert.equal((await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() })).status, 'orphans_unresolved');
 });
 
@@ -554,7 +554,7 @@ for (const [label, wrap] of [
 }
 
 // Codex review 6655549597: a fulfilled but invalid prepare result is not proof that nothing was signed.
-for (const [label, bad] of [['undefined', undefined], ['null', null], ['empty object', {}], ['hash without raw', { hash: '0xabc' }], ['raw without hash', { raw: 'raw:x' }], ['empty strings', { hash: '', raw: '' }], ['wrong types', { hash: 12, raw: { x: 1 } }], ['a string', 'raw:0xt1']]) {
+for (const [label, bad] of [['undefined', undefined], ['null', null], ['empty object', {}], ['hash without raw', { hash: '0xabc' }], ['raw without hash', { raw: '0xab' }], ['empty strings', { hash: '', raw: '' }], ['wrong types', { hash: 12, raw: { x: 1 } }], ['a string', 'raw:0xt1'], ['text that is not hex', { hash: '0xabc', raw: 'raw:0xt1' }], ['odd-length hex', { hash: '0xabc', raw: '0xabc' }]]) {
   for (const when of ['in time', 'after the timeout']) {
     test(`prepare returns ${label} ${when}: marker kept, one signature, no broadcast, resume fails closed`, async () => {
       const t = setup({ n: 2, over: { portTimeoutMs: when === 'in time' ? 1000 : 2, quiesceMs: 2000 } });
@@ -735,9 +735,67 @@ test('checkpoint and public report never carry raw bytes, errors or keys', async
   const t = setup({ n: 1, chain: { drop: ['w1'] } });
   const r = await runWithLifecycle(t.cfg);
   const j = loadJournal(t.cfg.journalPath);
-  assert.ok(JSON.stringify(j).includes('raw:'));                       // the private file has them
-  assert.ok(!JSON.stringify(checkpoint(j)).includes('raw:'));
-  assert.ok(!JSON.stringify(publicReport(j)).includes('raw:'));
-  assert.ok(!JSON.stringify(r).includes('raw:'));
+  assert.ok(JSON.stringify(j).includes('7261773a'));                       // the private file has them
+  assert.ok(!JSON.stringify(checkpoint(j)).includes('7261773a'));
+  assert.ok(!JSON.stringify(publicReport(j)).includes('7261773a'));
+  assert.ok(!JSON.stringify(r).includes('7261773a'));
   assert.equal(r.checkpoint.unresolved.length, 1);
+});
+
+// ---------- Codex review 6661955877 / 6662028143: one byte format, and a mandatory verifier before any broadcast ----------
+test('configuration: the verifier port and a named fee bound are mandatory', async () => {
+  const t = setup();
+  const { verifyPrepared, ...without } = t.cfg.ports;
+  for (const bad of [{ ports: without }, { maxFeeWei: undefined }, { maxFeeWei: 1000 }, { maxFeeWei: -1n }]) {
+    const r = await runWithLifecycle({ ...t.cfg, ...bad });
+    assert.equal(r.status, 'refused_config', JSON.stringify(Object.keys(bad)));
+  }
+  assert.equal(t.calls.ports, 0); assert.equal(t.calls.fund, 0);
+});
+
+for (const kind of ['token', 'gas']) {
+  test(`a byte-array prepare result (${kind}) is stored canonically; after an offline broadcast and a process restart the identical bytes land, one signature`, async () => {
+    const lead = kind === 'token' ? '0xt' : '0xg';
+    const t = setup({ n: 1, chain: { returnBytes: true } });
+    const real = t.cfg.ports.broadcast; let offline = true; const sent = [];
+    t.cfg.ports = { ...t.cfg.ports, broadcast: async raw => { sent.push(raw); if (offline && decodeRaw(raw).startsWith(lead)) throw new Error('offline'); return real(raw); } };
+    const first = await runWithLifecycle(t.cfg);
+    assert.notEqual(first.status, 'closed');
+    const j = JSON.parse(fs.readFileSync(t.cfg.journalPath, 'utf8')); // a real JSON reload, not the live object
+    const w = j.wallets.w1; const sweep = kind === 'token' ? w.sweep : w.gas.sweep;
+    assert.match(sweep.raw, /^0x[0-9a-f]+$/); assert.equal(decodeRaw(sweep.raw), sweep.hash);
+    const signsBefore = t.chain.state().signs;
+    offline = false; sent.length = 0;
+    const second = await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() });
+    assert.equal(second.status, 'closed');
+    const ofIntent = sent.filter(r => decodeRaw(r) === sweep.hash);
+    assert.ok(ofIntent.length >= 1 && ofIntent.every(r => r === sweep.raw), 'the identical stored bytes were sent');
+    assert.ok(t.chain.state().mined[sweep.hash], 'the recorded intent landed');
+    assert.equal(t.chain.state().signs, kind === 'token' ? signsBefore + 1 : signsBefore, 'the stored intent was never signed again (token run signs its later gas return once)');
+  });
+}
+
+for (const [label, chain] of [['wrong recipient', { redirect: true }], ['wrong chain', { wrongChain: true }], ['wrong token', { wrongToken: true }], ['fee over the bound', { feeOver: true }]]) {
+  test(`verifier gate through the runner (${label}): zero broadcasts, bytes kept private, never closed, a resume sends nothing`, async () => {
+    const t = setup({ n: 1, chain });
+    const r = await runWithLifecycle(t.cfg);
+    assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+    assert.deepEqual(t.chain.state().broadcasts, []);
+    const j = loadJournal(t.cfg.journalPath);
+    assert.equal(j.wallets.w1.sweep.outcome, 'unverified'); assert.match(j.wallets.w1.sweep.raw, /^0x[0-9a-f]+$/);
+    assert.ok(!JSON.stringify(r).includes('7261773a'));
+    const again = await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() });
+    assert.notEqual(again.status, 'closed'); assert.deepEqual(t.chain.state().broadcasts, []); assert.equal(t.chain.state().signs, 1);
+  });
+}
+
+test('a late prepare result that is a byte array is kept as an orphan in the same canonical form, never broadcast', async () => {
+  const t = setup({ n: 1, chain: { returnBytes: true }, over: { portTimeoutMs: 2, quiesceMs: 2000 } });
+  const c = { active: 0, calls: {} };
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: delayed(t.chain, 'prepareSweep', 80, c) };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.checkpoint.orphanedIntents, 1);
+  const o = loadJournal(t.cfg.journalPath).runner.orphans[0];
+  assert.match(o.raw, /^0x[0-9a-f]+$/); assert.equal(decodeRaw(o.raw), o.hash);
+  assert.deepEqual(t.chain.state().broadcasts, []);
 });

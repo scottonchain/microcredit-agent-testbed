@@ -8,6 +8,10 @@ export const FUND = '0x' + 'f'.repeat(40);
 export const OTHER = '0x' + 'e'.repeat(40);
 export const TOKEN = '0x' + 'd'.repeat(40);
 export const CHAIN_ID = 84532;
+// signed bytes in the canonical form the component stores: 0x + lowercase hex; the "signature" labels the tx hash
+export const encodeRaw = hash => '0x' + Buffer.from('raw:' + hash).toString('hex');
+export const decodeRaw = raw => Buffer.from(String(raw).slice(2), 'hex').toString().slice(4);
+export const MAX_FEE = 1000n;
 export const addr = n => '0x' + n.toString(16).padStart(40, '0');
 const k = a => String(a).toLowerCase();
 const big = o => Object.fromEntries(Object.entries(o).map(([a, v]) => [a, v.toString()]));
@@ -16,7 +20,7 @@ export function roster(n) { return Array.from({ length: n }, (_, i) => ({ id: 'w
 
 // opts: lost (wallet ids the orchestrator cannot sign for), contracts, redirect (wrong recipient), drop (ids whose
 // broadcasts vanish), gasFee, gasCost, hooks { after_prepare, before_broadcast, after_broadcast } (async, by name).
-export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost = [], contracts = [], redirect = false, drop = [], revert = [], wrongToken = false, gasFee = 10n, gasCost = 100n, hooks = {}, wrongChain = false } = {}) {
+export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost = [], contracts = [], redirect = false, drop = [], revert = [], wrongToken = false, gasFee = 10n, gasCost = 100n, hooks = {}, wrongChain = false, verifierLies = false, verifier = true, returnBytes = false, feeOver = false } = {}) {
   let mem = {
     tokens: big(tokens), gas: big(gas), fund: fund.toString(), fundGas: '0', mined: {}, pending: {}, broadcasts: [], signs: 0, nonces: {},
     lost: lost.slice(), contracts: contracts.map(k), drop: drop.slice(),
@@ -39,17 +43,17 @@ export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost 
       const s = load(); s.signs++; const hash = '0xt' + s.signs;
       s.pending[hash] = { kind: 'token', from: k(w.address), to: redirect ? OTHER : to, amount: amount.toString(), nonce, id: w.id };
       store(s); await hook('after_prepare');
-      return { hash, raw: 'raw:' + hash };
+      return { hash, raw: returnBytes ? Buffer.from('raw:' + hash) : encodeRaw(hash) };
     },
     async prepareGasSweep(w, to, amount, nonce) {
       const s = load(); s.signs++; const hash = '0xg' + s.signs;
       s.pending[hash] = { kind: 'gas', from: k(w.address), to, amount: amount.toString(), nonce, id: w.id };
       store(s); await hook('after_prepare');
-      return { hash, raw: 'raw:' + hash };
+      return { hash, raw: returnBytes ? Buffer.from('raw:' + hash) : encodeRaw(hash) };
     },
     async broadcast(raw) {
       await hook('before_broadcast');
-      const s = load(); const hash = raw.slice(4); s.broadcasts.push(hash);
+      const s = load(); const hash = decodeRaw(raw); s.broadcasts.push(hash);
       const tx = s.pending[hash]; if (!tx) { store(s); throw new Error('unknown tx'); }
       if (s.mined[hash] || s.drop.includes(tx.id)) { store(s); return; }
       const reverted = revert.includes(tx.id);
@@ -60,6 +64,13 @@ export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost 
       if (tx.kind === 'token') { s.tokens[tx.from] = (BigInt(s.tokens[tx.from] || '0') - amt).toString(); if (k(tx.to) === k(FUND)) s.fund = (BigInt(s.fund) + amt).toString(); }
       else { s.gas[tx.from] = (BigInt(s.gas[tx.from] || '0') - amt - gasFee).toString(); s.fundGas = (BigInt(s.fundGas) + amt).toString(); }
       store(s); await hook('after_broadcast');
+    },
+    // decodes the serialized bytes (here a labelled string) and reports what they say; verifierLies makes the decoder
+    // report the requested intent while the chain still executes the redirected one (tests the receipt check as a second line)
+    async verifyPrepared(raw, { kind }) {
+      const s = load(); const hash = decodeRaw(raw); const tx = s.pending[hash]; if (!tx) throw new Error('undecodable');
+      const honest = { kind: tx.kind === 'token' ? 'erc20' : 'native', hash, from: tx.from, chainId: wrongChain ? 1 : CHAIN_ID, nonce: tx.nonce, recipient: tx.to, amount: tx.amount, maxFeeWei: feeOver ? '5000' : MAX_FEE.toString(), contract: tx.kind === 'token' ? (wrongToken ? OTHER : TOKEN) : undefined, nativeValue: '0' };
+      return verifierLies ? { ...honest, recipient: FUND, chainId: CHAIN_ID, contract: tx.kind === 'token' ? TOKEN : undefined } : honest;
     },
     async receipt(hash) {
       const r = load().mined[hash]; if (!r) return null;
@@ -74,5 +85,6 @@ export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost 
     store(s);
   };
   const deposit = (a, v, g = 0n) => { const s = load(); s.tokens[k(a)] = (BigInt(s.tokens[k(a)] || '0') + v).toString(); s.gas[k(a)] = (BigInt(s.gas[k(a)] || '0') + g).toString(); store(s); };
+  if (!verifier) delete ports.verifyPrepared;
   return { ports, placeFunds, deposit, state: () => load() };
 }

@@ -19,6 +19,20 @@
 //   prepareSweep(wallet, to, amount, nonce)  -> { hash, raw }   signs inside the runner; sends nothing
 //   prepareGasSweep(wallet, to, amount, nonce) -> { hash, raw }
 //   broadcast(raw)                           -> void      sends the identical signed bytes
+//   verifyPrepared(raw, { kind })            -> decoded   MANDATORY. Decodes the serialized signed transaction itself
+//                                                         (not producer metadata): { kind: 'erc20'|'native', hash (recomputed),
+//                                                         from (recovered signer), chainId, nonce, recipient, amount, maxFeeWei,
+//                                                         contract (erc20 only), nativeValue (erc20: must be 0) }
+//
+// RAW FORMAT: a signed transaction is one canonical string, 0x + lowercase hex of whole bytes. A port may return a
+// Uint8Array; it is converted to that string before anything is stored, so the journal holds one lossless form and a
+// resume broadcasts exactly the bytes that were signed. Anything else is not accepted as a signed intent.
+//
+// NOTHING IS BROADCAST UNTIL THE INTENT IS VERIFIED. The signed intent is stored first (private bytes are never lost),
+// then the component compares the decoded transaction field by field with the requested intent (signer, hash, chain,
+// nonce, token contract or native value, recipient = the funding wallet, amount, fee at most `maxFeeWei`). A missing
+// verifier, an unnamed chain, token or fee bound, a decode error or any difference leaves the intent stored as
+// 'unverified', the wallet unknown and the run open, with zero broadcasts; a resume verifies again before sending.
 //   receipt(hash)                            -> { status:1|0, from, to, amount, nonce, token? } | null
 //
 // Run status: open -> (failed_cleanup | pending_reconciliation) -> closed | closed_with_exceptions.
@@ -38,6 +52,24 @@ const addrRe = /^0x[0-9a-fA-F]{40}$/;
 const idRe = /^[A-Za-z0-9._-]{1,64}$/;
 
 export class SaveFailed extends Error {}
+
+const RAW_MAX_HEX = 262144;
+// One lossless, canonical form for signed bytes: '0x' + lowercase hex of whole bytes. Returns null when the value is
+// not a non-empty byte string in a form that converts without loss.
+export function canonicalRaw(raw) {
+  let hex;
+  if (raw instanceof Uint8Array) hex = Buffer.from(raw.buffer, raw.byteOffset, raw.byteLength).toString('hex');
+  else if (typeof raw === 'string' && /^0x(?:[0-9a-fA-F]{2})+$/.test(raw)) hex = raw.slice(2).toLowerCase();
+  else return null;
+  if (hex.length === 0 || hex.length > RAW_MAX_HEX) return null;
+  return '0x' + hex;
+}
+function normalizePrepared(p) {
+  if (!p || typeof p !== 'object') return null;
+  if (typeof p.hash !== 'string' || p.hash.length === 0 || p.hash.length > 200) return null;
+  const raw = canonicalRaw(p.raw);
+  return raw ? { hash: p.hash, raw } : null;
+}
 
 function code(e) {
   if (e instanceof SaveFailed) return 'save_error';
@@ -181,11 +213,47 @@ async function settle(ports, intent, expect) {
   return 'swept';
 }
 
-async function settleWithRetry(ports, sweep, expect, journal, opts) {
+// The pre-broadcast gate. The serialized signed bytes are decoded by the injected verifier and every field is compared
+// with the intent this component requested; the result of the same prepare call is never trusted as its own proof.
+// Returns null when the intent may be sent, otherwise a short reason code.
+async function verifyIntent(ports, kind, from, sweep, opts) {
+  if (typeof ports.verifyPrepared !== 'function') return 'verifier_missing';
+  if (!Number.isInteger(opts.chainId)) return 'chain_unnamed';
+  if (kind === 'erc20' && !addrRe.test(opts.token || '')) return 'token_unnamed';
+  let fee;
+  try { fee = BigInt(opts.maxFeeWei); if (fee < 0n) throw new Error('neg'); } catch { return 'fee_bound_unnamed'; }
+  const raw = canonicalRaw(sweep.raw);
+  if (!raw) return 'raw_not_canonical';
+  let d;
+  try { d = await ports.verifyPrepared(raw, { kind }); } catch { return 'verifier_error'; }
+  if (!d || typeof d !== 'object') return 'verifier_result_invalid';
+  const same = x => String(x).toLowerCase();
+  try {
+    if (d.kind !== kind) return 'kind_differs';
+    if (same(d.hash) !== same(sweep.hash)) return 'hash_differs';
+    if (same(d.from) !== same(from)) return 'signer_differs';
+    if (Number(d.chainId) !== opts.chainId || !Number.isInteger(Number(d.chainId))) return 'chain_differs';
+    if (Number(d.nonce) !== Number(sweep.nonce) || !Number.isInteger(Number(d.nonce))) return 'nonce_differs';
+    if (same(d.recipient) !== same(opts.fundingWallet)) return 'recipient_differs';
+    if (BigInt(d.amount) !== BigInt(sweep.amount)) return 'amount_differs';
+    if (kind === 'erc20') {
+      if (same(d.contract) !== same(opts.token)) return 'token_differs';
+      if (BigInt(d.nativeValue) !== 0n) return 'native_value_present';
+    } else if (d.contract !== undefined && d.contract !== null) return 'contract_call_present';
+    const f = BigInt(d.maxFeeWei);
+    if (f < 0n || f > fee) return 'fee_over_bound';
+  } catch { return 'verifier_result_invalid'; }
+  return null;
+}
+
+async function settleWithRetry(ports, sweep, expect, journal, opts, gate) {
   let o = await settle(ports, sweep, expect);
   if (o === 'unknown') {
-    // no byte is ever (re)broadcast unless the intent is durably on disk right now
+    // no byte is ever (re)broadcast unless the intent is durably on disk right now and verified against the request
     if (!durable(journal, opts)) return 'unknown';
+    const why = await verifyIntent(ports, gate.kind, gate.from, sweep, opts);
+    if (why) { sweep.verifyReason = why; return 'unverified'; }
+    delete sweep.verifyReason;
     try { await ports.broadcast(sweep.raw); } catch { /* the bytes may already be mined; the receipt decides */ }
     o = await settle(ports, sweep, expect);
   }
@@ -199,7 +267,8 @@ async function cleanOne(w, journal, ports, opts) {
   }
   // 1) a recorded, unsettled sweep is settled first, from the recorded intent; it is never signed again
   if (w.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(w.sweep.outcome)) {
-    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token, chainId: opts.chainId }, journal, opts);
+    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token, chainId: opts.chainId }, journal, opts, { kind: 'erc20', from: w.address });
+    if (o === 'unverified') { w.sweep.outcome = 'unverified'; w.state = 'unknown'; ev(w, { ev: 'sweep_unverified_not_sent', hash: w.sweep.hash, reason: w.sweep.verifyReason }); durable(journal, opts); return; }
     if (o === 'unknown') { w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: w.sweep.hash }); durable(journal, opts); return; }
     w.sweep.outcome = o;
     ev(w, { ev: 'sweep_settled', hash: w.sweep.hash, outcome: o });
@@ -227,12 +296,16 @@ async function cleanOne(w, journal, ports, opts) {
 
   // 3) intent, hash and bytes are durable BEFORE the first broadcast; if that write fails, nothing is sent
   const nonce = await ports.nonceOf(w.address);
-  const prepared = await ports.prepareSweep(w, opts.fundingWallet, tokens, nonce);
+  const prepared = normalizePrepared(await ports.prepareSweep(w, opts.fundingWallet, tokens, nonce));
+  if (!prepared) { w.state = 'unknown'; ev(w, { ev: 'prepare_output_invalid_not_sent' }); durable(journal, opts); return; }
   w.sweep = { hash: prepared.hash, raw: prepared.raw, amount: tokens.toString(), nonce, outcome: 'prepared' };
   ev(w, { ev: 'sweep_prepared', hash: prepared.hash, amount: tokens.toString(), nonce });
   if (!durable(journal, opts)) { w.state = 'unknown'; ev(w, { ev: 'intent_not_durable_not_sent' }); return; }
-  try { await ports.broadcast(prepared.raw); } catch { /* the receipt decides, not this error */ }
-  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token, chainId: opts.chainId }, journal, opts);
+  const why = await verifyIntent(ports, 'erc20', w.address, w.sweep, opts);
+  if (why) { w.sweep.outcome = 'unverified'; w.sweep.verifyReason = why; w.state = 'unknown'; ev(w, { ev: 'sweep_unverified_not_sent', hash: prepared.hash, reason: why }); durable(journal, opts); return; }
+  try { await ports.broadcast(w.sweep.raw); } catch { /* the receipt decides, not this error */ }
+  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token, chainId: opts.chainId }, journal, opts, { kind: 'erc20', from: w.address });
+  if (o === 'unverified') { w.sweep.outcome = 'unverified'; w.state = 'unknown'; ev(w, { ev: 'sweep_unverified_not_sent', hash: prepared.hash, reason: w.sweep.verifyReason }); durable(journal, opts); return; }
   if (o === 'unknown') { w.sweep.outcome = 'unknown'; w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   w.sweep.outcome = o;
   ev(w, { ev: 'sweep_settled', hash: prepared.hash, outcome: o });
@@ -247,7 +320,8 @@ async function gasOne(w, journal, ports, opts) {
   w.gas = w.gas || { state: 'pending' };
   const g = w.gas;
   if (g.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(g.sweep.outcome)) {
-    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce, chainId: opts.chainId }, journal, opts);
+    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce, chainId: opts.chainId }, journal, opts, { kind: 'native', from: w.address });
+    if (o === 'unverified') { g.sweep.outcome = 'unverified'; g.state = 'unknown'; ev(w, { ev: 'gas_return_unverified_not_sent', hash: g.sweep.hash, reason: g.sweep.verifyReason }); durable(journal, opts); return; }
     if (o === 'unknown') { g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: g.sweep.hash }); durable(journal, opts); return; }
     g.sweep.outcome = o;
     ev(w, { ev: 'gas_return_settled', hash: g.sweep.hash, outcome: o });
@@ -263,12 +337,16 @@ async function gasOne(w, journal, ports, opts) {
   if (amount <= opts.gasDust) { g.state = 'residual'; g.residual = have.toString(); ev(w, { ev: 'gas_residual', wei: have.toString() }); durable(journal, opts); return; }
   if (!(await ports.controls(w))) { g.state = 'signer_lost'; g.residual = have.toString(); ev(w, { ev: 'gas_signer_lost', wei: have.toString() }); durable(journal, opts); return; }
   const nonce = await ports.nonceOf(w.address);
-  const prepared = await ports.prepareGasSweep(w, opts.fundingWallet, amount, nonce);
+  const prepared = normalizePrepared(await ports.prepareGasSweep(w, opts.fundingWallet, amount, nonce));
+  if (!prepared) { g.state = 'unknown'; ev(w, { ev: 'gas_prepare_output_invalid_not_sent' }); durable(journal, opts); return; }
   g.sweep = { hash: prepared.hash, raw: prepared.raw, amount: amount.toString(), nonce, outcome: 'prepared' };
   ev(w, { ev: 'gas_return_prepared', hash: prepared.hash, amount: amount.toString(), nonce });
   if (!durable(journal, opts)) { g.state = 'unknown'; ev(w, { ev: 'gas_intent_not_durable_not_sent' }); return; }
-  try { await ports.broadcast(prepared.raw); } catch { /* receipt decides */ }
-  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce, chainId: opts.chainId }, journal, opts);
+  const why = await verifyIntent(ports, 'native', w.address, g.sweep, opts);
+  if (why) { g.sweep.outcome = 'unverified'; g.sweep.verifyReason = why; g.state = 'unknown'; ev(w, { ev: 'gas_return_unverified_not_sent', hash: prepared.hash, reason: why }); durable(journal, opts); return; }
+  try { await ports.broadcast(g.sweep.raw); } catch { /* receipt decides */ }
+  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce, chainId: opts.chainId }, journal, opts, { kind: 'native', from: w.address });
+  if (o === 'unverified') { g.sweep.outcome = 'unverified'; g.state = 'unknown'; ev(w, { ev: 'gas_return_unverified_not_sent', hash: prepared.hash, reason: g.sweep.verifyReason }); durable(journal, opts); return; }
   if (o === 'unknown') { g.sweep.outcome = 'unknown'; g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   g.sweep.outcome = o;
   ev(w, { ev: 'gas_return_settled', hash: prepared.hash, outcome: o });

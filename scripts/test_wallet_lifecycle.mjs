@@ -4,16 +4,20 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {
-  newJournal, saveJournal, loadJournal, validateJournal, publicView, verifyControl, runCleanup, finalize, reconcile, terminalVerify, resolveMismatch,
+  newJournal, saveJournal, loadJournal, validateJournal, publicView, verifyControl, runCleanup as runCleanupRaw, finalize, reconcile, terminalVerify, resolveMismatch, canonicalRaw,
 } from './wallet_lifecycle.mjs';
 
 const FUND = '0x' + 'f'.repeat(40);
 const OTHER = '0x' + 'e'.repeat(40);
 const addr = n => '0x' + n.toString(16).padStart(40, '0');
 const key = a => a.toLowerCase();
+const TOKEN = '0x' + 'd'.repeat(40);
+const CHAIN = 84532;
+const encodeRaw = hash => '0x' + Buffer.from('raw:' + hash).toString('hex');
+const decodeRaw = raw => Buffer.from(String(raw).slice(2), 'hex').toString().slice(4);
 
 // In-memory chain with a switch for each failure path. No network, no keys.
-function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFor = [], receiptDelay = {}, gasFee = 10n, gasCost = 100n, redirect = false, redirectGas = false, throwMessage = null } = {}) {
+function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFor = [], receiptDelay = {}, gasFee = 10n, gasCost = 100n, redirect = false, redirectGas = false, throwMessage = null, verifierLies = false, verifier = true, feeOver = false, returnBytes = false } = {}) {
   const st = {
     tokens: { ...tokens }, gas: { ...gas }, fund: 0n, fundGas: 0n, mined: new Map(), pending: new Map(), broadcasts: [], signs: 0, nonces: {},
     lost: new Set(lost), contracts: new Set(contracts.map(key)), rpcFail: new Set(rpcFailFor.map(key)), delay: { ...receiptDelay },
@@ -29,31 +33,39 @@ function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFo
     async prepareSweep(w, to, amount, nonce) {
       st.signs++; const hash = '0xt' + st.signs;
       st.pending.set(hash, { kind: 'token', from: key(w.address), to: redirect ? OTHER : to, amount, nonce, id: w.id });
-      return { hash, raw: 'raw:' + hash };
+      return { hash, raw: returnBytes ? Buffer.from('raw:' + hash) : encodeRaw(hash) };
     },
     async prepareGasSweep(w, to, amount, nonce) {
       st.signs++; const hash = '0xg' + st.signs;
       st.pending.set(hash, { kind: 'gas', from: key(w.address), to: redirectGas ? OTHER : to, amount, nonce, id: w.id });
-      return { hash, raw: 'raw:' + hash };
+      return { hash, raw: returnBytes ? Buffer.from('raw:' + hash) : encodeRaw(hash) };
     },
     async broadcast(raw) {
-      const hash = raw.slice(4); st.broadcasts.push(hash);
+      const hash = decodeRaw(raw); st.broadcasts.push(hash);
       const tx = st.pending.get(hash); if (!tx) throw new Error('unknown tx');
       if (st.mined.has(hash)) return; // identical bytes: no second effect
       if (st.delay[tx.id] > 0) { st.delay[tx.id]--; return; }
-      st.mined.set(hash, { status: 1, from: tx.from, to: tx.to, amount: tx.amount, nonce: tx.nonce });
+      st.mined.set(hash, { status: 1, from: tx.from, to: tx.to, amount: tx.amount, nonce: tx.nonce, chainId: CHAIN, token: tx.kind === 'token' ? TOKEN : undefined });
       st.nonces[tx.from] = (st.nonces[tx.from] || 0) + 1;
       if (tx.kind === 'token') { st.tokens[tx.from] = (st.tokens[tx.from] || 0n) - tx.amount; if (key(tx.to) === key(FUND)) st.fund += tx.amount; }
       else { st.gas[tx.from] = (st.gas[tx.from] || 0n) - tx.amount - gasFee; st.fundGas += tx.amount; }
     },
+    async verifyPrepared(raw, { kind }) {
+      const hash = decodeRaw(raw); const tx = st.pending.get(hash); if (!tx) throw new Error('undecodable');
+      const honest = { kind: tx.kind === 'token' ? 'erc20' : 'native', hash, from: tx.from, chainId: CHAIN, nonce: tx.nonce, recipient: tx.to, amount: tx.amount, maxFeeWei: feeOver ? 5000n : 1000n, contract: tx.kind === 'token' ? TOKEN : undefined, nativeValue: 0n };
+      return verifierLies ? { ...honest, recipient: FUND } : honest;
+    },
     async receipt(hash) { return st.mined.get(hash) || null; },
   };
+  if (!verifier) delete ports.verifyPrepared;
   return { st, ports };
 }
 
 const roster = n => Array.from({ length: n }, (_, i) => ({ id: 'w' + (i + 1), address: addr(i + 1), role: 'client' }));
 const tmpPath = () => path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'wl-')), 'journal.json');
-const E = { ephemeral: true };
+const D = { chainId: CHAIN, token: TOKEN, maxFeeWei: 1000n }; // the named chain, token and fee bound every run must carry
+const E = { ephemeral: true, ...D };
+const runCleanup = (j, p, o = {}) => runCleanupRaw(j, p, { ...D, ...o });
 
 test('success: tokens and gas return, then a matching reconciliation closes the run', async () => {
   const ws = roster(3);
@@ -194,7 +206,7 @@ test('a reverted sweep keeps the run open and a later run can retry it', async (
   const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
   const orig = ports.broadcast;
   let first = true;
-  ports.broadcast = async raw => { if (first && raw.startsWith('raw:0xt')) { first = false; st.mined.set(raw.slice(4), { status: 0 }); return; } return orig(raw); };
+  ports.broadcast = async raw => { if (first && decodeRaw(raw).startsWith('0xt')) { first = false; st.mined.set(decodeRaw(raw), { status: 0 }); return; } return orig(raw); };
   const j = newJournal('r9', FUND, ws, 't0');
   await runCleanup(j, ports, { ...E, skipGas: true });
   assert.equal(j.wallets.w1.state, 'failed');
@@ -331,7 +343,7 @@ test('the public view drops raw signed bytes and the journal never holds key mat
 
 test('a token receipt mismatch survives second and third passes, a reload and a zero reconciliation until dispositioned', async () => {
   const ws = roster(1);
-  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n }, redirect: true });
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n }, redirect: true, verifierLies: true });
   const p = tmpPath(); const save = jj => saveJournal(p, jj);
   const j = newJournal('m1', FUND, ws, 't0');
   await runCleanup(j, ports, { save });
@@ -358,7 +370,7 @@ test('a token receipt mismatch survives second and third passes, a reload and a 
 
 test('a gas-return receipt mismatch is just as sticky', async () => {
   const ws = roster(1);
-  const { st, ports } = makeChain({ tokens: {}, gas: { [addr(1)]: 1000n }, redirectGas: true });
+  const { st, ports } = makeChain({ tokens: {}, gas: { [addr(1)]: 1000n }, redirectGas: true, verifierLies: true });
   const p = tmpPath(); const save = jj => saveJournal(p, jj);
   const j = newJournal('m2', FUND, ws, 't0');
   await runCleanup(j, ports, { save });
@@ -549,3 +561,118 @@ async function withWriteSyncAsync(impl, fn) {
   const real = fs.writeSync; fs.writeSync = impl(real);
   try { return await fn(); } finally { fs.writeSync = real; }
 }
+
+// ---- signed-bytes format and the mandatory pre-broadcast verifier (Codex review of 2a9a531b) ----
+
+test('canonicalRaw: one lossless form; garbage, odd hex, empty and oversize are not signed intents', () => {
+  assert.equal(canonicalRaw('0xAB01'), '0xab01');
+  assert.equal(canonicalRaw(new Uint8Array([171, 1])), '0xab01');
+  assert.equal(canonicalRaw(Buffer.from([171, 1])), '0xab01');
+  assert.equal(canonicalRaw(new Uint8Array(Buffer.from('0xab01'.slice(2), 'hex')).subarray(1)), '0x01'); // a view keeps only its own bytes
+  for (const bad of ['', '0x', 'ab01', '0xabc', '0xzz', 'raw:0xt1', null, undefined, 5, {}, [1, 2], new Uint8Array(0), '0x' + 'ab'.repeat(200000)]) assert.equal(canonicalRaw(bad), null, String(bad).slice(0, 20));
+});
+
+for (const [kind, opts] of [['token', { tokens: { [addr(1)]: 8n } }], ['gas', { tokens: {}, gas: { [addr(1)]: 1000n } }]]) {
+  test(`byte-array raw (${kind}): stored as one canonical string, survives a real JSON reload, rebroadcast byte for byte, one signature`, async () => {
+    const { st, ports } = makeChain({ gas: { [addr(1)]: 1000n }, ...opts, returnBytes: true, receiptDelay: { w1: 1 } });
+    const real = ports.broadcast; let offline = true; let seen = [];
+    ports.broadcast = async raw => { seen.push(raw); if (offline) throw new Error('offline'); return real(raw); };
+    const p = tmpPath(); const save = jj => saveJournal(p, jj);
+    const j = newJournal('rb-' + kind, FUND, roster(1), 't0');
+    await runCleanup(j, ports, { save });
+    const w = j.wallets.w1; const sweep = kind === 'token' ? w.sweep : w.gas.sweep;
+    assert.equal(typeof sweep.raw, 'string');
+    assert.equal(sweep.raw, canonicalRaw(sweep.raw));
+    const stored = loadJournal(p).wallets.w1; // real JSON reload
+    const reloaded = kind === 'token' ? stored.sweep : stored.gas.sweep;
+    assert.equal(reloaded.raw, sweep.raw);
+    assert.equal(st.signs, 1);
+    offline = false; st.delay = {}; seen = [];
+    const resumed = loadJournal(p);
+    await runCleanup(resumed, ports, { save });
+    assert.equal(st.signs, kind === 'token' ? 2 : 1, 'the stored intent was not signed again (the token run signs one later gas return)');
+    assert.ok(st.mined.has(sweep.hash), 'the recorded intent is the one that landed');
+    const ofIntent = seen.filter(r => decodeRaw(r) === sweep.hash);
+    assert.ok(ofIntent.length >= 1 && ofIntent.every(r => r === sweep.raw), 'the identical bytes were sent');
+    assert.equal(st.fund + st.fundGas > 0n, true);
+  });
+}
+
+function gateChain(over) {
+  const c = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const real = c.ports.verifyPrepared;
+  c.ports.verifyPrepared = async (raw, a) => ({ ...(await real(raw, a)), ...over });
+  return c;
+}
+const rejections = {
+  hash: { hash: '0xdeadbeef' }, signer: { from: addr(9) }, chain: { chainId: 1 }, nonce: { nonce: 7 }, recipient: { recipient: OTHER }, amount: { amount: 9n },
+  fee: { maxFeeWei: 1001n }, kind: { kind: 'native' }, token: { contract: OTHER }, nativeValue: { nativeValue: 1n },
+};
+for (const [name, over] of Object.entries(rejections)) {
+  test(`gate: a decoded transaction that differs in ${name} is stored, never broadcast, and the run stays open`, async () => {
+    const { st, ports } = gateChain(over);
+    const j = newJournal('g-' + name, FUND, roster(1), 't0');
+    await runCleanup(j, ports, { ...E, skipGas: true });
+    const w = j.wallets.w1;
+    assert.equal(st.broadcasts.length, 0, 'zero broadcasts');
+    assert.equal(w.sweep.outcome, 'unverified');
+    assert.ok(typeof w.sweep.raw === 'string' && w.sweep.raw.startsWith('0x'), 'private bytes preserved');
+    assert.equal(w.state, 'unknown');
+    assert.notEqual(j.status, 'closed');
+    // a resume with the same failing verifier still sends nothing and signs nothing new
+    await runCleanup(j, ports, { ...E, skipGas: true });
+    assert.equal(st.broadcasts.length, 0); assert.equal(st.signs, 1);
+  });
+}
+
+test('gate: garbage or non-canonical signed bytes are not stored as an intent and nothing is broadcast', async () => {
+  for (const raw of ['raw:0xt1', 'zz', '0xabc', '', null, {}]) {
+    const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+    ports.prepareSweep = async () => ({ hash: '0xt1', raw });
+    const j = newJournal('g-garbage', FUND, roster(1), 't0');
+    await runCleanup(j, ports, { ...E, skipGas: true });
+    assert.equal(st.broadcasts.length, 0); assert.equal(j.wallets.w1.sweep, undefined); assert.equal(j.wallets.w1.state, 'unknown');
+    assert.ok(j.wallets.w1.events.some(e => e.ev === 'prepare_output_invalid_not_sent'));
+  }
+});
+
+test('gate: a missing verifier, or an unnamed chain, token or fee bound, fails closed with zero broadcasts', async () => {
+  const cases = [{ label: 'verifier', chain: { verifier: false }, opts: E }, { label: 'chain', opts: { ephemeral: true, token: TOKEN, maxFeeWei: 1000n } },
+    { label: 'token', opts: { ephemeral: true, chainId: CHAIN, maxFeeWei: 1000n } }, { label: 'fee', opts: { ephemeral: true, chainId: CHAIN, token: TOKEN } }];
+  for (const c of cases) {
+    const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n }, ...(c.chain || {}) });
+    const j = newJournal('g-' + c.label, FUND, roster(1), 't0');
+    await runCleanupRaw(j, ports, { ...c.opts, skipGas: true });
+    assert.equal(st.broadcasts.length, 0, c.label);
+    assert.equal(j.wallets.w1.sweep.outcome, 'unverified', c.label);
+    assert.ok(j.wallets.w1.sweep.verifyReason, c.label);
+  }
+});
+
+test('gate: a verifier error is a rejection; a later passing verifier sends the SAME stored bytes, signing nothing new', async () => {
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const real = ports.verifyPrepared; let broken = true;
+  ports.verifyPrepared = async (raw, a) => { if (broken) throw new Error('decoder down'); return real(raw, a); };
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('g-resume', FUND, roster(1), 't0');
+  await runCleanup(j, ports, { save });
+  assert.equal(st.broadcasts.length, 0);
+  const stored = loadJournal(p).wallets.w1.sweep; assert.equal(stored.outcome, 'unverified'); assert.equal(stored.verifyReason, 'verifier_error');
+  broken = false;
+  const resumed = loadJournal(p);
+  await runCleanup(resumed, ports, { save });
+  assert.equal(st.signs, 2, 'one token signature, plus one for the later gas return'); // the stored token intent was not signed again
+  assert.equal(st.fund, 8n);
+  assert.ok(st.broadcasts.includes(stored.hash));
+  assert.equal(st.broadcasts.filter(h => h === stored.hash).length, 1);
+});
+
+test('gate: the gas return is gated the same way (wrong recipient on the native transfer sends nothing)', async () => {
+  const { st, ports } = makeChain({ tokens: {}, gas: { [addr(1)]: 1000n } });
+  const real = ports.verifyPrepared; ports.verifyPrepared = async (raw, a) => ({ ...(await real(raw, a)), recipient: OTHER });
+  const j = newJournal('g-gas', FUND, roster(1), 't0');
+  await runCleanup(j, ports, { ephemeral: true });
+  assert.equal(st.broadcasts.length, 0);
+  assert.equal(j.wallets.w1.gas.sweep.outcome, 'unverified');
+  assert.notEqual(j.status, 'closed');
+});
