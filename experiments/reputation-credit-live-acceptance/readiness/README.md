@@ -43,3 +43,9 @@ Completion criteria: reviewed deployed end-to-end decision path, live receipt-ba
 ## Additional adversarial evaluation
 
 [STRESS.md](STRESS.md) and stress-results.json add11 reproducible offline scenarios and quantitative calculations, bringing the accumulated total to63 checks. Passing counterexample tests deliberately expose forged-settlement and restart weaknesses in the offline reference model; they do not certify a live adapter. See the explicit controls and remaining acceptance tests before interpreting a green result.
+
+## Durable local fixes
+
+[DURABLE.md](DURABLE.md) describes the separate SQLite prototype and its crash/retry, receipt-allocation and repayment-farming defenses. No live reader or sender is installed, and execution_permission remains false. Historical reference failures remain in bounds.py/test_stress.py; the new tests exercise fixes in durable.py rather than redefining those old counterexamples as solved in deployment.
+
+The durable suite now contains22 passing cases, including three regressions contributed by the independent AI reviewer. Accumulated offline coverage is85 checks (27 original,17 bounds,11 stress,8 guard,22 durable); earlier counts remain historical checkpoints. This does not count a live acceptance campaign or human observations.
