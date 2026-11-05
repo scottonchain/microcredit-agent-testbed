@@ -91,7 +91,15 @@ export function saveJournal(path, journal) {
     try {
       fs.fchmodSync(fd, 0o600);
       if ((fs.fstatSync(fd).mode & 0o077) !== 0) throw new Error('journal temp file is not private');
-      fs.writeSync(fd, JSON.stringify(journal, null, 1));
+      // writeSync may write fewer bytes than asked without throwing: loop until the whole buffer is written, and
+      // fail on zero progress, so a truncated journal is never fsynced, renamed and reported as durable.
+      const buf = Buffer.from(JSON.stringify(journal, null, 1), 'utf8');
+      let off = 0;
+      while (off < buf.length) {
+        const n = fs.writeSync(fd, buf, off, buf.length - off);
+        if (!Number.isInteger(n) || n <= 0) throw new Error('journal write made no progress');
+        off += n;
+      }
       fs.fsyncSync(fd);
     } finally { fs.closeSync(fd); }
     fs.renameSync(tmp, path);

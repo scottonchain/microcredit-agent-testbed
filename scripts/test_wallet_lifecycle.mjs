@@ -500,3 +500,52 @@ test('saveJournal removes its temp file when the write fails', () => {
   try { assert.throws(() => saveJournal(p, j)); } finally { fs.renameSync = real; }
   assert.deepEqual(fs.readdirSync(dir), []);
 });
+
+function withWriteSync(impl, fn) {
+  const real = fs.writeSync; fs.writeSync = impl(real);
+  try { return fn(); } finally { fs.writeSync = real; }
+}
+
+test('a short write that makes progress is completed; the journal on disk is whole and valid', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-short-'));
+  const p = path.join(dir, 'journal.json');
+  const j = newJournal('s1', FUND, roster(2), 't0');
+  let calls = 0;
+  withWriteSync(real => (fd, buf, off, len) => { calls++; return real(fd, buf, off, Math.min(len, 7)); }, () => saveJournal(p, j));
+  assert.ok(calls > 3);
+  assert.equal(loadJournal(p).runId, 's1');
+});
+
+test('zero progress or a partial write followed by an error fails the save and keeps the previous valid journal', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-zero-'));
+  const p = path.join(dir, 'journal.json');
+  const j1 = newJournal('first', FUND, roster(1), 't0');
+  saveJournal(p, j1);
+  const j2 = newJournal('second', FUND, roster(1), 't1');
+  assert.throws(() => withWriteSync(real => (fd, buf, off, len) => real(fd, buf, off, Math.min(len, 5)) && 0, () => saveJournal(p, j2)));
+  assert.equal(loadJournal(p).runId, 'first');
+  let n = 0;
+  assert.throws(() => withWriteSync(real => (fd, buf, off, len) => { if (n++ === 1) throw new Error('EIO'); return real(fd, buf, off, Math.min(len, 5)); }, () => saveJournal(p, j2)));
+  assert.equal(loadJournal(p).runId, 'first');
+  assert.deepEqual(fs.readdirSync(dir), ['journal.json']); // no temp file left behind
+});
+
+test('a short write on the intent save never lets a broadcast happen', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wl-intent-'));
+  const p = path.join(dir, 'journal.json');
+  const j = newJournal('i1', FUND, ws, 't0');
+  saveJournal(p, j);
+  const save = jj => saveJournal(p, jj);
+  await withWriteSyncAsync(real => (fd, buf, off, len) => 0, () => runCleanup(j, ports, { save }));
+  assert.equal(st.broadcasts.length, 0);
+  assert.equal(j.persistence.failed, true);
+  assert.notEqual(j.status, 'closed');
+  assert.equal(loadJournal(p).runId, 'i1'); // the earlier valid journal is intact and loadable
+});
+
+async function withWriteSyncAsync(impl, fn) {
+  const real = fs.writeSync; fs.writeSync = impl(real);
+  try { return await fn(); } finally { fs.writeSync = real; }
+}
