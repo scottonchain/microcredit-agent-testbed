@@ -63,6 +63,7 @@ export function checkpoint(journal) {
     runId: journal.runId, status: journal.status, gasPhase: journal.gasPhase,
     persistenceFailed: !!(journal.persistence && journal.persistence.failed),
     orphanedIntents: journal.runner && Array.isArray(journal.runner.orphans) ? journal.runner.orphans.length : 0,
+    prepareInFlight: !!(journal.runner && journal.runner.prepareInFlight),
     phase: journal.runner ? journal.runner.phase : null,
     scenario: journal.runner ? journal.runner.scenario || null : null,
     reconciliation: journal.reconciliation ? { matches: journal.reconciliation.matches } : null,
@@ -164,24 +165,28 @@ function identityOf(cfg) {
 // transaction that comes back late from a prepare that already "failed" is kept as an orphaned intent (private
 // bytes) that blocks closure. Reads may simply time out into 'unknown'.
 const EFFECT_PORTS = new Set(['prepareSweep', 'prepareGasSweep', 'broadcast']);
-function boundedPorts(ports, ms) {
-  const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [] };
+function boundedPorts(ports, ms, hooks) {
+  const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [], lateRejected: false };
   const out = {};
   for (const name of PORTS) {
     const isEffect = EFFECT_PORTS.has(name);
     out[name] = (...a) => {
       if (isEffect && t.halted) return Promise.reject(new Error('effects_halted'));
+      const isPrepare = name.startsWith('prepare');
+      // a signature may exist from the moment a prepare starts: the marker is durable BEFORE the signer is called
+      if (isPrepare) { try { hooks.prepareStart({ kind: name, walletId: a[0] && a[0].id, amount: String(a[2]), nonce: a[3] }); } catch { return Promise.reject(new Error('marker_not_durable')); } }
       const underlying = Promise.resolve().then(() => ports[name](...a));
       let timedOut = false;
       if (isEffect) {
         const done = underlying.then(v => {
-          if (timedOut && name.startsWith('prepare') && v && v.hash) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: v.raw, amount: String(a[2]), nonce: a[3] });
-        }, () => {}).then(() => { t.outstanding.delete(done); });
+          if (timedOut && isPrepare && v && v.hash) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: v.raw, amount: String(a[2]), nonce: a[3] });
+        }, () => { if (timedOut && isPrepare) t.lateRejected = true; }).then(() => { t.outstanding.delete(done); });
         t.outstanding.add(done);
       }
       return new Promise((resolve, reject) => {
         const timer = setTimeout(() => { timedOut = true; if (isEffect) { t.halted = true; t.effectTimedOut = true; } reject(new Error('port_timeout')); }, ms);
-        underlying.then(v => { clearTimeout(timer); resolve(v); }, e => { clearTimeout(timer); reject(e); });
+        // in time: the marker is cleared in memory so the component's very next durable write (the intent) carries the clear
+        underlying.then(v => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); resolve(v); }, e => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); reject(e); });
       });
     };
   }
@@ -239,8 +244,12 @@ export async function runWithLifecycle(cfg) {
   try {
     const identity = identityOf(cfg);
     const timeoutMs = cfg.timeoutMs ?? 60000; const quiesceMs = cfg.quiesceMs ?? 30000;
-    const ports = boundedPorts(cfg.ports, cfg.portTimeoutMs ?? 15000);
     const save = j => saveJournal(cfg.journalPath, j);
+    const cur = { journal: null };
+    const ports = boundedPorts(cfg.ports, cfg.portTimeoutMs ?? 15000, {
+      prepareStart: info => { const j = cur.journal; j.runner.prepareInFlight = { ...info, at: (cfg.now || (() => new Date().toISOString()))() }; try { save(j); } catch (e) { j.persistence = { failed: true }; throw e; } },
+      prepareEnd: () => { if (cur.journal && cur.journal.runner) cur.journal.runner.prepareInFlight = null; },
+    });
     const base = {
       save, token: cfg.token, chainId: cfg.chainId, dust: cfg.dust ?? 0n, gasDust: cfg.gasDust ?? 0n,
       approvedContracts: cfg.approvedContracts || [], gasReserveMultiple: cfg.gasReserveMultiple ?? 2,
@@ -249,14 +258,26 @@ export async function runWithLifecycle(cfg) {
     // unresolved work: keep ownership (the lock stays while this process lives) and never clean up or close
     const recordOrphans = journal => {
       const t = ports._t;
-      if (t.orphans.length) { journal.runner.orphans = (journal.runner.orphans || []).concat(t.orphans.splice(0)); }
+      if (t.orphans.length) { journal.runner.orphans = (journal.runner.orphans || []).concat(t.orphans.splice(0)); journal.runner.prepareInFlight = null; }
+      else if (t.lateRejected && journal.runner.prepareInFlight) { journal.runner.prepareInFlight = null; t.lateRejected = false; } // the signer refused: nothing was signed
+    };
+    const sleepU = ms => new Promise(r => { const h = setTimeout(r, ms); if (h.unref) h.unref(); });
+    // late results are made durable before ownership is given up; if the write keeps failing, the lock stays
+    const retrySave = async journal => {
+      for (let i = 0; i <= (cfg.lateRetries ?? 50); i++) {
+        try { save(journal); return true; } catch { await sleepU(cfg.lateRetryMs ?? 200); }
+      }
+      return false;
     };
     const unresolved = (journal, what, running) => {
       keepOwnership = true;
       journal.status = 'failed_cleanup';
       try { setPhase(journal, 'unquiesced_' + what); } catch { journal.persistence = { failed: true }; }
-      // the lock is released only once the work really has settled; the next run then resumes from the journal
-      lateSettle = running.then(() => { recordOrphans(journal); try { journal.status = 'failed_cleanup'; save(journal); } catch { /* the lock still goes: the journal on disk is the last durable one */ } dropLock(lockPath, token); });
+      // released only once the work really has settled AND its late result is durable; the next run then resumes
+      lateSettle = running.then(async () => {
+        recordOrphans(journal); journal.status = 'failed_cleanup';
+        if (await retrySave(journal)) dropLock(lockPath, token);
+      });
       return { status: 'unquiesced', ok: false, unresolved: what, interrupted, extraSignals, checkpoint: checkpoint(journal), report: publicReport(journal) };
     };
 
@@ -270,7 +291,7 @@ export async function runWithLifecycle(cfg) {
       if (CLOSED.has(journal.status)) return { status: 'refused_already_closed', ok: false, report: publicReport(journal) };
       // a signed intent that came back after its timeout exists somewhere: nothing more is signed or sent for this
       // run until a reviewed procedure dispositions it
-      if (journal.runner.orphans && journal.runner.orphans.length) return { status: 'orphans_unresolved', ok: false, checkpoint: checkpoint(journal), report: publicReport(journal) };
+      if ((journal.runner.orphans && journal.runner.orphans.length) || journal.runner.prepareInFlight) return { status: 'orphans_unresolved', ok: false, checkpoint: checkpoint(journal), report: publicReport(journal) };
       resumed = true;
     } else {
       try { journal = newJournal(cfg.runId, cfg.fundingWallet, cfg.roster, (cfg.now || (() => new Date().toISOString()))()); }
@@ -288,6 +309,7 @@ export async function runWithLifecycle(cfg) {
       try { setPhase(journal, 'controls_ok'); } catch { return { status: 'refused_not_persistent', ok: false }; }
     }
 
+    cur.journal = journal;
     let scenario = resumed ? 'resumed' : null;
     if (!resumed) {
       // from here on funds may exist: a crash, error or signal below always ends in cleanup or an unresolved state
@@ -337,7 +359,7 @@ export async function runWithLifecycle(cfg) {
     if (before !== null && before !== undefined && after !== null) reconcile(journal, BigInt(before), after, base);
     else finalize(journal, base);
     // an orphaned signed intent (a prepare that returned after it had timed out) can never be closed over
-    if (journal.runner.orphans && journal.runner.orphans.length) { journal.status = 'failed_cleanup'; try { save(journal); } catch { journal.persistence = { failed: true }; } }
+    if ((journal.runner.orphans && journal.runner.orphans.length) || journal.runner.prepareInFlight) { journal.status = 'failed_cleanup'; try { save(journal); } catch { journal.persistence = { failed: true }; } }
 
     // a resumed run never reports success: its scenario did not complete in this process
     const persistOk = !(journal.persistence && journal.persistence.failed);

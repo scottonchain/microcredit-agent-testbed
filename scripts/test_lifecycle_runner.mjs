@@ -452,6 +452,85 @@ test('a permanently hung prepare keeps ownership as well', async () => {
   assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true); assert.equal(t.chain.state().broadcasts.length, 0);
 });
 
+// Codex review 6651392091: a late result must be durable before ownership is released.
+function failRenameWhile(flag) {
+  const real = fs.renameSync;
+  fs.renameSync = (a, b) => { if (flag.on && String(b).endsWith('journal.json')) throw new Error('EIO'); return real(a, b); };
+  return () => { fs.renameSync = real; };
+}
+
+test('late prepare while the journal cannot be saved: ownership is kept, and a plain resume never signs again', async () => {
+  const t = setup({ n: 1, over: { portTimeoutMs: 2, quiesceMs: 5, lateRetryMs: 20, lateRetries: 3 } });
+  const flag = { on: false }; const restore = failRenameWhile(flag);
+  const prep = t.chain.ports.prepareSweep;
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: async (...a) => { const v = await prep(...a); flag.on = true; await sleep(60); return v; } }; // storage breaks before the late result returns
+  let r;
+  try {
+    r = await runWithLifecycle(t.cfg);
+    assert.equal(r.status, 'unquiesced');
+    await sleep(150);                                           // the late prepare returns, the late save keeps failing
+    assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true); // ownership is NOT given up on a failed late save
+    assert.equal(t.chain.state().signs, 1);
+  } finally { restore(); }
+  // the durable file still says a prepare was in flight: a plain resume refuses and signs nothing
+  const j = loadJournal(t.cfg.journalPath);
+  assert.ok(j.runner.prepareInFlight, 'durable in-flight marker');
+  // once storage works the retry would persist the orphan: here the retries are exhausted, so recover by hand-free resume attempt
+  fs.unlinkSync(t.cfg.journalPath + '.lock');                    // simulate the owning process having died
+  const again = await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() });
+  assert.equal(again.status, 'orphans_unresolved');
+  assert.equal(t.chain.state().signs, 1); assert.deepEqual(t.chain.state().broadcasts, []);   // no new signature, no broadcast
+});
+
+test('late prepare with storage back in time: the orphan is made durable first, then the lock is released', async () => {
+  const t = setup({ n: 1, over: { portTimeoutMs: 2, quiesceMs: 5, lateRetryMs: 20, lateRetries: 50 } });
+  const flag = { on: false }; const restore = failRenameWhile(flag);
+  const prep = t.chain.ports.prepareSweep;
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: async (...a) => { const v = await prep(...a); flag.on = true; await sleep(60); setTimeout(() => { flag.on = false; }, 100); return v; } };
+  try {
+    const r = await runWithLifecycle(t.cfg);
+    assert.equal(r.status, 'unquiesced');
+    await sleep(80);
+    assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true);  // the save is still failing: still owned
+    await sleep(400);
+  } finally { restore(); }
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);   // released only after the orphan was durably stored
+  const j = loadJournal(t.cfg.journalPath);
+  assert.equal(j.runner.orphans.length, 1); assert.equal(j.runner.prepareInFlight, null); assert.ok(j.runner.orphans[0].raw.startsWith('raw:'));
+  assert.equal((await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() })).status, 'orphans_unresolved');
+});
+
+test('the in-flight marker is durable before the signer is called; a failed marker write means nothing is signed', async () => {
+  const t = setup({ n: 1 });
+  let sawMarker = null;
+  const prep = t.chain.ports.prepareSweep;
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: async (...a) => { sawMarker = JSON.parse(fs.readFileSync(t.cfg.journalPath, 'utf8')).runner.prepareInFlight; return prep(...a); } };
+  const r = await runWithLifecycle(t.cfg);
+  assert.ok(sawMarker && sawMarker.kind === 'prepareSweep'); assert.equal(r.status, 'closed');
+  assert.equal(loadJournal(t.cfg.journalPath).runner.prepareInFlight, null);          // cleared with the intent save
+  // marker write fails: the signer is never called
+  const u = setup({ n: 1 }); let signerCalls = 0; const flag = { on: false }; const restore = failRenameWhile(flag);
+  const fundFn = u.cfg.fund; u.cfg.fund = async () => { await fundFn(); flag.on = true; };
+  const up = u.chain.ports.prepareSweep; u.cfg.ports = { ...u.cfg.ports, prepareSweep: (...a) => { signerCalls++; return up(...a); } };
+  try { const r2 = await runWithLifecycle(u.cfg); assert.notEqual(r2.status, 'closed'); } finally { restore(); }
+  assert.equal(signerCalls, 0); assert.equal(u.chain.state().signs, 0);
+});
+
+test('late funding or scenario settlement with a failing save keeps the lock until the write succeeds', async () => {
+  let release; const gate = new Promise(r => { release = r; });
+  const t = setup({ n: 1, over: { timeoutMs: 5, quiesceMs: 20, lateRetryMs: 20, lateRetries: 60 }, scenario: () => gate });
+  const flag = { on: false }; const restore = failRenameWhile(flag);
+  try {
+    const r = await runWithLifecycle(t.cfg);
+    assert.equal(r.status, 'unquiesced');
+    flag.on = true; release(); await sleep(120);
+    assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true);   // settled, but its late state is not durable yet
+    flag.on = false; await sleep(200);
+  } finally { restore(); }
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
+  assert.equal(loadJournal(t.cfg.journalPath).status, 'failed_cleanup');
+});
+
 test('lock creation window: an entrant sees no half-written lock, so there is exactly one owner', async () => {
   const t = setup({ n: 1 });
   const cfg2 = { ...t.cfg, signals: new EventEmitter() };
@@ -536,13 +615,24 @@ for (const boundary of ['after_prepare', 'before_broadcast', 'after_broadcast'])
     assert.equal(chainOf(dir).signs, 4); assert.equal(chainOf(dir).fund, '1000');
   });
 
-  test(`SIGKILL at ${boundary}: a second process resumes from the last durable journal; every transfer lands exactly once`, async () => {
+  test(`SIGKILL at ${boundary}: a second process ${boundary === 'after_prepare' ? 'fails closed (a signature may exist, nothing durable records it)' : 'resumes from the last durable journal; every transfer lands exactly once'}`, async () => {
     const dir = tmp();
     const c = child({ WORK_DIR: dir, N: '2', PAUSE_AT: boundary });
     await waitFor(path.join(dir, 'paused.' + boundary));
     c.p.kill('SIGKILL'); await c.exit;
     const j1 = fs.existsSync(path.join(dir, 'private', 'journal.json')) ? jOf(dir) : null;
     assert.ok(j1); assert.notEqual(j1.status, 'closed');
+    if (boundary === 'after_prepare') {
+      // killed while a signature may exist and nothing durable records it: a plain resume must fail closed
+      assert.ok(j1.runner.prepareInFlight, 'the in-flight marker was durable before the signer was called');
+      const before = chainOf(dir);
+      fs.writeFileSync(path.join(dir, 'resume'), '1');
+      const r2 = await child({ WORK_DIR: dir, N: '2' }).exit;
+      assert.equal(JSON.parse(r2.out.trim()).status, 'orphans_unresolved'); assert.equal(r2.code, 2);
+      const after = chainOf(dir);
+      assert.equal(after.signs, before.signs); assert.deepEqual(after.broadcasts, before.broadcasts); assert.equal(after.fund, before.fund === '1000' ? '1000' : before.fund);
+      return;
+    }
     const hadIntent = Object.values(j1.wallets).some(w => w.sweep);
     const signsAtCrash = chainOf(dir).signs; const broadcastsAtCrash = chainOf(dir).broadcasts.length;
     fs.writeFileSync(path.join(dir, 'resume'), '1'); // later hooks do not pause
