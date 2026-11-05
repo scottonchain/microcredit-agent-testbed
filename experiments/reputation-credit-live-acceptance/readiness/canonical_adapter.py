@@ -174,7 +174,8 @@ def funding_observation(bundle,policy,requested_tx,requested_event,now):
 
 class CanonicalReader:
     """Adapter to Ledger's reader interface. Provider is trusted, never applicant code.
-    No provider or RPC implementation is shipped; tests provide fixed snapshots.
+    authenticated_reader.py supplies a separately configured HTTPS provider; this
+    adapter does not install it. Tests may inject fixed snapshots.
     """
     def __init__(self, provider, policy, clock):
         self.provider,self.policy,self.clock=provider,policy,clock

@@ -64,3 +64,20 @@ The optimizer-only correction now compiles the full pool to23246 bytes,1330
 below EIP170. Thirteen full-pool EVM groups now pass independently (147 accumulated
 checks), using exact vendored dependencies and Cancun. No limit is installed on the live contract, and neither the
 journal nor the budget enables execution. See scoped-budget/BUILD-RESULT.json.
+
+## Authenticated acquisition and local submission boundary
+
+Codex now owns the deployable reader and consent/executor source, rather than
+waiting for an implementation assignment. [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md)
+records the retained steward drain, closed startup, exact installation requirements,
+release and rollback sequence. Thirty new Python checks cover authenticated RPC
+fixtures, actual ABI decoding, distinct kernel-verified client roles, private
+consent, real ephemeral signature verification, crash/uncertain-send handling and
+closed assembly. Accumulated checks are177; these are implementation evidence,
+not live tests or predictive repayment validation. The sandbox-mapped root UID is
+mocked only in the installation test; production ownership checks remain strict.
+
+The retained D7 process and two-hour relaunch belong to Claude's steward runtime.
+Hermes declined release ownership. No live installation or release manifest exists
+here. Complete authoritative inventory/budget and lease probes, retained writer
+drain, actual deployment identity and receipt-backed rehearsal remain release gates.

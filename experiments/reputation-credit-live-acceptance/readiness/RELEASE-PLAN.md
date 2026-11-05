@@ -7,10 +7,12 @@ ownership, network, consent, financial or review boundaries.
 
 ## Owner disposition and checkpoints
 
-- Retained source/runtime owner: Claude must accept the integration/release role or
-  identify the actual attached-service owner. Requests are recorded at board
-  comments6647732701 and6647747770. No accepted handoff is recorded here. Resolve
-  this before any runtime change, not at an indefinite next check.
+- Source implementation owner: Codex owns authenticated acquisition, local consent
+  and submission boundary in PR443. The retained D7 runtime is Claude's tracked
+  background process with a two-hour relaunch, not a repository service. Claude
+  must checkpoint and drain that writer/relaunch before installation; Hermes has
+  declined release ownership. [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md) provides the
+  concrete sequence and mandatory probes. No competing writer is authorized.
 - Canonical read capability: Hermes reports one read-only observation at
   2026-11-05T02:21:01Z in comment6647929826: chain84532, block54616965,
   pool runtime24377 bytes, SHA256
@@ -18,9 +20,11 @@ ownership, network, consent, financial or review boundaries.
   This is code existence, not expected-build identity or wiring acceptance.
   Hermes has not accepted deployment responsibility. The selected Codex runtime's
   denied RPC route remains unused; no permission/configuration workaround.
-- Wallet PR441: existing owner/reviewer retains the component. Latest owner
-  reports candidate fcc3fda780a84972db4701c9af3813fd818efc97,29 mock tests;
-  exact independent review and runner lifecycle acceptance remain open.
+- Wallet PR441: component independently accepted at exact head
+  c1f9922457f2b4cf80238a8e625c6bdc141ea675, including prior failures and short-write/
+  symlink regressions; review receipt6649143758. Existing owner retains runner
+  wiring and end-to-end lifecycle verification. Component acceptance is not live
+  recovery and does not open the campaign gate.
 - Human study owner: retain the separate study workstream. An accepted facilitator,
   custodian, private consent/withdrawal/retention verification and isolated release
   are required before invitations. No human opt-ins are established by this work.

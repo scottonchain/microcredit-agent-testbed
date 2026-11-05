@@ -83,3 +83,14 @@ The vendored Cancun build is23246 bytes and independently byte-identical; all19
 EVM groups pass, including thirteen full-pool lifecycle/parity groups. Exact
 interest/fees, secured versus credit-only default and cancellation are covered.
 Accumulated checks147. See scoped-budget/BUILD-PARITY.md for scope and exclusions.
+
+## Deployable boundary source follow-up
+
+The authenticated_reader, local_boundary, submission, release_guard and
+boundary_service modules now implement acquisition and closed-by-default local
+assembly. See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md) for installed trust boundaries,
+actual Msg[] ABI parsing, kernel peer credentials, private inherited-FD custody,
+durable no-retry submission and withdrawal ordering. Thirty additional tests pass.
+No runtime key, live reader, enabled release decision or deployment was installed.
+Authoritative complete backing/budget inventory and retained runtime lease probes
+remain required dependencies; a mock returning True is not acceptance evidence.

@@ -14,11 +14,11 @@ async function verifySigned(serialized, bound, limits, now) {
   // Canonical reserialization rejects alternate encodings/trailing bytes.
   if (serializeTransaction(t,{r:t.r,s:t.s,yParity:t.yParity}).toLowerCase()!==serialized.toLowerCase()) throw Error('noncanonical serialization');
   const sender=await recoverTransactionAddress({serializedTransaction:serialized});
-  if (!Number.isSafeInteger(bound.chainId) || t.chainId!==bound.chainId || !Number.isSafeInteger(bound.nonce) || t.nonce!==bound.nonce ||
+  if (!Number.isSafeInteger(bound.chainId) || t.chainId!==bound.chainId || !Number.isSafeInteger(bound.nonce) || (t.nonce??0)!==bound.nonce ||
       addr(sender)!==addr(bound.from) || addr(t.to)!==addr(bound.to) || (t.value??0n)!==integer(bound.value) ||
       !hex(bound.data) || (t.data??'0x').toLowerCase()!==bound.data.toLowerCase()) throw Error('signed action differs from binding');
   if ((t.accessList??[]).length!==0) throw Error('unreviewed access list');
-  const gas=integer(t.gas), fee=integer(t.maxFeePerGas), tip=integer(t.maxPriorityFeePerGas);
+  const gas=integer(t.gas), fee=integer(t.maxFeePerGas??0n), tip=integer(t.maxPriorityFeePerGas??0n);
   if (gas===0n || gas>integer(limits.gas) || fee>integer(limits.maxFeePerGas) || tip>fee ||
       gas*fee>integer(limits.maxTotalFee)) throw Error('gas or fee budget exceeded');
   return {signatureValid:true,transactionHash:keccak256(serialized),sender:addr(sender),executionAllowed:false,
