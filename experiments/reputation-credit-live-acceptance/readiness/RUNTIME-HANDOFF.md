@@ -34,6 +34,16 @@ default. The parent/study coordinator must obtain an actual alternative facilita
 and custodian with working channels, consent, withdrawal and retention proof.
 No participant enrollment, contact or data collection is authorized by this packet.
 
+## Current wallet runner disposition
+
+PR441 wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e is **AMEND**, not accepted
+or live. Its62 supplied tests passed, but independent review6649893217 reproduced
+unfinished-scenario cleanup races, changed-roster resume omissions, unsupervised
+funding hangs and a two-owner lock-publication race. See
+[RUNNER-REVIEW.md](RUNNER-REVIEW.md) for required fixes and exact review receipt.
+Earlier component acceptance remains component-only. The existing owner must
+amend the wrapper before independent acceptance; no live recovery is established.
+
 ## Implemented source
 
 - authenticated_reader.py: fixed approved credential-free HTTPS origins, platform

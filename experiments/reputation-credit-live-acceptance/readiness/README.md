@@ -91,3 +91,10 @@ baselines, receipt transfers, unknown inventory, and repayment versus cash-loss
 default. The latter fixes an independently reproduced missing-state counterexample.
 The existing PR441 owner has the local runner integration request; no competing
 wallet writer or installed live release is created.
+
+## Runner review supersedes the pending-delivery checkpoint
+
+PR441 now has a preparatory wrapper394a9d9, independently reviewed **AMEND** at
+6649893217 despite62 supplied passing tests. Four lifecycle/ownership blockers
+remain; [RUNNER-REVIEW.md](RUNNER-REVIEW.md) records exact fixes and ownership.
+Earlier component acceptance does not establish runner or live recovery safety.

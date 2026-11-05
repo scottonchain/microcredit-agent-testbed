@@ -31,6 +31,16 @@ See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md#current-verified-handoff-status) for
 current source reviews, unmerged PRs, config4 drain and explicit facilitator/
 custodian declines. Those declines must not be reported as pending acceptance.
 
+## Current wallet runner disposition
+
+PR441 wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e is **AMEND**, not accepted
+or live. Its62 supplied tests passed, but independent review6649893217 reproduced
+unfinished-scenario cleanup races, changed-roster resume omissions, unsupervised
+funding hangs and a two-owner lock-publication race. See
+[RUNNER-REVIEW.md](RUNNER-REVIEW.md) for required fixes and exact review receipt.
+Earlier component acceptance remains component-only. The existing owner must
+amend the wrapper before independent acceptance; no live recovery is established.
+
 ## Reproduce
 
 Use the exact reviewed vendor build from scoped-budget/BUILD-PARITY.md. Install
@@ -112,8 +122,8 @@ PR441 component c1f9922457f2b4cf80238a8e625c6bdc141ea675 remains independently
 accepted. Claude is the existing wallet writer; integration request6649188807 on
 PR441 and board6649189040 asks for disabled local runner wiring, pre-funding key
 control refusal, success/failure/timeout/signal handlers, private durable restart,
-exact receipt validation, sweep and final accounting. That request is not an
-accepted implementation or a passing lifecycle run. No duplicate wallet writer.
+exact receipt validation, sweep and final accounting. The resulting preparatory wrapper is now under AMEND; it is not accepted
+runner wiring or a passing independent lifecycle review. No duplicate wallet writer.
 
 The runner's future terminal result must distinguish CLOSED, pending reconciliation,
 unknown broadcast and failed persistence; include the complete scenario-wallet set,

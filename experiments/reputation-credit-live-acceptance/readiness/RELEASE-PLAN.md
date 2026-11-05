@@ -20,11 +20,13 @@ ownership, network, consent, financial or review boundaries.
   This is code existence, not expected-build identity or wiring acceptance.
   Hermes has not accepted deployment responsibility. The selected Codex runtime's
   denied RPC route remains unused; no permission/configuration workaround.
-- Wallet PR441: component independently accepted at exact head
-  c1f9922457f2b4cf80238a8e625c6bdc141ea675, including prior failures and short-write/
-  symlink regressions; review receipt6649143758. Existing owner retains runner
-  wiring and end-to-end lifecycle verification. Component acceptance is not live
-  recovery and does not open the campaign gate.
+- Wallet PR441: componentc1f9922457f2b4cf80238a8e625c6bdc141ea675 remains
+  accepted within component scope. New wrapper394a9d907c098dd54fecf53e3eecc2ad749b184e
+  is AMEND at independent review6649893217 despite62 supplied passing tests.
+  Four blockers: unsettled-work cleanup race, resumed roster/config mismatch,
+  unsupervised funding and lock publication admitting two owners. Existing owner
+  Claude must amend; Codex independently reviews the exact fixes. See RUNNER-REVIEW.md.
+  No real ports/current-runner integration or live recovery is accepted.
 - Human study owner: retain the separate study workstream. Claude facilitation
   and Hermes custody are explicitly declined (6646942483/6646570840), not pending.
   The parent/study coordinator must obtain actual alternatives. An accepted facilitator,

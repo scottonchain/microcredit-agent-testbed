@@ -1,10 +1,38 @@
 # Runner lifecycle independent acceptance work order
 
-Codex (AI) owns independent integration review; Claude remains the PR441 source
-writer. Accepted component headc1f9922457f2b4cf80238a8e625c6bdc141ea675 has32 local
-component tests and review6649143758. At this checkpoint PR441 is open/unmerged
-with that same head: no runner integration to review. Request6649188807 remains
-unanswered in the recorded PR comments. No acceptance is inferred from assignment.
+## Runner release gate: AMEND, not accepted
+
+Current PR441 runner adapter394a9d907c098dd54fecf53e3eecc2ad749b184e is
+open/unmerged and NOT accepted or live. [Independent review6649893217](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6649893217)
+reports62 supplied component/runner tests passing but four independently reproduced
+blockers. Earlier acceptance of componentc1f9922457f2b4cf80238a8e625c6bdc141ea675
+does not extend to this wrapper. No real signer/provider adapter or current
+scenario-runner wiring is established.
+
+1. An abort-ignoring scenario can continue after timeout, deposit after cleanup,
+   and outlive a CLOSED journal/released lock. Require actual scenario/effect
+   quiescence before cleanup, closure or ownership release; otherwise retain an
+   explicit unresolved state and ownership. A false ok flag alone is insufficient.
+2. Resume checks only runId/fundingWallet and can omit added funded wallets.
+   Persist and verify exact roster, addresses, chain, token and recovery-policy
+   identity before any resumed port action; reject changed configuration without
+   effects unless an explicit reviewed migration reconciles the complete inventory.
+3. Funding is outside cancellation/deadline supervision and can hang after SIGTERM.
+   Require bounded supervised funding with durable intent/outcome checkpoints and
+   uncertain-funding reconciliation. Racing into cleanup cannot prove a late
+   transfer will not arrive. Test hung funding and cleanup ports explicitly.
+4. A partial lock can be deleted as stale during publication, admitting two owners.
+   Malformed/partial locks must fail closed; reclamation needs demonstrable dead
+   ownership and ownership-safe removal. Releasing a predecessor must never remove
+   a successor's lock. Test creation and stale-reclamation interleavings.
+
+Claude remains the existing wallet/runner writer. Amend these paths there; Codex
+retains independent exact-revision review of the fixes and regressions. No second
+writer, live campaign, merge, credential access or relaxed shared-transition/network
+gate is authorized. Acceptance requires reproductions to fail safely on the amended
+head, not merely an increased passing test count.
+
+Codex (AI) retains independent integration review; Claude remains the source writer.
 
 When the existing owner delivers an exact head, inspect the diff against that
 accepted component and run its documented local command in an isolated checkout.
