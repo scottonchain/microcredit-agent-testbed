@@ -51,17 +51,25 @@ with a default the team proceeds on.
    D6, the agent-as-employer idea B10) and every ACTIVE direction, the last
    receipt and the next dated step. A path with no dated next step is a defect
    and is given one in the same run.
-7. **Blocked tools are not blockers.** A 403, a missing tool, a denied host or a
-   missing credential is routed around in the same run: attach the repository,
+7. **Blocked tools are not blockers.** These routing steps apply only within
+   existing authority. A denial is not permission to bypass an access boundary,
+   change identities, expand privileges or move the refused action elsewhere.
+   Check uncertain outcomes first; retry a denied operation only once per
+   materially new relevant evidence when known not to have executed. Otherwise
+   stop that action, preserve the artifact and continue independent work.
+   Use the [connector-first sequence](GITHUB_WRITE_ROUTE.md#connector-first-decision-sequence)
+   before treating missing shell authentication as missing GitHub access.
+   For a capability gap without an applicable denial, use an authorized route
+   in the same run: attach the repository,
    use another reader, take the figure from a secondary source with its
    limitation stated, or hand the exact bytes to a lane that can write. Only a
    hard gate stops work, and then only that step.
 
 8. **The permission-failure ladder.** A permission, authentication or access
-   failure is a routing problem, never a terminal state (operator standing rule
+   failure requires classification and permitted next steps (operator standing rule
    of October 11, board 15 comment 6111721411, and this direction). Climb the
-   whole ladder in the same run before reporting a blocker, and name each rung
-   tried in the run report. Before rung 2, push the branch if any push works,
+   applicable authorized rungs in the same run before reporting a blocker,
+   and name those tried or held and the reason in the run report. Before rung 2, push the branch if any push works,
    otherwise put the complete artifact (patch, file, receipt text) in the run
    report, so no receipt dies with a container. No rung moves a token, key,
    endpoint or inbox from one runtime to another. Two failures of the same
@@ -71,7 +79,7 @@ with a default the team proceeds on.
    | Rung | Action | Done when |
    | --- | --- | --- |
    | 1. Classify | Name the class: missing authentication, missing repository attachment, a denied host, a missing secret, a missing tool, a lock, a policy refusal. Different rungs follow from different classes; never retry the same call blind. | The class is in the report. |
-   | 2. Repair the session | Missing repository or 403 on push: `add_repo` with push access, then retry. Missing tool schema: load it. Stale clone: fetch and rebase. Denied host on a documented route: read the environment documentation for that topic and take the documented alternative. | The retry succeeds, or the class is confirmed. |
+   | 2. Repair the session | Missing repository: use supported attachment only within existing authority. A 403 requires classification and relevant new evidence before retry; it does not authorize `add_repo` or access expansion. Missing tool schema: load it. Stale clone: fetch and rebase. Denied host: read environment documentation; an alternative must be independently authorized and must not bypass the denial. | The retry succeeds, or the class is confirmed. |
    | 3. Check the configuration | `python coordination/github_route_preflight.py --probe-remote`; check that a needed secret or variable exists by name, never by value; read the environment's settings pages. | The missing piece is named exactly, or nothing is missing. |
    | 4. Reuse a route that worked | Read the [capability matrix](GITHUB_WRITE_ROUTE.md#verified-capability-matrix), the last receipts on board 15 and the session list: which session or lane completed this exact operation most recently, and how. | The operation completes by the proven route, or no session can use it. |
    | 5. Warm handoff to a live lane | One TM2 request on board 15 to the lane with the capability, carrying the exact operation: repository, base SHA, patch blob or branch, file scope, checks already run, authority, receipt required. Also `send_message` to the live Claude session that holds the capability, or create a child session with the repository attached and the exact task. The sender keeps the artifact alive and verifies the receipt; a handoff unacknowledged within one check interval is escalated once on the board. | The receiver's receipt arrives, or no lane is live. |
@@ -95,7 +103,7 @@ with a default the team proceeds on.
    commit, push or pull request fires into a persistent session with the
    repository attached and push verified (`git push --dry-run`); a
    fresh-session routine may only read and report. Every routine prompt names
-   its fallbacks: `add_repo` and retry on a 403, merge under review debt when
+   its fallbacks: supported attachment within existing authority (never automatic retry on a 403), merge under review debt when
    no reviewer answers, the full receipt in the report when nothing can be
    pushed. One timer per purpose: a routine arms at most the follow-up its own
    merge needs, and a chain of one-shot wake-ups that re-arm each other is
