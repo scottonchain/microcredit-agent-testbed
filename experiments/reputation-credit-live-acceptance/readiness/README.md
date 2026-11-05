@@ -39,3 +39,7 @@ HUMAN-STUDY.md contains consent, data minimization, tasks, facilitator/withdrawa
 - Existing handover coordinator: source inventory12:00UTC and drain deadline14:00UTC. Only actual source drain plus lease and completion can open heavy execution. Parent retains that coordination; this packet does not cancel or bypass it.
 
 Completion criteria: reviewed deployed end-to-end decision path, live receipt-backed deterministic and adaptive campaign within authority, resolved critical/high findings, working private consent/withdrawal and facilitator, human-facing report with verified publication mirrors, and an actual authorized engagement channel. Current verdict PREPARATION_DELIVERED / HUMAN_TEST_READINESS_HELD. Passing local checks does not satisfy those criteria.
+
+## Additional adversarial evaluation
+
+[STRESS.md](STRESS.md) and stress-results.json add11 reproducible offline scenarios and quantitative calculations, bringing the accumulated total to63 checks. Passing counterexample tests deliberately expose forged-settlement and restart weaknesses in the offline reference model; they do not certify a live adapter. See the explicit controls and remaining acceptance tests before interpreting a green result.
