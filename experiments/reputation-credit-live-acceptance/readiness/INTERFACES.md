@@ -47,3 +47,27 @@ No JS-daemon/Python-ledger IPC or executor is installed. Actual write paths, dri
 Twenty-one interface tests cover raw decoding, net-cash ambiguity, full-block completeness, principal/interest separation, adapter-to-ledger reconciliation, current consent and withdrawal/reconsent, transaction tampering, actual service preconditions, secured-only backing, historical reorgs, persistence and policy/message changes. These are synthetic implementation tests, not predictive repayment evidence, verified deployed behavior or readiness for humans.
 
 The funding/backing addition has 11 Python cases; the signed-envelope suite has four grouped JavaScript cases. These add to the earlier 106 recorded checks, yielding 121 across the accumulated evidence (not 121 end-to-end tests). The affected 54 Python checks were rerun after the concurrency amendments. Review is internal independent AI review, not external underwriting validation.
+
+## Pending journal and cumulative contract candidate
+
+pending_journal.py now persists exact unsigned payload and anticipated hash before
+hypothetical submission, rejects silent replacement and reconciles authenticated
+matching confirmed/reverted outcomes. Missing receipts retain PENDING. A reverted
+reply never implies old backing has disappeared, so all parent exposure remains
+charged. Terminal anchors participate in the COMMON ledger canonical audit; a
+reorg records an incident before a fresh binding/attempt can pass. Seven new Python
+cases include withdrawal between validation/persistence, restart, unknown outcome,
+replacement, revert, replay and common-audit reorg detection.
+
+The final sender must derive the hash from the validated signed envelope and
+atomically revalidate current consent; a caller-supplied hash is not authority.
+The reader interface is not an installed authenticated receipt adapter. The journal
+cannot attest that every officer write uses it. Its barrier therefore always denies
+execution and backing release. No automatic nonce reuse or resend is permitted.
+
+[scoped-budget/README.md](scoped-budget/README.md) describes a separately compiled,
+local-EVM-tested cumulative budget and narrowly pinned pool-source patch. It is
+not installed on the canonical deployment; source integration and full lifecycle
+acceptance remain required. New requests consume irreversible borrower/controller/
+group/portfolio allowance, so repayment cannot restore it. Consent withdrawal
+requires confirmed revocation and reconciliation of already-requested commitments.

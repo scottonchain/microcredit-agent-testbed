@@ -53,3 +53,13 @@ The durable suite now contains22 passing cases, including three regressions cont
 ## Actual service interface candidates
 
 [INTERFACES.md](INTERFACES.md) documents raw-ABI funding/repayment readers, persistent consent/unsigned-reply binding, a reusable-backing commitment book and offline signed-envelope validation. The latest addition has 11 Python and four grouped JavaScript checks; accumulated offline evidence is 121 checks. The affected 54 Python checks and four JavaScript groups pass. Actual granting remains disabled. Backing release is also disabled pending a transaction journal/reconciliation barrier; authenticated live acquisition and enforceable cumulative on-chain authorization remain open. [RELEASE-PLAN.md](RELEASE-PLAN.md) gives owners, ordered integration gates and rollback requirements.
+
+## Pending reconciliation and scoped authorization follow-up
+
+The pending journal now participates in the common canonical audit and retains
+exposure across unknown, reverted and confirmed backing changes. Seven new Python
+cases pass; affected Python total61. The standalone cumulative budget has six
+independently reproduced in-process EVM test groups. Accumulated checks now134.
+The pool-source patch compiles but exceeds EIP170 by1145 bytes; the build gate
+rejects deployment. No limit is installed on the live contract, and neither the
+journal nor the budget enables execution. See scoped-budget/BUILD-RESULT.json.

@@ -158,7 +158,7 @@ class Ledger:
     def has_chain_history(self):
         if self.db.execute('SELECT 1 FROM loans WHERE funding_block IS NOT NULL LIMIT 1').fetchone(): return True
         if self.db.execute('SELECT 1 FROM receipts LIMIT 1').fetchone(): return True
-        for table in ('draws','backing_anchors'):
+        for table in ('draws','backing_anchors','backing_attempts'):
             if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",(table,)).fetchone():
                 query='SELECT 1 FROM '+table+(' WHERE funding_block IS NOT NULL' if table=='draws' else '')+' LIMIT 1'
                 if self.db.execute(query).fetchone(): return True
@@ -312,7 +312,8 @@ class Ledger:
                 o=json.loads(r['observation'])
                 if self.reader.block_hash(o['block'])!=o['block_hash']: bad.append('repayment reorg:'+o['tx'])
             for table,query in [('draws','SELECT funding_block AS block,funding_hash AS hash,loan AS name FROM draws WHERE funding_block IS NOT NULL'),
-                                ('backing_anchors','SELECT block,hash,intent AS name FROM backing_anchors')]:
+                                ('backing_anchors','SELECT block,hash,intent AS name FROM backing_anchors'),
+                                ('backing_attempts','SELECT block,block_hash AS hash,binding AS name FROM backing_attempts WHERE block IS NOT NULL')]:
                 if self.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",(table,)).fetchone():
                     for r in self.db.execute(query).fetchall():
                         if self.reader.block_hash(r['block'])!=r['hash']: bad.append(table+' reorg:'+r['name'])

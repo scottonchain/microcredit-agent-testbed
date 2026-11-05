@@ -1,0 +1,7 @@
+{
+  "repository": "scottonchain/microcredit-contract",
+  "commit": "1812e7d",
+  "source_sha256": "847ea14f5242b39979a197391fdb53875523457942d996201c34f0c3e658d360",
+  "candidate_sha256": "c51a77c07ab0c3710f90066d9da240f0c6f3c00adb329ebebefd0af8baa781c6",
+  "deployment": "NONE; requires new isolated pool and independent acceptance"
+}

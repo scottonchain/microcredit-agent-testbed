@@ -1,0 +1,16 @@
+{
+  "compiler": "0.8.33+commit.64118f21.Emscripten.clang",
+  "openzeppelin": "5.3.0",
+  "viaIR": true,
+  "optimizerRuns": 1,
+  "poolEVM": "cancun",
+  "poolRuntimeBytes": 25721,
+  "EIP170Limit": 24576,
+  "deployable": false,
+  "sizeGate": "FAILED",
+  "standaloneBudgetEVM": "shanghai",
+  "standaloneBudgetTests": 6,
+  "standaloneBudgetTestsPassed": 6,
+  "fullPoolExecutionTested": false,
+  "deployed": false
+}

@@ -1,0 +1,28 @@
+--- a/DecentralizedMicrocredit.sol
++++ b/DecentralizedMicrocredit.sol
+@@ -27,7 +27,16 @@
+  *         When a backed borrower defaults, the backers pay first: committed stake is slashed back
+  *         into the pool and committed credit is burned from their granted credit (creditLoss).
+  */
++interface IScopedOriginationBudget { function consume(address borrower, uint256 amount) external; function pool() external view returns (address); }
++
+ contract DecentralizedMicrocredit is EIP712 {
++    // Required, one-time binding for a NEW isolated pool; no disable/reset path.
++    IScopedOriginationBudget public originationBudget;
++    function setOriginationBudget(IScopedOriginationBudget budget) external onlyOwner {
++        require(address(originationBudget)==address(0) && address(budget).code.length>0, "budget binding");
++        require(budget.pool()==address(this), "wrong budget pool");
++        originationBudget=budget;
++    }
+     using SafeERC20 for IERC20;
+ 
+     // ───────────────────────────── constants ─────────────────────────────
+@@ -1226,6 +1235,8 @@
+      *      the liquidity buffer, then reserves the principal.
+      */
+     function _originateLoan(address borrower, uint256 amount, uint256 term) internal returns (uint256 loanId) {
++        require(address(originationBudget)!=address(0), "budget missing");
++        originationBudget.consume(borrower, amount);
+         require(!paused, LendingPaused());
+         require(amount > 0, ZeroAmount());
+         require(term >= MIN_LOAN_TERM && term <= MAX_LOAN_TERM, InvalidTerm());

@@ -80,3 +80,14 @@ not refunding, resending, sweeping wallets or deleting evidence automatically.
 No mainnet deployment or real-money lending is authorized by this plan. Fictional
 human usability work can establish comprehension, consent usability, recovery and
 support burden; it cannot validate repayment prediction or long-run fraud losses.
+
+## Follow-up implementation receipt
+
+Pending journal and common-audit reorg controls now have seven local Python cases.
+A standalone immutable cumulative budget has six local EVM test groups and a
+source-pinned origination patch covering the three source entry paths. Its full
+pool runtime is25721 bytes, above EIP170's24576 limit; do not deploy this candidate.
+Codex owns correcting the source architecture/build with the accepted pool source
+owner and obtaining full-pool direct/meta/combined request and atomic rollback
+tests. Owner acceptance remains unreceived at this checkpoint. The existing
+canonical deployment is untouched; this is not an upgrade mechanism for it.
