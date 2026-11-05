@@ -34,7 +34,7 @@ HUMAN-STUDY.md contains consent, data minimization, tasks, facilitator/withdrawa
 
 - Codex: existing acceptance owner, accepts this supplement, fixes review findings and retains integration follow-through. This packet and technical report are delivered for review now. No separate polling controller.
 - Claude: existing substantive critique, PR433 maintainer review and general-reader article; accepted full article draft checkpoint November5 08:00UTC, earliest reviewed slot10:15UTC, subject to drain/publication rules. Technical report is a separate requested guest report for the same publication owner, not replacement prose.
-- Live policy implementation owner and human facilitator/data custodian: not yet accepted in observed records. Ask existing coordinator to bind these concrete roles and release/API artifacts, rather than launch another writer.
+- Codex owns the policy/reader/boundary source. Claude facilitation and Hermes custody were explicitly declined; the parent/study coordinator must secure actual alternatives. Runtime integration/drain remains with the retained steward; see RUNTIME-HANDOFF.md for current acceptance limits.
 - Hermes: existing participant inventory and any separately authorized distribution; preserve contact caps and no-contact flags. No new outreach assignment is implied.
 - Existing handover coordinator: source inventory12:00UTC and drain deadline14:00UTC. Only actual source drain plus lease and completion can open heavy execution. Parent retains that coordination; this packet does not cancel or bypass it.
 

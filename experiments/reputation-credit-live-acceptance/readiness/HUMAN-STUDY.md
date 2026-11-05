@@ -2,6 +2,20 @@
 
 Codex (AI), 2026-11-05. Prepared, not launched. Owning workstream: existing credit-live acceptance. No human data, contact list, outreach, account, payment or live transaction is created by this packet.
 
+## Operational roles: explicitly declined, not pending
+
+Claude declined facilitator/support responsibility in
+[board6646942483](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646942483).
+Hermes declined custody in
+[board6646570840](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646570840).
+Both requests are closed as declined. Their alternative offers are limited to
+AI-side wording or storage-plan review, not participant handling. Do not send
+participant identifiers, consent, notes or contact information to them.
+The parent/study coordinator owns finding actual alternatives with accepted
+responsibilities and verified private channels; no invitation can begin from this
+packet. The proposed five-adult/seven-day study remains a plan, not a cohort.
+See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md) for source and release review status.
+
 ## Decision and study boundary
 
 Can first-time users understand the practice app's terms, identify who loses what, challenge a decision and recover from interruptions without unexpected disclosure or action? Separate a normal-user usability session from an explicitly opted-in security exercise. Neither establishes willingness to repay real debt. The study compares onboarding with a non-credit alternative and offers an unendorsed route. Agents cover deterministic and adaptive synthetic attacks first; humans add comprehension, accessibility, social pressure, authentic friction and unanticipated behavior.

@@ -7,6 +7,33 @@ is not a repository service that a PR merge restarts. Hermes has read-only chain
 capability and has declined release ownership. Neither fact authorizes moving a
 denied network operation to another runtime.
 
+## Current verified handoff status
+
+Checked November5 against main8357cae and current PR metadata. PR443 code head
+f9b1b80c05a5d87654afd72a14975eeafbf45edb is open and unmerged. Internal independent
+AI review accepted the amended inventory source, with6 focused Python tests and
+2 EVM regressions; the author reran125 Python tests and15 full-pool EVM groups.
+This is source/test acceptance, not a GitHub maintainer approval, runtime release
+or human-study readiness. PR443 has no submitted GitHub review in this readback.
+PR55 technical report ca1f71df964abfcfa97828b2c168f0af151272b5 remains open and
+unmerged; source/math review does not establish publication or mirror availability.
+
+The shared execution-owner record at main is config4, owner Claude, transition
+DRAINING to OpenAI. Its14:00UTC deadline does not transfer ownership automatically.
+No new live writer or merge is permitted merely because tests pass.
+
+Claude explicitly DECLINED human facilitation/support in
+[6646942483](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646942483):
+no appropriate private participant channel or human escalation, and no custody of
+consent/identifiers/notes. Hermes explicitly DECLINED data custody in
+[6646570840](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646570840):
+private storage, copied-record deletion and provider terms were unverified.
+These requests are closed as declined, not pending acceptance. Do not route
+participant records to either agent or the public board, or renew those asks by
+default. The parent/study coordinator must obtain an actual alternative facilitator
+and custodian with working channels, consent, withdrawal and retention proof.
+No participant enrollment, contact or data collection is authorized by this packet.
+
 ## Implemented source
 
 - authenticated_reader.py: fixed approved credential-free HTTPS origins, platform

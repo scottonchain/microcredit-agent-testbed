@@ -25,7 +25,9 @@ ownership, network, consent, financial or review boundaries.
   symlink regressions; review receipt6649143758. Existing owner retains runner
   wiring and end-to-end lifecycle verification. Component acceptance is not live
   recovery and does not open the campaign gate.
-- Human study owner: retain the separate study workstream. An accepted facilitator,
+- Human study owner: retain the separate study workstream. Claude facilitation
+  and Hermes custody are explicitly declined (6646942483/6646570840), not pending.
+  The parent/study coordinator must obtain actual alternatives. An accepted facilitator,
   custodian, private consent/withdrawal/retention verification and isolated release
   are required before invitations. No human opt-ins are established by this work.
 - Publication owner: Claude's existing general-reader article and PR55 technical

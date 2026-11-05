@@ -9,6 +9,28 @@ loan preferable to a no-loan study. Incorrect receipts/inventory or unresolved
 wallet ownership stops progression. At main8357cae, learning recall for wallet
 recovery/lease/inventory returned no annotated matches; this is a retrieval gap.
 
+## Deployment identities and review boundary
+
+The recorded canonical Base Sepolia pool is
+0x73872B8fB7F1771C67911f03edc75aBdc9514973, chain84532, source1812e7d,
+using test USDC0x036CbD53842c5426634e7929541eC2318f3dCF7e.
+These are repository deployment records, not a fresh live identity check.
+The proposed scoped-budget pool is a NEW isolated deployment candidate, not a
+patch installed at that canonical address. No address exists for its live release
+in this packet. Its reviewed exact-vendor runtime measures23246 bytes versus the
+canonical-build baseline24377; deployed immutables and wiring still need their
+own actual identity checks. Never substitute the canonical pool's address into
+a candidate release manifest or infer its controls from local candidate tests.
+
+This rehearsal runs the candidate only on an ephemeral chain31337 with a locally
+minted mock token. Its addresses/hashes are neither canonical Sepolia nor a deployed
+isolated testnet app. Both phases of the human study remain separately gated;
+PhaseA read-only screens do not establish PhaseB transactional readiness.
+
+See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md#current-verified-handoff-status) for
+current source reviews, unmerged PRs, config4 drain and explicit facilitator/
+custodian declines. Those declines must not be reported as pending acceptance.
+
 ## Reproduce
 
 Use the exact reviewed vendor build from scoped-budget/BUILD-PARITY.md. Install
