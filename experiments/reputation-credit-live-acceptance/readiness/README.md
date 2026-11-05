@@ -99,8 +99,14 @@ PR441 now has a preparatory wrapper394a9d9, independently reviewed **AMEND** at
 remain; [RUNNER-REVIEW.md](RUNNER-REVIEW.md) records exact fixes and ownership.
 Earlier component acceptance does not establish runner or live recovery safety.
 
-Latest supersession: COMPLETION.md now reconciles accepted retained-runtime
+Historical824e638 checkpoint: COMPLETION.md now reconciles accepted retained-runtime
 ownership, unaccepted candidate installation, closed human-role declines and actual
 recorded test scopes. PR441 successor616d1ca corrects the prior four reproductions
-but remains AMEND for cleanup-effect quiescence at review6650540082 (70 supplied
+but remained AMEND for cleanup-effect quiescence at review6650540082 (70 supplied
 tests pass). RUNNER-REVIEW.md retains the older findings as history.
+
+Publication checkpoint: PR56 still has unresolved factual AMEND at unchanged
+c8109e5; ARTICLE-REVIEW.md maps the five corrections to exact-head acceptance.
+Current wallet checkpoint c97dc622 remains AMEND for generic prepare rejection
+clearing uncertain signature state (review6653160958), despite78 supplied tests.
+Existing article and wallet owners retain their work; no release is inferred.

@@ -2,15 +2,18 @@
 
 ## Superseding runner review checkpoint
 
-PR441 now has wrapper616d1caa95149219b232fdcc33df2a9788a7e525. Existing independent
-review[6650540082](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6650540082)
-reports70 supplied tests pass and all four prior reproductions corrected, but
-**AMEND remains**: cleanup prepare/broadcast effects can outlive their timeout
-wrapper and ownership release. Track actual effect settlement, stop new effects
-on unresolved timeout, retain durable uncertain intent and ownership until
-quiescence/reconciliation. Test delayed/permanently hung effects and competing
-resume. The same writer/reviewer own this delta; no duplicate review or live gate.
-The394a9d9 findings below are historical evidence, not the current four-open status.
+Current PR441 wrapperc97dc622173a6d52a2cad66f20839f7561c5986e remains **AMEND** at
+[independent review6653160958](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6653160958),
+despite78 supplied passing tests. Prior late-save, roster, signal, ownership and
+cleanup-timeout regressions passed the reviewer's rerun. Remaining blocker:
+generic prepare rejection clears uncertain-signature state, although signing may
+have completed before an output failure. Retain the durable marker and stop further
+effects unless a trustworthy typed no-signature result or reviewed durable
+disposition proves safety. Test immediate/late sign-then-reject and reload/death;
+no repeat signing/broadcast before disposition. Existing wallet writer/reviewer
+own the fix; no duplicate implementation or review. Real ports/current-runner
+wiring and live recovery remain unaccepted. Earlier394a9d9/616d1ca findings are
+historical checkpoints, not the current blocker list.
 
 ## Historical394a9d9 review: superseded by the checkpoint above
 
