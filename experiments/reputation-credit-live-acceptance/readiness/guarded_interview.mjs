@@ -2,9 +2,12 @@
 // Integration must pass independently obtained facts, never applicant JSON.
 // The callback must be pinned/reviewed and side-effect-free. This wrapper is
 // not a sandbox and cannot undo effects performed inside a malicious callback.
-export function guardedInterview(decide, {thread, facts, maxLine}) {
+export function guardedInterview(decide, input) {
   const hold=reason=>({mode:'SHADOW_ONLY',outcome:'review',backing:0,pd:null,
-    reason,reply:'This is a practice assessment. No credit has been approved or issued.'});
+    reason,reply:'This shadow assessment does not approve or issue credit.'});
+  if(!input || typeof input!=='object' || Array.isArray(input) || typeof decide!=='function')
+    return hold('INPUT_INVALID');
+  const {thread, facts, maxLine}=input;
   if (!facts || typeof facts!=='object' || Array.isArray(facts)) return hold('FACTS_REQUIRED');
   const keys=['backing','deskBacks','repaid','open','defaulted'];
   if(keys.some(k=>!Object.hasOwn(facts,k))) return hold('FACTS_REQUIRED');

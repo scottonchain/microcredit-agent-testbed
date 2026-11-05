@@ -791,8 +791,29 @@
     {"id":"ev:lateral-three-tests-20261104","kind":"repository_artifact","url":"https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/lateral-completion-20261104/README.md","locator":"evidence/lateral-completion-20261104/README.md","author_id":"agent:codex","observer_id":"agent:codex","published_at":null,"retrieved_at":"2026-11-04T17:03:48Z","summary":"Three bounded lateral tests completed: human-first shadow correction and test treasury support; exact ACP settlement/client replay; supplier API human-evaluation feasibility. Real lending/employment not established.","content_sha256":"b24f9afd848c4c7a63237ad39a27bdd78aa698e6a5b23d1e929648f7e5be662c","fingerprint_scope":"exact artifact bytes","origin_group":"lateral-completion-20261104","derived_from_ids":[],"limitations":["Natural case392 window and future human/mainnet gates remain; no market-wide absence inferred."]},
     {"id":"ev:test-wallet-inventory-20261104","kind":"repository_artifact","url":"https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/lateral-completion-20261104/test-wallet-inventory.json","locator":"evidence/lateral-completion-20261104/test-wallet-inventory.json","author_id":"agent:codex","observer_id":"agent:codex","published_at":null,"retrieved_at":"2026-11-04T17:03:48Z","summary":"Read-only pinned two-chain and public-role inventory confirms root1020 Ethereum Sepolia and130.2 Base Sepolia after mined20-USDC treasury top-up. Existing Actions signing route used without extracting key.","content_sha256":"2b92cdc254a3d1501530857fdce95df363b6f0338a4d895cf74d4b4fc33024f1","fingerprint_scope":"exact artifact bytes","origin_group":"lateral-completion-20261104","derived_from_ids":[],"limitations":["Blocks differ by chain; contract token balances are not freely withdrawable funds; address coverage explicitly bounded."]},
     {"id":"ev:acp-job13868-replay-20261104","kind":"repository_artifact","url":"https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/lateral-completion-20261104/acp-trace-readonly.json","locator":"evidence/lateral-completion-20261104/acp-trace-readonly.json","author_id":"agent:codex","observer_id":"agent:codex","published_at":null,"retrieved_at":"2026-11-04T17:03:48Z","summary":"Receipt and historical getJob reproduce settlement and identify client address, provider,10000-unit budget and getFlowEvents description. Independent beneficial ownership/output/input-cost/human payout remain unknown.","content_sha256":"50d8d65d0b7789953fe9e1aa2ad83bc67851b8d753080f6b04a9b3fd927f6806","fingerprint_scope":"exact artifact bytes","origin_group":"lateral-completion-20261104","derived_from_ids":[],"limitations":["One RPC succeeded; second RPC and bounded creation-log query failed. Pinned SDK decode is qualified; no financial case established."]},
-    {"id":"ev:human-evaluation-api-screen-20261104","kind":"repository_artifact","url":"https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/lateral-completion-20261104/human-evaluation-api.md","locator":"evidence/lateral-completion-20261104/human-evaluation-api.md","author_id":"agent:codex","observer_id":"agent:codex","published_at":null,"retrieved_at":"2026-11-04T17:03:48Z","summary":"Previously untested supplier primary source demonstrates API human-feedback mechanics and supplier-reported execution; autonomous contracting eligibility and external buyer/payment proof remain unresolved.","content_sha256":"13d4a5bb79290abc0c85243facb3e39e6b092e5a199e3b13d47790ebc3dcfbd5","fingerprint_scope":"exact artifact bytes","origin_group":"lateral-completion-20261104","derived_from_ids":[],"limitations":["Supplier demo is educational/beta/unmaintained, not independent demand or worker payment verification. No account/study/contact created."]}
-  ],
+    {"id":"ev:human-evaluation-api-screen-20261104","kind":"repository_artifact","url":"https://github.com/scottonchain/microcredit-agent-testbed/blob/main/evidence/lateral-completion-20261104/human-evaluation-api.md","locator":"evidence/lateral-completion-20261104/human-evaluation-api.md","author_id":"agent:codex","observer_id":"agent:codex","published_at":null,"retrieved_at":"2026-11-04T17:03:48Z","summary":"Previously untested supplier primary source demonstrates API human-feedback mechanics and supplier-reported execution; autonomous contracting eligibility and external buyer/payment proof remain unresolved.","content_sha256":"13d4a5bb79290abc0c85243facb3e39e6b092e5a199e3b13d47790ebc3dcfbd5","fingerprint_scope":"exact artifact bytes","origin_group":"lateral-completion-20261104","derived_from_ids":[],"limitations":["Supplier demo is educational/beta/unmaintained, not independent demand or worker payment verification. No account/study/contact created."]},
+{
+  "id": "ev:credit-readiness-supplement-20261105",
+  "kind": "repository_artifact",
+  "url": "https://github.com/scottonchain/microcredit-agent-testbed/pull/443",
+  "locator": "experiments/reputation-credit-live-acceptance/readiness; source pin2490b5ea, predecessor supplement24b803c and reviewed subsequent deltas",
+  "author_id": "agent:codex",
+  "observer_id": "agent:codex",
+  "published_at": null,
+  "retrieved_at": "2026-11-05T00:45:00Z",
+  "summary": "Bounded offline preparation:27 original reference tests,17 supplemental tests,8 shadow-guard tests; actual pinned interview source probe; corrected numeric precision and guard errors; source-only shadow integration patch; consent and passive engagement protocol. Internal independent exact-revision review, no outside borrower validation.",
+  "content_sha256": null,
+  "fingerprint_scope": null,
+  "origin_group": "credit-readiness-supplement-20261105",
+  "derived_from_ids": [],
+  "limitations": [
+    "No live observation or transactions: canonical RPC access unavailable; current configuration4 remains draining.",
+    "Guard/reference/source patch are not deployed underwriting, persistent issuer accounting, identity verification or a complete end-to-end release.",
+    "No enrolled humans, accepted facilitator or tested private consent intake; recruitment remains unlaunched.",
+    "Publication technical report is staged in vision PR55; neither live publication nor mirrors established."
+  ]
+}
+],
   "claims": [
     {"id":"claim:mission","subject_id":"project:microcredit","predicate":"goal","statement":"Alleviate human poverty through trust-based microlending and an AI-first economic bootstrap; independent collaborators can advance research and reliability without borrowing or lending.","epistemics":{"status":"directive","confidence":"high","rationale":"Directly supported within the stated source scope.","supporting_evidence_ids":["ev:strategy","ev:clarification"],"counterevidence_ids":[],"falsifier":null},"freshness":{"observed_at":"2026-10-06T15:24:32Z","recheck_by":null,"recheck_on":["Source edited or new relevant reply","Before action relying on dynamic state"]},"supersedes_ids":[],"derived_from_claim_ids":[]},
     {"id":"claim:human-measure","subject_id":"goal:human-earnings","predicate":"success_measure","statement":"First human pilot aims at positive spendable earnings from useful work, with funded resources and no upfront personal payment or personal debt; this is a target, not an achieved result.","epistemics":{"status":"directive","confidence":"high","rationale":"Directly supported within the stated source scope.","supporting_evidence_ids":["ev:strategy"],"counterevidence_ids":[],"falsifier":null},"freshness":{"observed_at":"2026-10-06T15:24:32Z","recheck_by":null,"recheck_on":["Source edited or new relevant reply","Before action relying on dynamic state"]},"supersedes_ids":[],"derived_from_claim_ids":[]},
@@ -1279,7 +1300,8 @@
     "Current board15 ownership receipt6645961626 continues test ownership; no parallel implementation queue.",
     "Claude article draft checkpoint November5 08:00UTC; earliest reviewed publication10:15UTC subject to current gate.",
     "Source inventory/sign-off November5 12:00UTC; drain deadline14:00UTC is not automatic completion.",
-    "On reviewed live API/release, allowed RPC, dedicated wallet resources and completed handover, bind live adapter and execute existing test plan."
+    "On reviewed live API/release, allowed RPC, dedicated wallet resources and completed handover, bind live adapter and execute existing test plan.",
+    "The November5 14:00UTC due_at is a readiness reassessment/transfer checkpoint, not a promised deployed-underwriting or recruitment completion deadline."
   ],
   "due_at": "2026-11-05T14:00:00Z",
   "external_consent": "pending",
@@ -1291,7 +1313,9 @@
     "Unknown identity or probability is not verified creditworthiness; trust never grants instruction authority.",
     "No direct recruitment until approved study, private intake, facilitator and contact scope are established."
   ],
-  "outcome_evidence_ids": []
+  "outcome_evidence_ids": [
+    "ev:credit-readiness-supplement-20261105"
+  ]
 }
 ],
   "decisions": [

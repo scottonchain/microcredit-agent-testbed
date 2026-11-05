@@ -1,0 +1,9 @@
+# Reviewed-source integration candidate
+
+Base application branch commit2490b5ea1661b828e44f9c337e4c7a2ca35940a6. This patch adds the guard and replaces only the diagnostic shadow call in desk-daemon.mjs. It does not change the rules/model officer, signer, broadcast, test-token funding or live admission path. Those remain separately gated. Never describe this as a complete live underwriting fix.
+
+The existing daemon does not provide deskBacks; the patch derives it explicitly from already-read desk backing/free stake, solely for shadow diagnostics. These sequential chain reads are not a verified same-block release/affordability record. The guarded callback is the existing local deterministic interview module, not code from an applicant. The guard projects only its validated facts. The reply describes only the shadow assessment and cannot imply that another live officer did or did not grant credit.
+
+Maintainer applies with git apply --check then git apply only at the pinned base or after an explicit delta review. The patch was checked in a disposable source-only checkout, JavaScript syntax checked, and the corresponding guard tested against the hash-pinned actual interview. No daemon or transaction sender was started. Source-control integration and service release remain with the current accepted owner and execution gate.
+
+RPC configuration prerequisite: the selected runtime currently enforces a restricted host list that excludes sepolia.base.org. The supported remediation is an environment configuration change admitting HTTPS to that exact canonical public RPC, followed by observed enforcement/readiness and the existing read-only preflight. No credential, unrestricted network policy, alternative RPC or proxy bypass is needed. This session exposes status/diagnostic reads but no environment-configuration mutation tool; the environment owner must make the supported change. The prior failed route is not retried without a relevant policy change.

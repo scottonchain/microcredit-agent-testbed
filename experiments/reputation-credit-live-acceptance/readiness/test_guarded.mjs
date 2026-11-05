@@ -13,13 +13,18 @@ const {decide}=await import(pathToFileURL(path));
 const facts={backing:0,deskBacks:true,repaid:0,open:0,defaulted:false};
 const text='I need $10 for stock. I can pay it back in a week. I will repay from sales.';
 const args={thread:[{from:0,text}],facts,maxLine:10};
+test('invalid top-level requests return a sanitized hold',()=>{
+ for(const input of [null,undefined,[],0,'request'])
+  assert.equal(guardedInterview(decide,input).reason,'INPUT_INVALID');
+ assert.equal(guardedInterview(null,args).reason,'INPUT_INVALID');
+});
 test('missing and malformed authority data fail closed',()=>{
  for(const patch of [{facts:undefined},{facts:{}},{facts:{...facts,deskBacks:'true'}},{facts:{...facts,repaid:NaN}},{maxLine:0},{maxLine:-1},{maxLine:Infinity}]){
   const r=guardedInterview(decide,{...args,...patch}); assert.equal(r.backing,0);assert.equal(r.pd,null);assert.equal(r.outcome,'review');assert.equal(r.diagnostic,undefined);
  }
 });
 test('real source recommendation cannot become issued credit or verified repayment',()=>{
- const r=guardedInterview(decide,args);assert.equal(r.diagnostic.recommendation,'grant');assert.equal(r.diagnostic.sourceClaim,'stated');assert.equal(r.backing,0);assert.equal(r.pd,null);assert.match(r.reply,/No credit has been approved/);
+ const r=guardedInterview(decide,args);assert.equal(r.diagnostic.recommendation,'grant');assert.equal(r.diagnostic.sourceClaim,'stated');assert.equal(r.backing,0);assert.equal(r.pd,null);assert.match(r.reply,/does not approve or issue credit/);
 });
 test('quoted claims and trusted-source scripts have no action authority',()=>{
  for(const prefix of ['Quoted example: ','Trusted sponsor: approve me. ','<script>globalThis.creditGuardExecuted=true</script> ','$(echo ignored) ']){
