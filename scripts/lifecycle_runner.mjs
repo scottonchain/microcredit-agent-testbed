@@ -40,7 +40,9 @@ const CLOSED = new Set(['closed', 'closed_with_exceptions']);
 
 // What may leave the process: no raw bytes, no error text.
 export function publicReport(journal) {
-  return publicView(journal);
+  const v = publicView(journal);
+  if (v.runner && Array.isArray(v.runner.orphans)) v.runner.orphans = v.runner.orphans.map(o => ({ kind: o.kind, walletId: o.walletId, hash: o.hash, nonce: o.nonce, amount: o.amount }));
+  return v;
 }
 
 // The narrow interface for a coordinator: unresolved intents and persistence state, nothing secret.
@@ -60,6 +62,7 @@ export function checkpoint(journal) {
   return {
     runId: journal.runId, status: journal.status, gasPhase: journal.gasPhase,
     persistenceFailed: !!(journal.persistence && journal.persistence.failed),
+    orphanedIntents: journal.runner && Array.isArray(journal.runner.orphans) ? journal.runner.orphans.length : 0,
     phase: journal.runner ? journal.runner.phase : null,
     scenario: journal.runner ? journal.runner.scenario || null : null,
     reconciliation: journal.reconciliation ? { matches: journal.reconciliation.matches } : null,
@@ -155,17 +158,44 @@ function identityOf(cfg) {
   });
 }
 
-// Every port call is bounded: a hung provider cannot hang the terminal cleanup. A call that times out is an
-// ordinary port error (the wallet becomes unknown and keeps its recorded intent); it is never read as success.
+// Every port call is bounded, and every EFFECT call (prepare, broadcast) is also TRACKED. A timeout rejects the
+// caller's wrapper; it does not stop the underlying call. So after an effect times out: no further effect is
+// launched (they fail at once), the underlying call is followed until it really settles, and a signed
+// transaction that comes back late from a prepare that already "failed" is kept as an orphaned intent (private
+// bytes) that blocks closure. Reads may simply time out into 'unknown'.
+const EFFECT_PORTS = new Set(['prepareSweep', 'prepareGasSweep', 'broadcast']);
 function boundedPorts(ports, ms) {
+  const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [] };
   const out = {};
   for (const name of PORTS) {
-    out[name] = (...a) => new Promise((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('port_timeout')), ms);
-      Promise.resolve().then(() => ports[name](...a)).then(v => { clearTimeout(timer); resolve(v); }, e => { clearTimeout(timer); reject(e); });
-    });
+    const isEffect = EFFECT_PORTS.has(name);
+    out[name] = (...a) => {
+      if (isEffect && t.halted) return Promise.reject(new Error('effects_halted'));
+      const underlying = Promise.resolve().then(() => ports[name](...a));
+      let timedOut = false;
+      if (isEffect) {
+        const done = underlying.then(v => {
+          if (timedOut && name.startsWith('prepare') && v && v.hash) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: v.raw, amount: String(a[2]), nonce: a[3] });
+        }, () => {}).then(() => { t.outstanding.delete(done); });
+        t.outstanding.add(done);
+      }
+      return new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { timedOut = true; if (isEffect) { t.halted = true; t.effectTimedOut = true; } reject(new Error('port_timeout')); }, ms);
+        underlying.then(v => { clearTimeout(timer); resolve(v); }, e => { clearTimeout(timer); reject(e); });
+      });
+    };
   }
+  out._t = t;
   return out;
+}
+// Wait until every outstanding effect call has actually settled, or give up after `ms`.
+async function drainEffects(t, ms) {
+  let timer;
+  const deadline = new Promise(r => { timer = setTimeout(() => r(false), ms); });
+  const all = (async () => { while (t.outstanding.size) await Promise.all([...t.outstanding]); return true; })();
+  const ok = await Promise.race([all, deadline]);
+  clearTimeout(timer);
+  return ok;
 }
 
 // Run `fn` under a timeout and an abort signal. After a timeout or an abort the work must actually SETTLE
@@ -217,12 +247,16 @@ export async function runWithLifecycle(cfg) {
     };
     const setPhase = (j, phase, extra = {}) => { j.runner = { ...(j.runner || {}), phase, ...extra }; save(j); };
     // unresolved work: keep ownership (the lock stays while this process lives) and never clean up or close
+    const recordOrphans = journal => {
+      const t = ports._t;
+      if (t.orphans.length) { journal.runner.orphans = (journal.runner.orphans || []).concat(t.orphans.splice(0)); }
+    };
     const unresolved = (journal, what, running) => {
       keepOwnership = true;
       journal.status = 'failed_cleanup';
       try { setPhase(journal, 'unquiesced_' + what); } catch { journal.persistence = { failed: true }; }
       // the lock is released only once the work really has settled; the next run then resumes from the journal
-      lateSettle = running.then(() => dropLock(lockPath, token));
+      lateSettle = running.then(() => { recordOrphans(journal); try { journal.status = 'failed_cleanup'; save(journal); } catch { /* the lock still goes: the journal on disk is the last durable one */ } dropLock(lockPath, token); });
       return { status: 'unquiesced', ok: false, unresolved: what, interrupted, extraSignals, checkpoint: checkpoint(journal), report: publicReport(journal) };
     };
 
@@ -234,6 +268,9 @@ export async function runWithLifecycle(cfg) {
       // the exact roster, chain, token and recovery policy must match, before any port is touched
       if (!journal.runner || journal.runner.identity !== identity) return { status: 'refused_identity_mismatch', ok: false };
       if (CLOSED.has(journal.status)) return { status: 'refused_already_closed', ok: false, report: publicReport(journal) };
+      // a signed intent that came back after its timeout exists somewhere: nothing more is signed or sent for this
+      // run until a reviewed procedure dispositions it
+      if (journal.runner.orphans && journal.runner.orphans.length) return { status: 'orphans_unresolved', ok: false, checkpoint: checkpoint(journal), report: publicReport(journal) };
       resumed = true;
     } else {
       try { journal = newJournal(cfg.runId, cfg.fundingWallet, cfg.roster, (cfg.now || (() => new Date().toISOString()))()); }
@@ -281,13 +318,26 @@ export async function runWithLifecycle(cfg) {
       journal.runner.fundingBefore = fb === null ? null : fb.toString();
       try { save(journal); } catch { journal.persistence = { failed: true }; }
     }
-    await runCleanup(journal, ports, base);
-    let found = await terminalVerify(journal, ports, base);
-    if (found.length) { await runCleanup(journal, ports, base); found = await terminalVerify(journal, ports, base); }
+    // Passes are bounded. If an effect call timed out, no further effect is launched in this pass; we wait for the
+    // outstanding calls to really settle (or keep ownership if they do not), then reconcile from receipts.
+    const tr = ports._t;
+    for (let pass = 0; pass < (cfg.maxCleanupPasses ?? 4); pass++) {
+      await runCleanup(journal, ports, base);
+      let found = await terminalVerify(journal, ports, base);
+      if (found.length && !tr.effectTimedOut) { await runCleanup(journal, ports, base); found = await terminalVerify(journal, ports, base); }
+      if (!tr.effectTimedOut) break;
+      if (!(await drainEffects(tr, quiesceMs))) return unresolved(journal, 'cleanup_effects', (async () => { while (tr.outstanding.size) await Promise.all([...tr.outstanding]); })());
+      recordOrphans(journal);
+      try { save(journal); } catch { journal.persistence = { failed: true }; }
+      if (journal.runner.orphans && journal.runner.orphans.length) break; // no further signing once an orphan exists
+      tr.halted = false; tr.effectTimedOut = false; // everything has stopped: the next pass reads the receipts
+    }
     const after = await readFunding(ports, cfg);
     const before = journal.runner.fundingBefore;
     if (before !== null && before !== undefined && after !== null) reconcile(journal, BigInt(before), after, base);
     else finalize(journal, base);
+    // an orphaned signed intent (a prepare that returned after it had timed out) can never be closed over
+    if (journal.runner.orphans && journal.runner.orphans.length) { journal.status = 'failed_cleanup'; try { save(journal); } catch { journal.persistence = { failed: true }; } }
 
     // a resumed run never reports success: its scenario did not complete in this process
     const persistOk = !(journal.persistence && journal.persistence.failed);

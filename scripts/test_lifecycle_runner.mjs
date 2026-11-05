@@ -383,17 +383,73 @@ test('a hung cleanup port is bounded: the wallet stays unknown, nothing is close
   assert.ok(Date.now() - started < 3000);
   assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
   assert.equal(r.checkpoint.unresolved.find(u => u.id === 'w1').state, 'unknown');
-  // a hung broadcast keeps its durable intent and is never signed again
-  const t2 = setup({ n: 1, over: { portTimeoutMs: 30 } });
-  const rb = t2.cfg.ports.broadcast; let hung = true;
-  t2.cfg.ports = { ...t2.cfg.ports, broadcast: (raw) => (hung ? new Promise(() => {}) : rb(raw)) };
-  const r2 = await runWithLifecycle(t2.cfg);
-  assert.equal(r2.ok, false);
-  const hash = loadJournal(t2.cfg.journalPath).wallets.w1.sweep.hash;
-  assert.ok(hash);
-  const signs = t2.chain.state().signs; hung = false;
-  await runWithLifecycle({ ...t2.cfg, signals: new EventEmitter() });
-  assert.equal(t2.chain.state().signs, signs + 1 /* only the gas return, never a second token signature */);
+});
+
+// Codex review 6650540082: a timed-out EFFECT call is still running; ownership follows the effect, not the wrapper.
+function delayed(chain, name, ms, counters) {
+  const real = chain.ports[name];
+  return async (...a) => { counters.active++; counters.calls[name] = (counters.calls[name] || 0) + 1; try { await sleep(ms); return await real(...a); } finally { counters.active--; } };
+}
+
+test('delayed broadcast beyond the port timeout: cleanup waits for the effect, no lock release or false closure while it runs, then reconciles', async () => {
+  const t = setup({ n: 1, over: { portTimeoutMs: 2, quiesceMs: 3000 } });
+  const c = { active: 0, calls: {} };
+  t.cfg.ports = { ...t.cfg.ports, broadcast: delayed(t.chain, 'broadcast', 150, c) };
+  let lockDuring = null; let secondDuring = null;
+  const fundFn = t.cfg.fund;
+  t.cfg.fund = async () => { await fundFn(); setTimeout(async () => { lockDuring = fs.existsSync(t.cfg.journalPath + '.lock'); secondDuring = (await runWithLifecycle({ ...t.cfg, fund: fundFn, signals: new EventEmitter() })).status; }, 60); };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(c.active, 0);                                  // nothing is still running when ownership is released
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
+  assert.equal(lockDuring, true); assert.equal(secondDuring, 'refused_concurrent'); // an immediate competing resume was refused
+  assert.equal(r.status, 'closed'); assert.equal(t.chain.state().fund, '1000');     // reconciled from receipts after settlement
+  assert.equal(t.chain.state().signs, 2);                      // no second token signature, no retry launched in the window
+});
+
+test('a permanently hung broadcast: no further effects are launched, ownership is kept, nothing is closed, and a late landing reconciles', async () => {
+  let release; const gate = new Promise(r => { release = r; });
+  const t = setup({ n: 2, over: { portTimeoutMs: 5, quiesceMs: 60 } });
+  const real = t.cfg.ports.broadcast; const prep = t.cfg.ports.prepareSweep;
+  const c = { broadcast: 0, prepare: 0 };
+  t.cfg.ports = { ...t.cfg.ports, broadcast: async (raw) => { c.broadcast++; await gate; return real(raw); }, prepareSweep: (...a) => { c.prepare++; return prep(...a); } };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.status, 'unquiesced'); assert.equal(r.unresolved, 'cleanup_effects'); assert.equal(r.ok, false);
+  assert.equal(c.broadcast, 1); assert.equal(c.prepare, 1);   // the second wallet and any retry were never launched
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true);
+  assert.equal(loadJournal(t.cfg.journalPath).runner.phase, 'unquiesced_cleanup_effects');
+  assert.equal((await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() })).status, 'refused_concurrent');
+  release(); await sleep(50);                                    // the effect finally ends: only now is the lock released
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
+  assert.notEqual(loadJournal(t.cfg.journalPath).status, 'closed');
+  t.cfg.ports = Object.fromEntries(Object.keys(t.cfg.ports).map(k => [k, t.chain.ports[k]]));
+  const again = await runWithLifecycle({ ...t.cfg, signals: new EventEmitter() });
+  assert.equal(again.resumed, true); assert.equal(again.status, 'closed'); assert.equal(t.chain.state().fund, '1000');
+  assert.equal(Object.keys(t.chain.state().mined).length, 4);   // each sweep landed exactly once
+});
+
+test('a delayed prepare that returns after its timeout is kept as an orphaned intent: never broadcast, never closed over', async () => {
+  const t = setup({ n: 1, over: { portTimeoutMs: 2, quiesceMs: 2000 } });
+  const c = { active: 0, calls: {} };
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: delayed(t.chain, 'prepareSweep', 80, c) };
+  const r = await runWithLifecycle(t.cfg);
+  assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+  assert.equal(r.checkpoint.orphanedIntents, 1);
+  const j = loadJournal(t.cfg.journalPath);
+  assert.equal(j.runner.orphans.length, 1); assert.ok(j.runner.orphans[0].raw.startsWith('raw:'));   // private file keeps the bytes
+  assert.ok(!JSON.stringify(r).includes('raw:'));                                                      // nothing public does
+  assert.ok(!t.chain.state().broadcasts.includes(j.runner.orphans[0].hash));                           // we never sent it
+  const again = await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() });
+  const signsNow = t.chain.state().signs;
+  assert.equal(again.status, 'orphans_unresolved'); assert.equal(again.checkpoint.orphanedIntents, 1);  // the orphan blocks any further signing or closure
+  assert.equal(t.chain.state().signs, signsNow);
+});
+
+test('a permanently hung prepare keeps ownership as well', async () => {
+  const t = setup({ n: 1, over: { portTimeoutMs: 5, quiesceMs: 40 } });
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: () => new Promise(() => {}) };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.status, 'unquiesced'); assert.equal(r.unresolved, 'cleanup_effects');
+  assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), true); assert.equal(t.chain.state().broadcasts.length, 0);
 });
 
 test('lock creation window: an entrant sees no half-written lock, so there is exactly one owner', async () => {
