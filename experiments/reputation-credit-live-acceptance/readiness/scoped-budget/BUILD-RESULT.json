@@ -1,16 +1,60 @@
 {
   "compiler": "0.8.33+commit.64118f21.Emscripten.clang",
   "openzeppelin": "5.3.0",
-  "viaIR": true,
-  "optimizerRuns": 1,
-  "poolEVM": "cancun",
-  "poolRuntimeBytes": 25721,
+  "settingsFile": "compiler-settings.json",
+  "settingsSha256": "59de2193164288b9b1c65163c619b8a8410b000c9aded6cd536d681287545b21",
+  "poolEVM": "shanghai",
+  "poolRuntimeBytes": 23272,
   "EIP170Limit": 24576,
-  "deployable": false,
-  "sizeGate": "FAILED",
-  "standaloneBudgetEVM": "shanghai",
-  "standaloneBudgetTests": 6,
+  "headroomBytes": 1304,
+  "sizeGate": "PASS",
+  "releaseAccepted": false,
+  "deployed": false,
   "standaloneBudgetTestsPassed": 6,
-  "fullPoolExecutionTested": false,
-  "deployed": false
+  "fullPoolTestsPassed": 7,
+  "independentRebuildAndTests": true,
+  "comparisons": [
+    {
+      "candidate": "unmodified canonical1812",
+      "runs": 200,
+      "optimizerSequence": "default",
+      "EVM": "cancun",
+      "runtimeBytes": 24377
+    },
+    {
+      "candidate": "patched",
+      "runs": 1,
+      "optimizerSequence": "default",
+      "EVM": "cancun",
+      "runtimeBytes": 25721
+    },
+    {
+      "candidate": "patched",
+      "runs": 1,
+      "optimizerSequence": "legacy inliner disabled",
+      "EVM": "cancun",
+      "runtimeBytes": 25791
+    },
+    {
+      "candidate": "patched",
+      "runs": 1,
+      "optimizerSequence": "short",
+      "EVM": "cancun",
+      "runtimeBytes": 31290
+    },
+    {
+      "candidate": "patched",
+      "runs": 1,
+      "optimizerSequence": "explicit no full inliner",
+      "EVM": "cancun",
+      "runtimeBytes": 23246
+    },
+    {
+      "candidate": "patched selected",
+      "runs": 1,
+      "optimizerSequence": "explicit no full inliner",
+      "EVM": "shanghai",
+      "runtimeBytes": 23272
+    }
+  ]
 }

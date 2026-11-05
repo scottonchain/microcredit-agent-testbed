@@ -60,6 +60,7 @@ The pending journal now participates in the common canonical audit and retains
 exposure across unknown, reverted and confirmed backing changes. Seven new Python
 cases pass; affected Python total61. The standalone cumulative budget has six
 independently reproduced in-process EVM test groups. Accumulated checks now134.
-The pool-source patch compiles but exceeds EIP170 by1145 bytes; the build gate
-rejects deployment. No limit is installed on the live contract, and neither the
+The optimizer-only correction now compiles the full pool to23272 bytes,1304
+below EIP170. Seven full-pool EVM groups also pass independently (141 accumulated
+checks). No limit is installed on the live contract, and neither the
 journal nor the budget enables execution. See scoped-budget/BUILD-RESULT.json.

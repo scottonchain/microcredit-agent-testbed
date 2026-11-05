@@ -71,3 +71,9 @@ not installed on the canonical deployment; source integration and full lifecycle
 acceptance remain required. New requests consume irreversible borrower/controller/
 group/portfolio allowance, so repayment cannot restore it. Consent withdrawal
 requires confirmed revocation and reconciliation of already-requested commitments.
+
+The subsequent optimizer-only build resolves EIP170:23272-byte pool,1304-byte
+headroom, independently rebuilt with pinned settings. Seven full-pool EVM groups
+now exercise direct/meta/combined issuance, cumulative reuse, atomic failure
+rollback, signature compatibility and servicing after stop. This adds seven to
+the earlier134 checks. No canonical or service deployment has occurred.

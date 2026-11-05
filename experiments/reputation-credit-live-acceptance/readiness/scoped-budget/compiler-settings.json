@@ -1,0 +1,13 @@
+{
+  "optimizer": {
+    "enabled": true,
+    "runs": 1,
+    "details": {
+      "yulDetails": {
+        "optimizerSteps": "dhfoDgvulfnTUtnf [xa[r]EscLM cCTUtTOntnfDlLculVcul [jmul[jul] VcTOcul jmul] Tpeul xa[rul] xa[r]cL gvif CTUca[r]LsTOtfDnca[r]ulc] jmul[jul] VcTOcul jmul"
+      }
+    }
+  },
+  "viaIR": true,
+  "evmVersion": "shanghai"
+}

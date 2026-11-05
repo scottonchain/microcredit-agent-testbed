@@ -46,17 +46,37 @@ project interface. The canonical1812 submodule record is OpenZeppelin5.3.0 at
 f9f7db03f3df020aace3958b8fb7de8891d133e5; npm5.3.0 is pinned for the candidate.
 Source/build dependency parity with the deployed runtime is still unverified.
 
-Six EVM test groups exercise the standalone budget: borrower reuse, correlated
-controller/group limits, portfolio limit, authority/permanent stop, expiry and
-individual revocation. Ganache runs IN PROCESS, without a listening RPC port,
-external provider or funded wallet. Ephemeral fixture accounts exist only in the
-local EVM. These tests do not execute the full pool lifecycle, meta signatures,
-existing wallet cleanup or deployed service. Ganache's native websocket binding
-was unavailable and it used its JavaScript fallback; all six tests passed.
+Thirteen EVM test groups pass: six standalone budget groups and seven full-pool
+integration groups. Tests deploy the actual candidate pool with normal EIP170
+limits. They cover repeated backed loans and repayments without allowance refill,
+direct/meta/combined paths, replay/expiry/invalid signatures, caller-sensitive
+ERC1271, authority/rebinding, pool-check and post-origination transfer failure
+rollback (including nonce and loan inventory), and signed repayment after stop.
+The test token deliberately supports a failing transfer; it is not production USDC
+or permit validation. Complete wallet/service/canonical deployment acceptance is
+still separate. Ganache runs in-process without a listening RPC port, remote
+provider or externally funded wallet. Ephemeral keys are generated only in memory.
 
-The full patched pool compiles but its final Cancun/runs1 runtime is25721 bytes,
-1145 over EIP170. The build command intentionally FAILS its deployment-size gate.
-Osaka/runs1 gives the same size; runs200 was larger. This is NOT a deployable full
-pool candidate yet. The standalone budget tests passed independently. Integration
-requires a reviewed size reduction or architecture revision and full-pool tests,
-not an unlimited-code-size chain or an unchecked compiler setting.
+## Size correction and verified scope
+
+The selected compiler-settings.json uses solc0.8.33, viaIR, runs1 and an explicit
+Yul optimizer sequence without the full inliner. It preserves the Solidity source
+and original signature call path. Shanghai is the selected EVM target, tested on
+Ganache's Shanghai fork; it is a deliberate candidate build setting, not a claim
+about the existing deployment settings. Settings and source/interface hashes are
+pinned. The original canonical1812 settings (solc0.8.33,viaIR,runs200) are verified
+from its foundry.toml; compiling the baseline for Cancun reproduces24377 bytes.
+Matching that SIZE does not establish deployed runtime identity.
+
+BUILD-RESULT.json records the comparison. The prior default-sequence candidate
+was25721 bytes; the selected full pool is23272, with1304 bytes of headroom. The
+compiler rejects oversized outputs; no unlimited-size EVM setting is used. An
+independent AI reviewer rebuilt the candidate and reproduced all13 EVM tests.
+No feature, guard or signature logic was removed to meet the limit. This resolves
+the size blocker for this candidate only. New isolated deployment, exact runtime
+identity, owner/lease, consent/journal/executor and human-readiness gates remain.
+
+Optimizer rationale: [Solidity optimizer documentation](https://docs.soliditylang.org/en/latest/internals/optimizer.html)
+describes how inlining can increase code size. The selected configuration is
+validated by explicit measurements and tests, not assumed equivalent from that
+explanation alone. These tests do not constitute a complete compiler audit.
