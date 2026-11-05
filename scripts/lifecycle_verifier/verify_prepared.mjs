@@ -13,6 +13,10 @@
 // any other selector or extra calldata (batch, multicall, approve, transferFrom), dirty address padding, a non-empty
 // access list, high-S (malleable) or out-of-range signatures, zero gas, a priority fee above the fee cap, and any
 // transaction larger than MAX_BYTES.
+//
+// maxFeeWei is gas times the fee cap: the execution-fee ceiling. It is not an all-in Base cost bound (L1 data and any
+// operator charge are separate and not computed here). The bytes also cannot show chain state: token implementation,
+// recipient code, an existing EIP-7702 delegation on the sender, balance, nonce or finality. Those are adapter checks.
 
 import { parseTransaction, serializeTransaction, recoverTransactionAddress, keccak256, isAddress } from 'viem';
 
