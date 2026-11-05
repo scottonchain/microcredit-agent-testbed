@@ -171,6 +171,15 @@ function identityOf(cfg) {
 // transaction that comes back late from a prepare that already "failed" is kept as an orphaned intent (private
 // bytes) that blocks closure. Reads may simply time out into 'unknown'.
 const EFFECT_PORTS = new Set(['prepareSweep', 'prepareGasSweep', 'broadcast']);
+// A prepare result counts only if it carries a complete signed-intent record: a non-empty hash and non-empty raw
+// signed bytes. Anything else (undefined, null, {}, a hash without bytes, wrong types) is NOT proof that nothing
+// was signed, so it can never clear the in-flight marker.
+function validPrepared(v) {
+  if (!v || typeof v !== 'object') return false;
+  if (typeof v.hash !== 'string' || v.hash.length === 0 || v.hash.length > 200) return false;
+  const rawOk = (typeof v.raw === 'string' && v.raw.length > 0) || ((v.raw instanceof Uint8Array) && v.raw.length > 0);
+  return rawOk;
+}
 function boundedPorts(ports, ms, hooks) {
   const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [], lateRejected: false, prepareUncertain: false };
   const out = {};
@@ -185,14 +194,24 @@ function boundedPorts(ports, ms, hooks) {
       let timedOut = false;
       if (isEffect) {
         const done = underlying.then(v => {
-          if (timedOut && isPrepare && v && v.hash) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: v.raw, amount: String(a[2]), nonce: a[3] });
+          if (timedOut && isPrepare) {
+            if (validPrepared(v)) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: typeof v.raw === 'string' ? v.raw : Buffer.from(v.raw).toString('hex'), amount: String(a[2]), nonce: a[3] });
+            else { t.prepareUncertain = true; t.halted = true; } // a late malformed result: still not proof of anything
+          }
         }, e => { if (timedOut && isPrepare) { if (e instanceof PrepareNotStarted) t.lateRejected = true; else { t.prepareUncertain = true; t.halted = true; } } }).then(() => { t.outstanding.delete(done); });
         t.outstanding.add(done);
       }
       return new Promise((resolve, reject) => {
         const timer = setTimeout(() => { timedOut = true; if (isEffect) { t.halted = true; t.effectTimedOut = true; } reject(new Error('port_timeout')); }, ms);
         // in time: the marker is cleared in memory so the component's very next durable write (the intent) carries the clear
-        underlying.then(v => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); resolve(v); }, e => {
+        underlying.then(v => {
+          clearTimeout(timer);
+          if (isPrepare && !timedOut) {
+            if (!validPrepared(v)) { t.prepareUncertain = true; t.halted = true; reject(new Error('prepare_output_invalid')); return; } // marker stays
+            hooks.prepareEnd();                                                // complete intent in hand: the next durable write carries it and the clear
+          }
+          resolve(v);
+        }, e => {
           clearTimeout(timer);
           if (isPrepare && !timedOut) {
             if (e instanceof PrepareNotStarted) hooks.prepareEnd();          // typed proof that nothing was signed

@@ -553,6 +553,33 @@ for (const [label, wrap] of [
   });
 }
 
+// Codex review 6655549597: a fulfilled but invalid prepare result is not proof that nothing was signed.
+for (const [label, bad] of [['undefined', undefined], ['null', null], ['empty object', {}], ['hash without raw', { hash: '0xabc' }], ['raw without hash', { raw: 'raw:x' }], ['empty strings', { hash: '', raw: '' }], ['wrong types', { hash: 12, raw: { x: 1 } }], ['a string', 'raw:0xt1']]) {
+  for (const when of ['in time', 'after the timeout']) {
+    test(`prepare returns ${label} ${when}: marker kept, one signature, no broadcast, resume fails closed`, async () => {
+      const t = setup({ n: 2, over: { portTimeoutMs: when === 'in time' ? 1000 : 2, quiesceMs: 2000 } });
+      const prep = t.chain.ports.prepareSweep;
+      t.cfg.ports = { ...t.cfg.ports, prepareSweep: async (...a) => { await prep(...a); if (when !== 'in time') await sleep(60); return bad; } };
+      const r = await runWithLifecycle(t.cfg);
+      assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+      assert.equal(t.chain.state().signs, 1); assert.deepEqual(t.chain.state().broadcasts, []);
+      assert.equal(r.checkpoint.prepareInFlight, true);
+      assert.ok(loadJournal(t.cfg.journalPath).runner.prepareInFlight);
+      assert.equal(r.checkpoint.orphanedIntents, 0);                           // nothing usable to keep
+      const again = await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() });
+      assert.equal(again.status, 'orphans_unresolved');
+      assert.equal(t.chain.state().signs, 1); assert.deepEqual(t.chain.state().broadcasts, []);
+    });
+  }
+}
+
+test('a complete prepare result (hash and raw bytes) clears the marker together with the intent save', async () => {
+  const t = setup({ n: 1 });
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.status, 'closed'); assert.equal(r.checkpoint.prepareInFlight, false);
+  assert.equal(loadJournal(t.cfg.journalPath).runner.prepareInFlight, null);
+});
+
 test('only a typed PrepareNotStarted rejection clears the marker; the run then continues safely', async () => {
   const t = setup({ n: 1 });
   let first = true; const prep = t.chain.ports.prepareSweep;
