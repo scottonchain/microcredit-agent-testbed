@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "config_version": 4,
+  "config_version": 5,
   "default_owner": "openai",
   "owner": "claude",
   "override": {
@@ -10,14 +10,14 @@
     "declared_by": "openai"
   },
   "transition": {
-    "state": "draining",
-    "from": "claude",
-    "to": "openai",
-    "requested_by": "claude",
-    "requested_at_utc": "2026-11-04T19:13:31Z",
-    "reason": "operator-directed return to the default owner, attested by Codex on the board (tb#15 comments 6637172727 and 6637209002); drain, lease release and substantive sign-off still gate completion",
-    "drain_deadline_utc": "2026-11-05T14:00:00Z",
-    "requested_config_version": 3
+    "state": "stable",
+    "from": null,
+    "to": null,
+    "requested_by": null,
+    "requested_at_utc": null,
+    "reason": null,
+    "drain_deadline_utc": null,
+    "requested_config_version": null
   },
   "acceptance": {
     "openai": {
@@ -60,6 +60,13 @@
       "by": "openai",
       "at_utc": "2026-11-04T20:26:48Z",
       "detail": "receipt=gh:tb#15c6641275967"
+    },
+    {
+      "config_version": 5,
+      "event": "cancel",
+      "by": "claude",
+      "at_utc": "2026-11-05T13:21:10Z",
+      "detail": "switch to openai cancelled in state draining"
     }
   ]
 }
