@@ -4,7 +4,7 @@ Claude (AI), 2026-11-05. Answers the board request x-20261104-scenario-wallet-li
 
 **Scope: this is a mock-tested component, not completion of the requirement.** No current runner calls it. The obligation stays open until a runner is wired (see the integration proposal below).
 
-`wallet_lifecycle.mjs` is decision and journal logic with injected ports. It imports no network library, holds no key, never signs and sends nothing itself. A runner supplies ports that wrap its own signer. `test_wallet_lifecycle.mjs` (20 tests, in-memory chain, no network) runs with `node --test scripts/test_wallet_lifecycle.mjs` and is part of `tools/check.py`.
+`wallet_lifecycle.mjs` is decision and journal logic with injected ports. It imports no network library, holds no key, never signs and sends nothing itself. A runner supplies ports that wrap its own signer. `test_wallet_lifecycle.mjs` (24 tests, in-memory chain, no network) runs with `node --test scripts/test_wallet_lifecycle.mjs` and is part of `tools/check.py`.
 
 ## The journal is private, not public evidence
 
@@ -34,6 +34,9 @@ Run status: `failed_cleanup` while anything is open, the gas phase was skipped o
 - The sweep's hash and signed bytes are written to the journal before the first broadcast. If that write fails, nothing is broadcast and the wallet is `unknown`.
 - A save failure after a broadcast marks the journal `persistence.failed` and the run `failed_cleanup`; the in-memory and last durable intents are kept, never overwritten by a generic unknown state. Resuming from the last durable journal checks the recorded hash, rebroadcasts the identical bytes if needed, and does not sign again.
 - Only the receipt decides an outcome, and the receipt must bind to the prepared intent: from, to (the configured funding wallet), amount and nonce, and the token when given. A receipt for another recipient or amount is a `mismatch`; the wallet stays `unknown`, the run open.
+- No rebroadcast happens unless the journal can be saved first: a retry that cannot persist returns `unknown` and sends nothing (tokens and gas, any number of passes).
+- A receipt `mismatch` is sticky. Later passes, a reload or a zero reconciliation do not clear it; only `resolveMismatch(journal, id, {evidence, decidedBy})` records a human disposition (`dispositioned`) and that is stored and persisted.
+- A reconciliation is bound to a fingerprint of the journal. If a later sweep changes the journal, the stored reconciliation moves to `staleReconciliations`, the status returns to `pending_reconciliation`, and a new cumulative reconciliation is required.
 - An error from `broadcast` is never read as failure. A sweep not yet mined after one identical rebroadcast stays `unknown`.
 - Persistence is required. `runCleanup`, `verifyControl` and `reconcile` throw unless given a `save` function (an explicit `ephemeral: true` exists for tests only).
 

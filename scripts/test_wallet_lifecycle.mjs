@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {
-  newJournal, saveJournal, loadJournal, validateJournal, publicView, verifyControl, runCleanup, finalize, reconcile, terminalVerify,
+  newJournal, saveJournal, loadJournal, validateJournal, publicView, verifyControl, runCleanup, finalize, reconcile, terminalVerify, resolveMismatch,
 } from './wallet_lifecycle.mjs';
 
 const FUND = '0x' + 'f'.repeat(40);
@@ -13,7 +13,7 @@ const addr = n => '0x' + n.toString(16).padStart(40, '0');
 const key = a => a.toLowerCase();
 
 // In-memory chain with a switch for each failure path. No network, no keys.
-function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFor = [], receiptDelay = {}, gasFee = 10n, gasCost = 100n, redirect = false, throwMessage = null } = {}) {
+function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFor = [], receiptDelay = {}, gasFee = 10n, gasCost = 100n, redirect = false, redirectGas = false, throwMessage = null } = {}) {
   const st = {
     tokens: { ...tokens }, gas: { ...gas }, fund: 0n, fundGas: 0n, mined: new Map(), pending: new Map(), broadcasts: [], signs: 0, nonces: {},
     lost: new Set(lost), contracts: new Set(contracts.map(key)), rpcFail: new Set(rpcFailFor.map(key)), delay: { ...receiptDelay },
@@ -33,7 +33,7 @@ function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFo
     },
     async prepareGasSweep(w, to, amount, nonce) {
       st.signs++; const hash = '0xg' + st.signs;
-      st.pending.set(hash, { kind: 'gas', from: key(w.address), to, amount, nonce, id: w.id });
+      st.pending.set(hash, { kind: 'gas', from: key(w.address), to: redirectGas ? OTHER : to, amount, nonce, id: w.id });
       return { hash, raw: 'raw:' + hash };
     },
     async broadcast(raw) {
@@ -327,4 +327,85 @@ test('the public view drops raw signed bytes and the journal never holds key mat
   assert.equal(pub.wallets.w1.sweep.raw, undefined);
   assert.equal(pub.wallets.w1.sweep.hash, j.wallets.w1.sweep.hash);
   assert.ok(!/privateKey|mnemonic|seed|secret/i.test(JSON.stringify(j)));
+});
+
+test('a token receipt mismatch survives second and third passes, a reload and a zero reconciliation until dispositioned', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n }, redirect: true });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('m1', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  assert.equal(j.wallets.w1.state, 'unknown');
+  for (let i = 0; i < 2; i++) {
+    await runCleanup(j, ports, { save });
+    assert.equal(j.wallets.w1.state, 'unknown'); // a zero balance does not turn it into 'empty'
+    assert.equal(j.wallets.w1.sweep.outcome, 'mismatch');
+    reconcile(j, 0n, 0n, { save }); // the zero-sweep reconciliation cannot erase it either
+    assert.equal(j.status, 'failed_cleanup');
+  }
+  const re = loadJournal(p);
+  await runCleanup(re, ports, { save });
+  assert.equal(re.wallets.w1.sweep.outcome, 'mismatch');
+  assert.equal(re.status, 'failed_cleanup');
+  assert.throws(() => resolveMismatch(re, 'w1', { evidence: '' }, { save }), /needs a wallet id/);
+  resolveMismatch(re, 'w1', { evidence: 'explorer shows the transfer went to another address; owner decided', decidedBy: 'owner' }, { save });
+  assert.equal(re.reconciliation, null);
+  await runCleanup(re, ports, { save });
+  reconcile(re, 0n, st.fund, { save });
+  assert.equal(re.wallets.w1.sweep.outcome, 'dispositioned');
+  assert.equal(re.status, 'closed');
+});
+
+test('a gas-return receipt mismatch is just as sticky', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: {}, gas: { [addr(1)]: 1000n }, redirectGas: true });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('m2', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  assert.equal(j.wallets.w1.gas.state, 'unknown');
+  for (let i = 0; i < 2; i++) {
+    await runCleanup(j, ports, { save });
+    assert.equal(j.wallets.w1.gas.sweep.outcome, 'mismatch');
+    reconcile(j, 0n, st.fund, { save });
+    assert.equal(j.status, 'failed_cleanup');
+  }
+  const re = loadJournal(p);
+  await runCleanup(re, ports, { save });
+  assert.equal(re.status, 'failed_cleanup');
+  assert.equal(re.wallets.w1.gas.sweep.outcome, 'mismatch');
+});
+
+test('permanently failing storage: repeated cleanup passes broadcast nothing, tokens or gas', async () => {
+  const bad = () => { throw new Error('disk'); };
+  for (const scenario of [{ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } }, { tokens: {}, gas: { [addr(1)]: 1000n } }]) {
+    const { st, ports } = makeChain(scenario);
+    const j = newJournal('d1', FUND, roster(1), 't0');
+    for (let i = 0; i < 3; i++) await runCleanup(j, ports, { save: bad });
+    assert.equal(st.broadcasts.length, 0);
+    assert.equal(st.fund, 0n);
+    assert.equal(j.status, 'failed_cleanup');
+    assert.equal(j.persistence.failed, true);
+  }
+});
+
+test('a reconciliation goes stale when a later sweep happens, across a reload; a rerun is required', async () => {
+  const ws = roster(1);
+  const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+  const p = tmpPath(); const save = jj => saveJournal(p, jj);
+  const j = newJournal('s1', FUND, ws, 't0');
+  await runCleanup(j, ports, { save });
+  reconcile(j, 0n, st.fund, { save });
+  assert.equal(j.status, 'closed');
+  st.tokens[key(addr(1))] = 5n; st.gas[key(addr(1))] = 1000n; // a later deposit plus gas
+  await runCleanup(j, ports, { save });
+  assert.equal(st.fund, 13n);
+  assert.notEqual(j.status, 'closed'); // the old reconciliation (8) no longer describes the run
+  assert.equal(j.status, 'pending_reconciliation');
+  assert.equal(j.staleReconciliations.length, 1);
+  const re = loadJournal(p);
+  finalize(re, { save });
+  assert.equal(re.status, 'pending_reconciliation');
+  reconcile(re, 0n, st.fund, { save });
+  assert.equal(re.status, 'closed');
+  assert.equal(re.reconciliation.swept, '13');
 });

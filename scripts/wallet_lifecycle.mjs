@@ -146,9 +146,11 @@ async function settle(ports, intent, expect) {
   return 'swept';
 }
 
-async function settleWithRetry(ports, sweep, expect) {
+async function settleWithRetry(ports, sweep, expect, journal, opts) {
   let o = await settle(ports, sweep, expect);
   if (o === 'unknown') {
+    // no byte is ever (re)broadcast unless the intent is durably on disk right now
+    if (!durable(journal, opts)) return 'unknown';
     try { await ports.broadcast(sweep.raw); } catch { /* the bytes may already be mined; the receipt decides */ }
     o = await settle(ports, sweep, expect);
   }
@@ -156,9 +158,13 @@ async function settleWithRetry(ports, sweep, expect) {
 }
 
 async function cleanOne(w, journal, ports, opts) {
+  // A recorded receipt mismatch is never erased by a retry, a zero balance or a zero reconciliation.
+  if ((w.sweep && w.sweep.outcome === 'mismatch') || (w.gas && w.gas.sweep && w.gas.sweep.outcome === 'mismatch')) {
+    w.state = 'unknown'; ev(w, { ev: 'receipt_mismatch_unresolved' }); durable(journal, opts); return;
+  }
   // 1) a recorded, unsettled sweep is settled first, from the recorded intent; it is never signed again
-  if (w.sweep && !['swept', 'failed', 'mismatch'].includes(w.sweep.outcome)) {
-    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token });
+  if (w.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(w.sweep.outcome)) {
+    const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce: w.sweep.nonce, token: opts.token }, journal, opts);
     if (o === 'unknown') { w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: w.sweep.hash }); durable(journal, opts); return; }
     w.sweep.outcome = o;
     ev(w, { ev: 'sweep_settled', hash: w.sweep.hash, outcome: o });
@@ -191,7 +197,7 @@ async function cleanOne(w, journal, ports, opts) {
   ev(w, { ev: 'sweep_prepared', hash: prepared.hash, amount: tokens.toString(), nonce });
   if (!durable(journal, opts)) { w.state = 'unknown'; ev(w, { ev: 'intent_not_durable_not_sent' }); return; }
   try { await ports.broadcast(prepared.raw); } catch { /* the receipt decides, not this error */ }
-  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token });
+  const o = await settleWithRetry(ports, w.sweep, { from: w.address, to: opts.fundingWallet, amount: w.sweep.amount, nonce, token: opts.token }, journal, opts);
   if (o === 'unknown') { w.sweep.outcome = 'unknown'; w.state = 'unknown'; ev(w, { ev: 'sweep_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   w.sweep.outcome = o;
   ev(w, { ev: 'sweep_settled', hash: prepared.hash, outcome: o });
@@ -201,11 +207,12 @@ async function cleanOne(w, journal, ports, opts) {
 }
 
 async function gasOne(w, journal, ports, opts) {
+  if (w.gas && w.gas.sweep && w.gas.sweep.outcome === 'mismatch') { w.gas.state = 'unknown'; ev(w, { ev: 'gas_receipt_mismatch_unresolved' }); durable(journal, opts); return; }
   if (!['swept', 'empty', 'dust_accepted'].includes(w.state)) return;
   w.gas = w.gas || { state: 'pending' };
   const g = w.gas;
-  if (g.sweep && !['swept', 'failed', 'mismatch'].includes(g.sweep.outcome)) {
-    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce });
+  if (g.sweep && !['swept', 'failed', 'mismatch', 'dispositioned'].includes(g.sweep.outcome)) {
+    const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce: g.sweep.nonce }, journal, opts);
     if (o === 'unknown') { g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: g.sweep.hash }); durable(journal, opts); return; }
     g.sweep.outcome = o;
     ev(w, { ev: 'gas_return_settled', hash: g.sweep.hash, outcome: o });
@@ -226,7 +233,7 @@ async function gasOne(w, journal, ports, opts) {
   ev(w, { ev: 'gas_return_prepared', hash: prepared.hash, amount: amount.toString(), nonce });
   if (!durable(journal, opts)) { g.state = 'unknown'; ev(w, { ev: 'gas_intent_not_durable_not_sent' }); return; }
   try { await ports.broadcast(prepared.raw); } catch { /* receipt decides */ }
-  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce });
+  const o = await settleWithRetry(ports, g.sweep, { from: w.address, to: opts.fundingWallet, amount: g.sweep.amount, nonce }, journal, opts);
   if (o === 'unknown') { g.sweep.outcome = 'unknown'; g.state = 'unknown'; ev(w, { ev: 'gas_return_outcome_unknown', hash: prepared.hash }); durable(journal, opts); return; }
   g.sweep.outcome = o;
   ev(w, { ev: 'gas_return_settled', hash: prepared.hash, outcome: o });
@@ -265,6 +272,24 @@ function gasClass(w) {
   return { open: true, exception: null }; // pending, signer_lost, failed, unknown
 }
 
+function fingerprint(journal) {
+  return JSON.stringify(Object.values(journal.wallets).map(w => [w.id, w.state, (w.swept || []).map(x => [x.hash, x.amount]), w.sweep ? [w.sweep.hash, w.sweep.outcome] : null, w.residual || null, w.gas ? [w.gas.state, w.gas.returned || null, w.gas.residual || null, w.gas.sweep ? [w.gas.sweep.hash, w.gas.sweep.outcome] : null] : null]));
+}
+
+// An explicit, evidence-backed disposition is the only way to clear an unresolved receipt mismatch.
+export function resolveMismatch(journal, id, disposition, options = {}) {
+  resolveOptions(journal, options);
+  const w = journal.wallets[id];
+  if (!w || !disposition || !disposition.evidence || !disposition.decidedBy) throw new Error('a mismatch needs a wallet id and a disposition with evidence and decidedBy');
+  const hit = (w.sweep && w.sweep.outcome === 'mismatch') ? w.sweep : (w.gas && w.gas.sweep && w.gas.sweep.outcome === 'mismatch') ? w.gas.sweep : null;
+  if (!hit) throw new Error('no unresolved mismatch for this wallet');
+  hit.outcome = 'dispositioned';
+  hit.disposition = { evidence: String(disposition.evidence).slice(0, 200), decidedBy: String(disposition.decidedBy).slice(0, 60) };
+  ev(w, { ev: 'mismatch_dispositioned', hash: hit.hash });
+  journal.reconciliation = null;
+  durable(journal, options);
+}
+
 export function finalize(journal, options = {}) {
   const approved = new Set([...(options.approvedContracts || [])].map(a => String(a).toLowerCase()));
   const ws = Object.values(journal.wallets);
@@ -277,7 +302,13 @@ export function finalize(journal, options = {}) {
     if (g.exception) exceptions.push({ id: w.id, state: w.state, gas: w.gas.state, residual: w.gas.residual || null });
   }
   journal.summary = { counts, openWallets: open, exceptions };
-  const rec = journal.reconciliation;
+  let rec = journal.reconciliation;
+  const fp = fingerprint(journal);
+  if (rec && rec.fingerprint && rec.fingerprint !== fp) {
+    // the state changed after this reconciliation: it no longer describes the run
+    (journal.staleReconciliations = journal.staleReconciliations || []).push(rec);
+    journal.reconciliation = null; rec = null;
+  }
   if (open.length > 0 || journal.gasPhase !== 'complete' || journal.persistence.failed) journal.status = 'failed_cleanup';
   else if (!rec) journal.status = 'pending_reconciliation';
   else if (!rec.matches) journal.status = 'failed_cleanup'; // sticky: only a later matching reconciliation can change this
@@ -292,7 +323,7 @@ export function reconcile(journal, fundingBefore, fundingAfter, options = {}) {
   resolveOptions(journal, options); // persistence is required
   const swept = Object.values(journal.wallets).flatMap(w => w.swept || []).reduce((a, s) => a + BigInt(s.amount), 0n);
   const gain = BigInt(fundingAfter) - BigInt(fundingBefore);
-  const result = { swept: swept.toString(), fundingGain: gain.toString(), matches: gain === swept };
+  const result = { swept: swept.toString(), fundingGain: gain.toString(), matches: gain === swept, fingerprint: fingerprint(journal) };
   journal.reconciliation = result;
   (journal.reconciliationHistory = journal.reconciliationHistory || []).push(result);
   finalize(journal, options);
