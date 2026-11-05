@@ -6,7 +6,7 @@ import path from 'node:path';
 import { EventEmitter } from 'node:events';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { runWithLifecycle, lifecycleEnabled, checkpoint, publicReport, exitCodeFor, ENV_FLAG } from './lifecycle_runner.mjs';
+import { runWithLifecycle, lifecycleEnabled, checkpoint, publicReport, exitCodeFor, ENV_FLAG, PrepareNotStarted } from './lifecycle_runner.mjs';
 import { loadJournal } from './wallet_lifecycle.mjs';
 import { makeChain, roster, addr, FUND, OTHER, TOKEN, CHAIN_ID } from './lifecycle_fixtures.mjs';
 
@@ -529,6 +529,43 @@ test('late funding or scenario settlement with a failing save keeps the lock unt
   } finally { restore(); }
   assert.equal(fs.existsSync(t.cfg.journalPath + '.lock'), false);
   assert.equal(loadJournal(t.cfg.journalPath).status, 'failed_cleanup');
+});
+
+// Codex review 6653160958: a generic rejection does not prove that nothing was signed.
+for (const [label, wrap] of [
+  ['immediately', prep => async (...a) => { await prep(...a); throw new Error('post-sign output failure'); }],
+  ['after the port timeout', prep => async (...a) => { await prep(...a); await sleep(60); throw new Error('post-sign transport failure'); }],
+]) {
+  test(`sign-then-reject ${label}: the durable marker stays, nothing more is signed or sent, and a resume refuses`, async () => {
+    const t = setup({ n: 2, over: { portTimeoutMs: label === 'immediately' ? 1000 : 2, quiesceMs: 2000 } });
+    t.cfg.ports = { ...t.cfg.ports, prepareSweep: wrap(t.chain.ports.prepareSweep) };
+    const r = await runWithLifecycle(t.cfg);
+    assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+    assert.equal(t.chain.state().signs, 1);                                   // halted after the first unknown failure: no retry, no second wallet
+    assert.deepEqual(t.chain.state().broadcasts, []);
+    assert.equal(r.checkpoint.prepareInFlight, true);
+    assert.ok(loadJournal(t.cfg.journalPath).runner.prepareInFlight);          // durable, survives a reload or process death
+    for (let i = 0; i < 2; i++) {
+      const again = await runWithLifecycle({ ...t.cfg, ports: t.chain.ports, signals: new EventEmitter() });
+      assert.equal(again.status, 'orphans_unresolved');
+    }
+    assert.equal(t.chain.state().signs, 1); assert.deepEqual(t.chain.state().broadcasts, []);
+  });
+}
+
+test('only a typed PrepareNotStarted rejection clears the marker; the run then continues safely', async () => {
+  const t = setup({ n: 1 });
+  let first = true; const prep = t.chain.ports.prepareSweep;
+  t.cfg.ports = { ...t.cfg.ports, prepareSweep: async (...a) => { if (first) { first = false; throw new PrepareNotStarted('refused before the signer was touched'); } return prep(...a); } };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(r.checkpoint.prepareInFlight, false);                         // typed proof: nothing was signed
+  assert.equal(r.status, 'closed'); assert.equal(t.chain.state().fund, '1000'); // the retry pass signed once and finished
+  assert.equal(t.chain.state().signs, 2);                                      // one token sweep, one gas return
+  // an error that merely LOOKS like it (same text, wrong type) does not clear it
+  const u = setup({ n: 1 });
+  u.cfg.ports = { ...u.cfg.ports, prepareSweep: async () => { throw new Error('PrepareNotStarted'); } };
+  const r2 = await runWithLifecycle(u.cfg);
+  assert.equal(r2.checkpoint.prepareInFlight, true);
 });
 
 test('lock creation window: an entrant sees no half-written lock, so there is exactly one owner', async () => {

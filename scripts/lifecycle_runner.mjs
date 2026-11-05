@@ -33,6 +33,12 @@ import {
 } from './wallet_lifecycle.mjs';
 
 export const ENV_FLAG = 'OMNEQUA_WALLET_LIFECYCLE';
+
+// The ONLY rejection from a prepare port that proves no signature was produced. A port throws it only when it
+// can show, independently of any exception text, that signing never began (for example it refused before touching
+// the signer). Any other rejection or timeout leaves the durable in-flight marker in place: a generic error does
+// not show that signing did not happen (it may have completed before an output or transport failure).
+export class PrepareNotStarted extends Error {}
 export function lifecycleEnabled(env = process.env) { return env[ENV_FLAG] === '1'; }
 
 const PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'receipt'];
@@ -166,7 +172,7 @@ function identityOf(cfg) {
 // bytes) that blocks closure. Reads may simply time out into 'unknown'.
 const EFFECT_PORTS = new Set(['prepareSweep', 'prepareGasSweep', 'broadcast']);
 function boundedPorts(ports, ms, hooks) {
-  const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [], lateRejected: false };
+  const t = { outstanding: new Set(), halted: false, effectTimedOut: false, orphans: [], lateRejected: false, prepareUncertain: false };
   const out = {};
   for (const name of PORTS) {
     const isEffect = EFFECT_PORTS.has(name);
@@ -180,13 +186,20 @@ function boundedPorts(ports, ms, hooks) {
       if (isEffect) {
         const done = underlying.then(v => {
           if (timedOut && isPrepare && v && v.hash) t.orphans.push({ kind: name, walletId: a[0] && a[0].id, hash: v.hash, raw: v.raw, amount: String(a[2]), nonce: a[3] });
-        }, () => { if (timedOut && isPrepare) t.lateRejected = true; }).then(() => { t.outstanding.delete(done); });
+        }, e => { if (timedOut && isPrepare) { if (e instanceof PrepareNotStarted) t.lateRejected = true; else { t.prepareUncertain = true; t.halted = true; } } }).then(() => { t.outstanding.delete(done); });
         t.outstanding.add(done);
       }
       return new Promise((resolve, reject) => {
         const timer = setTimeout(() => { timedOut = true; if (isEffect) { t.halted = true; t.effectTimedOut = true; } reject(new Error('port_timeout')); }, ms);
         // in time: the marker is cleared in memory so the component's very next durable write (the intent) carries the clear
-        underlying.then(v => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); resolve(v); }, e => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); reject(e); });
+        underlying.then(v => { clearTimeout(timer); if (isPrepare && !timedOut) hooks.prepareEnd(); resolve(v); }, e => {
+          clearTimeout(timer);
+          if (isPrepare && !timedOut) {
+            if (e instanceof PrepareNotStarted) hooks.prepareEnd();          // typed proof that nothing was signed
+            else { t.prepareUncertain = true; t.halted = true; }             // unknown: keep the marker, launch nothing more
+          }
+          reject(e);
+        });
       });
     };
   }
@@ -247,7 +260,7 @@ export async function runWithLifecycle(cfg) {
     const save = j => saveJournal(cfg.journalPath, j);
     const cur = { journal: null };
     const ports = boundedPorts(cfg.ports, cfg.portTimeoutMs ?? 15000, {
-      prepareStart: info => { const j = cur.journal; j.runner.prepareInFlight = { ...info, at: (cfg.now || (() => new Date().toISOString()))() }; try { save(j); } catch (e) { j.persistence = { failed: true }; throw e; } },
+      prepareStart: info => { const j = cur.journal; const prev = j.runner.prepareInFlight; j.runner.prepareInFlight = { ...info, at: (cfg.now || (() => new Date().toISOString()))() }; try { save(j); } catch (e) { j.runner.prepareInFlight = prev; j.persistence = { failed: true }; throw e; } }, // the signer is not called, so nothing was signed
       prepareEnd: () => { if (cur.journal && cur.journal.runner) cur.journal.runner.prepareInFlight = null; },
     });
     const base = {
@@ -346,12 +359,13 @@ export async function runWithLifecycle(cfg) {
     for (let pass = 0; pass < (cfg.maxCleanupPasses ?? 4); pass++) {
       await runCleanup(journal, ports, base);
       let found = await terminalVerify(journal, ports, base);
-      if (found.length && !tr.effectTimedOut) { await runCleanup(journal, ports, base); found = await terminalVerify(journal, ports, base); }
+      if (found.length && !tr.effectTimedOut && !tr.prepareUncertain) { await runCleanup(journal, ports, base); found = await terminalVerify(journal, ports, base); }
+      if (tr.prepareUncertain) break;     // a prepare failed in an unknown way: no more signing; the marker stays
       if (!tr.effectTimedOut) break;
       if (!(await drainEffects(tr, quiesceMs))) return unresolved(journal, 'cleanup_effects', (async () => { while (tr.outstanding.size) await Promise.all([...tr.outstanding]); })());
       recordOrphans(journal);
       try { save(journal); } catch { journal.persistence = { failed: true }; }
-      if (journal.runner.orphans && journal.runner.orphans.length) break; // no further signing once an orphan exists
+      if ((journal.runner.orphans && journal.runner.orphans.length) || tr.prepareUncertain) break; // no further signing once an orphan or an unknown prepare failure exists
       tr.halted = false; tr.effectTimedOut = false; // everything has stopped: the next pass reads the receipts
     }
     const after = await readFunding(ports, cfg);
