@@ -15,7 +15,8 @@ closed. All state changes happen only after the arithmetic they depend on has su
 so a trapped failure leaves the ledger exactly as it was. display_score() and the analysis
 helpers margin()/break_even_charge() are NOT part of this guarantee: display_score uses a
 natural logarithm and is an approximation (50 digits) for display only, and the helpers use
-the default 28-digit context. Neither feeds the ledger.
+the default 28-digit context (they inherit the CALLER's Decimal context, so a caller that changes
+the context changes their results; only the ledger pins its own). Neither feeds the ledger.
 """
 from dataclasses import dataclass
 from decimal import Context, Decimal, DivisionByZero, Inexact, InvalidOperation, Overflow, localcontext
@@ -208,8 +209,9 @@ class ReputationLedger:
     @_fail_closed
     def reserve(self, loan, root, units, forecast_pd, allocations):
         """Return True when a new reservation is created, False for an exact retry of an
-        ACTIVE reservation. A cancelled or settled identity is terminal: any retry raises
-        ReservationTerminal, so False can never be mistaken for 'a lock exists'."""
+        ACTIVE reservation, so False always means that a lock exists. A cancelled or settled
+        identity is terminal: an identical retry raises ReservationTerminal and a retry with
+        changed fields raises ValueError, so neither can be mistaken for an open lock."""
         units, forecast = nonnegative(units), probability(forecast_pd)
         allocations = tuple(Allocation(tuple(a.path), nonnegative(a.units)) for a in allocations)
         if not loan or not root or units == ZERO or not allocations:

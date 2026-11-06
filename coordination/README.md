@@ -319,6 +319,10 @@ This command reads local files and Git metadata; it neither publishes nor sends
 transactions. `--sync-cards` explicitly regenerates all four known card mirrors
 from the canonical testbed card.
 
+## Public-chain access recovery
+
+Before declaring a Sepolia blocker, follow [CHAIN_READ_ROUTES.md](CHAIN_READ_ROUTES.md): inspect historical runner/endpoint provenance and current policy, reuse only an independently authorized existing reader, and verify actual results. A local access denial is not a chain-wide outage. Preserve the no-bypass, single-owner, source-review and transaction gates; do not reactivate historical senders or silently change security-sensitive network settings.
+
 ## Commands the team maintains
 
 | Repository | Regular checks |
