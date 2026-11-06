@@ -1,4 +1,5 @@
 import copy
+import functools
 import hashlib
 import json
 import os
@@ -28,20 +29,50 @@ def _client_uids():
 CONSENT_UID, EXECUTOR_UID = _client_uids()
 
 
-def _viem_resolvable():
-    """True when Node can resolve the `viem` package that two tests use to sign ephemeral fixtures.
-    A missing module is the only reason to skip: any other failure of those tests still fails."""
+_VIEM_PROBE = "require.resolve('viem/accounts')"
+
+
+def _probe_viem(run=subprocess.run):
+    """Classify why the Node `viem` package may be unavailable. Returns (kind, detail) with kind one of
+    'present', 'viem_missing' (Node ran and positively reported that 'viem/accounts' cannot be found),
+    'node_missing' (no Node executable: a different prerequisite) or 'error' (anything else: a permission
+    error, a timeout, an unrelated Node or resolver failure). Only the first three may ever become a
+    skip; 'error' makes the dependent tests fail with the diagnostic instead of hiding as a skip."""
     try:
-        r = subprocess.run(['node', '-e', "require.resolve('viem/accounts')"], capture_output=True, text=True, timeout=15)
-    except (OSError, subprocess.TimeoutExpired):
-        return False
-    return r.returncode == 0
+        r = run(['node', '-e', _VIEM_PROBE], capture_output=True, text=True, timeout=15)
+    except FileNotFoundError:
+        return 'node_missing', 'node executable not found'
+    except subprocess.TimeoutExpired:
+        return 'error', 'viem probe timed out after 15s'
+    except OSError as e:
+        return 'error', 'cannot start node: %r' % (e,)
+    if r.returncode == 0:
+        return 'present', ''
+    err = r.stderr or ''
+    if 'MODULE_NOT_FOUND' in err and "'viem/accounts'" in err:
+        return 'viem_missing', ''
+    return 'error', 'node exited %d: %s' % (r.returncode, err.strip()[:300])
 
 
-NEEDS_VIEM = unittest.skipUnless(
-    _viem_resolvable(),
-    'SKIPPED, NOT A PASS: needs the Node viem package (install it where Node can resolve it); '
-    'this environment cannot, so the signing-bridge claim is untested here')
+def _needs_viem_for(probe):
+    kind, detail = probe
+
+    def decorate(test):
+        if kind == 'present':
+            return test
+        if kind == 'viem_missing':
+            return unittest.skip('SKIPPED, NOT A PASS: the Node viem package is not installed here; the signing-bridge claim is untested in this environment')(test)
+        if kind == 'node_missing':
+            return unittest.skip('SKIPPED, NOT A PASS: no Node.js executable (a separate prerequisite from viem); the signing-bridge claim is untested in this environment')(test)
+
+        @functools.wraps(test)
+        def unclassified(self, *args, **kwargs):
+            self.fail('viem dependency probe failed unexpectedly, so this test is neither run nor skipped: ' + detail)
+        return unclassified
+    return decorate
+
+
+NEEDS_VIEM = _needs_viem_for(_probe_viem())
 
 class RPC:
     def __init__(self):self.b=f.fixture();self.calls=[];self.code='0x6000';self.fail=False
@@ -278,6 +309,61 @@ let raw='';process.stdin.on('data',c=>raw+=c);process.stdin.on('end',async()=>{c
         self.assertIsNotNone(provider.bundle(tx(101)))
         rpc.call=lambda m,p: f.addr_topic(f.OFFICER) if m=='eth_getStorageAt' else original(m,p)
         with self.assertRaisesRegex(ValueError,'implementation changed'):provider.bundle(tx(101))
+
+
+class ViemProbeTests(unittest.TestCase):
+    """The dependency probe is mocked at the subprocess boundary: no Node, viem, key or chain is touched."""
+    def run_with(self, result):
+        def fake(*a, **k):
+            if isinstance(result, BaseException):
+                raise result
+            return result
+        return _probe_viem(fake)
+
+    def done(self, returncode, stderr=''):
+        return subprocess.CompletedProcess(['node'], returncode, stdout='', stderr=stderr)
+
+    def test_success_is_present(self):
+        self.assertEqual(self.run_with(self.done(0))[0], 'present')
+
+    def test_only_a_positively_reported_missing_viem_is_viem_missing(self):
+        err = "Error: Cannot find module 'viem/accounts'\n    at ... {\n  code: 'MODULE_NOT_FOUND',\n"
+        self.assertEqual(self.run_with(self.done(1, err))[0], 'viem_missing')
+
+    def test_a_different_missing_module_is_an_error_not_a_viem_skip(self):
+        err = "Error: Cannot find module 'abitype'\n  code: 'MODULE_NOT_FOUND'"
+        self.assertEqual(self.run_with(self.done(1, err))[0], 'error')
+
+    def test_unrelated_nonzero_exit_is_an_error_with_its_diagnostic(self):
+        kind, detail = self.run_with(self.done(7, 'SyntaxError: boom'))
+        self.assertEqual(kind, 'error')
+        self.assertIn('7', detail)
+        self.assertIn('SyntaxError: boom', detail)
+
+    def test_permission_error_is_an_error(self):
+        kind, detail = self.run_with(PermissionError(13, 'denied'))
+        self.assertEqual(kind, 'error')
+        self.assertIn('cannot start node', detail)
+
+    def test_timeout_is_an_error(self):
+        self.assertEqual(self.run_with(subprocess.TimeoutExpired(['node'], 15))[0], 'error')
+
+    def test_absent_node_is_its_own_classification(self):
+        self.assertEqual(self.run_with(FileNotFoundError(2, 'no node'))[0], 'node_missing')
+
+    def test_decorator_runs_skips_or_fails_by_classification(self):
+        def sample(self):
+            return 'ran'
+        self.assertIs(_needs_viem_for(('present', ''))(sample), sample)
+        for kind in ('viem_missing', 'node_missing'):
+            wrapped = _needs_viem_for((kind, ''))(sample)
+            self.assertTrue(getattr(wrapped, '__unittest_skip__', False), kind)
+            self.assertIn('NOT A PASS', wrapped.__unittest_skip_why__)
+        failing = _needs_viem_for(('error', 'node exited 7: boom'))(sample)
+        self.assertFalse(getattr(failing, '__unittest_skip__', False))
+        with self.assertRaises(AssertionError) as caught:
+            failing(self)
+        self.assertIn('node exited 7: boom', str(caught.exception))
 
 class GuardTests(unittest.TestCase):
     def test_pinned_private_manifest_and_fresh_probes_are_all_required(self):
