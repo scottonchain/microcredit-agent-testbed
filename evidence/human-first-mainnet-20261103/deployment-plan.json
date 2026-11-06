@@ -1,0 +1,90 @@
+{
+  "status": "prepared_plan_not_deployment_authorization",
+  "decision": "NO_GO_public_pool_opening_CHANGE_private_fiat_servicing_and_lender_treasury_first",
+  "decision_scope": "Terminal decision for this preparatory phase; the public-pool mapping is a parked conditional comparison, not an active implementation backlog.",
+  "prepared_on": "2026-11-04",
+  "source": {
+    "testbed_main": "dc85d77f2fd7653e1e791cf85cb833eb3e41272e",
+    "contract_main": "7ceaf07d46bc2ebe244175af60f027bd8f2a8995",
+    "app_branch": "b80b15a9142ac19de42de9e6e58b98aceee38abe"
+  },
+  "network": {
+    "target_chain_id": 8453,
+    "current_demo_chain_id": 84532,
+    "candidate_native_usdc": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "candidate_token_basis": "Existing Base mainnet read-only receipt; independently recheck against Circle's current official address list, decimals, runtime and chain before approval."
+  },
+  "production_script_parameters": {
+    "USDC_ADDRESS": null,
+    "ADMIN": null,
+    "EFFR_BPS": null,
+    "RISK_PREMIUM_BPS": null,
+    "MAX_LOAN": 20000000,
+    "TIMELOCK_DELAY": 172800,
+    "RESERVE_BPS": 4500,
+    "PROTOCOL_FEE_BPS": 0,
+    "ISSUANCE_BUDGET_LINES": 1,
+    "MAX_INCREASE_PER_REPORT_LINES": 1,
+    "MAX_SCORE_AGE": 604800,
+    "CRE_FORWARDER": null,
+    "CRE_WORKFLOW_OWNER": null,
+    "CRE_WORKFLOW_ID": null,
+    "RELAYER": null
+  },
+  "parameter_semantics": {
+    "not_an_env_file": true,
+    "null": "Missing required public input, or explicitly omitted optional setting as described in deployment-plan.md; never substitute a fictional address.",
+    "pricing": "EFFR is deployment-day input; premium needs the runbook's calibration/review receipt. Historical D7 933bps total is a comparison, not an approved mainnet quote.",
+    "max_loan": "Scales score-issued credit; does not enforce first/repeat/global principal caps.",
+    "oracle": "No reporter and no CRE forwarder. Minimal positive script budgets remain dormant; no score overrides. This does not disable backed lending.",
+    "relayer": "A real authorized servicing relayer address must be selected and verified before a meta-transaction route is used. Whitelisting does not disable direct methods.",
+    "opening": "No funding or public opening before ownership acceptance, explicit pause/readback, security/legal gates and admission-boundary demonstration."
+  },
+  "role_addresses": {
+    "named_lender": null,
+    "admin_multisig": null,
+    "gas_only_deployer": null,
+    "lender_treasury": null,
+    "servicing_relayer": null,
+    "backing_custodian": null,
+    "pool": null,
+    "lens": null,
+    "score_provider": null,
+    "timelock": null
+  },
+  "pilot_policy": {
+    "sponsor_capital_intended_usdc_micros": 100000000,
+    "first_loan_cap_usdc_micros": 10000000,
+    "repeat_loan_cap_usdc_micros": 20000000,
+    "term_seconds": 7776000,
+    "pause_below_reserve_usdc_micros": 25000000,
+    "maximum_loan_fraction_of_reserve": "1/5",
+    "first_loan_backing_fraction": "1",
+    "open_access_repeat_backing_fraction": "1",
+    "named_cohort_repeat_backing_fraction": "1/2 only after approved cohort evidence",
+    "historical_d7_total_rate_bps_for_comparison_only": 933,
+    "consumer_annualized_cost_diagnostic_ceiling_bps": 1200,
+    "all_in_cost_stop_cents_per_explicit_loan_denominator": 15,
+    "rail_cost_stop_fraction_of_principal": "1/10"
+  },
+  "funding_split_usdc_micros": {
+    "lendable_sponsor_deposit": null,
+    "junior_first_loss_reserve": null,
+    "restricted_backing": null,
+    "treasury_settlement_float": null,
+    "withheld_interest": null
+  },
+  "cost_estimate": {
+    "basis": "not_quoted_requires_real_addresses_and_dated_simulation",
+    "l2_execution_wei": null,
+    "l1_data_fee_wei": null,
+    "other_applicable_chain_fees_wei": null,
+    "governance_schedule_execute_pause_wei": null,
+    "configuration_and_funding_wei": null,
+    "eth_usd_conversion_quote": null,
+    "security_review_and_bounty_usd": null,
+    "provider_setup_and_recurring_usd": null,
+    "per_loan_and_capital_lock_usd": null
+  },
+  "execution_authorized": false
+}

@@ -1,9 +1,9 @@
 """Independent arithmetic/state vectors; these tests perform no chain calls."""
 from concurrent.futures import ThreadPoolExecutor
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, Inexact, ROUND_HALF_UP
 import unittest
 
-from oracle import (Allocation, Cashflow, ReputationLedger, affordability,
+from oracle import (Allocation, Cashflow, ReportConflict, ReputationLedger, ReservationTerminal, affordability,
                     break_even_charge, brier_penalty, display_score, margin, root_budget)
 
 D = Decimal
@@ -151,9 +151,91 @@ class ReservationTests(unittest.TestCase):
     def test_old_reservation_replay_never_relocks_settled_loan(self):
         self.reserve()
         self.ledger.settle('loan', 'root', True, 'label1')
-        self.assertFalse(self.reserve())
+        with self.assertRaises(ReservationTerminal):  # was False before the 433 amendment: indistinguishable from "a lock exists"
+            self.reserve()
         self.assertEqual(self.ledger.locked('root'), D('0'))
         self.assertEqual(self.ledger.penalties['root'], D('14.1135'))
+
+    def test_reserve_false_means_only_an_exact_retry_of_an_active_reservation(self):
+        self.assertTrue(self.reserve())
+        self.assertFalse(self.reserve())                       # active exact retry
+        self.assertEqual(self.ledger.locked('root'), D('15'))
+
+    def test_cancelled_identity_is_terminal_and_never_reopened(self):
+        self.reserve()
+        self.ledger.cancel_before_disbursement('loan', 'root')
+        with self.assertRaises(ReservationTerminal):
+            self.reserve()                                     # exact retry must not read as an open lock
+        with self.assertRaises(ValueError):
+            self.reserve(u='14')                               # changed fields
+        self.assertEqual(self.ledger.locked('root'), D('0'))
+        self.assertNotIn(('loan', 'root'), self.ledger.open)
+
+    def test_settled_identity_retry_after_correction_is_also_terminal(self):
+        self.reserve()
+        self.ledger.settle('loan', 'root', True, 'label1')
+        self.ledger.correct('loan', 'root', False, 'appeal1')
+        with self.assertRaises(ReservationTerminal):
+            self.reserve()
+        self.assertEqual(self.ledger.locked('root'), D('0'))
+
+    def test_late_original_report_after_correction_is_a_noop_preserving_the_corrected_outcome(self):
+        self.reserve()
+        self.assertTrue(self.ledger.settle('loan', 'root', True, 'rep1'))
+        self.assertTrue(self.ledger.correct('loan', 'root', False, 'corr1'))
+        corrected = self.ledger.penalties['root']
+        self.assertFalse(self.ledger.settle('loan', 'root', True, 'rep1'))   # exact old delivery
+        self.assertEqual(self.ledger.penalties['root'], corrected)
+        self.assertFalse(self.ledger.outcomes[('loan', 'root')].defaulted)
+        self.assertEqual(self.ledger.skill_updates[('loan', 'root')], 1)
+
+    def test_reused_report_identity_with_changed_label_rejects_even_after_a_correction(self):
+        self.reserve()
+        self.ledger.settle('loan', 'root', True, 'rep1')
+        self.ledger.correct('loan', 'root', False, 'corr1')
+        with self.assertRaises(ReportConflict):
+            self.ledger.settle('loan', 'root', False, 'rep1')              # a bare id set would hide this conflict
+        with self.assertRaises(ReportConflict):
+            self.ledger.correct('loan', 'root', True, 'corr1')
+        with self.assertRaises(ReportConflict):
+            self.ledger.correct('loan', 'root', False, 'rep1')             # one namespace: rep1 carried True
+        with self.assertRaises(ValueError):
+            self.ledger.settle('loan', 'root', True, 'rep2')               # a NEW id still needs an explicit correction
+        self.assertFalse(self.ledger.outcomes[('loan', 'root')].defaulted)
+
+    def test_ledger_arithmetic_fails_closed_instead_of_rounding(self):
+        sub_precision = D('0.' + '0' * 59 + '1')                          # 1e-60: below what 60 digits can add to 10
+        paths = [Allocation(('root', 'borrower'), D('10')), Allocation(('root', 'b2', 'borrower'), sub_precision)]
+        with self.assertRaises(Inexact):
+            self.ledger.reserve('loan', 'root', D('10'), '.03', paths)     # was accepted as summing to exactly 10
+        self.assertEqual(self.ledger.locked('root'), D('0'))
+        self.assertNotIn(('loan', 'root'), self.ledger.history)
+
+    def test_trapped_settlement_leaves_the_reservation_open_and_the_penalty_unchanged(self):
+        units = D('1.' + '1' * 30)
+        pd = '0.' + '3' * 30
+        self.ledger.reserve('loan', 'root', units, pd, [Allocation(('root', 'borrower'), units)])
+        before = (dict(self.ledger.penalties), dict(self.ledger.open), dict(self.ledger.outcomes))
+        for label in (True, False):
+            with self.subTest(label=label), self.assertRaises(Inexact):
+                self.ledger.settle('loan', 'root', label, 'rep1')
+        self.assertEqual((dict(self.ledger.penalties), dict(self.ledger.open), dict(self.ledger.outcomes)), before)
+        self.assertEqual(self.ledger.locked('root'), units)
+        self.assertEqual(self.ledger.skill_updates, {})
+
+    # ---- PROVISIONAL REFERENCE SEMANTICS (not finalized mechanism or underwriting policy) ----
+    def test_provisional_self_path_is_rejected_by_the_reference_ledger(self):
+        with self.assertRaises(ValueError):
+            self.ledger.reserve('loan', 'root', '5', '.03', [Allocation(('root', 'root'), D('5'))])
+        self.assertEqual(self.ledger.locked('root'), D('0'))
+
+    def test_provisional_independent_roots_counts_every_recorded_identity(self):
+        self.reserve(loan='cancelled-loan')
+        self.ledger.cancel_before_disbursement('cancelled-loan', 'root')
+        self.assertEqual(self.ledger.independent_roots('cancelled-loan'), frozenset(['root']))
+        self.reserve(loan='settled-loan', u='1')
+        self.ledger.settle('settled-loan', 'root', False, 'rep1')
+        self.assertEqual(self.ledger.independent_roots('settled-loan'), frozenset(['root']))
 
     def test_old_correction_retry_never_reapplies_superseded_label(self):
         self.reserve()

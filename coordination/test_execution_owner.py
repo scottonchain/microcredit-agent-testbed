@@ -5,6 +5,7 @@ import json
 import os
 import tempfile
 import unittest
+from pathlib import Path
 
 try:
     from . import execution_owner as eo
@@ -19,11 +20,21 @@ DEADLINE = "2026-11-01T19:00:00Z"
 RECEIPT_OPENAI = "gh:tb#15c6561999999"
 
 
+FIXTURE = Path(__file__).with_name("fixtures") / "execution-owner-stable-claude.json"
+
+
 def base():
-    return eo.load(eo.CONFIG_PATH)
+    # A fixed stable fixture, not the live file: the live file legitimately changes state (draining,
+    # a new owner) and the behavioural tests below must not depend on it.
+    return eo.load(FIXTURE)
 
 
 class ConfigTests(unittest.TestCase):
+    def test_the_live_config_is_valid_whatever_its_state(self):
+        live = eo.load(eo.CONFIG_PATH)
+        self.assertEqual(eo.validate(live), [])
+        self.assertEqual(live["default_owner"], "openai")
+
     def test_shipped_config_is_valid_and_claude_owns_heavy_work(self):
         cfg = base()
         self.assertEqual(eo.validate(cfg), [])

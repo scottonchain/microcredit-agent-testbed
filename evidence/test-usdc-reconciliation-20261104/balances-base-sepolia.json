@@ -1,0 +1,910 @@
+{
+ "chain": 84532,
+ "token": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+ "pinned_block": 54454080,
+ "read_at_utc": "2026-11-04T17:23:08Z",
+ "units": "USDC 6 decimals; ETH wei",
+ "note": "usdc_at_run_end is the committed role-balances.json of run 20261013-run1; the root and contract rows have none",
+ "rows": [
+  {
+   "id": "client-01",
+   "address": "0xdD6982cB8e8048dd60dA676e5235AB6498C8DF7E",
+   "usdc_at_run_end": "14600000",
+   "usdc_now": "14600000",
+   "eth_now": "78001093999525",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-02",
+   "address": "0xDF2B082674817a336492F2B74569EEf5F26D4bFB",
+   "usdc_at_run_end": "16300000",
+   "usdc_now": "16300000",
+   "eth_now": "78834199999583",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-03",
+   "address": "0xDbeb5C125d4F294664d06b0B6A63E17bB4d87450",
+   "usdc_at_run_end": "13700000",
+   "usdc_now": "13700000",
+   "eth_now": "78001021999393",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-04",
+   "address": "0xEeaf0B65b7eB1b896d1F18636dC1F1217C13ebb1",
+   "usdc_at_run_end": "17100000",
+   "usdc_now": "17100000",
+   "eth_now": "78423871999517",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-05",
+   "address": "0x30BEc471FC1DFDa2bac41B5c4e53A05f16db456f",
+   "usdc_at_run_end": "6400000",
+   "usdc_now": "6400000",
+   "eth_now": "75501487998625",
+   "nonce_now": 11,
+   "is_contract": false
+  },
+  {
+   "id": "client-06",
+   "address": "0xD2922a668a2F919b526BdeDf350eddb1D7b8D320",
+   "usdc_at_run_end": "6100000",
+   "usdc_now": "6100000",
+   "eth_now": "75193759998625",
+   "nonce_now": 11,
+   "is_contract": false
+  },
+  {
+   "id": "client-07",
+   "address": "0xbE72245BAF65794a21E6E683bF1A10e57c0CA065",
+   "usdc_at_run_end": "8300000",
+   "usdc_now": "8300000",
+   "eth_now": "74885887998691",
+   "nonce_now": 11,
+   "is_contract": false
+  },
+  {
+   "id": "client-08",
+   "address": "0xc9bef717651DE6a6734D0996c7a02691f9BC3A6b",
+   "usdc_at_run_end": "12500000",
+   "usdc_now": "12500000",
+   "eth_now": "76860043999137",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-09",
+   "address": "0xC5Ab5Ab551a1B7eB9dfC9B73685933754DbEDf5d",
+   "usdc_at_run_end": "3600000",
+   "usdc_now": "3600000",
+   "eth_now": "74360509998435",
+   "nonce_now": 13,
+   "is_contract": false
+  },
+  {
+   "id": "client-10",
+   "address": "0x65399238A63E88820A34edAd45E8Fdd05dbb2CbB",
+   "usdc_at_run_end": "20000000",
+   "usdc_now": "20000000",
+   "eth_now": "80000000000000",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "client-11",
+   "address": "0x1c24746B28FE106f885FeeF1E25d67076d65BB7e",
+   "usdc_at_run_end": "14300000",
+   "usdc_now": "14300000",
+   "eth_now": "78001021999327",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-12",
+   "address": "0x7a79BE5160Da24f307dB66fe2A3B507BE8f30764",
+   "usdc_at_run_end": "13000000",
+   "usdc_now": "13000000",
+   "eth_now": "78001021999393",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-13",
+   "address": "0xDba46c6B9e34AF2AedCc6D81b011f79e3Dd4712D",
+   "usdc_at_run_end": "11100000",
+   "usdc_now": "11100000",
+   "eth_now": "76026865999079",
+   "nonce_now": 9,
+   "is_contract": false
+  },
+  {
+   "id": "client-14",
+   "address": "0x666237AA63D2aCC09867f1302b8d6EdA591872b2",
+   "usdc_at_run_end": "8500000",
+   "usdc_now": "8500000",
+   "eth_now": "76026865998815",
+   "nonce_now": 9,
+   "is_contract": false
+  },
+  {
+   "id": "client-15",
+   "address": "0xc2A870E9BE225C111797b467C16E8461e2763869",
+   "usdc_at_run_end": "13800000",
+   "usdc_now": "13800000",
+   "eth_now": "77693221999393",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-16",
+   "address": "0x9D88C6859D944972D5cFFcAaE14E7C346F3C3C70",
+   "usdc_at_run_end": "18100000",
+   "usdc_now": "18100000",
+   "eth_now": "78834199999715",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-17",
+   "address": "0x353cAE68923b658f4C4C257F797A1Fb32d14c0Bd",
+   "usdc_at_run_end": "14900000",
+   "usdc_now": "14900000",
+   "eth_now": "78001021999261",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-18",
+   "address": "0xd4A683C6Fe5555FEe19F62229425aB7f017a6199",
+   "usdc_at_run_end": "16900000",
+   "usdc_now": "16900000",
+   "eth_now": "78834199999517",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-19",
+   "address": "0x9665cC453B50FaBB8690a17E821c418f7d9D235C",
+   "usdc_at_run_end": "15200000",
+   "usdc_now": "15200000",
+   "eth_now": "78001021999393",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-20",
+   "address": "0x4bACB8d3c41dDFd8c41c2f10d740c9C1CcE47880",
+   "usdc_at_run_end": "15700000",
+   "usdc_now": "15700000",
+   "eth_now": "78001021999393",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-21",
+   "address": "0x05395E6EEb5D4bad00fdE7240729D1676DdA03AB",
+   "usdc_at_run_end": "14000000",
+   "usdc_now": "14000000",
+   "eth_now": "78001021999459",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-22",
+   "address": "0x615550db53D2E716Da50e78251ED9DA7eb58A5a5",
+   "usdc_at_run_end": "9600000",
+   "usdc_now": "9600000",
+   "eth_now": "76026865999013",
+   "nonce_now": 9,
+   "is_contract": false
+  },
+  {
+   "id": "client-23",
+   "address": "0xFcCd2d6a52F3F5B10562fe79dafC9b3f7560e314",
+   "usdc_at_run_end": "8400000",
+   "usdc_now": "8400000",
+   "eth_now": "76334665998815",
+   "nonce_now": 9,
+   "is_contract": false
+  },
+  {
+   "id": "client-24",
+   "address": "0x7E910f07cE98cF1A24bDe7cb747577333F63A3e7",
+   "usdc_at_run_end": "8700000",
+   "usdc_now": "8700000",
+   "eth_now": "77167915999137",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-25",
+   "address": "0xa92ED58cDB7B26926b3815f16a6931EEF38598C9",
+   "usdc_at_run_end": "5400000",
+   "usdc_now": "5400000",
+   "eth_now": "73437181998435",
+   "nonce_now": 13,
+   "is_contract": false
+  },
+  {
+   "id": "client-26",
+   "address": "0x1063420e5515FDD39B083b9103AaAE77311fE7aD",
+   "usdc_at_run_end": "17500000",
+   "usdc_now": "17500000",
+   "eth_now": "78834199999583",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-27",
+   "address": "0x04AbC8C55b1dFF59531ba55809A0424063370BFa",
+   "usdc_at_run_end": "9300000",
+   "usdc_now": "9300000",
+   "eth_now": "77167843999071",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-28",
+   "address": "0xd2c518A32954d15B195c5dfF01B32bF917dA3e72",
+   "usdc_at_run_end": "11000000",
+   "usdc_now": "11000000",
+   "eth_now": "77167843999203",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-29",
+   "address": "0x0970AaAbEfC7C15C0571C2BCFecE81C45F2b525c",
+   "usdc_at_run_end": "14600000",
+   "usdc_now": "14600000",
+   "eth_now": "77691628925929",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "client-30",
+   "address": "0x7c2F94eF98Fb63D5c20c3f8fC18b62371b28A466",
+   "usdc_at_run_end": "20000000",
+   "usdc_now": "20000000",
+   "eth_now": "80000000000000",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "client-31",
+   "address": "0xFe99C8348b3418B1205Ae764FB8b62c49FD77dC0",
+   "usdc_at_run_end": "16500000",
+   "usdc_now": "16500000",
+   "eth_now": "78834199999649",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-32",
+   "address": "0x776D23Efa87c397aa126FAE4682d6a29aa3Cf6F1",
+   "usdc_at_run_end": "17500000",
+   "usdc_now": "17500000",
+   "eth_now": "78526399999517",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-33",
+   "address": "0xb60834D2FC716F6D3A5f784903E1416Cd02F29D5",
+   "usdc_at_run_end": "10900000",
+   "usdc_now": "10900000",
+   "eth_now": "76860043999203",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-34",
+   "address": "0xB8238237cF033c55D16a237387C12FBabf0DF2B7",
+   "usdc_at_run_end": "16800000",
+   "usdc_now": "16800000",
+   "eth_now": "78526471999583",
+   "nonce_now": 3,
+   "is_contract": false
+  },
+  {
+   "id": "client-35",
+   "address": "0x5c0Ac30a0f39f135Be5fc7d49dF9a988bC7822F5",
+   "usdc_at_run_end": "9500000",
+   "usdc_now": "9500000",
+   "eth_now": "76026865998881",
+   "nonce_now": 9,
+   "is_contract": false
+  },
+  {
+   "id": "client-36",
+   "address": "0xD41f9cC49A3953215b3F634A1921Fe78D6ef3Df8",
+   "usdc_at_run_end": "11000000",
+   "usdc_now": "11000000",
+   "eth_now": "77167843998939",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-37",
+   "address": "0xE4F6362b138a926ED9B8e0b63539f0d48EDd2CBd",
+   "usdc_at_run_end": "20000000",
+   "usdc_now": "20000000",
+   "eth_now": "80000000000000",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "client-38",
+   "address": "0xd38166A3f760e2E21e15947D0f76a37A3892c677",
+   "usdc_at_run_end": "20000000",
+   "usdc_now": "20000000",
+   "eth_now": "80000000000000",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "client-39",
+   "address": "0x3a3a51af5E46d52fafce580A517C81Cb8681F9A2",
+   "usdc_at_run_end": "9600000",
+   "usdc_now": "9600000",
+   "eth_now": "77167915999137",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "client-40",
+   "address": "0x549269Dff0B97B8fAC251071d4f4728Ba7d6cAE1",
+   "usdc_at_run_end": "12600000",
+   "usdc_now": "12600000",
+   "eth_now": "78001021999327",
+   "nonce_now": 5,
+   "is_contract": false
+  },
+  {
+   "id": "worker-01",
+   "address": "0xfF4B90141ad98160b0F67abD93fccf96165B059E",
+   "usdc_at_run_end": "17480000",
+   "usdc_now": "17480000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-02",
+   "address": "0xF682b5fC1A7b80FBB6B0b2Deb0353C2A907418a4",
+   "usdc_at_run_end": "19695000",
+   "usdc_now": "19695000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-03",
+   "address": "0x996F4dc470313A135e044b0fc90bDDfd292808F3",
+   "usdc_at_run_end": "20235000",
+   "usdc_now": "20235000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-04",
+   "address": "0x189DA8a40B175BF769E747fac260DD0AD3A065B7",
+   "usdc_at_run_end": "14270000",
+   "usdc_now": "14270000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-05",
+   "address": "0xcFEC7851a579e4F63DdA19c4E063cCE26C6450D5",
+   "usdc_at_run_end": "29070000",
+   "usdc_now": "29070000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-06",
+   "address": "0x6D88F6093d2Bec1b6aA337CD0D2AaCbb4d0B5a45",
+   "usdc_at_run_end": "26290000",
+   "usdc_now": "26290000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-07",
+   "address": "0x716c4022a98e6cCF40Aa9F65EB28E25Eccbc38c8",
+   "usdc_at_run_end": "9310000",
+   "usdc_now": "9310000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-08",
+   "address": "0x0de3020BB4f8390B09B392e8a1f740Ea315590F4",
+   "usdc_at_run_end": "9120000",
+   "usdc_now": "9120000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-09",
+   "address": "0x971F60586640f334f5F00fFB9028C71cCdab21eD",
+   "usdc_at_run_end": "18335000",
+   "usdc_now": "18335000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-10",
+   "address": "0xC5B248e0B4f1d24e70cf725AeF3060FCea626671",
+   "usdc_at_run_end": "4590000",
+   "usdc_now": "4590000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-11",
+   "address": "0xdD7a27a9802F4c5E39F49F2d6e347f0656e80dB2",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-12",
+   "address": "0x0E919ab4E2E7bbAfe8bA71Ff6A9Be925f9984fbA",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-13",
+   "address": "0xc609e0ffD5CcEbf3D76b4Dc20041bd5EB0DB0dC8",
+   "usdc_at_run_end": "8550000",
+   "usdc_now": "8550000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-14",
+   "address": "0x5f528B88B54dc30e0b0e458e3D2781fA092D8138",
+   "usdc_at_run_end": "10735000",
+   "usdc_now": "10735000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-15",
+   "address": "0x607bFB40836aB2982027Cd02A308f876F8683cf5",
+   "usdc_at_run_end": "13490000",
+   "usdc_now": "13490000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-16",
+   "address": "0x690a9847310b4eD32cCD9a611A518156E657B6Af",
+   "usdc_at_run_end": "20140000",
+   "usdc_now": "20140000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-17",
+   "address": "0x0D80F73Fb1E5ecca867c9Dc7745353d235C479AC",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-18",
+   "address": "0x3F167809A039e8f66C8F544C5BfB00e888B7B08A",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-19",
+   "address": "0x4FC0A7AAb18f1c8e3bdeb7520dB90E938413431F",
+   "usdc_at_run_end": "1805000",
+   "usdc_now": "1805000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-20",
+   "address": "0x134250751feEA07a3Bba428817773426ab4ae1dE",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-21",
+   "address": "0x91FEB4d4d2c0a6D4F94655F644871fC5d2fcaC49",
+   "usdc_at_run_end": "5095000",
+   "usdc_now": "5095000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-22",
+   "address": "0xA42Da929fBc8af2bF3Ae1f0A6dC27Aa2e2565dc6",
+   "usdc_at_run_end": "8550000",
+   "usdc_now": "8550000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-23",
+   "address": "0x049b42768d7Ab5fd1356DdB7e5A2eAe49C2c56b8",
+   "usdc_at_run_end": "280000",
+   "usdc_now": "280000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-24",
+   "address": "0xef5644A97CaF87c526ec3F17C816987aE3fc4669",
+   "usdc_at_run_end": "19045000",
+   "usdc_now": "19045000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-25",
+   "address": "0xAFD71BB4b1f648613770b8040A1bc0321cD1C847",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-26",
+   "address": "0x8686AC154982e97c452B6581a211821c0b53513c",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-27",
+   "address": "0x02a78C922dD8965a7829132398B8215D61BF1929",
+   "usdc_at_run_end": "8835000",
+   "usdc_now": "8835000",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-28",
+   "address": "0x34351D109e4cD0241d4E338E37CD63548E5Dde59",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-29",
+   "address": "0xBEd9C01811E6749F3fC23bA69356Ac0966850Ff2",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-30",
+   "address": "0x5045325105D4a7D57252874f9561D033f782b488",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-31",
+   "address": "0xDef1eE491B71e445E42ac61e20b5b556973B6418",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-32",
+   "address": "0x357EF571e2023A81aC3A5e36F1bc92984a304866",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-33",
+   "address": "0x629E19D2B97278C1a02B54d75998F5b1Ad97e269",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-34",
+   "address": "0xddc3Cd192723a0557F02895892011E4b68F76439",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-35",
+   "address": "0xf48E0fAD7D92d29048f985342d951eFbf31Eb238",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-36",
+   "address": "0xD3899be08bAa52648Af9a4fb61Dc454E8CAC6d5e",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-37",
+   "address": "0xbD3aE851d826DF7F91CAba39e1081E64385c7052",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-38",
+   "address": "0x2B9B5F877314CF05EA3384A22e40a62153B71237",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-39",
+   "address": "0xC15c549830bdb53c3b741D6f2e8A6b03fc3a242F",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "worker-40",
+   "address": "0x912B7E06048A4803495551b11376626bfd4F0C89",
+   "usdc_at_run_end": "0",
+   "usdc_now": "0",
+   "eth_now": "0",
+   "nonce_now": 0,
+   "is_contract": false
+  },
+  {
+   "id": "backer-01",
+   "address": "0x89CaE3DA9724FC803d27a720902448e9C1f30227",
+   "usdc_at_run_end": "800000",
+   "usdc_now": "800000",
+   "eth_now": "75127531998981",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "backer-02",
+   "address": "0x4ffDDAcaC6ba06cb39DD505F8642bC69bD9f212b",
+   "usdc_at_run_end": "700000",
+   "usdc_now": "700000",
+   "eth_now": "74210227998828",
+   "nonce_now": 10,
+   "is_contract": false
+  },
+  {
+   "id": "backer-03",
+   "address": "0xc4EfDB1FAE6F7d043b96a5e4b799dDe1575A8B2d",
+   "usdc_at_run_end": "900000",
+   "usdc_now": "900000",
+   "eth_now": "76843933999395",
+   "nonce_now": 4,
+   "is_contract": false
+  },
+  {
+   "id": "backer-04",
+   "address": "0x4D8Ff96Da205D07449706ac2a175706730C51340",
+   "usdc_at_run_end": "600000",
+   "usdc_now": "600000",
+   "eth_now": "73784221998341",
+   "nonce_now": 13,
+   "is_contract": false
+  },
+  {
+   "id": "backer-05",
+   "address": "0xA2B34dC2f892e4f6C4fC430c1353263038e3d47c",
+   "usdc_at_run_end": "800000",
+   "usdc_now": "800000",
+   "eth_now": "75824029999175",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "backer-06",
+   "address": "0x40A0AE175151c989Ca41e7B5F3E3fD52E1B8Ffd8",
+   "usdc_at_run_end": "900000",
+   "usdc_now": "900000",
+   "eth_now": "76843933999592",
+   "nonce_now": 4,
+   "is_contract": false
+  },
+  {
+   "id": "backer-07",
+   "address": "0xF3C986492CB095B4Ac96382ad099C9dc988D0724",
+   "usdc_at_run_end": "700000",
+   "usdc_now": "700000",
+   "eth_now": "74804341998494",
+   "nonce_now": 10,
+   "is_contract": false
+  },
+  {
+   "id": "backer-08",
+   "address": "0xF9cDd695b8D9F07d705c49a54dFA2e6f3C37395c",
+   "usdc_at_run_end": "700000",
+   "usdc_now": "700000",
+   "eth_now": "74804125998852",
+   "nonce_now": 10,
+   "is_contract": false
+  },
+  {
+   "id": "backer-09",
+   "address": "0x2cE025c8a2d1285844cbB165DC2E9750628879Fb",
+   "usdc_at_run_end": "800000",
+   "usdc_now": "800000",
+   "eth_now": "75824173999269",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "backer-10",
+   "address": "0x5a74F2a518846b85D70A738Ecb1dB009BDc537cE",
+   "usdc_at_run_end": "800000",
+   "usdc_now": "800000",
+   "eth_now": "75824029999071",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "backer-11",
+   "address": "0xF31AD6d6f30fE630b0Dd719f6a9B6f6D68Aaa1b3",
+   "usdc_at_run_end": "600000",
+   "usdc_now": "600000",
+   "eth_now": "73784221998633",
+   "nonce_now": 13,
+   "is_contract": false
+  },
+  {
+   "id": "backer-12",
+   "address": "0x8FEA7BC3d7Dd1988AB156794E6cfA9d4Da0Fc082",
+   "usdc_at_run_end": "500000",
+   "usdc_now": "500000",
+   "eth_now": "72764317997886",
+   "nonce_now": 16,
+   "is_contract": false
+  },
+  {
+   "id": "backer-13",
+   "address": "0x00d23fc21b9E79d929D1f2Ba5D632b278a7D128d",
+   "usdc_at_run_end": "800000",
+   "usdc_now": "800000",
+   "eth_now": "75824029999071",
+   "nonce_now": 7,
+   "is_contract": false
+  },
+  {
+   "id": "backer-14",
+   "address": "0xc55Bc54Dd598892415DF8B952dB7Ae4484CF2571",
+   "usdc_at_run_end": "700000",
+   "usdc_now": "700000",
+   "eth_now": "74804125998720",
+   "nonce_now": 10,
+   "is_contract": false
+  },
+  {
+   "id": "sponsor-01",
+   "address": "0xbb8f0694a412b93b7e9d002A0a9C7e8876EDFF36",
+   "usdc_at_run_end": "250000",
+   "usdc_now": "250000",
+   "eth_now": "78691933999666",
+   "nonce_now": 2,
+   "is_contract": false
+  },
+  {
+   "id": "sponsor-02",
+   "address": "0x3e400D0da2e8a2CAE982aFdBF32693768621151f",
+   "usdc_at_run_end": "250000",
+   "usdc_now": "250000",
+   "eth_now": "79102333999732",
+   "nonce_now": 2,
+   "is_contract": false
+  },
+  {
+   "id": "sponsor-03",
+   "address": "0x9B6B763Acbc91740B3b36580cD29D2d6D8f18577",
+   "usdc_at_run_end": "250000",
+   "usdc_now": "250000",
+   "eth_now": "79102333999732",
+   "nonce_now": 2,
+   "is_contract": false
+  },
+  {
+   "id": "sponsor-04",
+   "address": "0x8d4cE0e6E4153b3251Af1A5cd7166FAe14707027",
+   "usdc_at_run_end": "250000",
+   "usdc_now": "250000",
+   "eth_now": "79102333999798",
+   "nonce_now": 2,
+   "is_contract": false
+  },
+  {
+   "id": "operator-root",
+   "address": "0x38e9845A1Df22c59Bfc693bf2CEAa3361158d6d1",
+   "usdc_at_run_end": null,
+   "usdc_now": "130200000",
+   "eth_now": "24828075480850553",
+   "nonce_now": 384,
+   "is_contract": false
+  },
+  {
+   "id": "guarantee-trust-contract",
+   "address": "0x7eD9B2B67E598fd2a1f384CC885c0C860bfD0466",
+   "usdc_at_run_end": null,
+   "usdc_now": "20580000",
+   "eth_now": "0",
+   "nonce_now": 1,
+   "is_contract": true
+  }
+ ]
+}

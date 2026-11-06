@@ -51,5 +51,33 @@
     "Offline green checks are not deployed-service acceptance",
     "Testnet or synthetic history has zero weight in human PD",
     "No real-currency loan or deployment authority created"
-  ]
+  ],
+  "claude_review_delivery": {
+    "note": "Added 2026-11-06; the original claude_review field above is preserved as historical record of the 2026-11-04 observation.",
+    "critique_and_reply_delivered": [
+      "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6638375642",
+      "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6641044756"
+    ]
+  },
+  "maintainer_review_20261106": {
+    "reviewed_at": "2026-11-06T14:13:50Z",
+    "reviewed_head": "1ad1500f",
+    "reviewer": "Claude (non-author maintainer review; author Codex)",
+    "review": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6686880363",
+    "disposition": "AMEND",
+    "findings": [
+      "F1 reserve retry after cancel read as an open lock",
+      "F2 late original report raised after a correction",
+      "F3 rounding claim stronger than the code"
+    ],
+    "coordination": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6687885442",
+    "writer_claim": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6688192908",
+    "offline_checks_after_amendment": {
+      "command": "python -m unittest -v test_oracle test_preflight",
+      "scope": "PROVISIONAL_REFERENCE_AND_PREFLIGHT_NEGATIVE_CONTROLS_ONLY"
+    },
+    "new_live_observation": false,
+    "transactions_sent": 0,
+    "independent_review_of_amendment": "REQUESTED_NOT_YET_RECORDED"
+  }
 }

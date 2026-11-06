@@ -54,6 +54,30 @@ replay/correction and fail-closed node checks. They cannot pass deployed-service
 acceptance. Unspecified eligibility, calibration, skill-growth, restoration and
 label authority remain deliberately outside this reference model.
 
+### Reference-ledger semantics after the maintainer review (2026-11-06)
+
+These are **PROVISIONAL REFERENCE SEMANTICS**, fixed so that a future adapter has
+unambiguous expected vectors. None of them is finalized mechanism or underwriting policy.
+
+- `reserve()` returns `True` for a new reservation and `False` only for an exact retry of
+  an **active** one. A cancelled or settled identity is terminal and is never reopened:
+  any retry raises `ReservationTerminal`. A `False` therefore always means "a lock exists".
+- Report and correction identities share one namespace per `(loan, root)` and each keeps
+  the label it carried. An exact old delivery (the original report after a correction, or
+  any earlier correction) is a no-op that keeps the current, possibly corrected, outcome.
+  The same identity with a different label raises `ReportConflict`. A new identity that
+  disagrees with the recorded outcome still needs an explicit `correct()`.
+- Ledger arithmetic is exact or rejected: sums, locked totals, budgets, penalties and their
+  accumulation run at 60 significant digits and trap `Inexact`, so a result that would need
+  rounding raises and no state changes (state is mutated only after the arithmetic).
+  `display_score()` is a logarithmic approximation for display only, and `margin()` /
+  `break_even_charge()` use the default 28-digit context; none of these feeds the ledger.
+- A path whose root is also its leaf (`root -> root`) is rejected by this reference. Whether
+  a root may borrow against its own reputation is a finalized-policy question (open).
+- `independent_roots(loan)` counts the root of every reservation identity ever recorded,
+  including cancelled and settled ones. Whether cancellation should count toward
+  independence is a finalized-policy question (open).
+
 The preflight is read-only and never loads a signing key. It rejects wrong
 networks, known local test clients, missing code and block-hash changes. It uses
 the descriptor's public RPC without address/environment overrides. Even a
@@ -86,9 +110,11 @@ are insufficient. Execution stays closed when any item is unknown.
    and actual loan limit. Check wiring, score freshness and every test wallet's
    override. No admin override may conceal a missing new-mechanism bridge.
 4. **Execution ownership:** fresh default-branch execution-owner check for the
-   actual work kind, matching acceptance and existing project/run lease. Current
-   config2 gives heavy execution to Claude; bounded verification stays open to
-   both lanes. A transfer request does not complete the transfer.
+   actual work kind, matching acceptance and existing project/run lease. At the
+   time of the original packet (2026-11-04) config2 gave heavy execution to Claude;
+   as of 2026-11-06 testbed main `fed5c813` is config5, stable, owner Claude. Read the
+   current config, never this sentence. Bounded verification stays open to both
+   lanes. A transfer request does not complete the transfer.
 5. **Test resources:** dedicated wallet controller/signing capability, token and
    gas balances, approved per-wallet and total exposure, transaction/model-call
    budgets, repayment amounts and interest headroom, cleanup destination and
