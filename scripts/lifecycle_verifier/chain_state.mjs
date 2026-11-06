@@ -41,7 +41,6 @@ const lc = x => String(x).toLowerCase();
 const HASH = /^0x[0-9a-f]{64}$/;
 const WORD = /^0x[0-9a-fA-F]{64}$/;
 const MAX_SKEW_SEC = 60;
-const big = x => { const v = BigInt(x); if (v < 0n) throw new Error('negative'); return v; };
 
 // 'eoa' | 'delegated' (a 23-byte EIP-7702 designator) | 'contract' | 'invalid'
 export function classifyCode(code) {
@@ -62,12 +61,16 @@ const count = v => {
   if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v) && v.length <= 16) return Number(hexToBigInt(v));
   return bad();
 };
+// The ONLY representations accepted as a provider-supplied or configured quantity: a non-negative bigint, a non-negative
+// safe integer, or a canonical hex quantity string (0x0, 0x1f; no leading zeros, no bare 0x). Never BigInt() coercion: that
+// turns '', ' ', true, [], [5] and objects with valueOf into numbers, so malformed evidence would read as a measured zero.
 const quantity = v => {
   if (typeof v === 'bigint' && v >= 0n) return v;
-  if (Number.isSafeInteger(v) && v >= 0) return BigInt(v);
-  if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v)) return hexToBigInt(v);
+  if (typeof v === 'number' && Number.isSafeInteger(v) && v >= 0) return BigInt(v);
+  if (typeof v === 'string' && /^0x(?:0|[1-9a-fA-F][0-9a-fA-F]*)$/.test(v) && v.length <= 2 + 64) return hexToBigInt(v);
   return bad();
 };
+const big = quantity;
 const blockFields = (b, withParent = false) => {
   if (!b || typeof b !== 'object' || typeof b.hash !== 'string' || !HASH.test(b.hash)) bad();
   const out = { number: count(b.number), hash: b.hash, timestamp: count(b.timestamp) };
@@ -317,18 +320,19 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       // actual cost, component by component, against the retained envelope and the signed ceiling
       let fee;
       try {
-        const l2 = big(receipt.gasUsed) * big(receipt.effectiveGasPrice);
-        if (receipt.l1Fee === undefined) reasons.push('l1_fee_not_reported');
-        const l1 = receipt.l1Fee === undefined ? 0n : big(receipt.l1Fee);
-        let op = 0n;
-        if (receipt.operatorFee !== undefined) op = big(receipt.operatorFee);
+        const gasUsed = quantity(receipt.gasUsed); const price = quantity(receipt.effectiveGasPrice);
+        if (gasUsed === 0n) throw new Error('gas used must be positive for a successful transfer');
+        const l2 = gasUsed * price;
+        let l1 = 0n; let op = 0n;
+        if (receipt.l1Fee === undefined) reasons.push('l1_fee_not_reported'); else l1 = quantity(receipt.l1Fee);
+        if (receipt.operatorFee !== undefined) op = quantity(receipt.operatorFee);
         else if (policy.fee.operatorFeeEvidence !== 'verified_not_applicable') reasons.push('operator_fee_not_reported');
         fee = { l2Wei: l2, l1Wei: l1, operatorWei: op, totalWei: l2 + l1 + op };
         if (l2 > kept.executionCeilingWei) reasons.push('actual_execution_exceeds_signed_ceiling');
         if (l1 > kept.l1MarginedWei) reasons.push('actual_l1_exceeds_envelope');
         if (op > kept.operatorBoundWei) reasons.push('actual_operator_exceeds_bound');
         if (fee.totalWei > kept.allInWei) reasons.push('actual_fee_exceeds_envelope');
-        if (fee.totalWei > big(policy.fee.maxExposureWei)) reasons.push('actual_fee_exceeds_authorization');
+        if (fee.totalWei > quantity(policy.fee.maxExposureWei)) reasons.push('actual_fee_exceeds_authorization');
       } catch { reasons.push('fee_fields_invalid'); }
       if (fee && balances) {
         try {

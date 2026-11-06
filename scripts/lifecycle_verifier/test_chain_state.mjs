@@ -507,3 +507,57 @@ test('finding 2: a self-consistent fork below inclusion that ends at another blo
   } });
   assert.equal(out.ok, false); assert.ok(out.reasons.includes('anchor_not_in_head_lineage') || out.reasons.includes('inclusion_not_in_head_lineage'), JSON.stringify(out.reasons));
 });
+
+// ---- Codex fourth B1 review 6672546758: malformed fee and balance evidence must never read as a measured zero ----
+const MALFORMED = ['', ' ', '   ', '0x', '0X1', '0x01', '00', '1', '1e3', '0x' + 'f'.repeat(65), 'abc', true, false, [], [5], {}, { valueOf() { return 1n; } }, { toString() { return '5'; } }, -1, -1n, 1.5, NaN, Infinity, null, 'null', Symbol.iterator.toString()];
+const FIELDS = ['gasUsed', 'effectiveGasPrice', 'l1Fee', 'operatorFee'];
+for (const field of FIELDS) {
+  test(`receipt hold: ${field} given as any malformed type is fee_fields_invalid, never zero (Codex repro: '' and false passed)`, async () => {
+    for (const bad of MALFORMED) {
+      // a balance delta that would match IF the malformed value were read as zero or as a number
+      const guess = [0n, 1n, 5n, 30_000n, 40_000_000n, 40_000_000n + 30_000n].map(d => bal(d));
+      for (const b of guess) {
+        const out = await REC(intent(), receipt({ [field]: bad }), { b });
+        assert.equal(out.ok, false, `${field}=${String(bad)}`);
+      }
+      const out = await REC(intent(), receipt({ [field]: bad }), { b: bal(FEE) });
+      assert.ok(out.reasons.includes('fee_fields_invalid'), `${field}=${typeof bad}:${String(bad)} -> ${JSON.stringify(out.reasons)}`);
+    }
+  });
+}
+test('receipt: legitimate zero is distinguished from absent and from malformed (zero l1Fee and zero operatorFee are values)', async () => {
+  const zeroL1 = await REC(intent(), receipt({ l1Fee: 0n }), { b: bal(40_000n * 1000n) });
+  assert.equal(zeroL1.ok, true, JSON.stringify(zeroL1.reasons));
+  const zeroOp = await REC(intent(), receipt({ operatorFee: 0n }), { b: bal(FEE) });
+  assert.equal(zeroOp.ok, true);
+  const zeroPrice = await REC(intent(), receipt({ effectiveGasPrice: 0n, l1Fee: 0n }), { b: bal(0n) });
+  assert.equal(zeroPrice.ok, true, JSON.stringify(zeroPrice.reasons)); // a zero gas price is a value on a chain that allows it
+  assert.ok((await REC(intent(), receipt({ l1Fee: undefined }))).reasons.includes('l1_fee_not_reported'));
+  assert.ok((await REC(intent(), receipt({ operatorFee: undefined }))).reasons.includes('operator_fee_not_reported'));
+});
+test('receipt: gasUsed must be positive for a successful transfer (zero is refused, hex and number forms accepted)', async () => {
+  const zero = await REC(intent(), receipt({ gasUsed: 0n }), { b: bal(30_000n) });
+  assert.ok(zero.reasons.includes('fee_fields_invalid'), JSON.stringify(zero.reasons));
+  assert.equal((await REC(intent(), receipt({ gasUsed: '0x0' }), { b: bal(30_000n) })).ok, false);
+  for (const form of ['0x9c40', 40_000, 40_000n]) assert.equal((await REC(intent(), receipt({ gasUsed: form }))).ok, true, String(form));
+  assert.equal((await REC(intent(), receipt({ l1Fee: '0x7530', operatorFee: '0x0' }))).ok, true); // hex quantities as a node returns them
+});
+test('receipt hold: balance evidence is held to the same strictness', async () => {
+  for (const bad of MALFORMED) {
+    for (const side of ['before', 'after']) {
+      const b = { ...bal(FEE), [side]: bad };
+      const out = await REC(intent(), receipt(), { b });
+      assert.equal(out.ok, false, `${side}=${String(bad)}`); assert.ok(out.reasons.includes('balances_invalid'), `${side}=${String(bad)} ${JSON.stringify(out.reasons)}`);
+    }
+  }
+  assert.equal((await REC(intent(), receipt(), { b: { before: '0x2386f26fc10000', after: 10n ** 16n - FEE } })).ok, true);
+});
+test('strict quantities also guard intent and preflight evidence (coercible values are not amounts, nonces or fees)', async () => {
+  for (const bad of ['', true, [], [5], {}, ' ']) {
+    for (const o of [{ amount: bad }, { maxFeeWei: bad }]) {
+      const r = await gate(chain()).preflight(intent(o)); assert.equal(r.ok, false, JSON.stringify(Object.keys(o)) + String(bad));
+    }
+  }
+  const c = chain(); c.rpc.getBalance = async () => ''; assert.equal((await gate(c).preflight(intent())).ok, false);
+  const c2 = chain(); c2.rpc.getBalance = async () => true; assert.equal((await gate(c2).preflight(intent())).ok, false);
+});
