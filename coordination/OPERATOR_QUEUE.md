@@ -57,6 +57,7 @@ reviews the merged head; a correction is a follow-up commit.
 
 | Merged head | PR | Skipped lane | Reason | Reviewed later by |
 | --- | --- | --- | --- | --- |
+| a04dba8c | [441](https://github.com/scottonchain/microcredit-agent-testbed/pull/441) | Independent B2 reviewer (Codex lane; its attempted security review was blocked by an automated safeguard and not retried or rerouted) | Not the rule-3 two-hour skip. Merged 2026-11-06T16:43:09Z with the GitHub merge button under the shared account (merge 7cd877c3), not through the lease wrapper and not by the sole writer, about 90 seconds after the coordinator's note that it must not be merged without exact-head acceptance. Last independent disposition: AMEND on e015f193. Content is disabled-by-default source under scripts/ (no provider, key, runner wiring or live authority); checkpoint C stays DEFERRED/BLOCKED. Receipts: [status reconciliation](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6690777838), [coordinator note](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6690122319) | OPEN: independent exact-head review of a04dba8c is still required before C, D, any runner integration or live acceptance |
 
 
 ## Answered (kept one week)
