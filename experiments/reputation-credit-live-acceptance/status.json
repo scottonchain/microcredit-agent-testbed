@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "SCORING_ACCEPTANCE_PREPARATION_RECEIPT",
+  "observed_at": "2026-11-04T17:36:28.390061+00:00",
+  "testbed_main": "527d70452d6f950f808a74b6f7b8f61e9875155c",
+  "contract_main": "7ceaf07d46bc2ebe244175af60f027bd8f2a8995",
+  "proposal_status": "PROPOSED_NOT_VERIFIED_IMPLEMENTATION",
+  "claude_review": {
+    "status": "ACCEPTED_ASSIGNMENT_NOT_DELIVERED_IN_OBSERVED_RECORDS",
+    "checkpoint_utc": "2026-11-04T20:00:00Z",
+    "request": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6636875903",
+    "acceptance": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6637135184"
+  },
+  "implementation_status": "NO_REVIEWED_IMPLEMENTATION_OR_CANONICAL_RELEASE_ESTABLISHED",
+  "implementation_search_scope": "Named remote main trees and current open PRs in contract and testbed; no repo-wide absence claim",
+  "coordination": "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6637440922",
+  "offline_checks": {
+    "command": "python -m unittest -v test_oracle test_preflight",
+    "passed": 27,
+    "failed": 0,
+    "scope": "PROVISIONAL_REFERENCE_AND_PREFLIGHT_NEGATIVE_CONTROLS_ONLY"
+  },
+  "live_preflight": {
+    "verdict": "BLOCKED",
+    "receipt": "preflight-20261104.json",
+    "reason": "Public RPC access unavailable; direct read returned tunnel HTTP403; no live state observed"
+  },
+  "live_new_mechanism": {
+    "verdict": "NOT_RUN",
+    "agentic_runs": 0,
+    "deterministic_cases_executed": 0,
+    "transactions_sent": 0
+  },
+  "prior_32_persona_run": "LOCAL_FORK_USABILITY_EVIDENCE_ONLY_NOT_NEW_MECHANISM_ACCEPTANCE",
+  "remaining_gates": [
+    "Actual Claude critique/disposition and finalized rules",
+    "Reviewed implementation and canonical release/source/ABI/backend/oracle verification",
+    "Current heavy-work owner/lease and matching acceptance",
+    "Approved live RPC/app access",
+    "Dedicated wallet controllers/funding/exposure/cost caps and resumable cleanup",
+    "TEST_ONLY maturity fixtures excluded from real underwriting; elapsed-time cases stay pending"
+  ],
+  "continuation": {
+    "owner": "Codex testing; Claude accepted proposal review",
+    "checkpoint_utc": "2026-11-04T20:00:00Z",
+    "implementation_owner": "REQUESTED_NOT_ESTABLISHED",
+    "scheduler_execution": "NOT_PROVEN_BY_THIS_RECEIPT",
+    "reentry": "Reviewed finalized spec + verified canonical implementation + all execution gates; bind final live adapter and run deterministic baseline, borrower campaigns, reproductions, reconciliation"
+  },
+  "evidence_limits": [
+    "Offline green checks are not deployed-service acceptance",
+    "Testnet or synthetic history has zero weight in human PD",
+    "No real-currency loan or deployment authority created"
+  ],
+  "claude_review_delivery": {
+    "note": "Added 2026-11-06; the original claude_review field above is preserved as historical record of the 2026-11-04 observation.",
+    "critique_and_reply_delivered": [
+      "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6638375642",
+      "https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6641044756"
+    ]
+  },
+  "maintainer_review_20261106": {
+    "reviewed_at": "2026-11-06T14:13:50Z",
+    "reviewed_head": "1ad1500f",
+    "reviewer": "Claude (non-author maintainer review; author Codex)",
+    "review": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6686880363",
+    "disposition": "AMEND",
+    "findings": [
+      "F1 reserve retry after cancel read as an open lock",
+      "F2 late original report raised after a correction",
+      "F3 rounding claim stronger than the code"
+    ],
+    "coordination": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6687885442",
+    "writer_claim": "https://github.com/scottonchain/microcredit-agent-testbed/pull/433#issuecomment-6688192908",
+    "offline_checks_after_amendment": {
+      "command": "python -m unittest -v test_oracle test_preflight",
+      "scope": "PROVISIONAL_REFERENCE_AND_PREFLIGHT_NEGATIVE_CONTROLS_ONLY"
+    },
+    "new_live_observation": false,
+    "transactions_sent": 0,
+    "independent_review_of_amendment": "REQUESTED_NOT_YET_RECORDED"
+  }
+}
