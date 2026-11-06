@@ -295,11 +295,17 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
   // envelope: what preflight (or restoreEnvelope) returned; it is compared with the copy the gate retained, and the
   // retained copy decides. balances: { before, after } native, sender, wei. rpc.getTransaction(hash) -> { hash, from, to,
   // nonce, value, input, blockHash }. Blocks must carry parentHash: the confirmations are proven by a hash lineage walk.
-  async function reconcileReceipt({ intent, receipt, envelope, balances }) {
+  //
+  // mode 'revert' settles a REVERTED transaction: the same binding to the hash, sender, nonce, target, calldata, canonical inclusion,
+  // anchor lineage and confirmations; the receipt status must be exactly the number 0 (nothing else is a revert), there must be no
+  // logs at all, every fee component is bounded as for a success, and the sender's native balance must fall by exactly the actual
+  // fee (the transferred value does NOT move). Only this verification lets a caller treat the intent as spent and replaceable.
+  async function reconcileReceipt({ intent, receipt, envelope, balances }, mode = 'success') {
     if (problems.length) return { ok: false, reasons: ['policy_incomplete:' + problems.join(',')] };
     const reasons = [];
+    const revert = mode === 'revert';
     try {
-      if (!receipt || receipt.status !== 1) return { ok: false, reasons: ['receipt_not_successful'] };
+      if (!receipt || receipt.status !== (revert ? 0 : 1)) return { ok: false, reasons: [revert ? 'receipt_not_reverted' : 'receipt_not_successful'] };
       const kept = retained.get(lc(intent.hash ?? ''));
       if (!envelope || !envelope.binding) return { ok: false, reasons: ['envelope_missing'] };
       if (!kept) return { ok: false, reasons: ['envelope_not_retained'] };
@@ -344,11 +350,12 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       } catch { reasons.push('anchor_read_failed'); }
 
       const transfers = []; let foreign = 0;
-      for (const log of receipt.logs || []) {
+      if (revert) { if (Array.isArray(receipt.logs) ? receipt.logs.length : receipt.logs !== undefined) reasons.push('logs_on_reverted_transaction'); }
+      else for (const log of receipt.logs || []) {
         if (lc(log.address) !== lc(policy.token.address)) { foreign++; continue; }
         try { transfers.push(decodeEventLog({ abi: erc20, data: log.data, topics: log.topics })); } catch { reasons.push('undecodable_token_log'); }
       }
-      if (intent.kind === 'erc20') {
+      if (revert) { /* a reverted transaction has no logs: checked above */ } else if (intent.kind === 'erc20') {
         const t = transfers.filter(x => x.eventName === 'Transfer');
         if (transfers.length !== 1 || t.length !== 1) reasons.push('transfer_log_count');
         else if (lc(t[0].args.from) !== lc(intent.from) || lc(t[0].args.to) !== lc(intent.recipient) || t[0].args.value !== big(intent.amount)) reasons.push('transfer_log_differs');
@@ -375,7 +382,7 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       if (fee && balances) {
         try {
           const moved = big(balances.before) - big(balances.after);
-          if (moved !== fee.totalWei + (intent.kind === 'native' ? big(intent.amount) : 0n)) reasons.push('sender_balance_delta_differs');
+          if (moved !== fee.totalWei + (intent.kind === 'native' && !revert ? big(intent.amount) : 0n)) reasons.push('sender_balance_delta_differs');
         } catch { reasons.push('balances_invalid'); }
       } else if (!balances) reasons.push('balances_missing');
 
@@ -436,7 +443,8 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
     return amount > big(gasDustWei) ? amount : 0n;
   }
 
-  return { preflight, restoreEnvelope, reconcileReceipt, gasReturnAmount, encodeEnvelope, decodeEnvelope, policyProblems: problems, policyDigest: digest };
+  const reconcileRevert = args => reconcileReceipt(args, 'revert');
+  return { preflight, restoreEnvelope, reconcileReceipt, reconcileRevert, gasReturnAmount, encodeEnvelope, decodeEnvelope, policyProblems: problems, policyDigest: digest };
 }
 
 function hold(reason) { const e = new Error(reason); e.holdReason = reason; return e; }

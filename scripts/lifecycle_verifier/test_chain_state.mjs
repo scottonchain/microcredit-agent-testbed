@@ -611,3 +611,42 @@ test('resend never replaces the retained envelope of the original send (its anch
   const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) });
   assert.equal(out.ok, true, JSON.stringify(out.reasons)); // still the ORIGINAL envelope
 });
+
+// ---- reconcileRevert: the only way an intent may be treated as spent and replaceable ----
+const rvReceipt = (o = {}) => receipt({ status: 0, logs: [], ...o });
+test('reconcileRevert: a genuine confirmed revert (token) passes with the fee accounted and nothing else moved', async () => {
+  const { g, envelope } = await setup();
+  const out = await g.reconcileRevert({ intent: intent(), receipt: rvReceipt(), envelope, balances: bal(FEE) });
+  assert.equal(out.ok, true, JSON.stringify(out.reasons)); assert.equal(out.fee.totalWei, FEE);
+});
+test('reconcileRevert: a native revert is bound the same way and the value does not move', async () => {
+  const i = intent({ kind: 'native', contract: undefined, amount: 5n, maxFeeWei: 21_000_000n });
+  const { g, envelope } = await setup(i);
+  const rc = rvReceipt({ to: TO, gasUsed: 21_000n });
+  const out = await g.reconcileRevert({ intent: i, receipt: rc, envelope, balances: bal(21_000n * 1000n + 30_000n) });
+  assert.equal(out.ok, true, JSON.stringify(out.reasons));
+  const moved = await g.reconcileRevert({ intent: i, receipt: rc, envelope, balances: bal(21_000n * 1000n + 30_000n, 5n) });
+  assert.ok(moved.reasons.includes('sender_balance_delta_differs')); // the value left the wallet: not a revert
+});
+test('reconcileRevert: a success receipt is not a revert, and a revert is not a success', async () => {
+  const { g, envelope } = await setup();
+  assert.deepEqual((await g.reconcileRevert({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) })).reasons, ['receipt_not_reverted']);
+  assert.deepEqual((await g.reconcileReceipt({ intent: intent(), receipt: rvReceipt(), envelope, balances: bal(FEE) })).reasons, ['receipt_not_successful']);
+});
+test('reconcileRevert: only the number 0 is a revert status', async () => {
+  const { g, envelope } = await setup();
+  for (const status of ['0x0', '0', false, null, undefined, 0n, 2, -1, NaN, []]) {
+    const out = await g.reconcileRevert({ intent: intent(), receipt: rvReceipt({ status }), envelope, balances: bal(FEE) });
+    assert.equal(out.ok, false, String(status));
+  }
+});
+test('reconcileRevert: logs, a wrong hash, a non-canonical block, a fee above the envelope and too few confirmations all hold', async () => {
+  const { c, g, envelope } = await setup();
+  const run = o => g.reconcileRevert({ intent: intent(), receipt: rvReceipt(o), envelope, balances: bal(FEE) });
+  assert.ok((await run({ logs: [log()] })).reasons.includes('logs_on_reverted_transaction'));
+  assert.ok((await run({ transactionHash: HASH2 })).reasons.includes('receipt_hash_differs'));
+  assert.ok((await run({ blockHash: '0x' + '99'.repeat(32) })).reasons.includes('block_not_canonical'));
+  assert.ok((await run({ l1Fee: 10n ** 12n })).reasons.includes('actual_l1_exceeds_envelope'));
+  c.s.block = { ...B500 }; c.s.blocks[500] = { ...B500 };
+  assert.ok((await run({})).reasons.includes('not_enough_confirmations'));
+});

@@ -201,7 +201,7 @@ export async function verifyControl(journal, ports, options = {}) {
 
 // The chain gate (accepted B1 component) is a MANDATORY port object: every member is required, and without all of them nothing
 // is sent and no receipt is accepted. It is checked here, never assumed.
-const GATE_FNS = ['preflight', 'restoreEnvelope', 'reconcileReceipt', 'encodeEnvelope', 'decodeEnvelope'];
+const GATE_FNS = ['preflight', 'restoreEnvelope', 'reconcileReceipt', 'reconcileRevert', 'encodeEnvelope', 'decodeEnvelope'];
 function chainGateComplete(g) { return !!g && typeof g === 'object' && GATE_FNS.every(f => typeof g[f] === 'function') && typeof g.policyDigest === 'string' && g.policyDigest.length > 0; }
 async function callGate(fn) { try { const r = await fn(); return r && typeof r === 'object' ? r : { ok: false, reasons: ['chain_gate_invalid_result'] }; } catch { return { ok: false, reasons: ['chain_gate_error'] }; } }
 const firstReason = r => String((r && Array.isArray(r.reasons) && r.reasons[0]) || 'unknown').replace(/[^A-Za-z0-9_:.,-]/g, '').slice(0, 80) || 'unknown';
@@ -217,7 +217,12 @@ async function settle(ports, intent, expect, opts, ctx) {
   let r;
   try { r = await ports.receipt(intent.hash); } catch { return 'unknown'; }
   if (r === null || r === undefined) return 'unknown';
-  if (r.status !== 1) return 'failed';
+  // NO status other than the number 1 (success) or 0 (a claimed revert) is a result. Anything else is an unverified claim: the
+  // intent stays open with its original bytes and envelope, nothing is released for replacement, nothing is signed again.
+  if (r.status !== 1 && r.status !== 0) { intent.receiptNote = 'receipt_status_malformed'; return 'unknown'; }
+  const revert = r.status === 0;
+  const raw = r.rpc && typeof r.rpc === 'object' ? r.rpc : null;
+  if (!raw || raw.status !== r.status) { intent.mismatchReasons = ['receipt_status_disagrees']; return 'mismatch'; }
   const same = x => String(x).toLowerCase();
   if (same(r.from) !== same(expect.from) || same(r.to) !== same(expect.to) || BigInt(r.amount) !== BigInt(expect.amount) || Number(r.nonce) !== Number(expect.nonce)) return 'mismatch';
   // when the caller names a token or a chain, a receipt that does not state the same one is not accepted
@@ -240,7 +245,8 @@ async function settle(ports, intent, expect, opts, ctx) {
   } catch { return 'unknown'; }
   // `receipt.rpc` is the provider's raw receipt (hash, block, gas, fee components, logs) that the gate binds; the flat summary fields
   // above are only the legacy comparison. A port that supplies no raw receipt makes the gate refuse.
-  const rc = await callGate(() => gate.reconcileReceipt({ intent: gi, receipt: r.rpc, envelope: rs.envelope, balances: { before, after } }));
+  const rc = await callGate(() => (revert ? gate.reconcileRevert : gate.reconcileReceipt)({ intent: gi, receipt: r.rpc, envelope: rs.envelope, balances: { before, after } }));
+  if (rc.ok && revert) { intent.revertFeeWei = String(rc.fee && rc.fee.totalWei); return 'failed'; } // verified, confirmed, fees accounted: only now may a new intent follow
   if (rc.ok) return 'swept';
   const why = (Array.isArray(rc.reasons) ? rc.reasons : ['chain_gate_invalid_result']).map(x => String(x).replace(/[^A-Za-z0-9_:.,-]/g, '').slice(0, 80)).slice(0, 6);
   // mined but not yet deep enough: nothing is wrong, nothing to resend; keep waiting (the bytes are already on chain)
@@ -369,6 +375,7 @@ async function cleanOne(w, journal, ports, opts) {
   const nonce = await ports.nonceOf(w.address);
   const prepared = normalizePrepared(await ports.prepareSweep(w, opts.fundingWallet, tokens, nonce));
   if (!prepared) { w.state = 'unknown'; ev(w, { ev: 'prepare_output_invalid_not_sent' }); durable(journal, opts); return; }
+  if (w.sweep && w.sweep.outcome === 'failed') (w.failedSweeps = w.failedSweeps || []).push({ hash: w.sweep.hash, nonce: w.sweep.nonce, amount: w.sweep.amount, revertFeeWei: w.sweep.revertFeeWei }); // only a VERIFIED revert reaches here
   w.sweep = { hash: prepared.hash, raw: prepared.raw, amount: tokens.toString(), nonce, outcome: 'prepared' };
   ev(w, { ev: 'sweep_prepared', hash: prepared.hash, amount: tokens.toString(), nonce });
   if (!durable(journal, opts)) { w.state = 'unknown'; ev(w, { ev: 'intent_not_durable_not_sent' }); return; }
@@ -409,6 +416,7 @@ async function gasOne(w, journal, ports, opts) {
   const nonce = await ports.nonceOf(w.address);
   const prepared = normalizePrepared(await ports.prepareGasSweep(w, opts.fundingWallet, amount, nonce));
   if (!prepared) { g.state = 'unknown'; ev(w, { ev: 'gas_prepare_output_invalid_not_sent' }); durable(journal, opts); return; }
+  if (g.sweep && g.sweep.outcome === 'failed') (g.failedSweeps = g.failedSweeps || []).push({ hash: g.sweep.hash, nonce: g.sweep.nonce, amount: g.sweep.amount, revertFeeWei: g.sweep.revertFeeWei });
   g.sweep = { hash: prepared.hash, raw: prepared.raw, amount: amount.toString(), nonce, outcome: 'prepared' };
   ev(w, { ev: 'gas_return_prepared', hash: prepared.hash, amount: amount.toString(), nonce });
   if (!durable(journal, opts)) { g.state = 'unknown'; ev(w, { ev: 'gas_intent_not_durable_not_sent' }); return; }

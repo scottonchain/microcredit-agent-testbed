@@ -43,9 +43,9 @@ export function lifecycleEnabled(env = process.env) { return env[ENV_FLAG] === '
 
 const BASE_PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'verifyPrepared', 'receipt'];
 // the chain gate's three asynchronous members become bounded ports like every other call; its two encoders are pure
-const GATE_PORTS = ['chainPreflight', 'chainRestore', 'chainReconcile'];
+const GATE_PORTS = ['chainPreflight', 'chainRestore', 'chainReconcile', 'chainRevert'];
 const PORTS = [...BASE_PORTS, ...GATE_PORTS];
-function gateComplete(g) { return !!g && typeof g === 'object' && ['preflight', 'restoreEnvelope', 'reconcileReceipt', 'encodeEnvelope', 'decodeEnvelope'].every(f => typeof g[f] === 'function') && typeof g.policyDigest === 'string' && g.policyDigest.length > 0; }
+function gateComplete(g) { return !!g && typeof g === 'object' && ['preflight', 'restoreEnvelope', 'reconcileReceipt', 'reconcileRevert', 'encodeEnvelope', 'decodeEnvelope'].every(f => typeof g[f] === 'function') && typeof g.policyDigest === 'string' && g.policyDigest.length > 0; }
 const CLOSED = new Set(['closed', 'closed_with_exceptions']);
 
 // What may leave the process: no raw bytes, no error text.
@@ -286,14 +286,14 @@ export async function runWithLifecycle(cfg) {
     const save = j => saveJournal(cfg.journalPath, j);
     const cur = { journal: null };
     const gate = cfg.chainGate;
-    const allPorts = { ...cfg.ports, chainPreflight: (...a) => gate.preflight(...a), chainRestore: (...a) => gate.restoreEnvelope(...a), chainReconcile: (...a) => gate.reconcileReceipt(...a) };
+    const allPorts = { ...cfg.ports, chainPreflight: (...a) => gate.preflight(...a), chainRestore: (...a) => gate.restoreEnvelope(...a), chainReconcile: (...a) => gate.reconcileReceipt(...a), chainRevert: (...a) => gate.reconcileRevert(...a) };
     const ports = boundedPorts(allPorts, cfg.portTimeoutMs ?? 15000, {
       prepareStart: info => { const j = cur.journal; const prev = j.runner.prepareInFlight; j.runner.prepareInFlight = { ...info, at: (cfg.now || (() => new Date().toISOString()))() }; try { save(j); } catch (e) { j.runner.prepareInFlight = prev; j.persistence = { failed: true }; throw e; } }, // the signer is not called, so nothing was signed
       prepareEnd: () => { if (cur.journal && cur.journal.runner) cur.journal.runner.prepareInFlight = null; },
     });
     const base = {
       save, token: cfg.token, chainId: cfg.chainId, maxFeeWei: cfg.maxFeeWei, dust: cfg.dust ?? 0n, gasDust: cfg.gasDust ?? 0n,
-      chainGate: { preflight: ports.chainPreflight, restoreEnvelope: ports.chainRestore, reconcileReceipt: ports.chainReconcile, encodeEnvelope: gate.encodeEnvelope, decodeEnvelope: gate.decodeEnvelope, policyDigest: gate.policyDigest },
+      chainGate: { preflight: ports.chainPreflight, restoreEnvelope: ports.chainRestore, reconcileReceipt: ports.chainReconcile, reconcileRevert: ports.chainRevert, encodeEnvelope: gate.encodeEnvelope, decodeEnvelope: gate.decodeEnvelope, policyDigest: gate.policyDigest },
       approvedContracts: cfg.approvedContracts || [], gasReserveMultiple: cfg.gasReserveMultiple ?? 2,
     };
     const setPhase = (j, phase, extra = {}) => { j.runner = { ...(j.runner || {}), phase, ...extra }; save(j); };

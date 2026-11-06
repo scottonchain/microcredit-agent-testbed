@@ -74,7 +74,7 @@ export function makeChain({ file = null, tokens = {}, gas = {}, fund = 0n, lost 
     },
     async receipt(hash) {
       const r = load().mined[hash]; if (!r) return null;
-      return { status: r.status, from: r.from, to: r.to, amount: BigInt(r.amount), nonce: r.nonce, chainId: r.chainId, token: r.token };
+      return { status: r.status, from: r.from, to: r.to, amount: BigInt(r.amount), nonce: r.nonce, chainId: r.chainId, token: r.token, rpc: { status: r.status } };
     },
   };
   // placing scenario funds on the chain is the caller's "fund" step
@@ -98,6 +98,7 @@ export function fakeChainGate({ policyDigest = '0x' + '11'.repeat(32) } = {}) {
     async preflight(i) { calls.preflight.push(i); return { ok: true, anchor: { number: 1, hash: '0x' + 'aa'.repeat(32) }, envelope: { fake: true, hash: i.hash }, balances: { native: '1000' } }; },
     async restoreEnvelope(i, env) { calls.restore.push(i); return { ok: true, envelope: env }; },
     async reconcileReceipt(a) { calls.reconcile.push(a); return { ok: true, fee: {} }; },
+    async reconcileRevert(a) { calls.reconcile.push(a); return { ok: true, fee: { totalWei: 0n } }; },
     encodeEnvelope: e => ({ v: 1, fake: true, hash: e.hash }),
     decodeEnvelope: r => { if (!r || r.v !== 1) throw new Error('envelope_record_invalid'); return { fake: true, hash: r.hash }; },
   };

@@ -274,3 +274,127 @@ test('several wallets run through the same gate and each is swept once', async (
   assert.equal(tokenBalanceOf(s.sim, FUND), 24n);
   assert.equal(s.sim.st.signs, 6);
 });
+
+// ---------------------------------------------------------------------------------------------------------------------------
+// Codex B2 review (AMEND e015f193): a failure receipt must not release the original intent for replacement. Only a VERIFIED,
+// confirmed, fee-accounted revert is terminal; any other claim keeps the original bytes and envelope and signs nothing new.
+// ---------------------------------------------------------------------------------------------------------------------------
+const intentOf = j => { const sw = j.wallets.w1.sweep; return sw && [sw.hash, sw.raw, JSON.stringify(sw.envelope)]; };
+const REVERT_FEE = 40_000n * 900n + 30_000n; // gas used x price + L1 fee, operator fee 0 (token)
+
+// claims about a receipt that the chain does not support, while the original transaction is still pending in the pool
+const FALSE_CLAIMS = {
+  'empty receipt object': () => ({}),
+  'status 0 with no raw receipt': () => ({ status: 0 }),
+  'status as hex string': () => ({ status: '0x1' }),
+  'status as hex string zero': () => ({ status: '0x0' }),
+  'status false': () => ({ status: false }),
+  'status null': () => ({ status: null }),
+  'status 2': () => ({ status: 2 }),
+  'status 0 with a matching summary but a success-shaped raw receipt': (h, s) => ({ status: 0, from: s.addr('w1'), to: FUND, amount: 8n, nonce: 0, chainId: CHAIN_ID, token: TOKEN.toLowerCase(), rpc: { status: 1 } }),
+  'a well-formed revert for a transaction that is only pending': (h, s) => ({ status: 0, from: s.addr('w1'), to: FUND, amount: 8n, nonce: 0, chainId: CHAIN_ID, token: TOKEN.toLowerCase(), rpc: { status: 0, transactionHash: h, from: s.addr('w1'), to: TOKEN.toLowerCase(), blockHash: '0x' + '56'.repeat(32), blockNumber: 101, gasUsed: 40_000n, effectiveGasPrice: 900n, l1Fee: 30_000n, operatorFee: 0n, logs: [] } }),
+};
+for (const [name, claim] of Object.entries(FALSE_CLAIMS)) {
+  test(`unverified failure claim (${name}): the original intent stays, nothing is signed again, across a restart and a changed balance`, async () => {
+    let sim;
+    const s = scenario({ autoMine: 0, ports: (base, sm) => { sim = sm; return { async receipt(h) { return claim(h, sm); } }; } });
+    let j = await s.run(s.fresh());
+    const original = intentOf(j);
+    assert.ok(original, 'the intent exists');
+    assert.notEqual(j.wallets.w1.sweep.outcome, 'failed');
+    assert.notEqual(j.wallets.w1.state, 'failed');
+    assert.equal(s.sim.st.signs, 1);
+    // restart; the token balance changes in between (a different amount would normally mean a different transaction)
+    s.sim.st.tokens[s.sim.addr('w1')] = 9n;
+    j = await s.run(loadJournal(s.file), s.start());
+    assert.equal(s.sim.st.signs, 1, 'no second signature');
+    assert.deepEqual(intentOf(j), original, 'original bytes and envelope intact');
+    assert.notEqual(j.wallets.w1.sweep.outcome, 'failed');
+    assert.notEqual(j.status, 'closed');
+  });
+}
+
+test('genuine confirmed revert (token): verified, fee accounted, kept as history, and only then a new intent at the next nonce', async () => {
+  const s = scenario();
+  s.sim.st.revertAll = true;
+  let j = await s.run(s.fresh());
+  const w = j.wallets.w1;
+  assert.equal(w.sweep.outcome, 'failed'); assert.equal(w.state, 'failed');
+  assert.equal(w.sweep.revertFeeWei, REVERT_FEE.toString());
+  assert.equal(tokenBalanceOf(s.sim, FUND), 0n); assert.equal(tokenBalanceOf(s.sim, s.sim.addr('w1')), 8n); // nothing moved
+  const revertedHash = w.sweep.hash;
+  s.sim.st.revertAll = false;
+  j = await s.run(loadJournal(s.file), s.start());
+  assert.equal(j.wallets.w1.state, 'swept', JSON.stringify(j.wallets.w1.events));
+  assert.equal(j.wallets.w1.failedSweeps.length, 1); assert.equal(j.wallets.w1.failedSweeps[0].hash, revertedHash);
+  assert.equal(s.sim.st.signs, 3); // revert, replacement token transfer, gas return
+  assert.equal(tokenBalanceOf(s.sim, FUND), 8n);
+});
+
+test('a genuine revert that is not yet confirmed waits: no replacement, no resend, then it settles', async () => {
+  const s = scenario({ autoMine: 1 });
+  s.sim.st.revertAll = true;
+  let j = await s.run(s.fresh());
+  assert.equal(j.wallets.w1.state, 'unknown');
+  assert.notEqual(j.wallets.w1.sweep.outcome, 'failed');
+  assert.equal(s.sim.st.signs, 1); assert.equal(s.sim.st.broadcasts.length, 1);
+  s.sim.mine(2);
+  j = await s.run(loadJournal(s.file), s.start());
+  assert.equal(s.sim.st.signs >= 2, true);
+  assert.equal(j.wallets.w1.failedSweeps.length, 1);
+});
+
+test('a revert whose evidence is tampered is a mismatch, not a failure: log on a reverted transaction, fee above the envelope, wrong hash', async () => {
+  for (const [name, tweak] of Object.entries({
+    'a Transfer log on a reverted transaction': r => ({ ...r, logs: [{ address: TOKEN, topics: [], data: '0x' }] }),
+    'fee above the envelope': r => ({ ...r, l1Fee: 10n ** 12n }),
+    'another transaction hash': r => ({ ...r, transactionHash: '0x' + '12'.repeat(32) }),
+    'a block that is not canonical': r => ({ ...r, blockHash: '0x' + '34'.repeat(32) }),
+  })) {
+    const s = scenario();
+    s.sim.st.revertAll = true; s.sim.st.receiptTweak = tweak;
+    const j = await s.run(s.fresh());
+    assert.notEqual(j.wallets.w1.sweep.outcome, 'failed', name);
+    assert.equal(j.wallets.w1.sweep.outcome, 'mismatch', name);
+    assert.equal(s.sim.st.signs, 1, name);
+    const j2 = await s.run(loadJournal(s.file), s.start());
+    assert.equal(s.sim.st.signs, 1, name); assert.equal(j2.wallets.w1.sweep.outcome, 'mismatch', name);
+  }
+});
+
+// native (gas-return) leg: the same rules on the gas sweep
+test('gas return, genuine confirmed revert: verified, kept as history, then a replacement returns the gas', async () => {
+  const s = scenario({ ports: (base, sim) => ({ async broadcast(raw) { if (!s.n) s.n = 0; s.n++; if (s.n === 2) sim.st.revertAll = true; if (s.n === 3) sim.st.revertAll = false; return base.broadcast(raw); } }) });
+  let j = await s.run(s.fresh());
+  const g = j.wallets.w1.gas;
+  assert.equal(j.wallets.w1.state, 'swept');
+  assert.equal(g.state, 'failed', JSON.stringify(g)); assert.equal(g.sweep.outcome, 'failed');
+  assert.equal(g.sweep.revertFeeWei, (21_000n * 900n + 30_000n).toString());
+  j = await s.run(loadJournal(s.file), s.start());
+  assert.equal(j.wallets.w1.gas.state, 'returned', JSON.stringify(j.wallets.w1.gas));
+  assert.equal(j.wallets.w1.gas.failedSweeps.length, 1);
+});
+
+for (const [name, claim] of Object.entries({
+  'malformed status': () => ({ status: '0x0' }),
+  'empty receipt object': () => ({}),
+  'revert claim for a pending gas transaction': (h, sm) => ({ status: 0, from: sm.addr('w1'), to: FUND, amount: 1n, nonce: 1, chainId: CHAIN_ID, rpc: { status: 0 } }),
+})) {
+  test(`gas return, unverified failure claim (${name}): original gas intent intact, no second signature, across a restart and a changed balance`, async () => {
+    let tokenHash;
+    const s = scenario({ autoMine: 2, ports: (base, sim) => ({
+      async broadcast(raw) { if (!tokenHash) tokenHash = keccak256(raw); return base.broadcast(raw); },
+      async receipt(h) { return h === tokenHash ? base.receipt(h) : claim(h, sim); },
+    }) });
+    let j = await s.run(s.fresh());
+    assert.equal(j.wallets.w1.state, 'swept');
+    const g = j.wallets.w1.gas; assert.ok(g.sweep, 'gas intent exists'); assert.notEqual(g.sweep.outcome, 'failed'); assert.notEqual(g.state, 'failed');
+    const original = [g.sweep.hash, g.sweep.raw, JSON.stringify(g.sweep.envelope)];
+    const signs = s.sim.st.signs;
+    s.sim.st.native[s.sim.addr('w1')] += 12345n; // a changed balance would shift the amount of a freshly prepared return
+    j = await s.run(loadJournal(s.file), s.start());
+    assert.equal(s.sim.st.signs, signs, 'no second signature');
+    const g2 = j.wallets.w1.gas; assert.deepEqual([g2.sweep.hash, g2.sweep.raw, JSON.stringify(g2.sweep.envelope)], original);
+    assert.notEqual(g2.sweep.outcome, 'failed');
+  });
+}

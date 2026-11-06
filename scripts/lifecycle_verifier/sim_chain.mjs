@@ -30,7 +30,7 @@ export function makeSim({ wallets = ['w1'], tokens = 8n, native = 10n ** 16n } =
     chainId: CHAIN_ID, providerId: 'provider-a', salt: 0,
     blocks: [], byHash: new Map(), // every block hash ever seen, so a historical read of a reorged-out block still answers (an archive node)
     native: {}, tokens: {}, nonces: {}, pool: new Map(), mined: new Map(),
-    code: { [lc(TOKEN)]: TOKEN_CODE }, l1Quote: L1_QUOTE, l1Fail: false, operatorFee: 0n, broadcasts: [], signs: 0, offline: false, receiptTweak: null, readFail: new Set(), autoMine: 0,
+    code: { [lc(TOKEN)]: TOKEN_CODE }, l1Quote: L1_QUOTE, l1Fail: false, operatorFee: 0n, broadcasts: [], signs: 0, offline: false, receiptTweak: null, readFail: new Set(), autoMine: 0, revertAll: false,
   };
   const addr = id => lc(accounts[id].address);
   for (const id of wallets) { st.native[addr(id)] = native; st.tokens[addr(id)] = tokens; }
@@ -47,6 +47,11 @@ export function makeSim({ wallets = ['w1'], tokens = 8n, native = 10n ** 16n } =
       if (tx.from && tx.nonce !== (st.nonces[tx.from] ?? 0)) continue; // not yet valid
       const used = tx.kind === 'erc20' ? GAS.token : GAS.native; const fee = used * PRICE + L1_FEE + (st.operatorFee ?? 0n);
       if (st.native[tx.from] < fee + (tx.kind === 'native' ? tx.amount : 0n)) { st.pool.delete(hash); continue; }
+      if (st.revertAll) {
+        st.native[tx.from] -= fee; st.nonces[tx.from] = tx.nonce + 1;
+        const receipt = { status: 0, transactionHash: hash, from: tx.from, to: tx.kind === 'erc20' ? lc(TOKEN) : tx.recipient, blockHash: b.hash, blockNumber: b.number, gasUsed: used, effectiveGasPrice: PRICE, l1Fee: L1_FEE, ...(st.operatorFee === undefined ? {} : { operatorFee: st.operatorFee }), logs: [] };
+        st.mined.set(hash, { tx, receipt, block: b.number }); b.txs.push(hash); st.pool.delete(hash); continue;
+      }
       if (tx.kind === 'erc20') { if (st.tokens[tx.from] < tx.amount) { st.pool.delete(hash); continue; } st.tokens[tx.from] -= tx.amount; st.tokens[tx.recipient] = (st.tokens[tx.recipient] ?? 0n) + tx.amount; }
       else { st.native[tx.from] -= tx.amount; st.native[tx.recipient] = (st.native[tx.recipient] ?? 0n) + tx.amount; }
       st.native[tx.from] -= fee; st.nonces[tx.from] = tx.nonce + 1;

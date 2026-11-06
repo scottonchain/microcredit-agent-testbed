@@ -55,7 +55,7 @@ function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFo
       const honest = { kind: tx.kind === 'token' ? 'erc20' : 'native', hash, from: tx.from, chainId: CHAIN, nonce: tx.nonce, recipient: tx.to, amount: tx.amount, maxFeeWei: feeOver ? 5000n : 1000n, contract: tx.kind === 'token' ? TOKEN : undefined, nativeValue: 0n };
       return verifierLies ? { ...honest, recipient: FUND } : honest;
     },
-    async receipt(hash) { return st.mined.get(hash) || null; },
+    async receipt(hash) { const m = st.mined.get(hash); return m ? { ...m, rpc: { status: m.status } } : null; },
   };
   if (!verifier) delete ports.verifyPrepared;
   return { st, ports };
@@ -69,6 +69,7 @@ const fakeGate = () => {
     async preflight(i) { calls.preflight.push(i); return { ok: true, anchor: { number: 1, hash: '0x' + 'aa'.repeat(32) }, envelope: { fake: true, hash: i.hash }, balances: { native: '1000' } }; },
     async restoreEnvelope(i, env) { calls.restore.push(i); return { ok: true, envelope: env }; },
     async reconcileReceipt(a) { calls.reconcile.push(a); return { ok: true, fee: {} }; },
+    async reconcileRevert(a) { calls.reconcile.push(a); return { ok: true, fee: { totalWei: 0n } }; },
     encodeEnvelope: e => ({ v: 1, fake: true, hash: e.hash }), decodeEnvelope: r => { if (!r || r.v !== 1) throw new Error('envelope_record_invalid'); return { fake: true, hash: r.hash }; } };
 };
 const D = { chainId: CHAIN, token: TOKEN, maxFeeWei: 1000n, chainGate: fakeGate() }; // the named chain, token, fee bound and chain gate every run must carry
@@ -214,7 +215,7 @@ test('a reverted sweep keeps the run open and a later run can retry it', async (
   const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
   const orig = ports.broadcast;
   let first = true;
-  ports.broadcast = async raw => { if (first && decodeRaw(raw).startsWith('0xt')) { first = false; st.mined.set(decodeRaw(raw), { status: 0 }); return; } return orig(raw); };
+  ports.broadcast = async raw => { const h = decodeRaw(raw); if (first && h.startsWith('0xt')) { first = false; const tx = st.pending.get(h); st.broadcasts.push(h); st.mined.set(h, { status: 0, from: tx.from, to: tx.to, amount: tx.amount, nonce: tx.nonce, chainId: CHAIN, token: TOKEN }); st.nonces[tx.from] = (st.nonces[tx.from] || 0) + 1; return; } return orig(raw); }; // a revert that the (fixture) gate verifies: the fields bind, nothing moves
   const j = newJournal('r9', FUND, ws, 't0');
   await runCleanup(j, ports, { ...E, skipGas: true });
   assert.equal(j.wallets.w1.state, 'failed');
@@ -222,6 +223,23 @@ test('a reverted sweep keeps the run open and a later run can retry it', async (
   await runCleanup(j, ports, E);
   assert.equal(j.wallets.w1.state, 'swept');
   assert.equal(st.fund, 8n);
+  assert.equal(j.wallets.w1.failedSweeps.length, 1); // the verified revert is kept as history, not silently overwritten
+});
+
+test('a status that is not exactly 1 or 0 is never a revert: the original intent stays, nothing is signed again', async () => {
+  for (const bad of [{ status: '0x1' }, { status: undefined }, { status: null }, { status: 2 }, { status: false }, {}]) {
+    const { st, ports } = makeChain({ tokens: { [addr(1)]: 8n }, gas: { [addr(1)]: 1000n } });
+    const realReceipt = ports.receipt;
+    ports.receipt = async h => { const r = await realReceipt(h); return r ? { ...r, ...bad, rpc: { status: bad.status } } : r; };
+    const j = newJournal('rb', FUND, roster(1), 't0');
+    await runCleanup(j, ports, { ...E, skipGas: true });
+    const orig = JSON.stringify(j.wallets.w1.sweep && [j.wallets.w1.sweep.hash, j.wallets.w1.sweep.raw]);
+    assert.notEqual(j.wallets.w1.sweep.outcome, 'failed', JSON.stringify(bad));
+    assert.equal(j.wallets.w1.state, 'unknown');
+    await runCleanup(j, ports, { ...E, skipGas: true });
+    assert.equal(st.signs, 1, JSON.stringify(bad)); // never signed again
+    assert.equal(JSON.stringify([j.wallets.w1.sweep.hash, j.wallets.w1.sweep.raw]), orig);
+  }
 });
 
 test('reconciliation failure is sticky, persisted, and cleared only by a later matching one', async () => {
