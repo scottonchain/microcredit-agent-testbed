@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { keccak256, encodeFunctionData, encodeEventTopics, encodeAbiParameters, parseAbi, toHex, pad } from 'viem';
-import { createChainGate, classifyCode, policyProblems, EIP7702_PREFIX, IMPLEMENTATION_SLOT, L1_ORACLE } from './chain_state.mjs';
+import { createChainGate, classifyCode, policyProblems, encodeEnvelope, decodeEnvelope, EIP7702_PREFIX, IMPLEMENTATION_SLOT, L1_ORACLE } from './chain_state.mjs';
 
 const FROM = '0x' + '11'.repeat(20); const TO = '0x' + 'ff'.repeat(20); const TOKEN = '0x' + 'dd'.repeat(20); const IMPL = '0x' + 'ab'.repeat(20);
 const TOKEN_CODE = '0x6080aa'; const IMPL_CODE = '0x6080bb';
@@ -560,4 +560,54 @@ test('strict quantities also guard intent and preflight evidence (coercible valu
   }
   const c = chain(); c.rpc.getBalance = async () => ''; assert.equal((await gate(c).preflight(intent())).ok, false);
   const c2 = chain(); c2.rpc.getBalance = async () => true; assert.equal((await gate(c2).preflight(intent())).ok, false);
+});
+
+
+// ---- B2 additions: journal encoding of the envelope, and the rebroadcast (resend) mode ----
+test('envelope journal form: canonical decimal strings, plain JSON, exact shape, lossless round trip through restoreEnvelope', async () => {
+  const { c, envelope } = await setup();
+  const rec = encodeEnvelope(envelope); const wire = JSON.parse(JSON.stringify(rec)); // a real JSON round trip
+  assert.equal(wire.v, 1); assert.equal(typeof wire.allInWei, 'string'); assert.match(wire.allInWei, /^[0-9]+$/);
+  const back = decodeEnvelope(wire); assert.deepEqual(back, { ...envelope, binding: { ...envelope.binding } });
+  const g2 = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  const r = await g2.restoreEnvelope(intent(), back); assert.equal(r.ok, true, JSON.stringify(r.reasons));
+  const done = await g2.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope: r.envelope, balances: bal(FEE) });
+  assert.equal(done.ok, true, JSON.stringify(done.reasons));
+});
+test('envelope journal form: anything but the exact canonical shape is refused (decimal strictness, extra and missing keys, wrong types)', async () => {
+  const { envelope } = await setup(); const good = JSON.parse(JSON.stringify(encodeEnvelope(envelope)));
+  const bads = [
+    ['empty decimal', { ...good, allInWei: '' }], ['leading zero', { ...good, allInWei: '0123' }], ['hex', { ...good, allInWei: '0x10' }], ['fraction', { ...good, allInWei: '1.5' }],
+    ['negative', { ...good, allInWei: '-1' }], ['number not string', { ...good, allInWei: 123 }], ['bigint-like object', { ...good, allInWei: { __big: '1' } }], ['whitespace', { ...good, allInWei: ' 1' }],
+    ['over 78 digits', { ...good, allInWei: '1' + '0'.repeat(78) }], ['wrong version', { ...good, v: 2 }], ['extra key', { ...good, extra: 1 }], ['missing quantity', (({ l1QuoteWei, ...r }) => r)(good)],
+    ['binding extra key', { ...good, binding: { ...good.binding, x: 1 } }], ['binding missing key', { ...good, binding: (({ anchorHash, ...r }) => r)(good.binding) }],
+    ['chainId string', { ...good, binding: { ...good.binding, chainId: '84532' } }], ['not an object', 'x'], ['null', null], ['array', []],
+  ];
+  for (const [label, rec] of bads) assert.throws(() => decodeEnvelope(rec), /envelope_record_invalid/, label);
+  assert.throws(() => encodeEnvelope({ allInWei: 1n }), /envelope_not_encodable/);
+  assert.throws(() => encodeEnvelope({ ...envelope, allInWei: '5' }), /envelope_not_encodable/);
+});
+test('resend: the own pending transaction is accepted (pending = nonce + 1 with a mempool entry for this hash), a foreign pending one is not', async () => {
+  const c = chain({ latest: 3, pending: 4, block: { ...A }, blocks: { 499: { ...A } } });
+  const g = createChainGate({ rpc: c.rpc, policy: policy(), now: () => NOW });
+  assert.ok((await g.preflight(intent())).reasons.includes('conflicting_pending_transaction')); // a first send never tolerates a pending one
+  c.s.tx = { hash: HASH1, from: FROM, nonce: 3, blockHash: null };
+  const ok = await g.preflight(intent({ resend: true })); assert.equal(ok.ok, true, JSON.stringify(ok.reasons)); assert.equal(ok.resend, true);
+  for (const [label, tx] of [['another hash', { hash: HASH2, from: FROM, nonce: 3, blockHash: null }], ['another sender', { hash: HASH1, from: TO, nonce: 3, blockHash: null }], ['another nonce', { hash: HASH1, from: FROM, nonce: 4, blockHash: null }], ['already mined', { hash: HASH1, from: FROM, nonce: 3, blockHash: B500.hash }], ['absent', undefined]]) {
+    c.s.tx = tx; const r = await g.preflight(intent({ resend: true })); assert.ok(r.reasons.includes('conflicting_pending_transaction'), label + JSON.stringify(r.reasons));
+  }
+  c.s.pending = 5; c.s.tx = { hash: HASH1, from: FROM, nonce: 3, blockHash: null };
+  assert.ok((await g.preflight(intent({ resend: true }))).reasons.includes('conflicting_pending_transaction')); // two pending is never ours alone
+  c.s.pending = 3; c.s.latest = 4; assert.ok((await g.preflight(intent({ resend: true }))).reasons.includes('nonce_already_used'));
+});
+test('resend never replaces the retained envelope of the original send (its anchor must stay before inclusion)', async () => {
+  const { c, g, envelope } = await setup();
+  const before = envelope.binding.anchorHash;
+  c.s.block = { ...B501 }; c.s.blocks[501] = { ...B501 };
+  c.s.latest = 3; c.s.pending = 3; // the resend sees the nonce free again (e.g. the tx was dropped)
+  const re = await g.preflight(intent({ resend: true })); assert.equal(re.ok, true, JSON.stringify(re.reasons));
+  assert.equal(re.envelope.binding.anchorNumber, 501); assert.notEqual(re.envelope.binding.anchorHash, before);
+  c.s.tx = txFor(intent());
+  const out = await g.reconcileReceipt({ intent: intent(), receipt: receipt(), envelope, balances: bal(FEE) });
+  assert.equal(out.ok, true, JSON.stringify(out.reasons)); // still the ORIGINAL envelope
 });

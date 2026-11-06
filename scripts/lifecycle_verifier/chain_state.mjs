@@ -109,6 +109,32 @@ export function policyDigest(p) {
   return keccak256(new TextEncoder().encode(JSON.stringify(norm(p))));
 }
 
+// Journal form of an envelope: every quantity as a canonical DECIMAL string, plain JSON, version-tagged. decodeEnvelope is the
+// only way back: it accepts exactly this shape (no extra or missing keys, canonical decimals only) and returns bigints, which
+// restoreEnvelope then verifies against the chain; the strict quantity parser never sees a decimal string.
+const ENV_BIG = ['executionCeilingWei', 'l1QuoteWei', 'l1MarginedWei', 'operatorBoundWei', 'allInWei'];
+const ENV_BIND = ['intentHash', 'providerId', 'chainId', 'anchorHash', 'anchorNumber', 'policyDigest'];
+const DEC = /^(?:0|[1-9][0-9]{0,77})$/;
+export function encodeEnvelope(env) {
+  if (!env || typeof env !== 'object' || !env.binding) throw new Error('envelope_not_encodable');
+  const out = { v: 1 };
+  for (const k of ENV_BIG) { if (typeof env[k] !== 'bigint' || env[k] < 0n) throw new Error('envelope_not_encodable'); out[k] = env[k].toString(); }
+  out.binding = {}; for (const k of ENV_BIND) out.binding[k] = env.binding[k];
+  return JSON.parse(JSON.stringify(out));
+}
+export function decodeEnvelope(rec) {
+  if (!rec || typeof rec !== 'object' || Array.isArray(rec) || rec.v !== 1) throw new Error('envelope_record_invalid');
+  const keys = Object.keys(rec).sort().join(',');
+  if (keys !== ['allInWei', 'binding', 'executionCeilingWei', 'l1MarginedWei', 'l1QuoteWei', 'operatorBoundWei', 'v'].sort().join(',')) throw new Error('envelope_record_invalid');
+  const out = {};
+  for (const k of ENV_BIG) { if (typeof rec[k] !== 'string' || !DEC.test(rec[k])) throw new Error('envelope_record_invalid'); out[k] = BigInt(rec[k]); }
+  const b = rec.binding;
+  if (!b || typeof b !== 'object' || Array.isArray(b) || Object.keys(b).sort().join(',') !== [...ENV_BIND].sort().join(',')) throw new Error('envelope_record_invalid');
+  if (!Number.isSafeInteger(b.chainId) || !Number.isSafeInteger(b.anchorNumber) || typeof b.intentHash !== 'string' || typeof b.providerId !== 'string' || typeof b.anchorHash !== 'string' || typeof b.policyDigest !== 'string') throw new Error('envelope_record_invalid');
+  out.binding = { ...b };
+  return out;
+}
+
 export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now() / 1000) }) {
   const problems = policyProblems(policy);
   const digest = problems.length ? null : policyDigest(policy);
@@ -155,7 +181,19 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
       let intentNonce; try { intentNonce = count(intent.nonce); } catch { reasons.push('intent_nonce_invalid'); }
       if (latest !== undefined && pending !== undefined && intentNonce !== undefined) {
         if (latest !== intentNonce) reasons.push(latest > intentNonce ? 'nonce_already_used' : 'nonce_gap');
-        else if (pending !== latest) reasons.push('conflicting_pending_transaction');
+        else if (pending !== latest) {
+          // A rebroadcast of the SAME signed bytes may find its own transaction pending (pending = nonce + 1). That is accepted
+          // only when the pool really holds a not-yet-mined transaction with this hash, sender and nonce; anything else is a
+          // conflicting pending transaction and holds.
+          let own = false;
+          if (intent.resend === true && pending === latest + 1) {
+            try {
+              const tx = await rpc.getTransaction(intent.hash);
+              own = !!tx && lc(tx.hash ?? '') === lc(intent.hash) && lc(tx.from ?? '') === lc(intent.from) && count(tx.nonce) === intentNonce && (tx.blockHash === null || tx.blockHash === undefined);
+            } catch { own = false; }
+          }
+          if (!own) reasons.push('conflicting_pending_transaction');
+        }
       }
 
       if (intent.kind === 'erc20') {
@@ -200,8 +238,8 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
 
       if (reasons.length) return { ok: false, reasons: [...new Set(reasons)], anchor };
       const kept = deepFreeze(JSON.parse(JSON.stringify(envelope, (k, v) => (typeof v === 'bigint' ? { __big: v.toString() } : v)), (k, v) => (v && typeof v === 'object' && '__big' in v ? BigInt(v.__big) : v)));
-      retained.set(lc(intent.hash), kept);
-      return { ok: true, anchor, envelope: kept, balances: { native: nativeBalance.toString() } };
+      if (intent.resend !== true) retained.set(lc(intent.hash), kept); // a rebroadcast never replaces the original envelope (its anchor must stay before inclusion)
+      return { ok: true, anchor, envelope: kept, balances: { native: nativeBalance.toString() }, resend: intent.resend === true };
     } catch {
       return { ok: false, reasons: ['preflight_error'] }; // a conversion that escaped the validators is still a hold, never provider text
     }
@@ -398,7 +436,7 @@ export function createChainGate({ rpc, policy, now = () => Math.floor(Date.now()
     return amount > big(gasDustWei) ? amount : 0n;
   }
 
-  return { preflight, restoreEnvelope, reconcileReceipt, gasReturnAmount, policyProblems: problems, policyDigest: digest };
+  return { preflight, restoreEnvelope, reconcileReceipt, gasReturnAmount, encodeEnvelope, decodeEnvelope, policyProblems: problems, policyDigest: digest };
 }
 
 function hold(reason) { const e = new Error(reason); e.holdReason = reason; return e; }

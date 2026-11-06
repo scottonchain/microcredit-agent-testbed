@@ -63,7 +63,15 @@ function makeChain({ tokens = {}, gas = {}, lost = [], contracts = [], rpcFailFo
 
 const roster = n => Array.from({ length: n }, (_, i) => ({ id: 'w' + (i + 1), address: addr(i + 1), role: 'client' }));
 const tmpPath = () => path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'wl-')), 'journal.json');
-const D = { chainId: CHAIN, token: TOKEN, maxFeeWei: 1000n }; // the named chain, token and fee bound every run must carry
+const fakeGate = () => {
+  const calls = { preflight: [], restore: [], reconcile: [] };
+  return { policyDigest: '0x' + '11'.repeat(32), calls,
+    async preflight(i) { calls.preflight.push(i); return { ok: true, anchor: { number: 1, hash: '0x' + 'aa'.repeat(32) }, envelope: { fake: true, hash: i.hash }, balances: { native: '1000' } }; },
+    async restoreEnvelope(i, env) { calls.restore.push(i); return { ok: true, envelope: env }; },
+    async reconcileReceipt(a) { calls.reconcile.push(a); return { ok: true, fee: {} }; },
+    encodeEnvelope: e => ({ v: 1, fake: true, hash: e.hash }), decodeEnvelope: r => { if (!r || r.v !== 1) throw new Error('envelope_record_invalid'); return { fake: true, hash: r.hash }; } };
+};
+const D = { chainId: CHAIN, token: TOKEN, maxFeeWei: 1000n, chainGate: fakeGate() }; // the named chain, token, fee bound and chain gate every run must carry
 const E = { ephemeral: true, ...D };
 const runCleanup = (j, p, o = {}) => runCleanupRaw(j, p, { ...D, ...o });
 

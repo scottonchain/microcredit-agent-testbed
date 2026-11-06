@@ -41,7 +41,11 @@ export const ENV_FLAG = 'OMNEQUA_WALLET_LIFECYCLE';
 export class PrepareNotStarted extends Error {}
 export function lifecycleEnabled(env = process.env) { return env[ENV_FLAG] === '1'; }
 
-const PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'verifyPrepared', 'receipt'];
+const BASE_PORTS = ['controls', 'tokenBalance', 'gasBalance', 'gasCostEstimate', 'gasSweepFee', 'nonceOf', 'isContract', 'prepareSweep', 'prepareGasSweep', 'broadcast', 'verifyPrepared', 'receipt'];
+// the chain gate's three asynchronous members become bounded ports like every other call; its two encoders are pure
+const GATE_PORTS = ['chainPreflight', 'chainRestore', 'chainReconcile'];
+const PORTS = [...BASE_PORTS, ...GATE_PORTS];
+function gateComplete(g) { return !!g && typeof g === 'object' && ['preflight', 'restoreEnvelope', 'reconcileReceipt', 'encodeEnvelope', 'decodeEnvelope'].every(f => typeof g[f] === 'function') && typeof g.policyDigest === 'string' && g.policyDigest.length > 0; }
 const CLOSED = new Set(['closed', 'closed_with_exceptions']);
 
 // What may leave the process: no raw bytes, no error text.
@@ -150,7 +154,8 @@ function checkConfig(cfg) {
   else if (/(^|[\\/])evidence([\\/]|$)/.test(cfg.journalPath)) problems.push('journalPath must be outside the evidence folder');
   if (typeof cfg.fund !== 'function') problems.push('fund');
   if (typeof cfg.scenario !== 'function') problems.push('scenario');
-  if (!cfg.ports || PORTS.some(p => typeof cfg.ports[p] !== 'function')) problems.push('ports');
+  if (!cfg.ports || BASE_PORTS.some(p => typeof cfg.ports[p] !== 'function')) problems.push('ports');
+  if (!gateComplete(cfg.chainGate)) problems.push('chainGate');
   return problems;
 }
 
@@ -161,7 +166,7 @@ function identityOf(cfg) {
   return JSON.stringify({
     v: 1,
     roster: cfg.roster.map(w => [String(w.id), low(w.address)]).sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)),
-    funding: low(cfg.fundingWallet), chainId: cfg.chainId, token: low(cfg.token), maxFeeWei: String(cfg.maxFeeWei),
+    funding: low(cfg.fundingWallet), chainId: cfg.chainId, token: low(cfg.token), maxFeeWei: String(cfg.maxFeeWei), policyDigest: cfg.chainGate && cfg.chainGate.policyDigest,
     policy: { dust: String(cfg.dust ?? 0n), gasDust: String(cfg.gasDust ?? 0n), gasReserveMultiple: cfg.gasReserveMultiple ?? 2, approved: [...(cfg.approvedContracts || [])].map(low).sort() },
   });
 }
@@ -280,12 +285,15 @@ export async function runWithLifecycle(cfg) {
     const timeoutMs = cfg.timeoutMs ?? 60000; const quiesceMs = cfg.quiesceMs ?? 30000;
     const save = j => saveJournal(cfg.journalPath, j);
     const cur = { journal: null };
-    const ports = boundedPorts(cfg.ports, cfg.portTimeoutMs ?? 15000, {
+    const gate = cfg.chainGate;
+    const allPorts = { ...cfg.ports, chainPreflight: (...a) => gate.preflight(...a), chainRestore: (...a) => gate.restoreEnvelope(...a), chainReconcile: (...a) => gate.reconcileReceipt(...a) };
+    const ports = boundedPorts(allPorts, cfg.portTimeoutMs ?? 15000, {
       prepareStart: info => { const j = cur.journal; const prev = j.runner.prepareInFlight; j.runner.prepareInFlight = { ...info, at: (cfg.now || (() => new Date().toISOString()))() }; try { save(j); } catch (e) { j.runner.prepareInFlight = prev; j.persistence = { failed: true }; throw e; } }, // the signer is not called, so nothing was signed
       prepareEnd: () => { if (cur.journal && cur.journal.runner) cur.journal.runner.prepareInFlight = null; },
     });
     const base = {
       save, token: cfg.token, chainId: cfg.chainId, maxFeeWei: cfg.maxFeeWei, dust: cfg.dust ?? 0n, gasDust: cfg.gasDust ?? 0n,
+      chainGate: { preflight: ports.chainPreflight, restoreEnvelope: ports.chainRestore, reconcileReceipt: ports.chainReconcile, encodeEnvelope: gate.encodeEnvelope, decodeEnvelope: gate.decodeEnvelope, policyDigest: gate.policyDigest },
       approvedContracts: cfg.approvedContracts || [], gasReserveMultiple: cfg.gasReserveMultiple ?? 2,
     };
     const setPhase = (j, phase, extra = {}) => { j.runner = { ...(j.runner || {}), phase, ...extra }; save(j); };

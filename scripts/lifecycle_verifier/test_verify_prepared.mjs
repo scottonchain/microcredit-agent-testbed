@@ -1,4 +1,5 @@
 // Local tests only: keys are generated in memory per run and never stored; nothing is sent anywhere.
+import { fakeChainGate } from '../lifecycle_fixtures.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
@@ -141,7 +142,16 @@ function signedChain({ mutate = {} } = {}) {
   return { ports, st, keyOf };
 }
 const mk = (keyOf, ids) => ids.map(id => ({ id, address: keyOf(id).address, role: 'client' }));
-const OPTS = { ephemeral: true, chainId: CHAIN, token: TOKEN, maxFeeWei: 100_000_000n, skipGas: true };
+const OPTS = { ephemeral: true, chainId: CHAIN, token: TOKEN, maxFeeWei: 100_000_000n, skipGas: true, chainGate: fakeChainGate() }; // the decoder tests use a permissive gate; the real gate is in test_b2_integration.mjs
+
+test('no chain gate: even an honest, really signed sweep is stored and never broadcast', async () => {
+  const chain = signedChain({ mutate: {} });
+  const j = newJournal('rv-nogate', FUND, mk(chain.keyOf, ['w1']), 't0');
+  const { chainGate, ...noGate } = OPTS;
+  await runCleanup(j, chain.ports, noGate);
+  assert.equal(chain.st.broadcasts.length, 0);
+  assert.equal(j.wallets.w1.sweep.outcome, 'unverified'); assert.equal(j.wallets.w1.sweep.verifyReason, 'chain_gate_missing');
+});
 
 test('gate with the real decoder: an honest signed token sweep passes the gate and only the stored bytes are sent', async () => {
   const chain = signedChain({ mutate: {} });

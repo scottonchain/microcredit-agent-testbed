@@ -8,7 +8,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { runWithLifecycle, lifecycleEnabled, checkpoint, publicReport, exitCodeFor, ENV_FLAG, PrepareNotStarted } from './lifecycle_runner.mjs';
 import { loadJournal } from './wallet_lifecycle.mjs';
-import { makeChain, roster, addr, FUND, OTHER, TOKEN, CHAIN_ID, MAX_FEE, encodeRaw, decodeRaw } from './lifecycle_fixtures.mjs';
+import { makeChain, roster, addr, FUND, OTHER, TOKEN, CHAIN_ID, MAX_FEE, encodeRaw, decodeRaw, fakeChainGate } from './lifecycle_fixtures.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'lr-'));
@@ -23,7 +23,7 @@ function setup({ n = 2, chain: co = {}, over = {}, fundGas = 1000n, scenario = a
   const signals = new EventEmitter();
   const cfg = {
     enabled: true, runId: 'r1', fundingWallet: FUND, roster: roster(n), ports, signals,
-    journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, maxFeeWei: MAX_FEE, timeoutMs: 5000, settleGraceMs: 100,
+    journalPath: path.join(dir, 'private', 'journal.json'), token: TOKEN, chainId: CHAIN_ID, maxFeeWei: MAX_FEE, chainGate: fakeChainGate(), timeoutMs: 5000, settleGraceMs: 100,
     fund: async () => {
       calls.fund++;
       const tokens = {}; const gas = {};
@@ -383,6 +383,28 @@ test('a hung cleanup port is bounded: the wallet stays unknown, nothing is close
   assert.ok(Date.now() - started < 3000);
   assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
   assert.equal(r.checkpoint.unresolved.find(u => u.id === 'w1').state, 'unknown');
+});
+
+test('a hung chain-gate preflight is bounded: no provider send, the wallet stays unknown, nothing is closed, the run returns', async () => {
+  const gate = fakeChainGate();
+  const t = setup({ n: 1, over: { portTimeoutMs: 30, chainGate: { ...gate, preflight: () => new Promise(() => {}) } } });
+  const c = { broadcast: 0 }; const real = t.cfg.ports.broadcast;
+  t.cfg.ports = { ...t.cfg.ports, broadcast: (raw) => { c.broadcast++; return real(raw); } };
+  const started = Date.now();
+  const r = await runWithLifecycle(t.cfg);
+  assert.ok(Date.now() - started < 3000);
+  assert.equal(c.broadcast, 0);                                  // a gate that never answers is a hold, never a send
+  assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
+  assert.equal(r.checkpoint.unresolved.find(u => u.id === 'w1').state, 'unknown');
+});
+
+test('a chain gate that rejects holds every send: zero broadcasts, wallet unknown, run not closed', async () => {
+  const gate = fakeChainGate();
+  const t = setup({ n: 2, over: { chainGate: { ...gate, preflight: async () => ({ ok: false, reasons: ['anchor_stale'] }) } } });
+  const c = { broadcast: 0 }; const real = t.cfg.ports.broadcast;
+  t.cfg.ports = { ...t.cfg.ports, broadcast: (raw) => { c.broadcast++; return real(raw); } };
+  const r = await runWithLifecycle(t.cfg);
+  assert.equal(c.broadcast, 0); assert.notEqual(r.status, 'closed'); assert.equal(r.ok, false);
 });
 
 // Codex review 6650540082: a timed-out EFFECT call is still running; ownership follows the effect, not the wrapper.

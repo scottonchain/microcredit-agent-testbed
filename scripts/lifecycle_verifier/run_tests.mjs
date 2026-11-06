@@ -11,5 +11,5 @@ if (!existsSync(path.join(here, 'node_modules', 'viem'))) {
   console.log('SKIPPED: viem is not installed (run `npm ci` in scripts/lifecycle_verifier); the cryptographic decoder tests did not run');
   process.exit(0);
 }
-const r = spawnSync(process.execPath, ['--test', path.join(here, 'test_verify_prepared.mjs'), path.join(here, 'test_chain_state.mjs')], { stdio: 'inherit' });
+const r = spawnSync(process.execPath, ['--test', path.join(here, 'test_verify_prepared.mjs'), path.join(here, 'test_chain_state.mjs'), path.join(here, 'test_b2_integration.mjs')], { stdio: 'inherit' });
 process.exit(r.status ?? 1);
