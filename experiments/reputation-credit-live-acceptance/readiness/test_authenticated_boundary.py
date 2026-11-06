@@ -2,6 +2,7 @@ import copy
 import hashlib
 import json
 import os
+import subprocess
 import unittest
 from authenticated_reader import AuthenticatedSnapshots,HTTPSReadRPC,strict_json,NoRedirect
 from canonical_adapter import CanonicalReader
@@ -25,6 +26,22 @@ def _client_uids():
 
 
 CONSENT_UID, EXECUTOR_UID = _client_uids()
+
+
+def _viem_resolvable():
+    """True when Node can resolve the `viem` package that two tests use to sign ephemeral fixtures.
+    A missing module is the only reason to skip: any other failure of those tests still fails."""
+    try:
+        r = subprocess.run(['node', '-e', "require.resolve('viem/accounts')"], capture_output=True, text=True, timeout=15)
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    return r.returncode == 0
+
+
+NEEDS_VIEM = unittest.skipUnless(
+    _viem_resolvable(),
+    'SKIPPED, NOT A PASS: needs the Node viem package (install it where Node can resolve it); '
+    'this environment cannot, so the signing-bridge claim is untested here')
 
 class RPC:
     def __init__(self):self.b=f.fixture();self.calls=[];self.code='0x6000';self.fail=False
@@ -214,6 +231,7 @@ class IntegrationTests(unittest.TestCase):
             for consent,executor in [(os.getuid(),2001),(2001,os.getuid()),(0,2001),(2001,0)]:
                 with self.assertRaises(ValueError):LocalBoundary(fixture.bindings,journal,None,consent_uid=consent,executor_uid=executor,fee_limits={},clock=lambda:1100)
         finally:fixture.tearDown()
+    @NEEDS_VIEM
     def test_actual_signature_bridge_verifies_ephemeral_fixture(self):
         import subprocess
         from pathlib import Path
@@ -291,6 +309,7 @@ class GuardTests(unittest.TestCase):
         self.assertEqual(len(transport.calls),1)
 
 class PrivateSignerTests(unittest.TestCase):
+    @NEEDS_VIEM
     def test_inherited_memory_fixture_key_signs_only_matching_officer(self):
         import subprocess
         from pathlib import Path
