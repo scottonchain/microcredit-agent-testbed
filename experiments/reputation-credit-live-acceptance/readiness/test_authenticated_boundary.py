@@ -11,6 +11,21 @@ from pending_journal import PendingJournal
 import test_interfaces as f
 from test_durable import tx
 
+
+def _client_uids():
+    """Two distinct positive client UIDs that differ from the UID running the tests. The boundary
+    rejects a client role equal to the service UID, and a CI runner is typically UID 1001, so fixed
+    literals made validate fail there for a reason unrelated to the behaviour under test."""
+    taken, out, candidate = {os.getuid()}, [], 1001
+    while len(out) < 2:
+        if candidate not in taken:
+            out.append(candidate)
+        candidate += 1
+    return tuple(out)
+
+
+CONSENT_UID, EXECUTOR_UID = _client_uids()
+
 class RPC:
     def __init__(self):self.b=f.fixture();self.calls=[];self.code='0x6000';self.fail=False
     def call(self,method,params):
@@ -67,18 +82,18 @@ class BoundaryTests(unittest.TestCase):
         self.f=f.Interfaces();self.f.setUp();os.chmod(self.f.path,0o600)
         self.journal=PendingJournal(self.f.bindings,None)
         self.verifier=lambda *a:{'signatureValid':True,'transactionHash':tx(500)}
-        self.boundary=LocalBoundary(self.f.bindings,self.journal,self.verifier,consent_uid=1001,executor_uid=1002,
+        self.boundary=LocalBoundary(self.f.bindings,self.journal,self.verifier,consent_uid=CONSENT_UID,executor_uid=EXECUTOR_UID,
            fee_limits={'gas':'100000','maxFeePerGas':'100','maxTotalFee':'10000000'},clock=lambda:1100,allow_external_staging=True)
     def tearDown(self):self.f.tearDown()
     def call(self,uid,method,params):return self.boundary.dispatch(uid,json.dumps({'method':method,'params':params}).encode())
-    def consent(self):return self.call(1001,'consent',dict(subject=f.BORROWER,revision=1,allowed=True,purpose='fictional-practice',expires=4000))
+    def consent(self):return self.call(CONSENT_UID,'consent',dict(subject=f.BORROWER,revision=1,allowed=True,purpose='fictional-practice',expires=4000))
     def stage(self):
         self.consent();transaction=self.f.bind()
-        return self.call(1002,'stage',{'binding_id':'bind','transaction':transaction,'serialized':'0x02aa'})
+        return self.call(EXECUTOR_UID,'stage',{'binding_id':'bind','transaction':transaction,'serialized':'0x02aa'})
     def test_roles_cannot_self_consent_or_execute_arbitrary_methods(self):
-        with self.assertRaises(ValueError):self.call(1002,'consent',{})
-        with self.assertRaises(ValueError):self.call(1001,'stage',{})
-        with self.assertRaises(ValueError):self.call(1002,'exec',{'script':'rm -rf /'})
+        with self.assertRaises(ValueError):self.call(EXECUTOR_UID,'consent',{})
+        with self.assertRaises(ValueError):self.call(CONSENT_UID,'stage',{})
+        with self.assertRaises(ValueError):self.call(EXECUTOR_UID,'exec',{'script':'rm -rf /'})
         with self.assertRaises(ValueError):self.call(999,'bind',{})
     def test_staging_private_idempotent_and_execution_disabled(self):
         result=self.stage();self.assertFalse(result['execution_allowed']);self.assertNotIn('raw',result)
@@ -87,7 +102,7 @@ class BoundaryTests(unittest.TestCase):
         self.assertEqual(self.f.ledger.totals()['net'],10_000_000)
     def test_withdrawal_during_verification_rejects_staging(self):
         def verifier(*a):
-            self.call(1001,'consent',dict(subject=f.BORROWER,revision=2,allowed=False,purpose='fictional-practice',expires=4000))
+            self.call(CONSENT_UID,'consent',dict(subject=f.BORROWER,revision=2,allowed=False,purpose='fictional-practice',expires=4000))
             return {'signatureValid':True,'transactionHash':tx(500)}
         self.boundary.verifier=verifier
         with self.assertRaises(ValueError):self.stage()
@@ -95,7 +110,7 @@ class BoundaryTests(unittest.TestCase):
     def test_invalid_signature_and_duplicate_key_never_stage(self):
         self.boundary.verifier=lambda *a:{'signatureValid':False}
         with self.assertRaises(ValueError):self.stage()
-        with self.assertRaises(ValueError):self.boundary.dispatch(1002,b'{"method":"stage","method":"consent","params":{}}')
+        with self.assertRaises(ValueError):self.boundary.dispatch(EXECUTOR_UID,b'{"method":"stage","method":"consent","params":{}}')
     def test_same_role_uid_and_public_ledger_rejected(self):
         with self.assertRaises(ValueError):LocalBoundary(self.f.bindings,self.journal,self.verifier,consent_uid=1,executor_uid=1,fee_limits={},clock=lambda:1100)
         os.chmod(self.f.path,0o644)
@@ -323,7 +338,7 @@ class AssemblyTests(unittest.TestCase):
             c={'policy':asdict(fixture.policy),'ledger_path':str(fixture.path),'rpc':{'primary':'https://sepolia.base.org','witness':None,'approved_origins':['https://sepolia.base.org']},
                'code_pins':{f.POOL:digest,f.TOKEN:digest,f.DESK:digest},'proxy_bindings':{},'desk':f.DESK,'officer':f.OFFICER,
                'approved_messages':{'practice':'Fictional practice only.'},'fees':{'gas':'100000','maxFeePerGas':'100','maxPriorityFeePerGas':'1','maxTotalFee':'10000000'},
-               'consent_uid':1001,'executor_uid':1002,'socket_path':str(fixture.path.parent/'boundary.sock'),'socket_group':os.getgid(),
+               'consent_uid':CONSENT_UID,'executor_uid':EXECUTOR_UID,'socket_path':str(fixture.path.parent/'boundary.sock'),'socket_group':os.getgid(),
                'source_revision':'a'*40,'source_hashes':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files},
                'release_path':str(fixture.path.parent/'NOT_INSTALLED.json'),'release_sha256':'0'*64}
             path=fixture.path.parent/'config.json';raw=json.dumps(c).encode();path.write_bytes(raw);path.chmod(0o600)

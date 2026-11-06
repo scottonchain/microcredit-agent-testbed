@@ -61,7 +61,8 @@ unambiguous expected vectors. None of them is finalized mechanism or underwritin
 
 - `reserve()` returns `True` for a new reservation and `False` only for an exact retry of
   an **active** one. A cancelled or settled identity is terminal and is never reopened:
-  any retry raises `ReservationTerminal`. A `False` therefore always means "a lock exists".
+  an IDENTICAL retry raises `ReservationTerminal` (a retry with changed fields raises the
+  generic `ValueError` first). A `False` therefore always means "a lock exists".
 - Report and correction identities share one namespace per `(loan, root)` and each keeps
   the label it carried. An exact old delivery (the original report after a correction, or
   any earlier correction) is a no-op that keeps the current, possibly corrected, outcome.
