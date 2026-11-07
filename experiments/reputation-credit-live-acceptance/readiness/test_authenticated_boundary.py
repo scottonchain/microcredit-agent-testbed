@@ -77,17 +77,30 @@ NEEDS_VIEM = _needs_viem_for(_probe_viem())
 _NODE_PIN = []
 
 
+def _private_node_copy(found):
+    """Copy a Node executable into a private directory owned by the test user, mode 0755, and return
+    (path, sha256). Production refuses a group- or world-writable or foreign-owned Node; CI images install Node
+    group-writable, so the tests must not depend on the machine's own file permissions."""
+    import atexit, shutil, tempfile
+    directory = os.path.realpath(tempfile.mkdtemp(prefix='node-pin-'))
+    os.chmod(directory, 0o700)
+    atexit.register(shutil.rmtree, directory, True)
+    copy_path = os.path.join(directory, 'node')
+    shutil.copyfile(os.path.realpath(found), copy_path)
+    os.chmod(copy_path, 0o755)
+    with open(copy_path, 'rb') as handle:
+        return copy_path, hashlib.sha256(handle.read()).hexdigest()
+
+
 def _test_node_pin():
-    """(resolved path, sha256) of the Node on this machine, computed once. The production code refuses PATH lookups,
-    so tests that really launch Node must pin it the way the deployment configuration does."""
+    """(path, sha256) of a private copy of the Node on this machine, computed once. The production code refuses PATH
+    lookups, so tests that really launch Node must pin it the way the deployment configuration does."""
     if not _NODE_PIN:
         import shutil
         found = shutil.which('node')
         if not found:
             raise unittest.SkipTest('SKIPPED, NOT A PASS: no Node.js executable on this machine')
-        real = os.path.realpath(found)
-        with open(real, 'rb') as handle:
-            _NODE_PIN.append((real, hashlib.sha256(handle.read()).hexdigest()))
+        _NODE_PIN.append(_private_node_copy(found))
     return _NODE_PIN[0]
 
 
@@ -438,6 +451,24 @@ class PrivateSignerTests(unittest.TestCase):
             raw=signer(transaction,limits);self.assertTrue(verifier(raw,transaction,limits,1100)['signatureValid'])
             with self.assertRaises(ValueError):signer(dict(transaction,**{'from':f.OFFICER}),limits)
         finally:os.close(fd)
+
+class NodePinHelperTests(unittest.TestCase):
+    def test_pin_helper_does_not_depend_on_the_machine_node_permissions(self):
+        """CI regression: the runner's Node is group-writable, which PinnedNode correctly refuses."""
+        import stat, tempfile
+        from local_boundary import PinnedNode
+        with tempfile.TemporaryDirectory() as d:
+            fake = os.path.join(os.path.realpath(d), 'node')
+            with open(fake, 'wb') as handle:
+                handle.write(b'#!/bin/sh\nexit 0\n')
+            os.chmod(fake, 0o775)  # group-writable, as on the hosted runner
+            with self.assertRaisesRegex(ValueError, 'group- or world-writable'):
+                PinnedNode(fake, hashlib.sha256(open(fake, 'rb').read()).hexdigest())
+            path, sha = _private_node_copy(fake)
+            self.assertEqual(stat.S_IMODE(os.lstat(path).st_mode), 0o755)
+            self.assertEqual(os.lstat(path).st_uid, os.getuid())
+            self.assertEqual(PinnedNode(path, sha).path, path)
+
 
 class AssemblyTests(unittest.TestCase):
     def test_reproducible_closed_assembly_and_source_config_tamper_rejection(self):

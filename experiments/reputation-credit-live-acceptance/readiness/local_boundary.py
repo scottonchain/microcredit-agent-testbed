@@ -38,8 +38,11 @@ class PinnedNode:
         p=Path(path)
         if not p.is_absolute() or p.resolve()!=p:raise ValueError('absolute node path without symlinks required')
         st=p.lstat()
-        if (not stat.S_ISREG(st.st_mode) or st.st_uid not in (0,os.getuid()) or st.st_mode&0o022 or not st.st_mode&0o111):
-            raise ValueError('owner-controlled executable node required')
+        # Each condition has its own fixed message so a refusal on a real machine says which rule failed.
+        if not stat.S_ISREG(st.st_mode):raise ValueError('owner-controlled executable node required: not a regular file')
+        if st.st_uid not in (0,os.getuid()):raise ValueError('owner-controlled executable node required: not owned by root or the service user')
+        if st.st_mode&0o022:raise ValueError('owner-controlled executable node required: group- or world-writable')
+        if not st.st_mode&0o111:raise ValueError('owner-controlled executable node required: not executable')
         if type(expected_sha256) is not str or len(expected_sha256)!=64:raise ValueError('node executable pin required')
         digest=hashlib.sha256()
         with open(p,'rb') as handle:
