@@ -310,6 +310,92 @@ class FailureDiagnosticsTests(unittest.TestCase):
             self.assertFalse((Path(d) / 'refresh-status.json').exists())
 
 
+PATH_MARKER = '/private/PATHMARKER/status.json'
+
+
+class FailureHandlingRegressionTests(unittest.TestCase):
+    """Review amendments: malformed metadata, failure to save the record, the write stage, real stderr."""
+    MALFORMED = [{}, [], ['timeout'], {'timeout'}, 5, 1.5, None, b'timeout', ('timeout',), object()]
+
+    def test_malformed_codes_roles_and_stages_fall_back_without_raising(self):
+        for value in self.MALFORMED:
+            error = ld.RpcError('fixture', value)
+            error.role = value
+            progress = ld.Progress(); progress.stage = value
+            self.assertEqual(ld.classify_failure(error, progress), ('unknown', 'rpc_other', None))
+            with tempfile.TemporaryDirectory() as d:
+                ld.write_attempt(Path(d), 'failed', (value, value, value))
+                status = json.loads((Path(d) / 'refresh-status.json').read_text())
+            self.assertEqual((status['failureStage'], status['failureCode']), ('unknown', 'unknown'))
+            self.assertNotIn('failureProvider', status)
+
+    def test_malformed_code_through_main_still_records_a_fixed_failure(self):
+        for value in self.MALFORMED:
+            with tempfile.TemporaryDirectory() as d:
+                with patch.object(ld, 'load_deployment', side_effect=ld.RpcError('fixture', value)):
+                    self.assertEqual(ld.main(['--out', d]), 1)
+                status = json.loads((Path(d) / 'refresh-status.json').read_text())
+            self.assertEqual((status['status'], status['failureStage'], status['failureCode']), ('failed', 'setup', 'rpc_other'))
+
+    def test_write_stage_is_marked_and_classified(self):
+        report = {'snapshot': {}}
+        for error, code in ((OSError(SECRET + PATH_MARKER), 'local_io'), (ValueError(SECRET), 'invalid_data')):
+            with tempfile.TemporaryDirectory() as d:
+                with patch.object(ld, 'load_deployment', return_value=dict(DEPLOYMENT, rpc_url='https://rpc.example/')), \
+                        patch.object(ld, 'collect', return_value=report), patch.object(ld, 'write_outputs', side_effect=error):
+                    self.assertEqual(ld.main(['--out', d]), 1)
+                status = json.loads((Path(d) / 'refresh-status.json').read_text())
+            self.assertEqual((status['status'], status['failureStage'], status['failureCode']), ('failed', 'write', code))
+            self.assertNotIn('hunter2', json.dumps(status)); self.assertNotIn('PATHMARKER', json.dumps(status))
+
+    def run_subprocess(self, script):
+        import subprocess, sys
+        root = Path(ld.__file__).resolve().parents[1]
+        result = subprocess.run([sys.executable, '-c', script], cwd=root, capture_output=True, text=True, timeout=60)
+        return result.returncode, result.stdout, result.stderr
+
+    def assert_clean(self, stderr):
+        for fragment in ('Traceback', 'hunter2', 'APIKEY123', 's3cr3t', 'PATHMARKER', 'rpc.example', 'Bearer', 'During handling', 'File "'):
+            self.assertNotIn(fragment, stderr)
+
+    PRELUDE = (
+        "import sys, tempfile\nfrom unittest.mock import patch\nfrom metrics import lending_dashboard as ld\n"
+        "SECRET = %r\nPATH = %r\nd = tempfile.mkdtemp()\n" % (SECRET, PATH_MARKER))
+
+    def test_subprocess_stderr_when_saving_the_failed_record_also_fails(self):
+        script = self.PRELUDE + (
+            "with patch.object(ld, 'load_deployment', side_effect=ld.RpcError(SECRET)), "
+            "patch.object(ld, 'write_attempt', side_effect=OSError(PATH)):\n"
+            "    sys.exit(ld.main(['--out', d]))\n")
+        code, out, err = self.run_subprocess(script)
+        self.assertEqual(code, 1)
+        self.assert_clean(err)
+        self.assertIn('Collection failed at stage setup (code rpc_other)', err)
+        self.assertIn('could not be saved (code local_io)', err)
+
+    def test_subprocess_stderr_when_output_and_status_writes_both_fail(self):
+        script = self.PRELUDE + (
+            "with patch.object(ld, 'load_deployment', return_value=dict(rpc_url='https://rpc.example/')), "
+            "patch.object(ld, 'collect', return_value={}), "
+            "patch.object(ld, 'write_outputs', side_effect=OSError(SECRET + PATH)), "
+            "patch.object(ld, 'write_attempt', side_effect=OSError(PATH)):\n"
+            "    sys.exit(ld.main(['--out', d]))\n")
+        code, out, err = self.run_subprocess(script)
+        self.assertEqual(code, 1)
+        self.assert_clean(err)
+        self.assertIn('Collection failed at stage write (code local_io)', err)
+
+    def test_subprocess_stderr_for_a_secret_collection_error_with_a_malformed_code(self):
+        script = self.PRELUDE + (
+            "error = ld.RpcError(SECRET, {})\nerror.role = SECRET\n"
+            "with patch.object(ld, 'load_deployment', side_effect=error):\n"
+            "    sys.exit(ld.main(['--out', d]))\n")
+        code, out, err = self.run_subprocess(script)
+        self.assertEqual(code, 1)
+        self.assert_clean(err)
+        self.assertIn('stage setup (code rpc_other)', err)
+
+
 class LogTests(unittest.TestCase):
     def raw(self):
         ev = ld.parse_event('ReserveFunded(address indexed from,uint256 amount)')

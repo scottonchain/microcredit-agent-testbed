@@ -245,17 +245,23 @@ def transport_code(error):
     return "rpc_other"
 
 
+def allowed(value, names):
+    """True only for a str that is on the fixed list; any other type (unhashable too) is refused."""
+    return isinstance(value, str) and value in names
+
+
 def classify_failure(error, progress=None):
     """Return (stage, code, provider role or None), every value drawn from the fixed lists above."""
-    stage = progress.stage if progress is not None and progress.stage in STAGES else "unknown"
+    stage = getattr(progress, "stage", None)
+    stage = stage if allowed(stage, STAGES) else "unknown"
     role = getattr(error, "role", None)
-    role = role if role in PROVIDER_ROLES else None
+    role = role if allowed(role, PROVIDER_ROLES) else None
     if isinstance(error, RpcError):
         text = str(error)
-        code = error.code if error.code in FAILURE_CODES else MESSAGE_CODES.get(text)
+        code = error.code if allowed(error.code, FAILURE_CODES) else MESSAGE_CODES.get(text)
         if code is None and text.startswith("block ") and text.endswith(" not found"):
             code = "block_missing"
-        code = code if code in FAILURE_CODES else "rpc_other"
+        code = code if allowed(code, FAILURE_CODES) else "rpc_other"
     elif isinstance(error, ValueError):
         code = "invalid_data"
     elif isinstance(error, OSError):
@@ -763,9 +769,9 @@ def write_attempt(out_dir, status, failure=None):
     record = {"attemptedAt": datetime.now(timezone.utc).isoformat(), "status": status}
     if status == "failed" and failure is not None:
         stage, code, role = failure
-        record["failureStage"] = stage if stage in STAGES else "unknown"
-        record["failureCode"] = code if code in FAILURE_CODES else "unknown"
-        if role in PROVIDER_ROLES:
+        record["failureStage"] = stage if allowed(stage, STAGES) else "unknown"
+        record["failureCode"] = code if allowed(code, FAILURE_CODES) else "unknown"
+        if allowed(role, PROVIDER_ROLES):
             record["failureProvider"] = role
     atomic_text(out_dir / "refresh-status.json", json.dumps(record) + "\n")
 
@@ -793,6 +799,27 @@ def print_summary(report):
     print("  profiles disabled; human benefit and sponsor expenditure NOT MEASURED")
 
 
+def record_failure(out_dir, failure, no_write):
+    """Save and report a failed attempt using fixed names only. Never raises: a problem saving
+    the record is reported with a static message, so the original error is not chained or printed."""
+    stage, code = failure[0], failure[1]
+    stage = stage if allowed(stage, STAGES) else "unknown"
+    code = code if allowed(code, FAILURE_CODES) else "unknown"
+    saved = True
+    if not no_write:
+        try:
+            write_attempt(Path(out_dir), "failed", failure)
+        except Exception:
+            saved = False
+    message = f"Collection failed at stage {stage} (code {code}); last successful snapshot preserved."
+    if not saved:
+        message += " The failed-attempt record could not be saved (code local_io)."
+    try:
+        print(message, file=sys.stderr)
+    except Exception:
+        pass
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--block", default="finalized", help="finalized boundary, or an older block")
@@ -814,16 +841,14 @@ def main(argv=None):
         block = args.block if args.block in ("latest", "finalized") else as_int(args.block)
         report = collect(deployment, Rpc(deployment["rpc_url"], role="state"), Rpc(args.logs_rpc, role="logs"),
                          block, args.from_block, progress)
-    except (RpcError, ValueError, OSError, KeyError, IndexError, TypeError) as error:
-        failure = classify_failure(error, progress)
+        progress.mark("write")
         if not args.no_write:
-            write_attempt(Path(args.out), "failed", failure)
-        # Only fixed stage and code names are printed: never the exception text.
-        print(f"Collection failed at stage {failure[0]} (code {failure[1]}); last successful snapshot preserved.", file=sys.stderr)
+            write_outputs(report, Path(args.out))
+            write_attempt(Path(args.out), "success")
+    except (RpcError, ValueError, OSError, KeyError, IndexError, TypeError) as error:
+        # Only fixed stage and code names are saved or printed: never the exception text.
+        record_failure(args.out, classify_failure(error, progress), args.no_write)
         return 1
-    if not args.no_write:
-        write_outputs(report, Path(args.out))
-        write_attempt(Path(args.out), "success")
     print(json.dumps(report, indent=1, sort_keys=True)) if args.json else print_summary(report)
     return 0
 
