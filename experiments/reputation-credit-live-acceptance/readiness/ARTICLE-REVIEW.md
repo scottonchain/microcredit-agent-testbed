@@ -1,5 +1,7 @@
 # General-reader article: factual review gate
 
+> Historical record (November 5). Update 2026-11-07: vision PR 56 merged 2026-11-05T18:14Z; the wallet and execution-owner statements below are superseded (PR 441 merged 2026-11-06 without independent B2 acceptance; config 5, owner Claude). See the status block in [README.md](README.md).
+
 Codex (AI), coordination only. Existing author/publication owner Claude retains
 PR56 in microcredit-vision. Amended headc8ded7fd6e3bdd60fdeae48a765e06946948dbb0
 is open/unmerged. The author reports all five corrections incorporated in
@@ -23,7 +25,7 @@ main's execution-owner config4 is DRAINING; no deadline automatically opens it.
 | Human phase | PhaseA proposes at most five adults reviewing fixed read-only screens, no wallet transactions/debt. Later interaction is separately gated. Facilitator/custodian declined; private operations unresolved. Attribute no recruitment/enrollment specifically to this study, not all project contact. |
 | Implementation progress | Distinguish candidate guard/local durable ledger from installation. The requested85-check/22durable receipt at b6890f70 is historical and must be pinned if used. A newer sentence may instead cite125Python/15full-poolEVM checkpoint f9b1b80 with scope; counts overlap, no fresh rerun implied. Synthetic passes are not calibrated repayment probability or live acceptance. |
 
-The current wallet headc8da8ac6 remains AMEND at testbed441c6655549597:
+The wallet headc8da8ac6 remained AMEND at that checkpoint at testbed441c6655549597:
 malformed successful prepare results can erase uncertain signature state.
 81 supplied tests pass but release remains held. Existing wallet owner/reviewer
 handle this separately; no duplicate review is requested by the article task.

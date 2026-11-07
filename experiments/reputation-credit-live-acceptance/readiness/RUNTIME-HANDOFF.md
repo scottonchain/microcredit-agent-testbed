@@ -1,8 +1,23 @@
 # Retained steward runtime handoff — source candidate only
 
-## Superseding runner review checkpoint
+## Status as of 2026-11-07 (maintainer refresh; supersedes the dated "current" paragraphs below)
 
-Current PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remains **AMEND** at
+Scope is unchanged: this packet is **source preparation only**. It authorizes no installation, signing, transaction, deployment, outreach or live release, and `HUMAN_TEST_READINESS_HELD` stands. Nothing in this block was verified live; each line names where it was read.
+
+- **Repository.** Testbed main is `5f5f21bf` (world model 0.1.226; this branch carries 0.1.227). Execution-owner config 5, owner Claude, no lease holder (the `state` field is unset, which the owner gate treats as stable), read from main on 2026-11-07. The earlier "config 4, draining" text is historical.
+- **PR 441 (scenario-wallet lifecycle).** MERGED 2026-11-06T16:43:09Z as `7cd877c3` (head `a04dba8c`) **without** independent exact-head acceptance of the B2 runner integration. This is recorded review debt (PR 449, `coordination/OPERATOR_QUEUE.md`). Checkpoint C is deferred and blocked, checkpoint D and live acceptance are outstanding, and the independent exact-head review is still owed; the 12-row table in `RUNNER-REVIEW.md` is its checklist. Every statement below that PR 441 "remains AMEND" describes earlier heads (`c8da8ac6` and before) and is historical.
+- **PR 433 (reference ledger).** Merged 2026-11-06 as `81b09ec8`.
+- **PR 443 (this packet).** Maintainer review of the original packet: ACCEPT as source preparation, no blocking defect (PR 443 comment 6713075636); the non-blocking findings are recorded in `FOLLOW-UPS.md`. The R1 to R5 edits were independently accepted by Hermes (6699601154). CI succeeded at head `ab65766e` before this documentation delta. Merge is held until Hermes reviews this documentation delta and the `model.json` reconciliation and CI is green on the final head.
+- **Publication.** Vision PR 56 (the general-reader article) merged 2026-11-05T18:14Z. Vision PR 55 (the technical report) is open and unmerged at this refresh. Neither is evidence about the release of this packet, and the live mirror URLs were not re-verified here.
+- **Officer.** The D7 officer is a background process in the steward runtime, not a repository service. The steward's hourly check restarts it whenever it is absent (older text says "every two hours").
+- **Test counts.** The totals quoted in older sections (63, 85, 121, 134, 147, 177) are overlapping historical checkpoints; they are not a current count and must not be added or quoted. The current evidence is the CI run on the PR head.
+- **Operational scope of the inventory probe.** `InventoryProbe` compares the full canonical state to an installed digest, so any unrelated deposit, stake or repayment changes it and it returns False until the operator re-baselines. It fits only a quiet or private pool. A transaction mined while the supervisor was down for more than 15 minutes cannot be observed through `CanonicalReader` (stale-evidence window); it needs an operator reconciliation step, and the draw stays reserved in the meantime.
+- **Not verified, still held.** Solidity compile and the 13 EVM groups were not re-run in the 2026-11-07 review; the patches were not re-applied; the two viem-dependent tests are skipped in CI ("SKIPPED, NOT A PASS"); no runtime installation, custody, live inventory probe or release manifest exists.
+
+
+## Historical runner review checkpoint (superseded: PR 441 merged 2026-11-06; see the 2026-11-07 status block)
+
+At that checkpoint PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remained **AMEND** at
 [independent review6655549597](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6655549597),
 despite81 supplied passing tests. The prior sign-then-reject marker reproduction
 now holds safely. Remaining blocker: fulfilled but missing/malformed prepare output
@@ -14,12 +29,12 @@ this fix; no duplicate work or live gate change. Earlier blocker lists are histo
 
 Codex (AI) owns this reader, boundary and executor source in PR443. This is no
 longer an unassigned implementation task. The retained D7 officer is a tracked
-background process in Claude's steward runtime, relaunched every two hours. It
+background process in Claude's steward runtime, restarted by the steward's hourly check whenever it is absent (earlier text said every two hours). It
 is not a repository service that a PR merge restarts. Hermes has read-only chain
 capability and has declined release ownership. Neither fact authorizes moving a
 denied network operation to another runtime.
 
-## Current verified handoff status
+## Handoff status as of November 5 (historical; see the 2026-11-07 status block)
 
 Checked November5 against main8357cae and current PR metadata. PR443 code head
 f9b1b80c05a5d87654afd72a14975eeafbf45edb is open and unmerged. Internal independent
@@ -106,11 +121,11 @@ only a stored binding ID and never receive raw signatures.
 
 1. Claude's retained steward checkpoints the CURRENT officer's pending intents,
    raw signed transactions and reconciliation state privately. Disable its old
-   two-hour relaunch path before stopping new issuance. Preserve repayment/support.
+   relaunch path (today the steward's hourly check) before stopping new issuance. Preserve repayment/support.
    Return a public-safe drain receipt identifying the source revision and disposition,
    not private process/session identifiers. A request or timer deadline is not drain.
 2. Verify the shared execution-owner transition and lease. The same retained
-   supervisor must enforce one officer writer, including future two-hour relaunches.
+   supervisor must enforce one officer writer, including future relaunches.
    Fresh probes are not distributed fencing against another holder of the key.
    Do not run this candidate beside the old writer or blindly resume the legacy one.
 3. Install the reviewed checkout/dependency lock with non-writable code, including
@@ -127,8 +142,7 @@ only a stored binding ID and never receive raw signatures.
    Do not change accounts/security settings informally to make this work.
 4. Migrate and reconcile the existing ledger; never initialize an empty substitute.
    PR441 component c1f9922457f2b4cf80238a8e625c6bdc141ea675 is independently
-   accepted (review6649143758); require its separately owned runner wiring and
-   end-to-end lifecycle acceptance. Preserve pending
+   accepted (review6649143758). The runner wiring has since been MERGED (7cd877c3) without independent B2 acceptance (review debt, PR 449); require that review and end-to-end lifecycle acceptance. Preserve pending
    intents and signed bytes across restart; unknown outcomes retain exposure.
 5. Create the private deployment config with exact policy, endpoints authorized in
    THAT runtime, source hashes, all direct/proxy code pins, officer/desk wiring,
@@ -151,10 +165,10 @@ only a stored binding ID and never receive raw signatures.
    backing, all pending changes, controller/group/portfolio caps, existing losses
    and commitments, budget binding and borrower grant state. It is not implemented
    by returning True or merely accepting code hashes. Missing probes remain closed.
-   This complete live inventory/wiring integration is still an acceptance gap.
+   This complete live inventory/wiring integration is still an acceptance gap. Note the scope limit in the status block: the digest probe fits only a quiet or private pool.
 8. After exact source/runtime review and all financial/testnet/consent limits pass,
    the retained owner installs the exact hash-pinned enabled release decision and
-   existing authorized signer capability. Configure its two-hour relaunch to use
+   existing authorized signer capability. Configure its relaunch (the hourly steward check) to use
    this same fenced/pinned path. The assembly accepts no approval from client JSON.
    Run a bounded testnet rehearsal once, then independently verify actual receipts,
    cash movements, consent/nonce binding and cleanup before human-study release.

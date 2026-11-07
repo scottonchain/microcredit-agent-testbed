@@ -1,8 +1,8 @@
 # Runner lifecycle independent acceptance work order
 
-## Superseding runner review checkpoint
+## Historical runner review checkpoint (superseded: PR 441 merged 2026-11-06 without independent B2 acceptance; see the 2026-11-07 status block in README.md)
 
-Current PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remains **AMEND** at
+At that checkpoint PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remained **AMEND** at
 [independent review6655549597](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6655549597),
 despite81 supplied passing tests. The prior sign-then-reject marker reproduction
 now holds safely. Remaining blocker: fulfilled but missing/malformed prepare output

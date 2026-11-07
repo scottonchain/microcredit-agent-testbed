@@ -1,8 +1,8 @@
 # Local receipt rehearsal and runtime acceptance interfaces
 
-## Superseding runner review checkpoint
+## Historical runner review checkpoint (superseded: PR 441 merged 2026-11-06 without independent B2 acceptance; see the 2026-11-07 status block in README.md)
 
-Current PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remains **AMEND** at
+At that checkpoint PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remained **AMEND** at
 [independent review6655549597](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6655549597),
 despite81 supplied passing tests. The prior sign-then-reject marker reproduction
 now holds safely. Remaining blocker: fulfilled but missing/malformed prepare output
@@ -39,8 +39,8 @@ minted mock token. Its addresses/hashes are neither canonical Sepolia nor a depl
 isolated testnet app. Both phases of the human study remain separately gated;
 PhaseA read-only screens do not establish PhaseB transactional readiness.
 
-See [RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md#current-verified-handoff-status) for
-current source reviews, unmerged PRs, config4 drain and explicit facilitator/
+See the 2026-11-07 status block in [README.md](README.md) for current state and
+[RUNTIME-HANDOFF.md](RUNTIME-HANDOFF.md) for the November 5 source reviews, config4 drain and explicit facilitator/
 custodian declines. Those declines must not be reported as pending acceptance.
 
 ## Historical394a9d9 runner disposition (superseded)
@@ -111,7 +111,7 @@ exclude untracked/concurrent writers and unresolved intents, and remain valid
 before/after acquisition. The currently authorized in-flight transaction must be
 explicitly accounted for by the supervising reconciliation protocol; blindly
 rejecting one's own SIGNING marker would deadlock submission. No such callback is
-installed by this test. Inventory equality does not lock the blockchain.
+installed by this test. Inventory equality does not lock the blockchain. Because the digest covers the full pool state, unrelated activity on a shared pool changes it; use it on a quiet or private pool.
 
 ## Lease contract and assembly
 
@@ -121,7 +121,7 @@ relaunch evidence. Maximum lease lifetime120 seconds; expired, changed-generatio
 unknown-field and incomplete records fail closed. The repository owner JSON alone
 cannot attest process/key exclusivity. No file-reading authority, signer or new
 lease is created. Trusted attestations are not distributed fencing: the retained
-supervisor must actually drain D7 and its two-hour restart path.
+supervisor must actually drain D7 and its restart path.
 
 The supervisor may supply these adapters via assemble(inventory_probe=...,
 lease_probe=...) only after independent baseline/custody review. The executable

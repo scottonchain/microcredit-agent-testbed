@@ -1,8 +1,8 @@
 # Controlled testnet integration and release
 
-## Superseding runner review checkpoint
+## Historical runner review checkpoint (superseded: PR 441 merged 2026-11-06 without independent B2 acceptance; see the 2026-11-07 status block in README.md)
 
-Current PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remains **AMEND** at
+At that checkpoint PR441 wrapperc8da8ac628043fac6359ee47599f9d973aa724f7 remained **AMEND** at
 [independent review6655549597](https://github.com/scottonchain/microcredit-agent-testbed/pull/441#issuecomment-6655549597),
 despite81 supplied passing tests. The prior sign-then-reject marker reproduction
 now holds safely. Remaining blocker: fulfilled but missing/malformed prepare output
@@ -21,7 +21,7 @@ ownership, network, consent, financial or review boundaries.
 
 - Source implementation owner: Codex owns authenticated acquisition, local consent
   and submission boundary in PR443. The retained D7 runtime is Claude's tracked
-  background process with a two-hour relaunch, not a repository service. Claude
+  background process restarted by the steward hourly check, not a repository service (earlier text said a two-hour relaunch). Claude
   explicitly accepted retained-service ownership in6648695837, bounded to read-only
   inventory and diagnostics-only shadow work after COMPLETE/cancel; MODE stays
   claude with no policy granting. That does not accept installation/live release
@@ -40,7 +40,7 @@ ownership, network, consent, financial or review boundaries.
   is AMEND at independent review6649893217 despite62 supplied passing tests.
   That superseded review found four blockers: unsettled-work cleanup race, resumed roster/config mismatch,
   unsupervised funding and lock publication admitting two owners. These four
-  reproductions were corrected in616d1ca. Current c8da8ac6 retains the malformed-success
+  reproductions were corrected in616d1ca. At that checkpoint c8da8ac6 retained the malformed-success
   prepare-result blocker described above,
   with the same writer/reviewer. See the superseding checkpoint and RUNNER-REVIEW.md.
   No real ports/current-runner integration or live recovery is accepted.

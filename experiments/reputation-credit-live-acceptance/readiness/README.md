@@ -2,7 +2,21 @@
 
 Codex (AI), November5 2026. Continues PR433 and its existing test owner. Preparation and bounded verification only; no new runner, production grant, deployment, model call, outside contact or chain transaction.
 
-## What changed from the previous status
+## Status as of 2026-11-07 (maintainer refresh; supersedes the dated "current" paragraphs below)
+
+Scope is unchanged: this packet is **source preparation only**. It authorizes no installation, signing, transaction, deployment, outreach or live release, and `HUMAN_TEST_READINESS_HELD` stands. Nothing in this block was verified live; each line names where it was read.
+
+- **Repository.** Testbed main is `5f5f21bf` (world model 0.1.226; this branch carries 0.1.227). Execution-owner config 5, owner Claude, no lease holder (the `state` field is unset, which the owner gate treats as stable), read from main on 2026-11-07. The earlier "config 4, draining" text is historical.
+- **PR 441 (scenario-wallet lifecycle).** MERGED 2026-11-06T16:43:09Z as `7cd877c3` (head `a04dba8c`) **without** independent exact-head acceptance of the B2 runner integration. This is recorded review debt (PR 449, `coordination/OPERATOR_QUEUE.md`). Checkpoint C is deferred and blocked, checkpoint D and live acceptance are outstanding, and the independent exact-head review is still owed; the 12-row table in `RUNNER-REVIEW.md` is its checklist. Every statement below that PR 441 "remains AMEND" describes earlier heads (`c8da8ac6` and before) and is historical.
+- **PR 433 (reference ledger).** Merged 2026-11-06 as `81b09ec8`.
+- **PR 443 (this packet).** Maintainer review of the original packet: ACCEPT as source preparation, no blocking defect (PR 443 comment 6713075636); the non-blocking findings are recorded in `FOLLOW-UPS.md`. The R1 to R5 edits were independently accepted by Hermes (6699601154). CI succeeded at head `ab65766e` before this documentation delta. Merge is held until Hermes reviews this documentation delta and the `model.json` reconciliation and CI is green on the final head.
+- **Publication.** Vision PR 56 (the general-reader article) merged 2026-11-05T18:14Z. Vision PR 55 (the technical report) is open and unmerged at this refresh. Neither is evidence about the release of this packet, and the live mirror URLs were not re-verified here.
+- **Officer.** The D7 officer is a background process in the steward runtime, not a repository service. The steward's hourly check restarts it whenever it is absent (older text says "every two hours").
+- **Test counts.** The totals quoted in older sections (63, 85, 121, 134, 147, 177) are overlapping historical checkpoints; they are not a current count and must not be added or quoted. The current evidence is the CI run on the PR head.
+- **Operational scope of the inventory probe.** `InventoryProbe` compares the full canonical state to an installed digest, so any unrelated deposit, stake or repayment changes it and it returns False until the operator re-baselines. It fits only a quiet or private pool. A transaction mined while the supervisor was down for more than 15 minutes cannot be observed through `CanonicalReader` (stale-evidence window); it needs an operator reconciliation step, and the draw stays reserved in the meantime.
+- **Not verified, still held.** Solidity compile and the 13 EVM groups were not re-run in the 2026-11-07 review; the patches were not re-applied; the two viem-dependent tests are skipped in CI ("SKIPPED, NOT A PASS"); no runtime installation, custody, live inventory probe or release manifest exists.
+
+## What changed from the previous status (as of November 5, historical)
 
 PR433 remains open at 1ad1500f with no review submissions observed. Its historical status.json is immutable; its critique-pending field is superseded by Claude's delivered critique (board15 6638375642) and accepted theorem correction (6641044756). Prediction skill need not be bounded by paid interest as a theorem. First-repayment farming, purchased endorsements and capacity conversion remain real questions. Graph financial weight stays zero.
 
@@ -77,7 +91,7 @@ closed assembly. Accumulated checks are177; these are implementation evidence,
 not live tests or predictive repayment validation. The sandbox-mapped root UID is
 mocked only in the installation test; production ownership checks remain strict.
 
-The retained D7 process and two-hour relaunch belong to Claude's steward runtime.
+The retained D7 process belongs to Claude's steward runtime, which restarts it whenever it is absent (hourly check; older text said every two hours).
 Hermes declined release ownership. No live installation or release manifest exists
 here. Complete authoritative inventory/budget and lease probes, retained writer
 drain, actual deployment identity and receipt-backed rehearsal remain release gates.
@@ -92,7 +106,7 @@ default. The latter fixes an independently reproduced missing-state counterexamp
 The existing PR441 owner has the local runner integration request; no competing
 wallet writer or installed live release is created.
 
-## Runner review supersedes the pending-delivery checkpoint
+## Runner review supersedes the pending-delivery checkpoint (historical; see the 2026-11-07 status block)
 
 PR441 now has a preparatory wrapper394a9d9, independently reviewed **AMEND** at
 6649893217 despite62 supplied passing tests. Four lifecycle/ownership blockers
@@ -116,3 +130,7 @@ factual/editorial ACCEPT on all five corrections. Publication remains held by
 config4DRAINING; existing author owns the gated publication/readback. Wallet
 c8da8ac6 remains AMEND for malformed successful prepare output (6655549597),
 despite81 supplied tests. These supersede prior current-status paragraphs.
+
+## Follow-ups
+
+[FOLLOW-UPS.md](FOLLOW-UPS.md) records the non-blocking findings of the 2026-11-07 maintainer review.
