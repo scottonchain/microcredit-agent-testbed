@@ -13,7 +13,7 @@ from canonical_adapter import CanonicalReader
 from durable import Ledger,Policy
 from service_binding import ReplyBindings
 from pending_journal import PendingJournal
-from local_boundary import LocalBoundary,NodeSignatureVerifier,serve_unix
+from local_boundary import LocalBoundary,NodeSignatureVerifier,PinnedNode,serve_unix
 from release_guard import InstalledReleaseGuard
 from submission import SubmissionCoordinator,InheritedFDSigner,HTTPSBroadcast
 
@@ -27,7 +27,8 @@ def assemble(config_path,expected_sha256,*,lease_probe=None,inventory_probe=None
     if hashlib.sha256(raw).hexdigest()!=expected_sha256:raise ValueError('configuration revision mismatch')
     c=strict_json(raw)
     required={'policy','ledger_path','rpc','code_pins','proxy_bindings','desk','officer','approved_messages','fees',
-              'consent_uid','executor_uid','socket_path','socket_group','source_revision','source_hashes','release_path','release_sha256'}
+              'consent_uid','executor_uid','socket_path','socket_group','source_revision','source_hashes','release_path','release_sha256',
+              'node_path','node_sha256'}
     if set(c)!=required:raise ValueError('exact deployment configuration required')
     root=Path(__file__).parent.resolve()
     for directory in (root,*root.parents,root/'signed-validator'):
@@ -57,7 +58,8 @@ def assemble(config_path,expected_sha256,*,lease_probe=None,inventory_probe=None
         service=DeskSnapshots(provider,c['desk'],c['officer'])
         bindings=ReplyBindings(ledger,c['desk'],c['officer'],service,c['approved_messages'])
         journal=PendingJournal(bindings,provider)
-        verifier=NodeSignatureVerifier(root/'signed-validator/bridge.cjs')
+        node=PinnedNode(c['node_path'],c['node_sha256'])  # absolute, hash-pinned, no PATH lookup, no inherited environment
+        verifier=NodeSignatureVerifier(root/'signed-validator/bridge.cjs',node)
         def code_probe():
             n=provider.head()-policy.confirmations+1
             provider._pins(provider.block_hash(n))
@@ -66,7 +68,7 @@ def assemble(config_path,expected_sha256,*,lease_probe=None,inventory_probe=None
             return inventory_probe is not None and inventory_probe() is True
         guard=InstalledReleaseGuard(c['release_path'],c['release_sha256'],source_revision=c['source_revision'],
              code_pins=c['code_pins'],clock=clock,code_probe=code_probe,lease_probe=lease_probe or (lambda:False))
-        signer=InheritedFDSigner(key_fd,root/'signed-validator/sign-fd.cjs') if key_fd is not None else None
+        signer=InheritedFDSigner(key_fd,root/'signed-validator/sign-fd.cjs',node) if key_fd is not None else None
         sender=HTTPSBroadcast(primary,guard)
         submitter=SubmissionCoordinator(bindings,journal,verifier,clock=clock,fee_limits=c['fees'],signer=signer,sender=sender,release_guard=guard)
         boundary=LocalBoundary(bindings,journal,verifier,consent_uid=c['consent_uid'],executor_uid=c['executor_uid'],

@@ -5,7 +5,7 @@ an existing binding ID, never a key, destination, nonce, fee or approval flag.
 """
 import json
 from durable import txhash
-from local_boundary import private_ledger
+from local_boundary import PinnedNode,node_environment,private_ledger
 
 
 class SubmissionCoordinator:
@@ -105,9 +105,10 @@ class InheritedFDSigner:
     Never opens a key file, reads an environment secret or creates credentials.
     Node child consumes FD privately and returns a signature to this service only.
     """
-    def __init__(self,key_fd,script):
+    def __init__(self,key_fd,script,node):
         import os
         from pathlib import Path
+        if not isinstance(node,PinnedNode):raise ValueError('pinned node executable required')
         if type(key_fd) is not int or key_fd<3:raise ValueError('inherited private descriptor required')
         os.fstat(key_fd)
         import fcntl
@@ -117,12 +118,10 @@ class InheritedFDSigner:
         # Some Python builds omit the symbolic constants despite kernel support.
         seals=0x0f
         if fcntl.fcntl(key_fd,getattr(fcntl,'F_GET_SEALS',1034))&seals!=seals:raise ValueError('sealed immutable memory descriptor required')
-        self.fd,self.script=key_fd,str(Path(script).resolve())
+        self.fd,self.script,self.node=key_fd,str(Path(script).resolve()),node
     def __call__(self,transaction,limits):
         import subprocess
-        import os
-        environment=dict(os.environ);environment.pop('NODE_OPTIONS',None)
-        result=subprocess.run(['node',self.script,str(self.fd)],env=environment,input=json.dumps({'transaction':transaction,'limits':limits}),
+        result=subprocess.run(self.node.command(self.script,str(self.fd)),env=node_environment(),input=json.dumps({'transaction':transaction,'limits':limits}),
              text=True,capture_output=True,pass_fds=(self.fd,),timeout=10,check=False)
         if result.returncode or len(result.stdout)>40000:raise ValueError('private signer rejected')
         from authenticated_reader import strict_json

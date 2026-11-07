@@ -74,6 +74,27 @@ def _needs_viem_for(probe):
 
 NEEDS_VIEM = _needs_viem_for(_probe_viem())
 
+_NODE_PIN = []
+
+
+def _test_node_pin():
+    """(resolved path, sha256) of the Node on this machine, computed once. The production code refuses PATH lookups,
+    so tests that really launch Node must pin it the way the deployment configuration does."""
+    if not _NODE_PIN:
+        import shutil
+        found = shutil.which('node')
+        if not found:
+            raise unittest.SkipTest('SKIPPED, NOT A PASS: no Node.js executable on this machine')
+        real = os.path.realpath(found)
+        with open(real, 'rb') as handle:
+            _NODE_PIN.append((real, hashlib.sha256(handle.read()).hexdigest()))
+    return _NODE_PIN[0]
+
+
+def _test_node():
+    from local_boundary import PinnedNode
+    return PinnedNode(*_test_node_pin())
+
 class RPC:
     def __init__(self):self.b=f.fixture();self.calls=[];self.code='0x6000';self.fail=False
     def call(self,method,params):
@@ -273,7 +294,7 @@ class IntegrationTests(unittest.TestCase):
 let raw='';process.stdin.on('data',c=>raw+=c);process.stdin.on('end',async()=>{const t=JSON.parse(raw),a=privateKeyToAccount(generatePrivateKey());const serialized=await a.signTransaction({type:'eip1559',chainId:Number(BigInt(t.chainId)),nonce:Number(BigInt(t.nonce)),to:t.to,value:0n,data:t.data,gas:90000n,maxFeePerGas:100n,maxPriorityFeePerGas:1n});process.stdout.write(JSON.stringify({serialized,from:a.address.toLowerCase()}));});"""
         generated=subprocess.run(['node','-e',script],input=json.dumps(transaction),text=True,capture_output=True,timeout=10,check=True)
         data=json.loads(generated.stdout);transaction['from']=data['from']
-        verifier=NodeSignatureVerifier(Path(__file__).parent/'signed-validator/bridge.cjs')
+        verifier=NodeSignatureVerifier(Path(__file__).parent/'signed-validator/bridge.cjs',_test_node())
         limits={'gas':'100000','maxFeePerGas':'100','maxTotalFee':'10000000','expires':3000}
         checked=verifier(data['serialized'],transaction,limits,1100)
         self.assertTrue(checked['signatureValid']);self.assertFalse(checked['executionAllowed'])
@@ -411,7 +432,7 @@ class PrivateSignerTests(unittest.TestCase):
             import fcntl
             fcntl.fcntl(fd,getattr(fcntl,'F_ADD_SEALS',1033),0x0f)
             root=Path(__file__).parent/'signed-validator'
-            signer=InheritedFDSigner(fd,root/'sign-fd.cjs');verifier=NodeSignatureVerifier(root/'bridge.cjs')
+            signer=InheritedFDSigner(fd,root/'sign-fd.cjs',_test_node());verifier=NodeSignatureVerifier(root/'bridge.cjs',_test_node())
             transaction={'chainId':'0x7a69','nonce':'0x0','from':fixture['address'],'to':f.DESK,'value':'0x0','data':reply_data(f.BORROWER,'Fictional practice only.',10_000_000)}
             limits={'gas':'100000','maxFeePerGas':'100','maxPriorityFeePerGas':'1','maxTotalFee':'10000000','expires':3000}
             raw=signer(transaction,limits);self.assertTrue(verifier(raw,transaction,limits,1100)['signatureValid'])
@@ -445,7 +466,8 @@ class AssemblyTests(unittest.TestCase):
                'approved_messages':{'practice':'Fictional practice only.'},'fees':{'gas':'100000','maxFeePerGas':'100','maxPriorityFeePerGas':'1','maxTotalFee':'10000000'},
                'consent_uid':CONSENT_UID,'executor_uid':EXECUTOR_UID,'socket_path':str(fixture.path.parent/'boundary.sock'),'socket_group':os.getgid(),
                'source_revision':'a'*40,'source_hashes':{name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files},
-               'release_path':str(fixture.path.parent/'NOT_INSTALLED.json'),'release_sha256':'0'*64}
+               'release_path':str(fixture.path.parent/'NOT_INSTALLED.json'),'release_sha256':'0'*64,
+               'node_path':_test_node_pin()[0],'node_sha256':_test_node_pin()[1]}
             path=fixture.path.parent/'config.json';raw=json.dumps(c).encode();path.write_bytes(raw);path.chmod(0o600)
             boundary,_,ledger=assemble(path,hashlib.sha256(raw).hexdigest(),clock=lambda:1100)
             try:

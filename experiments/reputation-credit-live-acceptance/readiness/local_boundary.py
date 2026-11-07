@@ -2,6 +2,7 @@
 Consent UID is a trusted controller, not an applicant or assessment agent. The
 runtime supervisor supplies kernel peer credentials; JSON cannot choose a role.
 """
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -19,14 +20,46 @@ def private_ledger(ledger):
             raise ValueError('private owned nonsymlink ledger/directory required')
 
 
+def node_environment():
+    """The ONLY environment a Node child receives: nothing is inherited from the service. PATH, NODE_PATH,
+    NODE_OPTIONS, LD_PRELOAD and any secret in the service's environment never reach a child, and module
+    resolution is the script's own directory, not an inherited search path."""
+    return {'NODE_NO_WARNINGS':'1'}
+
+
+class PinnedNode:
+    """An absolute Node executable pinned by the reviewed configuration.
+
+    The path must be absolute and contain no symlink, name a regular executable owned by root or the service
+    user that is not group- or world-writable, and match the pinned SHA-256. It is hashed once, here; every use
+    re-checks inode, size and mtime so a replacement after pinning is refused. Nothing is looked up through PATH.
+    """
+    def __init__(self,path,expected_sha256):
+        p=Path(path)
+        if not p.is_absolute() or p.resolve()!=p:raise ValueError('absolute node path without symlinks required')
+        st=p.lstat()
+        if (not stat.S_ISREG(st.st_mode) or st.st_uid not in (0,os.getuid()) or st.st_mode&0o022 or not st.st_mode&0o111):
+            raise ValueError('owner-controlled executable node required')
+        if type(expected_sha256) is not str or len(expected_sha256)!=64:raise ValueError('node executable pin required')
+        digest=hashlib.sha256()
+        with open(p,'rb') as handle:
+            for chunk in iter(lambda:handle.read(1<<20),b''):digest.update(chunk)
+        if digest.hexdigest()!=expected_sha256.lower():raise ValueError('node executable pin mismatch')
+        self.path=str(p);self._identity=(st.st_ino,st.st_size,st.st_mtime_ns)
+    def command(self,*args):
+        st=Path(self.path).lstat()
+        if (st.st_ino,st.st_size,st.st_mtime_ns)!=self._identity:raise ValueError('node executable changed since pinning')
+        return [self.path,*args]
+
+
 class NodeSignatureVerifier:
-    def __init__(self,bridge):
-        self.bridge=str(Path(bridge).resolve())
+    def __init__(self,bridge,node):
+        if not isinstance(node,PinnedNode):raise ValueError('pinned node executable required')
+        self.bridge=str(Path(bridge).resolve());self.node=node
     def __call__(self,serialized,transaction,limits,now):
         data=json.dumps({'serialized':serialized,'transaction':transaction,'limits':limits,'now':now},allow_nan=False)
         if len(data)>100000:raise ValueError('signature request too large')
-        environment=dict(os.environ);environment.pop('NODE_OPTIONS',None)
-        result=subprocess.run(['node',self.bridge],env=environment,input=data,text=True,capture_output=True,timeout=10,check=False)
+        result=subprocess.run(self.node.command(self.bridge),env=node_environment(),input=data,text=True,capture_output=True,timeout=10,check=False)
         if result.returncode or len(result.stdout)>4096:raise ValueError('signature verification failed')
         return strict_json(result.stdout)
 

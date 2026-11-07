@@ -91,6 +91,12 @@ config, public receipts or client responses. The descriptor implementation never
 opens a key file or creates a credential. Node's immutable strings are not claimed
 to be securely zeroized; the trusted short-lived child handles private material.
 
+Both Node children (the signature verifier and the signer that receives the key descriptor) are launched from an
+absolute Node executable pinned by the reviewed configuration (`node_path`, `node_sha256`; no PATH lookup, no symlink
+in the path, owner and mode checked, replacement after pinning refused) and receive an explicit minimal environment:
+nothing is inherited from the service, including PATH, NODE_PATH, NODE_OPTIONS, LD_PRELOAD and any secret. The
+supervisor still authenticates the installed dependencies (`node_modules`); the pin covers the interpreter, not them.
+
 External signed staging is disabled by default. Diagnostic staging cannot prevent
 a client that already possesses a signed transaction from broadcasting it elsewhere.
 The accepted path keeps signing/custody inside the submission gate; clients request
