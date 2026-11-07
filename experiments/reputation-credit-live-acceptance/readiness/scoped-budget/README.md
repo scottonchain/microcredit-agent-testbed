@@ -15,6 +15,19 @@ and matching pool address. There is no reset, replacement or disable path. Budge
 owner can permanently stop new consumption or irreversibly revoke an individual.
 Identity labels are reviewed inputs, not proof of independent humans/controllers.
 
+## Scope: preparation only
+
+This directory prepares a candidate for a NEW isolated test pool. It does not establish that
+on-chain enforcement is necessary, or better than off-chain administration: whether the
+off-chain bounds elsewhere in this packet (`bounds.py`, `backing_book.py`) already cover the
+same ceilings is not compared here. It does not authorize, deploy or accept that pool or this
+bytecode build, and it does not change the canonical Base Sepolia descriptor
+(`deployments/current.json`), which stays the one live target. The selected build fits
+EIP-170 only under a non-canonical optimizer sequence (runs 1, explicit Yul steps without the
+full inliner), so it is a different bytecode build from the canonical one; matching size is
+not identity. Merging this packet accepts preparation artifacts only, not the on-chain
+mechanism, this build, or live acceptance.
+
 A grant revocation or stop prevents NEW origination. It does not cancel already
 requested loans, which may still be disbursed. Those commitments remain charged.
 A pending revocation is not confirmed withdrawal enforcement: service issuance
