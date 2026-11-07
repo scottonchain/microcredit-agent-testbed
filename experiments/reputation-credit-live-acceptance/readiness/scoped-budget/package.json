@@ -2,7 +2,7 @@
   "name": "offline-scoped-origination-tests",
   "private": true,
   "version": "0.0.1",
-  "dependencies": {
+  "devDependencies": {
     "solc": "0.8.33",
     "ganache": "7.9.2",
     "viem": "2.21.55",

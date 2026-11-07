@@ -31,8 +31,24 @@ the same pool getter. No existing service is wired to this contract.
 
 ## Reproduction
 
-JavaScript dependencies are pinned in package.json/package-lock.json. Supply the
-canonical OpenZeppelin submodule contracts directory as the fourth argument:
+JavaScript dependencies are pinned in package.json/package-lock.json (every locked entry
+carries an integrity hash and resolves from the npm registry). This directory is TEST TOOLING
+ONLY: compiler, in-process EVM providers and a client library, declared as devDependencies.
+No key, signer, wallet or network client ever runs from this tree. Install without lifecycle
+scripts, because several transitive packages (the Ganache native add-ons such as keccak,
+secp256k1, leveldown, bufferutil and utf-8-validate, and fsevents) carry install scripts that
+are not needed here:
+
+```
+npm ci --ignore-scripts
+```
+
+Checked after this instruction was added: with that install, Ganache and Hardhat start on their
+pure-JavaScript paths and the six standalone budget tests pass against a budget artifact compiled
+with this directory's compiler settings. The thirteen full-pool tests need the canonical pool
+source and the exact OpenZeppelin tree below and were not re-run for this change.
+
+Supply the canonical OpenZeppelin submodule contracts directory as the fourth argument:
 
 ```
 node compile.cjs /path/to/canonical1812/DecentralizedMicrocredit.sol /path/to/interfaces /tmp/budget-artifact.json /path/to/canonical-openzeppelin/contracts
