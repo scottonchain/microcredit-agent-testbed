@@ -150,6 +150,38 @@ class SignerLaunchTests(Fixture):
             signer({}, {})
         run.assert_not_called()
 
+    def test_signer_refuses_a_descriptor_number_reused_for_another_sealed_object(self):
+        signer = InheritedFDSigner(self.fd, self.dir / 'sign-fd.cjs', self.pinned())
+        other = sealed_memfd(b'a-different-placeholder')
+        os.dup2(other, self.fd)  # the same descriptor number now names a different (but sealed) object
+        os.close(other)
+        with patch('subprocess.run') as run, self.assertRaisesRegex(ValueError, 'changed since launch'):
+            signer({}, {})
+        run.assert_not_called()
+
+    def test_signer_refuses_a_descriptor_number_reused_for_an_unsealed_object(self):
+        signer = InheritedFDSigner(self.fd, self.dir / 'sign-fd.cjs', self.pinned())
+        loose = os.memfd_create('loose', os.MFD_ALLOW_SEALING)  # writable, no seals
+        os.dup2(loose, self.fd)
+        os.close(loose)
+        with patch('subprocess.run') as run, self.assertRaises(ValueError):
+            signer({}, {})
+        run.assert_not_called()
+
+    def test_signer_refuses_a_closed_descriptor(self):
+        signer = InheritedFDSigner(self.fd, self.dir / 'sign-fd.cjs', self.pinned())
+        os.close(self.fd)
+        with patch('subprocess.run') as run, self.assertRaises(OSError):
+            signer({}, {})
+        run.assert_not_called()
+
+    def test_the_constructor_still_refuses_unsealed_and_invalid_descriptors(self):
+        loose = os.memfd_create('loose', os.MFD_ALLOW_SEALING)
+        self.addCleanup(os.close, loose)
+        for bad in (loose, 2, -1, '5', None):
+            with self.subTest(fd=bad), self.assertRaises((ValueError, OSError)):
+                InheritedFDSigner(bad, self.dir / 'sign-fd.cjs', self.pinned())
+
 
 if __name__ == '__main__':
     unittest.main()

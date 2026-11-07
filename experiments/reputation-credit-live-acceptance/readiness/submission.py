@@ -105,22 +105,30 @@ class InheritedFDSigner:
     Never opens a key file, reads an environment secret or creates credentials.
     Node child consumes FD privately and returns a signature to this service only.
     """
-    def __init__(self,key_fd,script,node):
-        import os
-        from pathlib import Path
-        if not isinstance(node,PinnedNode):raise ValueError('pinned node executable required')
-        if type(key_fd) is not int or key_fd<3:raise ValueError('inherited private descriptor required')
-        os.fstat(key_fd)
+    @staticmethod
+    def _sealed_identity(key_fd):
+        """(device, inode) of the descriptor's object after proving it is a Linux memory file with every seal set."""
         import fcntl
+        import os
         import sys
         if sys.platform!='linux':raise ValueError('Linux sealed descriptor required')
+        st=os.fstat(key_fd)
         # Linux UAPI linux/fcntl.h: GET_SEALS=1024+10; seal/shrink/grow/write bits1/2/4/8.
         # Some Python builds omit the symbolic constants despite kernel support.
         seals=0x0f
         if fcntl.fcntl(key_fd,getattr(fcntl,'F_GET_SEALS',1034))&seals!=seals:raise ValueError('sealed immutable memory descriptor required')
+        return (st.st_dev,st.st_ino)
+    def __init__(self,key_fd,script,node):
+        from pathlib import Path
+        if not isinstance(node,PinnedNode):raise ValueError('pinned node executable required')
+        if type(key_fd) is not int or key_fd<3:raise ValueError('inherited private descriptor required')
+        self.identity=self._sealed_identity(key_fd)
         self.fd,self.script,self.node=key_fd,str(Path(script).resolve()),node
     def __call__(self,transaction,limits):
         import subprocess
+        # A descriptor is a bare integer: if it was closed and its number reused, or its object swapped, the child would
+        # read something else. Prove again, immediately before it is handed over, that it is the SAME sealed object.
+        if self._sealed_identity(self.fd)!=self.identity:raise ValueError('key descriptor changed since launch')
         result=subprocess.run(self.node.command(self.script,str(self.fd)),env=node_environment(),input=json.dumps({'transaction':transaction,'limits':limits}),
              text=True,capture_output=True,pass_fds=(self.fd,),timeout=10,check=False)
         if result.returncode or len(result.stdout)>40000:raise ValueError('private signer rejected')
