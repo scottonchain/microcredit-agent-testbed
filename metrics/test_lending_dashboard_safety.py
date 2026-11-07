@@ -174,6 +174,142 @@ class CollectionTests(unittest.TestCase):
             ld.write_outputs(report, Path(d))
 
 
+SECRET = 'https://user:hunter2@rpc.example/v2/APIKEY123?token=s3cr3t Authorization: Bearer abc /home/runner/.key Traceback'
+
+
+class FailureDiagnosticsTests(unittest.TestCase):
+    """Published failure diagnostics come from fixed lists only and never carry error text."""
+    def run_main(self, error, stage=None, out=None):
+        """Run main() with collect raising `error` after marking `stage`; return (rc, status, stderr)."""
+        import contextlib, io
+        def fake(deployment, rpc, logs_rpc, block, from_block, progress=None):
+            if stage: progress.mark(stage)
+            raise error
+        with tempfile.TemporaryDirectory() as d:
+            err = io.StringIO()
+            with patch.object(ld, 'load_deployment', return_value=dict(DEPLOYMENT, rpc_url='https://rpc.example/')), \
+                    patch.object(ld, 'collect', side_effect=fake), contextlib.redirect_stderr(err):
+                rc = ld.main(['--out', d])
+            status = json.loads((Path(d) / 'refresh-status.json').read_text())
+            return rc, status, err.getvalue()
+
+    def test_secret_like_messages_never_reach_status_or_stderr(self):
+        errors = [ld.RpcError(SECRET), ld.RpcError('block ' + SECRET + ' not found'), ValueError(SECRET), OSError(SECRET),
+                  KeyError(SECRET), IndexError(SECRET), TypeError(SECRET), ld.RpcError('x', SECRET)]
+        for error in errors:
+            error.role = SECRET
+            rc, status, err = self.run_main(error, stage=SECRET)
+            self.assertEqual(rc, 1)
+            blob = json.dumps(status) + err
+            for fragment in ('hunter2', 'APIKEY123', 's3cr3t', 'Bearer', '/home/runner', 'Traceback', 'rpc.example', 'https://'):
+                self.assertNotIn(fragment, blob)
+            self.assertEqual(status['failureStage'], 'unknown')
+            self.assertIn(status['failureCode'], ld.FAILURE_CODES)
+            self.assertNotIn('failureProvider', status)
+
+    def test_failure_categories_stay_distinguishable(self):
+        cases = [(ld.RpcError('provider chain mismatch'), 'chain_check', 'chain_mismatch'),
+                 (ld.RpcError('provider block mismatch'), 'state_boundary', 'finality_boundary'),
+                 (ld.RpcError('pool token wiring mismatch'), 'pool_state', 'wiring_mismatch'),
+                 (ld.RpcError('conflicting duplicate log'), 'logs', 'log_inconsistent'),
+                 (ld.RpcError('loan inventory mismatch'), 'loans', 'inventory_mismatch'),
+                 (ld.RpcError('incomplete or inconsistent ledger'), 'reconcile', 'reconciliation_failed'),
+                 (ld.RpcError('block 0x1 not found'), 'block_times', 'block_missing'),
+                 (ld.RpcError('collection time budget exceeded'), 'logs', 'time_budget'),
+                 (ld.RpcError('some new unlisted message'), 'loans', 'rpc_other'),
+                 (ValueError('bad'), 'setup', 'invalid_data'),
+                 (OSError('disk'), 'setup', 'local_io'),
+                 (KeyError('k'), 'pool_state', 'unexpected_shape')]
+        seen = set()
+        for error, stage, code in cases:
+            rc, status, err = self.run_main(error, stage=stage)
+            self.assertEqual((status['failureStage'], status['failureCode']), (stage, code))
+            self.assertEqual(status['status'], 'failed')
+            self.assertIn(f'stage {stage} (code {code})', err)
+            seen.add(code)
+        self.assertEqual(len(seen), len({c for _, _, c in cases}))
+
+    def test_stage_is_recorded_by_the_real_collection(self):
+        state, logs = Provider(), Provider()
+        for attribute, stage, code in (('chain', 'chain_check', 'chain_mismatch'), ('hash', 'state_boundary', 'finality_boundary')):
+            progress = ld.Progress()
+            target = state if attribute == 'chain' else logs
+            original = getattr(target, attribute)
+            setattr(target, attribute, 1 if attribute == 'chain' else '0x' + 'cd' * 32)
+            with self.assertRaises(ld.RpcError) as caught:
+                ld.collect(DEPLOYMENT, state, logs, progress=progress)
+            self.assertEqual(ld.classify_failure(caught.exception, progress)[:2], (stage, code))
+            setattr(target, attribute, original)
+        state.ids = [1]
+        progress = ld.Progress()
+        with self.assertRaises(ld.RpcError) as caught:
+            ld.collect(DEPLOYMENT, state, logs, progress=progress)
+        self.assertEqual(ld.classify_failure(caught.exception, progress)[:2], ('loans', 'inventory_mismatch'))
+        progress = ld.Progress()
+        with self.assertRaises(ld.RpcError) as caught:
+            ld.collect(DEPLOYMENT, state, logs, from_block=ld.DEPLOYMENT_BLOCK + 1, progress=progress)
+        self.assertEqual(ld.classify_failure(caught.exception, progress)[:2], ('setup', 'bad_range'))
+
+    def test_transport_failures_get_fixed_codes_and_a_provider_role(self):
+        import io, socket, urllib.error
+        def failing(exc):
+            def opener(request, timeout=None): raise exc
+            return opener
+        cases = [(urllib.error.HTTPError(SECRET, 403, SECRET, {}, io.BytesIO(b'body ' + SECRET.encode())), 'http_403'),
+                 (urllib.error.HTTPError(SECRET, 429, SECRET, {}, None), 'http_429'),
+                 (urllib.error.HTTPError(SECRET, 404, SECRET, {}, None), 'http_4xx'),
+                 (urllib.error.HTTPError(SECRET, 503, SECRET, {}, None), 'http_5xx'),
+                 (urllib.error.URLError(SECRET), 'connection'),
+                 (socket.timeout(SECRET), 'timeout'),
+                 (json.JSONDecodeError(SECRET, SECRET, 0), 'bad_response')]
+        for exc, code in cases:
+            for role in ('state', 'logs'):
+                rpc = ld.Rpc('https://rpc.example/' + SECRET, role=role)
+                with patch.object(ld.urllib.request, 'urlopen', side_effect=failing(exc)), patch.object(ld.time, 'sleep'):
+                    with self.assertRaises(ld.RpcError) as caught:
+                        rpc.request('eth_chainId', [])
+                self.assertEqual(ld.classify_failure(caught.exception)[1:], (code, role))
+        self.assertIsNone(ld.Rpc('x', role=SECRET).role)
+
+    def test_provider_rejection_and_time_budget_codes(self):
+        rpc = ld.Rpc('https://rpc.example/', role='logs')
+        class Response:
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+            def read(self, *a): return json.dumps({'jsonrpc': '2.0', 'id': 1, 'error': {'message': SECRET}}).encode()
+        with patch.object(ld.urllib.request, 'urlopen', return_value=Response()):
+            with self.assertRaises(ld.RpcError) as caught: rpc.request('eth_call', [])
+        self.assertEqual(ld.classify_failure(caught.exception)[1:], ('provider_rejected', 'logs'))
+        rpc.deadline = 0
+        with self.assertRaises(ld.RpcError) as caught: rpc.request('eth_call', [])
+        self.assertEqual(ld.classify_failure(caught.exception)[1:], ('time_budget', 'logs'))
+
+    def test_every_published_name_is_on_the_fixed_lists(self):
+        for message, code in ld.MESSAGE_CODES.items(): self.assertIn(code, ld.FAILURE_CODES)
+        self.assertEqual(ld.classify_failure(RuntimeError(SECRET))[1], 'unknown')
+        with tempfile.TemporaryDirectory() as d:
+            ld.write_attempt(Path(d), 'failed', (SECRET, SECRET, SECRET))
+            status = json.loads((Path(d) / 'refresh-status.json').read_text())
+        self.assertEqual(status['failureStage'], 'unknown'); self.assertEqual(status['failureCode'], 'unknown')
+        self.assertNotIn('failureProvider', status); self.assertNotIn('hunter2', json.dumps(status))
+
+    def test_success_status_format_is_unchanged_and_failure_keeps_snapshot(self):
+        with tempfile.TemporaryDirectory() as d:
+            ld.write_attempt(Path(d), 'success', ('chain_check', 'chain_mismatch', 'state'))
+            self.assertEqual(set(json.loads((Path(d) / 'refresh-status.json').read_text())), {'attemptedAt', 'status'})
+            for name in ('snapshot.json', 'snapshot.js'): (Path(d) / name).write_text('keep')
+            with patch.object(ld, 'load_deployment', return_value=dict(DEPLOYMENT, rpc_url='https://rpc.example/')), patch.object(ld, 'collect', side_effect=ld.RpcError('x')):
+                self.assertEqual(ld.main(['--out', d]), 1)
+            for name in ('snapshot.json', 'snapshot.js'): self.assertEqual((Path(d) / name).read_text(), 'keep')
+            self.assertEqual(json.loads((Path(d) / 'refresh-status.json').read_text())['status'], 'failed')
+
+    def test_no_write_leaves_no_status_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            with patch.object(ld, 'load_deployment', return_value=dict(DEPLOYMENT, rpc_url='https://rpc.example/')), patch.object(ld, 'collect', side_effect=ld.RpcError('x')):
+                self.assertEqual(ld.main(['--out', d, '--no-write']), 1)
+            self.assertFalse((Path(d) / 'refresh-status.json').exists())
+
+
 class LogTests(unittest.TestCase):
     def raw(self):
         ev = ld.parse_event('ReserveFunded(address indexed from,uint256 amount)')

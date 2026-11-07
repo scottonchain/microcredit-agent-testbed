@@ -185,12 +185,92 @@ def schema_uid(schema=PROFILE_SCHEMA, resolver=PROFILE_SCHEMA_RESOLVER, revocabl
 
 # ---------------------------------------------------------------- JSON-RPC
 class RpcError(RuntimeError):
-    pass
+    """A collection failure. `code` (optional) must be one of FAILURE_CODES; the message is never published."""
+    def __init__(self, message, code=None):
+        super().__init__(message)
+        self.code = code
+
+
+# Failure diagnostics are published in refresh-status.json, so they come only from these fixed lists.
+# Raw exception text, tracebacks, provider URLs, headers, response bodies and credentials never do.
+STAGES = ("setup", "chain_check", "finality", "state_boundary", "pool_state", "logs",
+          "block_times", "loans", "reconcile", "write")
+FAILURE_CODES = frozenset({
+    "time_budget", "provider_rejected", "timeout", "connection", "bad_response",
+    "http_403", "http_429", "http_4xx", "http_5xx", "http_other",
+    "chain_mismatch", "finality_boundary", "wiring_mismatch", "log_inconsistent",
+    "inventory_mismatch", "reconciliation_failed", "block_missing", "bad_range",
+    "rpc_other", "invalid_data", "local_io", "unexpected_shape", "unknown"})
+PROVIDER_ROLES = ("state", "logs")
+MESSAGE_CODES = {
+    "collection time budget exceeded": "time_budget",
+    "provider rejected request": "provider_rejected",
+    "provider chain mismatch": "chain_mismatch",
+    "block outside finalized history": "finality_boundary",
+    "wrong state boundary": "finality_boundary",
+    "provider block mismatch": "finality_boundary",
+    "pool token wiring mismatch": "wiring_mismatch",
+    "invalid log boundary": "log_inconsistent",
+    "conflicting duplicate log": "log_inconsistent",
+    "log block mismatch": "log_inconsistent",
+    "loan inventory mismatch": "inventory_mismatch",
+    "loan state mismatch": "inventory_mismatch",
+    "incomplete or inconsistent ledger": "reconciliation_failed",
+    "deployment-to-boundary log range required": "bad_range",
+}
+
+
+class Progress:
+    """Records the collection stage; a name outside STAGES is reported as unknown."""
+    def __init__(self):
+        self.stage = "setup"
+
+    def mark(self, stage):
+        self.stage = stage
+
+
+def transport_code(error):
+    """Fixed code for a failed provider request; the error text and URL are discarded."""
+    if isinstance(error, urllib.error.HTTPError):
+        status = error.code if isinstance(error.code, int) else 0
+        if status in (403, 429):
+            return f"http_{status}"
+        return "http_4xx" if 400 <= status < 500 else "http_5xx" if 500 <= status < 600 else "http_other"
+    if isinstance(error, TimeoutError) or isinstance(getattr(error, "reason", None), TimeoutError):
+        return "timeout"
+    if isinstance(error, urllib.error.URLError):
+        return "connection"
+    if isinstance(error, ValueError):
+        return "bad_response"
+    return "rpc_other"
+
+
+def classify_failure(error, progress=None):
+    """Return (stage, code, provider role or None), every value drawn from the fixed lists above."""
+    stage = progress.stage if progress is not None and progress.stage in STAGES else "unknown"
+    role = getattr(error, "role", None)
+    role = role if role in PROVIDER_ROLES else None
+    if isinstance(error, RpcError):
+        text = str(error)
+        code = error.code if error.code in FAILURE_CODES else MESSAGE_CODES.get(text)
+        if code is None and text.startswith("block ") and text.endswith(" not found"):
+            code = "block_missing"
+        code = code if code in FAILURE_CODES else "rpc_other"
+    elif isinstance(error, ValueError):
+        code = "invalid_data"
+    elif isinstance(error, OSError):
+        code = "local_io"
+    elif isinstance(error, (KeyError, IndexError, TypeError)):
+        code = "unexpected_shape"
+    else:
+        code = "unknown"
+    return stage, code, role
 
 
 class Rpc:
-    def __init__(self, url, timeout=15, retries=2):
+    def __init__(self, url, timeout=15, retries=2, role="state"):
         self.url, self.timeout, self.retries = url, timeout, retries
+        self.role = role if role in PROVIDER_ROLES else None
         self.calls = 0
         self.deadline = time.monotonic() + 600
 
@@ -199,7 +279,9 @@ class Rpc:
         last = None
         for attempt in range(self.retries):
             if time.monotonic() >= self.deadline:
-                raise RpcError("collection time budget exceeded")
+                error = RpcError("collection time budget exceeded", "time_budget")
+                error.role = self.role
+                raise error
             try:
                 # Cloudflare in front of sepolia.base.org rejects the default Python user agent with 403.
                 headers = {"content-type": "application/json", "user-agent": "microcredit-lending-dashboard/1"}
@@ -208,12 +290,16 @@ class Rpc:
                     payload = json.load(response)
                 self.calls += 1
                 if "error" in payload:
-                    raise RpcError("provider rejected request")
+                    error = RpcError("provider rejected request", "provider_rejected")
+                    error.role = self.role
+                    raise error
                 return payload["result"]
             except (urllib.error.URLError, TimeoutError, ValueError) as error:
                 last = error
                 time.sleep(2 ** attempt)
-        raise RpcError("provider request failed")
+        failure = RpcError("provider request failed", transport_code(last))
+        failure.role = self.role
+        raise failure
 
     def block(self, number="latest"):
         tag = number if isinstance(number, str) else hex(number)
@@ -559,18 +645,22 @@ def reconcile(events, loans, records, pool):
                                        - max(pool["firstLossReserve"], pool["totalImpaired"])))
 
 
-def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_BLOCK):
+def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_BLOCK, progress=None):
+    mark = progress.mark if progress is not None else (lambda stage: None)
     if from_block != DEPLOYMENT_BLOCK:
         raise RpcError("deployment-to-boundary log range required")
+    mark("chain_check")
     chain = deployment["chain_id"]
     for provider in (rpc, logs_rpc):
         if as_int(provider.request("eth_chainId", [])) != chain:
             raise RpcError("provider chain mismatch")
+    mark("finality")
     finalized = [p.block("finalized") for p in (rpc, logs_rpc)]
     ceiling = min(as_int(h["number"]) for h in finalized)
     number = ceiling if block in ("latest", "finalized") else as_int(block)
     if not from_block <= number <= ceiling:
         raise RpcError("block outside finalized history")
+    mark("state_boundary")
     header = rpc.block(number)
     if as_int(header["number"]) != number:
         raise RpcError("wrong state boundary")
@@ -583,6 +673,7 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
     match(number, header)
     start = rpc.block(from_block)
     match(from_block, start)
+    mark("pool_state")
     pool_address = deployment["pool"]
     if rpc.call(pool_address, "usdc()", block=number, types=["address"])[0].lower() != deployment["token"]["address"].lower():
         raise RpcError("pool token wiring mismatch")
@@ -591,7 +682,9 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
     pool["utilisationBps"] = rpc.call(deployment["lens"], "getUtilisation()", block=number, types=["uint256"])[0]
     for key, sig in (("lenders", "getLenders()"), ("borrowers", "getBorrowers()")):
         pool[key] = [a.lower() for a in rpc.call(pool_address, sig, block=number, types=["address[]"])[0]]
+    mark("logs")
     events = read_pool_logs(logs_rpc, pool_address, from_block, number)
+    mark("block_times")
     times = {}
     for n in sorted({e["block"] for e in events}):
         h = rpc.block(n)
@@ -599,6 +692,7 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
         if any(e["blockHash"] != h["hash"].lower() for e in events if e["block"] == n):
             raise RpcError("log block mismatch")
         times[n] = as_int(h["timestamp"])
+    mark("loans")
     ids = rpc.call(pool_address, "getAllLoanIds()", block=number, types=["uint256[]"])[0]
     if len(ids) != len(set(ids)) or set(ids) != {e["args"]["loanId"] for e in events if "loanId" in e["args"]}:
         raise RpcError("loan inventory mismatch")
@@ -614,6 +708,7 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
             raise RpcError("loan state mismatch")
         records[i] = [principal, None, None, borrower, rate, term, requested, disbursed,
                       status, None, outstanding, as_int(header["timestamp"])]
+    mark("reconcile")
     loans = build_loans(events, times, terms)
     reconcile(events, loans, records, pool)
     match(from_block, start)
@@ -663,9 +758,16 @@ def atomic_text(path, text):
             os.unlink(name)
 
 
-def write_attempt(out_dir, status):
-    atomic_text(out_dir / "refresh-status.json", json.dumps({"attemptedAt": datetime.now(timezone.utc).isoformat(),
-                                                          "status": status}) + "\n")
+def write_attempt(out_dir, status, failure=None):
+    """failure is (stage, code, role) from classify_failure; values are re-checked against the fixed lists."""
+    record = {"attemptedAt": datetime.now(timezone.utc).isoformat(), "status": status}
+    if status == "failed" and failure is not None:
+        stage, code, role = failure
+        record["failureStage"] = stage if stage in STAGES else "unknown"
+        record["failureCode"] = code if code in FAILURE_CODES else "unknown"
+        if role in PROVIDER_ROLES:
+            record["failureProvider"] = role
+    atomic_text(out_dir / "refresh-status.json", json.dumps(record) + "\n")
 
 
 def write_outputs(report, out_dir):
@@ -706,14 +808,18 @@ def main(argv=None):
         print(json.dumps({"schema": PROFILE_SCHEMA, "resolver": PROFILE_SCHEMA_RESOLVER,
                           "revocable": PROFILE_SCHEMA_REVOCABLE, "uid": schema_uid()}, indent=1))
         return 0
+    progress = Progress()
     try:
         deployment = load_deployment()
         block = args.block if args.block in ("latest", "finalized") else as_int(args.block)
-        report = collect(deployment, Rpc(deployment["rpc_url"]), Rpc(args.logs_rpc), block, args.from_block)
+        report = collect(deployment, Rpc(deployment["rpc_url"], role="state"), Rpc(args.logs_rpc, role="logs"),
+                         block, args.from_block, progress)
     except (RpcError, ValueError, OSError, KeyError, IndexError, TypeError) as error:
+        failure = classify_failure(error, progress)
         if not args.no_write:
-            write_attempt(Path(args.out), "failed")
-        print("Collection failed; last successful snapshot preserved.", file=sys.stderr)
+            write_attempt(Path(args.out), "failed", failure)
+        # Only fixed stage and code names are printed: never the exception text.
+        print(f"Collection failed at stage {failure[0]} (code {failure[1]}); last successful snapshot preserved.", file=sys.stderr)
         return 1
     if not args.no_write:
         write_outputs(report, Path(args.out))

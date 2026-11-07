@@ -97,7 +97,14 @@ also fail after such an event until exact forgiveness accounting is supported**.
 It is not a transient, one-attempt failure or something a later block cures.
 
 `refresh-status.json` records attemptedAt and success/failed, independently of
-source block/time and last successful collection. Failed collection does not
+source block/time and last successful collection. A failed attempt also records
+`failureStage`, `failureCode` and, for a provider fault, `failureProvider`
+(`state` or `logs`). These come only from the fixed lists `STAGES`, `FAILURE_CODES`
+and `PROVIDER_ROLES` in `metrics/lending_dashboard.py`; exception text, tracebacks,
+URLs, headers, response bodies and credentials are never written, and anything
+outside the lists is reported as `unknown`. A code names the category of failure
+(for example `http_403`, `timeout`, `finality_boundary`, `reconciliation_failed`),
+not a proven root cause. Failed collection does not
 write either snapshot. Each file is atomically replaced locally; publish matching
 JSON and JS **together in one Git commit** after checking their equivalence.
 A failed attempt may publish only the status file while retaining the last-good
