@@ -5,7 +5,7 @@
  import { ADDR, ABI } from './lib/chain.mjs';
  import { decide as decideInterview } from './interview.mjs';
 +import { guardedInterview } from './guarded-interview.mjs';
- 
+
  const RPC = process.env.RPC_URL, DESK = process.env.DESK, MODE = process.env.MODE || 'claude', POLL = Number(process.env.POLL || 5000);
  const LOG = process.env.LOG || 'results/desk-daemon.log';
 @@ -130,7 +131,7 @@
