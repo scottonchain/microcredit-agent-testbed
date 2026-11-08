@@ -54,3 +54,22 @@ desk ABI; that is the first wiring step. The lease directory must live on storag
 6. Verify operation across at least two former hourly container boundaries and report actual poll and reply receipts.
 
 If no eligible host exists, the options are those on the board and the app keeps the honest periodic-service text.
+
+## Chain adapter design (not implemented)
+
+The worker needs `{ pending, prepare, receipt, applied }`. With viem and the existing officer account:
+
+- `pending()` is `CreditDesk.pending()`.
+- `applied(applicant)` is "the applicant is not in `pending()`"; an RPC error returns null (the journal then holds, it does not replay).
+- `prepare(applicant, token)` builds the reply call exactly as `desk-daemon.mjs` does today (same text, same backing total), then
+  `prepareTransactionRequest` (nonce taken from the `pending` block tag), `signTransaction` with the officer key, and returns
+  `{ txHash: keccak256(serialized), broadcast: () => sendRawTransaction(serialized) }`. The raw bytes are held in memory only
+  and never written to the journal, the status file or the board; only the hash is journaled.
+- `receipt(txHash)` is `getTransactionReceipt`, null when not found.
+- Nonce hazard: a signed transaction that was journaled but never broadcast leaves the account nonce unchanged, so a later
+  signed reply would reuse that nonce. The reconcile rule already covers it: the earlier operation is `wait` then `hold`, and
+  no new reply to the same applicant is signed while it is open. Different applicants are processed one at a time, in order.
+- Model decision (the AI officer's text and backing) stays outside the adapter: decide first, then journal, sign, record the
+  hash, broadcast. A restart never re-asks the model for an operation that already has a journaled hash.
+
+Open choice for the reviewer: whether a held operation should page a person or only show as `degraded` in the status file.
