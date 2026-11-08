@@ -1,6 +1,6 @@
 import qrcode from 'qrcode-generator';
 import * as C from './core.js';
-import { friendly } from './errors.js';
+import { friendly, failureTitle } from './errors.js';
 import * as I from './install.js';
 import { createGate } from './gate.js';
 
@@ -64,7 +64,7 @@ async function runInner(title, calls, { retryIds, summary, stay: stayHere, quiet
       return r;
     } catch (e) {
       const detail = (e.details || e.shortMessage || e.message || String(e));
-      sheet({ title: 'It did not go through', body: `<div class="note bad">${esc(friendly(e))}</div>${failNote ? `<p class="muted">${esc(failNote)}</p>` : ''}<details><summary>Technical details</summary><pre>${esc(String(detail).slice(0, 600))}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
+      sheet({ title: failureTitle(e), body: `<div class="note bad">${esc(friendly(e))}</div>${failNote ? `<p class="muted">${esc(failNote)}</p>` : ''}<details><summary>Technical details</summary><pre>${esc(String(detail).slice(0, 600))}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
       return null;
     }
   }

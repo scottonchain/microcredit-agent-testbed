@@ -2,10 +2,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { FocusError, isForeground, waitForeground, guardedGet } from './app/src/foreground.js';
+import { FocusError, isForeground, guardedGet } from './app/src/foreground.js';
 import { createGate } from './app/src/gate.js';
 import { submitTracked } from './app/src/phases.js';
-import { friendly } from './app/src/errors.js';
+import { friendly, failureTitle } from './app/src/errors.js';
 
 // A minimal document/window with controllable visibility and focus.
 function fakeDoc({ visible = true, focused = true } = {}) {
@@ -16,35 +16,36 @@ function fakeDoc({ visible = true, focused = true } = {}) {
   d.listeners = () => Object.values(d.ls).reduce((n, s) => n + s.size, 0) + Object.values(d.wl).reduce((n, s) => n + s.size, 0);
   return d;
 }
-const manualTimers = () => { const q = []; return { setTimer: (f) => { q.push(f); return q.length; }, clearTimer: () => {}, fire: () => q.splice(0).forEach((f) => f()) }; };
 
 // ---- native prompt return / focus loss
-test('a page in front proceeds immediately', async () => {
-  assert.equal(isForeground(fakeDoc()), true);
-  await waitForeground(fakeDoc());
-});
 test('a hidden or unfocused page is not in front', () => {
+  assert.equal(isForeground(fakeDoc()), true);
   assert.equal(isForeground(fakeDoc({ visible: false })), false);
   assert.equal(isForeground(fakeDoc({ focused: false })), false);
 });
-test('focus loss: the page coming back in time lets the approval proceed, and listeners are removed', async () => {
-  const d = fakeDoc({ focused: false }); const t = manualTimers();
-  const p = waitForeground(d, t);
-  d._focused = true; d.fire('focus');
-  await p; assert.equal(d.listeners(), 0);
-});
-test('focus loss: becoming visible again also proceeds', async () => {
-  const d = fakeDoc({ visible: false }); const t = manualTimers();
-  const p = waitForeground(d, t);
-  d.visibilityState = 'visible'; d.fire('visibilitychange');
-  await p;
-});
-test('focus loss: a page that stays away fails with FocusError and the passkey call is never made', async () => {
-  const d = fakeDoc({ focused: false }); const t = manualTimers(); const state = { approved: false }; let calls = 0;
-  const get = guardedGet(async () => { calls++; return 'assertion'; }, d, state, t);
-  const p = get({}); t.fire();
-  await assert.rejects(p, (e) => e instanceof FocusError && e.name === 'FocusError');
+test('focus loss: an unfocused page fails at once with FocusError, the passkey call is never made, no listener is left', async () => {
+  const d = fakeDoc({ focused: false }); const state = { approved: false }; let calls = 0;
+  const get = guardedGet(async () => { calls++; return 'assertion'; }, d, state);
+  await assert.rejects(get({}), (e) => e instanceof FocusError && e.name === 'FocusError');
   assert.equal(calls, 0); assert.equal(state.approved, false); assert.equal(d.listeners(), 0);
+});
+test('negative regression: focus returning after a failed attempt does NOT resume the approval without a fresh tap', async () => {
+  for (const mode of [{ focused: false }, { visible: false }]) {
+    const d = fakeDoc(mode); const state = { approved: false }; let calls = 0;
+    const get = guardedGet(async () => { calls++; return 'assertion'; }, d, state);
+    await assert.rejects(get({}), FocusError);
+    d._focused = true; d.visibilityState = 'visible'; d.fire('focus'); d.fire('visibilitychange');
+    await new Promise((r) => setImmediate(r));
+    assert.equal(calls, 0, 'no credential call may follow a focus event on its own');
+    assert.equal(state.approved, false);
+  }
+});
+test('a fresh tap after focus is back makes exactly one credential call', async () => {
+  const d = fakeDoc({ focused: false }); const state = { approved: false }; let calls = 0;
+  const get = guardedGet(async () => { calls++; return 'assertion'; }, d, state);
+  await assert.rejects(get({}), FocusError);
+  d._focused = true;
+  assert.equal(await get({}), 'assertion'); assert.equal(calls, 1);
 });
 test('the passkey call runs once the page is in front and marks the approval only after it resolves', async () => {
   const d = fakeDoc(); const state = { approved: false }; let seenDuring = null;
@@ -142,4 +143,24 @@ test('no automatic retry of a signing attempt was added', () => {
   assert.doesNotMatch(main + core, /setTimeout\([^)]*sendUserOperation/);
   assert.equal((core.match(/sendUserOperation/g) || []).length, 0); // only phases.js calls it, once
   assert.equal((readFileSync(new URL('./app/src/phases.js', import.meta.url), 'utf8').match(/sendUserOperation\(/g) || []).length, 1);
+});
+
+// ---- failure sheet title follows the outcome
+test('failureTitle: unknown outcomes are not titled "It did not go through"', () => {
+  assert.equal(failureTitle({ phase: 'approved' }), 'Still checking this attempt');
+  assert.equal(failureTitle({ phase: 'submitted' }), 'Still checking this attempt');
+  for (const e of [{ phase: 'approval' }, new FocusError(), {}, null, undefined]) assert.equal(failureTitle(e), 'It did not go through');
+});
+test('main.js wiring: the catch sheet title comes from failureTitle; the plain title stays only for a definite revert', () => {
+  const main = readFileSync(new URL('./app/src/main.js', import.meta.url), 'utf8');
+  assert.match(main, /import \{ friendly, failureTitle \} from '\.\/errors\.js'/);
+  assert.match(main, /sheet\(\{ title: failureTitle\(e\), body: `<div class="note bad">\$\{esc\(friendly\(e\)\)\}/);
+  assert.equal((main.match(/title: 'It did not go through'/g) || []).length, 1, 'only the definite-revert sheet keeps the plain title');
+  assert.match(main, /title: 'It did not go through', body: `<div class="note bad">\$\{esc\(friendly\(\{ reason: lastErr \}\)\)\}/);
+});
+test('app code never waits for focus to come back (no resume path)', () => {
+  for (const f of ['foreground.js', 'core.js', 'main.js', 'phases.js']) {
+    const src = readFileSync(new URL('./app/src/' + f, import.meta.url), 'utf8');
+    assert.doesNotMatch(src, /waitForeground|addEventListener\(['"]visibilitychange|addEventListener\(['"]focus/, f);
+  }
 });

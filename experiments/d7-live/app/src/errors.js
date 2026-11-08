@@ -44,3 +44,9 @@ export function friendly(e) {
   if (/Failed to fetch|NetworkError|fetch failed/i.test(raw)) return 'Cannot reach the test network. Check your connection and try again.';
   return 'Something went wrong. Nothing was lost. Try again; if it repeats, copy the details below into your feedback.';
 }
+
+// Title for the failure sheet. 'It did not go through' is only true when nothing was approved or sent (or the chain
+// reverted it). When the outcome is unknown (approved or submitted), the title says so instead.
+export function failureTitle(e) {
+  return e && (e.phase === 'approved' || e.phase === 'submitted') ? 'Still checking this attempt' : 'It did not go through';
+}
