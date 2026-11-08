@@ -164,3 +164,13 @@ test('app code never waits for focus to come back (no resume path)', () => {
     assert.doesNotMatch(src, /waitForeground|addEventListener\(['"]visibilitychange|addEventListener\(['"]focus/, f);
   }
 });
+
+// ---- waiting guidance: the officer is periodic, so the app promises no short reply time
+test('app waiting text names the periodic officer and no longer promises a minute or ten minutes', () => {
+  const main = readFileSync(new URL('./app/src/main.js', import.meta.url), 'utf8');
+  const guide = readFileSync(new URL('./TESTER_GUIDE.md', import.meta.url), 'utf8');
+  assert.equal((main.match(/The test officer checks periodically, so replies may take about an hour or longer during interruptions\. Check back here; do not resend\./g) || []).length, 2);
+  assert.doesNotMatch(main, /usually within a minute|is reading your message/);
+  assert.match(main, /Your message is recorded\. The officer has not replied yet\. Check back here later; do not resend\./);
+  assert.doesNotMatch(guide, /usually within a minute|about 10 minutes/);
+});

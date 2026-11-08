@@ -6,9 +6,9 @@ This is a practice app on a test network. The dollars are test tokens with no va
 
 **Optional: put it on your home screen.** Use **Add to home screen** in the app. On iPhone or iPad, do this before creating a wallet: a wallet created in the browser does not appear in the home-screen app (the recovery code on the Help screen moves its reference over; the matching passkey is still needed). Creating a second wallet there makes a separate wallet with its own test dollars. If the link opened inside another app (Messages, WhatsApp, Gmail), open it in Safari or Chrome first. If the passkey prompt does not appear in the home-screen app, go back to the browser and use the wallet there.
 
-## Try it in the app (about 10 minutes)
+## Try it in the app
 
-The app guides you; you do not need to follow a separate setup procedure, install anything or visit a faucet. Tap **Get started** and approve the passkey prompt (fingerprint, face or screen lock). Choose an amount (up to $5), a general purpose and when you plan to pay it back. The AI credit officer answers in the app, usually within a minute. Keep everything you write general: the request and replies are public on the test network.
+The app guides you; you do not need to follow a separate setup procedure, install anything or visit a faucet. Tap **Get started** and approve the passkey prompt (fingerprint, face or screen lock). Choose an amount (up to $5), a general purpose and when you plan to pay it back. The AI credit officer checks periodically, so a reply may take about an hour or longer during interruptions; check back in the app and do not resend. Keep everything you write general: the request and replies are public on the test network.
 
 If the desk agrees, read its offer and use the borrow button. The desk backs your test loan from its stake and supplies the few cents needed for interest; gas is sponsored. Your wallet shows what you owe and the due date. Use **Pay back** to repay; if the wallet is short, use the in-app credit-desk option shown there. You never need to fetch test dollars yourself.
 
