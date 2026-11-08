@@ -55,7 +55,7 @@ desk ABI; that is the first wiring step. The lease directory must live on storag
 
 If no eligible host exists, the options are those on the board and the app keeps the honest periodic-service text.
 
-## Chain adapter design (not implemented)
+## Chain adapter (implemented offline in `service/adapter.mjs`, tested by `test-adapter.mjs`; not wired to the live daemon)
 
 The worker needs `{ pending, prepare, receipt, applied }`. With viem and the existing officer account:
 
@@ -69,7 +69,15 @@ The worker needs `{ pending, prepare, receipt, applied }`. With viem and the exi
 - Nonce hazard: a signed transaction that was journaled but never broadcast leaves the account nonce unchanged, so a later
   signed reply would reuse that nonce. The reconcile rule already covers it: the earlier operation is `wait` then `hold`, and
   no new reply to the same applicant is signed while it is open. Different applicants are processed one at a time, in order.
-- Model decision (the AI officer's text and backing) stays outside the adapter: decide first, then journal, sign, record the
-  hash, broadcast. A restart never re-asks the model for an operation that already has a journaled hash.
+- The decision (the AI officer's text and backing) is an injected `decide(applicant)` called inside `prepare`, before signing.
+  A crash before the hash is journaled leaves no transaction, so a restart may decide again; once a hash is journaled the
+  decision is never re-asked, because that operation is only waited on, confirmed or held.
 
 Open choice for the reviewer: whether a held operation should page a person or only show as `degraded` in the status file.
+
+Adapter proof (`node --test test-adapter.mjs`, offline, real viem encoding, hashing and signing with a throwaway key and a fake
+client): the journaled hash equals the keccak of the bytes later broadcast; the transaction is signed by the officer account,
+addressed to the desk, carries the right call; prepare broadcasts nothing; no raw bytes leave the closure; an RPC error in
+`applied` throws; a failed model decision builds no transaction; a broadcast failure leaves a waiting operation and no second
+transaction is built. Three deliberate breakages (swallowed RPC error, hash of the wrong bytes, broadcast inside prepare)
+each fail tests. Still not run: the real RPC, the real officer key, the real model, a container boundary, a host.
