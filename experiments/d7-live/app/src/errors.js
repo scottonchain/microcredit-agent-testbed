@@ -33,7 +33,13 @@ export function friendly(e) {
   const raw = parts.filter((x) => typeof x === 'string' && x).join(' | ') || String(e);
   const key = Object.keys(MESSAGES).find((k) => raw.includes(k));
   if (key) return MESSAGES[key];
-  if (/NotAllowedError|credential request failed|cancel|timed out|not allowed|AbortError|user denied|rejected/i.test(raw)) return 'Cancelled. Nothing was sent. Try again and approve with your fingerprint, face or screen lock.';
+  // What was sent depends on how far the attempt got (e.phase, set by core.send): 'approval' = the person had not yet
+  // approved, so nothing was signed; 'approved' = approved but no acknowledgement came back; 'submitted' = handed to the
+  // test network and the wait for the result failed. Never say "nothing was sent" unless that is true.
+  if (e && e.phase === 'submitted') return 'It was sent to the test network, but we have not seen it finish. It may still go through. Wait a minute and check your home screen before you try again.';
+  if (e && e.phase === 'approved') return 'You approved it, but we could not confirm that it reached the test network. Wait a minute and check your home screen before you try again.';
+  if (/FocusError|document is not focused|not focused|page is not visible/i.test(raw)) return 'Your phone or browser paused the approval because this page was not in front. This attempt did not send anything. Keep this page open and in front, then tap the button again.';
+  if (/NotAllowedError|credential request failed|cancel|timed out|not allowed|AbortError|user denied|rejected/i.test(raw)) return e && e.phase === 'approval' ? 'You cancelled, or the approval closed. This attempt did not send anything. Tap the button again if you still want to do it.' : 'Cancelled. Try again and approve with your fingerprint, face or screen lock.';
   if (/rate limit|429|Too Many/i.test(raw)) return 'The test network is busy (rate limited). Wait a few seconds and try again.';
   if (/Failed to fetch|NetworkError|fetch failed/i.test(raw)) return 'Cannot reach the test network. Check your connection and try again.';
   return 'Something went wrong. Nothing was lost. Try again; if it repeats, copy the details below into your feedback.';

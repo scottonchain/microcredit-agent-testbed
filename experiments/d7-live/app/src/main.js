@@ -2,10 +2,12 @@ import qrcode from 'qrcode-generator';
 import * as C from './core.js';
 import { friendly } from './errors.js';
 import * as I from './install.js';
+import { createGate } from './gate.js';
 
 const $ = (s) => document.querySelector(s);
 const app = $('#app');
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const signing = createGate();
 const S = { client: null, cred: null, account: null, addr: null, bundler: null, snap: null };
 I.watch();
 const short = (a) => a.slice(0, 6) + '…' + a.slice(-4);
@@ -35,7 +37,12 @@ const copy = async (t, btn) => { try { await navigator.clipboard.writeText(t); i
 async function refresh() { S.snap = await C.snapshot(S.client, S.addr); try { chainNow = Number((await S.client.getBlock()).timestamp); } catch {} return S.snap; }
 
 // ---------- running an action ----------
-async function run(title, calls, { retryIds, summary, stay: stayHere, quiet, doneActions = [] } = {}) {
+// One signing flow at a time: a second tap while the first waits for approval or for the network is ignored (the open sheet keeps showing the first).
+async function run(title, calls, opts) {
+  if (!signing.tryEnter()) return null;
+  try { return await runInner(title, calls, opts); } finally { signing.leave(); }
+}
+async function runInner(title, calls, { retryIds, summary, stay: stayHere, quiet, doneActions = [], failNote = '' } = {}) {
   const steps = ['Approve with your fingerprint, face or screen lock', 'Sending to the test network', 'Done'];
   const draw = (i, extra = '') => sheet({ title, body: `<ul class="steps">${steps.map((s, k) => `<li class="${k < i ? 'done' : k === i ? 'on' : ''}">${k < i ? '✓ ' : ''}${s}</li>`).join('')}</ul>${extra}` });
   draw(0);
@@ -53,11 +60,11 @@ async function run(title, calls, { retryIds, summary, stay: stayHere, quiet, don
       }
       lastErr = r.reason || 'Reverted';
       if (retryIds && attempt < 2 && /LoanNotRequested|WrongBorrower|NotCancellableYet/.test(lastErr)) { attempt++; calls = await retryIds(); continue; }
-      sheet({ title: 'It did not go through', body: `<div class="note bad">${esc(friendly({ reason: lastErr }))}</div><details><summary>Technical details</summary><pre>${esc(lastErr)}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
+      sheet({ title: 'It did not go through', body: `<div class="note bad">${esc(friendly({ reason: lastErr }))}</div>${failNote ? `<p class="muted">${esc(failNote)}</p>` : ''}<details><summary>Technical details</summary><pre>${esc(lastErr)}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
       return r;
     } catch (e) {
       const detail = (e.details || e.shortMessage || e.message || String(e));
-      sheet({ title: 'It did not go through', body: `<div class="note bad">${esc(friendly(e))}</div><details><summary>Technical details</summary><pre>${esc(String(detail).slice(0, 600))}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
+      sheet({ title: 'It did not go through', body: `<div class="note bad">${esc(friendly(e))}</div>${failNote ? `<p class="muted">${esc(failNote)}</p>` : ''}<details><summary>Technical details</summary><pre>${esc(String(detail).slice(0, 600))}</pre></details>`, actions: [{ label: 'Close', onClick: () => { closeSheet(); render(); } }] });
       return null;
     }
   }
@@ -324,7 +331,7 @@ async function renderCredit(my = renderSeq) {
   $('#send').onclick = async () => {
     const text = $('#msg').value.trim(); if (!text) return; if (text.length > 1000) { $('#warn').innerHTML = '<div class="note warn">Please keep it under 1000 characters.</div>'; return; }
     const personal = /\b(my name is|i am \d{1,3}( years)?|i'm \d{1,3}\b|\d[\d\s-]{6,}\d|@|street|road\b|avenue|my (husband|wife|son|daughter|kids|children|employer|boss|salary|wage|payday))/i.test(text);
-    const send = async () => { const r = await run('Send your message', [C.deskCall('say', [text])], { quiet: true }); if (r && r.success) { if ($('#msg')) $('#msg').value = ''; await draw(); } };
+    const send = async () => { const r = await run('Send your message', [C.deskCall('say', [text])], { quiet: true, failNote: 'Messages already shown in this chat were recorded earlier. This failed attempt does not undo or repeat them, so do not send them again.' }); if (r && r.success) { if ($('#msg')) $('#msg').value = ''; await draw(); } };
     if (personal) return sheet({ title: 'Before you send', body: '<div class="note warn">This looks like it has personal details (a name, age, number, family or work). Everything written here is public on the test network and cannot be taken back. The officer needs only what the money is for, how much and when you will pay it back.</div>', actions: [{ label: 'Let me change it', onClick: closeSheet }, { label: 'Send anyway', secondary: true, onClick: () => { closeSheet(); send(); } }] });
     await send();
   };

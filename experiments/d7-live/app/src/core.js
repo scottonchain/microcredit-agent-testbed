@@ -3,6 +3,8 @@ import { createBundlerClient, toCoinbaseSmartAccount, toWebAuthnAccount, createW
 import { baseSepolia } from 'viem/chains';
 import poolAbi from '../../abi/DecentralizedMicrocredit.json';
 import deskAbi from '../../abi/CreditDesk.json';
+import { guardedGet } from './foreground.js';
+import { submitTracked } from './phases.js';
 
 export const erc20Abi = [
   { type: 'function', name: 'balanceOf', stateMutability: 'view', inputs: [{ name: 'a', type: 'address' }], outputs: [{ type: 'uint256' }] },
@@ -39,8 +41,12 @@ export async function createPasskey(label) {
   const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
   return createWebAuthnCredential({ name: base, user: { id, name: base, displayName: `${base} (${stamp})` } });
 }
+// Shared between the passkey call (set by guardedGet when the person approves) and send() (reads it to tag failures).
+export const signState = { approved: false };
 export async function openAccount(client, cred) {
-  const owner = toWebAuthnAccount({ credential: cred });
+  // The passkey call is made through guardedGet so the page must be in front at that exact moment.
+  const getFn = typeof navigator !== 'undefined' && navigator.credentials ? guardedGet((o) => navigator.credentials.get(o), document, signState) : undefined;
+  const owner = toWebAuthnAccount({ credential: cred, getFn });
   return toCoinbaseSmartAccount({ client, owners: [owner] });
 }
 export function bundlerFor(client, account) {
@@ -67,10 +73,7 @@ export function decodeRevert(data) {
   return 'Reverted ' + data.slice(0, 10);
 }
 export async function send(bundlerClient, account, calls, onStage) {
-  onStage?.('sign');
-  const hash = await bundlerClient.sendUserOperation({ account, calls });
-  onStage?.('submit');
-  const r = await bundlerClient.waitForUserOperationReceipt({ hash, timeout: 120000 });
+  const { hash, receipt: r } = await submitTracked(bundlerClient, account, calls, onStage, signState);
   let reason = null, events = [];
   try { events = parseEventLogs({ abi: poolAbi, logs: r.logs.filter((l) => l.address.toLowerCase() === cfg.pool.toLowerCase()) }); } catch {}
   if (!r.success) { try { const ev = parseEventLogs({ abi: entryPoint06Abi, logs: r.logs.filter((l) => l.address.toLowerCase() === entryPoint06Address.toLowerCase()), eventName: 'UserOperationRevertReason' })[0]; reason = decodeRevert(ev?.args?.revertReason); } catch {} }
