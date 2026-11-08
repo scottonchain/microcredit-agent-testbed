@@ -1,0 +1,38 @@
+{
+  "kind": "ILLUSTRATIVE_OFFLINE_STRESS_NOT_CALIBRATION",
+  "assumptions": {
+    "borrowers": 20,
+    "exposure_each": 10,
+    "marginal_pd": "1/20",
+    "lgd": 1,
+    "loss_tail_threshold": 50
+  },
+  "same_mean_loss": 10,
+  "independent_tail_probability_exact": "67474301508708770885031/26214400000000000000000000",
+  "independent_tail_probability": 0.0025739403346522814,
+  "common_shock_tail_probability": 0.05,
+  "tail_ratio": 19.425469707616433,
+  "worst_dependence_tail_probability": 0.2,
+  "worst_dependence_to_iid_ratio": 77.70187883046573,
+  "worst_dependence_construction": "With probability1/5 choose exactly5 of20 uniformly to default; otherwise none. Marginal PD=(1/5)*(5/20)=1/20. Tail attains Markov mean10/threshold50=1/5.",
+  "identity_classification_sensitivity": {
+    "controller_known": {
+      "accepted": 1,
+      "realized_loss": "10"
+    },
+    "group_only_known": {
+      "accepted": 3,
+      "realized_loss": "30"
+    },
+    "both_missed": {
+      "accepted": 10,
+      "realized_loss": "100"
+    }
+  },
+  "timing_shortfall": [
+    "-10",
+    "10"
+  ],
+  "five_zero_defaults_iid_upper95": 0.4507197283469412,
+  "warning": "Five usability sessions are not five repayment observations; IID bound does not apply to them."
+}

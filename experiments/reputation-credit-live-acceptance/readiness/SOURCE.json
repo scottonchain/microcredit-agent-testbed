@@ -1,0 +1,8 @@
+{
+  "repository": "scottonchain/microcredit-agent-testbed",
+  "branch": "claude/d7-live-sim-app-20261101",
+  "commit": "2490b5ea1661b828e44f9c337e4c7a2ca35940a6",
+  "path": "experiments/d7-live/interview.mjs",
+  "sha256": "9b71cb055fd4374ec0843786b19c5dbcc2e5c5cdf44b15e0b5c816949f052e9e",
+  "scope": "shadow interview source, not main or verified deployed runtime"
+}

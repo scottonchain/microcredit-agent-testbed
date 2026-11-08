@@ -1,0 +1,16 @@
+--- a/DecentralizedMicrocredit.sol
++++ b/DecentralizedMicrocredit.sol
+@@ -29,0 +30,2 @@
++interface IScopedOriginationBudget { function consume(address borrower, uint256 amount) external; function pool() external view returns (address); }
++
+@@ -30,0 +33,7 @@
++    // Required, one-time binding for a NEW isolated pool; no disable/reset path.
++    IScopedOriginationBudget public originationBudget;
++    function setOriginationBudget(IScopedOriginationBudget budget) external onlyOwner {
++        require(address(originationBudget)==address(0) && address(budget).code.length>0, "budget binding");
++        require(budget.pool()==address(this), "wrong budget pool");
++        originationBudget=budget;
++    }
+@@ -1228,0 +1238,2 @@
++        require(address(originationBudget)!=address(0), "budget missing");
++        originationBudget.consume(borrower, amount);

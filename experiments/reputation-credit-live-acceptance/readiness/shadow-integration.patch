@@ -1,0 +1,58 @@
+--- a/experiments/d7-live/desk-daemon.mjs
++++ b/experiments/d7-live/desk-daemon.mjs
+@@ -13,6 +13,7 @@
+ import { join } from 'node:path';
+ import { ADDR, ABI } from './lib/chain.mjs';
+ import { decide as decideInterview } from './interview.mjs';
++import { guardedInterview } from './guarded-interview.mjs';
+
+ const RPC = process.env.RPC_URL, DESK = process.env.DESK, MODE = process.env.MODE || 'claude', POLL = Number(process.env.POLL || 5000);
+ const LOG = process.env.LOG || 'results/desk-daemon.log';
+@@ -130,7 +131,7 @@
+   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
+   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
+   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
+-  let shadow = null; if (MODE === 'interview' || process.env.INTERVIEW_SHADOW === '1') { try { const r = decideInterview({ thread, facts, maxLine }); shadow = { score: r.score, outcome: r.outcome, backing: r.backing, reasons: r.reasons, cost: r.cost, us: r.ASSESS_US, version: r.version, reply: r.reply }; } catch (e) { shadow = { error: String(e.message).slice(0, 120) }; } }
++  let shadow = null; if (MODE === 'interview' || process.env.INTERVIEW_SHADOW === '1') { shadow = guardedInterview(decideInterview, { thread, facts: { ...facts, deskBacks: backing > 0n || freeStake > 0n }, maxLine }); }
+   let d; const skip = (MODE === 'rules' || MODE === 'interview') ? 'rules' : llmAllowed(applicant);
+   if (skip) { d = decideRules({ thread, facts, maxLine }); if (skip !== 'rules') log({ ev: 'llm-skipped', applicant, why: skip, spentHour: spent(3600000).toFixed(3), spentDay: spent(86400000).toFixed(3), cooldownSeconds: Math.max(0, Math.round((cooldownUntil - Date.now()) / 1000)) }); }
+   else { try { d = await decideClaude({ thread, facts, maxLine, fixed }); recordCall(applicant, d.cost, true); } catch (e) { recordCall(applicant, 0, false); log({ ev: 'llm-error', applicant, err: String(e.message).slice(0, 200), cooldownSeconds: Math.round((cooldownUntil - Date.now()) / 1000) }); d = decideRules({ thread, facts, maxLine }); } }
+--- /dev/null
++++ b/experiments/d7-live/guarded-interview.mjs
+@@ -0,0 +1,36 @@
++// Candidate shadow adapter; no signer, network or grant capability.
++// Integration must pass independently obtained facts, never applicant JSON.
++// The callback must be pinned/reviewed and side-effect-free. This wrapper is
++// not a sandbox and cannot undo effects performed inside a malicious callback.
++export function guardedInterview(decide, input) {
++  const hold=reason=>({mode:'SHADOW_ONLY',outcome:'review',backing:0,pd:null,
++    reason,reply:'This shadow assessment does not approve or issue credit.'});
++  if(!input || typeof input!=='object' || Array.isArray(input) || typeof decide!=='function')
++    return hold('INPUT_INVALID');
++  const {thread, facts, maxLine}=input;
++  if (!facts || typeof facts!=='object' || Array.isArray(facts)) return hold('FACTS_REQUIRED');
++  const keys=['backing','deskBacks','repaid','open','defaulted'];
++  if(keys.some(k=>!Object.hasOwn(facts,k))) return hold('FACTS_REQUIRED');
++  if(typeof facts.deskBacks!=='boolean' || typeof facts.defaulted!=='boolean' ||
++     !Number.isFinite(facts.backing) || facts.backing<0 ||
++     !Number.isSafeInteger(facts.repaid) || facts.repaid<0 ||
++     !Number.isSafeInteger(facts.open) || facts.open<0) return hold('FACTS_INVALID');
++  if(!Number.isSafeInteger(maxLine) || maxLine<=0) return hold('CAP_UNAVAILABLE');
++  if(!Array.isArray(thread) || thread.length>100 || thread.some(m=>
++      !m || !Number.isInteger(m.from) || ![0,1].includes(m.from) ||
++      typeof m.text!=='string' || m.text.length>2000)) return hold('INPUT_INVALID');
++  // The old interview's narrative score is kept only for diagnostics. It cannot
++  // become an action or a statement that a loan/backing has already occurred.
++  const safeFacts=Object.fromEntries(keys.map(k=>[k,facts[k]]));
++  const safeThread=thread.map(m=>({from:m.from,text:m.text}));
++  let r;
++  try { r=decide({thread:safeThread,facts:safeFacts,maxLine}); }
++  catch { return hold('EXTRACTOR_UNAVAILABLE'); }
++  if(!r || typeof r!=='object' || Array.isArray(r) ||
++     !Number.isSafeInteger(r.backing) || r.backing<0 || r.backing>maxLine ||
++     r.version!=='interview-0.2' || !['grant','counter','decline','ask'].includes(r.outcome) ||
++     !['none','stated'].includes(r.dossier?.repayment_source?.tag)) return hold('OUTPUT_INVALID');
++  return {...hold('INDEPENDENT_VERIFICATION_REQUIRED'),
++    diagnostic:{version:r.version,recommendation:r.outcome,proposedBacking:r.backing,
++                sourceClaim:r.dossier?.repayment_source?.tag??'none'}};
++}
