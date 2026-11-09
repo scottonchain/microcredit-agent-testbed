@@ -1,1 +1,1 @@
-{"attemptedAt": "2026-11-08T00:16:27.586071+00:00", "status": "success"}
+{"attemptedAt": "2026-11-09T00:14:37.049527+00:00", "status": "failed", "failureStage": "logs", "failureCode": "local_io"}
