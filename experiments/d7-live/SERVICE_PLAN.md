@@ -81,3 +81,9 @@ addressed to the desk, carries the right call; prepare broadcasts nothing; no ra
 `applied` throws; a failed model decision builds no transaction; a broadcast failure leaves a waiting operation and no second
 transaction is built. Three deliberate breakages (swallowed RPC error, hash of the wrong bytes, broadcast inside prepare)
 each fail tests. Still not run: the real RPC, the real officer key, the real model, a container boundary, a host.
+
+## Wiring-step requirements added after review
+
+- A held operation (a signed transaction unmined past the bound, or an unknown that cannot be resolved) pages a person; it is
+  not only shown as degraded, because it blocks that applicant until someone looks. The paging channel is an owner decision.
+- A worker that loses the lease writes no status at all (fixed in this lineage: it used to record ok after a stale stop).

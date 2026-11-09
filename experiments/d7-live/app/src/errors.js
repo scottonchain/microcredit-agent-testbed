@@ -31,6 +31,9 @@ export function friendly(e) {
   // "The operation either timed out or was not allowed"), and a wrapped error keeps the cause in details or cause.
   const parts = e ? [e.reason, e.errorName, e.shortMessage, e.message, e.details, e.name, e.cause && e.cause.message, e.cause && e.cause.name] : [String(e)];
   const raw = parts.filter((x) => typeof x === 'string' && x).join(' | ') || String(e);
+  // A failure while waiting for the result (phase 'submitted') cannot be a contract refusal (those come back as a mined result), so
+  // it must never be shown as one: say it may still go through, whatever words the error text happens to contain.
+  if (e && e.phase === 'submitted') return 'It was sent to the test network, but we have not seen it finish. It may still go through. Wait a minute and check your home screen before you try again.';
   const key = Object.keys(MESSAGES).find((k) => raw.includes(k));
   if (key) return MESSAGES[key];
   // What was sent depends on how far the attempt got (e.phase, set by core.send): 'approval' = the person had not yet

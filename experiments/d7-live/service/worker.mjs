@@ -11,7 +11,7 @@ export function createWorker({ lease, journal, statusPath, chain, now = Date.now
       const got = lease.token ? (lease.renew(), { ok: true }) : lease.acquire();
       if (!got.ok) return { ran: false, reason: got.reason };
       const result = { ran: true, replied: [], held: [], waited: [], confirmed: [], failed: [] };
-      let pollOk = true, lastReplyAt = null;
+      let pollOk = true, lastReplyAt = null, lostLease = false;
       try {
         // 1) Reconcile unfinished operations from a previous run BEFORE any new write.
         const decisions = await reconcile(journal, {
@@ -41,15 +41,15 @@ export function createWorker({ lease, journal, statusPath, chain, now = Date.now
           lease.assertHolder(); // last check before the broadcast itself
           await withTimeout(prepared.broadcast(), callTimeoutMs, 'broadcast');
           const tx = prepared.txHash;
-          const rc = await withTimeout(chain.receipt(tx, true), receiptTimeoutMs, 'receipt');
+          const rc = await withTimeout(chain.receipt(tx), receiptTimeoutMs, 'receipt');
           if (rc && rc.status === 'success') { journal.done(id, 'success'); lastReplyAt = now(); result.replied.push(applicant); }
           else { journal.abandon(id, 'reply reverted'); result.failed.push(id); }
         }
       } catch (e) {
-        if (e && e.name === 'StaleWriter') throw e;
+        if (e && e.name === 'StaleWriter') { lostLease = true; throw e; } // a worker that lost the lease writes no status: it must not read as ok
         pollOk = false; result.error = e && e.name || 'Error';
       } finally {
-        recordPoll(statusPath, { now, lastReplyAt, openOps: journal.open().length, ok: pollOk });
+        if (!lostLease) recordPoll(statusPath, { now, lastReplyAt, openOps: journal.open().length, ok: pollOk });
       }
       return result;
     },

@@ -199,3 +199,19 @@ test('nothing here is wired into the live daemon', () => {
   const d = readFileSync(new URL('./desk-daemon.mjs', import.meta.url), 'utf8');
   assert.doesNotMatch(d, /service\/(lease|pending|status|timing|worker)/);
 });
+
+test('a worker that loses the lease mid-poll writes no status and makes no write (the status must not read ok)', async () => {
+  const dir = tmp(), now = clock(), fc = fakeChain({ pending: ['0xa'] });
+  const A = mkWorker(dir, 'A', now, fc), B = mkWorker(dir, 'B', now, fc);
+  await A.w.pollOnce(); const before = readFileSync(join(dir, 'status.json'), 'utf8'); const writes = fc.state.replies.length;
+  fc.state.pending.push('0xnew');
+  const realPending = fc.chain.pending;
+  fc.chain.pending = async () => { now.adv(1500); B.lease.acquire(); return realPending(); }; // A stalls past expiry and B takes over during the poll
+  await assert.rejects(A.w.pollOnce(), StaleWriter);
+  assert.equal(readFileSync(join(dir, 'status.json'), 'utf8'), before, 'status untouched by the stale worker');
+  assert.equal(fc.state.replies.length, writes, 'no chain write after losing the lease');
+});
+test('the worker calls chain.receipt with the hash only', () => {
+  const w = readFileSync(new URL('./service/worker.mjs', import.meta.url), 'utf8');
+  assert.doesNotMatch(w, /chain\.receipt\([^)]*,\s*true/);
+});

@@ -174,3 +174,9 @@ test('app waiting text names the periodic officer and no longer promises a minut
   assert.match(main, /Your message is recorded\. The officer has not replied yet\. Check back here later; do not resend\./);
   assert.doesNotMatch(guide, /usually within a minute|about 10 minutes/);
 });
+
+test('a failure while waiting for the result is shown as unconfirmed even if the error text contains a pool error name', () => {
+  const e = Object.assign(new Error('receipt wait failed: InsufficientBalance'), { phase: 'submitted' });
+  const s = friendly(e); assert.match(s, /may still go through/); assert.doesNotMatch(s, /available balance/);
+  assert.match(friendly(new Error('InsufficientBalance')), /available balance/, 'without a phase the pool text is still shown');
+});
