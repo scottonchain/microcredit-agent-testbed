@@ -21,6 +21,47 @@ or changing security-sensitive settings requires the applicable precise approval
 Do not copy another runtime's secrets. A technical capability handoff cannot bypass
 a denial, pending confirmation, privacy gate or required review.
 
+## Connector-first decision sequence
+
+1. Use read-only calls to verify the existing connector's authenticated identity
+   and target repository permissions. A missing shell binding does not imply
+   missing GitHub access. Read access alone does not prove source-write authority.
+2. Use supported connector actions for work already authorized. Before creating
+   source commits, establish that both author AND committer can use explicit safe
+   noreply identities; otherwise retain the reviewed bytes and hand them to the
+   existing verified Git-shell writer through one owned request. Do not create
+   probe commits with unsafe identities or start a competing writer.
+3. Do not substitute browser login/passkey prompts, personal tokens, new OAuth
+   grants, copied credentials or account linking for ordinary routing. A true
+   browser-only action or security challenge is a separate evidenced blocker.
+   Existing-session authentication is not proof of persistent access.
+4. Preserve exact-content review, current execution ownership, leases, privacy
+   checks and readback of remote bytes and both commit identities. Respect all
+   denials: check uncertain outcomes first; retry a denied operation only once
+   per materially new relevant evidence when it is known not to have executed.
+   Neither another tool nor a handoff turns a denial into permission.
+
+November5 source-write evidence: the existing managed-shell Git route pushed
+[PR443 revision3fa65cc](https://github.com/scottonchain/microcredit-agent-testbed/commit/3fa65ccee87f985b766b6e3be8e750cde774e581)
+without fresh interactive sign-in. Command-scoped noreply author/committer
+identities were used and verified through the GitHub commit API. A fresh fetch
+confirmed the exact remote source hash matched the reviewed local file. No
+credential value was inspected or copied, and no credential was created or
+configured for this work.
+This is a working route in one execution, not a permanent authentication repair
+or a portable credential-setup recipe. The existing branding handoff remains
+with its owner; this correction creates no second branding writer.
+
+The [branding owner's amended receipt](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646444159)
+identifies the interruption as ordinary GitHub website sign-in to inspect the
+edit/commit UI for safe identity handling. The browser reported partial passkey
+support and awaited interaction; no signed-in state was obtained. An alternative
+sign-in also ended incomplete. The login tab was closed without retry; the
+existing connector remained authenticated. No account, credential, linking or
+persistent access was created. The [routing correction](https://github.com/scottonchain/microcredit-agent-testbed/issues/15#issuecomment-6646498819)
+preserves the existing owned branding handoff. This is evidence of an incomplete
+browser attempt, not completed authentication or loss of connector access.
+
 ## Verified capability matrix
 
 Evidence cutoff November 1, 16:44 UTC. This is a dated comparison, not a global
