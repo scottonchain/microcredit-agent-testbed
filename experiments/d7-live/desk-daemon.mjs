@@ -119,15 +119,17 @@ async function topUp(address, amount) {
     const hash = await serial(() => wc.writeContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'transfer', args: [address, amount] })); const rc = await pc.waitForTransactionReceipt({ hash }); return { amount: usd(amount), tx: hash, ok: rc.status === 'success' }; }
   catch (e) { return { error: String(e.shortMessage || e.message).slice(0, 160) }; }
 }
-// A reply is bound to the request it answers: the applicant plus how many messages the thread had. A reply whose receipt is not
+// A reply is bound to the request it answers: the applicant plus how many messages the APPLICANT had written (the officer's own
+// reply also lengthens the thread, so the thread length cannot tell a new request from the answer to this one). A reply whose receipt is not
 // confirmed (wait timed out, RPC failed) may still mine, and a read from a node that is a block behind may list the applicant as
 // pending after the reply has mined. CreditDesk.reply does not revert for an applicant who is no longer pending, so a blind resend
 // would put a second officer message on the chain. So the daemon remembers its last reply per applicant and, while the thread is
 // still the same request, settles it before any new send: mined means nothing more to send (even if a lagging read still lists
 // the applicant), reverted means a resend is allowed, still unknown means wait, and only after RESEND_AFTER_MS is a resend allowed.
-// A new applicant message (a longer thread) is a new request and clears it. In memory only: a restart forgets it (persisting
+// A new applicant message (more applicant messages) is a new request and clears it. In memory only: a restart forgets it (persisting
 // request state across a restart is a separate piece of work).
-const lastReply = new Map(); // applicant -> { hash, at, msgs, mined }
+const lastReply = new Map(); // applicant -> { hash, at, msgs (applicant messages answered), mined }
+const LAST_REPLY_TTL_MS = boundedMs(process.env.LAST_REPLY_TTL_MS, 3_600_000, 60_000, 86_400_000); // an entry this old is dropped
 async function confirm(applicant, hash, msgs) {
   lastReply.set(applicant, { hash, at: Date.now(), msgs, mined: false });
   const rc = await pc.waitForTransactionReceipt({ hash, timeout: RECEIPT_TIMEOUT_MS }); // a timeout leaves the entry unconfirmed
@@ -136,7 +138,7 @@ async function confirm(applicant, hash, msgs) {
 }
 async function mustNotSend(applicant, msgs) {
   const a = lastReply.get(applicant); if (!a) return false;
-  if (msgs > a.msgs || Date.now() - a.at > 3_600_000) { lastReply.delete(applicant); return false; } // a new request, or a very old entry
+  if (msgs > a.msgs || Date.now() - a.at > LAST_REPLY_TTL_MS) { lastReply.delete(applicant); return false; } // a new request, or a very old entry
   if (a.mined) return true;
   let rc = null; try { rc = await pc.getTransactionReceipt({ hash: a.hash }); } catch {}
   if (rc) { log({ ev: 'earlier-reply-settled', result: rc.status === 'success' ? 'mined' : 'reverted' }); if (rc.status === 'success') { a.mined = true; return true; } lastReply.delete(applicant); return false; }
@@ -148,7 +150,8 @@ const UNAVAILABLE = 'The desk could not finish checking your request just now. N
 async function handle(applicant) {
   const maxLine = usd(await D('maxLine'));
   const thread = (await D('thread', [applicant])).map((m) => ({ from: Number(m.from), at: Number(m.at), text: m.text }));
-  if (await mustNotSend(applicant, thread.length)) { obs.deferred++; return 'deferred'; }
+  const asks = thread.filter((m) => m.from === 0).length; // applicant messages: the identity of the request being answered
+  if (await mustNotSend(applicant, asks)) { obs.deferred++; return 'deferred'; }
   const [backing, limit, ids, defaulted, usdcBal] = await Promise.all([D('backingOf', [applicant]), P('getBorrowLimit', [applicant]), P('getBorrowerLoanIds', [applicant]), P('defaultedLoans', [applicant]), pc.readContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'balanceOf', args: [applicant] })]);
   let open = 0, repaid = 0, owed = 0n, activeId = null; for (const id of ids) { const t = await P('getLoanTerms', [id]); const st = Number(t[0]); if (st === 1 || st === 2) open++; if (st === 2) { owed += await P('getCurrentOutstandingAmount', [id]); activeId = id; } if (st === 3) repaid++; }
   const facts = { backing: usd(backing), limit: usd(limit[0]), open, repaid, defaulted: Number(defaulted) > 0, usdcBal: usd(usdcBal), dripNow: !dripped.has(applicant) && usdcBal < PREFUND && PREFUND > 0n };
@@ -156,11 +159,11 @@ async function handle(applicant) {
   if (activeId !== null && usdcBal < owed + 10_000n && !toppedUp.has(applicant + ':' + activeId)) {
     toppedUp.add(applicant + ':' + activeId); let need = owed + 20_000n - usdcBal; if (need > 500_000n) need = 500_000n;
     const tu = await topUp(applicant, need); const text = tu.ok ? `Sent $${usd(need)} to your wallet to cover the interest. Tap Pay back and it goes through.` : 'I could not send the cents for the interest just now. Please write again in a minute.';
-    let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, thread.length);
+    let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, asks);
     log({ ev: 'topup', applicant, loan: String(activeId), owed: usd(owed), had: usd(usdcBal), sent: tu, tx: hash, ok: rc.status === 'success' }); return rc.status === 'success';
   }
   const last = [...thread].reverse().find((m) => m.from === 0);
-  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, thread.length); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
+  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, asks); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
@@ -188,7 +191,7 @@ async function handle(applicant) {
       if (/nonce/i.test(why)) { await new Promise((r) => setTimeout(r, 1500)); try { hash = await send(total); } catch (e2) { hash = null; } }
       if (!hash) { total = cur; d.reply = d.reply.replace(/\s*$/, '') + ' One thing: the desk could not record that amount just now. Write "please set it" and I will set it again.'; log({ ev: 'backing-unchanged', applicant, why }); hash = await send(cur); }
     }
-    rc = await confirm(applicant, hash, thread.length);
+    rc = await confirm(applicant, hash, asks);
   });
   let drip_ = null; if (!d.unavailable && total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
   log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, ...(d.unavailable ? { unavailable: d.unavailable } : {}), drip: drip_, ...(shadow ? { shadow } : {}) });

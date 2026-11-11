@@ -33,7 +33,7 @@ function callResult(data, mode, state) {
       case 'maxLine': return out(5_000_000n);
       case 'freeStake': return out(7_000_000n);
       case 'backingOf': return out(0n);
-      case 'thread': return out([{ from: 0, at: 1_800_000_000, text: mode.threadText || 'feedback: hello' }]);
+      case 'thread': return out([{ from: 0, at: 1_800_000_000, text: mode.threadText || 'feedback: hello' }, ...(mode.threadGrows && state.sentAt !== undefined && Date.now() - state.sentAt >= mode.receiptDelayMs ? [{ from: 1, at: 1_800_000_060, text: 'officer reply' }] : [])]); // with threadGrows the officer's own reply appears once it has mined
       case 'reply': (state.replies ||= []).push({ text: d.args[1], amount: d.args[2] }); return '0x';
       case 'getBorrowLimit': return out(0n, 0n);
       case 'getBorrowerLoanIds': return out([]);
@@ -75,9 +75,9 @@ export function stub(mode) {
 }
 export const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 export const until = async (cond, limitMs) => { const t0 = Date.now(); while (!cond() && Date.now() - t0 < limitMs) await wait(25); };
-export async function run({ fail: failRpc = false, how, preload, ms = 1300, applicant = false, status, env: extraEnv = {}, floor = '100', threadText, receiptDelayMs, pendingLagMs, fakeClaude, mode: daemonMode = 'rules' }) {
+export async function run({ fail: failRpc = false, how, preload, ms = 1300, applicant = false, status, env: extraEnv = {}, floor = '100', threadText, receiptDelayMs, pendingLagMs, threadGrows, fakeClaude, mode: daemonMode = 'rules' }) {
   const dir = mkdtempSync(join(tmpdir(), 'obs-')); const LOG = join(dir, 'd.log');
-  const srv = await stub({ fail: failRpc, applicant, status, threadText, receiptDelayMs, pendingLagMs });
+  const srv = await stub({ fail: failRpc, applicant, status, threadText, receiptDelayMs, pendingLagMs, threadGrows });
   const env = { ...process.env, RPC_URL: `http://127.0.0.1:${srv.address().port}`, DESK, OFFICER_KEY: '0x' + '11'.repeat(32), MODE: daemonMode, POLL: '40', LOG, HEARTBEAT_FLOOR_MS: floor, HEARTBEAT_MS: '250', ...extraEnv };
   if (floor === null) delete env.HEARTBEAT_FLOOR_MS;
   if (fakeClaude) { // a stand-in for the claude command the daemon spawns for each model call

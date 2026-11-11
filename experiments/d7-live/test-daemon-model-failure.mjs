@@ -49,6 +49,12 @@ for (const [name, opts, why] of [
   ok(sum(r, 'deferred') >= 1, `ambiguous receipt: later polls deferred instead of resending (${sum(r, 'deferred')})`);
   ok(r.lines.some((l) => l.ev === 'earlier-reply-settled' && l.result === 'mined'), 'ambiguous receipt: the earlier reply is settled as mined'); }
 
+// H2. the thread grows by the officer's own reply once it mined, while a lagging read still lists the applicant: that is the same
+// request, not a new one (a guard keyed on the thread length answered it twice)
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 300, pendingLagMs: 1200, threadGrows: true, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 4500 });
+  ok(r.sent === 1, `officer reply lengthens the thread: still exactly one send (${r.sent})`);
+  ok(sum(r, 'deferred') >= 1, 'officer reply lengthens the thread: later polls deferred'); }
+
 // I. a receipt that never shows: a resend is allowed only after the hold, and the number of sends stays bounded
 { const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, env: { RECEIPT_TIMEOUT_MS: '1000', RESEND_AFTER_MS: '1500' }, how: 'term', ms: 4500 });
   ok(r.lines.some((l) => l.ev === 'earlier-reply-unknown-resend'), 'unknown receipt: resend only after the hold, and it is logged');
