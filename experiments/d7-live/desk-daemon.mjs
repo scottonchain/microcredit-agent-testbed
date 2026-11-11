@@ -123,10 +123,10 @@ async function handle(applicant) {
     toppedUp.add(applicant + ':' + activeId); let need = owed + 20_000n - usdcBal; if (need > 500_000n) need = 500_000n;
     const tu = await topUp(applicant, need); const text = tu.ok ? `Sent $${usd(need)} to your wallet to cover the interest. Tap Pay back and it goes through.` : 'I could not send the cents for the interest just now. Please write again in a minute.';
     let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await pc.waitForTransactionReceipt({ hash });
-    log({ ev: 'topup', applicant, loan: String(activeId), owed: usd(owed), had: usd(usdcBal), sent: tu, tx: hash, ok: rc.status === 'success' }); return;
+    log({ ev: 'topup', applicant, loan: String(activeId), owed: usd(owed), had: usd(usdcBal), sent: tu, tx: hash, ok: rc.status === 'success' }); return rc.status === 'success';
   }
   const last = [...thread].reverse().find((m) => m.from === 0);
-  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await pc.waitForTransactionReceipt({ hash }); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); };
+  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await pc.waitForTransactionReceipt({ hash }); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
@@ -153,13 +153,38 @@ async function handle(applicant) {
   });
   let drip_ = null; if (total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
   log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, drip: drip_, ...(shadow ? { shadow } : {}) });
+  return rc.status === 'success'; // measurement only: the observability counters below tell a confirmed reply from a reverted one
 }
 
 log({ ev: 'start', mode: MODE, desk: DESK, officer: officer.address, rpc: RPC });
+
+// Observability (measurement only; no behavior change). Three different facts are kept apart: the process is alive,
+// the chain read (pending) succeeded, and a request was handled to completion. A heartbeat event is written at most once
+// per HEARTBEAT_MS (minimum 60 s) and holds only counts and ages in seconds: no applicant, message, key, endpoint or raw
+// error. A controlled exit (signal, uncaught error, normal exit) writes one exit event with a reason class. An abrupt
+// kill (SIGKILL, power loss, host teardown) cannot write anything; its only trace is a heartbeat that stops.
+const boundedMs = (raw, dflt, lo, hi) => { const n = Number(raw); return Number.isFinite(n) && raw !== undefined && raw !== '' ? Math.min(hi, Math.max(lo, Math.round(n))) : dflt; }; // non-numeric, empty or absent: default; otherwise clamped to [lo, hi]
+const HB_FLOOR = boundedMs(process.env.HEARTBEAT_FLOOR_MS, 60_000, 50, 60_000); // only ever lowered, and only by the test
+const HEARTBEAT_MS = boundedMs(process.env.HEARTBEAT_MS, 300_000, HB_FLOOR, 3_600_000); // default 5 min, at most 1 h (a timer above 2^31 ms would fire at once)
+const startedAt = Date.now(); const age = (t) => (t === null ? null : Math.round((Date.now() - t) / 1000));
+const obs = { pollOk: 0, pollErr: 0, handled: 0, reverted: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
+const beat = () => {
+  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
+  obs.pollOk = obs.pollErr = obs.handled = obs.reverted = obs.handleErr = 0; obs.lastBeat = Date.now();
+};
+let exiting = false;
+const exitEvent = (reason, extra = {}) => { if (exiting) return; exiting = true; log({ ev: 'exit', reason, uptimeS: age(startedAt), lastPollOkAgeS: age(obs.lastPollOk), ...extra }); };
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) process.on(sig, () => { exitEvent('signal', { signal: sig }); process.exit(128 + ({ SIGHUP: 1, SIGINT: 2, SIGTERM: 15 })[sig]); });
+process.on('uncaughtException', (e) => { exitEvent('uncaught', { kind: String((e && e.name) || 'Error').slice(0, 40) }); process.exit(1); });
+process.on('unhandledRejection', (e) => { exitEvent('unhandled-rejection', { kind: String((e && e.name) || 'Error').slice(0, 40) }); process.exit(1); });
+process.on('exit', (code) => exitEvent('exit', { code }));
+setInterval(beat, HEARTBEAT_MS).unref();
+
 for (;;) {
   try {
     const pending = await D('pending');
-    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).catch((e) => log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) })).finally(() => inflight.delete(a)); }
-  } catch (e) { log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
+    obs.pollOk++; obs.lastPollOk = Date.now();
+    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).then((confirmed) => { if (confirmed === true) { obs.handled++; obs.lastHandled = Date.now(); } else obs.reverted++; }).catch((e) => { obs.handleErr++; log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) }); }).finally(() => inflight.delete(a)); }
+  } catch (e) { obs.pollErr++; obs.lastPollErr = Date.now(); log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
   await new Promise((r) => setTimeout(r, POLL));
 }
