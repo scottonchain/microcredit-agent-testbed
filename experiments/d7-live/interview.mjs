@@ -14,7 +14,7 @@
 // Shadow mode (MODE=interview in desk-daemon.mjs): the daemon logs this module's score, reasons and recommended
 // backing on the 'replied' line and keeps the rules officer's backing and reply until the November 17 check.
 
-export const VERSION = 'interview-0.2';
+export const VERSION = 'interview-0.3';
 
 // Published weights. Score runs 0 to 100 after clamping.
 export const WEIGHTS = Object.freeze({
@@ -34,14 +34,35 @@ export const TIERS = Object.freeze({ admit: 60, counter: 40, first_loan_cap: 10,
 
 // Reason codes and their printed text (the notice template is the single source; keep these in step with it).
 export const REASONS = Object.freeze({
-  R01: 'You did not show us where the repayment would come from (no income, sales, order or other source was given).',
+  R01: 'You did not show us where the repayment would come from (no pay stub, sales record, order or other evidence of income was provided).',
   R03: 'No person has placed a deposit to back your loan, and you did not place a deposit of your own.',
   R05: 'You did not tell us what the money is for, or the purpose you gave is not one our rules cover (we lend for a business input: stock, tools, a licence, a deposit on work).',
-  R07: 'What you told us about the amount or the purpose does not match what you told us earlier.',
+  R07: 'What you told us about [field] does not match what you told us earlier ([detail]).',
   R08: 'You already have a loan with us that is not yet repaid; one loan at a time.',
   R09: 'A previous loan with us is recorded as unpaid; it must be settled first.',
-  R14: 'The most we lend on a first loan is the desk\'s limit; you asked for more.',
+  R14: 'The most we lend on a [loan] is $[cap]; you asked for $[requested].',
 });
+
+// The printed sentence for a code: the notice template's text (compliance/adverse-action-notice-template.md) with its
+// bracketed fields filled from the dossier. R07 names the field and the two statements; R14 names the cap and the ask.
+const short = (v) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, 40);
+export function reasonText(code, d, maxLine) {
+  const t = REASONS[code]; if (!t) return '';
+  if (code === 'R07') {
+    const cs = d?.contradictions?.length ? d.contradictions : [{ field: 'amount', values: [] }];
+    const field = cs.map((c) => (c.field === 'amount' ? 'the amount' : 'the purpose')).join(' and ');
+    const detail = cs.map((c) => (c.field === 'amount' ? c.values.map((v) => `$${v}`) : c.values.map((v) => `"${short(v)}"`)).join(', then ')).join('; ');
+    return t.replace('[field]', field).replace(' ([detail])', detail ? ` (${detail})` : '');
+  }
+  if (code === 'R14') {
+    const repeat = (d?.history?.repaid || 0) > 0;
+    const ml = Math.max(1, Math.floor(Number(maxLine) || 1));
+    const cap = Math.min(ml, repeat ? TIERS.repeat_loan_cap : TIERS.first_loan_cap);
+    const asked = d?.amount?.value === null || d?.amount?.value === undefined ? null : Math.max(1, Math.round(d.amount.value));
+    return t.replace('[loan]', repeat ? 'repeat loan' : 'first loan').replace('[cap]', String(cap)).replace('$[requested]', asked === null ? 'more' : `$${asked}`);
+  }
+  return t;
+}
 
 const PRODUCTIVE = /\b(stock|inventory|supplies|materials?|tools?|machine|equipment|licen[cs]e|permit|deposit|rent for (the|my) (shop|stall|kiosk)|ingredients|seeds?|fertili[sz]er|parts|repair|phone for (work|my business)|boda|fuel for (work|deliver)|wholesale|goods to sell|resell|market stall|shop|business|customers?|orders?)\b/i;
 const REPAY_SOURCE = /\b(sales?|customers?|orders?|wages?|salary|pay ?cheque|paycheck|pay ?day|job|work|income|profits?|harvest|tips|clients?|contract|invoice|commission|allowance|pension|remittance|gig)\b/i;
@@ -140,12 +161,12 @@ const sanitizeReply = (t) => String(t || '').replace(/https?:\/\/\S+/gi, '[link 
 // reasons on a decline (the adverse-action rule), never a score number.
 export function phrase(d, verdict, maxLine) {
   if (verdict.outcome === 'decline') {
-    const why = verdict.reasons.map((c) => REASONS[c]).filter(Boolean).slice(0, 2).join(' ');
+    const why = verdict.reasons.map((c) => reasonText(c, d, maxLine)).filter(Boolean).slice(0, 2).join(' ');
     return sanitizeReply(`I am not able to back a loan right now. The main reasons: ${why} If something changes or you can tell us more, write again any time.`);
   }
   if (d.purpose.tag !== 'stated') return sanitizeReply(`Happy to help. In a few words, what is the money for?`);
   if (d.repayment_source.tag !== 'stated') return sanitizeReply(`Thanks. One more thing: where will the repayment come from (for example sales, wages, a customer's order)?`);
-  if (verdict.outcome === 'counter') return sanitizeReply(`Thanks. The desk can back you with $${verdict.backing} of test credit for now, less than you asked. Tap Borrow when you are ready; you pay it back within 30 days.`);
+  if (verdict.outcome === 'counter') { const why = verdict.reasons.filter((c) => c === 'R07' || c === 'R14').map((c) => `${reasonText(c, d, maxLine)} `).join(''); return sanitizeReply(`Thanks. ${why}The desk can back you with $${verdict.backing} of test credit for now, less than you asked. Tap Borrow when you are ready; you pay it back within 30 days.`); }
   return sanitizeReply(`Thanks. The desk backs you with $${verdict.backing} of test credit. Tap Borrow when you are ready; you pay it back within 30 days.`);
 }
 
@@ -164,7 +185,7 @@ export function decide({ thread, facts, maxLine }) {
   const reply = phrase(d, verdict, ml);
   const backing = Math.max(0, Math.min(ml, Math.round(Number(verdict.backing) || 0)));
   const assessUs = Number((process.hrtime.bigint() - t0) / 1000n);
-  return { reply, backing, score: sc.score, cost: 0, reasons: verdict.reasons, outcome: verdict.outcome, factors: sc.factors, dossier: d, version: VERSION, ASSESS_US: assessUs };
+  return { reply, backing, score: sc.score, cost: 0, reasons: verdict.reasons, reason_texts: verdict.reasons.map((c) => reasonText(c, d, ml)), outcome: verdict.outcome, factors: sc.factors, dossier: d, version: VERSION, ASSESS_US: assessUs };
 }
 
 // `node interview.mjs <synthetic.json>` prints a shadow-scoring table for a synthetic applicant set.
