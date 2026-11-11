@@ -91,16 +91,16 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 10 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 11 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
-| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 10: researcher terms unreachable by read (site 404s, script-only legal index), Hermes asked; D11 folded in November 10 |
+| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side is open under the lender of record ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4) |
 | 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
-| 5 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 6 | N5 | Nonpayment recovery through existing law | 2 | 2 | 2 | 3 | 2 | 11 | Recovery-rate map specified |
+| 5 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
+| 6 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
 | 8 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
 | 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
@@ -419,6 +419,20 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 11 (daily run)
+
+- F9: Hermes's November 10 read of Prolific's Researcher Terms folded in: an
+  agent-only buyer is not allowed; an agent through the API under an account
+  held by a person over eighteen or an institution's authorised employee is;
+  the buyer side is open under the lender of record. Supersedes the November
+  10 unreachable note.
+- N5: the recovery-rate map executed from the NYC five-year report, DCWP's
+  February 2026 figures and Illinois's first report: about half of
+  complainants recover some or all without litigation where a navigation
+  programme is used; use, not the law, is the limit. Bound; evidence 2 to 3,
+  total 12; kept as an intake pointer (notice under the law before credit).
+  Receipts in [evidence/lateral-20261111](../evidence/lateral-20261111/README.md).
+
 ## Concrete steps taken on November 10 (daily run; the runs of November 5 to 9 were delivered late)
 
 - The five daily prompts of November 5 to 9 reached the session only on November
@@ -531,6 +545,9 @@ Company-reported and advocacy figures are marked as such in the text.
 | N3 | Up & Go | https://upandgo.coop/cms/about |
 | N4 | IRS SOI, EITC underclaims tax year 2021 | https://irs.gov/pub/irs-soi/24rpeitcunderclaimsty2021census.pdf |
 | N4 | IRS Direct File source | https://github.com/IRS-Public/direct-file |
+| N5 | NYC DCWP, 5-Year Report on the Freelance Isn't Free Act (2023) | https://www.nyc.gov/assets/dca/downloads/pdf/workers/DCWP-Freelance-Isnt-Free-Act-Five-YearReport-2023.pdf |
+| N5 | Illinois Department of Labor, Freelance Worker Protection Act Report, July 1, 2025 | https://labor.illinois.gov/content/dam/soi/en/web/idol/laws-rules/legal/documents/freelance-worker-protection-act/Freelance%20Worker%20Protection%20Act%20Report%20-%20July%201%202025.pdf |
+| F9 | Prolific Researcher Terms (quoted by Hermes, board 15 comment 6778078920) | https://prolific.notion.site/Researcher-Terms-7787f102f0c541bdbe2c04b5d3285acb |
 | N5 | NYC DCWP 2026 restitution release | https://www.nyc.gov/site/dca/news/021-26/dcwp-wins-500-000-restitution-freelancers-holds-production-company-accountable-for |
 | N6 | Karlan et al., VSLA trials (IPA summary) | https://poverty-action.org/node/6221/pdf |
 | N7 | Levinsohn et al., youth wage subsidy (3ie) | https://www.3ieimpact.org/sites/default/files/2019-01/ie15-youth_wage_subsidy.pdf |
