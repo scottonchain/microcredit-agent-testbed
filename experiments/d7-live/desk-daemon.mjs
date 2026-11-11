@@ -28,6 +28,7 @@ const P = (fn, args = []) => pc.readContract({ address: ADDR.pool, abi: ABI.pool
 const log = (o) => { const line = JSON.stringify({ t: new Date().toISOString(), ...o }); console.log(line); try { appendFileSync(LOG, line + '\n'); } catch {} };
 let chain = Promise.resolve(); const serial = (fn) => { const p = chain.then(fn, fn); chain = p.catch(() => {}); return p; }; // one officer account: its sends go one at a time
 const usd = (x) => Number(formatUnits(x, 6));
+const boundedMs = (raw, dflt, lo, hi) => { const n = Number(raw); return Number.isFinite(n) && raw !== undefined && raw !== '' ? Math.min(hi, Math.max(lo, Math.round(n))) : dflt; }; // non-numeric, empty or absent: default; otherwise clamped to [lo, hi]
 const inflight = new Set(); const dripped = new Set();
 // ---- Spend ledger, budgets and backoff. Every model call is one `claude -p` run (no tools, one turn, JSON output); its cost
 // comes back in the CLI's total_cost_usd. Over budget, in a cooldown after failures, or past the per-applicant cap, the
@@ -38,6 +39,9 @@ let ledger = { calls: [] }; try { ledger = JSON.parse(readFileSync(LEDGER, 'utf8
 const saveLedger = () => { try { writeFileSync(LEDGER, JSON.stringify(ledger)); } catch {} };
 const prune = () => { const cut = Date.now() - 86400000; ledger.calls = ledger.calls.filter((c) => c.t > cut); };
 const spent = (ms) => { const cut = Date.now() - ms; return ledger.calls.filter((c) => c.t > cut).reduce((a, c) => a + (c.cost || 0), 0); };
+const MODEL_TIMEOUT_MS = boundedMs(process.env.MODEL_TIMEOUT_MS, 180_000, 1000, 600_000); // one model call; no retry inside a call
+const RECEIPT_TIMEOUT_MS = boundedMs(process.env.RECEIPT_TIMEOUT_MS, 180_000, 1000, 600_000); // how long one reply waits for its receipt
+const RESEND_AFTER_MS = boundedMs(process.env.RESEND_AFTER_MS, 120_000, 1000, 3_600_000); // an unconfirmed reply is not sent again before this
 let failStreak = 0, cooldownUntil = 0;
 function llmAllowed(applicant) {
   prune();
@@ -73,7 +77,10 @@ async function decideClaude({ thread, facts, maxLine, fixed }) {
   const schema = JSON.stringify({ type: 'object', properties: { reply: { type: 'string' }, backing: { type: 'integer', minimum: 0, maximum: maxLine } }, required: ['reply', 'backing'], additionalProperties: false });
   const cwd = mkdtempSync(join(tmpdir(), 'desk-'));
   const args = ['-p', prompt, '--no-session-persistence', '--output-format', 'json', '--max-turns', '1', '--tools', '', '--system-prompt', SYSTEM(maxLine), '--json-schema', schema, ...(process.env.CLAUDE_MODEL ? ['--model', process.env.CLAUDE_MODEL] : [])];
-  const out = await new Promise((resolve, reject) => { const ch = spawn('claude', args, { cwd, env: { ...process.env, CLAUDE_CODE_CHILD_SESSION: '1' }, stdio: ['ignore', 'pipe', 'pipe'] }); let o = '', e = ''; ch.stdout.on('data', (d) => (o += d)); ch.stderr.on('data', (d) => (e += d)); ch.on('error', reject); ch.on('close', (c) => (c === 0 ? resolve(o) : reject(new Error('claude exit ' + c + ': ' + e.slice(0, 300))))); setTimeout(() => { try { ch.kill('SIGKILL'); } catch {} }, 180000); });
+  const out = await new Promise((resolve, reject) => { // detached: its own process group, so the timeout can stop the command and anything it started; a child that kept the output pipe open would otherwise hold this call past the timeout
+    const ch = spawn('claude', args, { cwd, env: { ...process.env, CLAUDE_CODE_CHILD_SESSION: '1' }, stdio: ['ignore', 'pipe', 'pipe'], detached: true }); let o = '', e = ''; ch.stdout.on('data', (d) => (o += d)); ch.stderr.on('data', (d) => (e += d)); ch.on('error', reject);
+    const timer = setTimeout(() => { try { process.kill(-ch.pid, 'SIGKILL'); } catch { try { ch.kill('SIGKILL'); } catch {} } reject(new Error('claude timed out after ' + MODEL_TIMEOUT_MS + ' ms')); }, MODEL_TIMEOUT_MS);
+    ch.on('close', (c) => { clearTimeout(timer); if (c === 0) resolve(o); else reject(new Error('claude exit ' + c + ': ' + e.slice(0, 300))); }); });
   const j = JSON.parse(out); let r = j.structured_output ?? j.result; if (typeof r === 'string') { const m = r.match(/\{[\s\S]*\}/); r = JSON.parse(m ? m[0] : r); }
   const backing = fixed ? fixed.backing : Math.max(0, Math.min(maxLine, Math.round(Number(r.backing) || 0)));
   const u = j.usage || {}; return { reply: sanitizeReply(r.reply), backing, cost: j.total_cost_usd, model: Object.keys(j.modelUsage || {}).join(','), tokens: { in: u.input_tokens, out: u.output_tokens, cacheRead: u.cache_read_input_tokens, cacheWrite: u.cache_creation_input_tokens } };
@@ -112,9 +119,36 @@ async function topUp(address, amount) {
     const hash = await serial(() => wc.writeContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'transfer', args: [address, amount] })); const rc = await pc.waitForTransactionReceipt({ hash }); return { amount: usd(amount), tx: hash, ok: rc.status === 'success' }; }
   catch (e) { return { error: String(e.shortMessage || e.message).slice(0, 160) }; }
 }
+// A reply is bound to the request it answers: the applicant plus how many messages the thread had. A reply whose receipt is not
+// confirmed (wait timed out, RPC failed) may still mine, and a read from a node that is a block behind may list the applicant as
+// pending after the reply has mined. CreditDesk.reply does not revert for an applicant who is no longer pending, so a blind resend
+// would put a second officer message on the chain. So the daemon remembers its last reply per applicant and, while the thread is
+// still the same request, settles it before any new send: mined means nothing more to send (even if a lagging read still lists
+// the applicant), reverted means a resend is allowed, still unknown means wait, and only after RESEND_AFTER_MS is a resend allowed.
+// A new applicant message (a longer thread) is a new request and clears it. In memory only: a restart forgets it (persisting
+// request state across a restart is a separate piece of work).
+const lastReply = new Map(); // applicant -> { hash, at, msgs, mined }
+async function confirm(applicant, hash, msgs) {
+  lastReply.set(applicant, { hash, at: Date.now(), msgs, mined: false });
+  const rc = await pc.waitForTransactionReceipt({ hash, timeout: RECEIPT_TIMEOUT_MS }); // a timeout leaves the entry unconfirmed
+  if (rc.status === 'success') lastReply.set(applicant, { hash, at: Date.now(), msgs, mined: true }); else lastReply.delete(applicant);
+  return rc;
+}
+async function mustNotSend(applicant, msgs) {
+  const a = lastReply.get(applicant); if (!a) return false;
+  if (msgs > a.msgs || Date.now() - a.at > 3_600_000) { lastReply.delete(applicant); return false; } // a new request, or a very old entry
+  if (a.mined) return true;
+  let rc = null; try { rc = await pc.getTransactionReceipt({ hash: a.hash }); } catch {}
+  if (rc) { log({ ev: 'earlier-reply-settled', result: rc.status === 'success' ? 'mined' : 'reverted' }); if (rc.status === 'success') { a.mined = true; return true; } lastReply.delete(applicant); return false; }
+  if (Date.now() - a.at < RESEND_AFTER_MS) return true;
+  lastReply.delete(applicant); log({ ev: 'earlier-reply-unknown-resend', ageS: Math.round((Date.now() - a.at) / 1000) }); return false;
+}
+// What an applicant is told when the model cannot decide. Nothing is granted and the backing stays as it was.
+const UNAVAILABLE = 'The desk could not finish checking your request just now. Nothing has been granted and nothing is owed. Please write again in a few minutes.';
 async function handle(applicant) {
   const maxLine = usd(await D('maxLine'));
   const thread = (await D('thread', [applicant])).map((m) => ({ from: Number(m.from), at: Number(m.at), text: m.text }));
+  if (await mustNotSend(applicant, thread.length)) { obs.deferred++; return 'deferred'; }
   const [backing, limit, ids, defaulted, usdcBal] = await Promise.all([D('backingOf', [applicant]), P('getBorrowLimit', [applicant]), P('getBorrowerLoanIds', [applicant]), P('defaultedLoans', [applicant]), pc.readContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'balanceOf', args: [applicant] })]);
   let open = 0, repaid = 0, owed = 0n, activeId = null; for (const id of ids) { const t = await P('getLoanTerms', [id]); const st = Number(t[0]); if (st === 1 || st === 2) open++; if (st === 2) { owed += await P('getCurrentOutstandingAmount', [id]); activeId = id; } if (st === 3) repaid++; }
   const facts = { backing: usd(backing), limit: usd(limit[0]), open, repaid, defaulted: Number(defaulted) > 0, usdcBal: usd(usdcBal), dripNow: !dripped.has(applicant) && usdcBal < PREFUND && PREFUND > 0n };
@@ -122,19 +156,24 @@ async function handle(applicant) {
   if (activeId !== null && usdcBal < owed + 10_000n && !toppedUp.has(applicant + ':' + activeId)) {
     toppedUp.add(applicant + ':' + activeId); let need = owed + 20_000n - usdcBal; if (need > 500_000n) need = 500_000n;
     const tu = await topUp(applicant, need); const text = tu.ok ? `Sent $${usd(need)} to your wallet to cover the interest. Tap Pay back and it goes through.` : 'I could not send the cents for the interest just now. Please write again in a minute.';
-    let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await pc.waitForTransactionReceipt({ hash });
+    let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, thread.length);
     log({ ev: 'topup', applicant, loan: String(activeId), owed: usd(owed), had: usd(usdcBal), sent: tu, tx: hash, ok: rc.status === 'success' }); return rc.status === 'success';
   }
   const last = [...thread].reverse().find((m) => m.from === 0);
-  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await pc.waitForTransactionReceipt({ hash }); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
+  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, thread.length); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
   let shadow = null; if (MODE === 'interview' || process.env.INTERVIEW_SHADOW === '1') { try { const r = decideInterview({ thread, facts, maxLine }); shadow = { score: r.score, outcome: r.outcome, backing: r.backing, reasons: r.reasons, cost: r.cost, us: r.ASSESS_US, version: r.version, reply: r.reply }; } catch (e) { shadow = { error: String(e.message).slice(0, 120) }; } }
+  // The model could not decide (budget or cooldown, error or timeout, empty reply): say so and change nothing. Only the structured
+  // ask the app writes ("I need $X for Y ...") is decided by the rules by design (the model only phrases it), so it keeps the rules.
+  const modelDown = (why) => ({ reply: UNAVAILABLE, backing: usd(cur), unavailable: why });
   let d; const skip = (MODE === 'rules' || MODE === 'interview') ? 'rules' : llmAllowed(applicant);
-  if (skip) { d = decideRules({ thread, facts, maxLine }); if (skip !== 'rules') log({ ev: 'llm-skipped', applicant, why: skip, spentHour: spent(3600000).toFixed(3), spentDay: spent(86400000).toFixed(3), cooldownSeconds: Math.max(0, Math.round((cooldownUntil - Date.now()) / 1000)) }); }
-  else { try { d = await decideClaude({ thread, facts, maxLine, fixed }); recordCall(applicant, d.cost, true); } catch (e) { recordCall(applicant, 0, false); log({ ev: 'llm-error', applicant, err: String(e.message).slice(0, 200), cooldownSeconds: Math.round((cooldownUntil - Date.now()) / 1000) }); d = decideRules({ thread, facts, maxLine }); } }
-  if (!d.reply) d = decideRules({ thread, facts, maxLine });
+  if (skip === 'rules') d = decideRules({ thread, facts, maxLine });
+  else if (skip) { log({ ev: 'llm-skipped', applicant, why: skip, spentHour: spent(3600000).toFixed(3), spentDay: spent(86400000).toFixed(3), cooldownSeconds: Math.max(0, Math.round((cooldownUntil - Date.now()) / 1000)) }); d = fixed ? decideRules({ thread, facts, maxLine }) : modelDown('skipped'); }
+  else { try { d = await decideClaude({ thread, facts, maxLine, fixed }); recordCall(applicant, d.cost, true); } catch (e) { recordCall(applicant, 0, false); log({ ev: 'llm-error', applicant, err: String(e.message).slice(0, 200), cooldownSeconds: Math.round((cooldownUntil - Date.now()) / 1000) }); d = fixed ? decideRules({ thread, facts, maxLine }) : modelDown('error'); } }
+  if (!d.reply) d = fixed ? decideRules({ thread, facts, maxLine }) : modelDown('empty');
+  if (d.unavailable) { obs.unavailable++; log({ ev: 'model-unavailable', applicant, why: d.unavailable }); }
   let total = BigInt(Math.round(d.backing * 1e6)); if (total > 0n && total < 1_000_000n) total = 1_000_000n;
   if (total > cur && total - cur > freeStake) { total = cur + freeStake; if (total < 1_000_000n) total = cur; total = (total / 1_000_000n) * 1_000_000n; d.reply = total === cur ? `The desk cannot back more right now: its test stake is in use by other borrowers. You can borrow up to $${usd(cur)}${cur > 0n ? ' as before; tap Borrow when you are ready' : ''}. Please try again later for more.` : `The desk can back you with $${usd(total)} right now, less than you asked, because the rest of its test stake is in use. You can borrow up to $${usd(total)}: tap Borrow when you are ready.${facts.dripNow ? ' A few cents of test dollars go to your wallet for the interest.' : ''}`; }
   // One officer account, so its writes go one at a time: three applicants answered together once collided on the
@@ -149,10 +188,10 @@ async function handle(applicant) {
       if (/nonce/i.test(why)) { await new Promise((r) => setTimeout(r, 1500)); try { hash = await send(total); } catch (e2) { hash = null; } }
       if (!hash) { total = cur; d.reply = d.reply.replace(/\s*$/, '') + ' One thing: the desk could not record that amount just now. Write "please set it" and I will set it again.'; log({ ev: 'backing-unchanged', applicant, why }); hash = await send(cur); }
     }
-    rc = await pc.waitForTransactionReceipt({ hash });
+    rc = await confirm(applicant, hash, thread.length);
   });
-  let drip_ = null; if (total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
-  log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, drip: drip_, ...(shadow ? { shadow } : {}) });
+  let drip_ = null; if (!d.unavailable && total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
+  log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, ...(d.unavailable ? { unavailable: d.unavailable } : {}), drip: drip_, ...(shadow ? { shadow } : {}) });
   return rc.status === 'success'; // measurement only: the observability counters below tell a confirmed reply from a reverted one
 }
 
@@ -163,14 +202,13 @@ log({ ev: 'start', mode: MODE, desk: DESK, officer: officer.address, rpc: RPC })
 // per HEARTBEAT_MS (minimum 60 s) and holds only counts and ages in seconds: no applicant, message, key, endpoint or raw
 // error. A controlled exit (signal, uncaught error, normal exit) writes one exit event with a reason class. An abrupt
 // kill (SIGKILL, power loss, host teardown) cannot write anything; its only trace is a heartbeat that stops.
-const boundedMs = (raw, dflt, lo, hi) => { const n = Number(raw); return Number.isFinite(n) && raw !== undefined && raw !== '' ? Math.min(hi, Math.max(lo, Math.round(n))) : dflt; }; // non-numeric, empty or absent: default; otherwise clamped to [lo, hi]
 const HB_FLOOR = boundedMs(process.env.HEARTBEAT_FLOOR_MS, 60_000, 50, 60_000); // only ever lowered, and only by the test
 const HEARTBEAT_MS = boundedMs(process.env.HEARTBEAT_MS, 300_000, HB_FLOOR, 3_600_000); // default 5 min, at most 1 h (a timer above 2^31 ms would fire at once)
 const startedAt = Date.now(); const age = (t) => (t === null ? null : Math.round((Date.now() - t) / 1000));
-const obs = { pollOk: 0, pollErr: 0, handled: 0, reverted: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
+const obs = { pollOk: 0, pollErr: 0, handled: 0, reverted: 0, deferred: 0, unavailable: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
 const beat = () => {
-  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
-  obs.pollOk = obs.pollErr = obs.handled = obs.reverted = obs.handleErr = 0; obs.lastBeat = Date.now();
+  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, deferred: obs.deferred, unavailable: obs.unavailable, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
+  obs.pollOk = obs.pollErr = obs.handled = obs.reverted = obs.deferred = obs.unavailable = obs.handleErr = 0; obs.lastBeat = Date.now();
 };
 let exiting = false;
 const exitEvent = (reason, extra = {}) => { if (exiting) return; exiting = true; log({ ev: 'exit', reason, uptimeS: age(startedAt), lastPollOkAgeS: age(obs.lastPollOk), ...extra }); };
@@ -184,7 +222,7 @@ for (;;) {
   try {
     const pending = await D('pending');
     obs.pollOk++; obs.lastPollOk = Date.now();
-    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).then((confirmed) => { if (confirmed === true) { obs.handled++; obs.lastHandled = Date.now(); } else obs.reverted++; }).catch((e) => { obs.handleErr++; log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) }); }).finally(() => inflight.delete(a)); }
+    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).then((confirmed) => { if (confirmed === true) { obs.handled++; obs.lastHandled = Date.now(); } else if (confirmed === 'deferred') { /* counted in handle() */ } else obs.reverted++; }).catch((e) => { obs.handleErr++; log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) }); }).finally(() => inflight.delete(a)); }
   } catch (e) { obs.pollErr++; obs.lastPollErr = Date.now(); log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
   await new Promise((r) => setTimeout(r, POLL));
 }
