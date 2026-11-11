@@ -5,7 +5,7 @@ import { run } from './test-stub-desk.mjs';
 
 let pass = 0, fail = 0;
 const ok = (c, m) => { if (c) pass++; else { fail++; console.log('FAIL', m); } };
-const HB_KEYS = ['t', 'ev', 'uptimeS', 'intervalS', 'pollOk', 'pollErr', 'handled', 'reverted', 'deferred', 'unavailable', 'handleErr', 'lastPollOkAgeS', 'lastPollErrAgeS', 'lastHandledAgeS', 'inflight'];
+const HB_KEYS = ['t', 'ev', 'uptimeS', 'intervalS', 'pollOk', 'pollErr', 'handled', 'reverted', 'deferred', 'unavailable', 'held', 'handleErr', 'lastPollOkAgeS', 'lastPollErrAgeS', 'lastHandledAgeS', 'inflight'];
 const EX_KEYS = ['t', 'ev', 'reason', 'uptimeS', 'lastPollOkAgeS', 'signal', 'kind', 'code'];
 
 // 1. healthy poll, SIGTERM

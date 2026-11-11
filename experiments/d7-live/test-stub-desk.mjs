@@ -52,12 +52,15 @@ export function stub(mode) {
       case 'eth_chainId': return res('0x14a34');
       case 'eth_call': return res(callResult(r.params[0].data || r.params[0].input, mode, state));
       case 'eth_blockNumber': return res(BLK);
-      case 'eth_getTransactionCount': return res('0x1');
+      case 'eth_getTransactionCount': { // the account's nonce: pending counts every send, latest counts mined ones and, with dropAfterMs, a nonce another transaction took
+        const mined = state.sent && (!mode.receiptDelayMs || minedNow(mode, state)) ? 1 : 0;
+        const taken = mode.dropAfterMs && state.sentAt !== undefined && Date.now() - state.sentAt >= mode.dropAfterMs ? 1 : 0;
+        return res('0x' + (r.params[1] === 'pending' ? 1 + (state.sent || 0) : 1 + mined + taken).toString(16)); }
       case 'eth_estimateGas': return res('0x30000');
       case 'eth_gasPrice': case 'eth_maxPriorityFeePerGas': return res('0x3b9aca00');
       case 'eth_getBlockByNumber': return res({ number: BLK, hash: '0x' + 'cd'.repeat(32), parentHash: '0x' + '00'.repeat(32), timestamp: '0x6000', baseFeePerGas: '0x3b9aca00', gasLimit: '0x1c9c380', gasUsed: '0x0', miner: '0x' + '00'.repeat(20), transactions: [], uncles: [], nonce: '0x0000000000000000', difficulty: '0x0', totalDifficulty: '0x0', extraData: '0x', logsBloom: '0x' + '00'.repeat(256), sha3Uncles: '0x' + '00'.repeat(32), stateRoot: '0x' + '00'.repeat(32), transactionsRoot: '0x' + '00'.repeat(32), receiptsRoot: '0x' + '00'.repeat(32), size: '0x100', mixHash: '0x' + '00'.repeat(32) });
       case 'eth_feeHistory': return res({ oldestBlock: BLK, baseFeePerGas: ['0x3b9aca00', '0x3b9aca00'], gasUsedRatio: [0], reward: [['0x3b9aca00']] });
-      case 'eth_sendRawTransaction': state.sent = (state.sent || 0) + 1; if (state.sentAt === undefined) state.sentAt = Date.now(); return res(TXHASH);
+      case 'eth_sendRawTransaction': state.sent = (state.sent || 0) + 1; if (state.sentAt === undefined) state.sentAt = Date.now(); state.sendCalls = (state.sendCalls || 0) + 1; if (mode.throwAfterBroadcast && state.sendCalls === 1) return { jsonrpc: '2.0', id: r.id, error: { code: -32000, message: 'request timed out after the transaction was accepted' } }; return res(TXHASH);
       // older viem versions look the transaction up before they wait for its receipt
       case 'eth_getTransactionByHash': return res(state.sent && (!mode.receiptDelayMs || minedNow(mode, state)) ? { hash: TXHASH, blockHash: '0x' + 'cd'.repeat(32), blockNumber: BLK, transactionIndex: '0x0', from: '0x' + '44'.repeat(20), to: DESK, input: '0x', nonce: '0x1', value: '0x0', gas: '0x30000', gasPrice: '0x3b9aca00', maxFeePerGas: '0x3b9aca00', maxPriorityFeePerGas: '0x3b9aca00', type: '0x2', chainId: '0x14a34', accessList: [], v: '0x0', yParity: '0x0', r: '0x' + '11'.repeat(32), s: '0x' + '22'.repeat(32) } : null);
       case 'eth_getTransactionReceipt': return res(state.sent && (!mode.receiptDelayMs || minedNow(mode, state)) ? { transactionHash: TXHASH, blockHash: '0x' + 'cd'.repeat(32), blockNumber: BLK, transactionIndex: '0x0', from: '0x' + '44'.repeat(20), to: DESK, status: mode.status || '0x1', gasUsed: '0x5208', cumulativeGasUsed: '0x5208', effectiveGasPrice: '0x3b9aca00', logs: [], logsBloom: '0x' + '00'.repeat(256), type: '0x2', contractAddress: null } : null);
@@ -75,9 +78,9 @@ export function stub(mode) {
 }
 export const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 export const until = async (cond, limitMs) => { const t0 = Date.now(); while (!cond() && Date.now() - t0 < limitMs) await wait(25); };
-export async function run({ fail: failRpc = false, how, preload, ms = 1300, applicant = false, status, env: extraEnv = {}, floor = '100', threadText, receiptDelayMs, pendingLagMs, threadGrows, fakeClaude, mode: daemonMode = 'rules' }) {
-  const dir = mkdtempSync(join(tmpdir(), 'obs-')); const LOG = join(dir, 'd.log');
-  const srv = await stub({ fail: failRpc, applicant, status, threadText, receiptDelayMs, pendingLagMs, threadGrows });
+export async function run({ fail: failRpc = false, how, preload, ms = 1300, applicant = false, status, env: extraEnv = {}, floor = '100', threadText, receiptDelayMs, pendingLagMs, threadGrows, dropAfterMs, throwAfterBroadcast, reuse, keep, fakeClaude, mode: daemonMode = 'rules' }) {
+  const dir = reuse ? reuse.dir : mkdtempSync(join(tmpdir(), 'obs-')); const LOG = join(dir, 'd.log');
+  const srv = reuse ? reuse.srv : await stub({ fail: failRpc, applicant, status, threadText, receiptDelayMs, pendingLagMs, threadGrows, dropAfterMs, throwAfterBroadcast });
   const env = { ...process.env, RPC_URL: `http://127.0.0.1:${srv.address().port}`, DESK, OFFICER_KEY: '0x' + '11'.repeat(32), MODE: daemonMode, POLL: '40', LOG, HEARTBEAT_FLOOR_MS: floor, HEARTBEAT_MS: '250', ...extraEnv };
   if (floor === null) delete env.HEARTBEAT_FLOOR_MS;
   if (fakeClaude) { // a stand-in for the claude command the daemon spawns for each model call
@@ -92,7 +95,7 @@ export async function run({ fail: failRpc = false, how, preload, ms = 1300, appl
   await wait(ms);
   let res = null; if (how === 'term') ch.kill('SIGTERM'); else if (how === 'kill') ch.kill('SIGKILL');
   res = await Promise.race([exited, wait(3000).then(() => 'timeout')]);
-  srv.close();
+  if (!keep) srv.close();
   const lines = existsSync(LOG) ? readFileSync(LOG, 'utf8').trim().split('\n').map((l) => JSON.parse(l)) : [];
-  return { lines, res, sent: srv.state.sent || 0, replies: srv.state.replies || [], raw: existsSync(LOG) ? readFileSync(LOG, 'utf8') : '' };
+  return { lines, res, srv, dir, sent: srv.state.sent || 0, replies: srv.state.replies || [], raw: existsSync(LOG) ? readFileSync(LOG, 'utf8') : '' };
 }

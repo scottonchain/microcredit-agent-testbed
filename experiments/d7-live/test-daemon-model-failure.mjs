@@ -11,7 +11,7 @@ const ASK = 'I need $3 for my phone shop. I can pay it back in two weeks.'; // t
 const claude = { mode: 'claude', applicant: true, threadText: FREE, ms: 2500 };
 const last = (r) => r.replies[r.replies.length - 1];
 const sum = (r, k) => r.lines.filter((l) => l.ev === 'heartbeat').reduce((n, h) => n + (h[k] || 0), 0);
-const NOTHING = /Nothing has been granted/;
+const NOTHING = /Nothing new has been granted, and any loan or line you already have is unchanged/;
 
 // A. control: a working model grants what it decided, so the cases below prove the model, not the stub, is what changed
 { const r = await run({ ...claude, fakeClaude: 'ok', how: 'term' });
@@ -27,7 +27,7 @@ for (const [name, opts, why] of [
 ]) {
   const r = await run({ ...claude, how: 'term', ...opts }); const re = last(r);
   ok(r.sent === 1, `${name}: exactly one reply is sent (${r.sent})`);
-  ok(re && NOTHING.test(re.text) && re.amount === 0n, `${name}: the reply says nothing was granted and the backing stays 0`);
+  ok(re && NOTHING.test(re.text) && re.amount === 0n, `${name}: the reply says nothing new was granted and the backing stays 0`);
   ok(r.lines.some((l) => l.ev === 'model-unavailable' && l.why === why), `${name}: unavailable event with reason ${why}`);
   ok(!r.lines.some((l) => l.ev === 'replied' && l.backing > 0), `${name}: no approval was logged`);
   ok(sum(r, 'unavailable') >= 1 && sum(r, 'handled') === 1, `${name}: heartbeat counts one unavailable answer and one confirmed reply`);
@@ -55,9 +55,36 @@ for (const [name, opts, why] of [
   ok(r.sent === 1, `officer reply lengthens the thread: still exactly one send (${r.sent})`);
   ok(sum(r, 'deferred') >= 1, 'officer reply lengthens the thread: later polls deferred'); }
 
-// I. a receipt that never shows: a resend is allowed only after the hold, and the number of sends stays bounded
-{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, env: { RECEIPT_TIMEOUT_MS: '1000', RESEND_AFTER_MS: '1500' }, how: 'term', ms: 4500 });
-  ok(r.lines.some((l) => l.ev === 'earlier-reply-unknown-resend'), 'unknown receipt: resend only after the hold, and it is logged');
-  ok(r.sent >= 2 && r.sent <= 4, `unknown receipt: a bounded number of sends (${r.sent})`); }
+// I. a receipt that never shows: UNKNOWN HOLDS. Age never authorizes another send; after STUCK_AFTER_MS it is reported for a person
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, env: { RECEIPT_TIMEOUT_MS: '1000', STUCK_AFTER_MS: '1500' }, how: 'term', ms: 5500 });
+  ok(r.sent === 1, `unknown receipt: still exactly one send long after the hold would have expired (${r.sent})`);
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-stuck'), 'unknown receipt: reported as stuck for a person');
+  ok(!r.lines.some((l) => /resend/.test(l.ev)), 'unknown receipt: no resend event exists');
+  ok(r.lines.filter((l) => l.ev === 'heartbeat').some((h) => h.held === 1), 'unknown receipt: the heartbeat counts one held reply'); }
+
+// J. the original mines AFTER the old resend threshold: still one send, and it is settled as mined
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 3500, pendingLagMs: 800, env: { RECEIPT_TIMEOUT_MS: '1000', STUCK_AFTER_MS: '1500' }, how: 'term', ms: 6500 });
+  ok(r.sent === 1, `late mining: exactly one send (${r.sent})`);
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-settled' && l.result === 'mined'), 'late mining: settled as mined'); }
+
+// K. our nonce went to a different transaction and our hash has no receipt: it can never execute, so a resend is allowed
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, dropAfterMs: 1500, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5000 });
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-dropped'), 'dropped: recognised because the nonce was used by another transaction');
+  ok(r.sent >= 2, `dropped: a resend is allowed after that proof (${r.sent})`); }
+
+// L. restart after the broadcast and before the receipt: the new process reads the saved state and sends nothing for that request
+{ const first = await run({ mode: 'rules', applicant: true, receiptDelayMs: 3000, pendingLagMs: 800, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'kill', ms: 1800, keep: true });
+  ok(first.sent === 1, `restart: the first process sent once (${first.sent})`);
+  const second = await run({ mode: 'rules', applicant: true, reuse: first, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 4500 });
+  ok(second.sent === 1, `restart: the second process sent nothing more (${second.sent})`);
+  ok(second.lines.filter((l) => l.ev === 'heartbeat').some((h) => h.deferred >= 1 || h.held >= 1), 'restart: the second process held the unresolved reply');
+  second.srv.close(); }
+
+// M. the broadcast call throws (accepted by the node, response lost): no fallback send, the outcome is reconciled by nonce
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 2500, pendingLagMs: 800, throwAfterBroadcast: true, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5000 });
+  ok(r.sent === 1, `throw after broadcast: exactly one send, no fallback (${r.sent})`);
+  ok(r.lines.some((l) => l.ev === 'send-ambiguous'), 'throw after broadcast: held as ambiguous');
+  ok(!r.lines.some((l) => l.ev === 'backing-unchanged'), 'throw after broadcast: the backing-unchanged fallback was not used');
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-assumed-sent'), 'throw after broadcast: the used nonce settles it as sent'); }
 
 console.log(`${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);

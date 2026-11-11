@@ -8,7 +8,7 @@ import { createPublicClient, createWalletClient, http, formatUnits } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts';
 import { baseSepolia } from 'viem/chains';
 import { spawn } from 'node:child_process';
-import { readFileSync, writeFileSync, appendFileSync, mkdtempSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, mkdtempSync, renameSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { ADDR, ABI } from './lib/chain.mjs';
@@ -41,7 +41,7 @@ const prune = () => { const cut = Date.now() - 86400000; ledger.calls = ledger.c
 const spent = (ms) => { const cut = Date.now() - ms; return ledger.calls.filter((c) => c.t > cut).reduce((a, c) => a + (c.cost || 0), 0); };
 const MODEL_TIMEOUT_MS = boundedMs(process.env.MODEL_TIMEOUT_MS, 180_000, 1000, 600_000); // one model call; no retry inside a call
 const RECEIPT_TIMEOUT_MS = boundedMs(process.env.RECEIPT_TIMEOUT_MS, 180_000, 1000, 600_000); // how long one reply waits for its receipt
-const RESEND_AFTER_MS = boundedMs(process.env.RESEND_AFTER_MS, 120_000, 1000, 3_600_000); // an unconfirmed reply is not sent again before this
+const STUCK_AFTER_MS = boundedMs(process.env.STUCK_AFTER_MS, 300_000, 1000, 86_400_000); // an unresolved reply this old is reported (a person is needed); it is never sent again because of age
 let failStreak = 0, cooldownUntil = 0;
 function llmAllowed(applicant) {
   prune();
@@ -119,34 +119,61 @@ async function topUp(address, amount) {
     const hash = await serial(() => wc.writeContract({ address: ADDR.usdc, abi: ABI.erc20, functionName: 'transfer', args: [address, amount] })); const rc = await pc.waitForTransactionReceipt({ hash }); return { amount: usd(amount), tx: hash, ok: rc.status === 'success' }; }
   catch (e) { return { error: String(e.shortMessage || e.message).slice(0, 160) }; }
 }
-// A reply is bound to the request it answers: the applicant plus how many messages the APPLICANT had written (the officer's own
-// reply also lengthens the thread, so the thread length cannot tell a new request from the answer to this one). A reply whose receipt is not
-// confirmed (wait timed out, RPC failed) may still mine, and a read from a node that is a block behind may list the applicant as
-// pending after the reply has mined. CreditDesk.reply does not revert for an applicant who is no longer pending, so a blind resend
-// would put a second officer message on the chain. So the daemon remembers its last reply per applicant and, while the thread is
-// still the same request, settles it before any new send: mined means nothing more to send (even if a lagging read still lists
-// the applicant), reverted means a resend is allowed, still unknown means wait, and only after RESEND_AFTER_MS is a resend allowed.
-// A new applicant message (more applicant messages) is a new request and clears it. In memory only: a restart forgets it (persisting
-// request state across a restart is a separate piece of work).
-const lastReply = new Map(); // applicant -> { hash, at, msgs (applicant messages answered), mined }
-const LAST_REPLY_TTL_MS = boundedMs(process.env.LAST_REPLY_TTL_MS, 3_600_000, 60_000, 86_400_000); // an entry this old is dropped
-async function confirm(applicant, hash, msgs) {
-  lastReply.set(applicant, { hash, at: Date.now(), msgs, mined: false });
-  const rc = await pc.waitForTransactionReceipt({ hash, timeout: RECEIPT_TIMEOUT_MS }); // a timeout leaves the entry unconfirmed
-  if (rc.status === 'success') lastReply.set(applicant, { hash, at: Date.now(), msgs, mined: true }); else lastReply.delete(applicant);
+// ---- One reply per request, durable. A reply is bound to the request it answers: the applicant plus how many messages the APPLICANT
+// had written (the officer's own reply also lengthens the thread, so the thread length cannot tell a new request from the answer to
+// this one). CreditDesk.reply does not revert for an applicant who is no longer pending, so a second send for the same request would
+// put a second officer message on the chain. A receipt timeout is not proof that a transaction will not mine, a read from a node that
+// is a block behind can list the applicant after the reply mined, and a send call that throws may have been broadcast. So:
+//  - the nonce is chosen and the entry is written to disk BEFORE the broadcast, and a send that cannot be recorded is not made;
+//  - an entry survives a restart and is settled (receipt, then nonce) before any other send for the same request;
+//  - mined or assumed sent: nothing more to send, even if a lagging read still lists the applicant; reverted: a resend is allowed;
+//  - the nonce has been used by a different transaction (the account's confirmed nonce is past ours and our hash has no receipt):
+//    ours can never execute, a resend is allowed;
+//  - anything else is UNKNOWN and holds with no time limit. Age never authorizes a send: after STUCK_AFTER_MS it is reported
+//    (an event and the heartbeat's held count) because a person is needed. A further applicant message is a new request.
+const STATE_FILE = process.env.STATE_FILE || (LOG + '.state.json');
+const lastReply = new Map(); // applicant -> { hash (null if the broadcast call threw), nonce, at, msgs (applicant messages answered), mined, warnedAt }
+try { const j = JSON.parse(readFileSync(STATE_FILE, 'utf8')); if (j && Array.isArray(j.replies)) for (const [k, v] of j.replies) lastReply.set(k, v); } catch {}
+const LAST_REPLY_TTL_MS = boundedMs(process.env.LAST_REPLY_TTL_MS, 3_600_000, 60_000, 86_400_000); // only a CONFIRMED entry expires
+function persist() { try { writeFileSync(STATE_FILE + '.tmp', JSON.stringify({ v: 1, replies: [...lastReply] })); renameSync(STATE_FILE + '.tmp', STATE_FILE); return true; } catch { log({ ev: 'state-write-error' }); return false; } }
+const remember = (applicant, entry) => { lastReply.set(applicant, entry); return persist(); };
+const forget = (applicant) => { lastReply.delete(applicant); persist(); };
+// One reply transaction. Throws only when nothing was broadcast (a simulation failure, a refused nonce, an unwritable state file);
+// returns { ambiguous } when the broadcast call itself threw, so the caller must hold and never send a fallback.
+async function sendReply(applicant, asks, args) {
+  const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args, account: officer });
+  const nonce = await pc.getTransactionCount({ address: officer.address, blockTag: 'pending' });
+  if (!remember(applicant, { hash: null, nonce, at: Date.now(), msgs: asks, mined: false })) throw new Error('state file not writable; nothing sent');
+  try { const hash = await wc.writeContract({ ...request, nonce }); remember(applicant, { hash, nonce, at: Date.now(), msgs: asks, mined: false }); return { hash }; }
+  catch (e) {
+    if (/nonce/i.test(String(e.shortMessage || e.message))) { forget(applicant); throw e; } // refused for its nonce: nothing was broadcast
+    return { ambiguous: 'broadcast outcome unknown' };
+  }
+}
+async function confirm(applicant, hash, asks) {
+  const rc = await pc.waitForTransactionReceipt({ hash, timeout: RECEIPT_TIMEOUT_MS }); // a timeout leaves the entry unresolved
+  if (rc.status === 'success') { const a = lastReply.get(applicant); if (a) { a.mined = true; a.at = Date.now(); persist(); } } else forget(applicant);
   return rc;
 }
-async function mustNotSend(applicant, msgs) {
+async function mustNotSend(applicant, asks) {
   const a = lastReply.get(applicant); if (!a) return false;
-  if (msgs > a.msgs || Date.now() - a.at > LAST_REPLY_TTL_MS) { lastReply.delete(applicant); return false; } // a new request, or a very old entry
-  if (a.mined) return true;
-  let rc = null; try { rc = await pc.getTransactionReceipt({ hash: a.hash }); } catch {}
-  if (rc) { log({ ev: 'earlier-reply-settled', result: rc.status === 'success' ? 'mined' : 'reverted' }); if (rc.status === 'success') { a.mined = true; return true; } lastReply.delete(applicant); return false; }
-  if (Date.now() - a.at < RESEND_AFTER_MS) return true;
-  lastReply.delete(applicant); log({ ev: 'earlier-reply-unknown-resend', ageS: Math.round((Date.now() - a.at) / 1000) }); return false;
+  if (asks > a.msgs) { forget(applicant); return false; } // a further applicant message: a new request
+  if (a.mined) { if (Date.now() - a.at > LAST_REPLY_TTL_MS) { forget(applicant); return false; } return true; }
+  let latest = null; try { latest = await pc.getTransactionCount({ address: officer.address, blockTag: 'latest' }); } catch {}
+  const receipt = async () => { if (!a.hash) return null; try { return await pc.getTransactionReceipt({ hash: a.hash }); } catch { return null; } };
+  const rc = await receipt();
+  if (rc) { log({ ev: 'earlier-reply-settled', result: rc.status === 'success' ? 'mined' : 'reverted' }); if (rc.status === 'success') { a.mined = true; a.at = Date.now(); persist(); return true; } forget(applicant); return false; }
+  if (latest !== null && a.nonce !== undefined && latest > a.nonce) {
+    const again = await receipt(); if (again && again.status === 'success') { a.mined = true; a.at = Date.now(); persist(); return true; }
+    if (a.hash) { log({ ev: 'earlier-reply-dropped' }); forget(applicant); return false; } // our nonce went to another transaction
+    log({ ev: 'earlier-reply-assumed-sent' }); a.mined = true; a.at = Date.now(); persist(); return true; // hash unknown, nonce used: treat as sent
+  }
+  if (Date.now() - a.at > STUCK_AFTER_MS && Date.now() - (a.warnedAt || 0) > STUCK_AFTER_MS) { a.warnedAt = Date.now(); persist(); log({ ev: 'earlier-reply-stuck', ageS: Math.round((Date.now() - a.at) / 1000) }); }
+  return true; // unknown holds
 }
-// What an applicant is told when the model cannot decide. Nothing is granted and the backing stays as it was.
-const UNAVAILABLE = 'The desk could not finish checking your request just now. Nothing has been granted and nothing is owed. Please write again in a few minutes.';
+// What an applicant is told when the model cannot decide. No new approval is made and the backing stays as it was; anything the
+// applicant already has or owes is untouched, so the text must not say that nothing is owed.
+const UNAVAILABLE = 'The desk could not finish checking your request just now. Nothing new has been granted, and any loan or line you already have is unchanged. Please write again in a few minutes.';
 async function handle(applicant) {
   const maxLine = usd(await D('maxLine'));
   const thread = (await D('thread', [applicant])).map((m) => ({ from: Number(m.from), at: Number(m.at), text: m.text }));
@@ -159,11 +186,11 @@ async function handle(applicant) {
   if (activeId !== null && usdcBal < owed + 10_000n && !toppedUp.has(applicant + ':' + activeId)) {
     toppedUp.add(applicant + ':' + activeId); let need = owed + 20_000n - usdcBal; if (need > 500_000n) need = 500_000n;
     const tu = await topUp(applicant, need); const text = tu.ok ? `Sent $${usd(need)} to your wallet to cover the interest. Tap Pay back and it goes through.` : 'I could not send the cents for the interest just now. Please write again in a minute.';
-    let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, backing], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, asks);
+    let sent; await serial(async () => { sent = await sendReply(applicant, asks, [applicant, text, backing]); }); if (sent.ambiguous) { obs.deferred++; log({ ev: 'send-ambiguous', applicant, why: sent.ambiguous }); return 'deferred'; } const hash = sent.hash; const rc = await confirm(applicant, hash, asks);
     log({ ev: 'topup', applicant, loan: String(activeId), owed: usd(owed), had: usd(usdcBal), sent: tu, tx: hash, ok: rc.status === 'success' }); return rc.status === 'success';
   }
   const last = [...thread].reverse().find((m) => m.from === 0);
-  const fixedReply = async (text, ev) => { let hash; await serial(async () => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, text, cur], account: officer }); hash = await wc.writeContract(request); }); const rc = await confirm(applicant, hash, asks); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
+  const fixedReply = async (text, ev) => { let sent; await serial(async () => { sent = await sendReply(applicant, asks, [applicant, text, cur]); }); if (sent.ambiguous) { obs.deferred++; log({ ev: 'send-ambiguous', applicant, why: sent.ambiguous }); return 'deferred'; } const hash = sent.hash; const rc = await confirm(applicant, hash, asks); log({ ev, applicant, msgs: thread.length + 1, backing: usd(cur), reply: text, tx: hash, ok: rc.status === 'success', note: last ? clean(last.text).slice(0, 300) : '' }); return rc.status === 'success'; };
   if (last && /^\s*feedback\s*:/i.test(last.text)) return fixedReply('Thank you. Your note is with the team; it helps us fix the app. Nothing else is needed from you.', 'feedback');
   if (cur === 0n && freeStake < 1_000_000n) return fixedReply('The desk cannot back a new loan right now: all of its test stake is in use by other borrowers. Your request is kept; please try again later. Nothing is owed.', 'no-stake');
   const tm = last && TEMPLATE.exec(clean(last.text)); const fixed = tm ? { backing: facts.defaulted ? 0 : Math.min(maxLine, Math.max(1, Math.ceil(Number(tm[1])))) } : null;
@@ -182,17 +209,18 @@ async function handle(applicant) {
   // One officer account, so its writes go one at a time: three applicants answered together once collided on the
   // nonce, the fallback below sent the same "you're set" text with the backing unchanged, and the applicant waited
   // for a Borrow button that never came. A nonce error is retried once; a real refusal is said plainly.
-  let hash, rc;
+  let hash, rc, ambiguous = null;
   await serial(async () => {
-    const send = async (amount) => { const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args: [applicant, d.reply, amount], account: officer }); return wc.writeContract(request); };
-    try { hash = await send(total); }
+    const go = async (amount) => { const r = await sendReply(applicant, asks, [applicant, d.reply, amount]); if (r.ambiguous) { ambiguous = r.ambiguous; return null; } return r.hash; };
+    try { hash = await go(total); }
     catch (e1) {
       const why = String(e1.shortMessage || e1.message).slice(0, 200);
-      if (/nonce/i.test(why)) { await new Promise((r) => setTimeout(r, 1500)); try { hash = await send(total); } catch (e2) { hash = null; } }
-      if (!hash) { total = cur; d.reply = d.reply.replace(/\s*$/, '') + ' One thing: the desk could not record that amount just now. Write "please set it" and I will set it again.'; log({ ev: 'backing-unchanged', applicant, why }); hash = await send(cur); }
+      if (/nonce/i.test(why)) { await new Promise((r) => setTimeout(r, 1500)); try { hash = await go(total); } catch (e2) { hash = null; } }
+      if (!hash && !ambiguous) { total = cur; d.reply = d.reply.replace(/\s*$/, '') + ' One thing: the desk could not record that amount just now. Write "please set it" and I will set it again.'; log({ ev: 'backing-unchanged', applicant, why }); hash = await go(cur); }
     }
-    rc = await confirm(applicant, hash, asks);
+    if (!ambiguous) rc = await confirm(applicant, hash, asks);
   });
+  if (ambiguous) { obs.deferred++; log({ ev: 'send-ambiguous', applicant, why: ambiguous }); return 'deferred'; } // the broadcast outcome is unknown: hold, never a fallback send
   let drip_ = null; if (!d.unavailable && total > 0n && facts.usdcBal < usd(PREFUND) && !dripped.has(applicant)) { dripped.add(applicant); drip_ = await drip(applicant); }
   log({ ev: 'replied', applicant, msgs: thread.length + 1, backing: usd(total), reply: d.reply, tx: hash, ok: rc.status === 'success', cost: d.cost, model: d.model, tokens: d.tokens, fixed: !!fixed, ...(d.unavailable ? { unavailable: d.unavailable } : {}), drip: drip_, ...(shadow ? { shadow } : {}) });
   return rc.status === 'success'; // measurement only: the observability counters below tell a confirmed reply from a reverted one
@@ -210,7 +238,7 @@ const HEARTBEAT_MS = boundedMs(process.env.HEARTBEAT_MS, 300_000, HB_FLOOR, 3_60
 const startedAt = Date.now(); const age = (t) => (t === null ? null : Math.round((Date.now() - t) / 1000));
 const obs = { pollOk: 0, pollErr: 0, handled: 0, reverted: 0, deferred: 0, unavailable: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
 const beat = () => {
-  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, deferred: obs.deferred, unavailable: obs.unavailable, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
+  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, deferred: obs.deferred, unavailable: obs.unavailable, held: [...lastReply.values()].filter((x) => !x.mined).length, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
   obs.pollOk = obs.pollErr = obs.handled = obs.reverted = obs.deferred = obs.unavailable = obs.handleErr = 0; obs.lastBeat = Date.now();
 };
 let exiting = false;
