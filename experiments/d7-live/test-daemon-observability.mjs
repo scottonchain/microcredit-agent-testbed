@@ -100,7 +100,9 @@ const EX_KEYS = ['t', 'ev', 'reason', 'uptimeS', 'lastPollOkAgeS', 'signal', 'ki
   ok(hb.length >= 1 && hb.length <= 8, 'heartbeat is rate bounded and present: ' + hb.length);
   ok(hb.every((h) => Object.keys(h).every((k) => HB_KEYS.includes(k))), 'heartbeat has only whitelisted keys');
   ok(hb.some((h) => h.pollOk > 0) && hb.every((h) => h.pollErr === 0), 'poll success counted, no poll errors');
-  ok(hb.every((h) => h.lastPollOkAgeS !== null && h.lastPollOkAgeS < 2), 'last poll age small and present');
+  // the first heartbeat can fire before the first poll has returned (pollOk 0, age null: no successful poll yet); every heartbeat that counts a successful poll must carry a small age
+  ok(hb.filter((h) => h.pollOk > 0).length > 0 && hb.filter((h) => h.pollOk > 0).every((h) => h.lastPollOkAgeS !== null && h.lastPollOkAgeS < 2), 'last poll age small and present once a poll has succeeded');
+  ok(hb.filter((h) => h.lastPollOkAgeS !== null).every((h) => h.lastPollOkAgeS < 2) && hb.slice(1).some((h) => h.lastPollOkAgeS !== null), 'a poll age is never stale and is present after the first heartbeat');
   ok(hb.every((h) => h.handled === 0 && h.reverted === 0 && h.lastHandledAgeS === null), 'no request handled is reported as such, apart from poll success');
   ok(ex.length === 1 && ex[0].reason === 'signal' && ex[0].signal === 'SIGTERM', 'one controlled exit event for SIGTERM');
   ok(Object.keys(ex[0] || {}).every((k) => EX_KEYS.includes(k)), 'exit event has only whitelisted keys');
