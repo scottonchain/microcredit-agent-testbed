@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { decide, dossier, score, cap, WEIGHTS, TIERS, REASONS } from './interview.mjs';
+import { decide, dossier, score, cap, reasonText, WEIGHTS, TIERS, REASONS } from './interview.mjs';
 
 const set = JSON.parse(readFileSync(new URL('./interview-synthetic.json', import.meta.url), 'utf8'));
 const run = (id) => { const a = set.applicants.find((x) => x.id === id); return decide({ thread: a.thread, facts: a.facts, maxLine: set.maxLine }); };
@@ -87,4 +87,17 @@ test('a reply says nothing a rules officer would not: no stake or line vocabular
 test('cap(): explicit decline below the counter line', () => {
   const d = dossier([{ from: 0, text: 'money' }], { backing: 0, repaid: 0, open: 0, defaulted: false });
   const v = cap(score(d, 10), d, 10); assert.equal(v.outcome, 'decline'); assert.equal(v.backing, 0);
+});
+
+test('reason texts carry the notice template wording and parameters (R01, R07, R14)', () => {
+  const ml = 10;
+  const r14 = decide({ thread: [{ from: 0, text: 'I need $25 for stock for my shop. I can pay it back in two weeks from sales.' }], facts: { deskBacks: true }, maxLine: ml });
+  assert.ok(r14.reasons.includes('R14'));
+  assert.equal(r14.reason_texts[r14.reasons.indexOf('R14')], 'The most we lend on a first loan is $10; you asked for $25.');
+  assert.ok(r14.reply.includes('is $10; you asked for $25'));
+  const r07 = reasonText('R07', { contradictions: [{ field: 'amount', values: [10, 20] }] }, ml);
+  assert.equal(r07, 'What you told us about the amount does not match what you told us earlier ($10, then $20).');
+  assert.ok(/pay stub, sales record, order or other evidence of income/.test(reasonText('R01', dossier([], {}), ml)));
+  assert.equal(reasonText('R14', { history: { repaid: 1 }, amount: { value: 30 } }, 20), 'The most we lend on a repeat loan is $20; you asked for $30.');
+  for (const c of Object.keys(REASONS)) assert.ok(!/\[(field|detail|loan|cap|requested)\]/.test(reasonText(c, dossier([], {}), ml)), `unfilled field in ${c}`);
 });
