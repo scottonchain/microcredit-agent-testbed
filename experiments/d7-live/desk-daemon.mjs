@@ -156,10 +156,32 @@ async function handle(applicant) {
 }
 
 log({ ev: 'start', mode: MODE, desk: DESK, officer: officer.address, rpc: RPC });
+
+// Observability (measurement only; no behavior change). Three different facts are kept apart: the process is alive,
+// the chain read (pending) succeeded, and a request was handled to completion. A heartbeat event is written at most once
+// per HEARTBEAT_MS (minimum 60 s) and holds only counts and ages in seconds: no applicant, message, key, endpoint or raw
+// error. A controlled exit (signal, uncaught error, normal exit) writes one exit event with a reason class. An abrupt
+// kill (SIGKILL, power loss, host teardown) cannot write anything; its only trace is a heartbeat that stops.
+const HEARTBEAT_MS = Math.max(Number(process.env.HEARTBEAT_FLOOR_MS || 60_000), Number(process.env.HEARTBEAT_MS || 300_000)); // the floor is only lowered by the test
+const startedAt = Date.now(); const age = (t) => (t === null ? null : Math.round((Date.now() - t) / 1000));
+const obs = { pollOk: 0, pollErr: 0, handled: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
+const beat = () => {
+  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
+  obs.pollOk = obs.pollErr = obs.handled = obs.handleErr = 0; obs.lastBeat = Date.now();
+};
+let exiting = false;
+const exitEvent = (reason, extra = {}) => { if (exiting) return; exiting = true; log({ ev: 'exit', reason, uptimeS: age(startedAt), lastPollOkAgeS: age(obs.lastPollOk), ...extra }); };
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) process.on(sig, () => { exitEvent('signal', { signal: sig }); process.exit(128 + ({ SIGHUP: 1, SIGINT: 2, SIGTERM: 15 })[sig]); });
+process.on('uncaughtException', (e) => { exitEvent('uncaught', { kind: String((e && e.name) || 'Error').slice(0, 40) }); process.exit(1); });
+process.on('unhandledRejection', (e) => { exitEvent('unhandled-rejection', { kind: String((e && e.name) || 'Error').slice(0, 40) }); process.exit(1); });
+process.on('exit', (code) => exitEvent('exit', { code }));
+setInterval(beat, HEARTBEAT_MS).unref();
+
 for (;;) {
   try {
     const pending = await D('pending');
-    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).catch((e) => log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) })).finally(() => inflight.delete(a)); }
-  } catch (e) { log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
+    obs.pollOk++; obs.lastPollOk = Date.now();
+    for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).then(() => { obs.handled++; obs.lastHandled = Date.now(); }).catch((e) => { obs.handleErr++; log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) }); }).finally(() => inflight.delete(a)); }
+  } catch (e) { obs.pollErr++; obs.lastPollErr = Date.now(); log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
   await new Promise((r) => setTimeout(r, POLL));
 }
