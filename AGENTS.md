@@ -131,7 +131,7 @@ evidence and the team's planning index. Start with `README.md` for the code map,
 verification. `deployments/current.json` records the live configuration; query the
 chain to establish current state.
 
-Coordinate material changes on board #15; use issue #17 for strategy. Ordinary
+Coordinate material changes on the current board (issue #462, which continues the full board #15); use issue #17 for strategy. Ordinary
 team communication uses TM2 on that board. Sensitive correspondence follows
 `coordination/team-email.md`. Preserve frozen calibration terms, evidence and
 outside commitments. Internal agents are not independent evidence and testnet

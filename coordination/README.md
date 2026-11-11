@@ -128,8 +128,8 @@ not competing priorities. Payment, privacy, review and deployment limits remain.
    `python world-model/q.py --open x` for the Codex/coordinator lane, `--due 24`
    for due work, `goal:` for objectives, and `-f ID` for the selected full record.
    Read the relevant source records; do not dump the entire model into each cycle.
-2. Read new [team-board](https://github.com/scottonchain/microcredit-agent-testbed/issues/15)
-   handoffs and the actual heads of relevant PRs. Strategy decisions are in
+2. Read new [team-board](https://github.com/scottonchain/microcredit-agent-testbed/issues/462)
+   handoffs (board 462 continues [board 15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15), full at 2,500 comments on November 11, 2026; see the succession rule in [DECISION_AUTONOMY.md](DECISION_AUTONOMY.md)) and the actual heads of relevant PRs. Strategy decisions are in
    [issue 17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17).
 3. Choose one concrete deliverable, preserve existing owners and commitments,
    and use an isolated branch. Record evidence and blockers against existing
@@ -304,7 +304,7 @@ past or a shorter runbook never cancel a promise. In particular:
 | Goals, claims, decisions, actions and evidence lineage | Testbed `world-model/model.json` | Docs and comments cite stable IDs; do not copy a live backlog |
 | Team roles and accepted obligations | [team-structure.md](team-structure.md) | Current receipts can supersede dated coverage snapshots |
 | Shared operating and privacy rules | This guide | Repo agent files link here |
-| Ordinary team transport | Board #15 and [TM2 format](../team-mail/SPEC.md) | No routine email mirrors |
+| Ordinary team transport | The current board ([#462](https://github.com/scottonchain/microcredit-agent-testbed/issues/462), continuing #15) and [TM2 format](../team-mail/SPEC.md) | No routine email mirrors; a full board is succeeded, not mirrored |
 | Sensitive correspondence and outside contacts | [team-email.md](team-email.md) | Private content stays in its authorized channel |
 | Recorded live deployment | [deployments/current.json](../deployments/current.json) and its pinned evidence | Runtime reads verify chain, token and block; a record is not a fresh chain read |
 | Agent card | Testbed `agent-card.json` | The four `.well-known/agent-card.json` and legacy `agent.json` copies are checked mirrors |
