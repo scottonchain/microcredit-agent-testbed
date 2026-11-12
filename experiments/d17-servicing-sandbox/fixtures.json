@@ -1,0 +1,46 @@
+{
+  "note": "Synthetic ledger fixtures. Every name, phone number and amount is invented. Amounts are whole quetzal cents (integer), never floats. No real borrower, no live ledger, no chain.",
+  "currency": "GTQ",
+  "agent_name": "Asistente de servicio",
+  "lender_name": "Cooperativa Ejemplo",
+  "human_contact": "la facilitadora Rosa Ejemplo",
+  "human_hours": "de lunes a viernes de 8:00 a 17:00",
+  "escalation_window_hours": 24,
+  "borrowers": [
+    {
+      "id": "b01",
+      "first_name": "Marta",
+      "phone": "+502-5550-0101",
+      "verification_word": "naranja",
+      "loan": { "principal_cents": 40000, "fee_cents": 2400, "installments": 4, "first_due": "2026-12-05", "interval_days": 7, "paid_cents": 0, "paid_installments": 0 }
+    },
+    {
+      "id": "b02",
+      "first_name": "Luis",
+      "phone": "+502-5550-0102",
+      "verification_word": "sombrero",
+      "loan": { "principal_cents": 25000, "fee_cents": 1500, "installments": 4, "first_due": "2026-12-06", "interval_days": 7, "paid_cents": 6625, "paid_installments": 1 }
+    },
+    {
+      "id": "b03",
+      "first_name": "Carmen",
+      "phone": "+502-5550-0103",
+      "verification_word": "ventana",
+      "loan": { "principal_cents": 60000, "fee_cents": 3600, "installments": 6, "first_due": "2026-12-04", "interval_days": 7, "paid_cents": 0, "paid_installments": 0 }
+    },
+    {
+      "id": "b04",
+      "first_name": "Pedro",
+      "phone": "+502-5550-0103",
+      "verification_word": "canasta",
+      "loan": { "principal_cents": 30000, "fee_cents": 1800, "installments": 4, "first_due": "2026-12-07", "interval_days": 7, "paid_cents": 0, "paid_installments": 0 }
+    },
+    {
+      "id": "b05",
+      "first_name": "Ana",
+      "phone": "+502-5550-0105",
+      "verification_word": "puente",
+      "loan": { "principal_cents": 20000, "fee_cents": 1200, "installments": 2, "first_due": "2026-12-08", "interval_days": 14, "paid_cents": 0, "paid_installments": 0 }
+    }
+  ]
+}
