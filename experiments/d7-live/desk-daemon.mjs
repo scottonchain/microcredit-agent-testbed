@@ -4,7 +4,7 @@
 //      MODE=interview: the rules officer decides and replies; the deterministic trust interview (interview.mjs) is run
 //      in shadow and its score, reasons and recommended backing are logged on the 'replied' line (D16, November 2026).
 //      CLAUDE_MODEL (optional), CIRCLE_API_KEY (optional: drip test USDC to a wallet when a line is granted).
-import { createPublicClient, createWalletClient, http, formatUnits } from 'viem';
+import { createPublicClient, createWalletClient, http, formatUnits, decodeFunctionData } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { baseSepolia } from 'viem/chains';
 import { spawn } from 'node:child_process';
@@ -125,51 +125,102 @@ async function topUp(address, amount) {
 // put a second officer message on the chain. A receipt timeout is not proof that a transaction will not mine, a read from a node that
 // is a block behind can list the applicant after the reply mined, and a send call that throws may have been broadcast. So:
 //  - the nonce is chosen and the entry is written to disk BEFORE the broadcast, and a send that cannot be recorded is not made;
-//  - an entry survives a restart and is settled (receipt, then nonce) before any other send for the same request;
-//  - mined or assumed sent: nothing more to send, even if a lagging read still lists the applicant; reverted: a resend is allowed;
-//  - the nonce has been used by a different transaction (the account's confirmed nonce is past ours and our hash has no receipt):
-//    ours can never execute, a resend is allowed;
-//  - anything else is UNKNOWN and holds with no time limit. Age never authorizes a send: after STUCK_AFTER_MS it is reported
-//    (an event and the heartbeat's held count) because a person is needed. A further applicant message is a new request.
+//  - the journal has one entry per request (applicant#applicant-message-count): a newer request never deletes an unresolved older one;
+//  - the journal survives a restart; a journal file that exists but cannot be read, parsed or validated stops the daemon (fail closed);
+//  - an unresolved entry is settled from chain evidence before any other send for the same request, and in the background for all
+//    entries: a receipt (mined or reverted), or the transaction that actually consumed our nonce, found by searching the account's
+//    nonce history (same hash: sent; a reply to this applicant when our hash is unknown: sent; any other transaction: ours can never
+//    execute, a resend is allowed). Everything else, including an advanced nonce without that evidence, an RPC that cannot answer, or
+//    a nonce that is not used yet, is UNKNOWN and holds with no time limit. Age never authorizes a send; after STUCK_AFTER_MS it is
+//    reported (an event and the heartbeat's held count) because a person is needed. Held entries are cleared only after chain
+//    reconciliation, never by deleting them from the file.
 const STATE_FILE = process.env.STATE_FILE || (LOG + '.state.json');
-const lastReply = new Map(); // applicant -> { hash (null if the broadcast call threw), nonce, at, msgs (applicant messages answered), mined, warnedAt }
-try { const j = JSON.parse(readFileSync(STATE_FILE, 'utf8')); if (j && Array.isArray(j.replies)) for (const [k, v] of j.replies) lastReply.set(k, v); } catch {}
+const journal = new Map(); // `${applicant}#${asks}` -> { applicant, hash (null if the broadcast call threw), nonce, fromBlock, at, msgs, mined, warnedAt }
+const keyOf = (applicant, asks) => applicant + '#' + asks;
+function stateUnreadable(why) { log({ ev: 'state-unreadable', why }); process.exit(3); }
+{
+  let raw; try { raw = readFileSync(STATE_FILE, 'utf8'); } catch (e) { if (e && e.code !== 'ENOENT') stateUnreadable('read-failed'); }
+  if (raw !== undefined) {
+    let j; try { j = JSON.parse(raw); } catch { stateUnreadable('not-json'); }
+    const okEntry = (v) => v && typeof v === 'object' && typeof v.applicant === 'string' && Number.isInteger(v.nonce) && Number.isInteger(v.msgs) && typeof v.mined === 'boolean' && typeof v.at === 'number' && (v.hash === null || typeof v.hash === 'string');
+    if (!j || j.v !== 2 || !Array.isArray(j.replies) || !j.replies.every((r) => Array.isArray(r) && r.length === 2 && typeof r[0] === 'string' && okEntry(r[1]))) stateUnreadable('bad-schema');
+    for (const [k, v] of j.replies) journal.set(k, v);
+  }
+}
 const LAST_REPLY_TTL_MS = boundedMs(process.env.LAST_REPLY_TTL_MS, 3_600_000, 60_000, 86_400_000); // only a CONFIRMED entry expires
-function persist() { try { writeFileSync(STATE_FILE + '.tmp', JSON.stringify({ v: 1, replies: [...lastReply] })); renameSync(STATE_FILE + '.tmp', STATE_FILE); return true; } catch { log({ ev: 'state-write-error' }); return false; } }
-const remember = (applicant, entry) => { lastReply.set(applicant, entry); return persist(); };
-const forget = (applicant) => { lastReply.delete(applicant); persist(); };
-// One reply transaction. Throws only when nothing was broadcast (a simulation failure, a refused nonce, an unwritable state file);
+function persist() { try { writeFileSync(STATE_FILE + '.tmp', JSON.stringify({ v: 2, replies: [...journal] })); renameSync(STATE_FILE + '.tmp', STATE_FILE); return true; } catch { log({ ev: 'state-write-error' }); return false; } }
+const remember = (key, entry) => { journal.set(key, entry); return persist(); };
+const forget = (key) => { journal.delete(key); persist(); };
+// A write error that proves nothing was broadcast: the node refused the transaction itself. Anything else (a timeout, a dropped
+// connection, an unfamiliar message, even one that mentions a nonce) may have been broadcast and is ambiguous.
+const NOT_BROADCAST = ['NonceTooLowError', 'NonceTooHighError', 'InsufficientFundsError', 'IntrinsicGasTooLowError', 'FeeCapTooLowError', 'ExecutionRevertedError'];
+const provablyNotBroadcast = (e) => typeof e?.walk === 'function' && NOT_BROADCAST.some((n) => e.walk((x) => x && x.name === n));
+// One reply transaction. Throws only when nothing was broadcast (a simulation failure, a node refusal, an unwritable journal);
 // returns { ambiguous } when the broadcast call itself threw, so the caller must hold and never send a fallback.
 async function sendReply(applicant, asks, args) {
   const { request } = await pc.simulateContract({ address: DESK, abi: deskAbi, functionName: 'reply', args, account: officer });
   const nonce = await pc.getTransactionCount({ address: officer.address, blockTag: 'pending' });
-  if (!remember(applicant, { hash: null, nonce, at: Date.now(), msgs: asks, mined: false })) throw new Error('state file not writable; nothing sent');
-  try { const hash = await wc.writeContract({ ...request, nonce }); remember(applicant, { hash, nonce, at: Date.now(), msgs: asks, mined: false }); return { hash }; }
+  const fromBlock = Number(await pc.getBlockNumber({ cacheTime: 0 }));
+  const key = keyOf(applicant, asks);
+  if (!remember(key, { applicant, hash: null, nonce, fromBlock, at: Date.now(), msgs: asks, mined: false })) throw new Error('journal not writable; nothing sent');
+  try { const hash = await wc.writeContract({ ...request, nonce }); remember(key, { applicant, hash, nonce, fromBlock, at: Date.now(), msgs: asks, mined: false }); return { hash }; }
   catch (e) {
-    if (/nonce/i.test(String(e.shortMessage || e.message))) { forget(applicant); throw e; } // refused for its nonce: nothing was broadcast
+    if (provablyNotBroadcast(e)) { forget(key); throw e; } // refused by the node: nothing was broadcast
     return { ambiguous: 'broadcast outcome unknown' };
   }
 }
 async function confirm(applicant, hash, asks) {
+  const key = keyOf(applicant, asks);
   const rc = await pc.waitForTransactionReceipt({ hash, timeout: RECEIPT_TIMEOUT_MS }); // a timeout leaves the entry unresolved
-  if (rc.status === 'success') { const a = lastReply.get(applicant); if (a) { a.mined = true; a.at = Date.now(); persist(); } } else forget(applicant);
+  if (rc.status === 'success') { const a = journal.get(key); if (a) { a.mined = true; a.at = Date.now(); persist(); } } else forget(key);
   return rc;
 }
-async function mustNotSend(applicant, asks) {
-  const a = lastReply.get(applicant); if (!a) return false;
-  if (asks > a.msgs) { forget(applicant); return false; } // a further applicant message: a new request
-  if (a.mined) { if (Date.now() - a.at > LAST_REPLY_TTL_MS) { forget(applicant); return false; } return true; }
-  let latest = null; try { latest = await pc.getTransactionCount({ address: officer.address, blockTag: 'latest' }); } catch {}
+// The transaction that used our nonce, found by binary search over the account's nonce history between the block recorded before the
+// broadcast and the head. { status: 'unused' | 'found' | 'unknown', tx }. Any RPC failure is 'unknown'.
+async function findConsumer(nonce, fromBlock) {
+  try {
+    const at = (b) => pc.getTransactionCount({ address: officer.address, blockNumber: BigInt(b) });
+    const head = Number(await pc.getBlockNumber({ cacheTime: 0 })); // not the client's cached block number (it can be seconds old)
+    if ((await at(head)) <= nonce) return { status: 'unused' };
+    let lo = fromBlock; if ((await at(lo)) > nonce) return { status: 'unknown' }; // the nonce was used before we recorded it: not ours to explain
+    let hi = head;
+    while (hi - lo > 1) { const mid = Math.floor((lo + hi) / 2); if ((await at(mid)) > nonce) hi = mid; else lo = mid; }
+    const block = await pc.getBlock({ blockNumber: BigInt(hi), includeTransactions: true });
+    const tx = block.transactions.find((t) => t && t.from && t.from.toLowerCase() === officer.address.toLowerCase() && Number(t.nonce) === nonce);
+    return tx ? { status: 'found', tx } : { status: 'unknown' };
+  } catch { return { status: 'unknown' }; }
+}
+// Settle one unresolved entry from chain evidence: 'mined' | 'reverted' | 'dropped' | 'unknown'.
+async function settle(a) {
   const receipt = async () => { if (!a.hash) return null; try { return await pc.getTransactionReceipt({ hash: a.hash }); } catch { return null; } };
   const rc = await receipt();
-  if (rc) { log({ ev: 'earlier-reply-settled', result: rc.status === 'success' ? 'mined' : 'reverted' }); if (rc.status === 'success') { a.mined = true; a.at = Date.now(); persist(); return true; } forget(applicant); return false; }
-  if (latest !== null && a.nonce !== undefined && latest > a.nonce) {
-    const again = await receipt(); if (again && again.status === 'success') { a.mined = true; a.at = Date.now(); persist(); return true; }
-    if (a.hash) { log({ ev: 'earlier-reply-dropped' }); forget(applicant); return false; } // our nonce went to another transaction
-    log({ ev: 'earlier-reply-assumed-sent' }); a.mined = true; a.at = Date.now(); persist(); return true; // hash unknown, nonce used: treat as sent
-  }
+  if (rc) return rc.status === 'success' ? 'mined' : 'reverted';
+  const c = await findConsumer(a.nonce, a.fromBlock ?? 0);
+  if (c.status !== 'found') return 'unknown';
+  const t = c.tx;
+  if (a.hash && String(t.hash).toLowerCase() === a.hash.toLowerCase()) { const again = await receipt(); return again ? (again.status === 'success' ? 'mined' : 'reverted') : 'mined'; } // included in a block, receipt read stale: treat as sent
+  if (a.hash) return 'dropped'; // a different transaction took our nonce: ours can never execute
+  try { const d = decodeFunctionData({ abi: deskAbi, data: t.input }); if (d.functionName === 'reply' && String(t.to).toLowerCase() === DESK.toLowerCase() && String(d.args[0]).toLowerCase() === a.applicant.toLowerCase()) return 'mined'; } catch {}
+  return 'dropped';
+}
+function applyVerdict(key, a, v) { // true when the entry no longer blocks a send for its request
+  if (v === 'mined') { log({ ev: 'earlier-reply-settled', result: 'mined' }); a.mined = true; a.at = Date.now(); persist(); return true; }
+  if (v === 'reverted' || v === 'dropped') { log({ ev: 'earlier-reply-' + v }); forget(key); return false; }
   if (Date.now() - a.at > STUCK_AFTER_MS && Date.now() - (a.warnedAt || 0) > STUCK_AFTER_MS) { a.warnedAt = Date.now(); persist(); log({ ev: 'earlier-reply-stuck', ageS: Math.round((Date.now() - a.at) / 1000) }); }
   return true; // unknown holds
+}
+async function mustNotSend(applicant, asks) {
+  const key = keyOf(applicant, asks); const a = journal.get(key); if (!a) return false;
+  if (a.mined) { if (Date.now() - a.at > LAST_REPLY_TTL_MS) { forget(key); return false; } return true; }
+  return applyVerdict(key, a, await settle(a));
+}
+let lastSweep = 0;
+async function reconcileAll() { // every 30 s: settle unresolved entries even when their applicant never writes again, drop old confirmed ones
+  if (Date.now() - lastSweep < 30_000) return; lastSweep = Date.now();
+  for (const [key, a] of [...journal]) {
+    if (a.mined) { if (Date.now() - a.at > LAST_REPLY_TTL_MS) forget(key); continue; }
+    applyVerdict(key, a, await settle(a));
+  }
 }
 // What an applicant is told when the model cannot decide. No new approval is made and the backing stays as it was; anything the
 // applicant already has or owes is untouched, so the text must not say that nothing is owed.
@@ -238,7 +289,7 @@ const HEARTBEAT_MS = boundedMs(process.env.HEARTBEAT_MS, 300_000, HB_FLOOR, 3_60
 const startedAt = Date.now(); const age = (t) => (t === null ? null : Math.round((Date.now() - t) / 1000));
 const obs = { pollOk: 0, pollErr: 0, handled: 0, reverted: 0, deferred: 0, unavailable: 0, handleErr: 0, lastPollOk: null, lastPollErr: null, lastHandled: null, lastBeat: startedAt };
 const beat = () => {
-  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, deferred: obs.deferred, unavailable: obs.unavailable, held: [...lastReply.values()].filter((x) => !x.mined).length, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
+  log({ ev: 'heartbeat', uptimeS: age(startedAt), intervalS: age(obs.lastBeat), pollOk: obs.pollOk, pollErr: obs.pollErr, handled: obs.handled, reverted: obs.reverted, deferred: obs.deferred, unavailable: obs.unavailable, held: [...journal.values()].filter((x) => !x.mined).length, handleErr: obs.handleErr, lastPollOkAgeS: age(obs.lastPollOk), lastPollErrAgeS: age(obs.lastPollErr), lastHandledAgeS: age(obs.lastHandled), inflight: inflight.size });
   obs.pollOk = obs.pollErr = obs.handled = obs.reverted = obs.deferred = obs.unavailable = obs.handleErr = 0; obs.lastBeat = Date.now();
 };
 let exiting = false;
@@ -253,6 +304,7 @@ for (;;) {
   try {
     const pending = await D('pending');
     obs.pollOk++; obs.lastPollOk = Date.now();
+    await reconcileAll().catch(() => {});
     for (const a of pending) { if (inflight.has(a)) continue; inflight.add(a); handle(a).then((confirmed) => { if (confirmed === true) { obs.handled++; obs.lastHandled = Date.now(); } else if (confirmed === 'deferred') { /* counted in handle() */ } else obs.reverted++; }).catch((e) => { obs.handleErr++; log({ ev: 'error', applicant: a, err: String(e.shortMessage || e.message).slice(0, 300) }); }).finally(() => inflight.delete(a)); }
   } catch (e) { obs.pollErr++; obs.lastPollErr = Date.now(); log({ ev: 'poll-error', err: String(e.shortMessage || e.message).slice(0, 200) }); }
   await new Promise((r) => setTimeout(r, POLL));

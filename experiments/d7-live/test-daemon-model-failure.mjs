@@ -3,6 +3,8 @@
 // chain, no real key, no model, no live transaction.
 //   node test-daemon-model-failure.mjs
 import { run } from './test-stub-desk.mjs';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 let pass = 0, fail = 0;
 const ok = (c, m) => { if (c) pass++; else { fail++; console.log('FAIL', m); } };
@@ -85,6 +87,36 @@ for (const [name, opts, why] of [
   ok(r.sent === 1, `throw after broadcast: exactly one send, no fallback (${r.sent})`);
   ok(r.lines.some((l) => l.ev === 'send-ambiguous'), 'throw after broadcast: held as ambiguous');
   ok(!r.lines.some((l) => l.ev === 'backing-unchanged'), 'throw after broadcast: the backing-unchanged fallback was not used');
-  ok(r.lines.some((l) => l.ev === 'earlier-reply-assumed-sent'), 'throw after broadcast: the used nonce settles it as sent'); }
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-settled' && l.result === 'mined'), 'throw after broadcast: the transaction found at our nonce is a reply to this applicant, so it is settled as sent'); }
+
+// N1. a journal file that exists but cannot be read or validated stops the daemon: it sends nothing (fail closed)
+for (const [name, content] of [['truncated JSON', '{"v":2,"replies":[["a#1",{"applicant":'], ['wrong schema', '{"v":2,"replies":[["a#1",{"applicant":5}]]}'], ['wrong version', '{"v":1,"replies":[]}']]) {
+  const r = await run({ mode: 'rules', applicant: true, stateFile: content, how: 'none', ms: 700 });
+  ok(r.res && r.res.code === 3, `corrupt journal (${name}): the daemon stops with exit code 3 (${JSON.stringify(r.res)})`);
+  ok(r.sent === 0 && r.lines.some((l) => l.ev === 'state-unreadable'), `corrupt journal (${name}): nothing sent, reason logged`); }
+// a missing journal file is a normal first start
+{ const r = await run({ mode: 'rules', applicant: true, how: 'term', ms: 1500 }); ok(r.sent === 1, 'no journal file yet: normal first start sends the reply'); }
+
+// N2. the receipt read is stale but the block that used our nonce holds OUR transaction: it is sent, never resent
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 1500, receiptHidden: true, pendingLagMs: 600_000, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5500 });
+  ok(r.sent === 1, `stale receipt, nonce used by our transaction: exactly one send (${r.sent})`);
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-settled' && l.result === 'mined'), 'stale receipt: settled from the block that holds our transaction'); }
+
+// N3. the nonce moved, but the RPC cannot show which transaction used it: that is NOT proof of a drop, so it holds
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, dropAfterMs: 1200, noHistory: true, env: { RECEIPT_TIMEOUT_MS: '1000', STUCK_AFTER_MS: '1500' }, how: 'term', ms: 5500 });
+  ok(r.sent === 1, `nonce advanced without evidence of who used it: still exactly one send (${r.sent})`);
+  ok(r.lines.some((l) => l.ev === 'earlier-reply-stuck'), 'nonce advanced without evidence: reported as stuck for a person'); }
+
+// N4. a newer request arrives before the older reply is settled: the older entry is kept, and the new request is answered
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 600_000, threadSecondAfterMs: 1800, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5000 });
+  const j = JSON.parse(readFileSync(join(r.dir, 'd.log.state.json'), 'utf8')); const keys = j.replies.map((e) => e[0]).sort();
+  ok(r.sent === 2, `newer request: answered with its own transaction (${r.sent} sends)`);
+  ok(keys.length === 2 && keys[0].endsWith('#1') && keys[1].endsWith('#2') && j.replies.every((e) => e[1].mined === false), `newer request: both unresolved entries are in the journal (${keys.map((k) => k.slice(-2)).join(',')})`); }
+
+// N5. only errors that prove nothing was broadcast are treated that way; an unfamiliar error that merely mentions a nonce is ambiguous
+{ const r = await run({ mode: 'rules', applicant: true, receiptDelayMs: 2500, pendingLagMs: 800, sendError: 'text', env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5000 });
+  ok(r.sent === 1 && r.lines.some((l) => l.ev === 'send-ambiguous'), `error text that mentions a nonce is ambiguous: held, one send (${r.sent})`); }
+{ const r = await run({ mode: 'rules', applicant: true, sendError: 'low', receiptDelayMs: 600_000, env: { RECEIPT_TIMEOUT_MS: '1000' }, how: 'term', ms: 5000 }); // the desk keeps listing the applicant, so the next poll tries again
+  ok(r.sent === 1 && !r.lines.some((l) => l.ev === 'send-ambiguous'), `a node refusal for a too-low nonce proves nothing was broadcast: answered on the next poll, one send (${r.sent})`); }
 
 console.log(`${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);
