@@ -162,7 +162,7 @@ the test. Do not ask again. Read the repair document for two fallbacks, response
 criteria and actual receipts; internal agreement or a sent message is not demand.
 
 
-This page is the human-readable index for current direction across the microcredit workspace. The canonical machine-readable state remains `world-model/model.json`; board #15 carries team handoffs and issue #17 carries strategy evidence and decisions.
+This page is the human-readable index for current direction across the microcredit workspace. The canonical machine-readable state remains `world-model/model.json`; the current board (#462, continuing #15) carries team handoffs and issue #17 carries strategy evidence and decisions.
 
 ## Proposed path after the October15 reset relay
 
@@ -313,4 +313,4 @@ A `NO_LOAN` or `NO_GUARANTEE` result is valid evidence. Do not create activity t
 
 At the start of every work cycle, use the current path below and compare its active step against simpler alternatives; the earlier guarantee remains a conditional hypothesis. Use one substantial deliverable per lane. Protect accepted outside commitments before speculative work. Reuse exact-revision evidence instead of rerunning unchanged experiments. Every new action needs a beneficiary or decision, owner, artifact, acceptance evidence, checkpoint, resource bound and falsifier.
 
-For current operational details, read [the team operating guide](README.md), [the world model](../world-model/model.json), [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15) and [strategy issue #17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17).
+For current operational details, read [the team operating guide](README.md), [the world model](../world-model/model.json), [board #462](https://github.com/scottonchain/microcredit-agent-testbed/issues/462) (continuing board #15) and [strategy issue #17](https://github.com/scottonchain/microcredit-agent-testbed/issues/17).

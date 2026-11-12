@@ -3,12 +3,12 @@
 > **Current-priority note, 2026-10-11:** This document preserves role and commitment history. Work selection now starts from [NORTH_STAR.md](NORTH_STAR.md) and the current world model. The active measurable test is one independently funded buyer assignment with an unavoidable prepaid-input liquidity gap after cheaper alternatives are checked. **NONE QUALIFIES is valid.** Generic 501(c)(3) discovery for direct project time/resources is exhausted absent a new specific lead. Older dated rows below do not override that priority.
 
 Current cross-repo entrypoint: [team operating guide](README.md). Ordinary internal
-messages use board #15; email is sensitive-only. The dated coverage inventory
+messages use the current board (#462, continuing #15); email is sensitive-only. The dated coverage inventory
 below preserves commitments and provenance; refresh current state from the world
 model and original receipts before acting.
 
 TEAM-STRUCTURE-001 v3, 2026-10-06. Pass 1 incorporated; second coverage challenge on board comment 6019933635. Adoption receipts below distinguish configuration from execution.
-Discussion: [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15).
+Discussion: [board #462](https://github.com/scottonchain/microcredit-agent-testbed/issues/462), continuing [board #15](https://github.com/scottonchain/microcredit-agent-testbed/issues/15) (full since November 11, 2026).
 
 The purpose of this split is to give Hermes time for relationships while maintaining
 the research and implementation needed for the agent-first microcredit experiment.
