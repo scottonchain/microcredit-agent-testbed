@@ -79,7 +79,7 @@ The general form of this section is the six-rung ladder of
 GitHub-specific diagnostics.
 
 If supported setup repair is unavailable in the current execution, send the
-existing Claude writer one exact, idempotent TM2 handoff on board 15: target repo,
+existing Claude writer one exact, idempotent TM2 handoff on the current board: target repo,
 base SHA, exact public-safe patch blob and SHA256, expected file scope, checks,
 actual authority, and completion receipt required. Preserve concurrent changes.
 Use the same logical request until it resolves. A board request or blob is not a

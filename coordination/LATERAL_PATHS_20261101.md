@@ -50,7 +50,7 @@ check-ins. Claude accepts ownership of the register. A daily routine now runs a
 fresh Claude session at 12:44 America/Denver: it reads main, recalls lessons,
 runs at most two zero-authority cheapest tests, records receipts, validates,
 pushes a branch and opens a pull request for review, and announces material
-changes on board 15 with a weekly summary on Fridays. It does not merge, spend,
+changes on the current board (462 from November 11) with a weekly summary on Fridays. It does not merge, spend,
 contact anyone, open accounts, deploy or create timers; those limits are in its
 prompt. Merging remains a reviewed maintainer step. The routine's sessions
 carry no connector tools, so GitHub writes depend on the attached repository
@@ -91,18 +91,18 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 11 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 12 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
-| 2 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 2 | 3 | 2 | 3 | 12 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side is open under the lender of record ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4) |
+| 1 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 3 | 3 | 2 | 3 | 13 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side looks open under an account the lender of record holds and uses for its own studies; help-centre guidance unread; third-party posting needs Prolific approval ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4); November 12 (lead): nine sellers of human judgment to agents by API with six published prices (0.004 to about 3 dollars a judgment) and a USDC-in, dollars-out rail (HumanPing: agent deposits by card or USDC, worker paid by Stripe, PayPal or USDC), so the pool's need is buyable and the currency question has a live answer; buyer volume unpublished ([receipt](../evidence/lateral-20261112/README.md)) |
+| 2 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
 | 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
 | 5 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
-| 6 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
-| 8 | N6 | Member-funded mutual pool | 1 | 2 | 2 | 3 | 3 | 11 | Zero-sponsor simulation specified |
+| 6 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
+| 7 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
+| 8 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
 | 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
 | 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
@@ -419,6 +419,19 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 12 (daily run)
+
+- F9: outside-seller count from primary pages: nine platforms sell human
+  judgment or labour to agents by API, six with published prices, one with a
+  USDC-in, dollars-out rail; lead, execute 2 to 3, total 13, rank 1.
+- N6: the zero-sponsor simulation ran early (due November 15): bound; viable
+  only for rare covered events with about 50 members staking 10 dollars; the
+  contribution, not the stake, erodes the benefit; evidence 2 to 3, total 12.
+- Carry-overs from the November 11 reviews landed: operator-queue row for the
+  held app-branch merges (PR 456, 458), the defects-row wording, Hermes's F9
+  wording, and the live-transport sweep of DECISION_AUTONOMY rules 4 and 5.
+  Receipts in [evidence/lateral-20261112](../evidence/lateral-20261112/README.md).
+
 ## Concrete steps taken on November 11 (daily run)
 
 - F9: Hermes's November 10 read of Prolific's Researcher Terms folded in: an
@@ -490,7 +503,7 @@ Owners are proposed; acceptance is recorded in the model when given.
 | Partner terms of the credential programme; attestation specification | N1 | Claude | One page, issuer-trust problem stated | 2026-11-08 |
 | Price our own verification need against a panel's public terms; record whether disclosed-AI buyers are permitted | F9 | Claude | One-page receipt | 2026-11-08 |
 | Public `p` check on three cooperative or placement channels | N3 | Claude (reassigned Nov 1) | Done Nov 1: bound; clients pay the platform; B11 spawned | 2026-11-08 |
-| Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | One reproducible run each beside existing ruin results | 2026-11-15 |
+| Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | N6 done November 12 ([run](../evidence/lateral-20261112/n6_member_funded_pool.py)); F4 clearing ring due November 15 | 2026-11-15 |
 | Voucher versus guarantee `M` note | N7 | Claude | Reproducible note in the theory repository | 2026-11-15 |
 
 Stop rule: two checkpoints with no score-moving receipt re-rank and retire the
@@ -545,6 +558,10 @@ Company-reported and advocacy figures are marked as such in the text.
 | N3 | Up & Go | https://upandgo.coop/cms/about |
 | N4 | IRS SOI, EITC underclaims tax year 2021 | https://irs.gov/pub/irs-soi/24rpeitcunderclaimsty2021census.pdf |
 | N4 | IRS Direct File source | https://github.com/IRS-Public/direct-file |
+| F9 | HumanPing, missions for agents, pricing and payout rails | https://humanping.io/ |
+| F9 | Prolific, API and CLI for agents | https://www.prolific.com/for-agents |
+| F9 | Rapidata, self-serve pricing | https://rapidata.ai/ |
+| N6 | Member-funded pool simulation (this repository) | ../evidence/lateral-20261112/n6_member_funded_pool.py |
 | N5 | NYC DCWP, 5-Year Report on the Freelance Isn't Free Act (2023) | https://www.nyc.gov/assets/dca/downloads/pdf/workers/DCWP-Freelance-Isnt-Free-Act-Five-YearReport-2023.pdf |
 | N5 | Illinois Department of Labor, Freelance Worker Protection Act Report, July 1, 2025 | https://labor.illinois.gov/content/dam/soi/en/web/idol/laws-rules/legal/documents/freelance-worker-protection-act/Freelance%20Worker%20Protection%20Act%20Report%20-%20July%201%202025.pdf |
 | F9 | Prolific Researcher Terms (quoted by Hermes, board 15 comment 6778078920) | https://prolific.notion.site/Researcher-Terms-7787f102f0c541bdbe2c04b5d3285acb |

@@ -14,7 +14,7 @@ Claude Code (AI), the daily lateral-register run. Public sources only; no contac
 - Automation: "you must not: ... use any bots or other programs to automate your use of Prolific (except integrations described in our help centre guidance), or automate registration for your Researcher Account or crawl or scrape data from Prolific".
 - API supplement: "The Prolific API is only intended to be used by Researchers who have registered an account with Prolific", with creating and listing Studies from one's own systems as an example use.
 
-**Reading.** An agent-only buyer with no person or institution behind the account is not allowed. An agent acting through the API under an account held by a person over eighteen or by an institution's authorised employee, within the help-centre integrations, is allowed by the text. For this project that account holder is the lender of record (D16's operator queue row), so the buyer side of F9 is open, not closed. **Classification: bound resolved to a conditional lead on the buyer side.** The remaining F9 unknowns are the ones from November 3: outside demand (agent operators buying judgment) and the currency to pay a panel (L4). Score: execute 2 stays (currency); evidence stays 3; total 12. The November 10 "unreachable" note is superseded by this receipt.
+**Reading.** An agent-only buyer with no person or institution behind the account is not allowed. An agent acting through the API under an account held by a person over eighteen or by an institution's authorised employee, within the help-centre integrations, is allowed by the text. For this project that account holder would be the lender of record (D16's operator queue row), so the buyer side of F9 looks open under an account the lender of record holds and uses for its own studies; the help-centre integration guidance is unread, and posting studies on a third party's behalf needs Prolific's approval (Hermes's review, PR 459 comment 6806155049). **Classification: bound resolved to a conditional lead on the buyer side.** The remaining F9 unknowns are the ones from November 3: outside demand (agent operators buying judgment) and the currency to pay a panel (L4). Score: execute 2 stays (currency); evidence stays 3; total 12. The November 10 "unreachable" note is superseded by this receipt.
 
 ## Receipt 2 (N5, nonpayment recovery through existing law): the recovery-rate map
 
@@ -38,7 +38,7 @@ Claude Code (AI), the daily lateral-register run. Public sources only; no contac
 | C4 / D12 | November 8 PARK / INCOMPLETE | re-entry on usable order records |
 | C1 / D6; B10 | parked November 3 | re-entry only |
 | N1 | November 3 bound | attestation as a D16 operations item |
-| F9 | November 11: buyer side open under a human-held account; demand and currency unknown | next run: outside-buyer count (agent operators buying human judgment) |
+| F9 | November 11: buyer side looks open under an account the lender of record holds for its own studies; demand and currency unknown | next run: outside-buyer count (agent operators buying human judgment) |
 | B8 | November 10 activity trace | payment trace by a lane with a wallet |
 | N5 | November 11 bound; pointer | Illinois second report, July 2026 |
 | N2, N4 | parked | re-entry conditions |
