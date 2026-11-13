@@ -36,9 +36,13 @@ G. Single instance. One process, one journal, no autoscaling. Before start, show
    process stopped and the live relaunch line removed from the steward check-in) and that the provider's restart or deploy behavior
    cannot overlap two writers (no rolling deploy that runs old and new together).
 H. External observer. A separate read-only process (`observer.mjs` in this folder is the decision logic) receives the daemon's
-   heartbeat and the chain's oldest pending request age and alerts a named owner. A log heartbeat alone is not an external monitor.
+   heartbeat and an explicit, timestamped chain read of the oldest pending request and alerts a named owner. A log heartbeat alone
+   is not an external monitor. The caller must also turn a missing, late or crashed `evaluate()` call into an alert (the function
+   itself never throws; it returns OBSERVER_FAILURE if it breaks), and must pass the chain-read outcome explicitly: an omitted value
+   is unknown, never an empty queue.
 I. Drills before live acceptance (use a test key and test desk, state which): missed heartbeat, process death, unreadable journal
-   (exit code 3), model unavailable, ambiguous transaction, and a stuck held reply. Each must produce an alert received by the named
+   (exit code 3), model unavailable, ambiguous transaction, a stuck held reply, an alert delivered externally (a path that does not
+   depend on the failing host), and observer execution failure (observer stopped, throwing, fed unreadable input, or never run). Each must produce an alert received by the named
    owner. Synthetic signer tests and read-only health checks are different things and are labeled separately.
 J. Live acceptance, all of: the host reports the pinned runtime sha and the observer matches it; the journal is intact after a restart;
    replies arrive inside the agreed budget; the process stays up across two old hourly boundaries (the :10 steward ticks) without any
