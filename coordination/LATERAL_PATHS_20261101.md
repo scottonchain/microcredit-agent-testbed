@@ -91,11 +91,11 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 12 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 13 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 3 | 3 | 2 | 3 | 13 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side looks open under an account the lender of record holds and uses for its own studies; help-centre guidance unread; third-party posting needs Prolific approval ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4); November 12 (lead): nine sellers of human judgment to agents by API with six published prices (0.004 to about 3 dollars a judgment) and a USDC-in, dollars-out rail (HumanPing: agent deposits by card or USDC, worker paid by Stripe, PayPal or USDC), so the pool's need is buyable and the currency question has a live answer; buyer volume unpublished ([receipt](../evidence/lateral-20261112/README.md)) |
+| 1 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 3 | 3 | 2 | 3 | 13 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side looks open under an account the lender of record holds and uses for its own studies; help-centre guidance unread; third-party posting needs Prolific approval ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4); November 12 (lead): nine sellers of human judgment to agents by API with six published prices (0.004 to about 3 dollars a judgment) and a USDC-in, dollars-out rail (HumanPing: agent deposits by card or USDC, worker paid by Stripe, PayPal or USDC), so the pool's need is buyable and the currency question has a live answer; buyer volume unpublished ([receipt](../evidence/lateral-20261112/README.md)); November 13 (bound on the buyer side): Rentahuman's public listing read without a key, 44 live bounties, about 5,000 dollars posted, median 20 dollars, seven applicants a spot, posters human or the platform itself, no agent-origin field; two bounties pay workers 235 to 250 dollars to open a subscription account in their own name ([receipt](../evidence/lateral-20261113/README.md)) |
 | 2 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
 | 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
@@ -107,9 +107,9 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
 | 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
-| 13 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
-| 14 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
-| 15 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 2 | 1 | 2 | 9 | `M` comparison specified |
+| 13 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 3 | 1 | 2 | 10 | Bound November 13: `M` note from Levinsohn et al. (R5,000 voucher, +7 points at one year, R25,000 per caused job): about 0.5 dollars of net worker benefit per sponsor dollar in year one, about 1.0 over two years; measured a of about 0.2; stop met on these figures (guarantee beats it only through the refund reaching workers); kept as the C5 benchmark ([receipt](../evidence/lateral-20261113/README.md)) |
+| 14 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
+| 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
 | 16 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
 | 17 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
 | 18 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
@@ -419,6 +419,18 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 13 (daily run)
+
+- F9: the buyer side read at one seller from a public listing that needs no
+  key (Rentahuman): small, supply-heavy, human or platform posters, no agent
+  origin shown; bound; score unchanged at 13.
+- N7: the voucher-versus-guarantee `M` note done early from the primary
+  evaluation: about 0.5 to 1.0 dollars of net worker benefit per sponsor
+  dollar, measured a of about 0.2; bound; evidence 2 to 3, total 10; the C5
+  benchmark.
+- Carry-over: HumanPing fee wording fixed in the November 12 receipt and claim.
+  Receipts in [evidence/lateral-20261113](../evidence/lateral-20261113/README.md).
+
 ## Concrete steps taken on November 12 (daily run)
 
 - F9: outside-seller count from primary pages: nine platforms sell human
@@ -504,7 +516,7 @@ Owners are proposed; acceptance is recorded in the model when given.
 | Price our own verification need against a panel's public terms; record whether disclosed-AI buyers are permitted | F9 | Claude | One-page receipt | 2026-11-08 |
 | Public `p` check on three cooperative or placement channels | N3 | Claude (reassigned Nov 1) | Done Nov 1: bound; clients pay the platform; B11 spawned | 2026-11-08 |
 | Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | N6 done November 12 ([run](../evidence/lateral-20261112/n6_member_funded_pool.py)); F4 clearing ring due November 15 | 2026-11-15 |
-| Voucher versus guarantee `M` note | N7 | Claude | Reproducible note in the theory repository | 2026-11-15 |
+| Voucher versus guarantee `M` note | N7 | Claude | Done November 13 in [evidence/lateral-20261113](../evidence/lateral-20261113/README.md) (the theory repository is not attached to the lateral session; the note lives here) | 2026-11-15 |
 
 Stop rule: two checkpoints with no score-moving receipt re-rank and retire the
 empty paths. The register is never pruned; a ruled-out idea is re-examined only
@@ -558,6 +570,7 @@ Company-reported and advocacy figures are marked as such in the text.
 | N3 | Up & Go | https://upandgo.coop/cms/about |
 | N4 | IRS SOI, EITC underclaims tax year 2021 | https://irs.gov/pub/irs-soi/24rpeitcunderclaimsty2021census.pdf |
 | N4 | IRS Direct File source | https://github.com/IRS-Public/direct-file |
+| F9 | Rentahuman public bounty listing, read November 13 | https://rentahuman.ai/api/bounties?limit=50 |
 | F9 | HumanPing, missions for agents, pricing and payout rails | https://humanping.io/ |
 | F9 | Prolific, API and CLI for agents | https://www.prolific.com/for-agents |
 | F9 | Rapidata, self-serve pricing | https://rapidata.ai/ |
