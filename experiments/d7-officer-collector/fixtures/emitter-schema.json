@@ -1,0 +1,21 @@
+{
+  "note": "Event schema of the officer daemon at PR 458 head 9c181672 (daemon blob 455e374971198ec54b4561d83d2331c6c60f2da3), one JSON object per line, each with t (ISO time) and ev (name). Read from that source; the live blob a322d588 emits none of heartbeat, exit, state-unreadable, earlier-reply-stuck, state-write-error or send-ambiguous. 'forward' lists the only fields that may leave the host; everything else is private (applicant addresses, reply text, transaction hashes, desk, officer, RPC endpoint) and is dropped by the collector.",
+  "events": {
+    "start": { "forward": ["mode"], "private": ["desk", "officer", "rpc"] },
+    "heartbeat": { "forward": ["uptimeS", "intervalS", "pollOk", "pollErr", "handled", "reverted", "deferred", "unavailable", "held", "handleErr", "lastPollOkAgeS", "lastPollErrAgeS", "lastHandledAgeS", "inflight"], "private": [] },
+    "exit": { "forward": ["reason", "uptimeS", "lastPollOkAgeS"], "private": [] },
+    "state-unreadable": { "forward": ["why"], "private": [], "effect": "process exits with code 3" },
+    "state-write-error": { "forward": [], "private": [] },
+    "earlier-reply-stuck": { "forward": ["ageS"], "private": [] },
+    "earlier-reply-settled": { "forward": [], "private": [] },
+    "model-unavailable": { "forward": [], "private": ["applicant", "why"] },
+    "send-ambiguous": { "forward": [], "private": ["applicant", "why"] },
+    "poll-error": { "forward": [], "private": ["err"] },
+    "replied": { "forward": [], "private": ["applicant", "reply", "tx", "backing", "cost", "model", "tokens"] },
+    "topup": { "forward": [], "private": ["applicant", "loan", "owed", "had", "sent", "tx", "ok"] },
+    "llm-error": { "forward": [], "private": ["*"] },
+    "llm-skipped": { "forward": [], "private": ["*"] },
+    "backing-unchanged": { "forward": [], "private": ["*"] },
+    "error": { "forward": [], "private": ["*"] }
+  }
+}
