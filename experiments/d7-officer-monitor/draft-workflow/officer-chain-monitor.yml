@@ -6,8 +6,12 @@
 # validated status comment to board 462. It never sees the officer log, heartbeat or runtime hash, holds no wallet secret and no signer,
 # and is an auxiliary monitor only: scheduled runs can be delayed or dropped and a schedule is paused after a long period without
 # repository activity, and a job cannot detect its own missed dispatch, so something outside it must watch for missing receipts.
-# Not designed here: dedup across ephemeral runs (the first design is "post only when the status changes, using the newest monitor
-# comment on the board as the previous state"); until that exists every run would post, so it must not be activated.
+# Dedup (DEDUP_DESIGN.md): the send job reads the board's own comments, and decide-post.mjs posts only when the status changed or a repeat/receipt is
+# due. It is still a draft: the independent watcher of missing receipts (O6) must exist before activation, and nothing here has run.
+# Shell: no step sets `shell:`, so each `run` is GitHub's default `bash -e {0}` (errexit, no pipefail). Every command whose failure matters
+# therefore stands alone on its own line, nothing important is read through a pipe, and no failure is swallowed. The one pipe left is the final
+# jq-into-the-API post, where the API call is the last command and an empty body from a failed jq is rejected by the API. Adding
+# `shell: bash` (which adds pipefail) is an option for the O5 reviewers.
 name: Officer chain monitor (draft, inactive)
 on:
   schedule:
@@ -64,10 +68,34 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: status-comment
-      - name: Re-validate, then post to board 462 (nothing else is ever sent)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Re-validate the comment (nothing else is ever sent)
         run: |
           node experiments/d7-officer-monitor/validate-comment.mjs status-comment.md
+      - name: Read the board state (read-only; the comment count first, then the whole list)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api "repos/$REPO/issues/462" --jq '.comments' > count.txt
+          # a deleted account has no user object: its login becomes an empty string (some other author), not a failure
+          gh api --paginate "repos/$REPO/issues/462/comments?per_page=100" --jq '.[] | {id: .id, created_at: .created_at, login: (.user.login // ""), body: (if .user.login == "github-actions[bot]" then .body else null end)}' > comments.ndjson
+          jq -s '.' comments.ndjson > comments.json
+      - name: Decide whether this run posts (exit 3 fails the job visibly)
+        id: decide
+        run: |
+          # every run leaves a static record of its decision in the job summary (closed tokens only), including quiet skips and halts, so a watcher of RUNS
+          # (not of the six-hourly receipt) can see that this run happened and why it did or did not post
+          set +e
+          node experiments/d7-officer-monitor/decide-post.mjs status-comment.md comments.json count.txt > decision.txt
+          code=$?
+          cat decision.txt >> "$GITHUB_STEP_SUMMARY"
+          if [ "$code" -eq 0 ]; then cat decision.txt >> "$GITHUB_OUTPUT"; fi
+          exit "$code"
+      - name: Post to board 462 (only when the decision says post)
+        if: ${{ steps.decide.outputs.post == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
           # post the exact validated bytes (command substitution would strip the trailing newline the validator requires)
-          jq -Rs '{body: .}' status-comment.md | gh api repos/${{ github.repository }}/issues/462/comments --input -
+          jq -Rs '{body: .}' status-comment.md | gh api "repos/$REPO/issues/462/comments" --input -

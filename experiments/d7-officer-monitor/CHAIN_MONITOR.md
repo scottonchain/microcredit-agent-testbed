@@ -61,9 +61,8 @@ comment and nothing else (exit 0 OK, 2 ALERT, 3 invalid config or message); it p
 It lives outside `.github/workflows`, and both jobs are also disabled with `if: ${{ false }}`. As drafted it would run every 15 minutes
 with a snapshot job that has `contents: read` only, then an isolated sender job with `issues: write` that re-validates the comment before
 posting the exact validated bytes to board 462 with the repository token (`jq -Rs` into `gh api --input -`, not command substitution). The snapshot job no longer swallows failures with `|| true`: exit 0 and the ALERT exit 2 continue, any other exit fails the job visibly. No wallet secret, no signer, no pull-request or comment trigger. The existing
-signer-capable comment launcher is `if: false` and is not touched. Not designed yet: dedup across ephemeral runs (first design: post only when the
-status changes, using the newest monitor comment as the previous state). Until that exists it must not be activated, because every run
-would post. A scheduled job cannot detect its own missed dispatch, so something else must watch for missing receipts.
+signer-capable comment launcher is `if: false` and is not touched. Dedup across ephemeral runs is now designed, implemented as a pure tested decision and wired into the draft send job (see `DEDUP_DESIGN.md`); O4 is still NOT
+ACCEPTED, and O6 must exist before activation. A scheduled job cannot detect its own missed dispatch, so something else must watch for missing receipts.
 
 ## Scoped operating-owner acceptance request (separate from the officer host and from the held merges)
 
@@ -72,9 +71,9 @@ would post. A scheduled job cannot detect its own missed dispatch, so something 
 | O1 | Named operating owner for this read-only monitor only | NOT ACCEPTED | | |
 | O2 | The approved health fields above, and board 462 as their destination | NOT ACCEPTED | | |
 | O3 | The two public RPC endpoints (no credential, no paid provider) | NOT ACCEPTED | | |
-| O4 | The dedup design for ephemeral runs, once written and reviewed | NOT ACCEPTED | | |
+| O4 | The dedup design in `DEDUP_DESIGN.md` (written; review and decision pending), including its defaults (ALERT repeat 3600 s, OK receipt 21600 s, 8 monitor posts an hour, halt at 2400 comments, snapshot freshness 600 s) and its stated limit: LATEST-STATE delivery only, not incident delivery (a failed ALERT send followed by recovery is never delivered). Whether incident delivery is required, and if so by what durable store, is decided here | NOT ACCEPTED | | |
 | O5 | Adding the workflow to `.github/workflows` in a separate reviewed change, and its schedule. Requires O4 written and reviewed AND O6 accepted first; the Actions used are tag-pinned, and whether to pin them to commit SHAs is decided here | NOT ACCEPTED | | |
-| O6 | An independent watcher of missing workflow receipts (not this workflow), accepted BEFORE O5. A failed or empty run must never read as successful monitoring | NOT ACCEPTED | | |
+| O6 | An independent watcher of RUNS (not of the six-hourly board receipt, which cannot show a missed 15 minute check promptly): it must see that each scheduled run happened and finished, including quiet skips, rate-capped runs, capacity halts, unavailable lists and stale candidates. Accepted BEFORE O5. A failed or empty run must never read as successful monitoring | NOT ACCEPTED | | |
 
 None of these is the officer host (PR 473 template lines b to e), a signer, a deployment or a merge allowance.
 
@@ -88,6 +87,6 @@ None of these is the officer host (PR 473 template lines b to e), a signer, a de
 - That the deployed CreditDesk bytecode equals the pinned source (the timestamp units and counters are source evidence only), and any live non-empty run.
 - A provider that returns an upper-case block hash is refused (BAD_BLOCK): fail closed, so that provider is never used.
 - The desk address in the example config is the current live desk; a redeployed desk needs a config change.
-- Alert dedup across runs, recovery messages, rate limiting of posts, and the board's 2,500-comment cap (board 15 filled; a monitor posting
-  every 15 minutes would fill a board in about a month without dedup).
+- Dedup, recovery messages, the hourly cap and the comment-capacity halt are designed and tested offline in `DEDUP_DESIGN.md`, not run in Actions. Without dedup a
+  monitor posting every 15 minutes would fill a board in about a month (board 15 filled).
 - The officer log, heartbeat, runtime identity and journal are covered only by the host collector, which has no host.

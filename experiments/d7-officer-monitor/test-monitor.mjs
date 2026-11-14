@@ -88,6 +88,17 @@ function chain(o = {}) {
 const now = () => NOWMS;
 const T = async (o, args = {}) => takeSnapshot(chain(o).rpc, { desk: DESK, now, ...args });
 
+// ---- a duplicate address in pending() is refused (CreditDesk pushes an applicant once; a duplicate means a wrong decode or node) ----
+{ const h = S.pending.two; const w1 = h.slice(2 + 64 * 2, 2 + 64 * 3);
+  const dup = h.slice(0, -64) + w1;
+  ok(dp(dup).why === 'DUPLICATE' && dp(h).ok, 'decodePending refuses the same address twice and still accepts two different ones');
+  const dupUpper = h.slice(0, -64) + w1.slice(0, 24) + w1.slice(24).toUpperCase();
+  ok(dp(dupUpper).why === 'DUPLICATE', 'a duplicate that differs only by letter case is still a duplicate');
+  const L = (x) => '0'.repeat(24) + x; const two = (a1, a2) => '0x' + '00'.repeat(31) + '20' + '00'.repeat(31) + '02' + L(a1) + L(a2);
+  ok(dp(two('a'.repeat(40), 'b'.repeat(40))).ok && dp(two('a'.repeat(40), 'A'.repeat(40))).why === 'DUPLICATE' && dp(two('abcdef0123'.repeat(4), 'ABCDEF0123'.repeat(4))).why === 'DUPLICATE', 'letters that differ only by case are the same address (digits-only fixtures could not tell)');
+  const r = await T({ pending: dup, threads: { [A1]: S.thread.ask } });
+  ok(r.ok === false && r.why === 'PENDING_DUPLICATE', 'takeSnapshot fails on a duplicate pending list instead of double counting the applicant'); }
+
 // ---- snapshot ----
 { const c = chain(); const r = await takeSnapshot(c.rpc, { desk: DESK, now });
   ok(r.ok && r.snapshot.pending.length === 0 && r.snapshot.blockNumber === 0xe1b0f7 && r.snapshot.pendingBlockNumber === r.snapshot.blockNumber && r.snapshot.blockTimeMs === BLOCK_TS * 1000 && r.snapshot.readAtMs === NOWMS, 'empty snapshot has the exact shape the collector requires, bound to one block');
@@ -214,12 +225,12 @@ const okOutcome = await check({ [U.p]: handlerOf({}) });
   const chk = await check({ [U.p]: handlerOf({ pending: S.pending.one, threads: { [A1]: S.thread.staleFirstFreshFollowup } }) });
   ok(chk.status === 'ALERT' && chk.alerts.some((a) => a.code === 'PENDING_AGE') && chk.health.oldestPendingAgeS === 1207, 'end to end: the stalled demo with a follow-up message alerts PENDING_AGE with its true wait');
 }
-const m1 = boardMessage({ outcome: okOutcome, nowMs: NOWMS, idSuffix: '202611141200' });
-ok(m1.i[0].op === 'ok' && /^Officer chain monitor OK: block 14790903, pending 0, oldest pending unknown s, reader primary, at 2026-11-14T07:42:42\.000Z\. chain symptoms only/.test(m1.i[0].x) && m1.id === 'm-officer-chain-monitor-202611141200', 'the OK message has the fixed text, with unknown for the age of an empty queue');
+const m1 = boardMessage({ outcome: okOutcome, nowMs: NOWMS, idSuffix: '20261114120000' });
+ok(m1.i[0].op === 'ok' && /^Officer chain monitor OK: block 14790903, pending 0, oldest pending unknown s, reader primary, at 2026-11-14T07:42:42\.000Z\. chain symptoms only/.test(m1.i[0].x) && m1.id === 'm-officer-chain-monitor-20261114120000', 'the OK message has the fixed text, with unknown for the age of an empty queue');
 ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
-{ const al = await check({ [U.p]: handlerOf({ pending: S.pending.one, threads: { [A1]: S.thread.ask } }) }); const m = boardMessage({ outcome: al, nowMs: NOWMS, idSuffix: '202611141200' });
+{ const al = await check({ [U.p]: handlerOf({ pending: S.pending.one, threads: { [A1]: S.thread.ask } }) }); const m = boardMessage({ outcome: al, nowMs: NOWMS, idSuffix: '20261114120000' });
   ok(m.i[0].op === 'alert' && /\(PENDING_AGE\)/.test(m.i[0].x) && validateBoardComment(boardComment(m)).ok, 'an alert message names its code and validates');
-  const none = boardMessage({ outcome: await check({}), nowMs: NOWMS, idSuffix: '202611141200' }); ok(/\(RPC_UNAVAILABLE\)/.test(none.i[0].x) && /reader none/.test(none.i[0].x) && /block unknown, pending unknown/.test(none.i[0].x) && validateBoardComment(boardComment(none)).ok, 'an unreachable-chain message uses unknown and none, and validates'); }
+  const none = boardMessage({ outcome: await check({}), nowMs: NOWMS, idSuffix: '20261114120000' }); ok(/\(RPC_UNAVAILABLE\)/.test(none.i[0].x) && /reader none/.test(none.i[0].x) && /block unknown, pending unknown/.test(none.i[0].x) && validateBoardComment(boardComment(none)).ok, 'an unreachable-chain message uses unknown and none, and validates'); }
 { const hostile = boardMessage({ outcome: { status: 'OK', alerts: [], outbound: { alerts: [{ code: 'EVIL SECRET' }] }, health: { endpoint: 'https://secret.example', blockNumber: -5, pendingCount: '9; DROP', oldestPendingAgeS: 1e300 } }, nowMs: 1e300, idSuffix: 'SECRET' });
   ok(!JSON.stringify(hostile).includes('SECRET') && !JSON.stringify(hostile).includes('secret.example') && !JSON.stringify(hostile).includes('DROP') && validateBoardComment(boardComment(hostile)).ok && hostile.i[0].op === 'alert', 'hostile values in the outcome never reach the message; an inconsistent OK with alert codes becomes an ALERT');
   for (const un of [undefined, null, 5, 'x', {}, { status: 'WEIRD' }]) { const m = boardMessage({ outcome: un, nowMs: NOWMS }); ok(m.i[0].op === 'alert' && /\(UNUSABLE_RESULT\)/.test(m.i[0].x) && validateBoardComment(boardComment(m)).ok, `an unusable outcome (${JSON.stringify(un)}) is an ALERT message naming UNUSABLE_RESULT, never OK`); } }
@@ -233,6 +244,7 @@ ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
 
 // ---- runOnce and the CLIs ----
 { const r = await runOnce({ config: { desk: DESK }, now, fetchImpl: server({ [U.p]: handlerOf({}) }).f, sleep: sleepNone }); ok(r.exitCode === 0 && r.body && validateBoardComment(r.body).ok, 'runOnce healthy: exit 0 with a valid body');
+  { const stamp = new Date(NOWMS).toISOString().replace(/[-:T]/g, '').slice(0, 14); ok(r.body.includes(`m-officer-chain-monitor-${stamp}"`) && /^[0-9]{14}$/.test(stamp), 'regression: the message id carries the observation time to the SECOND (a minute-resolution id let a real change collide with the previous id)'); }
   const a = await runOnce({ config: { desk: DESK, readTimeoutS: 5 }, now, fetchImpl: server({}).f, sleep: sleepNone }); ok(a.exitCode === 2 && a.body && /RPC_UNAVAILABLE/.test(a.body), 'runOnce unreachable chain: exit 2 with an alert body');
   const c = await runOnce({ config: { desk: 'bad' }, now, fetchImpl: server({}).f, sleep: sleepNone }); ok(c.exitCode === 3, 'runOnce bad config: exit 3');
   { const far = await runOnce({ config: { desk: DESK, readTimeoutS: 5 }, now: () => 8.64e15, fetchImpl: server({ [U.p]: handlerOf({}) }).f, sleep: sleepNone });
