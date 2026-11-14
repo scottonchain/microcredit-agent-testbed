@@ -39,13 +39,13 @@ export function decodeThreadTimes(hex) {
     const n = readBig(32); if (n > BigInt(MAX_MSGS)) return { ok: false, why: 'TOO_MANY' };
     const base = 64, msgs = [];
     for (let i = 0; i < Number(n); i++) {
-      const off = readBig(base + 32 * i); if (off > MAXSAFE) return { ok: false, why: 'BAD_OFFSET' };
+      const off = readBig(base + 32 * i); if (off > MAXSAFE || off % 32n !== 0n) return { ok: false, why: 'BAD_OFFSET' }; // ABI offsets are whole words
       const t = base + Number(off); if (t < base + 32 * Number(n) || t + 96 > total) return { ok: false, why: 'BAD_OFFSET' };
       const from = readBig(t), at = readBig(t + 32), so = readBig(t + 64);
       if (from > 1n) return { ok: false, why: 'BAD_FROM' };
       if (at >= 1n << 40n) return { ok: false, why: 'BAD_TIME' };
-      if (so > MAXSAFE || t + Number(so) + 32 > total) return { ok: false, why: 'BAD_STRING' };
-      const len = readBig(t + Number(so)); if (len > MAXSAFE || t + Number(so) + 32 + Math.ceil(Number(len) / 32) * 32 > total) return { ok: false, why: 'BAD_STRING' }; // the padded string must be fully present
+      if (so > MAXSAFE || so % 32n !== 0n || t + Number(so) + 32 > total) return { ok: false, why: 'BAD_STRING' };
+      const len = readBig(t + Number(so)); if (len > MAXSAFE || t + Number(so) + 32 + Number(len) > total) return { ok: false, why: 'BAD_STRING' }; // with whole-word offsets and a whole-word total, the padded string is then fully present
       msgs.push({ from: Number(from), at: Number(at) });
     }
     return { ok: true, messages: msgs };
@@ -85,7 +85,7 @@ export async function takeSnapshot(rpc, { desk, now, maxPending = MAX_PENDING } 
       let lastOfficer = -1; for (let i = 0; i < msgs.length; i++) if (msgs[i].from === 1) lastOfficer = i;
       const suffix = msgs.slice(lastOfficer + 1); // the genuinely unanswered messages: everything after the latest officer message
       if (suffix.length === 0) return fail('THREAD_NO_UNANSWERED'); // pending() listed an applicant whose thread ends with an officer message
-      if (suffix.length > MAX_UNANSWERED || suffix.length !== u.value) return fail('THREAD_INCONSISTENT'); // unanswered() at the same block must agree with the suffix
+      if (suffix.length !== u.value) return fail('THREAD_INCONSISTENT'); // unanswered() (itself capped at MAX_UNANSWERED) at the same block must agree with the suffix
       entries.push({ requestedAtMs: suffix[0].at * 1000 }); // the OLDEST unanswered message: a fresh follow-up does not reset the wait
     }
     const again = await rpc('eth_getBlockByNumber', [at, false]);

@@ -48,6 +48,12 @@ for (const k of Object.keys(S.thread)) { const r = JSON.stringify(dt(S.thread[k]
   ok(dt(setWord(h, 2, 'ffffffffffffffff')).why === 'BAD_OFFSET' && dt(setWord(h, 2, '0')).why === 'BAD_OFFSET', 'element offset out of range or inside the offsets table');
   ok(dt(setWord(h, 6, '10000000000')).why === 'BAD_TIME' && dt(setWord(h, 6, 'ffffffffffffffff')).why === 'BAD_TIME', 'a time of 2^40 or more is refused');
   ok(dt(setWord(h, 6, 'ffffffffff')).ok === true, 'control: the largest uint40 time is accepted');
+  ok(dt(setWord(h, 2, '61')).why === 'BAD_OFFSET' && dt(setWord(h, 3, '21')).why === 'BAD_OFFSET', 'regression: an element offset that is not a whole word is refused');
+  ok(dt(setWord(h, 7, '61')).why === 'BAD_STRING' && dt(setWord(h, 7, '21')).why === 'BAD_STRING', 'regression: a string offset that is not a whole word is refused');
+  { // a string whose offset is one byte off a word boundary but whose shifted length word is perfectly in bounds: only an alignment check refuses it
+    const a = S.thread.ask, at = (w) => 2 + w * 64;
+    const shifted = a.slice(0, at(5)) + '61'.padStart(64, '0') + '00' + a.slice(at(6)) + '00'.repeat(31);
+    ok(shifted.length === a.length + 64 && dt(shifted).why === 'BAD_STRING', 'regression: a misaligned string offset with an in-bounds shifted length word is refused (alignment is checked, not only bounds)'); }
   ok(dt(setWord(h, 7, 'ffffffffffffffffffffffff')).why === 'BAD_STRING' && dt(setWord(h, 7, '10000')).why === 'BAD_STRING', 'a string offset past the end is refused');
   ok(dt(setWord(h, 8, 'ffffffffffff')).why === 'BAD_STRING' && dt(setWord(h, 8, '1000')).why === 'BAD_STRING', 'an absurd string length is refused');
   for (const bad of [undefined, null, 7, 'x', '0x', '0x' + '00'.repeat(32), '0x' + 'ff'.repeat(3 * 1024 * 1024)]) ok(dt(bad).ok === false, `thread decoder refuses ${typeof bad === 'string' ? bad.slice(0, 8) : String(bad)}`); }
@@ -152,6 +158,8 @@ const fetchOf = (f) => async (url, init) => f(url, init, JSON.parse(init.body));
   await rejects((u, i, b) => resp({ jsonrpc: '2.0', id: b.id, error: { code: -1, message: 'x' } }), 'error field');
   await rejects((u, i, b) => resp({ jsonrpc: '2.0', id: b.id }), 'no result');
   await rejects((u, i, b) => resp({ jsonrpc: '1.0', id: b.id, result: '0x1' }), 'wrong version');
+  await rejects((u, i, b) => ({ ok: false, text: async () => JSON.stringify({ jsonrpc: '2.0', id: b.id, result: '0x1' }) }), 'a non-2xx HTTP status even with a well-formed body');
+  await rejects((u, i, b) => resp({ jsonrpc: '2.0', id: b.id, result: '0x1', error: { code: -1, message: 'x' } }), 'both a result and an error');
   await rejects(() => ({ ok: true, text: async () => 'not json' }), 'invalid JSON');
   await rejects((u, i, b) => resp({ jsonrpc: '2.0', id: b.id, result: 'x'.repeat(2000) }), 'oversize body');
   await rejects(() => ({ ok: true, text: async () => 5 }), 'non-text body');
@@ -214,7 +222,7 @@ ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
   const none = boardMessage({ outcome: await check({}), nowMs: NOWMS, idSuffix: '202611141200' }); ok(/\(RPC_UNAVAILABLE\)/.test(none.i[0].x) && /reader none/.test(none.i[0].x) && /block unknown, pending unknown/.test(none.i[0].x) && validateBoardComment(boardComment(none)).ok, 'an unreachable-chain message uses unknown and none, and validates'); }
 { const hostile = boardMessage({ outcome: { status: 'OK', alerts: [], outbound: { alerts: [{ code: 'EVIL SECRET' }] }, health: { endpoint: 'https://secret.example', blockNumber: -5, pendingCount: '9; DROP', oldestPendingAgeS: 1e300 } }, nowMs: 1e300, idSuffix: 'SECRET' });
   ok(!JSON.stringify(hostile).includes('SECRET') && !JSON.stringify(hostile).includes('secret.example') && !JSON.stringify(hostile).includes('DROP') && validateBoardComment(boardComment(hostile)).ok && hostile.i[0].op === 'alert', 'hostile values in the outcome never reach the message; an inconsistent OK with alert codes becomes an ALERT');
-  for (const un of [undefined, null, 5, 'x', {}, { status: 'WEIRD' }]) { const m = boardMessage({ outcome: un, nowMs: NOWMS }); ok(m.i[0].op === 'alert' && validateBoardComment(boardComment(m)).ok, `an unusable outcome (${JSON.stringify(un)}) is an ALERT message, never OK`); } }
+  for (const un of [undefined, null, 5, 'x', {}, { status: 'WEIRD' }]) { const m = boardMessage({ outcome: un, nowMs: NOWMS }); ok(m.i[0].op === 'alert' && /\(UNUSABLE_RESULT\)/.test(m.i[0].x) && validateBoardComment(boardComment(m)).ok, `an unusable outcome (${JSON.stringify(un)}) is an ALERT message naming UNUSABLE_RESULT, never OK`); } }
 { const good = boardComment(m1); const v = (b) => validateBoardComment(b);
   const tampered = [['text changed', good.replace('chain symptoms only', 'all is fine')], ['extra key', good.replace('"v":2', '"v":2,"z":1')], ['URL in text', good.replace('reader primary', 'reader https://x.example')], ['address in text', good.replace('pending 0', 'pending 0x1111111111111111111111111111111111111111')], ['status and op disagree', good.replace('"op":"ok"', '"op":"alert"')], ['unknown code', good.replace('monitor OK:', 'monitor ALERT (EVIL):').replace('"op":"ok"', '"op":"alert"')], ['OK with a code', good.replace('monitor OK:', 'monitor OK (PENDING_AGE):')], ['newline injected', good.replace('block ', 'block\\n')], ['footer changed', good.replace(FOOTER, '_something else_')], ['no footer', good.replace(/---\n.*\n$/s, '')], ['wrong kind', good.replace('"k":"health"', '"k":"ans"')], ['wrong id', good.replace(/m-officer-chain-monitor-\d+/, 'x-1')], ['two items', good.replace('"i":[', '"i":[{"w":"a","op":"ok","x":"y"},')], ['padding', good + 'x'.repeat(3000)], ['trailing text', good + 'hello'], ['not a string', null], ['wrong tr', good.replace('gh:board-default', 'other')]];
   for (const [n, b] of tampered) ok(v(b).ok === false, `validator refuses: ${n}`);
@@ -227,6 +235,10 @@ ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
 { const r = await runOnce({ config: { desk: DESK }, now, fetchImpl: server({ [U.p]: handlerOf({}) }).f, sleep: sleepNone }); ok(r.exitCode === 0 && r.body && validateBoardComment(r.body).ok, 'runOnce healthy: exit 0 with a valid body');
   const a = await runOnce({ config: { desk: DESK, readTimeoutS: 5 }, now, fetchImpl: server({}).f, sleep: sleepNone }); ok(a.exitCode === 2 && a.body && /RPC_UNAVAILABLE/.test(a.body), 'runOnce unreachable chain: exit 2 with an alert body');
   const c = await runOnce({ config: { desk: 'bad' }, now, fetchImpl: server({}).f, sleep: sleepNone }); ok(c.exitCode === 3, 'runOnce bad config: exit 3');
+  { const far = await runOnce({ config: { desk: DESK, readTimeoutS: 5 }, now: () => 8.64e15, fetchImpl: server({ [U.p]: handlerOf({}) }).f, sleep: sleepNone });
+    ok(far.validation.ok === false && far.exitCode === 3 && far.body === null, 'regression: when the message fails its own validation (a year outside four digits) the exit code is 3 and nothing is printed');
+    let printed = 'unset'; const codeFar = await cliMain(['node', 'x', 'cfg.json'], { readFile: () => JSON.stringify({ desk: DESK, readTimeoutS: 5 }), fetchImpl: server({ [U.p]: handlerOf({}) }).f, now: () => 8.64e15, sleep: sleepNone, write: (s) => { printed = s; } });
+    ok(codeFar === 3 && printed === '', 'the CLI prints nothing and exits 3 when the message does not validate'); }
   let out = ''; const code = await cliMain(['node', 'x', 'cfg.json'], { readFile: () => JSON.stringify({ desk: DESK }), fetchImpl: server({ [U.p]: handlerOf({}) }).f, now, sleep: sleepNone, write: (s) => { out += s; } }); ok(code === 0 && validateBoardComment(out).ok, 'the CLI prints only the validated comment');
   let out2 = 'unset'; const code2 = await cliMain(['node', 'x', 'missing.json'], { readFile: () => { throw new Error('ENOENT'); }, fetchImpl: server({}).f, now, sleep: sleepNone, write: (s) => { out2 = s; } }); ok(code2 === 3, 'a missing or unreadable config file is exit 3');
   ok(validateMain(['n', 'x', 'f'], () => boardComment(m1)) === 0 && validateMain(['n', 'x', 'f'], () => 'hello') === 1 && validateMain(['n', 'x', 'f'], () => { throw new Error('x'); }) === 1, 'the sender-side gate exits 0 only for the exact comment'); }
