@@ -16,12 +16,27 @@ liveness nor correctness of any reply. It is a host-independent "is a waiting ap
 ## The reader (`reader.mjs`)
 
 One snapshot is one provider, one chain and one block: check `eth_chainId` equals 84532; read the latest block (number, hash, time);
-call `CreditDesk.pending()` and, for each pending applicant, `thread(applicant)` with the block parameter pinned to that block number;
-read the block hash again by number and require it to be unchanged; return only times. A pending applicant's request time is the time of
-the latest applicant message in its thread (`from` 0); an applicant with none is a failure. The ABI results are decoded strictly (exact
-length, in-bounds offsets, padded strings fully present, caps on counts, `from` 0 or 1, time under 2^40); message text is bounds-checked
-and discarded, applicant addresses are used for the call and dropped. Selectors `0xe20ccec3` (`pending()`) and `0xd0aac15e`
-(`thread(address)`) were computed from the CreditDesk ABI at PR 458 head and are checked against the fixture generator's output.
+call `CreditDesk.pending()` and, for each pending applicant, `thread(applicant)` and `unanswered(applicant)` with the block parameter pinned to
+that block number; read the block hash again by number and require it to be unchanged; return only times.
+
+**Request time = the OLDEST unanswered message, found by thread order, not by comparing timestamps.** The unanswered suffix is every
+message after the latest officer message (`from` 1) in the thread. A pending applicant must have a non-empty suffix; its length must be at most 3
+and must equal `unanswered(applicant)` read at the same block; the request time is the time of the first message in the suffix. A fresh
+follow-up therefore does not reset a stale first request (an earlier version of this reader used the NEWEST applicant message, which would
+have hidden a stalled demo as soon as the borrower wrote again; found by OpenAI's review of c3243b1c). Several messages can share a block
+timestamp, so timestamps are only validated (non-decreasing in thread order, none after the block's own time), never used to decide who
+answered what. A pending list that contradicts its thread (no unanswered suffix), a disagreeing `unanswered()` or any bad time is a failure.
+
+ABI results are decoded strictly (exact length, in-bounds offsets, padded strings fully present, at most 80 messages, `from` 0 or 1, time
+under 2^40); message text is bounds-checked and discarded, applicant addresses are used for the calls and dropped. Selectors `0xe20ccec3`
+(`pending()`), `0xd0aac15e` (`thread(address)`) and `0x1bee4aef` (`unanswered(address)`) were computed from the CreditDesk ABI and are
+checked against the fixture generator's output.
+
+**Contract provenance (source evidence).** `experiments/d7-live/contracts/CreditDesk.sol` at PR 458 head `9c181672`, blob
+`3d5034349ec58096733ead7d50a633a867ee165d`: `Msg { uint8 from; uint40 at; string text; }`, `at = uint40(block.timestamp)` (seconds),
+`MAX_MSGS` 80, `MAX_UNANSWERED` 3, `say()` appends an applicant message and increments `unanswered[applicant]`, `reply()` appends an officer
+message and resets it to 0, `pending()` lists applicants whose `unanswered` is above 0. This closes the timestamp-units question as SOURCE
+evidence; it is not proof that the deployed bytecode equals this source, and it is not a live non-empty run.
 
 Providers are tried in order (default: primary `https://base-sepolia-rpc.publicnode.com`, fallback `https://sepolia.base.org`), each
 as a whole with two attempts and a bounded backoff (500 ms). A failed snapshot restarts entirely on the next provider; fields are never
@@ -38,14 +53,14 @@ message whose text is built from a template and whitelisted values:
 
 Approved fields requested: status, alert codes (from the fixed table), block number, pending count, oldest pending age in seconds,
 reader label, snapshot time. No hash, address, URL, applicant data or free text. `validateBoardComment` is the sender-side gate: exact keys, exact
-shape and a text pattern built only from that template; anything else is refused. `run-chain-monitor.mjs <config>` prints the validated
+shape, a text pattern built only from that template, and CANONICAL BYTES (the JSON text must equal `JSON.stringify` of itself, which refuses duplicate keys, escaped keys and spacing tricks, so the bytes posted are exactly the bytes validated); anything else is refused. The posted body must keep its final newline, so a future dedup design must not reuse this validator unchanged on bodies read back from the board. `run-chain-monitor.mjs <config>` prints the validated
 comment and nothing else (exit 0 OK, 2 ALERT, 3 invalid config or message); it posts nothing. `validate-comment.mjs <file>` is the gate as a command.
 
 ## The draft workflow (`draft-workflow/officer-chain-monitor.yml`) is NOT ACTIVE
 
 It lives outside `.github/workflows`, and both jobs are also disabled with `if: ${{ false }}`. As drafted it would run every 15 minutes
 with a snapshot job that has `contents: read` only, then an isolated sender job with `issues: write` that re-validates the comment before
-posting to board 462 with the repository token. No wallet secret, no signer, no pull-request or comment trigger. The existing
+posting the exact validated bytes to board 462 with the repository token (`jq -Rs` into `gh api --input -`, not command substitution). The snapshot job no longer swallows failures with `|| true`: exit 0 and the ALERT exit 2 continue, any other exit fails the job visibly. No wallet secret, no signer, no pull-request or comment trigger. The existing
 signer-capable comment launcher is `if: false` and is not touched. Not designed yet: dedup across ephemeral runs (first design: post only when the
 status changes, using the newest monitor comment as the previous state). Until that exists it must not be activated, because every run
 would post. A scheduled job cannot detect its own missed dispatch, so something else must watch for missing receipts.
@@ -58,8 +73,8 @@ would post. A scheduled job cannot detect its own missed dispatch, so something 
 | O2 | The approved health fields above, and board 462 as their destination | NOT ACCEPTED | | |
 | O3 | The two public RPC endpoints (no credential, no paid provider) | NOT ACCEPTED | | |
 | O4 | The dedup design for ephemeral runs, once written and reviewed | NOT ACCEPTED | | |
-| O5 | Adding the workflow to `.github/workflows` in a separate reviewed change, and its schedule | NOT ACCEPTED | | |
-| O6 | An independent watcher of missing workflow receipts (not this workflow) | NOT ACCEPTED | | |
+| O5 | Adding the workflow to `.github/workflows` in a separate reviewed change, and its schedule. Requires O4 written and reviewed AND O6 accepted first; the Actions used are tag-pinned, and whether to pin them to commit SHAs is decided here | NOT ACCEPTED | | |
+| O6 | An independent watcher of missing workflow receipts (not this workflow), accepted BEFORE O5. A failed or empty run must never read as successful monitoring | NOT ACCEPTED | | |
 
 None of these is the officer host (PR 473 template lines b to e), a signer, a deployment or a merge allowance.
 
@@ -70,8 +85,8 @@ None of these is the officer host (PR 473 template lines b to e), a signer, a de
   fixtures generated with viem from the ABI.
 - Public endpoints are best-effort and rate limited (Base documents this); GitHub scheduled runs can be delayed or dropped and a
   schedule is paused after a long period without repository activity (per GitHub's documentation, as OpenAI verified).
-- That the thread `at` field is the block time in seconds is an assumption read from `desk.mjs`, not checked against the contract source here.
-- That the latest applicant message time is the request time of an unanswered request, including after an earlier answered request.
+- That the deployed CreditDesk bytecode equals the pinned source (the timestamp units and counters are source evidence only), and any live non-empty run.
+- A provider that returns an upper-case block hash is refused (BAD_BLOCK): fail closed, so that provider is never used.
 - The desk address in the example config is the current live desk; a redeployed desk needs a config change.
 - Alert dedup across runs, recovery messages, rate limiting of posts, and the board's 2,500-comment cap (board 15 filled; a monitor posting
   every 15 minutes would fill a board in about a month without dedup).

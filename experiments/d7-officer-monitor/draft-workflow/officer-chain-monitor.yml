@@ -34,7 +34,11 @@ jobs:
           node-version: '22'
       - name: Read the chain and build the status comment (read-only, no secrets)
         run: |
-          node experiments/d7-officer-monitor/run-chain-monitor.mjs experiments/d7-officer-monitor/monitor-config.example.json > status-comment.md || true
+          set +e
+          node experiments/d7-officer-monitor/run-chain-monitor.mjs experiments/d7-officer-monitor/monitor-config.example.json > status-comment.md
+          code=$?
+          # exit 2 is an ALERT comment that must still be sent; any other non-zero exit (3 = invalid config or message) fails the job visibly
+          if [ "$code" -ne 0 ] && [ "$code" -ne 2 ]; then echo "monitor failed with exit $code" >&2; exit "$code"; fi
       - uses: actions/upload-artifact@v4
         with:
           name: status-comment
@@ -65,4 +69,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           node experiments/d7-officer-monitor/validate-comment.mjs status-comment.md
-          gh api repos/${{ github.repository }}/issues/462/comments -f body="$(cat status-comment.md)"
+          # post the exact validated bytes (command substitution would strip the trailing newline the validator requires)
+          jq -Rs '{body: .}' status-comment.md | gh api repos/${{ github.repository }}/issues/462/comments --input -

@@ -6,7 +6,11 @@
 const CHAIN_ID = 84532;
 export const SEL_PENDING = '0xe20ccec3'; // pending()            (toFunctionSelector, checked against the CreditDesk ABI at PR 458 head)
 export const SEL_THREAD = '0xd0aac15e'; //  thread(address)
-const MAX_PENDING = 200, MAX_MSGS = 1000, MAX_RESULT_HEX = 2 * 1024 * 1024;
+export const SEL_UNANSWERED = '0x1bee4aef'; // unanswered(address)
+// Constants of CreditDesk.sol at PR 458 head 9c181672 (blob 3d5034349ec58096733ead7d50a633a867ee165d): MAX_MSGS 80, MAX_UNANSWERED 3, Msg.at = uint40(block.timestamp).
+// say() appends an applicant message and adds 1 to unanswered(applicant) (at most 3); reply() appends an officer message and sets it to 0;
+// pending() lists the applicants whose unanswered() is above 0. Source evidence only: the deployed bytecode is not compared here.
+const MAX_PENDING = 200, MAX_MSGS = 80, MAX_UNANSWERED = 3, MAX_RESULT_HEX = 2 * 1024 * 1024;
 const HEX = /^0x(?:[0-9a-f]{2})*$/i, ADDR = /^0x[0-9a-fA-F]{40}$/, H32 = /^0x[0-9a-f]{64}$/;
 const isNum = (x) => typeof x === 'number' && Number.isFinite(x);
 const word = (hex, i) => hex.slice(2 + i * 64, 2 + (i + 1) * 64);
@@ -48,6 +52,12 @@ export function decodeThreadTimes(hex) {
   } catch { return { ok: false, why: 'OUT_OF_BOUNDS' }; }
 }
 
+export function decodeSmallUint(hex, max) {
+  if (typeof hex !== 'string' || !/^0x[0-9a-fA-F]{64}$/.test(hex)) return { ok: false, why: 'BAD_HEX' };
+  const v = big(hex.slice(2)); if (v > BigInt(max)) return { ok: false, why: 'TOO_LARGE' };
+  return { ok: true, value: Number(v) };
+}
+
 const qty = (v) => typeof v === 'string' && /^0x[0-9a-f]+$/i.test(v) ? Number(BigInt(v) <= MAXSAFE ? BigInt(v) : -1n) : NaN;
 const hexn = (n) => '0x' + n.toString(16);
 const fail = (why) => ({ ok: false, why });
@@ -66,11 +76,17 @@ export async function takeSnapshot(rpc, { desk, now, maxPending = MAX_PENDING } 
     if (p.addresses.length > maxPending) return fail('TOO_MANY_PENDING');
     const entries = [];
     for (const a of p.addresses) {
-      const data = SEL_THREAD + '0'.repeat(24) + a.slice(2).toLowerCase();
-      const t = decodeThreadTimes(await rpc('eth_call', [{ to: desk, data }, at])); if (!t.ok) return fail('THREAD_' + t.why);
-      const lastAsk = t.messages.filter((m) => m.from === 0).reduce((m, x) => Math.max(m, x.at), 0);
-      if (lastAsk <= 0) return fail('THREAD_NO_REQUEST'); // a pending applicant must have an applicant message
-      entries.push({ requestedAtMs: lastAsk * 1000 });
+      const arg = '0'.repeat(24) + a.slice(2).toLowerCase();
+      const t = decodeThreadTimes(await rpc('eth_call', [{ to: desk, data: SEL_THREAD + arg }, at])); if (!t.ok) return fail('THREAD_' + t.why);
+      const u = decodeSmallUint(await rpc('eth_call', [{ to: desk, data: SEL_UNANSWERED + arg }, at]), MAX_UNANSWERED); if (!u.ok) return fail('UNANSWERED_' + u.why);
+      const msgs = t.messages;
+      // order is the order of the thread; timestamps are only checked, never used to decide who answered what
+      for (let i = 0; i < msgs.length; i++) { if (msgs[i].at > ts) return fail('THREAD_FUTURE'); if (i > 0 && msgs[i].at < msgs[i - 1].at) return fail('THREAD_TIME_ORDER'); }
+      let lastOfficer = -1; for (let i = 0; i < msgs.length; i++) if (msgs[i].from === 1) lastOfficer = i;
+      const suffix = msgs.slice(lastOfficer + 1); // the genuinely unanswered messages: everything after the latest officer message
+      if (suffix.length === 0) return fail('THREAD_NO_UNANSWERED'); // pending() listed an applicant whose thread ends with an officer message
+      if (suffix.length > MAX_UNANSWERED || suffix.length !== u.value) return fail('THREAD_INCONSISTENT'); // unanswered() at the same block must agree with the suffix
+      entries.push({ requestedAtMs: suffix[0].at * 1000 }); // the OLDEST unanswered message: a fresh follow-up does not reset the wait
     }
     const again = await rpc('eth_getBlockByNumber', [at, false]);
     if (!again || again.hash !== head.hash) return fail('HASH_CHANGED'); // a reorg or a different node answered in between

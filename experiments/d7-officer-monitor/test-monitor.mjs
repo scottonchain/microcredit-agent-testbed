@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { decodePending, decodeThreadTimes, takeSnapshot, readWithFallback, makeJsonRpc, validEndpointUrl, SEL_PENDING, SEL_THREAD } from './reader.mjs';
+import { decodePending, decodeThreadTimes, decodeSmallUint, takeSnapshot, readWithFallback, makeJsonRpc, validEndpointUrl, SEL_PENDING, SEL_THREAD, SEL_UNANSWERED } from './reader.mjs';
 import { parseMonitorConfig, chainOnlyCheck, boardMessage, boardComment, validateBoardComment, runOnce, DEFAULT_ENDPOINTS, FOOTER } from './adapter.mjs';
 import { main as cliMain } from './run-chain-monitor.mjs';
 import { main as validateMain } from './validate-comment.mjs';
@@ -17,7 +17,7 @@ const NOWMS = 1794642162000; // 2026-11-13T... in the fixtures' world; block tim
 const BLOCK_TS = 1794642155; // seconds
 const HASH = '0x' + 'ab'.repeat(32), HASH2 = '0x' + 'cd'.repeat(32);
 
-ok(S.selectors.pending === SEL_PENDING && S.selectors.thread === SEL_THREAD, 'hard-coded selectors equal the ones viem computed from the ABI');
+ok(S.selectors.pending === SEL_PENDING && S.selectors.thread === SEL_THREAD && S.selectors.unanswered === SEL_UNANSWERED, 'hard-coded selectors equal the ones viem computed from the ABI');
 
 // ---- decoders ----
 const dp = (h) => decodePending(h);
@@ -37,19 +37,23 @@ ok(dt(S.thread.askReplyAsk).ok && dt(S.thread.askReplyAsk).messages.map((m) => `
 ok(dt(S.thread.empty).ok && dt(S.thread.empty).messages.length === 0, 'empty thread decodes');
 ok(dt(S.thread.emptyText).ok && dt(S.thread.unicodeText).ok, 'empty and multi-byte text decode');
 ok(dt(S.thread.badFrom).why === 'BAD_FROM', 'from above 1 is refused');
+ok(dt(S.thread.eighty).ok && dt(S.thread.eighty).messages.length === 80 && dt(S.thread.eightyOne).why === 'TOO_MANY', 'the contract limit of 80 messages is the decoder cap: 80 decodes, 81 is refused');
 for (const k of Object.keys(S.thread)) { const r = JSON.stringify(dt(S.thread[k])); ok(!/hello|first|second|reply|caf/.test(r), `thread sample ${k}: no message text in the decoded result`); }
 { const h = S.thread.askReplyAsk;
   let accepted = null; for (let cut = 2; cut < h.length; cut += 2) { const r = dt(h.slice(0, cut)); if (r.ok) { accepted = cut; break; } }
   ok(accepted === null, `regression: no truncation of a thread result decodes (first accepted cut: ${accepted})`);
   const setWord = (hex, wordIdx, val) => hex.slice(0, 2 + wordIdx * 64) + val.padStart(64, '0') + hex.slice(2 + (wordIdx + 1) * 64);
   ok(dt(setWord(h, 0, '40')).why === 'BAD_OFFSET', 'wrong outer offset');
-  ok(dt(setWord(h, 1, '10000')).why === 'TOO_MANY', 'a huge message count is refused before any allocation');
+  ok(dt(setWord(h, 1, '51')).why === 'TOO_MANY' && dt(setWord(h, 1, '10000')).why === 'TOO_MANY', 'a huge message count is refused before any allocation');
   ok(dt(setWord(h, 2, 'ffffffffffffffff')).why === 'BAD_OFFSET' && dt(setWord(h, 2, '0')).why === 'BAD_OFFSET', 'element offset out of range or inside the offsets table');
   ok(dt(setWord(h, 6, '10000000000')).why === 'BAD_TIME' && dt(setWord(h, 6, 'ffffffffffffffff')).why === 'BAD_TIME', 'a time of 2^40 or more is refused');
   ok(dt(setWord(h, 6, 'ffffffffff')).ok === true, 'control: the largest uint40 time is accepted');
   ok(dt(setWord(h, 7, 'ffffffffffffffffffffffff')).why === 'BAD_STRING' && dt(setWord(h, 7, '10000')).why === 'BAD_STRING', 'a string offset past the end is refused');
   ok(dt(setWord(h, 8, 'ffffffffffff')).why === 'BAD_STRING' && dt(setWord(h, 8, '1000')).why === 'BAD_STRING', 'an absurd string length is refused');
   for (const bad of [undefined, null, 7, 'x', '0x', '0x' + '00'.repeat(32), '0x' + 'ff'.repeat(3 * 1024 * 1024)]) ok(dt(bad).ok === false, `thread decoder refuses ${typeof bad === 'string' ? bad.slice(0, 8) : String(bad)}`); }
+
+ok(decodeSmallUint(S.unanswered.n0, 3).value === 0 && decodeSmallUint(S.unanswered.n3, 3).value === 3 && decodeSmallUint(S.unanswered.n4, 3).why === 'TOO_LARGE', 'unanswered() decodes and is capped at the contract limit of 3');
+for (const bad of [undefined, null, 5, '0x', '0x01', S.unanswered.n1 + '00', '0x' + 'zz'.repeat(32)]) ok(decodeSmallUint(bad, 3).ok === false, `unanswered() decoder refuses ${String(bad).slice(0, 10)}`);
 
 // ---- a fake chain (JSON-RPC level) ----
 function chain(o = {}) {
@@ -69,6 +73,7 @@ function chain(o = {}) {
       const data = params[0].data;
       if (data === SEL_PENDING) return o.pending ?? S.pending.empty;
       if (data.startsWith(SEL_THREAD)) { const a = '0x' + data.slice(-40); return (o.threads ?? {})[a] ?? S.thread.ask; }
+      if (data.startsWith(SEL_UNANSWERED)) { const a = '0x' + data.slice(-40); if (o.unanswered && o.unanswered[a] !== undefined) return o.unanswered[a]; const d = decodeThreadTimes((o.threads ?? {})[a] ?? S.thread.ask); let last = -1; (d.messages ?? []).forEach((m, i) => { if (m.from === 1) last = i; }); return S.unanswered['n' + ((d.messages ?? []).length - 1 - last)]; }
     }
     throw new Error('unexpected ' + method);
   };
@@ -88,13 +93,28 @@ const T = async (o, args = {}) => takeSnapshot(chain(o).rpc, { desk: DESK, now, 
   ok(r.ok && r.snapshot.pending.map((p) => p.requestedAtMs).join() === '1794640500000,1794640000000', 'a pending applicant is dated by the latest APPLICANT message, not the officer reply');
   ok(!JSON.stringify(r).includes(A1.slice(2)) && !JSON.stringify(r).includes('hello') && !JSON.stringify(r).includes('first'), 'the snapshot carries no applicant address or message text');
   const c = chain({ pending: S.pending.two, threads: th }); await takeSnapshot(c.rpc, { desk: DESK, now });
-  ok(c.calls.filter((x) => x.method === 'eth_call' && x.params[0].data.startsWith(SEL_THREAD)).map((x) => x.params[0].data.slice(-40)).join() === `${A1.slice(2)},${A2.slice(2)}`, 'thread() is called once per pending applicant with the address as the only argument'); }
+  ok(c.calls.filter((x) => x.method === 'eth_call' && x.params[0].data.startsWith(SEL_THREAD)).map((x) => x.params[0].data.slice(-40)).join() === `${A1.slice(2)},${A2.slice(2)}`, 'thread() is called once per pending applicant with the address as the only argument');
+  ok(c.calls.filter((x) => x.method === 'eth_call' && x.params[0].data.startsWith(SEL_UNANSWERED)).length === 2 && c.calls.filter((x) => x.method === 'eth_call').every((x) => x.params[1] === '0xe1b0f7'), 'unanswered() is cross-checked once per applicant at the same pinned block'); }
+// ---- the request time is the OLDEST unanswered message, in thread order ----
+{ const one = (hex, un) => T({ pending: S.pending.one, threads: { [A1]: hex }, ...(un ? { unanswered: { [A1]: un } } : {}) });
+  const B = BLOCK_TS;
+  let r = await one(S.thread.oldAnsweredThenTwoUnanswered); ok(r.ok && r.snapshot.pending[0].requestedAtMs === 1794641000000, 'old answered history followed by two unanswered: the wait starts at the first unanswered message, not at the history or the newest message');
+  r = await one(S.thread.staleFirstFreshFollowup); ok(r.ok && r.snapshot.pending[0].requestedAtMs === (B - 1200) * 1000, 'regression: a fresh follow-up does not reset a stale first request (the age is about 1200 s, not about 5 s)');
+  r = await one(S.thread.sameTimestampAskReplyAsk); ok(r.ok && r.snapshot.pending[0].requestedAtMs === (B - 60) * 1000 && r.snapshot.pending.length === 1, 'same-timestamp ask, reply, ask: order decides, the suffix after the officer message is the last ask');
+  r = await one(S.thread.sameTimestampTwoAsks); ok(r.ok && r.snapshot.pending[0].requestedAtMs === (B - 60) * 1000, 'two unanswered asks sharing a timestamp are both in the suffix');
+  ok((await one(S.thread.endsWithReply)).why === 'THREAD_NO_UNANSWERED', 'a thread ending with an officer message contradicts pending()');
+  ok((await one(S.thread.futureAsk)).why === 'THREAD_FUTURE', 'a message dated after the block is refused');
+  ok((await one(S.thread.decreasingTimes)).why === 'THREAD_TIME_ORDER', 'timestamps going backwards in thread order are refused');
+  ok((await one(S.thread.fourUnanswered)).why === 'UNANSWERED_TOO_LARGE' || (await one(S.thread.fourUnanswered)).why === 'THREAD_INCONSISTENT', 'more unanswered messages than the contract allows is refused');
+  ok((await one(S.thread.oldAnsweredThenTwoUnanswered, S.unanswered.n1)).why === 'THREAD_INCONSISTENT' && (await one(S.thread.oldAnsweredThenTwoUnanswered, S.unanswered.n3)).why === 'THREAD_INCONSISTENT' && (await one(S.thread.ask, S.unanswered.n0)).why === 'THREAD_INCONSISTENT', 'unanswered() at the same block must equal the length of the unanswered suffix');
+  ok((await one(S.thread.ask, S.unanswered.n4)).why === 'UNANSWERED_TOO_LARGE' && (await one(S.thread.ask, '0x12')).why === 'UNANSWERED_BAD_HEX', 'an out-of-range or malformed unanswered() result is refused');
+  ok((await one(S.thread.eightyOne)).why === 'THREAD_TOO_MANY', 'an 81-message thread is refused'); }
 ok((await T({ chainId: '0x1' })).why === 'WRONG_CHAIN' && (await T({ chainId: undefined, throwOn: (m) => m === 'eth_chainId' })).ok === false && (await T({ chainId: 'x' })).why === 'WRONG_CHAIN', 'a wrong or missing chain id is refused');
 for (const [n, b] of [['null block', null], ['no number', { timestamp: '0x1', hash: HASH }], ['zero timestamp', { number: '0x1', timestamp: '0x0', hash: HASH }], ['bad hash', { number: '0x1', timestamp: '0x5', hash: '0x12' }], ['non-hex number', { number: '12', timestamp: '0x5', hash: HASH }], ['number beyond safe', { number: '0xffffffffffffffffff', timestamp: '0x5', hash: HASH }]]) ok((await T({ block: b })).why === 'BAD_BLOCK', `bad latest block (${n}) is refused`);
 ok((await T({ alternate: true })).why === 'HASH_CHANGED', 'a block hash that changed during the reads (reorg or another node) invalidates the snapshot');
 ok((await T({ secondHash: HASH2 })).why === 'HASH_CHANGED', 'a changed hash on the second read is HASH_CHANGED');
 ok((await T({ pending: S.pending.many201 })).why === 'PENDING_TOO_MANY', 'too many pending applicants is a failure, not a truncation');
-ok((await T({ pending: S.pending.one, threads: { [A1]: S.thread.replyOnly } })).why === 'THREAD_NO_REQUEST' && (await T({ pending: S.pending.one, threads: { [A1]: S.thread.empty } })).why === 'THREAD_NO_REQUEST', 'a pending applicant with no applicant message is a failure');
+ok((await T({ pending: S.pending.one, threads: { [A1]: S.thread.replyOnly } })).why === 'THREAD_NO_UNANSWERED' && (await T({ pending: S.pending.one, threads: { [A1]: S.thread.empty } })).why === 'THREAD_NO_UNANSWERED' && (await T({ pending: S.pending.one, threads: { [A1]: S.thread.endsWithReply } })).why === 'THREAD_NO_UNANSWERED', 'regression: pending() listing an applicant whose thread has no unanswered suffix is a failure');
 ok((await T({ pending: S.pending.one, threads: { [A1]: S.thread.badFrom } })).why === 'THREAD_BAD_FROM' && (await T({ pending: S.pending.one, threads: { [A1]: '0x00' } })).ok === false, 'an undecodable thread is a failure');
 ok((await T({ pending: '0x1234' })).why === 'PENDING_BAD_LENGTH', 'an undecodable pending result is a failure');
 for (const m of ['eth_chainId', 'eth_getBlockByNumber', 'eth_call']) ok((await T({ throwOn: (mm) => mm === m })).why === 'RPC_ERROR', `an RPC error from ${m} is RPC_ERROR`);
@@ -182,6 +202,10 @@ const check = (map, cfg = {}, nowFn = now) => chainOnlyCheck({ config: { desk: D
 
 // ---- the message that may leave ----
 const okOutcome = await check({ [U.p]: handlerOf({}) });
+{
+  const chk = await check({ [U.p]: handlerOf({ pending: S.pending.one, threads: { [A1]: S.thread.staleFirstFreshFollowup } }) });
+  ok(chk.status === 'ALERT' && chk.alerts.some((a) => a.code === 'PENDING_AGE') && chk.health.oldestPendingAgeS === 1207, 'end to end: the stalled demo with a follow-up message alerts PENDING_AGE with its true wait');
+}
 const m1 = boardMessage({ outcome: okOutcome, nowMs: NOWMS, idSuffix: '202611141200' });
 ok(m1.i[0].op === 'ok' && /^Officer chain monitor OK: block 14790903, pending 0, oldest pending unknown s, reader primary, at 2026-11-14T07:42:42\.000Z\. chain symptoms only/.test(m1.i[0].x) && m1.id === 'm-officer-chain-monitor-202611141200', 'the OK message has the fixed text, with unknown for the age of an empty queue');
 ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
@@ -194,6 +218,9 @@ ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
 { const good = boardComment(m1); const v = (b) => validateBoardComment(b);
   const tampered = [['text changed', good.replace('chain symptoms only', 'all is fine')], ['extra key', good.replace('"v":2', '"v":2,"z":1')], ['URL in text', good.replace('reader primary', 'reader https://x.example')], ['address in text', good.replace('pending 0', 'pending 0x1111111111111111111111111111111111111111')], ['status and op disagree', good.replace('"op":"ok"', '"op":"alert"')], ['unknown code', good.replace('monitor OK:', 'monitor ALERT (EVIL):').replace('"op":"ok"', '"op":"alert"')], ['OK with a code', good.replace('monitor OK:', 'monitor OK (PENDING_AGE):')], ['newline injected', good.replace('block ', 'block\\n')], ['footer changed', good.replace(FOOTER, '_something else_')], ['no footer', good.replace(/---\n.*\n$/s, '')], ['wrong kind', good.replace('"k":"health"', '"k":"ans"')], ['wrong id', good.replace(/m-officer-chain-monitor-\d+/, 'x-1')], ['two items', good.replace('"i":[', '"i":[{"w":"a","op":"ok","x":"y"},')], ['padding', good + 'x'.repeat(3000)], ['trailing text', good + 'hello'], ['not a string', null], ['wrong tr', good.replace('gh:board-default', 'other')]];
   for (const [n, b] of tampered) ok(v(b).ok === false, `validator refuses: ${n}`);
+  const dupX = good.replace('"x":"', '"x":"FREE TEXT LEAK","x":"'); const dupW = good.replace('"w":"officer-chain-monitor"', '"w":"FREE TEXT","w":"officer-chain-monitor"'); const esc = good.replace('"op":', '"o\\u0070":'); const spaced = good.replace('"v":2,', '"v": 2,');
+  ok(v(dupX).ok === false && v(dupX).why === 'NOT_CANONICAL' && v(dupW).ok === false && v(esc).ok === false && v(spaced).ok === false, 'regression: duplicate x, duplicate w, an escaped key and non-canonical spacing are refused (the posted bytes must equal the validated bytes)');
+  ok(v(good.replace(/\n$/, '')).ok === false, 'a missing final newline is refused, as posted bytes must match');
   ok(v(good).ok, 'control: the untouched message validates'); }
 
 // ---- runOnce and the CLIs ----
@@ -213,6 +240,8 @@ ok(validateBoardComment(boardComment(m1)).ok, 'the OK message validates');
   ok(/issues: write/.test(jobs[1][2]) && !/contents: write/.test(jobs[1][2]), 'only the isolated sender has issues: write');
   ok(!/secrets\.(?!GITHUB_TOKEN)/.test(wf) && !/pull_request|issue_comment|workflow_run|push:/.test(wf.replace(/#.*$/gm, '')), 'no secret other than the repository token and no untrusted-event trigger');
   ok(/concurrency:/.test(wf) && (wf.match(/timeout-minutes: 5/g) || []).length === 2 && /persist-credentials: false/.test(wf), 'concurrency, timeouts and no persisted credentials');
-  ok(/validate-comment\.mjs/.test(wf) && wf.indexOf('validate-comment.mjs') < wf.indexOf('gh api'), 'the sender validates before it posts'); }
+  ok(/validate-comment\.mjs/.test(wf) && wf.indexOf('validate-comment.mjs') < wf.indexOf('gh api'), 'the sender validates before it posts');
+  ok(!/\|\| true/.test(wf) && /exit "\$code"/.test(wf) && /-ne 2/.test(wf), 'regression: no || true; only exit 0 and the ALERT exit 2 continue, any other exit fails the job visibly');
+  ok(/jq -Rs '\{body: \.\}' status-comment\.md \| gh api/.test(wf) && !/-f body=/.test(wf), 'regression: the exact validated bytes are posted (no command substitution that strips the final newline)'); }
 
 console.log(`${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);

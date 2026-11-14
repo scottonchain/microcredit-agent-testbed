@@ -72,6 +72,7 @@ export function validateBoardComment(body) {
     if (typeof body !== 'string' || body.length > 2000) return { ok: false, why: 'SIZE' };
     const m = /^```json\n(\{.*\})\n```\n\n---\n(.*)\n$/s.exec(body); if (!m || m[2] !== FOOTER) return { ok: false, why: 'FORM' };
     const j = JSON.parse(m[1]);
+    if (JSON.stringify(j) !== m[1]) return { ok: false, why: 'NOT_CANONICAL' }; // the bytes that are posted must be exactly the bytes that were validated: no duplicate keys, escapes or spacing tricks
     const keys = Object.keys(j).sort().join(); if (keys !== 'f,i,id,k,t,tr,v') return { ok: false, why: 'KEYS' };
     if (j.v !== 2 || j.k !== 'health' || j.f !== 'monitor' || j.tr !== 'gh:board-default' || JSON.stringify(j.t) !== '["x","h"]' || !/^m-officer-chain-monitor-[0-9]{12}$/.test(j.id)) return { ok: false, why: 'FIELDS' };
     if (!Array.isArray(j.i) || j.i.length !== 1) return { ok: false, why: 'ITEMS' };
