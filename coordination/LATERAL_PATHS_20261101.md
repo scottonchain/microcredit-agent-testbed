@@ -101,7 +101,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
 | 5 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
 | 6 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
-| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; dues-earned credit lines add 5 to 10 points; the saving tracks trading partners per member: under half the cash with one to three partners each, just over half at about five, 70 percent or more at ten; stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
+| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; carrying balances across periods adds 5 to 23 points, the dues-earned credit line only 2 to 4; the saving tracks trading partners per member (netting alone under half with one to three partners each, 56 to 59 percent at about five, 70 percent or more at ten); stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
 | 8 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 9 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 3 | 2 | 2 | 11 | Bound November 14: the paid programme (Karya: 134,565 workers, 3.2 million dollars of wages by end 2025, about 5 dollars an hour per press) publishes no validation gap and calls validation solved; the programme with a measured gap (Common Voice Pashto, 35.2 percent validated) pays nobody ([receipt](../evidence/lateral-20261114/README.md)); parked as a public-good option; re-entry when a paid programme publishes a validation gap |
 | 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
@@ -422,10 +422,11 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 ## Concrete steps taken on November 14 (daily run)
 
 - F4: the clearing-ring simulation ran a day early on the contract's
-  dues-earned credit rule: netting, not credit, does the work, and the saving
-  tracks trading partners per member (under half with one to three, just
-  over half at about five, 70 percent or more at ten); bound; evidence 2 to
-  3, total 12; a sized design note pending a network.
+  dues-earned credit rule: netting, not credit, does the work (carried
+  balances add 5 to 23 points, the earned line 2 to 4), and the saving tracks
+  trading partners per member; bound; evidence 2 to 3, total 12; a sized
+  design note pending a network. Codex and Hermes each caught one defect in
+  the first head (a member-count cutoff; a sign error and missing control).
 - F1: the paid-programme test split: Karya publishes scale and wages but no
   validation gap; Common Voice has a measured gap (35.2 percent validated for
   Pashto) and no payer; bound; evidence 2 to 3, total 11; parked as a

@@ -8,8 +8,10 @@ cumulative settled turnover (plus a small floor), so credit follows evidence of 
 than a sponsor's capital. Cash is needed only for the net debt that exceeds a member's line.
 
 Reported per (members, density): gross invoiced volume, share settled by bilateral netting,
-by multilateral netting, and with earned credit lines; cash needed per 100 of gross trade; and
-the share of members who hit their line at least once.
+by multilateral netting, with carried balances but no credit line (a member draws only on its own
+past surplus), and with the earned line; cash needed per 100 of gross trade for each; and the share
+of members who hit their line at least once. The sign of the absorbed-debt term and the zero-line
+control follow Hermes's review of the first head (PR 477 comment 6883516407).
 
 Run: python3 evidence/lateral-20261114/f4_clearing_ring.py
 """
@@ -47,13 +49,14 @@ def simulate(n, density, periods=24, r=0.10, floor=1.0, seed=7):
             turnover[i] += sum(O[j][i] for j in range(n))
             line = floor + r * turnover[i]
             bal[i] += net[i]
-            if bal[i] < -line:
-                cash = -line - bal[i]   # member pays cash to come back to the line
-                bal[i] = -line
-                hit_line[i] = True
-                credit_settled += (net[i] + cash) if net[i] < 0 else 0.0
-            else:
-                credit_settled += -net[i] if net[i] < 0 else 0.0
+            if net[i] < 0:
+                if bal[i] < -line:
+                    cash = -line - bal[i]   # member pays cash to come back to the line
+                    bal[i] = -line
+                    hit_line[i] = True
+                    credit_settled += -net[i] - cash   # the part of this period's net debt absorbed
+                else:
+                    credit_settled += -net[i]          # whole net debt absorbed by carried surplus or line
         # members in surplus are paid out of the ring's carried balances (zero-sum), no cash needed
     settled_with_credit = multi + credit_settled
     return {
@@ -70,10 +73,19 @@ def simulate(n, density, periods=24, r=0.10, floor=1.0, seed=7):
 
 
 def run():
+    """For each size: period netting only; carried balances with no credit line (r = 0, no floor:
+    a member may only draw on its own past surplus); carried balances plus the dues-earned line."""
     out = []
     for n in (20, 50, 200):
         for d in (0.05, 0.10, 0.20, 0.40):
-            out.append(simulate(n, d))
+            base = simulate(n, d, r=0.0, floor=0.0)
+            earned = simulate(n, d)
+            row = dict(earned)
+            row["share_settled_carried_balances_no_line"] = base["share_settled_with_earned_credit"]
+            row["cash_per_100_gross_carried_no_line"] = base["cash_per_100_gross_with_credit"]
+            row["points_added_by_carried_balances"] = round(100 * (base["share_settled_with_earned_credit"] - base["share_settled_multilateral"]), 1)
+            row["points_added_by_earned_line"] = round(100 * (earned["share_settled_with_earned_credit"] - base["share_settled_with_earned_credit"]), 1)
+            out.append(row)
     return out
 
 
