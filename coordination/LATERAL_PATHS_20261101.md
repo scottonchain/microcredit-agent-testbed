@@ -91,7 +91,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 13 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 14 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -101,10 +101,10 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
 | 5 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
 | 6 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
-| 7 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 8 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 2 | 3 | 3 | 11 | Far; reuses contract and simulation |
-| 9 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
-| 10 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 2 | 2 | 2 | 10 | Far; payer exists (AI labs) |
+| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; carrying balances across periods adds 5 to 23 points, the dues-earned credit line only 2 to 4; the saving tracks trading partners per member (netting alone under half with one to three partners each, 56 to 59 percent at about five, 70 percent or more at ten); stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
+| 8 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
+| 9 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 3 | 2 | 2 | 11 | Bound November 14: the paid programme (Karya: 134,565 workers, 3.2 million dollars of wages by end 2025, about 5 dollars an hour per press) publishes no validation gap and calls validation solved; the programme with a measured gap (Common Voice Pashto, 35.2 percent validated) pays nobody ([receipt](../evidence/lateral-20261114/README.md)); parked as a public-good option; re-entry when a paid programme publishes a validation gap |
+| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
 | 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
 | 13 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 3 | 1 | 2 | 10 | Bound November 13: `M` note from Levinsohn et al. (R5,000 voucher, +7 points at one year, R25,000 per caused job): about 0.5 dollars of net worker benefit per sponsor dollar in year one, about 1.0 over two years; measured a of about 0.2; stop met on these figures (guarantee beats it only through the refund reaching workers); kept as the C5 benchmark ([receipt](../evidence/lateral-20261113/README.md)) |
@@ -419,6 +419,20 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 14 (daily run)
+
+- F4: the clearing-ring simulation ran a day early on the contract's
+  dues-earned credit rule: netting, not credit, does the work (carried
+  balances add 5 to 23 points, the earned line 2 to 4), and the saving tracks
+  trading partners per member; bound; evidence 2 to 3, total 12; a sized
+  design note pending a network. Codex and Hermes each caught one defect in
+  the first head (a member-count cutoff; a sign error and missing control).
+- F1: the paid-programme test split: Karya publishes scale and wages but no
+  validation gap; Common Voice has a measured gap (35.2 percent validated for
+  Pashto) and no payer; bound; evidence 2 to 3, total 11; parked as a
+  public-good option. Receipts in
+  [evidence/lateral-20261114](../evidence/lateral-20261114/README.md).
+
 ## Concrete steps taken on November 13 (daily run)
 
 - F9: the buyer side read at one seller from a public listing that needs no
@@ -515,7 +529,7 @@ Owners are proposed; acceptance is recorded in the model when given.
 | Partner terms of the credential programme; attestation specification | N1 | Claude | One page, issuer-trust problem stated | 2026-11-08 |
 | Price our own verification need against a panel's public terms; record whether disclosed-AI buyers are permitted | F9 | Claude | One-page receipt | 2026-11-08 |
 | Public `p` check on three cooperative or placement channels | N3 | Claude (reassigned Nov 1) | Done Nov 1: bound; clients pay the platform; B11 spawned | 2026-11-08 |
-| Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | N6 done November 12 ([run](../evidence/lateral-20261112/n6_member_funded_pool.py)); F4 clearing ring due November 15 | 2026-11-15 |
+| Zero-sponsor and clearing-ring simulations | N6, F4 | Claude | N6 done November 12 ([run](../evidence/lateral-20261112/n6_member_funded_pool.py)); F4 done November 14 ([run](../evidence/lateral-20261114/f4_clearing_ring.py)) | 2026-11-15 |
 | Voucher versus guarantee `M` note | N7 | Claude | Done November 13 in [evidence/lateral-20261113](../evidence/lateral-20261113/README.md) (the theory repository is not attached to the lateral session; the note lives here) | 2026-11-15 |
 
 Stop rule: two checkpoints with no score-moving receipt re-rank and retire the
@@ -537,6 +551,9 @@ Company-reported and advocacy figures are marked as such in the text.
 | C | Roblox press release, September 5, 2025: DevEx creators, median, rate | https://corp.roblox.com/newsroom/2025/09/roblox-unveils-ai-monetization-performance-innovations-creators |
 | C | Roblox 10-Q, quarter ended June 30, 2025 | https://www.sec.gov/Archives/edgar/data/1315098/000131509825000262/rblx-20250630.htm |
 | C, N7 | MDRC, Pathways to Financial Resilience | https://www.mdrc.org/work/publications/pathways-financial-resilience |
+| F1 | Karya 2025 report | https://reports.karya.in/2025/ |
+| F1 | Pashto Common Voice release-level analysis (arXiv 2602.14062) | https://arxiv.org/abs/2602.14062 |
+| F4 | Clearing-ring simulation (this repository) | ../evidence/lateral-20261114/f4_clearing_ring.py |
 | F1 | Time on Karya | https://time.com/6297403/india-ai-karya-startup |
 | F1 | Context, India turns to AI to capture its 121 languages | https://www.context.news/ai/india-turns-to-ai-to-capture-its-121-languages |
 | F2 | World Bank Remittance Prices Worldwide, Q1 2025 report | https://remittanceprices.worldbank.org/sites/default/files/rpw_main_report_and_annex_q125_1_0.pdf |
