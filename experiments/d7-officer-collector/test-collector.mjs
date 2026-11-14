@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { collectOnce, parseLog, parseConfig, gitBlobSha, sanitize, toOutbound, OUTBOUND_DETAIL, ALLOWED_FIELDS, COLLECTOR_RANGES, COLLECTOR_DEFAULTS } from './collector.mjs';
 import { newState, step, toSend, ack, inspectState } from './alertstate.mjs';
 import { checkWatchdog } from './watchdog.mjs';
+import { serializeDelivery, MAX_CODES, MAX_RAW } from './delivery.mjs';
 
 let pass = 0, fail = 0;
 const ok = (c, n) => { if (c) pass++; else { fail++; console.log('FAIL', n); } };
@@ -241,11 +242,56 @@ const SECRETS = ['SECRETKEY123', 'rpc.example.org', 'SECRETNAME', 'KEY=abc', '0x
     await collectOnce({ get logText() { throw new SECRETNAME('boom 0xdeadbeef'); }, nowMs: NOW, config: cfg, fileBytes: FILE, fetchPending: emptyQ })];
   for (const [i, r] of rs.entries()) { const out = JSON.stringify(r.outbound); for (const x of SECRETS) ok(!out.includes(x), `outbound payload ${i} never contains ${x}`); ok(r.outbound.alerts.every((a) => a.detail === OUTBOUND_DETAIL[a.code]), `outbound payload ${i} uses only the static text for each code`); const inner = JSON.stringify(r.alerts); for (const x of SECRETS) ok(!inner.includes(x), `the internal alert list ${i} never contains ${x} either`); }
   ok(rs[3].outbound.alerts.map((a) => a.code).join() === 'COLLECTOR_FAILURE', 'a thrown exception becomes the static COLLECTOR_FAILURE with no exception name');
-  const o = toOutbound({ alerts: [{ code: 'EVIL SECRETNAME', detail: 'SECRETKEY123' }, { code: 'HEARTBEAT_MISSING', detail: 'x SECRETKEY123' }, null, { code: 5 }, { code: '__proto__' }] });
+  const o = toOutbound({ status: 'ALERT', alerts: [{ code: 'EVIL SECRETNAME', detail: 'SECRETKEY123' }, { code: 'HEARTBEAT_MISSING', detail: 'x SECRETKEY123' }, null, { code: 5 }, { code: '__proto__' }] });
   ok(JSON.stringify(o).includes('UNKNOWN_CODE') && !JSON.stringify(o).includes('SECRET') && o.alerts.length === 2, 'unknown or malformed alert codes become UNKNOWN_CODE with static text');
-  ok(toOutbound(undefined).status === 'OK' && toOutbound({ alerts: 'x' }).alerts.length === 0, 'an empty or unusable input has no alerts');
+  for (const unusable of [undefined, null, {}, { alerts: 'x' }, { status: 'OK' }, { alerts: [] }, { status: 'ALERT', alerts: [] }, { status: 'WEIRD', alerts: [] }, 'x', 5]) { const r = toOutbound(unusable); ok(r.status === 'ALERT' && r.alerts.map((a) => a.code).join() === 'UNUSABLE_RESULT', `regression: an unusable result (${JSON.stringify(unusable)}) is UNUSABLE_RESULT, never a reassuring OK`); }
+  ok(toOutbound({ status: 'OK', alerts: [] }).status === 'OK' && toOutbound({ status: 'OK', alerts: [] }).alerts.length === 0, 'control: a genuine OK result stays OK');
+  ok(toOutbound({ status: 'OK', alerts: [{ code: 'RPC_STALE' }] }).status === 'ALERT', 'an OK status with alerts inside is still an alert');
   // every code the code base can raise has static text
   const raised = new Set(); for (const r of [...rs, await run({ logText: fx('duplicate-runner.jsonl') }), await run({ logText: fx('restart-loop.jsonl') }), await run({ logText: fx('exited.jsonl') }), await run({ logText: undefined })]) for (const a of r.alerts) raised.add(a.code);
   ok([...raised].every((c) => Object.hasOwn(OUTBOUND_DETAIL, c)), `every raised code has static outbound text (${[...raised].filter((c) => !Object.hasOwn(OUTBOUND_DETAIL, c)).join(',') || 'none missing'})`); }
 
+
+// ---- safe integers and numeric bounds ----
+{ const good = st(step(newState(), A, T)); const itm = items(good)[0];
+  const SAFE = Number.MAX_SAFE_INTEGER;
+  for (const [name, d] of [['seq 2^53', { ...good, seq: 2 ** 53 }], ['seq MAX_SAFE_INTEGER (cannot increment)', { ...good, seq: SAFE }], ['seq 1e300', { ...good, seq: 1e300 }], ['okStreak 1e300', { ...good, okStreak: 1e300 }], ['okStreak 2^53', { ...good, okStreak: 2 ** 53 }],
+    ['item seq 1e300', { ...good, seq: 1e300, pending: [{ ...itm, seq: 1e300 }] }], ['item seq MAX_SAFE_INTEGER', { ...good, seq: SAFE, pending: [{ ...itm, seq: SAFE }] }], ['codes of 33 entries', { ...good, pending: [{ ...itm, codes: Array(33).fill('A') }] }], ['a 65-character code', { ...good, pending: [{ ...itm, codes: ['A'.repeat(65)] }] }]]) {
+    ok(inspectState(d).valid === false, `regression: ${name} is a damaged state, not valid`); }
+  let big = { ...good, seq: SAFE - 2, pending: [] }; ok(inspectState(big).valid === true, 'control: a seq below the safe limit is valid');
+  ok(step(big, B, T + 5).ok === true && step(big, B, T + 5).state.seq === SAFE - 1, 'the last usable seq still increments exactly');
+  ok(step({ ...big, seq: SAFE - 1 }, B, T + 5).ok === false, 'one step later the state is refused rather than reusing keys');
+  ok(inspectState({ ...good, pending: [{ ...itm, codes: Array(32).fill('A') }] }).valid === true && inspectState({ ...good, pending: [{ ...itm, codes: ['A'.repeat(64)] }] }).valid === true, 'control: 32 codes and a 64-character code are inside the bounds'); }
+for (const bn of [1e300, 2 ** 53, Number.MAX_SAFE_INTEGER + 1]) ok(has(await run({ fetchPending: async () => ({ pending: [], ...blk({ blockNumber: bn, pendingBlockNumber: bn }) }) }), 'RPC_BLOCK_INVALID'), `regression: blockNumber ${bn} is not a safe integer`);
+ok((await run({ fetchPending: async () => ({ pending: [], ...blk({ blockNumber: Number.MAX_SAFE_INTEGER, pendingBlockNumber: Number.MAX_SAFE_INTEGER }) }) })).status === 'OK', 'control: the largest safe block number is accepted');
+{ const T0 = '2026-12-01T00:00:00Z';
+  for (const v of [1e308, -1, 1e12 + 1, -0.0001]) ok(sanitize({ t: T0, ev: 'heartbeat', inflight: v }).inflight === null, `regression: heartbeat value ${v} is outside the plausible range and becomes null`);
+  for (const v of [0, 1, 1e12, 31536000]) ok(sanitize({ t: T0, ev: 'heartbeat', inflight: v }).inflight === v, `control: heartbeat value ${v} passes`);
+  ok(sanitize({ t: T0, ev: 'exit', uptimeS: 1e300 }).uptimeS === null, 'exit uptime out of range becomes null'); }
+
+// ---- delivery serializer: the only path from outbox items to a sender ----
+{ const mk = (o = {}) => ({ key: 'alert:o3', kind: 'alert', codes: ['HEARTBEAT_MISSING', 'RPC_STALE'], at: NOW, seq: 3, ...o });
+  const g = serializeDelivery(mk());
+  ok(g.ok && g.message.id === 'alert:o3' && g.message.kind === 'alert' && g.message.alerts.map((a) => a.code).join() === 'HEARTBEAT_MISSING,RPC_STALE' && g.message.alerts.every((a) => a.detail === OUTBOUND_DETAIL[a.code]) && g.quarantine === undefined && g.message.at === '2026-12-01T12:00:00.000Z', 'a normal item becomes a message with static text and an ISO time, no quarantine');
+  ok(serializeDelivery(mk({ kind: 'recovery', key: 'recovery:o3', codes: [] })).ok, 'a recovery item with no codes is deliverable');
+  const SEC = 'SECRETKEY123';
+  const cases = [['secret in a code', mk({ codes: [`HEARTBEAT_MISSING ${SEC}`, 'RPC_STALE'] })], ['secret as a code that is a known name prefix', mk({ codes: [`RPC_STALE${SEC}`] })], ['__proto__ code', mk({ codes: ['__proto__'] })], ['non-string codes', mk({ codes: [5, null, { a: SEC }] })],
+    ['oversized code', mk({ codes: ['A'.repeat(100000)] })]];
+  for (const [n, it] of cases) { const r = serializeDelivery(it); ok(r.ok && !JSON.stringify(r.message).includes(SEC) && JSON.stringify(r.message).length < 2000 && r.quarantine && r.quarantine.reason === 'CODES_ALTERED' && r.quarantine.raw.length <= MAX_RAW, `${n}: message is safe, raw evidence is quarantined locally and bounded`); }
+  ok(serializeDelivery(mk({ codes: Array(MAX_CODES + 1).fill('RPC_STALE') })).ok === false, 'more than the allowed number of codes is not sent');
+  ok(serializeDelivery(mk({ codes: [] })).ok === false, 'an alert with no codes is not sent');
+  for (const [n, it] of [['secret in the key', mk({ key: `alert:o3 ${SEC}` })], ['key without the o-prefix', mk({ key: 'alert:3' })], ['key with leading zero', mk({ key: 'alert:o03', seq: 3 })], ['key too long', mk({ key: 'alert:o' + '9'.repeat(40) })], ['unknown kind', mk({ kind: 'page', key: 'page:o3' })],
+    ['kind and key disagree', mk({ kind: 'repeat' })], ['seq and key disagree', mk({ seq: 4 })], ['seq not a safe integer', mk({ seq: 1e300, key: 'alert:o1e+300' })], ['null item', null], ['array item', []], ['string item', 'x'], ['codes not an array', mk({ codes: SEC })]]) {
+    const r = serializeDelivery(it); ok(r.ok === false && r.quarantine && r.quarantine.raw.length <= MAX_RAW && typeof r.reason === 'string' && !('message' in r), `${n}: refused, nothing to send, raw evidence kept for local storage only`); }
+  const huge = mk({ junk: 'x'.repeat(1e6) }); ok(serializeDelivery({ ...huge, key: 'bad' }).quarantine.raw.length === MAX_RAW, 'quarantined evidence is bounded at the cap');
+  const cyc = mk({ key: 'bad' }); cyc.self = cyc; ok(serializeDelivery(cyc).ok === false && serializeDelivery(cyc).quarantine.raw === '[unserializable]', 'an unserialisable item is refused and does not throw');
+  ok(serializeDelivery(mk({ at: Number.NaN })).message.at === null && serializeDelivery(mk({ at: 1e300 })).message.at === null, 'an unusable time is omitted, not forwarded');
+  ok(serializeDelivery({ get key() { throw new Error('x'); } }).ok === false, 'a throwing item is refused without throwing');
+  // salvaged items from a damaged outbox go through the same serializer
+  const good = st(step(newState(), A, T)); const it0 = items(good)[0];
+  const damaged = { ...good, pending: [it0, { key: 'alert:o9', kind: 'alert', codes: [`EVIL ${SEC}`], at: NOW, seq: 9 }, { key: 'x', nope: SEC }] };
+  const rr = step(damaged, OK, T + 1); ok(rr.ok === false && rr.salvaged.length === 2, 'two of three items in a damaged outbox are salvageable');
+  const unsafeSeq = step({ ...good, pending: [it0, { ...it0, key: 'alert:o9', seq: 1e300 }, { ...it0, key: 'alert:o8', seq: 2 ** 53 }] }, OK, T + 1);
+  ok(unsafeSeq.ok === false && unsafeSeq.salvaged.length === 1 && unsafeSeq.salvaged[0].key === it0.key, 'regression: an item whose seq is not a safe integer is not salvaged');
+  const sent = rr.salvaged.map(serializeDelivery); ok(sent.every((x) => x.ok) && !JSON.stringify(sent.map((x) => x.message)).includes(SEC) && sent.filter((x) => x.quarantine).length === 1, 'salvaged items are serialised safely: no secret in any message, the altered one quarantined locally'); }
 console.log(`${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);

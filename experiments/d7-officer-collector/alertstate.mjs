@@ -12,14 +12,14 @@ const KINDS = ['alert', 'repeat', 'recovery'];
 export const newState = () => ({ status: 'OK', codesKey: '', firstAlertAt: null, lastQueuedAt: null, okStreak: 0, seq: 0, pending: [] });
 const clone = (s) => JSON.parse(JSON.stringify(s));
 const validItem = (p) => !!p && typeof p === 'object' && typeof p.key === 'string' && p.key.length > 0 && p.key.length <= 120 && KINDS.includes(p.kind)
-  && Array.isArray(p.codes) && p.codes.every((c) => typeof c === 'string') && isNum(p.at) && Number.isInteger(p.seq) && p.seq >= 1;
+  && Array.isArray(p.codes) && p.codes.length <= 32 && p.codes.every((c) => typeof c === 'string' && c.length <= 64) && isNum(p.at) && Number.isSafeInteger(p.seq) && p.seq >= 1 && p.seq < Number.MAX_SAFE_INTEGER;
 export function inspectState(state) {
   const pendingIn = state && typeof state === 'object' && Array.isArray(state.pending) ? state.pending : [];
   let salvaged = []; try { salvaged = pendingIn.filter(validItem).map((p) => ({ key: p.key, kind: p.kind, codes: [...p.codes], at: p.at, seq: p.seq })); } catch { salvaged = []; }
   const s = state;
   const valid = !!s && typeof s === 'object' && !Array.isArray(s) && (s.status === 'OK' || s.status === 'ALERT') && typeof s.codesKey === 'string'
     && (s.firstAlertAt === null || isNum(s.firstAlertAt)) && (s.lastQueuedAt === null || isNum(s.lastQueuedAt))
-    && Number.isInteger(s.okStreak) && s.okStreak >= 0 && Number.isInteger(s.seq) && s.seq >= 0
+    && Number.isSafeInteger(s.okStreak) && s.okStreak >= 0 && Number.isSafeInteger(s.seq) && s.seq >= 0 && s.seq < Number.MAX_SAFE_INTEGER - 1
     && Array.isArray(s.pending) && s.pending.every(validItem) && s.pending.every((p) => p.seq <= s.seq)
     && new Set(s.pending.map((p) => p.key)).size === s.pending.length;
   return { valid, salvaged };

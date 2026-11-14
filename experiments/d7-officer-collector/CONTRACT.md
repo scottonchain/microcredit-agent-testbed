@@ -22,12 +22,17 @@ Three small modules and no I/O. The host does the reading and sending; the code 
   state is never reset: the input is left untouched and every structurally valid undelivered item found in it is returned in `salvaged`.
   The host must deliver the salvaged items, raise ALERT_STATE_INVALID on its independent path (the watchdog's), and keep the
   damaged state file for repair instead of overwriting it.
+- `delivery.mjs`: `serializeDelivery(item)` is the ONLY path from an outbox item (from `toSend`, or salvaged from a damaged outbox) to a
+  sender. Items are internal objects and may carry arbitrary keys or codes. The serializer accepts only a validated occurrence id
+  (`kind:o<n>`, safe integer, matching kind and seq), at most 32 codes, known codes and the static text per code; unknown codes
+  become UNKNOWN_CODE and anything it cannot make safe is refused. Refused or altered items return `quarantine` (reason plus raw
+  evidence cut to 4096 characters) for LOCAL storage only: never to a sender, a board or a log that leaves the host. It never throws.
 - `watchdog.mjs`: `checkWatchdog({ nowMs, record, maxSilenceS })` checks the collector's last run record. It imports nothing
   (tested), so it shares no code with the collector, and it must run on a different schedule and host with its own delivery path.
 
 Per invocation the host: reads the log file text, reads the daemon file bytes, calls `collectOnce`, writes `collectorRun` to
-the run-record file for the watchdog, runs `step` on the result, sends each `toSend` item through the alert path and calls `ack` only
-after a successful delivery. What leaves the host is `result.outbound`, built from a static table (code plus fixed text); a
+the run-record file for the watchdog, runs `step` on the result, passes each `toSend` item (and each salvaged item) through
+`serializeDelivery`, sends only the resulting message through the alert path and calls `ack` only after a successful delivery. What leaves the host is `result.outbound`, built from a static table (code plus fixed text); a
 string from the log, the config, the chain reader or an exception is never copied into it. The proposed interval is five minutes; the owners set it (and the observer's ranges apply).
 
 ## Privacy
@@ -66,6 +71,8 @@ secrets in every path (log fields, config keys, thrown exceptions, reader errors
 | Run record missing, damaged, future, or `crashed` | WATCHDOG_RECORD_MISSING, FUTURE_RECORD, COLLECTOR_CRASHED |
 | An unusable or inconsistent result handed to alert state | counts as a failure, never a recovery |
 | A damaged alert outbox or bad parameters | typed failure ALERT_STATE_INVALID; input untouched; valid undelivered items salvaged |
+| An unusable collector result at the delivery boundary (missing, no alerts array, ALERT with nothing in it) | UNUSABLE_RESULT, never a reassuring OK |
+| Counters or ages outside 0 to 1e12, block numbers or sequence counters that are not safe integers | value becomes null, RPC_BLOCK_INVALID, or a damaged-state failure |
 
 The observer's own codes (heartbeat, poll, held, model, ambiguous transaction, pending age, journal) pass through unchanged.
 

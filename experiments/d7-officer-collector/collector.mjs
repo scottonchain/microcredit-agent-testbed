@@ -26,6 +26,7 @@ const SPEC = {
   'send-ambiguous': { enums: {}, nums: [] },
   'poll-error': { enums: {}, nums: [] },
 };
+const NUM_MAX = 1e12; // counters and ages: anything negative, non-finite or above this is not a plausible value and becomes null
 export const ALLOWED_FIELDS = Object.fromEntries(Object.entries(SPEC).map(([ev, s]) => [ev, [...Object.keys(s.enums), ...s.nums]]));
 
 export function sanitize(e) {
@@ -35,7 +36,7 @@ export function sanitize(e) {
   const ms = Date.parse(e.t);
   if (!Number.isFinite(ms)) return null;
   const out = { t: new Date(ms).toISOString(), ev: e.ev };
-  for (const k of spec.nums) if (e[k] !== undefined) out[k] = isNum(e[k]) ? e[k] : null;
+  for (const k of spec.nums) if (e[k] !== undefined) out[k] = isNum(e[k]) && e[k] >= 0 && e[k] <= NUM_MAX ? e[k] : null;
   for (const [k, allowed] of Object.entries(spec.enums)) if (e[k] !== undefined) out[k] = typeof e[k] === 'string' && allowed.includes(e[k]) ? e[k] : 'other';
   return out;
 }
@@ -79,8 +80,11 @@ export const OUTBOUND_DETAIL = {
   UNKNOWN_CODE: 'an alert with an unrecognised code was raised',
 };
 export function toOutbound(result) {
-  const list = result && Array.isArray(result.alerts) ? result.alerts : [];
-  const codes = [...new Set(list.map((a) => (a && typeof a.code === 'string' && Object.hasOwn(OUTBOUND_DETAIL, a.code) ? a.code : 'UNKNOWN_CODE')))].sort();
+  const usable = !!result && typeof result === 'object' && Array.isArray(result.alerts) && (result.status === 'OK' || result.status === 'ALERT');
+  const list = usable ? result.alerts : [{ code: 'UNUSABLE_RESULT' }];
+  const raised = list.map((a) => (a && typeof a.code === 'string' && Object.hasOwn(OUTBOUND_DETAIL, a.code) ? a.code : 'UNKNOWN_CODE'));
+  if (usable && result.status === 'ALERT' && raised.length === 0) raised.push('UNUSABLE_RESULT'); // an ALERT with nothing in it is not a reassuring OK
+  const codes = [...new Set(raised)].sort();
   return { status: codes.length ? 'ALERT' : 'OK', alerts: codes.map((code) => ({ code, detail: OUTBOUND_DETAIL[code] })) };
 }
 
@@ -142,7 +146,7 @@ export async function readPending(fetchPending, { nowMs, timeoutS, staleBlockS, 
   finally { clearTimeout(timer); }
   if (!r || typeof r !== 'object' || !Array.isArray(r.pending) || !isNum(r.readAtMs)) return fail('RPC_UNAVAILABLE', 'pending queue read returned an unusable shape');
   const skewMs = clockSkewS * 1000;
-  if (!isNum(r.blockTimeMs) || !Number.isInteger(r.blockNumber) || r.blockNumber < 0 || Math.abs(r.readAtMs - nowMs) > skewMs) return fail('RPC_BLOCK_INVALID', 'block evidence is missing or unusable');
+  if (!isNum(r.blockTimeMs) || !Number.isSafeInteger(r.blockNumber) || r.blockNumber < 0 || Math.abs(r.readAtMs - nowMs) > skewMs) return fail('RPC_BLOCK_INVALID', 'block evidence is missing or unusable');
   if (r.blockTimeMs > nowMs + skewMs) return fail('RPC_BLOCK_INVALID', 'block time is in the future');
   if (nowMs - r.blockTimeMs > staleBlockS * 1000) return fail('RPC_STALE', `latest block is older than ${staleBlockS} s`);
   if (r.pendingBlockNumber !== r.blockNumber) return fail('RPC_BLOCK_MISMATCH', 'the queue was not read at the evidenced block');
@@ -175,9 +179,9 @@ export function runIdentity(events, nowMs, { restartMax, restartWindowS }) {
 export async function collectOnce(input) {
   const nowMs = input && typeof input === 'object' ? input.nowMs : undefined;
   const stamp = isNum(nowMs) && Number.isFinite(new Date(nowMs).getTime()) ? new Date(nowMs).toISOString() : null;
-  const done = (alerts, extra = {}) => ({ status: alerts.length ? 'ALERT' : 'OK', alerts, outbound: toOutbound({ alerts }), ...extra, collectorRun: { at: stamp, status: alerts.length ? 'alert' : 'ok' } });
+  const done = (alerts, extra = {}) => ({ status: alerts.length ? 'ALERT' : 'OK', alerts, outbound: toOutbound({ status: alerts.length ? 'ALERT' : 'OK', alerts }), ...extra, collectorRun: { at: stamp, status: alerts.length ? 'alert' : 'ok' } });
   try {
-    if (!isNum(nowMs) || stamp === null) { const alerts = [{ code: 'CONFIG_INVALID', detail: 'nowMs is not a usable time' }]; return { status: 'ALERT', alerts, outbound: toOutbound({ alerts }), collectorRun: { at: null, status: 'crashed' } }; }
+    if (!isNum(nowMs) || stamp === null) { const alerts = [{ code: 'CONFIG_INVALID', detail: 'nowMs is not a usable time' }]; return { status: 'ALERT', alerts, outbound: toOutbound({ status: 'ALERT', alerts }), collectorRun: { at: null, status: 'crashed' } }; }
     const { logText, config, fileBytes, fetchPending } = input;
     const cfg = parseConfig(config);
     if (!cfg.ok) return done(cfg.alerts);
@@ -195,6 +199,6 @@ export async function collectOnce(input) {
     return done(alerts, { meta: { events: events.length, malformed: parsed.ok ? parsed.malformed : null, partialTail: parsed.ok ? parsed.partialTail : null, truncatedHead: parsed.ok ? parsed.truncatedHead : null } });
   } catch (e) {
     const alerts = [{ code: 'COLLECTOR_FAILURE', detail: 'collector threw an exception' }];
-    return { status: 'ALERT', alerts, outbound: toOutbound({ alerts }), collectorRun: { at: stamp, status: 'crashed' } };
+    return { status: 'ALERT', alerts, outbound: toOutbound({ status: 'ALERT', alerts }), collectorRun: { at: stamp, status: 'crashed' } };
   }
 }
