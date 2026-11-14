@@ -88,6 +88,17 @@ function chain(o = {}) {
 const now = () => NOWMS;
 const T = async (o, args = {}) => takeSnapshot(chain(o).rpc, { desk: DESK, now, ...args });
 
+// ---- a duplicate address in pending() is refused (CreditDesk pushes an applicant once; a duplicate means a wrong decode or node) ----
+{ const h = S.pending.two; const w1 = h.slice(2 + 64 * 2, 2 + 64 * 3);
+  const dup = h.slice(0, -64) + w1;
+  ok(dp(dup).why === 'DUPLICATE' && dp(h).ok, 'decodePending refuses the same address twice and still accepts two different ones');
+  const dupUpper = h.slice(0, -64) + w1.slice(0, 24) + w1.slice(24).toUpperCase();
+  ok(dp(dupUpper).why === 'DUPLICATE', 'a duplicate that differs only by letter case is still a duplicate');
+  const L = (x) => '0'.repeat(24) + x; const two = (a1, a2) => '0x' + '00'.repeat(31) + '20' + '00'.repeat(31) + '02' + L(a1) + L(a2);
+  ok(dp(two('a'.repeat(40), 'b'.repeat(40))).ok && dp(two('a'.repeat(40), 'A'.repeat(40))).why === 'DUPLICATE' && dp(two('abcdef0123'.repeat(4), 'ABCDEF0123'.repeat(4))).why === 'DUPLICATE', 'letters that differ only by case are the same address (digits-only fixtures could not tell)');
+  const r = await T({ pending: dup, threads: { [A1]: S.thread.ask } });
+  ok(r.ok === false && r.why === 'PENDING_DUPLICATE', 'takeSnapshot fails on a duplicate pending list instead of double counting the applicant'); }
+
 // ---- snapshot ----
 { const c = chain(); const r = await takeSnapshot(c.rpc, { desk: DESK, now });
   ok(r.ok && r.snapshot.pending.length === 0 && r.snapshot.blockNumber === 0xe1b0f7 && r.snapshot.pendingBlockNumber === r.snapshot.blockNumber && r.snapshot.blockTimeMs === BLOCK_TS * 1000 && r.snapshot.readAtMs === NOWMS, 'empty snapshot has the exact shape the collector requires, bound to one block');

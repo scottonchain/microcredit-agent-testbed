@@ -26,6 +26,8 @@ export function decodePending(hex) {
   if (words !== 2 + Number(n)) return { ok: false, why: 'BAD_LENGTH' };
   const out = [];
   for (let i = 0; i < Number(n); i++) { const w = word(hex, 2 + i); if (!/^0{24}[0-9a-f]{40}$/i.test(w)) return { ok: false, why: 'BAD_ADDRESS' }; out.push('0x' + w.slice(24)); }
+  // CreditDesk pushes an applicant once (index1-guarded), so pending() cannot list an address twice. A duplicate therefore means a wrong decode or a wrong node, and counting it twice would also inflate the pending count: refuse it.
+  if (new Set(out.map((a) => a.toLowerCase())).size !== out.length) return { ok: false, why: 'DUPLICATE' };
   return { ok: true, addresses: out };
 }
 // thread(address) returns tuple[]{uint8 from, uint40 at, string text}. Only (from, at) are kept; the text is bounds-checked and discarded.
