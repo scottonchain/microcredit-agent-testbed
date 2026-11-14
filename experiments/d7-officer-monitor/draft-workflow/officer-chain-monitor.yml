@@ -1,0 +1,68 @@
+# NOT ACTIVE. This file lives outside .github/workflows on purpose, and every job below is also disabled with `if: ${{ false }}`.
+# It is a draft for review only. To activate it the owners must (1) accept the PR that adds it, (2) name its operating owner,
+# (3) copy it to .github/workflows/ in a separate reviewed change and (4) remove the `if: ${{ false }}` lines. Until then nothing runs.
+#
+# What it would do: every 15 minutes read the Base Sepolia CreditDesk pending queue (chain symptoms only) and post one fixed-shape,
+# validated status comment to board 462. It never sees the officer log, heartbeat or runtime hash, holds no wallet secret and no signer,
+# and is an auxiliary monitor only: scheduled runs can be delayed or dropped and a schedule is paused after a long period without
+# repository activity, and a job cannot detect its own missed dispatch, so something outside it must watch for missing receipts.
+# Not designed here: dedup across ephemeral runs (the first design is "post only when the status changes, using the newest monitor
+# comment on the board as the previous state"); until that exists every run would post, so it must not be activated.
+name: Officer chain monitor (draft, inactive)
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch: {}
+concurrency:
+  group: officer-chain-monitor
+  cancel-in-progress: false
+permissions: {}
+jobs:
+  snapshot:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read the chain and build the status comment (read-only, no secrets)
+        run: |
+          node experiments/d7-officer-monitor/run-chain-monitor.mjs experiments/d7-officer-monitor/monitor-config.example.json > status-comment.md || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: status-comment
+          path: status-comment.md
+          if-no-files-found: error
+          retention-days: 1
+  send:
+    if: ${{ false }}
+    needs: snapshot
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: status-comment
+      - name: Re-validate, then post to board 462 (nothing else is ever sent)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node experiments/d7-officer-monitor/validate-comment.mjs status-comment.md
+          gh api repos/${{ github.repository }}/issues/462/comments -f body="$(cat status-comment.md)"
