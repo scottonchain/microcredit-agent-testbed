@@ -8,12 +8,12 @@ host or deployment. Requirements follow OpenAI's reviews on PR 470 (comments 686
 
 | Stage | What passes | Coverage today |
 | --- | --- | --- |
+| 0. Request to mined officer reply only | one synthetic request gets a mined, successful officer reply after the request block | NOT COVERED (spec only; this was the whole earlier draft and is the first sub-check of stage 2) |
 | 1. Passkey and onboarding | the supported passkey flow creates the dedicated test identity and the app shows it ready | NOT COVERED |
 | 2. Credit decision | the desk produces an actual officer decision (reply and, where the policy grants one, a line) for a synthetic request, not just any reply | NOT COVERED |
 | 3. Borrow | the borrow transaction for the granted amount is mined and successful | NOT COVERED |
 | 4. Repay | the repayment transaction is mined and successful | NOT COVERED |
 | 5. Receipt reconciliation | the app's receipt and the chain state agree on amounts, status and hashes | NOT COVERED |
-| 0. Request to mined officer reply only | one synthetic request gets a mined, successful officer reply after the request block | NOT COVERED (spec only; this was the whole earlier draft and is the first sub-check of stage 2) |
 
 A stage that is unimplemented stays NOT COVERED in every report; a pass on later stages never upgrades an earlier one.
 
@@ -54,6 +54,6 @@ A stage that is unimplemented stays NOT COVERED in every report; a pass on later
 
 ## Offline part that exists now
 
-`observer.mjs` and `test-observer.mjs` check the alert decision logic on synthetic inputs (110 checks; 28 of 28 deliberate
+`observer.mjs` and `test-observer.mjs` check the alert decision logic on synthetic inputs (165 checks; 37 of 37 deliberate
 breakages caught in a throwaway copy). They read no chain, hold no key and send nothing. The observer fails closed: invalid
 configuration, malformed or future-dated data, stale or missing chain reads and its own exceptions are all alerts.

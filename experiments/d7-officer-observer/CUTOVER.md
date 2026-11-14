@@ -39,7 +39,11 @@ H. External observer. A separate read-only process (`observer.mjs` in this folde
    heartbeat and an explicit, timestamped chain read of the oldest pending request and alerts a named owner. A log heartbeat alone
    is not an external monitor. The caller must also turn a missing, late or crashed `evaluate()` call into an alert (the function
    itself never throws; it returns OBSERVER_FAILURE if it breaks), and must pass the chain-read outcome explicitly: an omitted value
-   is unknown, never an empty queue.
+   is unknown, never an empty queue. Every timing setting is range-checked and an out-of-range value is rejected as CONFIG_INVALID,
+   never clamped: heartbeatS 10 to 3600 s, graceBeats a whole number 1 to 10, heartbeatS x graceBeats at most 3600 s, pollStaleS 60 to
+   86400 s and not below heartbeatS, pendingBudgetS 60 to 86400 s, pendingFreshS 10 to 3600 s, clockSkewS 1 to 300 s, eventWindowS
+   10 to 86400 s and not below heartbeatS (defaults are checked the same way). The owners may change these ranges in review; they
+   exist so that a typo cannot switch a check off.
 I. Drills before live acceptance (use a test key and test desk, state which): missed heartbeat, process death, unreadable journal
    (exit code 3), model unavailable, ambiguous transaction, a stuck held reply, an alert delivered externally (a path that does not
    depend on the failing host), and observer execution failure (observer stopped, throwing, fed unreadable input, or never run). Each must produce an alert received by the named

@@ -1,4 +1,4 @@
-import { evaluate } from './observer.mjs';
+import { evaluate, RANGES, DEFAULTS } from './observer.mjs';
 let pass = 0, fail = 0;
 const ok = (c, n) => { if (c) pass++; else { fail++; console.log('FAIL', n); } };
 const NOW = Date.parse('2026-12-01T12:00:00Z');
@@ -86,4 +86,60 @@ ok(has(run({ events: [{ t: iso(7000) }, beat(60)] }), 'EVENT_INVALID'), 'event w
 for (const bad of [undefined, null, 5, 'x', [], {}]) { let threw = false, r; try { r = evaluate(bad); } catch { threw = true; } ok(!threw && r && r.status === 'ALERT', `evaluate(${JSON.stringify(bad)}) alerts without throwing`); }
 const hostile = { now: NOW, get events() { throw new TypeError('boom'); }, pending: emptyQueue, runtimeSha: '9c181672', expect };
 ok(codes(evaluate(hostile)).join() === 'OBSERVER_FAILURE', 'an internal throw becomes OBSERVER_FAILURE');
+
+// ranges: every knob rejected below min and above max, accepted at min and max (CONFIG_INVALID only; other alerts are not the point)
+const cfgOnly = (e) => codes(evaluate({ now: NOW, events: [{ t: iso(7000), ev: 'start' }, beat(60)], pending: emptyQueue, runtimeSha: '9c181672', expect: e })).includes('CONFIG_INVALID');
+const base = { runtimeSha: '9c181672', heartbeatS: 60, pendingBudgetS: 600 };
+// the documented ranges are pinned here as literals, so changing the module's table cannot quietly change what is tested
+const EXPECTED_RANGES = { heartbeatS: [10, 3600], pendingBudgetS: [60, 86400], graceBeats: [1, 10, true], pollStaleS: [60, 86400], eventWindowS: [10, 86400], clockSkewS: [1, 300], pendingFreshS: [10, 3600] };
+ok(JSON.stringify(RANGES) === JSON.stringify(EXPECTED_RANGES), 'the module range table equals the documented table');
+for (const [k, [lo, hi, int]] of Object.entries(EXPECTED_RANGES)) {
+  // pick a base where the relation checks cannot interfere: heartbeatS 60, grace 3, pollStaleS 600, eventWindowS 3600
+  const mk = (v) => ({ ...base, [k]: v });
+  const loOk = k === 'heartbeatS' ? lo : lo, hiOk = hi;
+  if (k === 'pollStaleS') { ok(!cfgOnly({ ...base, heartbeatS: 10, pollStaleS: lo }), `pollStaleS min ${lo} accepted (heartbeatS 10)`); }
+  else if (k === 'eventWindowS') { ok(!cfgOnly({ ...base, heartbeatS: 10, eventWindowS: lo }), `eventWindowS min ${lo} accepted (heartbeatS 10)`); }
+  else if (k === 'heartbeatS') { ok(!cfgOnly(mk(lo)), `heartbeatS min ${lo} accepted`); }
+  else ok(!cfgOnly(mk(lo)), `${k} min ${lo} accepted`);
+  ok(cfgOnly(mk(lo - (int ? 1 : Math.max(lo * 0.1, 0.001)))), `${k} below min ${lo} rejected`);
+  if (k === 'heartbeatS') ok(cfgOnly({ ...base, heartbeatS: hi + 1 }), `${k} above max ${hi} rejected`);
+  else ok(cfgOnly(mk(hi + (int ? 1 : Math.max(hi * 0.1, 1)))), `${k} above max ${hi} rejected`);
+}
+ok(!cfgOnly({ ...base, heartbeatS: 3600, graceBeats: 1, pollStaleS: 3600 }), 'heartbeatS 3600 with grace 1 is exactly the silence cap and accepted');
+ok(!cfgOnly({ ...base, pendingBudgetS: 86400 }), 'pendingBudgetS max accepted');
+ok(cfgOnly({ ...base, heartbeatS: 1000, graceBeats: 4, pollStaleS: 1000 }), 'silence cap alone: 1000 x 4 = 4000 s rejected when every other relation holds');
+ok(!cfgOnly({ ...base, heartbeatS: 900, graceBeats: 4, pollStaleS: 900 }), 'silence cap alone: 900 x 4 = 3600 s accepted');
+ok(cfgOnly({ ...base, graceBeats: 11 }), 'graceBeats 11 rejected at a small heartbeat where the cap is not the reason');
+ok(cfgOnly({ ...base, clockSkewS: 301 }), 'clockSkewS 301 rejected');
+ok(cfgOnly({ ...base, pendingBudgetS: 86401 }), 'pendingBudgetS 86401 rejected');
+ok(!cfgOnly({ ...base, graceBeats: 10, heartbeatS: 360 }), 'grace 10 at heartbeat 360 is exactly 3600 and accepted');
+ok(!cfgOnly({ ...base, pollStaleS: 86400, eventWindowS: 86400, pendingFreshS: 3600, clockSkewS: 300, graceBeats: 10, heartbeatS: 360 }), 'all maxima together accepted');
+// the exact probes from the reviews: each used to return OK for a bad input and is now CONFIG_INVALID
+const probe = (e, ev, pend) => evaluate({ now: NOW, events: [{ t: iso(90000), ev: 'start' }, ev], pending: pend ?? emptyQueue, runtimeSha: '9c181672', expect: { ...base, ...e } });
+ok(codes(probe({ graceBeats: 1e9 }, beat(86400))).join() === 'CONFIG_INVALID', 'probe: graceBeats 1e9 with a 24 h-old heartbeat');
+ok(codes(probe({ pollStaleS: 1e12 }, beat(60, { lastPollOkAgeS: 1e6 }))).join() === 'CONFIG_INVALID', 'probe: pollStaleS 1e12');
+ok(codes(probe({ pendingBudgetS: 1e12 }, beat(60), { ok: true, oldestAgeS: 1e7, readAt: NOW })).join() === 'CONFIG_INVALID', 'probe: pendingBudgetS 1e12');
+ok(codes(probe({ pendingFreshS: 1e12 }, beat(60), { ok: true, oldestAgeS: null, readAt: NOW - 1e9 })).join() === 'CONFIG_INVALID', 'probe: pendingFreshS 1e12');
+ok(codes(probe({ eventWindowS: 1e-9 }, beat(60))).join() === 'CONFIG_INVALID', 'probe: eventWindowS 1e-9');
+ok(codes(probe({ clockSkewS: 1e12 }, beat(-1e9))).join() === 'CONFIG_INVALID', 'probe: clockSkewS 1e12 with a far-future heartbeat');
+// fractional grace is explicitly rejected, as are non-integers just inside the range
+for (const g of [1.5, 2.5, 0.5, 3.0000001]) ok(cfgOnly({ ...base, graceBeats: g }), `fractional graceBeats ${g} rejected`);
+ok(!cfgOnly({ ...base, graceBeats: 3 }), 'integer graceBeats accepted');
+// relations between knobs, including through defaults
+ok(cfgOnly({ ...base, heartbeatS: 3600 }), 'heartbeatS 3600 with the default grace 3 exceeds the silence cap');
+ok(cfgOnly({ ...base, heartbeatS: 1000 }), 'heartbeatS 1000 with default grace 3 (3000 s) and default pollStaleS 600 < heartbeatS is rejected');
+ok(cfgOnly({ ...base, heartbeatS: 360, graceBeats: 10, pollStaleS: 300 }), 'pollStaleS below heartbeatS rejected');
+ok(cfgOnly({ ...base, heartbeatS: 300, eventWindowS: 299 }), 'eventWindowS below heartbeatS rejected');
+ok(!cfgOnly({ ...base, heartbeatS: 300, eventWindowS: 300 }), 'eventWindowS equal to heartbeatS accepted');
+ok(!cfgOnly({ ...base }), 'defaults alone are inside every range and relation');
+ok(!cfgOnly({ ...base, heartbeatS: 600, graceBeats: 6 }), 'heartbeat 600 x grace 6 = 3600 accepted');
+ok(cfgOnly({ ...base, heartbeatS: 601, graceBeats: 6 }), 'heartbeat 601 x grace 6 = 3606 rejected');
+ok(Object.values(DEFAULTS).every((v) => typeof v === 'number'), 'defaults are numbers');
+// event ordering is pinned: newest timestamp wins whatever the array order
+const ordered = [{ t: iso(7000), ev: 'start' }, beat(900), beat(60)];
+const shuffled = [beat(60), { t: iso(7000), ev: 'start' }, beat(900)];
+ok(JSON.stringify(run({ events: ordered })) === JSON.stringify(run({ events: shuffled })), 'array order does not change the result');
+ok(run({ events: [beat(60), beat(900)] }).status === 'OK', 'a stale heartbeat listed last no longer causes a false alert');
+ok(run({ events: [beat(900), beat(60, { held: 2 })] }).alerts.some((a) => a.code === 'HELD_REPLY'), 'the newest heartbeat by time is the one used');
+ok(!has(run({ events: [{ t: iso(500), ev: 'start' }, { t: iso(900), ev: 'state-unreadable' }, beat(60)] }), 'JOURNAL_UNREADABLE'), 'unreadable-then-start clears regardless of array order');
 console.log(`${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);
