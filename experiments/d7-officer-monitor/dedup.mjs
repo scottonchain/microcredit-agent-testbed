@@ -8,13 +8,13 @@
 import { validateBoardComment } from './adapter.mjs';
 
 const isInt = Number.isSafeInteger;
-const RANGES = { repeatAlertS: [900, 86400], okReceiptS: [900, 86400], slackS: [0, 900], maxPerHour: [1, 60], capacityLimit: [100, 2500], clockSkewS: [1, 300] };
-export const DEFAULTS = { repeatAlertS: 3600, okReceiptS: 21600, slackS: 300, maxPerHour: 8, capacityLimit: 2400, clockSkewS: 60, expectedLogin: 'github-actions[bot]' };
+const RANGES = { maxCandidateAgeS: [60, 3600], repeatAlertS: [900, 86400], okReceiptS: [900, 86400], slackS: [0, 900], maxPerHour: [1, 60], capacityLimit: [100, 2500], clockSkewS: [1, 300] };
+export const DEFAULTS = { maxCandidateAgeS: 600, repeatAlertS: 3600, okReceiptS: 21600, slackS: 300, maxPerHour: 8, capacityLimit: 2400, clockSkewS: 60, expectedLogin: 'github-actions[bot]' };
 const LOGIN_RE = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})(?:\[bot\])?$/;
 const ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
 export const POST_REASONS = ['NO_PREVIOUS', 'PREVIOUS_UNUSABLE', 'CHANGED', 'REPEAT_ALERT', 'RECEIPT_OK'];
 export const SKIP_REASONS = ['UNCHANGED_ALERT', 'UNCHANGED_OK', 'DUPLICATE_ID', 'RATE_CAP'];
-export const HALT_REASONS = ['CONFIG_INVALID', 'CANDIDATE_INVALID', 'LIST_UNAVAILABLE', 'LIST_INCOMPLETE', 'HALT_CAPACITY', 'INTERNAL'];
+export const HALT_REASONS = ['CONFIG_INVALID', 'CANDIDATE_INVALID', 'STALE_CANDIDATE', 'ID_COLLISION', 'LIST_UNAVAILABLE', 'LIST_INCOMPLETE', 'HALT_CAPACITY', 'INTERNAL'];
 
 export function parseDedupConfig(raw) {
   if (raw === undefined) return { ok: true, config: { ...DEFAULTS } };
@@ -30,9 +30,16 @@ export function parseDedupConfig(raw) {
   return { ok: true, config: cfg };
 }
 
+// The monitor's own stream. The Actions bot identity is shared by every workflow in the repository, so the login alone does not say a comment
+// is the monitor's. A comment is claimed by the monitor if its body carries the monitor's message id prefix. A claimed comment that does not
+// validate is malformed monitor evidence: it still counts toward the rate cap and still makes the previous state unusable. A bot comment that
+// makes no claim (an ordinary CI comment) is not part of the stream at all.
+const CLAIM = 'm-officer-chain-monitor-';
+export const claimsMonitor = (body) => typeof body === 'string' && body.includes(CLAIM);
+
 // Read-back validator. The sender gate (validateBoardComment) demands the exact posted bytes, including the final newline, and a body read
 // back from the board need not keep that newline. So this does NOT hand the raw body to the gate: it adds back at most ONE missing final
-// newline, refuses carriage returns and any other whitespace difference, and only then applies the same gate. Returns { ok, status, codes, id } or { ok:false, why }.
+// newline, refuses carriage returns and any other whitespace difference, and only then applies the same gate. Returns { ok, status, codes, id, atMs } or { ok:false, why }.
 export function parseMonitorComment(body) {
   try {
     if (typeof body !== 'string') return { ok: false, why: 'FORM' }; // size, carriage returns and every other byte difference are refused by the gate below
@@ -41,7 +48,9 @@ export function parseMonitorComment(body) {
     const j = JSON.parse(/^```json\n(\{.*\})\n```\n\n---\n/s.exec(norm)[1]);
     const t = /^Officer chain monitor (OK|ALERT)(?: \(([A-Z_]+(?:, [A-Z_]+)*)\))?: /.exec(j.i[0].x); if (!t) return { ok: false, why: 'TEXT' };
     const codes = t[2] ? [...new Set(t[2].split(', '))].sort() : [];
-    return { ok: true, status: t[1], codes, id: j.id };
+    const a = /, at (\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z|unknown)\. /.exec(j.i[0].x); // OBSERVATION time of the snapshot; delivery time is the comment's created_at
+    const atMs = a && a[1] !== 'unknown' && Number.isFinite(Date.parse(a[1])) ? Date.parse(a[1]) : null;
+    return { ok: true, status: t[1], codes, id: j.id, atMs };
   } catch { return { ok: false, why: 'ERROR' }; }
 }
 
@@ -72,9 +81,14 @@ export function decide(input) {
     const cfg = cfgR.config;
     if (!isInt(nowMs) || nowMs <= 0) return halt('INTERNAL');
     const cand = parseMonitorComment(candidate); if (!cand.ok) return halt('CANDIDATE_INVALID');
+    // A snapshot older than the freshness budget (a delayed job, a late manual retry) must not become a current-looking receipt; one dated in the future is not believed either.
+    if (cand.atMs === null || nowMs - cand.atMs > cfg.maxCandidateAgeS * 1000 || cand.atMs > nowMs + cfg.clockSkewS * 1000) return halt('STALE_CANDIDATE');
     const l = checkListing(listing, cfg); if (l.reason) return halt(l.reason);
-    const mine = l.rows.filter((r) => r.login === cfg.expectedLogin);
-    for (const r of mine) { const p = parseMonitorComment(r.body); if (p.ok && p.id === cand.id) return skip('DUPLICATE_ID'); } // never post an id that is already on the board
+    const mine = l.rows.filter((r) => r.login === cfg.expectedLogin && claimsMonitor(r.body)); // the monitor's stream only
+    for (const r of mine) { // the same id again: a retry of the same send is dropped quietly, but a DIFFERENT state under a used id is never silently discarded
+      const p = parseMonitorComment(r.body); if (!p.ok || p.id !== cand.id) continue;
+      return p.status === cand.status && p.codes.join() === cand.codes.join() ? skip('DUPLICATE_ID') : halt('ID_COLLISION');
+    }
     if (mine.filter((r) => r.createdMs > nowMs - 3600000 && r.createdMs <= nowMs + cfg.clockSkewS * 1000).length >= cfg.maxPerHour) return skip('RATE_CAP');
     if (mine.length === 0) return go('NO_PREVIOUS');
     const newest = mine.reduce((a, r) => (r.createdMs > a.createdMs || (r.createdMs === a.createdMs && r.id > a.id) ? r : a));

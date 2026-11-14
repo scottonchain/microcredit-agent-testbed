@@ -71,9 +71,9 @@ ACCEPTED, and O6 must exist before activation. A scheduled job cannot detect its
 | O1 | Named operating owner for this read-only monitor only | NOT ACCEPTED | | |
 | O2 | The approved health fields above, and board 462 as their destination | NOT ACCEPTED | | |
 | O3 | The two public RPC endpoints (no credential, no paid provider) | NOT ACCEPTED | | |
-| O4 | The dedup design in `DEDUP_DESIGN.md` (written; review and decision pending), including its defaults: ALERT repeat 3600 s, OK receipt 21600 s, 8 posts an hour, halt at 2400 comments | NOT ACCEPTED | | |
+| O4 | The dedup design in `DEDUP_DESIGN.md` (written; review and decision pending), including its defaults (ALERT repeat 3600 s, OK receipt 21600 s, 8 monitor posts an hour, halt at 2400 comments, snapshot freshness 600 s) and its stated limit: LATEST-STATE delivery only, not incident delivery (a failed ALERT send followed by recovery is never delivered). Whether incident delivery is required, and if so by what durable store, is decided here | NOT ACCEPTED | | |
 | O5 | Adding the workflow to `.github/workflows` in a separate reviewed change, and its schedule. Requires O4 written and reviewed AND O6 accepted first; the Actions used are tag-pinned, and whether to pin them to commit SHAs is decided here | NOT ACCEPTED | | |
-| O6 | An independent watcher of missing workflow receipts (not this workflow), accepted BEFORE O5. A failed or empty run must never read as successful monitoring | NOT ACCEPTED | | |
+| O6 | An independent watcher of RUNS (not of the six-hourly board receipt, which cannot show a missed 15 minute check promptly): it must see that each scheduled run happened and finished, including quiet skips, rate-capped runs, capacity halts, unavailable lists and stale candidates. Accepted BEFORE O5. A failed or empty run must never read as successful monitoring | NOT ACCEPTED | | |
 
 None of these is the officer host (PR 473 template lines b to e), a signer, a deployment or a merge allowance.
 

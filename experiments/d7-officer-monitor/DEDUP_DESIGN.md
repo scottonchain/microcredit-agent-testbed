@@ -23,7 +23,7 @@ Expected volume with the defaults: a steady OK is 4 comments a day, a steady ALE
 
 `decide-post.mjs` receives local files only: the candidate `status-comment.md`, `comments.json` (the whole comment thread of tb#462, one object per comment
 with `id`, `created_at`, `login`, and `body`, where `body` is kept ONLY for the expected login and is null for everyone else), and `count.txt` (the issue's
-comment count, read BEFORE the list). Only comments whose `login` equals `expectedLogin` (default `github-actions[bot]`) are state. A lookalike from any other
+comment count, read BEFORE the list). Only comments whose `login` equals `expectedLogin` (default `github-actions[bot]`) AND whose body claims the monitor's message id prefix (`m-officer-chain-monitor-`) are the monitor's stream. The Actions bot identity is shared by every workflow in the repository, so the login alone is not enough: ordinary CI comments are not part of the stream, do not count toward the rate cap and do not replace the previous state. A comment that claims the monitor id but does not validate is malformed monitor evidence: it counts toward the cap and, if it is the newest, makes the previous state unusable (the run posts). A lookalike from any other
 author is ignored, so nobody can silence the monitor by posting a convincing OK or can fake a recovery. The list is the whole thread, not the last N comments,
 so a busy board cannot push the monitor's own comment out of view and cause a post on every run.
 
@@ -38,10 +38,19 @@ so feeding it to the gate unchanged would reject every real previous comment and
 missing final newline, refuses carriage returns and any other whitespace difference, and only then applies the same gate (so the key set, canonical JSON,
 text alphabet and status/op agreement are all still enforced). It returns the status, the sorted alert codes and the message id.
 
-## Ids
+## Ids, retries and freshness
 
-Message ids are `m-officer-chain-monitor-<yyyymmddhhmm>`. Two runs in the same minute (a schedule and a manual dispatch) would produce the same id. The
-decision refuses to post an id that already exists on the board from the expected login (`DUPLICATE_ID`), and the workflow's `concurrency` group serialises runs.
+Message ids are `m-officer-chain-monitor-<yyyymmddhhmmss>`, the observation time to the second (they were minute-resolution in the first draft, which let a real change inside one minute collide with
+the previous id; found by OpenAI's review of 682cd136). Three cases for the candidate's id:
+
+- not on the board from the monitor's stream: normal decision;
+- on the board with the SAME status and codes: a retry of the same send, dropped quietly (`DUPLICATE_ID`);
+- on the board with a DIFFERENT status or codes: never silently discarded; the job halts visibly (`ID_COLLISION`) and the next run has a new id. At second resolution this needs two sequential
+  checks in the same second, which a run that makes several network reads does not produce; the halt exists so that if it ever happens it is seen.
+
+Freshness: the candidate's observation time (`at`, parsed from the validated message text) must be no older than `maxCandidateAgeS` (default 600) and no more than `clockSkewS` in the future,
+or the job halts (`STALE_CANDIDATE`). A delayed job or a late manual retry therefore cannot turn an old snapshot into a current-looking receipt, even on an empty board. The interval logic uses the
+previous comment's `created_at` (delivery time), never its observation time; the two are kept apart on purpose.
 
 ## Failure policy: when to stay quiet, when to post, when to fail
 
@@ -50,8 +59,8 @@ decision refuses to post an id that already exists on the board from the expecte
 | No previous comment, or the newest is unusable | post | Silence about an ALERT is the dangerous direction. |
 | The comment list cannot be read, is malformed, or is shorter than the comment count | HALT (job fails visibly) | Posting blind is the flood this design removes; a half-read thread could also hide the real previous state. |
 | The thread is at or above `capacityLimit` (default 2400 of an assumed 2500 cap) | HALT | Fail visibly before the board fills and the monitor silently stops. Someone must rotate the destination. |
-| The hourly cap (`maxPerHour`, default 8 monitor comments in the last hour) is reached | quiet skip (`RATE_CAP`) | Bounds a flapping status or a stuck loop; the next run compares again against the newest posted state. |
-| Bad config, invalid candidate, a clock that is not a positive safe integer | HALT | Never guessed. |
+| The hourly cap (`maxPerHour`, default 8 monitor-stream comments in the last hour) is reached | quiet skip (`RATE_CAP`) | Bounds a flapping status or a stuck loop; the next run compares again against the newest posted state. |
+| Bad config, invalid candidate, a stale or future-dated candidate, an id reused with a different state, a clock that is not a positive safe integer | HALT | Never guessed, never discarded. |
 
 The module never throws (`decide(null)` halts with `INTERNAL`) and prints only reason codes from three closed lists, so nothing read from the board can
 reach `$GITHUB_OUTPUT`. Exit 0 is a decision (post or quiet skip); exit 3 is a halt.
@@ -66,6 +75,20 @@ with `jq -s` in a separate command (so a failing read is not hidden behind a pip
 **Default shell.** No step sets `shell:`, so each `run` is GitHub's default `bash -e {0}`: errexit but no pipefail. The draft is written for that: every
 command whose failure matters is on its own line, nothing important travels through a pipe, and there is no `|| true`. The one pipe left is the final
 post, where the API call is the last command. Whether to add `shell: bash` (which adds pipefail) is a question for the O5 reviewers.
+
+## What this is and is not: latest-state delivery, not incident delivery
+
+The board preserves successful posts only, and this design compares each run with the newest successful post. So it is **latest-state-only**. If an ALERT send fails and the next run sees a
+recovered system, no record of the failed alert survives: the next run compares OK with the last successful post (also OK) and stays quiet, and that incident is never delivered. A failed send is a
+failed workflow run, which is visible in Actions, but that is not a durable undelivered-alert obligation. Nothing here is an outbox, a replay queue or a guarantee that every observed failure reaches the owner,
+and successful-post dedup must not be described as one. If the owners need incident delivery, that needs a durable store this draft does not have (for example a second record written BEFORE the send and
+cleared after it) and a new design; it is raised as part of O4 and is not implemented here.
+
+## What the six-hourly receipt can and cannot show
+
+The OK receipt cadence is a presence signal, not a liveness check on a 15 minute schedule: a dead monitor is noticed after hours, not minutes. O6 therefore has to observe RUNS, independently of this
+workflow: that each scheduled run happened and finished, including runs whose decision was a quiet skip, `RATE_CAP`, a capacity halt, an unavailable list or a stale candidate. To make that possible
+without reading board text, the decide step writes its closed-token decision (`post=`, `reason=`) to the job summary of every run, success or halt. Concurrency covers only this workflow's own group, not other writers to the board.
 
 ## Historical versus live evidence
 
@@ -93,14 +116,21 @@ twice would inflate the pending count behind a plausible reading.
   a cost the owners should know about.
 - A person with write access can delete or edit monitor comments. Deletion resets the state (one extra post); an edit makes the comment fail validation (one extra post).
   Neither can silence an ALERT.
-- The hourly cap lags a real change when it fires: the change is posted by the first run after enough older monitor comments age out of the hour.
+- The hourly cap lags a real change when it fires (it now counts the monitor's stream only): the change is posted by the first run after enough older monitor comments age out of the hour.
 - Missed runs are invisible to this design. The independent watcher (O6) is still required and still unaccepted.
+
+## Review history
+
+OpenAI's independent review of 682cd136 (PR 476 comment 6877440773) found: the minute-resolution id collision, the shared bot identity consuming the cap, stale snapshots posting as fresh receipts, and the
+latest-state-only delivery limit. The first three are fixed above; the fourth is stated as a limit. The review also asked that fixes introduce no raw board text into logs, outputs or the sender: unchanged (closed tokens only).
 
 ## Tests and mutation check
 
-`node test-dedup.mjs` (174 checks) covers the config ranges, the read-back validator against the sender gate, the full decision matrix with boundaries, trust
-of authors, listing validation, the capacity and rate limits, a two-day simulation of the 15 minute schedule (a steady OK posts a receipt about every 6 hours, a steady ALERT
-about hourly), the CLI wrapper including a hostile or inconsistent decision, and structural checks of the draft workflow. `node test-monitor.mjs` is now 255 checks (the duplicate-pending
-refusal added). A mutation run over the new and changed code, with the baseline printed first (255 and 174 passing): 67 of 67 mutants caught in my own run, not reproduced by anyone else. The first run caught 58 of 71; the 13
-survivors were fixed by adding tests (case-different duplicate addresses, a status that differs with equal code lists, unsorted codes, an impossible calendar date, an inherited config value, a count
-file that `Number()` would have accepted, an injectable decision for the CLI wrapper) or by deleting checks that were redundant behind the sender gate, not by weakening any test.
+`node test-dedup.mjs` (198 checks) covers the config ranges, the read-back validator against the sender gate, the full decision matrix with boundaries, trust of authors and of the monitor's own stream,
+listing validation, the capacity and rate limits, id retries and collisions, snapshot freshness, a two-day simulation of the 15 minute schedule (a steady OK posts a receipt about every 6 hours, a steady ALERT about hourly), the CLI wrapper
+including a hostile or inconsistent decision, and structural checks of the draft workflow. `node test-monitor.mjs` is 256 checks (duplicate-pending refusal and the second-resolution id added).
+
+Mutation run over the new and changed code, baseline printed first (256 and 198 passing): 84 of 85 mutants caught in my own run, not reproduced by anyone else. The one survivor, "missing observation time ok", is an equivalent mutant: removing the
+explicit `atMs === null` test changes nothing observable, because `nowMs - null` coerces to a huge age and the budget check halts anyway; the explicit test is kept so the intent does not depend on coercion. History: the round before the review
+caught 67 of 67 (first run 58 of 71); the run after the review fixes first caught 81 of 85, and its three killable survivors (a status difference under a used id, the id still at minute resolution through `runOnce`, a missing `set +e` in the decide step) were
+fixed by adding tests, not by weakening any.

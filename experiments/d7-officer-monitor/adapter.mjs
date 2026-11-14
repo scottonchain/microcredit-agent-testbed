@@ -57,7 +57,7 @@ export function boardMessage({ outcome, nowMs, idSuffix }) {
   const n = (v) => (Number.isSafeInteger(v) && v >= 0 ? String(v) : 'unknown');
   const ep = LABELS.includes(h.endpoint) ? h.endpoint : 'none';
   const when = isNum(nowMs) && Math.abs(nowMs) <= 8.64e15 ? new Date(nowMs).toISOString() : 'unknown';
-  const suffix = typeof idSuffix === 'string' && /^[0-9]{12}$/.test(idSuffix) ? idSuffix : '000000000000';
+  const suffix = typeof idSuffix === 'string' && /^[0-9]{14}$/.test(idSuffix) ? idSuffix : '00000000000000';
   const text = `Officer chain monitor ${status}${codes.length ? ` (${[...new Set(codes)].sort().join(', ')})` : ''}: block ${n(h.blockNumber)}, pending ${n(h.pendingCount)}, oldest pending ${n(h.oldestPendingAgeS)} s, reader ${ep}, at ${when}. ${SCOPE}.`;
   return { v: 2, id: `m-officer-chain-monitor-${suffix}`, k: 'health', f: 'monitor', t: ['x', 'h'], tr: 'gh:board-default', i: [{ w: 'officer-chain-monitor', op: status === 'OK' ? 'ok' : 'alert', x: text }] };
 }
@@ -74,7 +74,7 @@ export function validateBoardComment(body) {
     const j = JSON.parse(m[1]);
     if (JSON.stringify(j) !== m[1]) return { ok: false, why: 'NOT_CANONICAL' }; // the bytes that are posted must be exactly the bytes that were validated: no duplicate keys, escapes or spacing tricks
     const keys = Object.keys(j).sort().join(); if (keys !== 'f,i,id,k,t,tr,v') return { ok: false, why: 'KEYS' };
-    if (j.v !== 2 || j.k !== 'health' || j.f !== 'monitor' || j.tr !== 'gh:board-default' || JSON.stringify(j.t) !== '["x","h"]' || !/^m-officer-chain-monitor-[0-9]{12}$/.test(j.id)) return { ok: false, why: 'FIELDS' };
+    if (j.v !== 2 || j.k !== 'health' || j.f !== 'monitor' || j.tr !== 'gh:board-default' || JSON.stringify(j.t) !== '["x","h"]' || !/^m-officer-chain-monitor-[0-9]{14}$/.test(j.id)) return { ok: false, why: 'FIELDS' };
     if (!Array.isArray(j.i) || j.i.length !== 1) return { ok: false, why: 'ITEMS' };
     const it = j.i[0]; if (Object.keys(it).sort().join() !== 'op,w,x' || it.w !== 'officer-chain-monitor' || !['ok', 'alert'].includes(it.op) || typeof it.x !== 'string') return { ok: false, why: 'ITEM' };
     const t = TEXT_RE.exec(it.x); if (!t) return { ok: false, why: 'TEXT' };
@@ -87,7 +87,7 @@ export function validateBoardComment(body) {
 export async function runOnce({ config, now, fetchImpl, sleep }) {
   const outcome = await chainOnlyCheck({ config, now, fetchImpl, sleep });
   const nowMs = (() => { try { return now(); } catch { return NaN; } })();
-  const stamp = isNum(nowMs) ? new Date(nowMs).toISOString().replace(/[-:T]/g, '').slice(0, 12) : '000000000000';
+  const stamp = isNum(nowMs) ? new Date(nowMs).toISOString().replace(/[-:T]/g, '').slice(0, 14) : '00000000000000';
   const msg = boardMessage({ outcome, nowMs, idSuffix: stamp });
   const body = boardComment(msg); const v = validateBoardComment(body);
   const hasConfig = outcome.alerts.some((a) => a.code === 'CONFIG_INVALID');

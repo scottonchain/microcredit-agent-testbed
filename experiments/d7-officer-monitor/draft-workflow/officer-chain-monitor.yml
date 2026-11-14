@@ -83,7 +83,14 @@ jobs:
       - name: Decide whether this run posts (exit 3 fails the job visibly)
         id: decide
         run: |
-          node experiments/d7-officer-monitor/decide-post.mjs status-comment.md comments.json count.txt >> "$GITHUB_OUTPUT"
+          # every run leaves a static record of its decision in the job summary (closed tokens only), including quiet skips and halts, so a watcher of RUNS
+          # (not of the six-hourly receipt) can see that this run happened and why it did or did not post
+          set +e
+          node experiments/d7-officer-monitor/decide-post.mjs status-comment.md comments.json count.txt > decision.txt
+          code=$?
+          cat decision.txt >> "$GITHUB_STEP_SUMMARY"
+          if [ "$code" -eq 0 ]; then cat decision.txt >> "$GITHUB_OUTPUT"; fi
+          exit "$code"
       - name: Post to board 462 (only when the decision says post)
         if: ${{ steps.decide.outputs.post == 'true' }}
         env:
