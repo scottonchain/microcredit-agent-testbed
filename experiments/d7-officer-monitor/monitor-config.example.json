@@ -1,0 +1,8 @@
+{
+  "desk": "0x28e1d776d9f9f60b90cfb8075ebb9d0f07c82462",
+  "pendingBudgetS": 600,
+  "endpoints": [
+    { "label": "primary", "url": "https://base-sepolia-rpc.publicnode.com" },
+    { "label": "fallback", "url": "https://sepolia.base.org" }
+  ]
+}
