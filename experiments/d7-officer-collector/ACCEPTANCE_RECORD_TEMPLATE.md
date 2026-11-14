@@ -11,7 +11,7 @@ and access details never go on a public board.
 | c | DEPLOYMENT PERMISSION for that host | NOT ACCEPTED | | | |
 | d | SPEND bounds for model calls and gas, approved separately from c | NOT ACCEPTED | | | |
 | e | KEY CUSTODY: who holds the officer key on the host, separate service user, rotation, approved separately from c and d | NOT ACCEPTED | | | |
-| f | Alert recipient and delivery path, and the watchdog's own host | NOT ACCEPTED | | | |
+| f | Alert recipient and delivery path, and the watchdog's own host; the sender is wired so it receives only `serializeDelivery(...).message`; the local quarantine file (raw evidence from refused or altered items) has a stated location and is excluded from any log, board or sink that leaves the host | NOT ACCEPTED | | | |
 | g | Cutover sequence S1 to S8 below completed in order, with the reconciliation table filled in | NOT ACCEPTED | | | |
 | h | Delivered failure alert with recovery shown | NOT ACCEPTED | | | |
 | i | Full synthetic journey passed (every stage), virtual and physical-device acceptance kept separate | NOT ACCEPTED | | | |

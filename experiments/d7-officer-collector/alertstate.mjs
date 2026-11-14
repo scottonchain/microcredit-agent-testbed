@@ -12,7 +12,7 @@ const KINDS = ['alert', 'repeat', 'recovery'];
 export const newState = () => ({ status: 'OK', codesKey: '', firstAlertAt: null, lastQueuedAt: null, okStreak: 0, seq: 0, pending: [] });
 const clone = (s) => JSON.parse(JSON.stringify(s));
 const validItem = (p) => !!p && typeof p === 'object' && typeof p.key === 'string' && p.key.length > 0 && p.key.length <= 120 && KINDS.includes(p.kind)
-  && Array.isArray(p.codes) && p.codes.length <= 32 && p.codes.every((c) => typeof c === 'string' && c.length <= 64) && isNum(p.at) && Number.isSafeInteger(p.seq) && p.seq >= 1 && p.seq < Number.MAX_SAFE_INTEGER;
+  && Array.isArray(p.codes) && p.codes.length <= 32 && Array.from(p.codes).every((c) => typeof c === 'string' && c.length <= 64) && isNum(p.at) && Number.isSafeInteger(p.seq) && p.seq >= 1 && p.seq < Number.MAX_SAFE_INTEGER;
 export function inspectState(state) {
   const pendingIn = state && typeof state === 'object' && Array.isArray(state.pending) ? state.pending : [];
   let salvaged = []; try { salvaged = pendingIn.filter(validItem).map((p) => ({ key: p.key, kind: p.kind, codes: [...p.codes], at: p.at, seq: p.seq })); } catch { salvaged = []; }

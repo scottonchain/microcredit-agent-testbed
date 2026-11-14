@@ -19,7 +19,7 @@ export function serializeDelivery(item) {
     if (!Number.isSafeInteger(item.seq) || item.seq < 1 || String(item.seq) !== m[2]) return q('SEQ_MISMATCH');
     if (!Array.isArray(item.codes) || item.codes.length > MAX_CODES || (item.kind !== 'recovery' && item.codes.length === 0)) return q('BAD_CODES');
     let altered = false;
-    const codes = [...new Set(item.codes.map((c) => { if (typeof c === 'string' && Object.hasOwn(OUTBOUND_DETAIL, c)) return c; altered = true; return 'UNKNOWN_CODE'; }))].sort();
+    const codes = [...new Set(Array.from(item.codes).map((c) => { if (typeof c === 'string' && Object.hasOwn(OUTBOUND_DETAIL, c)) return c; altered = true; return 'UNKNOWN_CODE'; }))].sort();
     const at = Number.isFinite(item.at) && Math.abs(item.at) <= 8.64e15 ? new Date(item.at).toISOString() : null;
     const message = { id: item.key, kind: item.kind, at, alerts: codes.map((code) => ({ code, detail: OUTBOUND_DETAIL[code] })) };
     return altered ? { ok: true, message, quarantine: { reason: 'CODES_ALTERED', raw: raw(item) } } : { ok: true, message };
