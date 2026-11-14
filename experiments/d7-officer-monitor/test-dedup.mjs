@@ -26,9 +26,9 @@ const reasonOf = (r) => `${r.post ? 'POST' : r.halt ? 'HALT' : 'SKIP'}:${r.reaso
 // ---- config ----
 ok(parseDedupConfig(undefined).ok && JSON.stringify(parseDedupConfig(undefined).config) === JSON.stringify(DEFAULTS), 'no config means the documented defaults');
 ok(parseDedupConfig({}).ok && parseDedupConfig({ okReceiptS: 3600 }).config.okReceiptS === 3600, 'a partial config keeps the other defaults');
-for (const bad of [null, 5, 'x', [], { extra: 1 }, { repeatAlertS: 899 }, { maxCandidateAgeS: 59 }, { maxCandidateAgeS: 3601 }, { repeatAlertS: 86401 }, { repeatAlertS: 1000.5 }, { repeatAlertS: '3600' }, { okReceiptS: 899 }, { slackS: -1 }, { slackS: 901 }, { maxPerHour: 0 }, { maxPerHour: 61 }, { capacityLimit: 99 }, { capacityLimit: 2501 }, { clockSkewS: 0 }, { clockSkewS: 301 }, { expectedLogin: '' }, { expectedLogin: 'a b' }, { expectedLogin: 'x[bot]y' }, { expectedLogin: 5 }, { repeatAlertS: NaN }, { repeatAlertS: Infinity }])
+for (const bad of [null, 5, 'x', [], { extra: 1 }, { repeatAlertS: 899 }, { unusableMaxPerDay: 0 }, { unusableMaxPerDay: 25 }, { maxCandidateAgeS: 59 }, { maxCandidateAgeS: 3601 }, { repeatAlertS: 86401 }, { repeatAlertS: 1000.5 }, { repeatAlertS: '3600' }, { okReceiptS: 899 }, { slackS: -1 }, { slackS: 901 }, { maxPerHour: 0 }, { maxPerHour: 61 }, { capacityLimit: 99 }, { capacityLimit: 2501 }, { clockSkewS: 0 }, { clockSkewS: 301 }, { expectedLogin: '' }, { expectedLogin: 'a b' }, { expectedLogin: 'x[bot]y' }, { expectedLogin: 5 }, { repeatAlertS: NaN }, { repeatAlertS: Infinity }])
   ok(parseDedupConfig(bad).ok === false, `config refuses ${JSON.stringify(bad)}`);
-for (const good of [{ repeatAlertS: 900 }, { maxCandidateAgeS: 60 }, { maxCandidateAgeS: 3600 }, { repeatAlertS: 86400 }, { slackS: 0 }, { slackS: 900 }, { maxPerHour: 1 }, { maxPerHour: 60 }, { capacityLimit: 100 }, { capacityLimit: 2500 }, { clockSkewS: 1 }, { clockSkewS: 300 }, { expectedLogin: 'github-actions' }])
+for (const good of [{ repeatAlertS: 900 }, { unusableMaxPerDay: 1 }, { unusableMaxPerDay: 24 }, { maxCandidateAgeS: 60 }, { maxCandidateAgeS: 3600 }, { repeatAlertS: 86400 }, { slackS: 0 }, { slackS: 900 }, { maxPerHour: 1 }, { maxPerHour: 60 }, { capacityLimit: 100 }, { capacityLimit: 2500 }, { clockSkewS: 1 }, { clockSkewS: 300 }, { expectedLogin: 'github-actions' }])
   ok(parseDedupConfig(good).ok, `config accepts the range edge ${JSON.stringify(good)}`);
 ok(parseDedupConfig(Object.create({ repeatAlertS: 1000 })).ok === false, 'config refuses an object with an inherited prototype');
 ok(parseDedupConfig(Object.assign(Object.create(null), { okReceiptS: 3600 })).ok, 'config accepts a null-prototype plain object');
@@ -169,6 +169,24 @@ for (const bad of [undefined, null, 5, 'x']) ok(decide(bad).halt === true, `deci
   ok(reasonOf(decide({ candidate: boardComment(boardMessage({ outcome: mkOutcome([]), nowMs: NaN, idSuffix: '20261114115500' })), listing: listing([]), nowMs: NOW })) === 'HALT:STALE_CANDIDATE', 'a candidate with no observation time is refused');
   ok(reasonOf(decide({ candidate: body([], '20261114115500', NOW - 3000000), listing: listing([]), nowMs: NOW, config: { maxCandidateAgeS: 3600 } })) === 'POST:NO_PREVIOUS', 'the freshness budget is configurable');
   const p = parseMonitorComment(body([], '20261114115500', NOW - 5000)); ok(p.atMs === NOW - 5000, 'the parser returns the observation time, which is not the comment creation time'); }
+
+// 4. review by Hermes (PR 476 comment 6877454092): a previous state that keeps reading back unusable must not post on every tick
+{ const crlf = (b) => b.replace(/\n/g, '\r\n'); const bad = (id, ageS, m) => row(id, ageS, crlf(body([], m)));
+  ok(reasonOf(D([], [bad(1, 900, '20261114114500')])) === 'POST:PREVIOUS_UNUSABLE', 'one unusable previous comment still posts a fresh baseline');
+  ok(reasonOf(D([], [bad(1, 1800, '20261114113000'), bad(2, 900, '20261114114500')])) === 'POST:PREVIOUS_UNUSABLE', 'two unusable comments in a day still post (the limit is three)');
+  ok(reasonOf(D([], [bad(1, 3000, '20261114111000'), bad(2, 1800, '20261114113000'), bad(3, 900, '20261114114500')])) === 'HALT:PREVIOUS_STUCK', 'three unusable monitor comments within a day halt instead of posting again');
+  ok(reasonOf(D([], [bad(1, 90000, '20261113110000'), bad(2, 80000, '20261113113000'), bad(3, 900, '20261114114500')])) === 'POST:PREVIOUS_UNUSABLE', 'unusable comments older than a day are not counted');
+  ok(reasonOf(D([], [bad(1, 3000, '20261114111000'), bad(2, 1800, '20261114113000'), bad(3, 900, '20261114114500')], { config: { unusableMaxPerDay: 4 } })) === 'POST:PREVIOUS_UNUSABLE', 'the limit is configurable');
+  ok(reasonOf(D([], [OK_ROW(1, 1800, '20261114113000'), OK_ROW(2, 900, '20261114114500')])) === 'SKIP:UNCHANGED_OK', 'usable posts never count toward the stuck limit');
+  ok(reasonOf(D(['PENDING_AGE'], [OK_ROW(1, 900, '20261114113000'), row(2, 60, MALFORMED, BOT)])) === 'POST:PREVIOUS_UNUSABLE', 'one hand-edited comment after a valid record posts a fresh baseline, it is not stuck');
+  ok(reasonOf(D([], [OK_ROW(1, 7000, '20261114100000'), OK_ROW(2, 5000, '20261114103000'), bad(3, 900, '20261114114500')])) === 'POST:PREVIOUS_UNUSABLE', 'valid posts in the day are not counted as unusable: two valid plus one bad is one unusable, not three');
+  const others = Array.from({ length: 5 }, (_, i) => row(500 + i, 600 + i, `CI note ${i}`, 'someone-else'));
+  ok(reasonOf(D([], [...others, bad(3, 900, '20261114114500')])) === 'POST:PREVIOUS_UNUSABLE', 'comments by other authors are never counted toward the stuck limit'); }
+// a simulated read-back that always returns an unusable body: the monitor posts three times, then halts every tick, never 96 a day
+{ let rows = [], id = 1, posts = 0, halts = 0; for (let k = 0; k < 96; k++) { const t = NOW + k * 900000;
+    const cand = body([], new Date(t).toISOString().replace(/[-:T]/g, '').slice(0, 14), t); const r = decide({ candidate: cand, listing: { count: rows.length, comments: rows }, nowMs: t });
+    if (r.post) { posts++; rows = [...rows, { id: id++, created_at: iso(t), login: BOT, body: cand.replace(/\n/g, '\r\n') }]; } else if (r.halt) halts++; }
+  ok(posts <= 4 && halts >= 85, `a read-back that never parses posts ${posts} times in a day and halts ${halts} ticks, not 96 posts`); }
 
 // ---- the decide-post CLI ----
 { const files = {}; const io = (over = {}) => ({ readFile: (p) => { if (!(p in files)) throw new Error('nofile'); return files[p]; }, write: (s) => { io.out = s; }, now: () => NOW, ...over });

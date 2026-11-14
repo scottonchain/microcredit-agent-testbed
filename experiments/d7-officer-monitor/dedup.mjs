@@ -8,13 +8,13 @@
 import { validateBoardComment } from './adapter.mjs';
 
 const isInt = Number.isSafeInteger;
-const RANGES = { maxCandidateAgeS: [60, 3600], repeatAlertS: [900, 86400], okReceiptS: [900, 86400], slackS: [0, 900], maxPerHour: [1, 60], capacityLimit: [100, 2500], clockSkewS: [1, 300] };
-export const DEFAULTS = { maxCandidateAgeS: 600, repeatAlertS: 3600, okReceiptS: 21600, slackS: 300, maxPerHour: 8, capacityLimit: 2400, clockSkewS: 60, expectedLogin: 'github-actions[bot]' };
+const RANGES = { maxCandidateAgeS: [60, 3600], repeatAlertS: [900, 86400], okReceiptS: [900, 86400], slackS: [0, 900], maxPerHour: [1, 60], unusableMaxPerDay: [1, 24], capacityLimit: [100, 2500], clockSkewS: [1, 300] };
+export const DEFAULTS = { maxCandidateAgeS: 600, repeatAlertS: 3600, okReceiptS: 21600, slackS: 300, maxPerHour: 8, unusableMaxPerDay: 3, capacityLimit: 2400, clockSkewS: 60, expectedLogin: 'github-actions[bot]' };
 const LOGIN_RE = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})(?:\[bot\])?$/;
 const ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
 export const POST_REASONS = ['NO_PREVIOUS', 'PREVIOUS_UNUSABLE', 'CHANGED', 'REPEAT_ALERT', 'RECEIPT_OK'];
 export const SKIP_REASONS = ['UNCHANGED_ALERT', 'UNCHANGED_OK', 'DUPLICATE_ID', 'RATE_CAP'];
-export const HALT_REASONS = ['CONFIG_INVALID', 'CANDIDATE_INVALID', 'STALE_CANDIDATE', 'ID_COLLISION', 'LIST_UNAVAILABLE', 'LIST_INCOMPLETE', 'HALT_CAPACITY', 'INTERNAL'];
+export const HALT_REASONS = ['CONFIG_INVALID', 'CANDIDATE_INVALID', 'STALE_CANDIDATE', 'ID_COLLISION', 'PREVIOUS_STUCK', 'LIST_UNAVAILABLE', 'LIST_INCOMPLETE', 'HALT_CAPACITY', 'INTERNAL'];
 
 export function parseDedupConfig(raw) {
   if (raw === undefined) return { ok: true, config: { ...DEFAULTS } };
@@ -89,11 +89,17 @@ export function decide(input) {
       const p = parseMonitorComment(r.body); if (!p.ok || p.id !== cand.id) continue;
       return p.status === cand.status && p.codes.join() === cand.codes.join() ? skip('DUPLICATE_ID') : halt('ID_COLLISION');
     }
-    if (mine.filter((r) => r.createdMs > nowMs - 3600000 && r.createdMs <= nowMs + cfg.clockSkewS * 1000).length >= cfg.maxPerHour) return skip('RATE_CAP');
+    const recent = mine.filter((r) => r.createdMs > nowMs - 3600000 && r.createdMs <= nowMs + cfg.clockSkewS * 1000).length;
+    if (recent >= cfg.maxPerHour) return skip('RATE_CAP');
     if (mine.length === 0) return go('NO_PREVIOUS');
     const newest = mine.reduce((a, r) => (r.createdMs > a.createdMs || (r.createdMs === a.createdMs && r.id > a.id) ? r : a));
     const prev = parseMonitorComment(newest.body);
-    if (!prev.ok || newest.createdMs > nowMs + cfg.clockSkewS * 1000) return go('PREVIOUS_UNUSABLE'); // an unreadable or future-dated previous state is never a reason for silence
+    if (!prev.ok || newest.createdMs > nowMs + cfg.clockSkewS * 1000) {
+      // an unreadable or future-dated previous state is never a reason for silence, but if our own posts keep reading back unusable (for example the API returns bodies this parser refuses)
+      // the schedule would otherwise post on every tick: once unusableMaxPerDay unusable monitor-stream comments exist within 24 hours the job halts visibly instead
+      const unusableToday = mine.filter((r) => r.createdMs > nowMs - 86400000 && !parseMonitorComment(r.body).ok).length;
+      return unusableToday >= cfg.unusableMaxPerDay ? halt('PREVIOUS_STUCK') : go('PREVIOUS_UNUSABLE');
+    }
     if (prev.status !== cand.status || prev.codes.join() !== cand.codes.join()) return go('CHANGED');
     const ageS = (nowMs - newest.createdMs) / 1000;
     if (cand.status === 'ALERT') return ageS + cfg.slackS >= cfg.repeatAlertS ? go('REPEAT_ALERT') : skip('UNCHANGED_ALERT');

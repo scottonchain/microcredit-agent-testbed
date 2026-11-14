@@ -59,8 +59,12 @@ previous comment's `created_at` (delivery time), never its observation time; the
 | No previous comment, or the newest is unusable | post | Silence about an ALERT is the dangerous direction. |
 | The comment list cannot be read, is malformed, or is shorter than the comment count | HALT (job fails visibly) | Posting blind is the flood this design removes; a half-read thread could also hide the real previous state. |
 | The thread is at or above `capacityLimit` (default 2400 of an assumed 2500 cap) | HALT | Fail visibly before the board fills and the monitor silently stops. Someone must rotate the destination. |
+| The previous state is unusable (not parseable, or future-dated) and `unusableMaxPerDay` (default 3) unusable monitor-stream comments already exist within the last 24 hours | HALT (`PREVIOUS_STUCK`) | If GitHub ever returns a body this parser refuses, every tick would otherwise post (the 4 an hour schedule never reaches the cap of 8). A first live run must compare the stored body byte for byte before activation (O6). |
 | The hourly cap (`maxPerHour`, default 8 monitor-stream comments in the last hour) is reached | quiet skip (`RATE_CAP`) | Bounds a flapping status or a stuck loop; the next run compares again against the newest posted state. |
 | Bad config, invalid candidate, a stale or future-dated candidate, an id reused with a different state, a clock that is not a positive safe integer | HALT | Never guessed, never discarded. |
+
+`RATE_CAP` can hold back a changed ALERT. At the 4 an hour schedule that needs manual dispatches or flapping, and the next tick after the window frees posts it because the state still differs: a bounded delay, not a loss.
+`decide()` alone is not a sender gate: it normalises a missing final newline, whereas `validate-comment.mjs` (run first in the same job) refuses such a file.
 
 The module never throws (`decide(null)` halts with `INTERNAL`) and prints only reason codes from three closed lists, so nothing read from the board can
 reach `$GITHUB_OUTPUT`. Exit 0 is a decision (post or quiet skip); exit 3 is a halt.
@@ -121,16 +125,18 @@ twice would inflate the pending count behind a plausible reading.
 
 ## Review history
 
+Hermes's exact-head ACCEPT of 682cd136 (PR 476 comment 6877454092, source only, non-blocking notes) is for the earlier head and does not cover later heads. Its notes are addressed: repeated unusable previous state now halts (`PREVIOUS_STUCK`), `RATE_CAP` delay and the fact that `decide()` is not a sender gate are stated above.
+
 OpenAI's independent review of 682cd136 (PR 476 comment 6877440773) found: the minute-resolution id collision, the shared bot identity consuming the cap, stale snapshots posting as fresh receipts, and the
 latest-state-only delivery limit. The first three are fixed above; the fourth is stated as a limit. The review also asked that fixes introduce no raw board text into logs, outputs or the sender: unchanged (closed tokens only).
 
 ## Tests and mutation check
 
-`node test-dedup.mjs` (198 checks) covers the config ranges, the read-back validator against the sender gate, the full decision matrix with boundaries, trust of authors and of the monitor's own stream,
+`node test-dedup.mjs` (212 checks) covers the config ranges, the read-back validator against the sender gate, the full decision matrix with boundaries, trust of authors and of the monitor's own stream,
 listing validation, the capacity and rate limits, id retries and collisions, snapshot freshness, a two-day simulation of the 15 minute schedule (a steady OK posts a receipt about every 6 hours, a steady ALERT about hourly), the CLI wrapper
 including a hostile or inconsistent decision, and structural checks of the draft workflow. `node test-monitor.mjs` is 256 checks (duplicate-pending refusal and the second-resolution id added).
 
-Mutation run over the new and changed code, baseline printed first (256 and 198 passing): 84 of 85 mutants caught in my own run, not reproduced by anyone else. The one survivor, "missing observation time ok", is an equivalent mutant: removing the
+Mutation run over the new and changed code, baseline printed first (256 and 212 passing): 90 of 91 mutants caught in my own run, not reproduced by anyone else. The one survivor, "missing observation time ok", is an equivalent mutant: removing the
 explicit `atMs === null` test changes nothing observable, because `nowMs - null` coerces to a huge age and the budget check halts anyway; the explicit test is kept so the intent does not depend on coercion. History: the round before the review
 caught 67 of 67 (first run 58 of 71); the run after the review fixes first caught 81 of 85, and its three killable survivors (a status difference under a used id, the id still at minute resolution through `runOnce`, a missing `set +e` in the decide step) were
-fixed by adding tests, not by weakening any.
+fixed by adding tests, not by weakening any. The final round added the `PREVIOUS_STUCK` guard (from Hermes's note on repeated unusable previous states) and its six mutants; two survivors there were fixed with tests.
