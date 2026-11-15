@@ -91,35 +91,35 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 14 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 15 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 3 | 3 | 2 | 3 | 13 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side looks open under an account the lender of record holds and uses for its own studies; help-centre guidance unread; third-party posting needs Prolific approval ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4); November 12 (lead): nine sellers of human judgment to agents by API with six published prices (0.004 to about 3 dollars a judgment) and a USDC-in, dollars-out rail (HumanPing: agent deposits by card or USDC, worker paid by Stripe, PayPal or USDC), so the pool's need is buyable and the currency question has a live answer; buyer volume unpublished ([receipt](../evidence/lateral-20261112/README.md)); November 13 (bound on the buyer side): Rentahuman's public listing read without a key, 44 live bounties, about 5,000 dollars posted, median 20 dollars, seven applicants a spot, posters human or the platform itself, no agent-origin field; two bounties pay workers 235 to 250 dollars to open a subscription account in their own name ([receipt](../evidence/lateral-20261113/README.md)) |
 | 2 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
-| 3 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 2 | 3 | 2 | 3 | 12 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape |
-| 4 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
-| 5 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
-| 6 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
-| 7 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; carrying balances across periods adds 5 to 23 points, the dues-earned credit line only 2 to 4; the saving tracks trading partners per member (netting alone under half with one to three partners each, 56 to 59 percent at about five, 70 percent or more at ten); stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
+| 3 | B8 | Local-knowledge oracles sold to agents | 2 | 2 | 3 | 2 | 3 | 12 | Lead November 4 (Vangrid: an agent pays a USDC bounty by one HTTP call, a person is paid money for a verified local capture); November 10 activity trace: 48 anchored capture windows in a day, 1,405 in 30 days, on Base ([receipt](../evidence/lateral-20261110/README.md)); payment trace still unmeasured |
+| 4 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
+| 5 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
+| 6 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; carrying balances across periods adds 5 to 23 points, the dues-earned credit line only 2 to 4; the saving tracks trading partners per member (netting alone under half with one to three partners each, 56 to 59 percent at about five, 70 percent or more at ten); stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
+| 7 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 1 | 3 | 2 | 3 | 11 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape; re-read November 15: geography decided November 12, W3 sandbox accepted text-only with zero consented testers, its first checkpoint delivered early as draft PR 467 (unreviewed), no model-backed agent started, owner seat unclaimed, so execute 2 to 1 ([receipt](../evidence/lateral-20261115/README.md)) |
 | 8 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 9 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 3 | 2 | 2 | 11 | Bound November 14: the paid programme (Karya: 134,565 workers, 3.2 million dollars of wages by end 2025, about 5 dollars an hour per press) publishes no validation gap and calls validation solved; the programme with a measured gap (Common Voice Pashto, 35.2 percent validated) pays nobody ([receipt](../evidence/lateral-20261114/README.md)); parked as a public-good option; re-entry when a paid programme publishes a validation gap |
 | 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
 | 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
 | 13 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 3 | 1 | 2 | 10 | Bound November 13: `M` note from Levinsohn et al. (R5,000 voucher, +7 points at one year, R25,000 per caused job): about 0.5 dollars of net worker benefit per sponsor dollar in year one, about 1.0 over two years; measured a of about 0.2; stop met on these figures (guarantee beats it only through the refund reaching workers); kept as the C5 benchmark ([receipt](../evidence/lateral-20261113/README.md)) |
-| 14 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
-| 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
-| 16 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
-| 17 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
-| 18 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
-| 19 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
-| 20 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 2 | 2 | 2 | 9 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance |
+| 14 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 3 | 2 | 2 | 10 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance; re-read November 15: bound by provider terms (Bridge bars credit services, Eversend bars financial services and debt collection, Flutterwave lists lending and collections as pre-approval-only), evidence 2 to 3; re-entry on a remitter admitting a lender of record ([receipt](../evidence/lateral-20261115/README.md)) |
+| 15 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
+| 16 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
+| 17 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
+| 18 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
+| 19 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
+| 20 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
 | 21 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 2 | 2 | 2 | 9 | Far; no vendor channel |
 | 22 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
 | 23 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
 | 24 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
-| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 2 | 2 | 2 | 2 | 9 | Specified |
+| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); the 5 to 14 day waits at Upwork and Fiverr are dispute windows with 2-dollar instant options ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact |
 | 26 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
 | 27 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
 | 28 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
@@ -419,6 +419,20 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 15 (daily run)
+
+- Decisions due today recorded: N6 (November 12), F4 (November 14) and N7
+  (November 13) done; F11 and F12 re-read today; rule 8 not triggered.
+- F12 execute 2 to 1 (text-only sandbox, zero testers, owner seat unclaimed,
+  first checkpoint delivered early as draft PR 467 and unreviewed; the first
+  head of the receipt wrongly called it unreceipted, corrected within the
+  hour on the directions session's note); F11 evidence 2 to 3, bound by
+  provider terms.
+- N8 payout-timing comparison from primary pages: channels pay within a day
+  free or for about 2 dollars; stop met; NONE, retired at its stop and kept
+  as an intake fact. Receipts in
+  [evidence/lateral-20261115](../evidence/lateral-20261115/README.md).
+
 ## Concrete steps taken on November 14 (daily run)
 
 - F4: the clearing-ring simulation ran a day early on the contract's
@@ -516,7 +530,8 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 - The geography screen (Guatemala 17, Kenya 15, Mexico 15, Brazil 15, Philippines
   14, Ghana 13, India 13, Nigeria 12, Pakistan 12, Bangladesh 12, Ethiopia 9)
   and the harms register are in the packet; the lateral routine re-reads the
-  F11 and F12 scores on November 15 with the rest.
+  F11 and F12 scores on November 15 with the rest (done November 15:
+  [receipt](../evidence/lateral-20261115/README.md)).
 
 ## Proposed next actions
 
@@ -551,6 +566,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | C | Roblox press release, September 5, 2025: DevEx creators, median, rate | https://corp.roblox.com/newsroom/2025/09/roblox-unveils-ai-monetization-performance-innovations-creators |
 | C | Roblox 10-Q, quarter ended June 30, 2025 | https://www.sec.gov/Archives/edgar/data/1315098/000131509825000262/rblx-20250630.htm |
 | C, N7 | MDRC, Pathways to Financial Resilience | https://www.mdrc.org/work/publications/pathways-financial-resilience |
+| N8 | DoorDash Crimson page (weekly deposits, FastPay 1.99 dollars, instant at no fee) | https://dasher.doordash.com/en-us/about/dasherdirect |
+| N8 | Prolific participants page (cash out from 6 dollars, instant PayPal transfer) | https://www.prolific.com/participants |
 | F1 | Karya 2025 report | https://reports.karya.in/2025/ |
 | F1 | Pashto Common Voice release-level analysis (arXiv 2602.14062) | https://arxiv.org/abs/2602.14062 |
 | F4 | Clearing-ring simulation (this repository) | ../evidence/lateral-20261114/f4_clearing_ring.py |
