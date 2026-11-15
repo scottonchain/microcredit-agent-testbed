@@ -299,7 +299,9 @@ def range_limited(error_object):
 def retry_after_seconds(headers, now=None):
     """Seconds a provider asked us to wait, from a single valid Retry-After header (whole seconds or an HTTP date); otherwise None.
 
-    A missing, repeated, negative, fractional, oversized or unparseable value is not a delay: the caller then uses its own backoff."""
+    A missing, repeated, negative, fractional or unparseable value is not a delay: the caller then uses its own backoff. A numeric value is always a delay,
+    whatever its padding: leading zeros are insignificant and a value too large to represent comes back as infinity, so the caller refuses (the wait cannot
+    fit the budget) instead of falling back to a shorter wait than the provider asked for."""
     values = []
     try:
         items = headers.items() if hasattr(headers, "items") else []
@@ -309,8 +311,9 @@ def retry_after_seconds(headers, now=None):
     if len(values) != 1 or not isinstance(values[0], str):
         return None
     text = values[0].strip()
-    if text.isascii() and text.isdigit() and len(text) <= 7:
-        return int(text)
+    if text.isascii() and text.isdigit():
+        digits = text.lstrip("0") or "0"
+        return int(digits) if len(digits) <= 9 else float("inf")  # nine digits is already about thirty years
     try:
         when = email.utils.parsedate_to_datetime(text)
     except (TypeError, ValueError, IndexError):
@@ -746,7 +749,11 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
     def match(number, expected, read_from=None):
         for provider in (rpc, logs_rpc):
             if provider is read_from:
-                continue  # `expected` is the header this provider just returned: do not fetch the same header again
+                # `expected` is the header this provider just returned: do not fetch the same header again. Its hash and timestamp are its own,
+                # but the block number it claims is still checked against the block that was asked for.
+                if as_int(expected["number"]) != number:
+                    raise RpcError("provider block mismatch")
+                continue
             h = provider.block(number)
             if (as_int(h["number"]) != number or h["hash"].lower() != expected["hash"].lower()
                     or as_int(h["timestamp"]) != as_int(expected["timestamp"])):

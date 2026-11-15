@@ -672,8 +672,17 @@ class RetryAfterParsingTests(unittest.TestCase):
         self.assertEqual(ld.retry_after_seconds({'Retry-After': '120'}), 120)
         self.assertEqual(ld.retry_after_seconds({'retry-after': ' 7 '}), 7)
         self.assertEqual(ld.retry_after_seconds({'RETRY-AFTER': '0'}), 0)
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '00000120'}), 120)  # leading zeros do not change the value
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '0000000000'}), 0)
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '12345678'}), 12_345_678)  # a long but representable delay is a delay, not noise
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '999999999'}), 999_999_999)
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '0' * 50 + '45'}), 45)
         msg = http.client.HTTPMessage(); msg['retry-AFTER'] = '30'
         self.assertEqual(ld.retry_after_seconds(msg), 30)
+
+    def test_unrepresentable_delays_come_back_as_infinity_not_as_no_delay(self):
+        for value in ['1000000000', '9' * 12, '1' + '0' * 30, '9' * 5000, '0' * 4000 + '1' + '0' * 12]:
+            self.assertEqual(ld.retry_after_seconds({'Retry-After': value}), float('inf'), value[:12])
 
     def test_http_date_in_the_future_and_the_past(self):
         now = datetime.now(timezone.utc)
@@ -685,7 +694,7 @@ class RetryAfterParsingTests(unittest.TestCase):
         self.assertEqual(ld.retry_after_seconds({'Retry-After': 'Sun, 15 Nov 2026 12:02:00 GMT'}, now=fixed), 120.0)
 
     def test_malformed_repeated_or_missing_values_are_not_a_delay(self):
-        for value in ['', ' ', '-5', '1.5', '1e3', 'abc', '0x10', '12345678', '٣٠', 'Sun, 99 Nov 2026 12:00:00 GMT',
+        for value in ['', ' ', '-5', '1.5', '1e3', 'abc', '0x10', '٣٠', 'Sun, 99 Nov 2026 12:00:00 GMT',
                       'Sun, 15 Nov 2026 12:00:00', 'tomorrow', None, 120, ['30'], b'30']:
             self.assertIsNone(ld.retry_after_seconds({'Retry-After': value}), repr(value))
         self.assertIsNone(ld.retry_after_seconds({}))
@@ -708,6 +717,16 @@ class BackoffTests(unittest.TestCase):
         when = email.utils.format_datetime(datetime.now(timezone.utc) + timedelta(seconds=45), usegmt=True)
         sleeps = []; run_request(make_rpc(), Script(http_error(429, when), Reply({'result': '0x1'})), sleeps)
         self.assertEqual(len(sleeps), 1); self.assertTrue(40 <= sleeps[0] <= 45.5, sleeps)
+
+    def test_padded_and_oversized_numeric_retry_after_through_the_request_path(self):
+        sleeps = []; run_request(make_rpc(), Script(http_error(429, '00000120'), Reply({'result': '0x1'})), sleeps)
+        self.assertEqual(sleeps, [120.0])  # padded 120 waits 120 s, not the 0.5 s fallback it used to get
+        for value in ('12345678', '9' * 12, '0' * 40 + '7' * 20, '9' * 5000):
+            rpc = make_rpc(); rpc.deadline = ld.time.monotonic() + 600
+            sleeps = []; script = Script(http_error(429, value))
+            with self.assertRaises(ld.RpcError) as caught: run_request(rpc, script, sleeps)
+            self.assertEqual((script.calls, sleeps), (1, []), value[:12])  # an over-budget positive delay is refused: no early retry, no sleep
+            self.assertEqual(ld.classify_failure(caught.exception)[1:], ('http_429', 'state'))
 
     def test_retry_after_longer_than_the_remaining_budget_refuses_without_sleeping(self):
         rpc = make_rpc(); rpc.deadline = ld.time.monotonic() + 60
@@ -904,6 +923,25 @@ class HeaderReuseTests(unittest.TestCase):
         self.assertEqual(state.seen[ld.DEPLOYMENT_BLOCK + 200], 4)
         self.assertEqual(logs.seen[ld.DEPLOYMENT_BLOCK + 200], 3)
         self.assertEqual(state.seen[ld.DEPLOYMENT_BLOCK], 3); self.assertEqual(logs.seen[ld.DEPLOYMENT_BLOCK], 2)
+        self.assertEqual(result['snapshot']['eventCount'], len(state.events))
+
+    def test_a_reused_state_header_must_still_name_the_block_that_was_asked_for(self):
+        for delta in (1, -1, 1000):
+            state, logs = CountingProvider(), CountingProvider()
+            first_event = ld.DEPLOYMENT_BLOCK + state.events[0]['block']
+            original = state.block
+            def wrong_number(n, original=original, delta=delta, first_event=first_event):
+                h = original(n)
+                return dict(h, number=hex(n + delta)) if n == first_event else h
+            with patch.object(state, 'block', side_effect=wrong_number):
+                with self.assertRaises(ld.RpcError, msg=delta) as caught: ld.collect(DEPLOYMENT, state, logs)
+            self.assertEqual(str(caught.exception), 'provider block mismatch')
+        state, logs = CountingProvider(), CountingProvider()
+        first_event = ld.DEPLOYMENT_BLOCK + state.events[0]['block']
+        original = state.block
+        with patch.object(state, 'block', side_effect=lambda n: {k: v for k, v in original(n).items() if k != 'number'} if n == first_event else original(n)):
+            with self.assertRaises((ld.RpcError, KeyError, TypeError, ValueError)): ld.collect(DEPLOYMENT, state, logs)
+        state, logs, result = self.collect()  # unchanged headers still collect, one read per provider per event block
         self.assertEqual(result['snapshot']['eventCount'], len(state.events))
 
     def test_a_logs_provider_that_disagrees_on_an_event_block_still_fails(self):
