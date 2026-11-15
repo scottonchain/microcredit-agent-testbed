@@ -621,3 +621,323 @@ class AccountingAndTrustBoundaryTests(unittest.TestCase):
         for days in (2, 3, 30, 365):
             p.final_days = days
             with self.subTest(days=days), self.assertRaises(ld.RpcError): self.collect(p)
+
+
+# ---------------------------------------------------------------- transport: rate limits, retries, range splitting, header reuse
+import email.utils
+import http.client
+import io
+import socket
+import ssl
+import urllib.error
+from datetime import datetime, timedelta, timezone
+
+
+class Reply:
+    """A urlopen result carrying one JSON-RPC payload."""
+    def __init__(self, payload): self.payload = payload
+    def __enter__(self): return self
+    def __exit__(self, *a): return False
+    def read(self, *a): return json.dumps(self.payload).encode()
+
+
+def http_error(status, retry_after=None, headers=None):
+    h = dict(headers or {})
+    if retry_after is not None: h['Retry-After'] = retry_after
+    return urllib.error.HTTPError(SECRET, status, SECRET, h, io.BytesIO(b'body ' + SECRET.encode()))
+
+
+class Script:
+    """urlopen stand-in: yields each scripted outcome in turn (an exception is raised, anything else is returned)."""
+    def __init__(self, *outcomes): self.outcomes, self.calls = list(outcomes), 0
+    def __call__(self, request, timeout=None):
+        self.calls += 1
+        outcome = self.outcomes.pop(0) if len(self.outcomes) > 1 else self.outcomes[0]
+        if isinstance(outcome, BaseException): raise outcome
+        return outcome
+
+
+def make_rpc(**kw):
+    kw.setdefault('jitter', lambda: 0.0)
+    return ld.Rpc('https://rpc.example/' + SECRET, **kw)
+
+
+def run_request(rpc, script, sleeps):
+    with patch.object(ld.urllib.request, 'urlopen', side_effect=script), patch.object(ld.time, 'sleep', side_effect=sleeps.append):
+        return rpc.request('eth_chainId', [])
+
+
+class RetryAfterParsingTests(unittest.TestCase):
+    def test_valid_seconds_and_case_insensitive_name(self):
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': '120'}), 120)
+        self.assertEqual(ld.retry_after_seconds({'retry-after': ' 7 '}), 7)
+        self.assertEqual(ld.retry_after_seconds({'RETRY-AFTER': '0'}), 0)
+        msg = http.client.HTTPMessage(); msg['retry-AFTER'] = '30'
+        self.assertEqual(ld.retry_after_seconds(msg), 30)
+
+    def test_http_date_in_the_future_and_the_past(self):
+        now = datetime.now(timezone.utc)
+        future = email.utils.format_datetime(now + timedelta(seconds=90), usegmt=True)
+        past = email.utils.format_datetime(now - timedelta(seconds=90), usegmt=True)
+        self.assertTrue(85 <= ld.retry_after_seconds({'Retry-After': future}) <= 90)
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': past}), 0.0)
+        fixed = datetime(2026, 11, 15, 12, 0, 0, tzinfo=timezone.utc)
+        self.assertEqual(ld.retry_after_seconds({'Retry-After': 'Sun, 15 Nov 2026 12:02:00 GMT'}, now=fixed), 120.0)
+
+    def test_malformed_repeated_or_missing_values_are_not_a_delay(self):
+        for value in ['', ' ', '-5', '1.5', '1e3', 'abc', '0x10', '12345678', '٣٠', 'Sun, 99 Nov 2026 12:00:00 GMT',
+                      'Sun, 15 Nov 2026 12:00:00', 'tomorrow', None, 120, ['30'], b'30']:
+            self.assertIsNone(ld.retry_after_seconds({'Retry-After': value}), repr(value))
+        self.assertIsNone(ld.retry_after_seconds({}))
+        self.assertIsNone(ld.retry_after_seconds(None))
+        self.assertIsNone(ld.retry_after_seconds(object()))
+        msg = http.client.HTTPMessage(); msg['Retry-After'] = '10'; msg['Retry-After'] = '20'
+        self.assertIsNone(ld.retry_after_seconds(msg))  # two values: ambiguous, so not trusted
+
+
+class BackoffTests(unittest.TestCase):
+    def test_429_with_retry_after_waits_at_least_that_long_not_the_fixed_backoff(self):
+        sleeps = []; script = Script(http_error(429, '120'), Reply({'result': '0x14a34'}))
+        self.assertEqual(run_request(make_rpc(), script, sleeps), '0x14a34')
+        self.assertEqual(sleeps, [120.0]); self.assertEqual(script.calls, 2)
+        sleeps = []; script = Script(http_error(429, '120'), Reply({'result': '0x1'}))
+        run_request(make_rpc(jitter=lambda: 1.0), script, sleeps)
+        self.assertEqual(sleeps, [121.0])  # up to one second of jitter on top, never less than asked
+
+    def test_retry_after_date_is_honoured(self):
+        when = email.utils.format_datetime(datetime.now(timezone.utc) + timedelta(seconds=45), usegmt=True)
+        sleeps = []; run_request(make_rpc(), Script(http_error(429, when), Reply({'result': '0x1'})), sleeps)
+        self.assertEqual(len(sleeps), 1); self.assertTrue(40 <= sleeps[0] <= 45.5, sleeps)
+
+    def test_retry_after_longer_than_the_remaining_budget_refuses_without_sleeping(self):
+        rpc = make_rpc(); rpc.deadline = ld.time.monotonic() + 60
+        sleeps = []; script = Script(http_error(429, '120'))
+        with self.assertRaises(ld.RpcError) as caught: run_request(rpc, script, sleeps)
+        self.assertEqual(sleeps, []); self.assertEqual(script.calls, 1)  # not retried early, not slept
+        self.assertEqual(ld.classify_failure(caught.exception)[1:], ('http_429', 'state'))
+
+    def test_retry_after_that_just_fits_is_honoured_and_one_that_just_misses_is_refused(self):
+        with patch.object(ld.time, 'monotonic', return_value=1000.0):
+            rpc = make_rpc(); rpc.deadline = 1100.0
+            self.assertEqual(rpc.wait_before_retry(http_error(429, '100'), 0), 100.0)
+            self.assertIsNone(rpc.wait_before_retry(http_error(429, '101'), 0))
+
+    def test_retry_after_zero_is_not_a_reason_to_retry_at_once(self):
+        sleeps = []; run_request(make_rpc(), Script(http_error(429, '0'), Reply({'result': '0x1'})), sleeps)
+        self.assertEqual(sleeps, [0.5])  # a provider that says "0" on a 429 still gets the normal backoff, not an immediate retry
+        past = email.utils.format_datetime(datetime.now(timezone.utc) - timedelta(seconds=30), usegmt=True)
+        sleeps = []; run_request(make_rpc(), Script(http_error(429, past), Reply({'result': '0x1'})), sleeps)
+        self.assertEqual(sleeps, [0.5])
+
+    def test_malformed_retry_after_falls_back_to_capped_jittered_backoff(self):
+        for bad in ('abc', '-1', '1.5', ''):
+            sleeps = []; run_request(make_rpc(), Script(http_error(429, bad), Reply({'result': '0x1'})), sleeps)
+            self.assertEqual(sleeps, [0.5], bad)  # attempt 0: ceiling 1, jitter 0 -> half of it
+        sleeps = []; run_request(make_rpc(jitter=lambda: 1.0), Script(http_error(503), Reply({'result': '0x1'})), sleeps)
+        self.assertEqual(sleeps, [1.0])
+
+    def test_backoff_grows_is_capped_and_always_jittered_inside_its_bounds(self):
+        rpc = make_rpc()
+        err = urllib.error.URLError('x')
+        low = [rpc.wait_before_retry(err, a) for a in range(0, 8)]
+        self.assertEqual(low[:4], [0.5, 1.0, 2.0, 4.0]); self.assertTrue(all(v <= ld.MAX_BACKOFF_S for v in low))
+        self.assertEqual(low[-1], ld.MAX_BACKOFF_S / 2)  # capped: 8 / 2 at jitter 0
+        high = make_rpc(jitter=lambda: 1.0)
+        self.assertTrue(all(high.wait_before_retry(err, a) <= ld.MAX_BACKOFF_S for a in range(0, 12)))
+        self.assertEqual(high.wait_before_retry(err, 30), ld.MAX_BACKOFF_S)
+
+    def test_a_broken_jitter_source_cannot_shorten_or_lengthen_a_wait(self):
+        err = urllib.error.URLError('x')
+        for bad in (-1, 5, None, 'x', float('nan'), True, False):
+            self.assertEqual(make_rpc(jitter=lambda b=bad: b).wait_before_retry(err, 0), 1.0, repr(bad))
+
+    def test_no_sleep_after_the_last_attempt_and_attempts_are_bounded(self):
+        for retries, expected_calls in ((1, 1), (2, 2), (3, 3), (5, 5)):
+            sleeps = []; script = Script(http_error(503))
+            with self.assertRaises(ld.RpcError): run_request(make_rpc(retries=retries), script, sleeps)
+            self.assertEqual((script.calls, len(sleeps)), (expected_calls, expected_calls - 1), retries)
+        for bad in (0, -1, 6, 99, True, '3', None, 2.5):
+            self.assertEqual(ld.Rpc('https://x/', retries=bad).retries, 2, repr(bad))
+
+    def test_a_wait_that_does_not_fit_stops_the_retries(self):
+        rpc = make_rpc(retries=5); rpc.deadline = ld.time.monotonic() + 0.2
+        sleeps = []; script = Script(http_error(503))
+        with self.assertRaises(ld.RpcError): run_request(rpc, script, sleeps)
+        self.assertEqual((script.calls, sleeps), (1, []))  # a 0.5 s backoff does not fit in 0.2 s
+
+    def test_budget_exhausted_between_attempts_is_a_time_budget_failure(self):
+        rpc = make_rpc(retries=3); times = iter([0.0, 0.0, 10_000.0])  # attempt 1 starts, its backoff fits, then the budget is gone when attempt 2 would start
+        rpc.deadline = 100.0
+        with patch.object(ld.time, 'monotonic', side_effect=lambda: next(times)), \
+                patch.object(ld.urllib.request, 'urlopen', side_effect=Script(http_error(503))), patch.object(ld.time, 'sleep'):
+            with self.assertRaises(ld.RpcError) as caught: rpc.request('eth_chainId', [])
+        self.assertEqual(ld.classify_failure(caught.exception)[1:], ('time_budget', 'state'))
+
+    def test_retry_after_value_never_reaches_the_published_failure(self):
+        rpc = make_rpc(); rpc.deadline = ld.time.monotonic() + 1
+        with self.assertRaises(ld.RpcError) as caught:
+            run_request(rpc, Script(http_error(429, '99999', headers={'X-Secret': SECRET})), [])
+        stage, code, role = ld.classify_failure(caught.exception)
+        self.assertEqual((code, role), ('http_429', 'state'))
+        self.assertNotIn('99999', repr((stage, code, role)))
+        self.assertTrue(code in ld.FAILURE_CODES)
+
+
+class SyntheticOSErrorTests(unittest.TestCase):
+    """The November 9 hypothesis: a socket error urllib does not wrap in URLError escaped as a bare OSError and was reported as local_io."""
+    CASES = [(ConnectionResetError(SECRET), 'connection'), (ConnectionRefusedError(SECRET), 'connection'),
+             (ConnectionAbortedError(SECRET), 'connection'), (BrokenPipeError(SECRET), 'connection'),
+             (http.client.RemoteDisconnected(SECRET), 'connection'), (ssl.SSLError(SECRET), 'connection'),
+             (socket.gaierror(SECRET), 'connection'), (OSError(SECRET), 'connection'),
+             (http.client.IncompleteRead(b'part', 10), 'bad_response'), (http.client.BadStatusLine(SECRET), 'bad_response')]
+
+    def test_each_transport_error_becomes_a_fixed_code_with_the_provider_role(self):
+        for exc, code in self.CASES:
+            for role in ('state', 'logs'):
+                with self.assertRaises(ld.RpcError, msg=repr(exc)) as caught:
+                    run_request(make_rpc(role=role), Script(exc), [])
+                self.assertEqual(ld.classify_failure(caught.exception)[1:], (code, role), repr(exc))
+                self.assertNotIn('hunter2', repr(ld.classify_failure(caught.exception)))
+
+    def test_a_reset_is_retried_and_then_succeeds(self):
+        sleeps = []; self.assertEqual(run_request(make_rpc(), Script(ConnectionResetError(SECRET), Reply({'result': '0x2'})), sleeps), '0x2')
+        self.assertEqual(sleeps, [0.5])
+
+    def test_local_file_errors_are_still_local_io(self):
+        self.assertEqual(ld.classify_failure(OSError(SECRET))[1], 'local_io')  # only a failed transport request becomes `connection`
+        self.assertEqual(ld.transport_code(OSError(SECRET)), 'connection')
+
+
+class RangeSplitTests(unittest.TestCase):
+    def test_only_a_range_or_result_size_message_is_a_range_limit(self):
+        for message in ('block range too large', 'eth_getLogs is limited to a range', 'query returned more than 10000 results',
+                        'Log response size exceeded', 'range is too wide', 'max range exceeded', 'query exceeds max results 20000'):
+            self.assertTrue(ld.range_limited({'message': message}), message)
+        for message in ('rate limit exceeded', 'Too Many Requests', 'request throttled', 'daily quota exceeded', 'over capacity', 'limit exceeded',
+                        'rate limit: block range too large', 'Too Many Requests: block range too large', 'request throttled: range too wide',
+                        'rate-limit hit, max range', 'daily quota exceeded: block range', 'over capacity, query returned more than 10000 results',
+                        'internal error', '', None, 5, ['block range']):
+            self.assertFalse(ld.range_limited({'message': message}), repr(message))
+        for not_an_error in (None, 'block range', 5, [], {'code': -32005}):
+            self.assertFalse(ld.range_limited(not_an_error))
+        import collections
+        self.assertFalse(ld.range_limited(collections.UserDict({'message': 'block range too large'})))  # only a real JSON object counts
+
+    def logs_rpc(self, outcome):
+        class Probe(ld.Rpc):
+            def __init__(self): super().__init__('fake://', retries=1); self.widths = []
+            def request(self, method, params):
+                self.widths.append(int(params[0]['toBlock'], 16) - int(params[0]['fromBlock'], 16) + 1)
+                if isinstance(outcome, BaseException): raise outcome
+                raise AssertionError('unscripted')
+        return Probe()
+
+    def test_range_limit_splits_down_to_the_public_cap_and_stops(self):
+        class Limited(ld.Rpc):
+            def __init__(self): super().__init__('fake://', retries=1); self.widths = []
+            def request(self, method, params):
+                self.widths.append(int(params[0]['toBlock'], 16) - int(params[0]['fromBlock'], 16) + 1)
+                error = ld.RpcError('provider rejected request', 'provider_rejected'); error.role = 'logs'
+                error.range_limited = ld.range_limited({'message': 'block range too large'}); raise error
+        limited = Limited()
+        with self.assertRaises(ld.RpcError): limited.logs(['0x' + '11' * 20], 0, 99_999)
+        self.assertEqual(limited.widths, [10_000, 2_500, 625, 156])
+
+    def test_other_failures_never_shrink_the_range(self):
+        def coded(code, **extra):
+            e = ld.RpcError('x', code); e.role = 'logs'
+            for k, v in extra.items(): setattr(e, k, v)
+            return e
+        failures = [coded('http_429'), coded('timeout'), coded('connection'), coded('time_budget'), coded('http_5xx'), coded('bad_response'),
+                    coded('provider_rejected', range_limited=False), coded('provider_rejected'), ld.RpcError('plain, no code'),
+                    coded('provider_rejected', range_limited='yes')]
+        for failure in failures:
+            rpc = self.logs_rpc(failure)
+            with self.assertRaises(ld.RpcError): rpc.logs(['0x' + '11' * 20], 0, 99_999)
+            self.assertEqual(rpc.widths, [10_000], f'{failure.code!r} must not shrink the range')
+
+    def test_a_rate_limited_rejection_through_the_real_request_path_does_not_shrink(self):
+        class Real(ld.Rpc): pass
+        rpc = Real('https://rpc.example/', retries=1, role='logs'); widths = []
+        def opener(request, timeout=None):
+            body = json.loads(request.data); p = body['params'][0]
+            widths.append(int(p['toBlock'], 16) - int(p['fromBlock'], 16) + 1)
+            return Reply({'jsonrpc': '2.0', 'id': 1, 'error': {'code': -32005, 'message': 'rate limit exceeded'}})
+        with patch.object(ld.urllib.request, 'urlopen', side_effect=opener):
+            with self.assertRaises(ld.RpcError) as caught: rpc.logs(['0x' + '11' * 20], 0, 99_999)
+        self.assertEqual(widths, [10_000]); self.assertEqual(ld.classify_failure(caught.exception)[1:], ('provider_rejected', 'logs'))
+
+    def test_a_range_rejection_through_the_real_request_path_does_shrink(self):
+        rpc = ld.Rpc('https://rpc.example/', retries=1, role='logs'); widths = []
+        def opener(request, timeout=None):
+            p = json.loads(request.data)['params'][0]
+            width = int(p['toBlock'], 16) - int(p['fromBlock'], 16) + 1; widths.append(width)
+            if width > 1_000: return Reply({'jsonrpc': '2.0', 'id': 1, 'error': {'code': -32602, 'message': 'block range too large'}})
+            return Reply({'jsonrpc': '2.0', 'id': 1, 'result': []})
+        with patch.object(ld.urllib.request, 'urlopen', side_effect=opener):
+            self.assertEqual(rpc.logs(['0x' + '11' * 20], 0, 2_999), [])
+        self.assertEqual(widths, [3_000, 2_500, 625, 625, 625, 625, 500])  # two rejections (range), then 625-block windows over the whole range
+
+
+class CountingProvider(FullProvider):
+    def __init__(self):
+        super().__init__(); self.seen = {}
+    def block(self, n):
+        n = self.finalized if n == 'finalized' else n
+        self.seen[n] = self.seen.get(n, 0) + 1
+        return super().block(n)
+
+
+class HeaderReuseTests(unittest.TestCase):
+    def collect(self, state=None, logs=None):
+        state, logs = state or CountingProvider(), logs or CountingProvider()
+        return state, logs, ld.collect(DEPLOYMENT, state, logs)
+
+    def test_event_blocks_are_read_once_per_provider_and_boundaries_are_reread_at_the_end(self):
+        state, logs, result = self.collect()
+        event_blocks = {ld.DEPLOYMENT_BLOCK + e['block'] for e in state.events}
+        boundary = {ld.DEPLOYMENT_BLOCK, ld.DEPLOYMENT_BLOCK + 200}
+        self.assertTrue(event_blocks and not (event_blocks & boundary))
+        for n in event_blocks:
+            self.assertEqual((state.seen[n], logs.seen[n]), (1, 1), 'the state header is reused, the logs header is still read independently')
+        # state: finalized + boundary header + early match + final match; logs: finalized + early match + final match
+        self.assertEqual(state.seen[ld.DEPLOYMENT_BLOCK + 200], 4)
+        self.assertEqual(logs.seen[ld.DEPLOYMENT_BLOCK + 200], 3)
+        self.assertEqual(state.seen[ld.DEPLOYMENT_BLOCK], 3); self.assertEqual(logs.seen[ld.DEPLOYMENT_BLOCK], 2)
+        self.assertEqual(result['snapshot']['eventCount'], len(state.events))
+
+    def test_a_logs_provider_that_disagrees_on_an_event_block_still_fails(self):
+        state, logs = CountingProvider(), CountingProvider()
+        first_event = ld.DEPLOYMENT_BLOCK + state.events[0]['block']
+        original = logs.block
+        def lie(n):
+            h = original(n)
+            return dict(h, hash='0x' + 'cc' * 32) if n == first_event else h
+        with patch.object(logs, 'block', side_effect=lie):
+            with self.assertRaises(ld.RpcError) as caught: ld.collect(DEPLOYMENT, state, logs)
+        self.assertEqual(str(caught.exception), 'provider block mismatch')
+        timestamp = lambda n: dict(original(n), timestamp=hex(as_int_(original(n)['timestamp']) + 1)) if n == first_event else original(n)
+        with patch.object(logs, 'block', side_effect=timestamp):
+            with self.assertRaises(ld.RpcError): ld.collect(DEPLOYMENT, CountingProvider(), logs)
+
+    def test_event_block_hash_mismatch_and_end_of_run_change_still_fail(self):
+        state, logs = CountingProvider(), CountingProvider()
+        original = logs.logs
+        with patch.object(logs, 'logs', side_effect=lambda *a: [dict(e, blockHash='0x' + 'ee' * 32) for e in original()]):
+            with self.assertRaises(ld.RpcError): ld.collect(DEPLOYMENT, state, logs)
+        for provider_name in ('state', 'logs'):
+            state, logs = CountingProvider(), CountingProvider()
+            target = state if provider_name == 'state' else logs
+            real = target.block; boundary = ld.DEPLOYMENT_BLOCK + 200; reads = {'n': 0}
+            last_read = 3 if provider_name == 'state' else 2  # state: header, early match, final match; logs: early match, final match
+            def changing(n, real=real, reads=reads, last_read=last_read):
+                h = real(n)
+                if n == boundary:
+                    reads['n'] += 1
+                    if reads['n'] == last_read: return dict(h, hash='0x' + 'dd' * 32)  # only the LAST read, the end-of-run reread, differs
+                return h
+            with patch.object(target, 'block', side_effect=changing):
+                with self.assertRaises(ld.RpcError, msg=provider_name): ld.collect(DEPLOYMENT, state, logs)
+
+
+def as_int_(value): return int(value, 16)

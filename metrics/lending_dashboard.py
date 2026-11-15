@@ -8,9 +8,12 @@ Ledger activity establishes neither human identity nor incremental human benefit
 """
 import argparse
 from datetime import datetime, timezone
+import email.utils
+import http.client
 import json
 import os
 from pathlib import Path
+import random
 import subprocess
 import sys
 import time
@@ -240,8 +243,10 @@ def transport_code(error):
         return "timeout"
     if isinstance(error, urllib.error.URLError):
         return "connection"
-    if isinstance(error, ValueError):
-        return "bad_response"
+    if isinstance(error, OSError):
+        return "connection"  # a reset, refused or aborted socket that urllib did not wrap in URLError
+    if isinstance(error, (ValueError, http.client.HTTPException)):
+        return "bad_response"  # an unparseable or truncated body
     return "rpc_other"
 
 
@@ -273,12 +278,72 @@ def classify_failure(error, progress=None):
     return stage, code, role
 
 
+TRANSPORT_ERRORS = (OSError, ValueError, http.client.HTTPException)
+MAX_BACKOFF_S = 8
+# A provider that says "range" in a JSON-RPC error is limiting the size of one eth_getLogs query. A rate limit says other things. The text
+# is read only here, to decide whether splitting the range can help; it is never stored, published or logged.
+RANGE_HINTS = ("block range", "range is too", "range too", "range limit", "limited to a range", "too many blocks", "max range",
+               "log response size exceeded", "query returned more than", "query exceeds max results")
+RATE_HINTS = ("rate limit", "rate-limit", "too many requests", "throttl", "quota", "capacity")
+
+
+def range_limited(error_object):
+    """True only for a JSON-RPC error whose message names a range or result-size limit and no rate limit."""
+    message = error_object.get("message") if isinstance(error_object, dict) else None
+    if not isinstance(message, str):
+        return False
+    text = message.lower()
+    return any(h in text for h in RANGE_HINTS) and not any(h in text for h in RATE_HINTS)
+
+
+def retry_after_seconds(headers, now=None):
+    """Seconds a provider asked us to wait, from a single valid Retry-After header (whole seconds or an HTTP date); otherwise None.
+
+    A missing, repeated, negative, fractional, oversized or unparseable value is not a delay: the caller then uses its own backoff."""
+    values = []
+    try:
+        items = headers.items() if hasattr(headers, "items") else []
+        values = [v for k, v in items if isinstance(k, str) and k.lower() == "retry-after"]
+    except Exception:
+        return None
+    if len(values) != 1 or not isinstance(values[0], str):
+        return None
+    text = values[0].strip()
+    if text.isascii() and text.isdigit() and len(text) <= 7:
+        return int(text)
+    try:
+        when = email.utils.parsedate_to_datetime(text)
+    except (TypeError, ValueError, IndexError):
+        return None
+    if when is None or when.tzinfo is None:
+        return None
+    current = datetime.now(timezone.utc) if now is None else now
+    return max(0.0, (when - current).total_seconds())
+
+
 class Rpc:
-    def __init__(self, url, timeout=15, retries=2, role="state"):
-        self.url, self.timeout, self.retries = url, timeout, retries
+    def __init__(self, url, timeout=15, retries=2, role="state", jitter=random.random):
+        self.url, self.timeout = url, timeout
+        self.retries = retries if isinstance(retries, int) and not isinstance(retries, bool) and 1 <= retries <= 5 else 2
         self.role = role if role in PROVIDER_ROLES else None
         self.calls = 0
+        self.jitter = jitter
         self.deadline = time.monotonic() + 600
+
+    def wait_before_retry(self, error, attempt):
+        """Seconds to sleep before the next attempt, or None to give up now.
+
+        A valid Retry-After is honoured (never shortened); otherwise capped, jittered exponential backoff. If the wait would not fit in what is left
+        of the total time budget the request is refused now instead of being retried early."""
+        asked = retry_after_seconds(error.headers) if isinstance(error, urllib.error.HTTPError) else None
+        draw = self.jitter()
+        draw = draw if isinstance(draw, (int, float)) and not isinstance(draw, bool) and 0 <= draw <= 1 else 1.0
+        if asked:
+            delay = asked + draw  # up to one second of jitter on top, so that waiting clients do not all return together
+        else:
+            ceiling = min(MAX_BACKOFF_S, 2 ** attempt)
+            delay = ceiling / 2 + draw * ceiling / 2
+        return delay if delay <= self.deadline - time.monotonic() else None
 
     def request(self, method, params):
         body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
@@ -298,11 +363,17 @@ class Rpc:
                 if "error" in payload:
                     error = RpcError("provider rejected request", "provider_rejected")
                     error.role = self.role
+                    error.range_limited = range_limited(payload["error"])
                     raise error
                 return payload["result"]
-            except (urllib.error.URLError, TimeoutError, ValueError) as error:
+            except TRANSPORT_ERRORS as error:
                 last = error
-                time.sleep(2 ** attempt)
+                if attempt + 1 >= self.retries:
+                    break  # no sleep after the last attempt
+                delay = self.wait_before_retry(error, attempt)
+                if delay is None:
+                    break  # the wait would not fit in the remaining budget: refuse, do not retry early
+                time.sleep(delay)
         failure = RpcError("provider request failed", transport_code(last))
         failure.role = self.role
         raise failure
@@ -333,7 +404,9 @@ class Rpc:
             try:
                 found.extend(self.request("eth_getLogs", [params]))
             except RpcError as error:
-                if chunk <= 200:
+                # Splitting helps only against a proven range-size limit. A rate limit, a dropped connection, a timeout or an exhausted
+                # time budget gets no smaller ranges: more requests would only add to the load that caused the failure.
+                if getattr(error, "range_limited", False) is not True or chunk <= 200:
                     raise
                 chunk //= 4
                 continue
@@ -670,8 +743,10 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
     header = rpc.block(number)
     if as_int(header["number"]) != number:
         raise RpcError("wrong state boundary")
-    def match(number, expected):
+    def match(number, expected, read_from=None):
         for provider in (rpc, logs_rpc):
+            if provider is read_from:
+                continue  # `expected` is the header this provider just returned: do not fetch the same header again
             h = provider.block(number)
             if (as_int(h["number"]) != number or h["hash"].lower() != expected["hash"].lower()
                     or as_int(h["timestamp"]) != as_int(expected["timestamp"])):
@@ -694,7 +769,7 @@ def collect(deployment, rpc, logs_rpc, block="finalized", from_block=DEPLOYMENT_
     times = {}
     for n in sorted({e["block"] for e in events}):
         h = rpc.block(n)
-        match(n, h)
+        match(n, h, read_from=rpc)  # the state header was just read; the logs provider is still read and compared independently
         if any(e["blockHash"] != h["hash"].lower() for e in events if e["block"] == n):
             raise RpcError("log block mismatch")
         times[n] = as_int(h["timestamp"])
