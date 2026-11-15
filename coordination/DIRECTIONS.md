@@ -59,7 +59,7 @@ A view across the active directions so that no date passes unowned ([DECISION_AU
 | November 8 | Gate 2 testnet passkey demonstration; gate 3 five borrowers and five backers named | Read D7 gate state | | C4 disposition (case392/D12, protected window); N1 partner terms; F9 panel terms. C2 closed November 4. |
 | November 10 | | Rails round two (dollar and local currency); counsel brief drafted and queued | Priced 25 USDC round trip into GTQ and KES | |
 | November 12 | | | Geography GO or CHANGE | |
-| November 15 | | | | N6 and F4 simulations; N7 note; F11 and F12 scores re-read |
+| November 15 | | | | N6 and F4 simulations; N7 note; F11 and F12 scores re-read. DONE by the lateral lane: N6 November 12, N7 November 13, F4 November 14, F11 and F12 re-read November 15 ([receipt](../evidence/lateral-20261115/README.md)) |
 | November 17 | Shares its testers | Trust-interview shadow-scoring report | Spanish voice servicing agent on the test ledger: completion, cost, error rate | |
 | November 24 | | Measured cash round trip; deployment plan; operations note (now with the currency-exposure cap and the frozen-address scenario) | Harms register reviewed; Meta-policy memo; fallback channel shown; comparator set | |
 | December 1 | | | Partner packet complete, held for the operator's word | |
