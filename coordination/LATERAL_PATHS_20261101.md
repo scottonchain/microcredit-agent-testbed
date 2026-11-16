@@ -91,7 +91,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 15 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 16 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -104,13 +104,13 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 7 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 1 | 3 | 2 | 3 | 11 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape; re-read November 15: geography decided November 12, W3 sandbox accepted text-only with zero consented testers, its first checkpoint delivered early as draft PR 467 (unreviewed), no model-backed agent started, owner seat unclaimed, so execute 2 to 1 ([receipt](../evidence/lateral-20261115/README.md)) |
 | 8 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 9 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 3 | 2 | 2 | 11 | Bound November 14: the paid programme (Karya: 134,565 workers, 3.2 million dollars of wages by end 2025, about 5 dollars an hour per press) publishes no validation gap and calls validation solved; the programme with a measured gap (Common Voice Pashto, 35.2 percent validated) pays nobody ([receipt](../evidence/lateral-20261114/README.md)); parked as a public-good option; re-entry when a paid programme publishes a validation gap |
-| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 2 | 1 | 3 | 10 | Far; regulated, capital needed |
+| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 3 | 1 | 3 | 11 | NONE November 16 at this scale: index-trigger simulation on 45 Tamale seasons (one-in-five trigger, pure premium 23 percent of the sum insured) needs about 280 dollars of capital per farmer at the pure premium and 200 at 1.25 times (120 at 1.5, 70 at twice) because every policy pays in the same season (back-to-back triggers 2000 to 2002 and 2024 to 2025), against 0.5 a job with independent claims; a 100-dollar pool covers one farmer; stop met (capital and licensing) ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a licensed carrier wanting the contract as its payout rail |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
 | 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
 | 13 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 3 | 1 | 2 | 10 | Bound November 13: `M` note from Levinsohn et al. (R5,000 voucher, +7 points at one year, R25,000 per caused job): about 0.5 dollars of net worker benefit per sponsor dollar in year one, about 1.0 over two years; measured a of about 0.2; stop met on these figures (guarantee beats it only through the refund reaching workers); kept as the C5 benchmark ([receipt](../evidence/lateral-20261113/README.md)) |
 | 14 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 3 | 2 | 2 | 10 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance; re-read November 15: bound by provider terms (Bridge bars credit services, Eversend bars financial services and debt collection, Flutterwave lists lending and collections as pre-approval-only), evidence 2 to 3; re-entry on a remitter admitting a lender of record ([receipt](../evidence/lateral-20261115/README.md)) |
-| 15 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
-| 16 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 2 | 2 | 1 | 9 | Far; template only, no filing |
+| 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 3 | 2 | 1 | 10 | Lead on information, bound on execution, November 16: source-linked table built; about 1 percent of marketplace denials are appealed and roughly half of appeals succeed (44 percent of internal marketplace appeals not upheld, 43 to 67 prior authorization, 29 unemployment lower authority); free help exists in every programme, so the gap is use; transfer limits (personal data, legal practice, consent, R9) stand ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a stated template bottleneck |
+| 16 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
 | 17 | F6 | Unclaimed property recovery | 2 | 2 | 1 | 3 | 1 | 9 | Far; information only |
 | 18 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
 | 19 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
@@ -119,7 +119,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 22 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
 | 23 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
 | 24 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
-| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); the 5 to 14 day waits at Upwork and Fiverr are dispute windows with 2-dollar instant options ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact |
+| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); Upwork and Fiverr distinguish clearance (a 5 or 14 day hold) from withdrawal, faster clearance is conditional and withdrawal speed does not remove a hold (Codex's read, corrected November 16); the evidence does not establish a universal 2-dollar solution to a hold ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact to verify per person, never a rule to exclude |
 | 26 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
 | 27 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
 | 28 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
@@ -419,6 +419,21 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 16 (daily run)
+
+- F3: index-trigger simulation on public rainfall (NASA POWER, Tamale, 45
+  seasons) through the guarantee model: correlated claims need three to five
+  times the sum insured per policy in capital at pure or lightly loaded
+  premiums; stop met; NONE at this scale;
+  evidence 2 to 3, total 11.
+- F5: source-linked appeals table (marketplace claims and eligibility,
+  prior authorization, Medicare, unemployment, Social Security): about one
+  denial in a hundred appealed, roughly half of appeals succeed, free help
+  exists; lead on information, bound on execution; evidence 2 to 3, total 10.
+- Carry-over: Codex's post-merge N8 correction applied (clearance versus
+  withdrawal; no categorical intake inference). Receipts in
+  [evidence/lateral-20261116](../evidence/lateral-20261116/README.md).
+
 ## Concrete steps taken on November 15 (daily run)
 
 - Decisions due today recorded: N6 (November 12), F4 (November 14) and N7
@@ -574,6 +589,10 @@ Company-reported and advocacy figures are marked as such in the text.
 | F1 | Time on Karya | https://time.com/6297403/india-ai-karya-startup |
 | F1 | Context, India turns to AI to capture its 121 languages | https://www.context.news/ai/india-turns-to-ai-to-capture-its-121-languages |
 | F2 | World Bank Remittance Prices Worldwide, Q1 2025 report | https://remittanceprices.worldbank.org/sites/default/files/rpw_main_report_and_annex_q125_1_0.pdf |
+| F3 | NASA POWER monthly precipitation, Tamale point, 1981 to 2025 | https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR&community=AG&longitude=-0.84&latitude=9.40&start=1981&end=2025&format=JSON |
+| F3 | Index-trigger simulation (this repository) | ../evidence/lateral-20261116/f3_index_trigger.py |
+| F5 | HealthCare.gov internal appeals (deadlines and decision times) | https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/ |
+| F5 | Department of Labor, UI appeals reversal rates | https://oui.doleta.gov/unemploy/ui_appeal_reversal.asp |
 | F3 | Karlan, Osei, Osei-Akoto, Udry, NBER w18463 | https://www.nber.org/papers/w18463.pdf |
 | F4 | Iosifidis et al., Cyclic motifs in the Sardex monetary network | https://link.springer.com/article/10.1038/s41562-018-0450-0 |
 | F4 | Stodder and Lietaer, WIR macro stability | https://bernard-lietaer.org/wp-content/uploads/2022/07/2016-The-Macro-Stability-of-Swiss-WIR-Bank-Credits-Balance-Velocity-and-Leverage-Stodder-Lietaer-annotated.pdf |
