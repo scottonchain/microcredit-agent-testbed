@@ -10,8 +10,8 @@ Pool: n insured farmers, each paying premium k a season and receiving G on a tri
 pays c per policy per season for verification and payout. Unlike the revolving guarantee's
 independent jobs, every policy on one index pays in the same season, so the pool's loss is
 n times G at once. Seasons are drawn by bootstrap from the historical index (seed 7). Ruin is
-the pool being unable to pay a triggered season in full. The fair premium and the loaded
-premium come from experiments/revolving-guarantee/model.py (break_even with q = 1).
+the pool being unable to pay a triggered season in full. The pure premium is p * G + c (paid every
+season); the independent-claims comparison uses experiments/revolving-guarantee/model.py.
 
 Run: python3 evidence/lateral-20261116/f3_index_trigger.py
 """
@@ -73,14 +73,17 @@ def run():
     p20 = vals[int(0.2 * len(vals))]
     p = sum(1 for v in vals if v < p20) / len(vals)
     G, c = 60.0, 2.0
-    k_fair = model.break_even(p, 1.0, G, c)
+    # the premium is paid every season, so the pure premium is p * G + c; the guarantee model's
+    # break_even divides by (1 - p) because its contribution is collected only on jobs that do not
+    # default, which does not apply here (Hermes, PR 482 comment 6927721258)
+    k_fair = p * G + c
     out = {"station": "NASA POWER 9.40N 0.84W (Tamale), May to October rainfall, mm", "years": len(vals),
            "season_mm_min_median_max": [round(vals[0]), round(vals[len(vals) // 2]), round(vals[-1])],
            "trigger_mm_20th_percentile": round(p20), "trigger_frequency": round(p, 3),
            "trigger_years": [y for y, v in idx.items() if v < p20],
-           "G": G, "c": c, "fair_premium_q1": round(k_fair, 2), "rows": []}
+           "G": G, "c": c, "pure_premium_pG_plus_c": round(k_fair, 2), "rows": []}
     for n in (1, 10, 100, 1000):
-        for loading in (1.0, 1.25, 1.5):
+        for loading in (1.0, 1.25, 1.5, 2.0):
             k = round(loading * k_fair, 2)
             row = {"farmers": n, "premium": k, "loading": loading,
                    "ruin_30y_capital_100": round(ruin(idx, p20, n, G, k, c, 100.0), 3),
@@ -89,7 +92,8 @@ def run():
             row["capital_as_share_of_sum_insured"] = round(row["capital_for_5pct_ruin_30y"] / (n * G), 2)
             out["rows"].append(row)
     # the independent-claims comparison: the guarantee pool's own machinery at the same p
-    out["independent_claims_capital_for_5pct_ruin_1000_jobs_at_1.25k"] = model.capital_for_target(p, 1.0, G, c, 1.25 * k_fair)
+    out["independent_claims_capital_for_5pct_ruin_1000_jobs_at_1.25k"] = model.capital_for_target(
+        p, 1.0, G, c, 1.25 * model.break_even(p, 1.0, G, c))  # the guarantee pool at its own 1.25 times break-even
     return out
 
 
