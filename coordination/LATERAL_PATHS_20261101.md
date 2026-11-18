@@ -91,7 +91,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 17 run)
+## Unified priority list (everything not ruled out; 30 paths after the November 18 run)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -111,12 +111,12 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 14 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 3 | 2 | 2 | 10 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance; re-read November 15: bound by provider terms (Bridge bars credit services, Eversend bars financial services and debt collection, Flutterwave lists lending and collections as pre-approval-only), evidence 2 to 3; re-entry on a remitter admitting a lender of record ([receipt](../evidence/lateral-20261115/README.md)) |
 | 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 3 | 2 | 1 | 10 | Lead on information, bound on execution, November 16: source-linked table built; about 1 percent of marketplace denials are appealed and roughly half of appeals succeed (44 percent of internal marketplace appeals not upheld, 43 to 67 prior authorization, 29 unemployment lower authority); free help exists in every programme, so the gap is use; transfer limits (personal data, legal practice, consent, R9) stand ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a stated template bottleneck |
 | 16 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 3 | 2 | 2 | 10 | Bound November 17: Kenya AGPO uptake 16.84 percent of the 30 percent set-aside (women under 10, youth 7.5, disabled 2); the Strathmore survey of women entrepreneurs (542 unregistered, 1,049 registered) ranks information gaps and misconceptions first for the unregistered and, for the registered, sensitisation and bid training first with bid feedback third (4.56), while the KEPSA assessment names audited accounts, bank references, late payment and collateral at award; stop half met; no vendor channel ([receipt](../evidence/lateral-20261117/README.md)); re-entry on a Kenyan partner (L2) |
-| 17 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
-| 18 | F6 | Unclaimed property recovery | 2 | 1 | 2 | 3 | 1 | 9 | NONE November 17: every US state runs a free official search, most are on the national database, claims are free and states match owners proactively (4.25 billion dollars returned in fiscal 2025); the residual friction is identity proof, not information; stop met ([receipt](../evidence/lateral-20261117/README.md)); kept as one intake question |
-| 19 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
-| 20 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
-| 21 | F2 | Remittance corridor cost reduction | 2 | 1 | 2 | 2 | 2 | 9 | Far; licensing bounds it |
-| 22 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 2 | 2 | 2 | 9 | Far; no farmer channel |
+| 17 | F2 | Remittance corridor cost reduction | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for the project's corridors: the average cost of sending to Guatemala and Mexico was 2.6 percent in 2023 (World Bank indicator API), already under the 3 percent target, so no three-point saving exists there; Kenya inbound 3.9; the global 6.49 is carried by other corridors; stop met ([receipt](../evidence/lateral-20261118/README.md)); a fact for D17 rails |
+| 18 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for a monitoring role: Acorn already monitors by satellite at scale inside a 10 percent share and pays farmers 70 percent (its live page; earlier materials said 80); its own figures give about 0.63 tonnes per farmer to date, a few euros each, so unit price and volume bind, not verification; stop met ([receipt](../evidence/lateral-20261118/README.md)); re-entry on open plot data and a stated cost constraint |
+| 19 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
+| 20 | F6 | Unclaimed property recovery | 2 | 1 | 2 | 3 | 1 | 9 | NONE November 17: every US state runs a free official search, most are on the national database, claims are free and states match owners proactively (4.25 billion dollars returned in fiscal 2025); the residual friction is identity proof, not information; stop met ([receipt](../evidence/lateral-20261117/README.md)); kept as one intake question |
+| 21 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
+| 22 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
 | 23 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 2 | 2 | 2 | 9 | Boundary, kept with conditions |
 | 24 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
 | 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); Upwork and Fiverr distinguish clearance (a 5 or 14 day hold) from withdrawal, faster clearance is conditional and withdrawal speed does not remove a hold (Codex's read, corrected November 16); the evidence does not establish a universal 2-dollar solution to a hold ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact to verify per person, never a rule to exclude |
@@ -419,6 +419,18 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Concrete steps taken on November 18 (daily run)
+
+- F2: World Bank corridor averages read through the indicator API (the
+  Remittance Prices site refuses this proxy): sending to Guatemala and Mexico
+  already averages 2.6 percent; stop met; NONE for the project's corridors;
+  evidence 2 to 3, total 10.
+- F8: Acorn's live page (70 percent to farmers, satellite monitoring at
+  scale, 0.63 tonnes per farmer to date) shows verification is not the
+  binding constraint; stop met; NONE for a monitoring role; evidence 2 to 3,
+  total 10. Remaining untested: N9, B3, B11, F10. Receipts in
+  [evidence/lateral-20261118](../evidence/lateral-20261118/README.md).
+
 ## Concrete steps taken on November 17 (daily run)
 
 - F12 re-read after the directions session's rule-9 decision on D17: the
@@ -599,6 +611,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | F4 | Clearing-ring simulation (this repository) | ../evidence/lateral-20261114/f4_clearing_ring.py |
 | F1 | Time on Karya | https://time.com/6297403/india-ai-karya-startup |
 | F1 | Context, India turns to AI to capture its 121 languages | https://www.context.news/ai/india-turns-to-ai-to-capture-its-121-languages |
+| F2 | World Bank indicator API, average cost of sending to Guatemala (SI.RMT.COST.IB.ZS) | https://api.worldbank.org/v2/country/GTM/indicator/SI.RMT.COST.IB.ZS?format=json&date=2021:2025 |
+| F2 | Our World in Data, SDG 10.c.1 remittance costs (World Bank series) | https://ourworldindata.org/grapher/remittance-costs-as-share-of-amount-remitted |
 | F2 | World Bank Remittance Prices Worldwide, Q1 2025 report | https://remittanceprices.worldbank.org/sites/default/files/rpw_main_report_and_annex_q125_1_0.pdf |
 | F3 | NASA POWER monthly precipitation, Tamale point, 1981 to 2025 | https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR&community=AG&longitude=-0.84&latitude=9.40&start=1981&end=2025&format=JSON |
 | F3 | Index-trigger simulation (this repository) | ../evidence/lateral-20261116/f3_index_trigger.py |
