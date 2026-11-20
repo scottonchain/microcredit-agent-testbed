@@ -111,8 +111,8 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 14 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 3 | 2 | 2 | 10 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance; re-read November 15: bound by provider terms (Bridge bars credit services, Eversend bars financial services and debt collection, Flutterwave lists lending and collections as pre-approval-only), evidence 2 to 3; re-entry on a remitter admitting a lender of record ([receipt](../evidence/lateral-20261115/README.md)) |
 | 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 3 | 2 | 1 | 10 | Lead on information, bound on execution, November 16: source-linked table built; about 1 percent of marketplace denials are appealed and roughly half of appeals succeed (44 percent of internal marketplace appeals not upheld, 43 to 67 prior authorization, 29 unemployment lower authority); free help exists in every programme, so the gap is use; transfer limits (personal data, legal practice, consent, R9) stand ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a stated template bottleneck |
 | 16 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 3 | 2 | 2 | 10 | Bound November 17: Kenya AGPO uptake 16.84 percent of the 30 percent set-aside (women under 10, youth 7.5, disabled 2); the Strathmore survey of women entrepreneurs (542 unregistered, 1,049 registered) ranks information gaps and misconceptions first for the unregistered and, for the registered, sensitisation and bid training first with bid feedback third (4.56), while the KEPSA assessment names audited accounts, bank references, late payment and collateral at award; stop half met; no vendor channel ([receipt](../evidence/lateral-20261117/README.md)); re-entry on a Kenyan partner (L2) |
-| 17 | F2 | Remittance corridor cost reduction | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for the project's corridors: the average cost of sending to Guatemala and Mexico was 2.6 percent in 2023 (World Bank indicator API), already under the 3 percent target, so no three-point saving exists there; Kenya inbound 3.9; the global 6.49 is carried by other corridors; stop met ([receipt](../evidence/lateral-20261118/README.md)); a fact for D17 rails; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
-| 18 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for a monitoring role: Acorn already monitors by satellite at scale inside a 10 percent share and pays farmers 70 percent (its live page; earlier materials said 80); its own figures give about 0.63 tonnes per farmer to date, a few euros each, so unit price and volume bind, not verification; stop met ([receipt](../evidence/lateral-20261118/README.md)); re-entry on open plot data and a stated cost constraint; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
+| 17 | F2 | Remittance corridor cost reduction | 2 | 1 | 3 | 2 | 2 | 10 | PARKED November 20 for absent corridor-level data (qualified on Codex's PR 487 and 491 reviews): the World Bank inbound averages for Guatemala (2.56 percent) and Mexico (2.65) in 2023 are all-corridor aggregates that leave the United States to Guatemala and United States to Mexico corridor prices and their cheapest-versus-median spreads UNKNOWN, because the Remittance Prices site refuses this proxy; the aggregate shows no room for a three-point saving but does not prove its absence on a route ([receipt](../evidence/lateral-20261118/README.md)); re-entry when corridor-level data is readable |
+| 18 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 3 | 2 | 2 | 10 | PARKED November 20 for absent aligned payout and cost data (qualified on Codex's PR 487 and 491 reviews): Acorn's live page gives 70 percent of revenue to farmers (earlier 80), satellite monitoring at scale and 372,605 tonnes over 591,761 farmers, an illustrative aggregate ratio (about 0.63 tonnes each), not realized payout per paid farmer over an aligned period; the bundled 10 percent share does not isolate marginal verification cost, so "verification is not the binding constraint" is an unproven hypothesis ([receipt](../evidence/lateral-20261118/README.md)); re-entry on open plot data with payout cohorts and a disclosed verification cost |
 | 19 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 3 | 2 | 2 | 10 | Bound November 19: an advertised-rate screen on the one agent-shaped listing read (price over the poster's estimated hours): median 20 dollars, 34 of 44 bounties at or above the US federal floor and 31 at or above 16.50; creative gigs (median 6) below the federal floor, writing (10) above it but below 16.50; realized pay (hours, fees, completion, payout) unmeasured, so the pay condition is screened not established; the contract and payout conditions are not met ([receipt](../evidence/lateral-20261119/README.md)); re-entry on a customer contract or the B8 payment trace |
 | 20 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 3 | 2 | 3 | 10 | Bound November 20: the one cooperative platform read (The Drivers Cooperative) promises 8 to 10 percent more per trip and dividends, finances itself with revenue-share debt, publishes no payout terms, and drivers told the press in 2024 it paid late or missed payments, so the premise is real and the counterparty absent ([receipt](../evidence/lateral-20261120/README.md)); re-entry on a cooperative channel (L2) |
 | 21 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
@@ -427,8 +427,12 @@ every case is a counterparty (an account holder, a partner, a paying customer's
 contract, a member network, a tester, a wallet). Reset assumption: the scarce
 input is the counterparty, not the idea or its cheapest test, so every
 second-pass test names who is on the other side and reads their terms or public
-record. Retired at their own stops, re-entry conditions kept: F3, F6, F8, F2, N8,
-N4, C2, C1, N10, F10. One lead: F9. Second-pass test set, one per run with
+record. Retired at their own stops, re-entry conditions kept: F3, F6, N8, N4, C2,
+C1, N10, F10. Parked for absent counterparties or data, negative evidence and
+re-entry kept, their stop conclusions qualified as unproven on Codex's reviews:
+F2 (corridor-level prices UNKNOWN; only all-corridor averages read) and F8
+(aggregate ratio, bundled cost share; the binding-constraint conclusion is a
+hypothesis). One lead: F9. Second-pass test set, one per run with
 decisions first: F9 (December 13 repeat read; the researcher account when the
 lender of record is named), B8 (payment trace by a lane with a wallet), N1
 (attestation specification into D16's operations note), N5, N7, N6 and F4 (folded
@@ -440,9 +444,10 @@ the re-entry watch (F12, F11, F7, B3, B11, N9).
 - B11: the one cooperative platform's public side read; premise real (late and
   missed pay reported in 2024), channel and terms absent; bound; evidence 2 to
   3, total 10. F10 parked by its own entry.
-- First pass complete; rule 8 applied: re-ranked, ten paths retired at their
-  stops with re-entry kept, one assumption reset (counterparties, not
-  mechanisms, are scarce), second-pass test set named. Receipt in
+- First pass complete; rule 8 applied: re-ranked, eight paths retired at
+  their stops and two (F2, F8) parked with their stop conclusions qualified
+  as unproven, re-entry kept throughout, one assumption reset (counterparties,
+  not mechanisms, are scarce), second-pass test set named. Receipt in
   [evidence/lateral-20261120](../evidence/lateral-20261120/README.md).
 
 ## Concrete steps taken on November 19 (daily run)
@@ -460,14 +465,15 @@ the re-entry watch (F12, F11, F7, B3, B11, N9).
 
 ## Concrete steps taken on November 18 (daily run)
 
-- F2: World Bank corridor averages read through the indicator API (the
+- F2: World Bank country averages read through the indicator API (the
   Remittance Prices site refuses this proxy): sending to Guatemala and Mexico
-  already averages 2.6 percent; stop met; NONE for the project's corridors;
+  averages 2.6 percent across all corridors; the project's corridor prices
+  and spreads stay UNKNOWN (qualified November 20 on Codex's review);
   evidence 2 to 3, total 10.
 - F8: Acorn's live page (70 percent to farmers, satellite monitoring at
-  scale, 0.63 tonnes per farmer to date) shows verification is not the
-  binding constraint; stop met; NONE for a monitoring role; evidence 2 to 3,
-  total 10. Remaining untested: N9, B3, B11, F10. Receipts in
+  scale, about 0.63 tonnes per farmer as an aggregate ratio) leaves
+  "verification is not the binding constraint" an unproven hypothesis
+  (qualified November 20 on Codex's review); evidence 2 to 3, total 10. Remaining untested: N9, B3, B11, F10. Receipts in
   [evidence/lateral-20261118](../evidence/lateral-20261118/README.md).
 
 ## Concrete steps taken on November 17 (daily run)

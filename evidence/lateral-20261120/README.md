@@ -16,13 +16,13 @@ The register's entry says "no test within authority; parked behind a channel". R
 
 ## The first pass is complete: rule 8 applied
 
-Every one of the 30 paths now has a receipt or a recorded parking, nineteen days after the register opened. Rule 8 (re-rank, retire the empty paths, reset one assumption, say so plainly) is applied here rather than waiting for two empty runs, because the pass is over and the ranking as a to-do list is exhausted.
+Every one of the 30 paths now has a receipt or a recorded parking, nineteen days after the register opened. Rule 8 (re-rank, retire the empty paths, reset one assumption, say so plainly) is applied here rather than waiting for two empty runs, because the pass is over and the ranking as a to-do list is exhausted. A process defect is recorded with it: Codex's post-merge review of PR 487 (comment 6991450919, November 18) was not read before this run, because the watch covers a PR thread only until its merge; it is answered here and the carry-over now includes reading post-merge comments on the previous run's PR.
 
 **What the first pass found, in one sentence:** the mechanisms exist and are often already free (netting, index triggers, appeals, unclaimed property, official remittance corridors, satellite monitoring, clearance holds), and what this team lacks in every case is a counterparty: an account holder, a partner, a paying customer's contract, a member network, a tester, a wallet.
 
 **Re-ranked (scores unchanged; the ordering already reflects evidence):** one lead, F9 (13); live bounds with a named counterparty condition, N1, B8, N5, N6, F4 (12), F12, B10, F1 (11), C5, N7, F11, F5, F7, B3, B11 (10), N9 (8); the rest NONE or parked.
 
-**Retired at their own stops (rule 8), with their re-entry conditions kept:** F3 (a licensed carrier), F6 (official tools suffice; intake question kept), F8 (open plot data and a stated verification-cost constraint), F2 (corridor-level data showing the cheapest licensed route above 3 percent), N8 (a channel with a wait over 14 days and no instant option; intake fact kept), N4 (a named operator), C2 (closed November 4), C1 (payout concentration), N10 (parked at entry), F10 (a school channel). Retired means no run spends a test on them; a run re-reads one only when its condition is met.
+**Retired at their own stops (rule 8), with their re-entry conditions kept:** F3 (a licensed carrier), F6 (official tools suffice; intake question kept), N8 (a channel with a wait over 14 days and no instant option; intake fact kept), N4 (a named operator), C2 (closed November 4), C1 (payout concentration), N10 (parked at entry), F10 (a school channel). Retired means no run spends a test on them; a run re-reads one only when its condition is met. **Parked, not retired, with their stop conclusions qualified as unproven (Codex's PR 487 post-merge review, comment 6991450919, and PR 491 review):** F2, because only all-corridor country averages were read and the corridor-level price and spread are UNKNOWN (re-entry when corridor data is readable); F8, because cumulative tonnes over farmers supported is an illustrative aggregate ratio and a bundled 10 percent share does not isolate verification cost (re-entry on open plot data with payout cohorts and a disclosed verification cost). Their negative evidence stands; their stop conclusions do not.
 
 **The reset assumption.** The register was built on the assumption that the scarce input for a far-lateral path is the idea and its cheapest test. The first pass contradicts it: every near and far path with a sound mechanism bound on a counterparty the team does not have, and the only lead (F9) waits on the lender of record, an operator-queue item. The second pass therefore tests counterparties, not mechanisms: each test must name who would be on the other side and read their terms or their public record.
 
@@ -42,7 +42,8 @@ Cadence stays daily under the operator's November 1 approval; the daily work bec
 | B11 | November 20 bound; premise real at one platform, channel absent | re-entry on a cooperative channel (L2) |
 | F10 | November 20 parked by its own entry | re-entry on a school channel |
 | F9 | November 13 bound on the buyer side; the register's one lead | December 13 repeat read; account on the lender of record |
-| Retired (F3, F6, F8, F2, N8, N4, C2, C1, N10, F10) | at their stops | re-entry conditions only |
+| Retired (F3, F6, N8, N4, C2, C1, N10, F10) | at their stops | re-entry conditions only |
+| Parked, qualified (F2, F8) | November 20: stop conclusions unproven; negative evidence kept | corridor-level data; aligned payout and cost data |
 | D16 | November 19 run merged (PR 490); November 24 round trip protocol | November 24 |
 | D7 | tester cohort parks December 1 absent an outside human cycle (directions session) | December 1 |
 | Held merges (PR 456, 458) | operator-queue row November 12 | operator names who may merge |
