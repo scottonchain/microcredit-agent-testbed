@@ -91,7 +91,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Full costs and downside | Spend, legal exposure or participant risk | Near-zero, reversible, no participant risk |
 | Reusable value | Nothing carries over | Reuses the contract, review capability or evidence base |
 
-## Unified priority list (everything not ruled out; 30 paths after the November 19 run)
+## Unified priority list (everything not ruled out; 30 paths; first pass complete November 20, rule 8 applied)
 
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -104,27 +104,27 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | 7 | F12 | Licensed lender's conversational servicing agent on the channel people already use (WhatsApp first, voice, local currency; D17) | 2 | 1 | 3 | 2 | 3 | 11 | Added November 3 from the channels packet; cheapest test is a Spanish voice agent on the test app ledger with five testers (November 17); Meta policy allows only the lender-of-record shape; re-read November 15: geography decided November 12, W3 sandbox accepted text-only with zero consented testers, its first checkpoint delivered early as draft PR 467 (unreviewed), no model-backed agent started, owner seat unclaimed, so execute 2 to 1 ([receipt](../evidence/lateral-20261115/README.md)); November 17: the directions session decided the D17 milestone under rule 9 (CHANGE; voice agent and five-tester measurement NONE; sandbox PR 467 needs two reviews), so the register test is NONE by the owning decision; score unchanged; re-entry per D17 |
 | 8 | B10 | Agent as employer of first resort: a needed first job, prepaid, with a public evaluation | 3 | 0 | 3 | 2 | 3 | 11 | PARKED November 3 (L3): demand trace real but internal and sponsor-paid; dropped as the November 8 candidate; re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
 | 9 | F1 | Paid data work in low-resource languages, agents as quality layer | 2 | 2 | 3 | 2 | 2 | 11 | Bound November 14: the paid programme (Karya: 134,565 workers, 3.2 million dollars of wages by end 2025, about 5 dollars an hour per press) publishes no validation gap and calls validation solved; the programme with a measured gap (Common Voice Pashto, 35.2 percent validated) pays nobody ([receipt](../evidence/lateral-20261114/README.md)); parked as a public-good option; re-entry when a paid programme publishes a validation gap |
-| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 3 | 1 | 3 | 11 | NONE November 16 at this scale: index-trigger simulation on 45 Tamale seasons (one-in-five trigger, pure premium 23 percent of the sum insured) needs about 280 dollars of capital per farmer at the pure premium and 200 at 1.25 times (120 at 1.5, 70 at twice) because every policy pays in the same season (back-to-back triggers 2000 to 2002 and 2024 to 2025), against 0.5 a job with independent claims; a 100-dollar pool covers one farmer; stop met (capital and licensing) ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a licensed carrier wanting the contract as its payout rail |
+| 10 | F3 | Index insurance payouts through the conditional-payment contract | 3 | 1 | 3 | 1 | 3 | 11 | NONE November 16 at this scale: index-trigger simulation on 45 Tamale seasons (one-in-five trigger, pure premium 23 percent of the sum insured) needs about 280 dollars of capital per farmer at the pure premium and 200 at 1.25 times (120 at 1.5, 70 at twice) because every policy pays in the same season (back-to-back triggers 2000 to 2002 and 2024 to 2025), against 0.5 a job with independent claims; a 100-dollar pool covers one farmer; stop met (capital and licensing) ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a licensed carrier wanting the contract as its payout rail; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
 | 11 | C5 | Revolving first-job payment guarantee | 2 | 1 | 2 | 2 | 3 | 10 | Current conditional hypothesis |
-| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15 |
+| 12 | C2 | Productive service, API and compute markets with shared human and agent roles (ACP) | 1 | 2 | 2 | 2 | 3 | 10 | CLOSED November 4 by Codex (D6 closeout): the selected ACP case is NONE, finance not qualified after settlement and historical client-address replay; actor-parity evidence kept for D15; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
 | 13 | N7 | First-wage subsidy voucher as the direct-sponsorship comparator | 3 | 1 | 3 | 1 | 2 | 10 | Bound November 13: `M` note from Levinsohn et al. (R5,000 voucher, +7 points at one year, R25,000 per caused job): about 0.5 dollars of net worker benefit per sponsor dollar in year one, about 1.0 over two years; measured a of about 0.2; stop met on these figures (guarantee beats it only through the refund reaching workers); kept as the C5 benchmark ([receipt](../evidence/lateral-20261113/README.md)) |
 | 14 | F11 | Remittance-linked repayment: the relative abroad pays the instalment through a licensed WhatsApp remitter that settles in USDC (D17 option M3) | 2 | 1 | 3 | 2 | 2 | 10 | Added November 3; 25.5 billion dollars of remittances into Guatemala in 2025; needs a remitter partner and both parties' consent; credit never conditioned on remittance; re-read November 15: bound by provider terms (Bridge bars credit services, Eversend bars financial services and debt collection, Flutterwave lists lending and collections as pre-approval-only), evidence 2 to 3; re-entry on a remitter admitting a lender of record ([receipt](../evidence/lateral-20261115/README.md)) |
 | 15 | F5 | Appeals of wrongly denied claims and benefits | 3 | 1 | 3 | 2 | 1 | 10 | Lead on information, bound on execution, November 16: source-linked table built; about 1 percent of marketplace denials are appealed and roughly half of appeals succeed (44 percent of internal marketplace appeals not upheld, 43 to 67 prior authorization, 29 unemployment lower authority); free help exists in every programme, so the gap is use; transfer limits (personal data, legal practice, consent, R9) stand ([receipt](../evidence/lateral-20261116/README.md)); re-entry on a stated template bottleneck |
 | 16 | F7 | Public procurement set-asides for micro-vendors | 2 | 1 | 3 | 2 | 2 | 10 | Bound November 17: Kenya AGPO uptake 16.84 percent of the 30 percent set-aside (women under 10, youth 7.5, disabled 2); the Strathmore survey of women entrepreneurs (542 unregistered, 1,049 registered) ranks information gaps and misconceptions first for the unregistered and, for the registered, sensitisation and bid training first with bid feedback third (4.56), while the KEPSA assessment names audited accounts, bank references, late payment and collateral at award; stop half met; no vendor channel ([receipt](../evidence/lateral-20261117/README.md)); re-entry on a Kenyan partner (L2) |
-| 17 | F2 | Remittance corridor cost reduction | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for the project's corridors: the average cost of sending to Guatemala and Mexico was 2.6 percent in 2023 (World Bank indicator API), already under the 3 percent target, so no three-point saving exists there; Kenya inbound 3.9; the global 6.49 is carried by other corridors; stop met ([receipt](../evidence/lateral-20261118/README.md)); a fact for D17 rails |
-| 18 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 3 | 2 | 2 | 10 | NONE November 18 for a monitoring role: Acorn already monitors by satellite at scale inside a 10 percent share and pays farmers 70 percent (its live page; earlier materials said 80); its own figures give about 0.63 tonnes per farmer to date, a few euros each, so unit price and volume bind, not verification; stop met ([receipt](../evidence/lateral-20261118/README.md)); re-entry on open plot data and a stated cost constraint |
+| 17 | F2 | Remittance corridor cost reduction | 2 | 1 | 3 | 2 | 2 | 10 | PARKED November 20 for absent corridor-level data (qualified on Codex's PR 487 and 491 reviews): the World Bank inbound averages for Guatemala (2.56 percent) and Mexico (2.65) in 2023 are all-corridor aggregates that leave the United States to Guatemala and United States to Mexico corridor prices and their cheapest-versus-median spreads UNKNOWN, because the Remittance Prices site refuses this proxy; the aggregate shows no room for a three-point saving but does not prove its absence on a route ([receipt](../evidence/lateral-20261118/README.md)); re-entry when corridor-level data is readable |
+| 18 | F8 | Payments for ecosystem services with agent-run verification | 2 | 1 | 3 | 2 | 2 | 10 | PARKED November 20 for absent aligned payout and cost data (qualified on Codex's PR 487 and 491 reviews): Acorn's live page gives 70 percent of revenue to farmers (earlier 80), satellite monitoring at scale and 372,605 tonnes over 591,761 farmers, an illustrative aggregate ratio (about 0.63 tonnes each), not realized payout per paid farmer over an aligned period; the bundled 10 percent share does not isolate marginal verification cost, so "verification is not the binding constraint" is an unproven hypothesis ([receipt](../evidence/lateral-20261118/README.md)); re-entry on open plot data with payout cohorts and a disclosed verification cost |
 | 19 | B3 | Ground-truth gigs subcontracted by agents at a wage floor | 2 | 1 | 3 | 2 | 2 | 10 | Bound November 19: an advertised-rate screen on the one agent-shaped listing read (price over the poster's estimated hours): median 20 dollars, 34 of 44 bounties at or above the US federal floor and 31 at or above 16.50; creative gigs (median 6) below the federal floor, writing (10) above it but below 16.50; realized pay (hours, fees, completion, payout) unmeasured, so the pay condition is screened not established; the contract and payout conditions are not met ([receipt](../evidence/lateral-20261119/README.md)); re-entry on a customer contract or the B8 payment trace |
-| 20 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator |
-| 21 | F6 | Unclaimed property recovery | 2 | 1 | 2 | 3 | 1 | 9 | NONE November 17: every US state runs a free official search, most are on the national database, claims are free and states match owners proactively (4.25 billion dollars returned in fiscal 2025); the residual friction is identity proof, not information; stop met ([receipt](../evidence/lateral-20261117/README.md)); kept as one intake question |
-| 22 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
-| 23 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
-| 24 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
-| 25 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); Upwork and Fiverr distinguish clearance (a 5 or 14 day hold) from withdrawal, faster clearance is conditional and withdrawal speed does not remove a hold (Codex's read, corrected November 16); the evidence does not establish a universal 2-dollar solution to a hold ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact to verify per person, never a rule to exclude |
-| 26 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 2 | 2 | 3 | 9 | Boundary from the N3 receipt; needs a cooperative channel (L2) |
-| 27 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | Far; long horizon |
+| 20 | B11 | Worker payout guarantee against cooperative platform liquidity failure | 1 | 1 | 3 | 2 | 3 | 10 | Bound November 20: the one cooperative platform read (The Drivers Cooperative) promises 8 to 10 percent more per trip and dividends, finances itself with revenue-share debt, publishes no payout terms, and drivers told the press in 2024 it paid late or missed payments, so the premise is real and the counterparty absent ([receipt](../evidence/lateral-20261120/README.md)); re-entry on a cooperative channel (L2) |
+| 21 | N4 | Open-source tax-filing continuation for unclaimed EITC | 2 | 1 | 1 | 3 | 2 | 9 | NONE November 4, PARKED: Direct File not available for the 2026 season and its repository archived; no named operator ([receipt](../evidence/lateral-20261104/README.md)); re-entry a named state or nonprofit operator; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
+| 22 | F6 | Unclaimed property recovery | 2 | 1 | 2 | 3 | 1 | 9 | NONE November 17: every US state runs a free official search, most are on the national database, claims are free and states match owners proactively (4.25 billion dollars returned in fiscal 2025); the residual friction is identity proof, not information; stop met ([receipt](../evidence/lateral-20261117/README.md)); kept as one intake question; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
+| 23 | N2 | Rules-as-code maintenance for benefits calculators | 2 | 1 | 1 | 3 | 2 | 9 | Receipt Nov 1: candidate 10552 reproduced and fix drafted; parked at its own stop. November 4 decision: no new candidate; the three earlier PRs still unmerged in a 400-commit read ([receipt](../evidence/lateral-20261104/README.md)); re-entry on a maintainer response |
+| 24 | C4 | Human-first lending: bounded advance on one real order at a human-owned business (issue 392) | 2 | 1 | 3 | 1 | 2 | 9 | PARKED / INCOMPLETE November 8 (Codex, issue 392): the response window ended without usable records; NOT FUNDABLE on available evidence, economics INCONCLUSIVE; re-entry on usable order records from the existing case; no second solicitation |
+| 25 | N3 | Cooperative or placement channel with its own clients | 1 | 2 | 1 | 3 | 2 | 9 | Receipt Nov 1: clients pay the platform up front; stop met for client nonpayment; spawned B11 |
+| 26 | N8 | Payment timing instead of nonpayment insurance | 1 | 1 | 3 | 2 | 2 | 9 | NONE November 15, retired at its stop: channels read directly pay within a day free or for about 2 dollars (DoorDash weekly free or FastPay 1.99, Prolific instant PayPal, HumanPing instant, Rentahuman on approval); Upwork and Fiverr distinguish clearance (a 5 or 14 day hold) from withdrawal, faster clearance is conditional and withdrawal speed does not remove a hold (Codex's read, corrected November 16); the evidence does not establish a universal 2-dollar solution to a hold ([receipt](../evidence/lateral-20261115/README.md)); kept as an intake fact to verify per person, never a rule to exclude; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
+| 27 | F10 | AI tutoring for earnings-relevant skills | 2 | 1 | 1 | 2 | 2 | 8 | PARKED November 20 by its own entry (no test within authority); re-entry on a school or programme channel with an earnings follow-up; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
 | 28 | N9 | Positive payment-history reporting | 1 | 1 | 2 | 2 | 2 | 8 | Bound November 19: the furnisher door needs a business entity with an inspected place of business, a data agreement, monthly whole-portfolio Metro 2 reporting, an e-OSCAR seat, Regulation V written policies, and at Equifax a stated 200 to 500 record minimum by industry beside an FAQ that says no minimum but a possible paid monitoring tool under 500 accounts, so eligibility and cost for a few-dozen-loan pilot are unresolved and the other bureaus' terms unread; not a licence ([receipt](../evidence/lateral-20261119/README.md)); re-entry on published small-furnisher terms, a permitted intermediary, or the stated volume |
-| 29 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md) |
-| 30 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked |
+| 29 | C1 | Virtual and creator worlds with human co-creators (Roblox, Second Life) | 1 | 1 | 1 | 2 | 2 | 7 | PARKED November 3: payouts concentrate at the top (median DevEx creator 1,440 dollars a year; top 1,000 take 73 to 86 percent); re-entry in [evidence](../evidence/lateral-decisions-20261103/README.md); RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
+| 30 | N10 | Job-search cost subsidy | 2 | 1 | 1 | 1 | 1 | 6 | Parked; RETIRED November 20 under rule 8 at its own stop, re-entry condition kept ([second pass](../evidence/lateral-20261120/README.md)) |
 
 Reading the list: the top five need no new authority and attack the hiring
 decision or buy human judgment from the agent economy. N2 and N3 dropped on
@@ -419,6 +419,37 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
    re-entry, done, or re-dated). No score-moving lead this run; the next run
    decides N2's November 4 candidate selection.
 
+## Second pass (rule 8, November 20)
+
+The first pass over all 30 paths completed on November 20 ([record](../evidence/lateral-20261120/README.md)).
+Finding: the mechanisms exist and are often already free; what the team lacks in
+every case is a counterparty (an account holder, a partner, a paying customer's
+contract, a member network, a tester, a wallet). Reset assumption: the scarce
+input is the counterparty, not the idea or its cheapest test, so every
+second-pass test names who is on the other side and reads their terms or public
+record. Retired at their own stops, re-entry conditions kept: F3, F6, N8, N4, C2,
+C1, N10, F10. Parked for absent counterparties or data, negative evidence and
+re-entry kept, their stop conclusions qualified as unproven on Codex's reviews:
+F2 (corridor-level prices UNKNOWN; only all-corridor averages read) and F8
+(aggregate ratio, bundled cost share; the binding-constraint conclusion is a
+hypothesis). One lead: F9. Second-pass test set, one per run with
+decisions first: F9 (December 13 repeat read; the researcher account when the
+lender of record is named), B8 (payment trace by a lane with a wallet), N1
+(attestation specification into D16's operations note), N5, N7, N6 and F4 (folded
+into C5 and D16 as pointers and constraints; re-read on new primary data), and
+the re-entry watch (F12, F11, F7, B3, B11, N9).
+
+## Concrete steps taken on November 20 (daily run)
+
+- B11: the one cooperative platform's public side read; premise real (late and
+  missed pay reported in 2024), channel and terms absent; bound; evidence 2 to
+  3, total 10. F10 parked by its own entry.
+- First pass complete; rule 8 applied: re-ranked, eight paths retired at
+  their stops and two (F2, F8) parked with their stop conclusions qualified
+  as unproven, re-entry kept throughout, one assumption reset (counterparties,
+  not mechanisms, are scarce), second-pass test set named. Receipt in
+  [evidence/lateral-20261120](../evidence/lateral-20261120/README.md).
+
 ## Concrete steps taken on November 19 (daily run)
 
 - N9: furnisher eligibility read from Equifax's furnisher page and FAQ,
@@ -434,14 +465,15 @@ resource rulings, the re-entry condition. Re-entry never happens by silence.
 
 ## Concrete steps taken on November 18 (daily run)
 
-- F2: World Bank corridor averages read through the indicator API (the
+- F2: World Bank country averages read through the indicator API (the
   Remittance Prices site refuses this proxy): sending to Guatemala and Mexico
-  already averages 2.6 percent; stop met; NONE for the project's corridors;
+  averages 2.6 percent across all corridors; the project's corridor prices
+  and spreads stay UNKNOWN (qualified November 20 on Codex's review);
   evidence 2 to 3, total 10.
 - F8: Acorn's live page (70 percent to farmers, satellite monitoring at
-  scale, 0.63 tonnes per farmer to date) shows verification is not the
-  binding constraint; stop met; NONE for a monitoring role; evidence 2 to 3,
-  total 10. Remaining untested: N9, B3, B11, F10. Receipts in
+  scale, about 0.63 tonnes per farmer as an aggregate ratio) leaves
+  "verification is not the binding constraint" an unproven hypothesis
+  (qualified November 20 on Codex's review); evidence 2 to 3, total 10. Remaining untested: N9, B3, B11, F10. Receipts in
   [evidence/lateral-20261118](../evidence/lateral-20261118/README.md).
 
 ## Concrete steps taken on November 17 (daily run)
@@ -677,6 +709,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | N7 | Levinsohn et al., youth wage subsidy (3ie) | https://www.3ieimpact.org/sites/default/files/2019-01/ie15-youth_wage_subsidy.pdf |
 | N8 | CFPB Regulation Z treatment of earned wage access (law-firm summary) | https://www.klgates.com/To-Z-or-Not-to-Z-CFPB-Clarifies-the-Regulation-Z-Treatment-of-Certain-Earned-Wage-Access-Products-1-12-2026 |
 | N8 | South Carolina 2025 EWA report | https://www.consumer.sc.gov/sites/consumer/files/Documents/Reports/2025%20EWA%20Report%20Draft%20FINAL.pdf |
+| B11 | The Drivers Cooperative, home page | https://drivers.coop/ |
+| B11 | Documented, The Rise and Fall of NYC's Driver-Owned Ride-Share (2024; blocked for this proxy) | https://documentedny.com/2024/10/07/forman-nyc-driver-cooperative-taxi-ride-share/ |
 | N9 | Equifax, Become a Data Furnisher (consumer) and furnisher FAQ | https://www.equifax.com/business/data-furnishers/consumer/ |
 | N9 | Regulation V, 12 CFR 1022.42 | https://www.consumerfinance.gov/rules-policy/regulations/1022/42/ |
 | N9 | Esusu and Freddie Mac results (company release) | https://www.multifamilyexecutive.com/business-finance/business-trends/freddie-mac-esusu-rent-reporting-initiative-creates-over-27-000-new-credit-scores_o |
