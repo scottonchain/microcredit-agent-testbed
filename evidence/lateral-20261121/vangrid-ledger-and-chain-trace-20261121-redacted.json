@@ -1,0 +1,538 @@
+{
+ "note": "Redacted extract of Vangrid's public bounty ledger (data.vangrid.io/api/bounties, 1,132 rows read 2026-11-21 about 19:55Z) and of USDC Transfer logs on Base read through a public RPC. Titles, briefs, buyer addresses and per-bounty rows are not kept; only aggregates, the platform's own published contract and operator addresses, and transaction hashes of sampled accept transactions (public chain records).",
+ "read_at": "2026-11-21T19:55:00Z",
+ "stats_endpoint": {
+  "settlements_usdc": 755622,
+  "created_usdc": 755622,
+  "accepted_usdc": 725076,
+  "locked_usdc": 2101,
+  "single_usdc": 729342,
+  "bulk_usdc": 26280,
+  "bounties_bulk": 222,
+  "created_units": 755622000000,
+  "accepted_units": 725076000000,
+  "locked_units": 2101000000,
+  "bounties_total": 1132,
+  "bounties_open": 4,
+  "bounties_accepted": 1083,
+  "agent_bounties": 3,
+  "by_chain": {
+   "5042": {
+    "created_usdc": 150,
+    "locked_usdc": 100,
+    "bounties_total": 2,
+    "bounties_open": 1
+   },
+   "8453": {
+    "created_usdc": 755472,
+    "locked_usdc": 2001,
+    "bounties_total": 1130,
+    "bounties_open": 3
+   }
+  },
+  "chains": [
+   {
+    "chainId": 8453,
+    "slug": "base",
+    "name": "Base",
+    "contract": "0x66Ad8BB1c13c24a587ABD99b43F66c9D8BA15afb",
+    "explorer": "https://basescan.org"
+   },
+   {
+    "chainId": 5042,
+    "slug": "arc",
+    "name": "Arc",
+    "contract": "0xdd5f15a2c4b324d881cb7826de8e5232ad99986e",
+    "explorer": "https://explorer.arc.io"
+   }
+  ],
+  "contract": "0x66Ad8BB1c13c24a587ABD99b43F66c9D8BA15afb",
+  "chainId": 8453
+ },
+ "ledger": {
+  "rows": 1132,
+  "by_status": {
+   "open": 4,
+   "cancelled": 18,
+   "accepted": 1083,
+   "expired_refunded": 27
+  },
+  "by_chain": {
+   "5042": 2,
+   "8453": 1130
+  },
+  "fee_bps": {
+   "1000": 1132
+  },
+  "is_test": {
+   "false": 1132
+  },
+  "posted_by_agent": {
+   "false": 1131,
+   "true": 1
+  },
+  "agent_posted_rows": [
+   {
+    "statusLabel": "cancelled",
+    "amountUsdc": 50,
+    "chainId": 5042,
+    "createdAt": "2026-09-27T16:27:36.483Z"
+   }
+  ],
+  "bulk_items": 222,
+  "bulk_orders": 24,
+  "first_created": "2026-08-10T22:29:21.455Z",
+  "last_created": "2026-11-21T14:31:13.177Z",
+  "created_usdc_total": 755622.0,
+  "accepted_usdc_total": 725076.0,
+  "accepted_amount_usdc": {
+   "n": 1083,
+   "median": 405.0,
+   "p25": 200.0,
+   "p75": 1000.0,
+   "min": 1.0,
+   "max": 4800.0
+  },
+  "amount_buckets": {
+   "100-499": 573,
+   "50-99": 1,
+   "500-999": 245,
+   ">=1000": 311,
+   "<50": 2
+  },
+  "buyers_distinct": 106,
+  "buyers_with_accepted": 104,
+  "accepted_usdc_share_top1": 0.114,
+  "top3": 0.171,
+  "top5": 0.225,
+  "top10": 0.33,
+  "buyers_with_10_or_more_accepted": 39,
+  "buyers_with_one_accepted": 6,
+  "accept_latency_hours": {
+   "n": 1082,
+   "median": 6.0,
+   "p25": 4.2,
+   "p75": 9.3,
+   "share_under_1h": 0.083,
+   "share_under_24h": 0.939
+  },
+  "by_month_created": {
+   "2026-09": {
+    "created": 618,
+    "created_usdc": 384920.0,
+    "accepted": 616,
+    "accepted_usdc": 384770.0
+   },
+   "2026-11": {
+    "created": 82,
+    "created_usdc": 55362.0,
+    "accepted": 69,
+    "accepted_usdc": 46161.0
+   },
+   "2026-10": {
+    "created": 251,
+    "created_usdc": 183700.0,
+    "accepted": 234,
+    "accepted_usdc": 172905.0
+   },
+   "2026-08": {
+    "created": 181,
+    "created_usdc": 131640.0,
+    "accepted": 164,
+    "accepted_usdc": 121240.0
+   }
+  },
+  "last_30_days_created": 148,
+  "last_7_days_created": 15,
+  "accepted_last_30_days_by_acceptedAt": 132,
+  "accepted_last_7_days": 14,
+  "cancelled_or_expired_usdc": 28445.0
+ },
+ "chain": {
+  "rpc": "https://base-rpc.publicnode.com (eth_getLogs, 50,000-block spans); https://mainnet.base.org (receipts)",
+  "usdc": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "escrow_contract": "0x66ad8bb1c13c24a587abd99b43f66c9d8ba15afb",
+  "operator_wallet": "0xd59fb12af112c3e55b13bdfa2a807235370e6025",
+  "window": {
+   "from_block": 54357701,
+   "from_date_approx": "2026-11-07T14:31:56.421Z",
+   "to_block": 60503118,
+   "to_date_approx": "2026-11-21T19:58Z"
+  },
+  "ledger_accepts_in_window": {
+   "n": 40,
+   "usdc": 26990.0
+  },
+  "escrow_usdc_out": {
+   "transfers": 46,
+   "usdc": 30845.0,
+   "to_operator": {
+    "n": 40,
+    "usdc": 26990.0
+   },
+   "to_buyers_refunds": {
+    "n": 6,
+    "usdc": 3855.0
+   },
+   "to_any_other_address": {
+    "n": 0,
+    "usdc": 0
+   },
+   "accept_tx_hashes_matched": 40
+  },
+  "operator_usdc_in": {
+   "transfers": 57,
+   "usdc": 26990.0,
+   "from_escrow_usdc": 26990.0,
+   "other_senders": 2,
+   "other_usdc": 0.0
+  },
+  "operator_usdc_out": {
+   "transfers": 59,
+   "usdc": 26990.0,
+   "distinct_recipients": 3,
+   "recipients_with_nonzero_value": 1,
+   "share_of_value_to_single_address": 1.0,
+   "zero_value_transfers": 19,
+   "recipients_that_are_bounty_buyers": 0
+  },
+  "accept_transaction_sample": {
+   "n": 30,
+   "seed": 20261121,
+   "all_status_success": true,
+   "all_release_full_amount_to_operator": true,
+   "rows": [
+    {
+     "tx_prefix": "0x4ae3943b",
+     "ledger_usdc": 950.0,
+     "block": 50683829,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       950.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x44e21eda",
+     "ledger_usdc": 520.0,
+     "block": 52183862,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       520.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x27d8c66d",
+     "ledger_usdc": 1800.0,
+     "block": 51643056,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1800.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x20da8c8a",
+     "ledger_usdc": 500.0,
+     "block": 51322600,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       500.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x51f643e0",
+     "ledger_usdc": 400.0,
+     "block": 52703496,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       400.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x401c0e1b",
+     "ledger_usdc": 300.0,
+     "block": 51356989,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       300.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x6079536a",
+     "ledger_usdc": 500.0,
+     "block": 52836284,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       500.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xbc7cfc09",
+     "ledger_usdc": 150.0,
+     "block": 58059377,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       150.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x72061fe0",
+     "ledger_usdc": 1800.0,
+     "block": 52145441,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1800.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xd605cfb1",
+     "ledger_usdc": 210.0,
+     "block": 52280388,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       210.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xb64396c2",
+     "ledger_usdc": 500.0,
+     "block": 51219911,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       500.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x19448e11",
+     "ledger_usdc": 200.0,
+     "block": 51299263,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       200.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x61ce4094",
+     "ledger_usdc": 700.0,
+     "block": 52219388,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       700.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xaee9140d",
+     "ledger_usdc": 600.0,
+     "block": 52265078,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       600.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x466939b6",
+     "ledger_usdc": 200.0,
+     "block": 51195899,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       200.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x67169605",
+     "ledger_usdc": 100.0,
+     "block": 50998211,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       100.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x6174f526",
+     "ledger_usdc": 400.0,
+     "block": 51287247,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       400.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xda9ece6c",
+     "ledger_usdc": 1800.0,
+     "block": 51331293,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1800.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x137ef1c3",
+     "ledger_usdc": 2000.0,
+     "block": 50486372,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       2000.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x336dbffe",
+     "ledger_usdc": 200.0,
+     "block": 51788252,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       200.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x01c85165",
+     "ledger_usdc": 100.0,
+     "block": 50981001,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       100.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xb885b20d",
+     "ledger_usdc": 330.0,
+     "block": 52779295,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       330.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xba80dd1b",
+     "ledger_usdc": 1200.0,
+     "block": 50901285,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1200.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x3e578f62",
+     "ledger_usdc": 1000.0,
+     "block": 52756411,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1000.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x3c884467",
+     "ledger_usdc": 1200.0,
+     "block": 51420026,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       1200.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xa0736107",
+     "ledger_usdc": 500.0,
+     "block": 52433683,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       500.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x295ad538",
+     "ledger_usdc": 300.0,
+     "block": 50605900,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       300.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0xe7e2886d",
+     "ledger_usdc": 2000.0,
+     "block": 51929664,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       2000.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x6ca2eac6",
+     "ledger_usdc": 500.0,
+     "block": 52001568,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       500.0
+      ]
+     ]
+    },
+    {
+     "tx_prefix": "0x3d63c152",
+     "ledger_usdc": 2200.0,
+     "block": 51132893,
+     "usdc_out_of_escrow": [
+      [
+       "0xd59fb1",
+       2200.0
+      ]
+     ]
+    }
+   ]
+  }
+ }
+}
