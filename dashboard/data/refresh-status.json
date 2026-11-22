@@ -1,1 +1,1 @@
-{"attemptedAt": "2026-11-21T00:11:57.318943+00:00", "status": "failed", "failureStage": "state_boundary", "failureCode": "provider_rejected", "failureProvider": "state"}
+{"attemptedAt": "2026-11-22T00:12:11.133209+00:00", "status": "failed", "failureStage": "state_boundary", "failureCode": "provider_rejected", "failureProvider": "state"}
