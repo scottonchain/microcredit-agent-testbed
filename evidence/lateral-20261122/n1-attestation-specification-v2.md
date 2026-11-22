@@ -28,8 +28,13 @@ real loans; the D16 lane adopts, changes or declines it in its own note.
    N9 furnishing route is a different thing and stays bound.
 2. **Facts only, no judgment.** It states what the contract recorded. It makes no claim of skill,
    character or creditworthiness, and the lender adds no free text.
-3. **Pseudonymous on chain.** The subject is a key the borrower controls; the link to a name is made
-   by the borrower when showing it, not by the lender and not on chain.
+3. **Pseudonymous, but linkable once shown.** The subject is a key the borrower controls; the link to
+   a name is made by the borrower when showing the document, not by the lender and not on chain.
+   Disclosure limit: whoever is shown the document receives the worker key, the contract address and
+   the block range, and can read every public log of that key, including lapses, claims, disputes and
+   any later activity, for as long as the chain exists. The borrower is told this in plain words before
+   opting in, and nothing in this specification reduces it. Consent to be backed (`ConsentSet`) is
+   consent to the backing only; it is never read as consent to disclose anything.
 4. **Revocable only for error.** The lender revokes an attestation only if it misstated the chain;
    a later default does not revoke an earlier true statement.
 5. **No new timers, accounts, spend or contact** are needed to specify it; issuing it needs the
@@ -54,7 +59,8 @@ contract's settlement unit; the lender does not convert them.
 
 ## Form
 
-Two encodings of the same statement, both signed by the lender of record's key.
+One encoding, privately delivered: a signed document the borrower holds. (A public on-chain pointer
+was considered and is out of scope; see "Not in scope" below.)
 
 **A. Portable document (the reference-letter form).** A W3C Verifiable Credentials 2.0 JSON document
 whose `type` includes a project-defined `GuaranteeHistoryCredential`; `issuer` is the lender of
@@ -67,12 +73,13 @@ can be shaped as an Open Badges `AchievementCredential` if a displayer that read
 it; conformance certification is not sought (it requires 1EdTech membership) and the trademark is
 not used.
 
-**B. On-chain pointer (optional).** An Ethereum Attestation Service attestation on Base from the
-lender's address to the worker's address, under a registered schema
-`(uint64 fromBlock, uint64 toBlock, uint32 opened, uint32 paid, uint32 remittedOnTime, uint32 lapsed, uint32 claims, bytes32 documentHash)`,
-holding the hash of document A. EAS is permissionless and free apart from gas; it adds nothing a
-verifier cannot get from the logs, and is worth issuing only if a verifier that already reads EAS
-attestations names this lender's address as trusted. It is not issued by default.
+**Not in scope: a public on-chain pointer.** An Ethereum Attestation Service attestation from the
+lender's address to the worker's address would publish worker-linked counts (including lapses and
+claims) and a document hash to anyone, which breaks limit 1 whether or not it is optional. It is not
+part of this specification. If a verifier that reads EAS attestations ever names this lender's address
+as trusted, a public pointer would need its own reviewed privacy and consent design, with the
+borrower's separate, explicit consent to publication; it would not be inferred from `ConsentSet` or from
+opting into document A.
 
 Example of A (illustrative values, no real loan):
 
@@ -102,12 +109,14 @@ Example of A (illustrative values, no real loan):
 
 ## Verification procedure (what the other side does)
 
-1. Resolve the issuer identifier to its public key (a `did:web` document at the lender's domain, or
-   the EAS attester address) and check the signature.
+1. Resolve the issuer identifier to its public key (a `did:web` document at the lender's domain) and
+   check the signature.
 2. Read the named contract's logs for the subject key over `fromBlock` to `toBlock` through any Base
    RPC or indexer and recompute the seven counts.
-3. Accept only if the recomputed counts equal the attested ones. The verifier learns nothing about
-   the person beyond the counts and the key.
+3. Accept only if the recomputed counts equal the attested ones. What the verifier learns is not
+   limited to the counts: with the key, the contract and the block range it can follow every public
+   log of that key and anything linked to it (limit 3). The specification narrows what the lender
+   states, not what the chain exposes.
 
 ## Who is on the other side, as read on November 22
 
@@ -117,7 +126,9 @@ Example of A (illustrative values, no real loan):
   in a credential as unverified". Certification "requires" 1EdTech membership (Alliance, Affiliate or
   Contributing). So the format is open and the trust is a list this lender is not on.
 - **EAS:** "open-source, permissionless, tokenless, and free-to-use"; the verifier decides which
-  attester addresses to trust. Same shape: open rail, trust out of band.
+  attester addresses to trust. Same shape: open rail, trust out of band; and because every
+  attestation is public, it is outside this specification's never-publish boundary (see "Not in
+  scope").
 - **A later employer or lender shown the document by the borrower:** the only counterparty that needs
   no list. This is the reference-letter case the literature measured, and it is where the
   specification's value lies until a displayer or lender publishes an issuer door.
@@ -127,4 +138,6 @@ Example of A (illustrative values, no real loan):
 That any employer or lender will read either form; that the borrower benefits (the literature measured
 letters from employers, not from lenders, and in other labour markets); that a verifier will trust a
 new lender of record's key. It establishes only that the artefact can be built from existing events at
-no cost beyond a key, within the D16 note's existing borrower protections.
+no cost beyond a key, within the D16 note's existing borrower protections, and subject to the
+linkability limit above. Revised November 22 after Codex's review of PR 495: the public on-chain
+pointer was removed from scope and the privacy wording replaced by the disclosure limit.
