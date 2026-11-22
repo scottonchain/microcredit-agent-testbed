@@ -96,7 +96,7 @@ returns. Tier labels: C current, N near (revision 1), F far-lateral, B boundary.
 | Rank | ID | Path | Benefit | Execute | Evidence | Cost | Reuse | Total | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | F9 | Paid human evaluation and jury work bought by the agent economy | 2 | 3 | 3 | 2 | 3 | 13 | Receipt November 3 (bound): Prolific floor 8 dollars an hour, fee 42.8 or 33.3 percent, about 4 dollars a check; capped study prepared by Codex November 4 without funding; November 11: researcher terms read by Hermes, an agent-only buyer is not allowed but an agent working through the API under an account held by a person over eighteen or an institution is, so the buyer side looks open under an account the lender of record holds and uses for its own studies; help-centre guidance unread; third-party posting needs Prolific approval ([receipt](../evidence/lateral-20261111/README.md)); D11 folded in November 10; open: outside demand and currency (L4); November 12 (lead): nine sellers of human judgment to agents by API with six published prices (0.004 to about 3 dollars a judgment) and a USDC-in, dollars-out rail (HumanPing: agent deposits by card or USDC, worker paid by Stripe, PayPal or USDC), so the pool's need is buyable and the currency question has a live answer; buyer volume unpublished ([receipt](../evidence/lateral-20261112/README.md)); November 13 (bound on the buyer side): Rentahuman's public listing read without a key, 44 live bounties, about 5,000 dollars posted, median 20 dollars, seven applicants a spot, posters human or the platform itself, no agent-origin field; two bounties pay workers 235 to 250 dollars to open a subscription account in their own name ([receipt](../evidence/lateral-20261113/README.md)) |
-| 2 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)); re-entry an existing partner carrying the attestation |
+| 2 | N1 | Verifiable skill signals and public work evaluations | 3 | 1 | 2 | 3 | 3 | 12 | Receipt November 3 (bound): Upwork displays partner credentials but selects partners itself, no public issuer door; attestation specification written ([receipt](../evidence/lateral-20261103/README.md)). November 22 (second pass, bound, unchanged): specification v2 written from the guarantee contract's own events (opt-in, borrower-held, facts only, pseudonymous but linkable once shown; a privately delivered Verifiable Credentials document, a public on-chain pointer out of scope on Codex's review; inside the D16 note's "no credit bureau reporting" limit) and offered to the D16 lane; the open credential rails admit any issuer but leave trust to the verifier's out-of-band list (Open Badges 3.0 displayers; EAS), so the artefact serves the person who carries it, as the reference-letter literature measured ([receipt](../evidence/lateral-20261122/README.md), [specification](../evidence/lateral-20261122/n1-attestation-specification-v2.md)); re-entry an existing partner carrying the attestation or a displayer's published issuer door |
 | 3 | N5 | Nonpayment recovery through existing law | 2 | 2 | 3 | 3 | 2 | 12 | Bound November 11: NYC Navigation Program FY2019 to 2023, about half of complainants recover all (40 percent) or part (9 percent), 773 paid 2.9 million dollars, 74 percent hiring-party response; Illinois first year 24 complaints, 14 outside jurisdiction; use, not the law, is the limit ([receipt](../evidence/lateral-20261111/README.md)); kept as a pointer for intake: notice under the applicable law before credit; re-read July 2026 |
 | 4 | N6 | Member-funded mutual pool | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 12: zero-sponsor simulation run ([receipt](../evidence/lateral-20261112/README.md), reproducible script): viable only where the covered event is rare (p at or below 5 percent) with about 50 members staking 10 dollars each; where p is 18 percent or more the per-job contribution eats the benefit before capital matters, the same result as the sponsored pool, so stop met for the first-job-failure version; kept as a design constraint for C5 |
 | 5 | F4 | Mutual credit clearing for micro-businesses, no sponsor capital | 1 | 2 | 3 | 3 | 3 | 12 | Bound November 14: clearing-ring simulation run ([receipt](../evidence/lateral-20261114/README.md), reproducible script): multilateral netting settles a third of gross trade in a 20-member sparse ring and nine tenths in a 200-member dense one; carrying balances across periods adds 5 to 23 points, the dues-earned credit line only 2 to 4; the saving tracks trading partners per member (netting alone under half with one to three partners each, 56 to 59 percent at about five, 70 percent or more at ten); stop (no candidate network) still live; a sized design note, re-entry on a candidate network (L2) |
@@ -435,9 +435,23 @@ F2 (corridor-level prices UNKNOWN; only all-corridor averages read) and F8
 hypothesis). One lead: F9. Second-pass test set, one per run with
 decisions first: F9 (December 13 repeat read; the researcher account when the
 lender of record is named), B8 (payment trace: read November 21 from public endpoints, bound), N1
-(attestation specification into D16's operations note), N5, N7, N6 and F4 (folded
+(attestation specification v2 written November 22 and offered to D16; bound), N5, N7, N6 and F4 (folded
 into C5 and D16 as pointers and constraints; re-read on new primary data), and
 the re-entry watch (F12, F11, F7, B3, B11, N9).
+
+## Concrete steps taken on November 22 (daily run)
+
+- N1: attestation specification v2 written from the guarantee contract's
+  events (seven recomputable counts; a borrower-held Verifiable Credentials
+  document, a public on-chain pointer out of scope; opt-in, facts only,
+  linkable once shown, never transmitted by the lender, so inside the D16
+  note's "no credit bureau reporting" limit) and
+  offered to the D16 lane for the first real loans. Verifiers read: Open Badges
+  3.0 displayers trust issuers from an out-of-band list and otherwise mark
+  issuer data unverified; certification needs 1EdTech membership; EAS is
+  permissionless with trust left to the verifier. Bound, no score moved (first
+  no-move run of the two rule 8 allows). Receipt in
+  [evidence/lateral-20261122](../evidence/lateral-20261122/README.md).
 
 ## Concrete steps taken on November 21 (daily run)
 
@@ -707,6 +721,8 @@ Company-reported and advocacy figures are marked as such in the text.
 | B8 | Base USDC Transfer logs through a public RPC (escrow and operator wallet) | https://base-rpc.publicnode.com |
 | N4 | IRS-Public/direct-file (archived) | https://github.com/IRS-Public/direct-file |
 | N1 | Upwork, how partners are selected (partner expert help) | https://support.upwork.com/hc/en-us/articles/28973308900243-How-to-become-an-Upwork-partner-expert |
+| N1 | 1EdTech, Open Badges 3.0 implementation guide (issuer trust) and certification guide (membership) | https://www.imsglobal.org/spec/ob/v3p0/impl/ ; https://www.imsglobal.org/spec/ob/v3p0/cert/ |
+| N1 | Ethereum Attestation Service documentation (permissionless attestations) | https://github.com/ethereum-attestation-service/eas-docs-site |
 | F9 | Prolific pricing (platform fee) | https://www.prolific.com/pricing |
 | N2 | Finkelstein and Notowidigdo working paper | https://www.ipr.northwestern.edu/documents/working-papers/2018/wp-18-03.pdf |
 | N2 | PolicyEngine US issue 10552 | https://github.com/PolicyEngine/policyengine-us/issues/10552 |
