@@ -159,7 +159,9 @@ class FakeRpc(ld.Rpc):
         if method == "eth_getLogs":
             start, end = int(params[0]["fromBlock"], 16), int(params[0]["toBlock"], 16)
             if end - start + 1 > self.cap:
-                raise ld.RpcError("eth_getLogs is limited to a range")
+                error = ld.RpcError("provider rejected request", "provider_rejected")
+                error.range_limited = ld.range_limited({"message": "eth_getLogs is limited to a range"})  # a proven range-size limit
+                raise error
             self.ranges.append((start, end))
             return [{"blockNumber": hex(start)}]
         raise AssertionError(method)
