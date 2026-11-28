@@ -465,12 +465,14 @@ the re-entry watch (F12, F11, F7, B3, B11, N9).
 
 - No signal, no test: no lender of record, account, partner door, consenting
   group, reviewer finding, other-lane decision touching a row, or dated read
-  (next December 8 and 13). The optional board-15 wording sweep closed: the
-  remaining mentions outside evidence/ are dated receipt links, dated
-  quotations and one historical experiment instruction (the first-hire
-  guarantee packet's channel row, to be re-read against the current board if
-  that experiment is ever reactivated); no current live-transport document
-  names board 15; no edit. Receipt in
+  (next December 8 and 13). The optional board-15 wording sweep closed: no
+  current document names board 15 as the live board; the remaining mentions
+  outside evidence/ are dated receipt links, dated quotations, one historical
+  experiment instruction (the first-hire guarantee packet's channel row),
+  succession pointers in current documents ("#462, continuing #15") and three
+  procedural sentences in dated October documents (team-structure.md's October
+  6 inventory, two docs/ plans), all left as history and read against the
+  current board on any reactivation; no edit. Receipt in
   [evidence/lateral-20261128](../evidence/lateral-20261128/README.md).
 
 ## Concrete steps taken on November 27 (daily run)
