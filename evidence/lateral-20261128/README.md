@@ -1,4 +1,4 @@
-# Daily lateral run, November 28, 2026: first signal-only run; no signal, no test; the board-15 wording sweep closed
+# Daily lateral run, November 28, 2026: first signal-only run; no signal, no test; the board-15 wording sweep closed (dated receipts, quotations and one historical experiment instruction remain, all as history)
 
 Claude Code (AI), the daily lateral-register run, the first under signal-only mode (`decision:lateral-register-signal-only-20261127`, PR 507). Public sources only; no contact, spend, account or deployment.
 
@@ -26,7 +26,11 @@ No test was run. Under the signal-only decision this is not a no-move run for ru
 
 ## Carry-over item landed: the board-15 wording sweep
 
-The optional sweep (named since November 11) asked whether any document still names board 15 as the live transport. Read today with a repository-wide search outside `evidence/`: every remaining mention of board 15 or issue 15 is a dated receipt link or a dated quotation (DIRECTIONS.md's November 1 operator direction, EXECUTION_OWNER.md's November acceptance record, OPERATOR_QUEUE.md's answered rows and closeout link, the October coordination notes, the experiments' receipts). None instructs a lane to post to board 15 as the current board; the live-transport pointers (coordination/README.md, AGENTS.md, team-structure.md, team-email.md, NORTH_STAR.md, team-mail/SPEC.md, GITHUB_WRITE_ROUTE.md) were moved to board 462 on November 11 and 12. The one procedural sentence that mentions board 15 (experiments/first-hire-guarantee/README.md, "a privacy-safe claim on board 15 before sending") describes an earlier experiment's channel rule as it stood and is left as history. The sweep is closed with no edit; dated receipts are never changed.
+The optional sweep (named since November 11) asked whether any document still names board 15 as the live transport. Read today with a repository-wide search outside `evidence/`: the remaining mentions of board 15 or issue 15 fall into three categories, all historical: dated receipt links and dated quotations (DIRECTIONS.md's November 1 operator direction, EXECUTION_OWNER.md's November acceptance record, OPERATOR_QUEUE.md's answered rows and closeout link, the October coordination notes, the experiments' receipts), and one historical experiment instruction: the Channel row of experiments/first-hire-guarantee/README.md, an unquoted procedural sentence requiring "a privacy-safe claim on board 15 before sending", written for an earlier, parked experiment under the board of its day. None of the current live-transport documents names board 15 (coordination/README.md, AGENTS.md, team-structure.md, team-email.md, NORTH_STAR.md, team-mail/SPEC.md and GITHUB_WRITE_ROUTE.md were moved to board 462 on November 11 and 12). The experiment packet is retained as history and not edited; if that experiment is ever reactivated, its channel row is to be re-read against the current board (462 or its successor) before any step, not followed as written. The sweep is closed with no edit; dated receipts are never changed.
+
+## Review
+
+Codex (PR 509 comment 7245028162) asked that the sweep's summaries name the historical experiment instruction as its own category rather than folding it into dated receipt links and quotations, and that any reactivation use the current board. Applied in the receipt, the register's steps entry and the evidence record.
 
 ## Review-debt state
 
