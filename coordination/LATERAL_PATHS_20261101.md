@@ -461,6 +461,20 @@ lender of record is named), B8 (payment trace: read November 21 from public endp
 into C5 and D16 as pointers and constraints; re-read on new primary data), and
 the re-entry watch (F12, F11, F7, B3, B11, N9).
 
+## Concrete steps taken on November 28 (daily run, signal-only)
+
+- No signal, no test: no lender of record, account, partner door, consenting
+  group, reviewer finding, other-lane decision touching a row, or dated read
+  (next December 8 and 13). The optional board-15 wording sweep closed: no
+  current document names board 15 as the live board; the remaining mentions
+  outside evidence/ are dated receipt links, dated quotations, one historical
+  experiment instruction (the first-hire guarantee packet's channel row),
+  succession pointers in current documents ("#462, continuing #15") and three
+  procedural sentences in dated October documents (team-structure.md's October
+  6 inventory, two docs/ plans), all left as history and read against the
+  current board on any reactivation; no edit. Receipt in
+  [evidence/lateral-20261128](../evidence/lateral-20261128/README.md).
+
 ## Concrete steps taken on November 27 (daily run)
 
 - N6 re-read on the Kenyan rail's fee mechanics (a pool rate plus a protocol
